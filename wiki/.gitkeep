@@ -1,0 +1,1 @@
+LLM 撰寫的維基本體。`index.md` 是目錄,`log.md` 是時間線,`overview.md` 是入口。其餘頁面會在 ingest/query 後由 agent 新增。

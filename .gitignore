@@ -1,0 +1,16 @@
+# Obsidian 工作區設定（機器專屬）
+.obsidian/workspace.json
+.obsidian/workspace
+
+# Pi 專案設定
+.pi/
+.pi-loop.json
+.pi-loop.json.lock
+
+# 系統檔案
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# GitHub token（如果有的話）
+github-token.json
