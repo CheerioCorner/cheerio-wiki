@@ -32,6 +32,17 @@ Obsidian/
 
 ## 2. 操作流程
 
+### Git 同步（跨機器協作）
+
+知識庫託管於 GitHub：`https://github.com/CheerioCorner/cheerio-wiki`（私有 repo）
+
+- **操作前** → 先 `git pull` 確保拿到最新版
+- **操作後** → `git add -A && git commit -m "..." && git push` 同步回 GitHub
+
+在 Ingest 和 Lint 流程結束時，自動執行 git commit + push。
+
+---
+
 ### 2.1 Ingest（吸收新資料）
 
 **觸發條件：** 人類在 `raw/` 放入新檔案並說「處理這個」或「ingest」。
@@ -45,6 +56,7 @@ Obsidian/
    - 標記新資料是否推翻/補充既有結論
 4. 更新 `wiki/index.md`（加入新頁或更新摘要）。
 5. 在 `wiki/log.md` 附加一條 ingest 紀錄。
+6. **git push** 同步回 GitHub。
 
 **批次流程：** 相同步驟，但一次處理多筆、較少互動。適合不重要的積累型資料。
 
@@ -69,6 +81,7 @@ Obsidian/
    - 缺漏的交叉引用
 2. 提出「該修什麼、該查什麼、該補什麼資料」的清單。
 3. 人類確認後開始修改。
+4. **git push** 同步回 GitHub。
 
 ---
 
