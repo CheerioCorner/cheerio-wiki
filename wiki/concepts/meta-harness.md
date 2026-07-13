@@ -110,6 +110,13 @@ tags: [harness, optimization, orchestration, multi-agent, llm]
 
 ---
 
+### 定義 B 的具體實作
+
+| 實作 | 開發者 | 特色 |
+|---|---|---|
+| [[OmniAgent]] | MindStudio | 最早提出 meta-harness 作為多 agent orchestration 的概念 |
+| [[omnigent]] | Databricks | 開源（Apache 2.0），強調 security policies + 即時協作，roadmap 包含 GEPA 整合 |
+
 ## 相關頁面
 
 - [[harness-concept]] — 傳統測試 harness 與 model harness 的基本概念
@@ -122,3 +129,4 @@ tags: [harness, optimization, orchestration, multi-agent, llm]
 - GitHub repo：stanford-iris-lab/meta-harness（https://github.com/stanford-iris-lab/meta-harness）
 - Yoonho Lee 的說明頁：https://yoonholee.com/meta-harness/
 - MindStudio 部落格：What is Meta-Harness for AI Agents（https://www.mindstudio.ai/blog/what-is-meta-harness-ai-agents-omniagent）
+- Databricks Blog：Introducing Omnigent（https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents）

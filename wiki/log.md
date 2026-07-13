@@ -3,6 +3,19 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-07-13] ingest | Omnigent — Databricks 開源 meta-harness
+
+- 人類提供 Databricks 部落格文章
+- 來源：https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents
+- 發現：Omnigent 是定義 B（業界版 meta-harness）的具體開源實作，由 Databricks 開發
+- 新頁：
+  - raw:[[2026-07-13-omnigent-meta-harness-databricks]]
+  - Entities:[[omnigent]]
+- 更新頁：[[meta-harness]] — 加入定義 B 的實作比較表（Omnigent vs OmniAgent）、更新來源
+- 更新 index 計數：來源 3 → 4，頁面 10 → 11
+
+---
+
 ## [2026-07-13] query | Meta-Harness 概念整理
 
 - 人類提問「meta-harness 是什麼？跟一般 harness 有何不同？」
