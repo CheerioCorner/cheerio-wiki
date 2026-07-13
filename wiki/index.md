@@ -10,8 +10,8 @@
 
 - **建立日期**  :2026-07-11
 - **範疇**      :AI Agent 框架 / Coding Agent / Pi 生態
-- **總來源數**  :2
-- **總頁面數**  :9
+- **總來源數**  :3
+- **總頁面數**  :10
 - **新手入口**  :[[快速開始]]—— 三種收集資料的方法與基本操作
 
 ---
@@ -39,6 +39,7 @@
 
 - [[late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略。
 - [[minimal-agent-philosophy]] — 「減法大於加法」哲學,2 來源、兩視角交點。
+- [[meta-harness]] — 對 harness 的再抽象/最佳化層，有學術（自動演化 harness）與業界（多 agent orchestration）兩種定義。
 
 (以下為階段性「tag-on-page」概念,未獨立開頁。靈記則睨[[pi-agent-core]]或 [[pi-mono]]:
 [[minimal-agent-loop]] / [[observability-layer]] / [[steering-followup]] / [[yolo-by-default]] / [[provider-abstraction]] / [[declaration-merging]])

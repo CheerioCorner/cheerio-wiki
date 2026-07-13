@@ -3,6 +3,19 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-07-13] query | Meta-Harness 概念整理
+
+- 人類提問「meta-harness 是什麼？跟一般 harness 有何不同？」
+- 來源：arXiv 論文（Lee et al., 2026）、Stanford GitHub repo、MindStudio 部落格
+- 發現：該詞有兩種獨立定義——
+  - 學術版（Stanford）：自動演化搜尋最佳 LLM harness 的框架
+  - 業界版（OmniAgent）：多 AI agent 的 orchestration layer
+- 新頁：
+  - Concepts:[[meta-harness]]—— 兩種定義 + 比較表 + 延伸
+- 更新 index 計數：來源 3 → 3，頁面 9 → 10
+
+---
+
 ## [2026-07-12] setup | 完成系統初始化與使用指南
 
 - 補完 `AGENTS.md` 所有預留位置，替換 `PERSON_NAME]`、`[ADDRESS]` 等佔位符
