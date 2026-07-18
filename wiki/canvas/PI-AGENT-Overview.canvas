@@ -1,0 +1,17 @@
+{
+	"nodes":[
+		{"id":"provider_node","type":"text","text":"## 🔌 什麼是 Provider？\n\n**Provider (供應商)** 指的是提供「AI 語言模型 (LLM) 服務與算力」的平台商。\n\n在 Pi 的生態系中，Provider 包含了 Anthropic, OpenAI, Google, Azure, Mistral, Ollama 等。\n\nPi 本身只是一個「外殼 (Harness)」，Provider 則是它的「大腦」。你可以根據企業合約或任務難度，自由設定並切換不同的 Provider 來處理不同任務。","x":-520,"y":-355,"width":360,"height":340},
+		{"id":"login_node","type":"text","text":"## 🔐 為什麼裡面會有登入 (Login)？\n\n因為 Pi 作為一個開源框架，本身**不自帶 AI 算力硬體**。\n\n為了讓 Pi 能夠幫你寫 Code，你需要向各大 **Provider** (如 OpenAI 或 Anthropic) 證明你是合法使用者。這通常需要透過：\n1. **設定 API Keys** \n2. **OAuth 授權登入**\n\n完成登入驗證後，Provider 才能計算你的 Token 消耗量並進行計費，Pi 也才具備存取這些大腦的權限。","x":-520,"y":140,"width":360,"height":480},
+		{"id":"features_node","type":"text","text":"## ✨ 核心特色 (Features)\n\n1. **極度可擴充**: 支援擴充套件 (Extensions)、技能 (Skills)、提示詞模板。你甚至可以請 Pi 現場寫一個擴充功能給自己用。\n2. **多模式運作**: 支援 TUI (終端介面)、Print/JSON 模式、RPC 協議，以及供系統整合的 SDK。\n3. **多模型無縫切換**: 支援 15+ 家 Provider，能在同一個對話 Session 中途熱切換模型 (例如遇到複雜問題切換至 Claude 3.5)。\n4. **樹狀會話歷史 (Tree-structured)**: 對話紀錄像 Git 分支一樣以樹狀儲存，可隨時回退到過去的節點開啟新分支，並支援導出為 URL 分享。\n5. **精密的上下文工程**: 支援透過 `AGENTS.md` 自動載入專案規範，並具備自動摘要 (Compaction) 機制，避免撐爆 Token 上限。","x":460,"y":-355,"width":450,"height":435},
+		{"id":"usage_node","type":"text","text":"## 🚀 怎麼使用它？\n\n你可以透過 npm 或 curl 快速全域安裝：\n```bash\nnpm install -g @earendil-works/pi-coding-agent\n```\n\n- **啟動**: 直接在終端機輸入 `pi`。\n- **即時引導 (Steering)**: 即使 Agent 正在背景執行指令，你也能隨時輸入文字來干預方向，或補充後續指示。\n- **生態共享**: 擴充套件與技能可打包為 npm 套件或 Git 進行企業內部或社群分享。","x":460,"y":140,"width":450,"height":380},
+		{"id":"root_node","type":"text","text":"# PI AGENT (Pi Coding Agent)\n\n**Pi** 是一個極簡且高度可擴充的 AI 程式開發代理框架 (Agent Harness)。\n\n- **官方網站**: https://pi.dev/\n- **核心精神**: 「讓工具適應你的工作流程，而不是你來適應工具。」\n- **定位**: 它不是一個封閉的產品，而是一個可以隨時自我客製化的工作介面。","x":-40,"y":-137,"width":400,"height":277},
+		{"id":"principle_node","type":"text","text":"## ⚙️ 原理：提供元件，而非功能\n**(Primitives, not features)**\n\n很多 Agent 會把「計畫模式」、「內建子代理」、「MCP 整合」或「權限彈窗」寫死在系統裡。\n\nPi 的運作原理是**反其道而行**，它將核心剝離到最極簡，把複雜功能解耦。如果您需要 MCP 支援或特定的存取權限，可以透過 TypeScript 寫一個輕量擴充套件來掛載。這確保了系統絕對輕量且完全受架構師的控制。","x":-40,"y":200,"width":400,"height":360}
+	],
+	"edges":[
+		{"id":"edge_features","fromNode":"root_node","fromSide":"right","toNode":"features_node","toSide":"left"},
+		{"id":"edge_usage","fromNode":"root_node","fromSide":"right","toNode":"usage_node","toSide":"left"},
+		{"id":"edge_principle","fromNode":"root_node","fromSide":"bottom","toNode":"principle_node","toSide":"top"},
+		{"id":"edge_provider","fromNode":"root_node","fromSide":"left","toNode":"provider_node","toSide":"right"},
+		{"id":"edge_login","fromNode":"root_node","fromSide":"left","toNode":"login_node","toSide":"right"}
+	]
+}

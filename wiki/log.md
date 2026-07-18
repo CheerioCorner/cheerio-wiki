@@ -3,6 +3,37 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-07-18] ingest | Pi 資源完整盤點（套件、Skills、MCP、Obsidian Wiki、專案目錄）
+
+- 人類要求：「檢視我們現在擁有的所有資源」
+- 來源：掃描 `C:/Cheerio/pi/`、`C:/Users/User/.pi/agent/`、`C:/Users/User/.agents/skills/`、`C:/Cheerio/pi-web-access-zh-tw/`、`C:/Cheerio/Obsidian/`
+- 發現：
+  - Pi 全域設定：OpenRouter + Nemotron-3-Ultra + thinking:high + 12 個已安裝套件
+  - 本地套件：pi-web-access-zh-tw (v0.13.0-zh-tw.1) 已安裝啟用，含 Extension + Skill:librarian
+  - 全域 Skills：wiki-knowledge、notion-cli、skill-creator、find-skills (4 個)
+  - Obsidian Wiki：三層架構 raw/wiki/AGENTS.md，4 來源、11 頁面、Git 同步到私有 repo
+  - MCP：Notion API (lazy connect，14 工具，排除 9 寫入類)
+  - 當前工作目錄：C:/Cheerio/pi/ (含 PLAN.md、notion-reorg/ 等)
+- 新頁：
+  - Sources:[[2026-07-18-pi-resource-inventory]]
+  - Entities:[[pi-web-access-zh-tw]]、[[wiki-knowledge]]、[[notionApi]]
+- 更新頁：[[index]] — 來源 4→5，頁面 11→15，新增 3 實體頁
+
+---
+
+## [2026-07-18] ingest | Pi 專案/工作區模型
+
+- 人類提問：「Pi 裡的 project 難道一定要對應只有一個實體路徑嗎？」
+- 來源：Pi 官方文檔（README.md、settings.md、docs/）、pi-coding-agent 原始碼檢視
+- 發現：Pi 的「專案」概念綁定 `cwd` + `.pi/` 設定作用域，**不強制綁定單一實體路徑**；Session、Trust、Config 均可跨專案解耦。
+- 新頁：
+  - Concepts:[[pi-project-workspace-model]]
+- 更新頁：
+  - [[index]] — 總頁面數 11 → 12，新增概念頁連結
+- 更新 index 計數：頁面 11 → 12
+
+---
+
 ## [2026-07-13] ingest | Omnigent — Databricks 開源 meta-harness
 
 - 人類提供 Databricks 部落格文章
