@@ -3,6 +3,18 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-07-11] dev | Pi 專案 ToDo 系統 + 知識花園維運 skill
+
+- 建立 `C:/Cheerio/pi/ToDo/` 資料夾結構（current.md / done / archive）
+- 記錄目前待辦清單：Pi Web/Desktop 專案、skills 實際驗證、知識花園灌溉
+- 建立 `C:/Cheerio/pi/AGENTS.md` 專案工作守則
+- 更新全域 `~/.pi/agent/AGENTS.md` 加入啟動檢查規則
+- 建立 `knowledge-garden` skill（`~/.agents/skills/knowledge-garden/SKILL.md`）
+- 修正 Notion 圖示規則：icon 和 title 必須分開
+- 移動知識花園到 workspace 頂層 + 視覺地圖放到樹苗子頁
+
+---
+
 ## [2026-07-11] ingest | mattpocock/skills — 工程實踐 Skills 集合
 
 - 人類要求：研究 mattpocock/skills GitHub repo 並安裝建議的 skills
