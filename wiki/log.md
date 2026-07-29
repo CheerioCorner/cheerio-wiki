@@ -3,6 +3,24 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-07-11] ingest | mattpocock/skills — 工程實踐 Skills 集合
+
+- 人類要求：研究 mattpocock/skills GitHub repo 並安裝建議的 skills
+- 來源：https://github.com/mattpocock/skills
+- 發現：
+  - Matt Pocock（Total TypeScript 作者）維護的 coding agent skills 集合
+  - 核心理念：用工程方法做 real engineering，不是 vibe coding
+  - 共 22 個 active skills（Engineering 17 + Productivity 5）+ 9 個 in-progress + 4 個 misc + 2 個 personal
+  - 設計為小而可組合、模型無關、強調 TDD/code review/領域建模/架構設計
+  - User-invoked 負責編排，Model-invoked 持有可重用紀律
+- 安裝了 7 個建議 skills 到 `~/.agents/skills/`：
+  - setup-matt-pocock-skills、grill-me、to-spec、to-tickets、tdd、code-review、improve-codebase-architecture
+- 新頁：Sources:[[2026-07-11-mattpocock-skills]]
+- 更新頁：[[index]] — 來源 5→6，頁面 15→16
+- 維護設計：wiki 頁面使用表格追蹤每個 skill 的安裝狀態和上游狀態，方便未來比對更新
+
+---
+
 ## [2026-07-18] ingest | Pi 資源完整盤點（套件、Skills、MCP、Obsidian Wiki、專案目錄）
 
 - 人類要求：「檢視我們現在擁有的所有資源」

@@ -10,8 +10,8 @@
 
 - **建立日期**  :2026-07-11
 - **範疇**      :AI Agent 框架 / Coding Agent / Pi 生態
-- **總來源數**  :5
-- **總頁面數**  :15
+- **總來源數**  :6
+- **總頁面數**  :16
 - **新手入口**  :[[快速開始]]—— 三種收集資料的方法與基本操作
 
 ---
@@ -23,6 +23,7 @@
 - [[2026-07-11-plannotator-research]] — GitHub repo + 官網研究,功能摘要與自定義開發評估 — 來源數 1
 - [[2026-07-13-omnigent-meta-harness-databricks]] — Databricks 官方部落格,宣布開源 Omnigent meta-harness — 來源數 1
 - [[2026-07-18-pi-resource-inventory]] — 當前 Pi 環境完整資源盤點（套件、Skills、MCP、Obsidian Wiki、專案目錄） — 來源數 1
+- [[2026-07-11-mattpocock-skills]] — Matt Pocock 工程實踐 Skills 集合，含完整列表與安裝狀態追蹤 — 來源數 1
 
 ---
 
