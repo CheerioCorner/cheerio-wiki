@@ -3,6 +3,23 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-07-30] ingest | Plannotator 知識重整 + 種進花園
+
+- 人類要求：整理 Plannotator 相關知識，種進知識花園
+- 背景：我們已開發 pi-plannotator-auto extension，有實際使用經驗
+- 重整內容：
+  - 更新 Entities:[[plannotator]] — 加入「我們的實驗」章節：
+    - pi-plannotator-auto 功能與技術細節
+    - 實驗觀察（Shared Event API、Pi 整合、授權）
+    - 未來可能的發展（與知識花園整合、多人協作、AI 自動摘要）
+  - 更新 Sources:[[2026-07-11-plannotator-research]] — 加入「後續發展」章節：
+    - pi-plannotator-auto 開發過程
+    - 實驗結論
+  - 更新 [[index]] — plannotator 條目加入自訂 extension 說明
+- 下一步：在 Notion 知識花園種下 Plannotator 樹苗
+
+---
+
 ## [2026-07-30] ingest | Omnigent 知識重整 + 研究專題定位
 
 - 人類要求：整理 Omnigent 相關知識，重新定位研究方向

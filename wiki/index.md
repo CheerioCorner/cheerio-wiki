@@ -32,7 +32,7 @@
 - [[pi-mono]] — `badlogic/pi-mono` monorepo + 5 個子 package。
 - [[pi-agent-core]] — agent runtime,5 檔 / 1,500 行,深度抽象解析。
 - [[mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
-- [[plannotator]] — AI coding agent 視覺化審閱工具，支援 9 種 agent（Pi、Claude Code、Copilot 等）。
+- [[plannotator]] — AI coding agent 視覺化審閱工具，支援 9 種 agent。我們已開發 pi-plannotator-auto extension（AI 自動觸發標注 UI）。
 - [[omnigent]] — Databricks 開源的 meta-harness，提供 combine/control/share 三大能力。⚠️ 目前不支援 Windows（2026-07-30 實驗確認）。
 - [[pi-web-access-zh-tw]] — `pi-web-access` 繁體中文本地化套件，內建 Extension + Skill:librarian，已安裝到 Pi 全域。
 - [[wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint 三大流程）。

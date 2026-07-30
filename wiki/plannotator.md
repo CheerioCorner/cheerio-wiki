@@ -2,9 +2,9 @@
 title: Plannotator
 type: entity
 created: 2026-07-11
-updated: 2026-07-11
-sources: 1
-tags: [coding-agent, review-tool, browser-ui, open-source]
+updated: 2026-07-30
+sources: 2
+tags: [coding-agent, review-tool, browser-ui, open-source, pi-extension, custom-development]
 ---
 
 # Plannotator
@@ -88,7 +88,46 @@ irm https://plannotator.ai/install.ps1 | iex
 
 Apache 2.0 + MIT 雙授權，**可自由 fork 與自定義開發**。
 
+## 我們的實驗（2026-07-30）
+
+### pi-plannotator-auto
+
+我們基於 Plannotator 的 Shared Event API，開發了一個自訂 extension：**pi-plannotator-auto**。
+
+**功能：**
+- `open_annotate` 工具 — 讓 AI 在需要人類審閱時，自動觸發瀏覽器標注 UI
+- `/annotate` 指令 — 手動標註最後一條 assistant 訊息
+- 視覺化 approve/deny + feedback
+
+**技術細節：**
+- 從 `@plannotator/pi-extension` 的 Shared Event API 擴展
+- auto-annotate.ts 從本地 package 載入
+- 已發佈到 GitHub：https://github.com/CheerioCorner/pi-plannotator-auto
+
+**安裝方式：**
+```bash
+pi install git:github.com/CheerioCorner/pi-plannotator-auto
+```
+
+### 實驗觀察
+
+| 面向 | 發現 |
+|------|------|
+| Shared Event API | 設計良好，擴展性強 |
+| Pi 整合 | `open_annotate` 工具正常觸發瀏覽器 UI |
+| 開發體驗 | 模組化架構，容易理解 |
+| 授權 | Apache 2.0 + MIT，可自由 fork |
+
+### 未來可能的發展
+
+1. **與知識花園整合** — 把 annotation 結果存到 Notion/Obsidian
+2. **多人協作模式** — 利用 Shared Event API 實現跨裝置審閱
+3. **AI 自動摘要** — 把人類的標注轉化為結構化 feedback
+
+---
+
 ## 相關頁面
 
 - [[pi-agent-core]] — Pi agent 核心
-- [[2026-07-11-plannotator-research]] — 本次研究來源
+- [[2026-07-11-plannotator-research]] — 初始研究來源
+- [[meta-harness]] — 另一種 agent 工具，與 Plannotator 的「加法」取徑形成對比
