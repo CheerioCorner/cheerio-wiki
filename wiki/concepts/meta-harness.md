@@ -2,9 +2,9 @@
 title: Meta-Harness
 type: concept
 created: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-30
 sources: 3
-tags: [harness, optimization, orchestration, multi-agent, llm]
+tags: [harness, optimization, orchestration, multi-agent, llm, research-project]
 ---
 
 # Meta-Harness
@@ -122,6 +122,31 @@ tags: [harness, optimization, orchestration, multi-agent, llm]
 - [[harness-concept]] — 傳統測試 harness 與 model harness 的基本概念
 - [[minimal-agent-philosophy]] — Pi 的 minimal agent 哲學，與 meta-harness 的「加法」取徑形成對比
 - [[plannotator]] — 另一種 agent 視覺化審閱工具
+
+## 我們的研究定位
+
+> **Meta-Harness 是我們的研究專題。** 這是我們正在探索的一個重要方向，未來會持續收集相關的概念、工具和實作案例。
+
+### 已收集的樹苗
+
+| 樹苗 | 來源 | 成長階段 | 備註 |
+|------|------|---------|------|
+| [[omnigent]] | Databricks | 🌱 種子期 | 開源 meta-harness，但目前不支援 Windows |
+
+### 未來可能的樹苗
+
+- Stanford IRIS Lab 的 Meta-Harness 論文實作（定義 A）
+- MindStudio OmniAgent（定義 B）
+- 其他 multi-agent orchestration 工具
+
+### 研究方向
+
+1. **理解兩種定義的差異與互補性** — 學術 vs 業界
+2. **評估哪些工具適合我們的工作流** — 特別是 Windows 環境
+3. **探索 meta-harness 與 Pi 的關係** — 加法取徑 vs 最小化哲學
+4. **收集更多實作案例** — 建立比較分析
+
+---
 
 ## 來源
 

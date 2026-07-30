@@ -2,9 +2,9 @@
 title: Omnigent
 type: entity
 created: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-30
 sources: 1
-tags: [meta-harness, orchestration, databricks, open-source, multi-agent]
+tags: [meta-harness, orchestration, databricks, open-source, multi-agent, windows-compatibility]
 ---
 
 # Omnigent
@@ -72,9 +72,27 @@ Omnigent 是一個 **meta-harness（元鞍具）** 層，運行在你已經在�
 
 ---
 
+## 實驗觀察（2026-07-30）
+
+### 平台相容性
+
+| 平台 | 支援狀態 | 備註 |
+|------|---------|------|
+| Linux | ✅ 支援 | 官方主要支援平台 |
+| macOS | ✅ 支援 | 官方支援 |
+| Windows | ❌ 不支援 | 目前無 Windows 支援，安裝會失敗 |
+
+> **結論：** 如果你的主要開發環境是 Windows，Omnigent 目前無法直接使用。需要透過 WSL2 或等待官方支援。
+
+### 其他觀察
+
+- 安裝過程需要 Docker（用於 OmniBox sandbox）
+- 文件品質不錯，但社群還很早期
+- 與 Databricks 生態系整合紧密（Delta Lake、MLflow 等）
+
 ## 相關頁面
 
-- [[meta-harness]] — 概念總覽頁（含學術版定義 A 與業界版定義 B）
+- [[meta-harness]] — 概念總覽頁（含學術版定義 A 與業界版定義 B），**meta-harness 是我們的研究專題，Omnigent 是進入這個領域的一棵樹苗**
 - [[plannotator]] — 另一種 agent 視覺化審閱工具
 - [[minimal-agent-philosophy]] — Pi 的哲學，與 meta-harness 的加法取徑對比
 

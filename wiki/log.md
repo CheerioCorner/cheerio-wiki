@@ -3,6 +3,35 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-07-30] ingest | Omnigent 知識重整 + 研究專題定位
+
+- 人類要求：整理 Omnigent 相關知識，重新定位研究方向
+- 背景：昨天實驗發現 Omnigent 目前不支援 Windows，只支援 Linux/Mac
+- 重整內容：
+  - 更新 Entities:[[omnigent]] — 加入「實驗觀察」章節（平台相容性表格、Windows 不相容結論）
+  - 更新 Concepts:[[meta-harness]] — 加入「我們的研究定位」章節，明確：
+    - meta-harness = 研究專題
+    - Omnigent = 進入這個領域的一棵樹苗（🌱 種子期）
+    - 列出未來可能收集的樹苗
+    - 列出 4 個研究方向
+  - 更新 [[index]] — omnigent 條目加入 Windows 警告，meta-harness 標記為研究專題
+- 下一步：在 Notion 知識花園種下 Omnigent 樹苗
+
+---
+
+## [2026-07-30] dev | pi-plannotator-auto 發佈到 GitHub
+
+- 人類要求：確認 auto-annotate.ts 的安裝來源
+- 發現：auto-annotate.ts 從本地 package `C:/Cheerio/pi/packages/pi-plannotator-auto` 載入（透過 settings.json 的 local path 設定）
+- 完成事項：
+  - 建立 git repo 並 push 到 https://github.com/CheerioCorner/pi-plannotator-auto
+  - 更新 README.md 移除 npm 安裝方式，改為 git 安裝
+  - 移除 settings.json 中的本地路徑設定
+  - 執行 `pi install git:github.com/CheerioCorner/pi-plannotator-auto` 完成安裝
+- 安裝位置：`~/.pi/agent/git/github.com/CheerioCorner/pi-plannotator-auto/`
+
+---
+
 ## [2026-07-11] dev | Pi 專案 ToDo 系統 + 知識花園維運 skill
 
 - 建立 `C:/Cheerio/pi/ToDo/` 資料夾結構（current.md / done / archive）

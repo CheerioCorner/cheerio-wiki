@@ -33,7 +33,7 @@
 - [[pi-agent-core]] — agent runtime,5 檔 / 1,500 行,深度抽象解析。
 - [[mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
 - [[plannotator]] — AI coding agent 視覺化審閱工具，支援 9 種 agent（Pi、Claude Code、Copilot 等）。
-- [[omnigent]] — Databricks 開源的 meta-harness，提供 combine/control/share 三大能力。
+- [[omnigent]] — Databricks 開源的 meta-harness，提供 combine/control/share 三大能力。⚠️ 目前不支援 Windows（2026-07-30 實驗確認）。
 - [[pi-web-access-zh-tw]] — `pi-web-access` 繁體中文本地化套件，內建 Extension + Skill:librarian，已安裝到 Pi 全域。
 - [[wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint 三大流程）。
 - [[notionApi]] — Notion MCP 伺服器（唯讀模式，14 工具，排除 9 寫入類）。
@@ -46,7 +46,7 @@
 
 - [[late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略。
 - [[minimal-agent-philosophy]] — 「減法大於加法」哲學,2 來源、兩視角交點。
-- [[meta-harness]] — 對 harness 的再抽象/最佳化層，有學術（自動演化 harness）與業界（多 agent orchestration／Omnigent）兩種定義。
+- [[meta-harness]] — 對 harness 的再抽象/最佳化層，有學術（自動演化 harness）與業界（多 agent orchestration／Omnigent）兩種定義。**📌 我們的研究專題**
 - [[pi-project-workspace-model]] — Pi 專案模型：不強制綁定單一實體路徑；專案 = 設定作用域（`.pi/`），一路徑可對應多專案人格。
 
 (以下為階段性「tag-on-page」概念,未獨立開頁。靈記則睨[[pi-agent-core]]或 [[pi-mono]]:
