@@ -3,6 +3,30 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-07-31] ingest | NPM 發佈流程設定完成
+
+- 人類要求：將 pi-plannotator-auto 發佈到 NPM
+- 完成內容：
+  - 設定 package.json（repository、bugs、homepage、publishConfig 等）
+  - 建立 GitHub Actions CI/CD（ci.yml + publish.yml）
+  - 設定 Branch Protection（PR + CI 驗證）
+  - 建立 NPM Organization（cheeriocorner）
+  - 產生有 bypass 2FA 權限的 NPM Token
+  - 設定 GitHub Secret：NPM_TOKEN
+  - 成功發佈套件到 NPM：@cheeriocorner/pi-plannotator-auto
+- 建立文件：
+  - [[npm-publishing-workflow]] — 完整的 NPM 發佈流程文件
+  - [[2026-07-31-npm-publishing-setup]] — 今日工作記錄
+- 更新：[[index]] — 加入新頁面
+- 學到的知識：
+  - NPM Scoped Packages 需要 Organization
+  - NPM 2FA 對發佈有嚴格要求
+  - GitHub Branch Protection 可以防止直接 push
+  - GitHub Actions 需要 workflow 權限
+- 下一步：記錄到 Notion 知識花園
+
+---
+
 ## [2026-07-30] ingest | Plannotator 知識重整 + 種進花園
 
 - 人類要求：整理 Plannotator 相關知識，種進知識花園

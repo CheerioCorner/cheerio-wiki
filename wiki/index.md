@@ -24,6 +24,7 @@
 - [[2026-07-13-omnigent-meta-harness-databricks]] — Databricks 官方部落格,宣布開源 Omnigent meta-harness — 來源數 1
 - [[2026-07-18-pi-resource-inventory]] — 當前 Pi 環境完整資源盤點（套件、Skills、MCP、Obsidian Wiki、專案目錄） — 來源數 1
 - [[2026-07-11-mattpocock-skills]] — Matt Pocock 工程實踐 Skills 集合，含完整列表與安裝狀態追蹤 — 來源數 1
+- [[2026-07-31-npm-publishing-setup]] — 完成 pi-plannotator-auto 的 NPM 發佈流程設定，包括 CI/CD、Branch Protection 等 — 來源數 1
 
 ---
 
@@ -48,6 +49,7 @@
 - [[minimal-agent-philosophy]] — 「減法大於加法」哲學,2 來源、兩視角交點。
 - [[meta-harness]] — 對 harness 的再抽象/最佳化層，有學術（自動演化 harness）與業界（多 agent orchestration／Omnigent）兩種定義。**📌 我們的研究專題**
 - [[pi-project-workspace-model]] — Pi 專案模型：不強制綁定單一實體路徑；專案 = 設定作用域（`.pi/`），一路徑可對應多專案人格。
+- [[npm-publishing-workflow]] — 從零建立 NPM 套件並設定自動發佈的完整流程，適用於 Pi extension、Skill 或任何 npm 套件。
 
 (以下為階段性「tag-on-page」概念,未獨立開頁。靈記則睨[[pi-agent-core]]或 [[pi-mono]]:
 [[minimal-agent-loop]] / [[observability-layer]] / [[steering-followup]] / [[yolo-by-default]] / [[provider-abstraction]] / [[declaration-merging]])
