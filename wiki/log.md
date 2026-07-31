@@ -31,6 +31,22 @@
 
 ---
 
+## [2026-07-31] ingest | Agent Extension 安裝位置記錄
+
+- 人類要求：記錄 Pi 安裝 extension 的不同方式和位置
+- 背景：從 GitHub 安裝和從 NPM 安裝的 extension 儲存位置不同
+- 建立文件：
+  - [[agent-extension-installation]] — Agent Extension 安裝位置與方式
+  - 記錄了 Pi 的兩種安裝來源（git/ vs npm/）
+  - 比較了不同 Agent 框架的做法（Claude Code、Cursor、Continue、Aider）
+- 更新：[[index]] — 加入新頁面
+- 學到的知識：
+  - Pi 用目錄結構區分安裝來源（`git/` vs `npm/`）
+  - 不同 Agent 有不同的安裝和儲存方式
+  - 記錄這些差異有助於理解 Agent 的運作機制
+
+---
+
 ## [2026-07-30] ingest | Plannotator 知識重整 + 種進花園
 
 - 人類要求：整理 Plannotator 相關知識，種進知識花園

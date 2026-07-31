@@ -50,6 +50,7 @@
 - [[meta-harness]] — 對 harness 的再抽象/最佳化層，有學術（自動演化 harness）與業界（多 agent orchestration／Omnigent）兩種定義。**📌 我們的研究專題**
 - [[pi-project-workspace-model]] — Pi 專案模型：不強制綁定單一實體路徑；專案 = 設定作用域（`.pi/`），一路徑可對應多專案人格。
 - [[npm-publishing-workflow]] — Package Publishing 統一觀點：不管叫什麼名字（Package、Extension、Marketplace），發佈到市場的流程本質上是一樣的。差異只在平台、市場和來源不同。
+- [[agent-extension-installation]] — Agent Extension 安裝位置與方式：記錄不同 Agent 框架如何安裝和儲存 extension，包括 Pi 的 git/ vs npm/ 路徑結構。
 
 (以下為階段性「tag-on-page」概念,未獨立開頁。靈記則睨[[pi-agent-core]]或 [[pi-mono]]:
 [[minimal-agent-loop]] / [[observability-layer]] / [[steering-followup]] / [[yolo-by-default]] / [[provider-abstraction]] / [[declaration-merging]])
