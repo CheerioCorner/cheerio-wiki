@@ -1,15 +1,15 @@
 ---
-title: 2026-07-31 NPM 發佈流程設定
+title: 2026-07-31 Package Publishing 首次實作
 type: source
 created: 2026-07-31
 updated: 2026-07-31
 sources: 1
-tags: [npm, publishing, github-actions, ci-cd, pi-extension]
+tags: [publishing, package, extension, marketplace, npm, github-actions, ci-cd]
 ---
 
-# 2026-07-31 NPM 發佈流程設定
+# 2026-07-31 Package Publishing 首次實作
 
-> 今天完成了 pi-plannotator-auto 的 NPM 發佈流程設定，包括 package.json、GitHub Actions CI/CD、Branch Protection 等。
+> 今天完成了第一個 Package 的發佈流程設定。雖然這次是用 NPM，但學到的流程適用於所有市場。
 
 ---
 

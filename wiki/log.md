@@ -3,7 +3,7 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
-## [2026-07-31] ingest | NPM 發佈流程設定完成
+## [2026-07-31] ingest | Package Publishing 流程建立
 
 - 人類要求：將 pi-plannotator-auto 發佈到 NPM
 - 完成內容：
@@ -15,15 +15,19 @@
   - 設定 GitHub Secret：NPM_TOKEN
   - 成功發佈套件到 NPM：@cheeriocorner/pi-plannotator-auto
 - 建立文件：
-  - [[npm-publishing-workflow]] — 完整的 NPM 發佈流程文件
+  - [[npm-publishing-workflow]] — Package Publishing 統一觀點文件
   - [[2026-07-31-npm-publishing-setup]] — 今日工作記錄
 - 更新：[[index]] — 加入新頁面
 - 學到的知識：
+  - **核心觀點：** 不管叫什麼名字（Package、Extension、Marketplace），發佈到市場的流程本質上是一樣的
+  - 差異只在平台、市場和來源不同
+  - 相同的概念：Git 版本控制、Tag 觸發、CI/CD 自動化、Token 認證
   - NPM Scoped Packages 需要 Organization
   - NPM 2FA 對發佈有嚴格要求
   - GitHub Branch Protection 可以防止直接 push
   - GitHub Actions 需要 workflow 權限
-- 下一步：記錄到 Notion 知識花園
+- 更新 Notion 知識花園：已種下 NPM Publishing Workflow 樹苗
+- 下一步：探索其他發佈平台（NuGet、PyPI 等）
 
 ---
 

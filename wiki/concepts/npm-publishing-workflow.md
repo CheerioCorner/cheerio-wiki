@@ -1,21 +1,21 @@
 ---
-title: NPM 發佈工作流程
+title: Package Publishing Workflow — 統一的發佈流程觀點
 type: concept
 created: 2026-07-31
 updated: 2026-07-31
 sources: 1
-tags: [npm, publishing, ci-cd, github-actions, package-management]
+tags: [publishing, package, extension, marketplace, ci-cd, npm, nuget, distribution]
 ---
 
-# NPM 發佈工作流程
+# Package Publishing Workflow — 統一的發佈流程觀點
 
-> 從零建立一個 NPM 套件並設定自動發佈的完整流程，適用於 Pi extension、Skill 或任何 npm 套件。
+> **核心觀點：** 不管叫什麼名字（Package、Extension、Marketplace），發佈到市場的流程本質上是一樣的。差異只在平台、市場和來源不同。
 
 ---
 
 ## 概觀
 
-本文件記錄了將 Pi extension 發佈到 NPM 的標準流程。涵蓋：
+本文件記錄了將套件發佈到市場的標準流程。涵蓋：
 - package.json 設定
 - GitHub repository 設定
 - GitHub Actions CI/CD 自動發佈
@@ -23,6 +23,50 @@ tags: [npm, publishing, ci-cd, github-actions, package-management]
 - NPM Token 與 2FA 處理
 
 **核心概念：** 推送版本 tag（如 `v1.0.0`）→ GitHub Actions 自動執行 `npm publish` → 套件上線。
+
+---
+
+## 統一觀點：所有發佈流程都是一樣的
+
+不管你的套件要發佈到哪裡，核心流程都是一樣的：
+
+```
+1. 開發完成
+   ↓
+2. 版本控制（Git + Tag）
+   ↓
+3. 自動化發佈（CI/CD）
+   ↓
+4. 上線到市場
+```
+
+### 不同的市場，不同的名字
+
+| 市場 | 平台 | 套件類型 | 檔案格式 | 命令 |
+|------|------|----------|----------|------|
+| **NPM** | npmjs.com | JavaScript/TypeScript | `.tgz` | `npm publish` |
+| **NuGet** | nuget.org | .NET/C# | `.nupkg` | `dotnet nuget push` |
+| **PyPI** | pypi.org | Python | `.whl` | `twine upload` |
+| **VS Code Marketplace** | marketplace.visualstudio.com | VS Code Extension | `.vsix` | `vsce publish` |
+| **GitHub Marketplace** | github.com/marketplace | GitHub Actions/Extensions | `.tar.gz` | GitHub API |
+
+### 相同的概念，不同的實作
+
+| 概念 | NPM | NuGet | PyPI |
+|------|-----|-------|------|
+| **套件描述** | `package.json` | `.csproj` | `setup.py` / `pyproject.toml` |
+| **版本管理** | `npm version` | `dotnet version` | `bump2version` |
+| **發布命令** | `npm publish` | `dotnet nuget push` | `twine upload` |
+| **Token 管理** | NPM Access Token | NuGet API Key | PyPI API Token |
+| **CI/CD** | GitHub Actions | GitHub Actions | GitHub Actions |
+
+### 關鍵洞察
+
+1. **Git 是基礎** — 所有平台都依賴 Git 進行版本控制
+2. **Tag 是觸發器** — 大多數平台用 tag 來觸發發佈
+3. **CI/CD 是橋樑** — GitHub Actions 可以連接所有平台
+4. **Token 是鑰匙** — 每個平台都需要自己的認證 token
+5. **流程是統一的** — 只是工具和命令不同
 
 ---
 
