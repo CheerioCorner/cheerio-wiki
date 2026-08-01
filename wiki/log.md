@@ -3,6 +3,52 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-08-01] setup | Wiki 結構重構 + 系統全面更新
+
+- 變更內容：
+  - Wiki 結構從 `concepts/` + `entities/` 重構為 `topics/` 主題式分類
+  - 建立 4 個主題資料夾：`ai-agent/`、`extension-dev/`、`meta-systems/`、`knowledge-mgmt/`
+  - 移動 15 個頁面到對應主題資料夾
+  - `overview.md` 改名為 `guide.md`
+  - 更新 `index.md` 反映新結構
+  - 更新 `AGENTS.md` 加入資料流動規則、閉環優化系統、projects/ 維護流程
+  - 更新 `wiki-knowledge` skill 反映新架構
+  - 更新 `快速開始.md` 反映新結構
+  - 建立 `wiki/projects/` 專案維護資料夾
+  - 回填 7 個日期的日記（2026-07-11 ~ 2026-08-01）
+- 決策理由：
+  - 主題式比類型式更直覺，隨著頁面增多更容易找到東西
+  - `guide.md` 比 `overview.md` 更明確表示用途
+  - 閉環優化系統讓知識管理可以自我驅動
+- 相關頁面：
+  - [[index]] — 更新後的索引
+  - [[guide]] — 使用指南
+  - [[快速開始]] — 新手入門
+
+## [2026-08-01] ingest | OKF Extension 開發實作 + 自動化 Publish 流程
+
+- 人類要求：學習 OKF，並在 pi-plannotator-auto 上實作
+- 來源：https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf
+- 完成內容：
+  - 建立 OKF Knowledge Bundle（docs/ 資料夾）
+  - 建立 AGENTS.md 和 Pi Skill
+  - 自動化 publish 流程（合併 PR 後自動建立 tag + publish）
+  - 發佈 v1.0.3 到 npm
+- 建立文件：
+  - [[okf-open-knowledge-format]] — OKF 完整教學，用 pi-plannotator-auto 作為案例
+  - [[2026-08-01-okf-extension-development]] — 今日工作記錄
+- 更新：[[index]] — 加入新頁面
+- 學到的知識：
+  - **OKF 核心：** Markdown + YAML frontmatter 表示知識，人類和 AI 都能讀
+  - **適用場景：** Extension 文件、AI 知識庫、團隊知識管理
+  - **不適用：** 即時資料、複雜查詢、敏感資料
+  - **自動化流程：** 合併 PR → 自動建立 tag + publish
+  - **Pi Skill 機制：** 當任務匹配 description 時自動載入規則
+- 更新 Notion 知識花園：已種下 OKF 樹苗
+- 下一步：在其他 extension 專案中應用 OKF
+
+---
+
 ## [2026-07-31] ingest | Package Publishing 流程建立
 
 - 人類要求：將 pi-plannotator-auto 發佈到 NPM
