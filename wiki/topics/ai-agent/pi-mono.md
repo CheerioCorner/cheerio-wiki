@@ -66,6 +66,5 @@ tags: [pi, coding-agent, monorepo]
 ## 相關頁面
 - Entities:[[mario-zechner]]、[[pi-agent-core]]
 - Sources:[[2026-02-10-pi-agent-core-design]] / [[2026-05-02-pi-mono-framework-tw]]
-- Concepts:[[late-conversion]]、[[provider-abstraction]]
-- Synthesis:[[minimal-agent-philosophy]]
-- Comparisons:[[coding-agent-comparison]]
+- Concepts:[[late-conversion]]、[[minimal-agent-philosophy]]
+- Synthesis:（待建立：coding-agent-comparison — Claude Code / Codex / Pi 五維對比表）

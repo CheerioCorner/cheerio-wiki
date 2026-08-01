@@ -3,6 +3,43 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-08-01] dev | pi-todo-journal Phase 1 完成
+
+- 人類確認 package 名稱為 `pi-todo-journal`，並要求先保存完整計畫，再進行階段性開發。
+- 建立 `C:/Cheerio/pi/packages/pi-todo-journal/PLAN.md`，記錄產品原則、Phase 0–5、驗收條件與非目標。
+- Phase 1 完成，包含：
+  - package skeleton（manifest、README、LICENSE、TypeScript 設定）
+  - extension entrypoint（session_start、agent_settled、session_shutdown hooks）
+  - 純函式核心（checkpoint、config、date、dry-run、file-store、journal-store、todo-markdown、todo-store、types）
+  - commands（`/session-close`、`/session-close --dry-run`、`/todo-sync`、`/task-done`）
+  - OKF Knowledge Bundle（AGENTS.md、docs/index.md、architecture、tools、dependencies、log、references）
+  - 8 個 unit test + 1 個 smoke test，全部通過
+  - npm typecheck 通過
+  - 日期策略改用 `Asia/Taipei`
+- 建立專案頁：[[projects/pi-todo-journal/README|pi-todo-journal]]，並更新 Projects/index。
+- 下一步：Phase 2 — 改善 confirm UI、task start/pause/note 與 session 摘要。
+
+## [2026-08-02] cleanup | 知識庫大掃除 + Todos 系統建立
+
+- 變更內容：
+  - 建立 `todos/` 任務系統（current.md、backlog.md、done/、archive/）
+  - 建立 `todos` skill（`~/.agents/skills/todos/SKILL.md`）
+  - 更新 `wiki-knowledge` skill 反映最新架構 + frontmatter 檢查
+  - 修復 15+ 個斷裂的 Wikilinks（清理不存在的頁面引用）
+  - 修復 Frontmatter 格式不一致（okf-open-knowledge-format.md、2026-08-01-okf-extension-development.md）
+  - 更新 `index.md` 移除不存在的引用、更新統計數字
+  - 更新 Pi 專案 `AGENTS.md` 指向 Obsidian todos 系統
+  - 遷移舊 ToDo archive 到 `todos/archive/`
+  - 修正 raw/ 檔名格式（空格改連字符）
+- 決策理由：
+  - Tasks 統一在 Obsidian 管理，避免多頭馬車
+  - 獨立 todos skill 方便未來 UI 整合
+  - Frontmatter 強制規範防止格式不一致
+- 相關頁面：
+  - `todos/README.md` — 任務系統格式規範
+  - `todos/current.md` — 目前進行中
+  - `todos/backlog.md` — 待辦清單
+
 ## [2026-08-01] setup | Wiki 結構重構 + 系統全面更新
 
 - 變更內容：

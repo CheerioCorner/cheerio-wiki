@@ -3,7 +3,7 @@
 > 本檔案規範 LLM agent 如何維護這個知識庫。
 > 維護者：Cheerio
 > 建立日期：2026-07-11
-> 最後更新：2026-08-01
+> 最後更新：2026-08-02
 
 ---
 
@@ -15,18 +15,20 @@ Obsidian/
 │   ├── assets/             # Obsidian 下載的本機圖片
 │   └── 2026-07-11-xxx.md   # 收集的網頁、文章、論文等
 ├── wiki/                   # 所有筆記（LLM 維護）
-│   ├── topics/             # 主題式分類（取代 concepts/ + entities/）
+│   ├── topics/             # 主題式分類
 │   │   ├── ai-agent/       # AI Agent 相關
 │   │   ├── extension-dev/  # Extension 開發
 │   │   ├── meta-systems/   # 元系統
 │   │   └── knowledge-mgmt/ # 知識管理
 │   ├── projects/           # 專案維護（README、進度、決策紀錄）
 │   ├── sources/            # 來源筆記（AI 整理過的摘要）
-│   ├── canvas/             # Canvas 視覺化圖
 │   ├── index.md            # 內容索引（按主題分類）
-│   ├── log.md              # 時間日誌（append-only）
-│   ├── guide.md            # 使用指南（怎麼用這個 wiki）
-│   └── 快速開始.md         # 新手入門
+│   └── log.md              # 時間日誌（append-only）
+├── todos/                  # 任務系統
+│   ├── current.md          # 目前進行中（1-3 個任務）
+│   ├── backlog.md          # 待辦清單（按優先級排列）
+│   ├── done/               # 已完成（按日期歸檔）
+│   └── archive/            # 舊的已完成項目（超過 30 天）
 ├── journal/                # 日記系統
 │   ├── daily/              # 每日日記（YYYY-MM-DD.md）
 │   └── templates/          # 日記模板
@@ -38,6 +40,7 @@ Obsidian/
 - `wiki/topics/` = 結構化筆記，按主題分類。LLM 維護。
 - `wiki/projects/` = 專案維護，追蹤所有建造中的東西。
 - `wiki/sources/` = 來源筆記，AI 整理過的摘要。
+- `todos/` = 任務系統，管理所有待辦和進行中任務。
 - `journal/` = 日記系統。用 Obsidian Daily Notes + Calendar 外掛管理。
 - `AGENTS.md` = 工作守則。由人類與 LLM 共同演化。
 
@@ -248,7 +251,7 @@ tags: [topic-a, topic-b]
 - 在 Obsidian Web Clipper 中設定預設值：
   - **Format**：Markdown
   - **Destination**：資料夾路徑填 `raw/`（而不是 vault root 或 `Clippings/`）
-  - **Filename 模板**：`YYYY-MM-DD-<標題>`（避免空白、連字符、遵 §4.1）
+  - **Filename 模板**：`{{date|date:"YYYY-MM-DD"}}-{{title}}`（避免空白、連字符、遵 §4.1）
   - 「**Download all images to vault**」項目打勾，實體路徑設為 `raw/assets/`。
 
 ### 8.2 活動 SOP

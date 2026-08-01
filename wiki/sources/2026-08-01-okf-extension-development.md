@@ -1,7 +1,10 @@
 ---
 title: 2026-08-01 OKF Extension 開發實作
-tags: [okf, extension, pi-plannotator-auto, workflow, automation]
+type: source
 created: 2026-08-01
+updated: 2026-08-01
+sources: 1
+tags: [okf, extension, pi-plannotator-auto, workflow, automation]
 ---
 
 # 2026-08-01 OKF Extension 開發實作

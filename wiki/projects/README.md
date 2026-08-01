@@ -14,6 +14,7 @@
 | 專案 | 類型 | 狀態 | 備註 |
 |------|------|------|------|
 | Pi Web/Desktop | 專案 | 📋 規劃中 | 待 grill-me 追問 |
+| pi-todo-journal | Pi Package | 🚧 Phase 1 | Todo / Journal session 同步 |
 | 自己的 grill skill | Skill | 💡 想法 | 待原型開發 |
 
 ## 已歸檔

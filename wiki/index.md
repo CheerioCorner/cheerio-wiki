@@ -10,9 +10,9 @@
 - **建立日期**：2026-07-11
 - **最後更新**：2026-08-01
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **總來源數**：8
-- **總頁面數**：24
-- **新手入口**：[[快速開始]] — 三種收集資料的方法與基本操作
+- **總來源數**：7
+- **總頁面數**：17
+- **任務系統**：`todos/` — 統一管理所有待辦事項
 
 ---
 
@@ -47,6 +47,7 @@
 
 - [[projects/pi-plannotator-auto/README|pi-plannotator-auto]] — ✅ 已發布（GitHub + NPM）
 - [[projects/pi-web-access-zh-tw/README|pi-web-access-zh-tw]] — ⚠️ 需維護（有外部貢獻者）
+- [[projects/pi-todo-journal/README|pi-todo-journal]] — ✅ Phase 1 完成：Todo / Journal session 同步、OKF、測試
 
 ---
 
@@ -62,7 +63,7 @@
 
 _（目前尚無）_
 
-> 計畫中：[[coding-agent-comparison]] — Claude Code / Codex / Pi 五維對比表
+> 計畫中：coding-agent-comparison — Claude Code / Codex / Pi 五維對比表（待建立）
 
 ---
 

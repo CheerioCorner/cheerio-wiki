@@ -46,19 +46,15 @@ tags: [concept, pi, philosophy]
 ## 何時「最小代理」應該是錯的
 
 不適用於:
-- 嚴格安全沙箱(互相矛盾——參 [[yolo-by-default]])
+- 嚴格安全沙箱(互相矛盾——Pi 選擇 YOLO by default，不做權限檢查)
 - 複雜多 Agent 編排(原文明言「與此立場相悖」)
 - 需要即裝即用、絕低學習成本的消費產品(B 篇明示不適)
 
-## 該哲學的遺留子頁
-- [[pi-agent-core]] 的 5 檔架構
-- [[late-conversion]] 的型別設計
-- [[minimal-agent-loop]] 的雙層 while
-- [[observability-layer]] 的三層事件
-- [[steering-followup]] 的雙 queue
-- [[yolo-by-default]] 的安全立場
+## 相關概念（散見於其他頁面）
+- [[pi-agent-core]] — 5 檔架構、三層事件生命週期、雙層 while 迴圈、steering/follow-up 雙 queue
+- [[late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
+- [[pi-mono]] — 「刻意不做」清單（無 MCP、無 sub-agents、無 plan mode、無權限檢查、無 maxSteps）
 
 ## 相關頁面
 - Entities:[[pi-mono]]、[[pi-agent-core]]、[[mario-zechner]]
 - Sources:[[2026-02-10-pi-agent-core-design]] / [[2026-05-02-pi-mono-framework-tw]]
-- Comparisons:[[coding-agent-comparison]]
