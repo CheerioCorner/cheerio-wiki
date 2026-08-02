@@ -7,7 +7,7 @@
 
 - [ ] W-2026-08-017 研究 harness 架構，開發自己的 AGENT ⏫ #ai-agent
   - next: Pi containerization 方案（Gondolin/Docker/OpenShell）比較、Tau 三層架構分離細節、Hermes 學習迴圈機制
-  - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]、[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]
   - 2026-08-06 完成 Pi Architecture Walkthrough ingest：agentic loop 三步驟、session tree、compaction、skills 機制、extensions events、CLI entry point
   - 2026-08-06 批次 ingest 5 筆 raw（omnigent/OKF catalog/defect metrics/morphir-dotnet/vibe-coding）+ 修復 topic page 遺漏 + 強化 skill/AGENTS.md topic 同步步驟
 
