@@ -1,6 +1,16 @@
 
 # Log
 
+## [2026-08-08] ingest | Waku agent — Local-first personal AI agent（YouTube + GitHub README）
+
+- 新增 entity：[[wiki/entities/waku-agent|waku-agent]]（local-first personal AI agent，四大支柱 readable blueprint）
+- 新增 source：[[wiki/sources/2026-08-02-waku-agent-code-walkthrough|YouTube code walkthrough]]（English，20:49，601 segments）
+- 新增 source：[[wiki/sources/2026-08-02-waku-agent-github-readme|GitHub README]]（架構、功能、Quickstart）
+- 更新 topic：[[wiki/topics/ai-agent|ai-agent]] 加入 waku-agent 導航
+- 更新 index：AI Agent Entities 區塊 + Sources 區塊（sources 12→14, entities 11→12）
+- 來源：raw/youtube（rvRyBhILrls）+ raw/web（ShenSeanChen/waku-agent GitHub README）
+- 重點：四大支柱（harness ~95 lines Python、loop、三層記憶 + retrieval gate、eval/LLM-Ops）、Voice mode（waku waku wake word）、Telegram gateway、Pi sub-agent delegate_task、MCP integration
+
 ## [2026-08-08] ingest | pi-agent-dashboard — BlackBeltTechnology Web Dashboard
 
 - 新增 entity：[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]（即時 Web Dashboard，多 session + 遠端控制）

@@ -38,6 +38,15 @@
       "duration": "40:25",
       "segments": 501,
       "language": "en"
+    },
+    {
+      "slug": "2026-08-02-waku-agent-code-walkthrough",
+      "title": "Waku Waku! Waku agent is your personal AI agent, on your own laptop, in code you can read in an afternoon — harness + loop + memory + eval",
+      "youtube_id": "rvRyBhILrls",
+      "url": "https://youtu.be/rvRyBhILrls",
+      "duration": "20:49",
+      "segments": 601,
+      "language": "en"
     }
   ]
 }

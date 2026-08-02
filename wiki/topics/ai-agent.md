@@ -20,6 +20,7 @@ updated: 2026-08-08
 - [[wiki/entities/mario-zechner|Mario Zechner]] — Pi 作者
 - [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard 🛠️
+- [[wiki/entities/waku-agent|waku-agent]] — Local-first personal AI agent，四大支柱 readable blueprint
 
 ## Concepts
 
