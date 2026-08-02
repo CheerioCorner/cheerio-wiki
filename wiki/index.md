@@ -44,7 +44,8 @@
 
 ### 📚 知識管理
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill 🛠️
-- [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器（14 工具）
+- [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器（14 工具）+ 完整資料流
+- [[wiki/entities/knowledge-garden|knowledge-garden]] — Notion 知識花園 Manifest（本地索引/快取）
 - [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model]] — Pi 專案模型：不強制綁定單一實體路徑
 
 ### 🛠️ Skill
@@ -70,6 +71,7 @@
 - [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]] — pipeline 延後條件
 - [[wiki/discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]] — AI-first + lint guardrail
 - [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]] — compatibility stub 已移除，topic 改為導航頁
+- [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]] — Notion 整合架構討論
 
 ## Topic navigation
 

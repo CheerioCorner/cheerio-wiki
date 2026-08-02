@@ -60,6 +60,7 @@ canonical: entities/notionApi
 ## 使用情境
 - 透過 Pi 直接查詢 Notion 資料庫、讀取頁面內容、搜尋工作區
 - 結合 `wiki-knowledge` skill 可將 Notion 內容 ingest 到 Obsidian wiki
+- 結合 `knowledge-garden` skill 可維護 Notion 知識花園
 - 適合「查詢 Notion 專案進度、會議記錄、規格文件」等唯讀場景
 
 ## 安全性考量
@@ -86,7 +87,39 @@ canonical: entities/notionApi
 
 **原則：讀用 MCP，寫用 `ntn` CLI。**
 
+## 資料流
+
+### 兩個系統的分工
+| 系統 | 用途 | 主要使用者 |
+|------|------|-----------|
+| **Obsidian Wiki** | AI 運作、知識維護、raw → wiki 整理 | AI（讀寫） |
+| **Notion 花園** | 人類閱讀、報告、知識分享、美化呈現 | 人類（閱讀） |
+
+### 完整循環
+
+```
+raw/ ──wiki ingest──► wiki/ ──美化/整理──► Notion 花園
+ ▲                     │                      │
+ │                     │                      │
+ │    ┌────────────────┘                      │
+ │    │                                       │
+ │    └──── 「這個要深入研究」 ◄───────────────┘
+ │          （人類給 URL 或指定頁面）
+ │          （AI 去抓內容）
+ │
+ └─────────────────────────────────────────────┘
+```
+
+### 觸發詞
+| 人類說 | AI 做 | 資料流 |
+|--------|-------|--------|
+| 「存進大腦」 | wiki ingest | raw → wiki |
+| 「整理到花園」/「美化」 | 整理 + 美化 | wiki → Notion |
+| 「花園裡有什麼」 | 查 manifest | wiki manifest → 回答 |
+| 「花園裡那篇 [X] 要深入研究」 | 去 Notion 抓內容 → 建 raw | Notion → raw → wiki |
+
 ## 相關頁面
 - Source: [[wiki/sources/2026-07-18-pi-resource-inventory]]
-- Entities: [[wiki/entities/wiki-knowledge]], [[wiki/entities/pi-web-access-zh-tw]]
+- Entities: [[wiki/entities/wiki-knowledge]], [[wiki/entities/pi-web-access-zh-tw]], [[wiki/entities/knowledge-garden]]
 - Skills: `knowledge-garden`（花園維護）、`notion-cli`（CLI 參考）
+- Discussions: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]

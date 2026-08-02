@@ -1,5 +1,18 @@
 # Log
 
+## [2026-08-03] architecture | Notion 整合架構討論與實作
+
+- 透過 annotator UI 與人類討論 Notion 整合架構
+- 確認兩系統分工：Wiki = AI 運作/知識維護，Notion = 人類閱讀/報告/分享
+- 建立完整資料流：raw → wiki → Notion → (研究觸發) → raw
+- 建立：`wiki/discussions/notion-integration-architecture.md`（架構討論）
+- 建立：`wiki/entities/knowledge-garden.md`（花園 manifest/索引）
+- 更新：`knowledge-garden` skill（加入 manifest check、notion-cli 引用、觸發詞）
+- 更新：`wiki/entities/notionApi.md`（補充完整資料流）
+- 更新：`wiki/index.md`（新增頁面連結）
+- 決策：保持 notion-cli / knowledge-garden skill 分離，明確引用關係
+- 決策：建立 Garden Manifest 機制避免每次都查 Notion API
+
 ## [2026-07-22] taxonomy | 新增 Skill topic + 多 topic 關聯機制
 
 - 建立：`wiki/topics/skill.md`（Skill topic 導航頁）
