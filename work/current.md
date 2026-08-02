@@ -35,6 +35,7 @@
   - next: —
   - refs: [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]、[[wiki/entities/wiki-knowledge|wiki-knowledge]]
   - 2026-08-03 建立 skill，固化 YouTube 字幕抓取 → raw/youtube/ → wiki ingest 流程
+  - 2026-08-03 更新：補入 Step 3 canonical 確認 + Step 5 topic 導航更新
 
 - [ ] W-2026-08-007 確認 canonical wiki 頁面與交叉引用一致 🔼 #wiki
   - refs: [[wiki/index|Wiki Index]]
