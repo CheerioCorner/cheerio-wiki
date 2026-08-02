@@ -6,7 +6,8 @@ updated: 2026-07-30
 sources: 2
 tags: [plannotator, research, custom-development, pi-extension]
 collection: sources
-provenance_url: https://github.com/backnotprop/plannotator---
+provenance_url: https://github.com/backnotprop/plannotator
+---
 
 # 2026-07-11 Plannotator 研究
 

@@ -7,7 +7,8 @@ sources: 1
 tags: [pi, agent, coding-agent, framework, source-zh-tw]
 collection: sources
 provenance_raw: "raw/2026-07-11-pi-mono-intro.html"
-provenance_url: https://ai-chain.tw/blog/pi-mono-intuitive-typescript-ai-agent-framework---
+provenance_url: https://ai-chain.tw/blog/pi-mono-intuitive-typescript-ai-agent-framework
+---
 
 一篇 ai-chain.tw 的繁體中文長文,從**整個 monorepo**與**代理人生態**角度切入,評析 `badlogic/pi-mono`。發布於 2026-05-02,作者署為「AI-Chain」團隊。
 

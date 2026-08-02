@@ -9,7 +9,8 @@ collection: sources
 topics: [ai-agent, skill]
 canonical: sources/2026-08-02-morphir-dotnet-agents
 provenance_raw: "raw/web/2026-08-02-morphir-dotnetAGENTS.md at main.md"
-provenance_url: https://github.com/finos/morphir-dotnet---
+provenance_url: https://github.com/finos/morphir-dotnet
+---
 
 # morphir-dotnet AGENTS.md — AI Agent 貢獻指南
 

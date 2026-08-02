@@ -9,7 +9,8 @@ collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-02-vibe-coding-implications
 provenance_raw: "raw/web/2026-08-02-Navigating the Future of Software Development Understanding Vibe Coding and Its Implications.md"
-provenance_url: https://www.blackduck.com/blog/vibe-coding-and-its-implications.html---
+provenance_url: https://www.blackduck.com/blog/vibe-coding-and-its-implications.html
+---
 
 # Vibe Coding 的未來與影響
 

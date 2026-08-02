@@ -8,7 +8,8 @@ tags: [pi, tau, python, coding-harness, textual, huggingface]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-05-tau-github-readme
-provenance_url: https://github.com/huggingface/tau---
+provenance_url: https://github.com/huggingface/tau
+---
 
 > 來源：[huggingface/tau GitHub README](https://github.com/huggingface/tau)
 > Clipped：2026-08-02

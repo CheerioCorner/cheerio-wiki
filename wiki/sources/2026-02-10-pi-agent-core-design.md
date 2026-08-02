@@ -7,7 +7,8 @@ sources: 1
 tags: [pi, agent, coding-agent, zechner, source-zh]
 collection: sources
 provenance_raw: "raw/web/2026-02-10-pi-agent-core-design.md"
-provenance_url: https://zhuanlan.zhihu.com/p/2004665077618458930---
+provenance_url: https://zhuanlan.zhihu.com/p/2004665077618458930
+---
 
 一篇知乎文章,對 `badlogic/pi-mono/packages/agent`(又稱 **Pi Agent Core**)做程式碼級解剖。發布於 2026-02-10,作者署為「王鹏LLM」,286 人贊同。
 

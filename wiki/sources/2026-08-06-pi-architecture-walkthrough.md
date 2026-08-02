@@ -9,7 +9,8 @@ collection: sources
 topics: [ai-agent, extension-dev, skill]
 canonical: sources/2026-08-06-pi-architecture-walkthrough
 provenance_raw: "raw/youtube/pi-architecture-walkthrough.md"
-provenance_url: https://www.youtube.com/watch?v=gTeujlv8qK0---
+provenance_url: https://www.youtube.com/watch?v=gTeujlv8qK0
+---
 
 > 來源：[YouTube — Pi Architecture Walkthrough — Full Agent Core + Interactive Layer Explained](https://www.youtube.com/watch?v=gTeujlv8qK0)
 > 原始字幕：[[raw/youtube/pi-architecture-walkthrough|raw transcript]]

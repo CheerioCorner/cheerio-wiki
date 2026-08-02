@@ -9,7 +9,8 @@ collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-08-hermes-architecture-explained
 provenance_raw: "raw/youtube/hermes-architecture-explained.md"
-provenance_url: https://youtu.be/n32qq7Kwzh0---
+provenance_url: https://youtu.be/n32qq7Kwzh0
+---
 
 > 來源：[YouTube — Hermes Architecture EXPLAINED: Memory, Context & Gateways](https://youtu.be/n32qq7Kwzh0)
 > 原始字幕：[[raw/youtube/hermes-architecture-explained|raw transcript]]

@@ -8,7 +8,8 @@ tags: [skills, engineering-practices, coding-agent, matt-pocock]
 upstream: "https://github.com/mattpocock/skills"
 last_checked: 2026-07-11
 collection: sources
-provenance_url: https://github.com/mattpocock/skills---
+provenance_url: https://github.com/mattpocock/skills
+---
 
 # mattpocock/skills
 

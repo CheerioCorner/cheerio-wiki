@@ -9,7 +9,8 @@ collection: sources
 topics: [extension-dev, knowledge-mgmt]
 canonical: sources/2026-08-01-okf-knowledge-catalog
 provenance_raw: "raw/web/2026-08-01-knowledge-catalog-okf-at-main.md"
-provenance_url: https://github.com/GoogleCloudPlatform/knowledge-catalog---
+provenance_url: https://github.com/GoogleCloudPlatform/knowledge-catalog
+---
 
 # OKF Knowledge Catalog — Google Cloud 參考實作
 
