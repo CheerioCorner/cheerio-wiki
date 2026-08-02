@@ -63,7 +63,7 @@
 > Root `projects/<project-id>/` 是跨 session、跨環境的 Project OKF Bundle；`wiki/projects/` 暫保留作 legacy project documentation。
 
 - [[projects/pi-plannotator-auto/index|pi-plannotator-auto]] — ✅ Project OKF Bundle pilot；GitHub + NPM
-- [[wiki/projects/pi-web-access-zh-tw/README|pi-web-access-zh-tw]] — ⚠️ 需維護（legacy README；有外部貢獻者）
+- [[projects/pi-web-access-zh-tw/index|pi-web-access-zh-tw]] — ⚠️ Project OKF Bundle；需維護（有外部貢獻者）
 - [[projects/pi-todo-journal/index|pi-todo-journal]] — ✅ Project OKF Bundle；Phase 2 完成，Phase 3 待開始
 
 ---
