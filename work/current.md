@@ -19,13 +19,22 @@
 
 ## Backlog
 
+- [ ] W-2026-08-015 建立 Notion → raw 抓取流程 🔼 #notion
+  - next: 決定實作方式（新 skill 或擴展 youtube-to-wiki）
+  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+
+- [ ] W-2026-08-016 測試 Notion 端到端流程（raw → wiki → Notion → raw） 🔼 #notion
+  - next: 等 W-2026-08-015 完成後執行
+  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]
+
 - [ ] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ⏫ #skills
   - next: 決定分 repo 策略（一 skill 一 repo？ Obsidian group？ agent-agnostic group？）
   - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`
   - 盤點結果：Pi-specific=pi-plannotator-auto、Obsidian-dependent=wiki-knowledge/youtube-to-wiki/work-tracker/todos、Agent-agnostic=knowledge-garden/notion-cli
 
 - [ ] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ⏫ #notion
-  - refs: [[wiki/entities/notionApi|notionApi]]
+  - next: 建立 Notion → raw 抓取流程（W-2026-08-015）
+  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]
 
 - [ ] W-2026-08-005 測試 URL → raw/web → ingest 全流程 🔼 #knowledge
   - refs: [[wiki/sources/README|Sources]]、[[raw/web|Raw web sources]]
