@@ -25,35 +25,8 @@
 
 ## Backlog
 
-- [x] W-2026-08-016 測試 Notion 端到端流程（raw → wiki → Notion → raw） 🔼 #notion ✅
-  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]
-  - completed: 2026-08-06
-  - result: 端到端測試全部通過：raw → wiki ingest ✅、wiki → Notion 種子建立 ✅、manifest 自動同步 ✅、Notion → raw 抓回 ✅
-
-- [x] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ⏫ #skills ✅
-  - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`、https://github.com/CheerioCorner/cheerio-skills
-  - completed: 2026-08-08
-  - result: 建立 cheerio-skills 私有 repo，8 個自有 skills 分類：Agent-agnostic (knowledge-garden, notion-cli)、Obsidian-dependent (wiki-knowledge, youtube-to-wiki, work-tracker, notion-to-raw, plannotator-sync)、Pi-specific (pi-plannotator-auto)、Meta (skills-repo-manager)；格式符合 `npx skills add` 規範
-
-- [x] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ⏫ #notion ✅
-  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]
-  - completed: 2026-08-06
-  - result: 雙向同步機制完成：manifest 自動同步（knowledge-garden skill §Manifest 自動同步）、端到端測試通過（W-2026-08-016）
-
 - [ ] W-2026-08-005 測試 URL → raw/web → ingest 全流程 🔼 #knowledge
   - refs: [[wiki/sources/README|Sources]]、[[raw/web|Raw web sources]]
-
-- [x] W-2026-08-006 研究 YouTube 字幕抓取方案 🔼 #knowledge ✅
-  - refs: [[raw/youtube|Raw YouTube sources]]、https://github.com/coleam00/cole-medin-knowledge-base/blob/main/.claude/skills/channel-to-kb/SKILL.md
-  - 結論：`fetch_transcripts.py`（pytubefix + youtube_transcript_api）可直接複用；Extract→Canonicalize→Write pipeline 可改造為適合我們架構的版本
-  - 2026-08-02 實測：成功抓取 `qo1QNxWcm28`（Tau: A Python Port of Pi），25:03 / 261 segments → raw/youtube/tau-python-port-of-pi.md
-  - 2026-08-03 完成 ingest：source note + entity page → wiki
-
-- [x] W-2026-08-012 建立 `youtube-to-wiki` skill ⏫ #knowledge ✅
-  - next: —
-  - refs: [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]、[[wiki/entities/wiki-knowledge|wiki-knowledge]]
-  - 2026-08-03 建立 skill，固化 YouTube 字幕抓取 → raw/youtube/ → wiki ingest 流程
-  - 2026-08-03 更新：補入 Step 3 canonical 確認 + Step 5 topic 導航更新
 
 - [ ] W-2026-08-007 確認 canonical wiki 頁面與交叉引用一致 🔼 #wiki
   - refs: [[wiki/index|Wiki Index]]
@@ -67,6 +40,21 @@
 
 ## Completed
 
+- [x] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ✅ #notion
+  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]
+  - completed: 2026-08-06
+  - result: 雙向同步機制完成：manifest 自動同步（knowledge-garden skill §Manifest 自動同步）、端到端測試通過（W-2026-08-016）
+
+- [x] W-2026-08-016 測試 Notion 端到端流程（raw → wiki → Notion → raw） ✅ #notion
+  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]
+  - completed: 2026-08-06
+  - result: 端到端測試全部通過：raw → wiki ingest ✅、wiki → Notion 種子建立 ✅、manifest 自動同步 ✅、Notion → raw 抓回 ✅
+
+- [x] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ✅ #skills
+  - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`、https://github.com/CheerioCorner/cheerio-skills
+  - completed: 2026-08-08
+  - result: 建立 cheerio-skills 私有 repo，8 個自有 skills 分類：Agent-agnostic (knowledge-garden, notion-cli)、Obsidian-dependent (wiki-knowledge, youtube-to-wiki, work-tracker, notion-to-raw, plannotator-sync)、Pi-specific (pi-plannotator-auto)、Meta (skills-repo-manager)；格式符合 `npx skills add` 規範
+
 - [x] W-2026-08-018 建立 skills-repo-manager skill ✅ #skills
   - refs: https://github.com/CheerioCorner/cheerio-skills
   - completed: 2026-08-08
@@ -76,6 +64,16 @@
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
   - completed: 2026-08-05
   - result: 建立 `notion-to-raw` skill（`~/.agents/skills/notion-to-raw/SKILL.md`），三條路徑：只是看看 / 寫 raw / deep research；迭代改進為「先呈現→問下一步」模式
+
+- [x] W-2026-08-006 研究 YouTube 字幕抓取方案 ✅ #knowledge
+  - refs: [[raw/youtube|Raw YouTube sources]]、https://github.com/coleam00/cole-medin-knowledge-base/blob/main/.claude/skills/channel-to-kb/SKILL.md
+  - completed: 2026-08-03
+  - result: `fetch_transcripts.py`（pytubefix + youtube_transcript_api）可直接複用；實測抓取 Tau 影片成功
+
+- [x] W-2026-08-012 建立 `youtube-to-wiki` skill ✅ #knowledge
+  - refs: [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]、[[wiki/entities/wiki-knowledge|wiki-knowledge]]
+  - completed: 2026-08-03
+  - result: 固化 YouTube 字幕抓取 → raw/youtube/ → wiki ingest 流程
 
 - [x] W-2026-07-022 YouTube ingest mattpocock/skills + 多 topic 機制 ✅ #knowledge #wiki
   - refs: [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills tutorial]]、[[wiki/topics/skill|Skill topic]]
