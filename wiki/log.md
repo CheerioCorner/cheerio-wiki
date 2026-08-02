@@ -1,6 +1,13 @@
 
 # Log
 
+## [2026-08-08] ingest | pi-agent-dashboard — BlackBeltTechnology Web Dashboard
+
+- 新增 entity：[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]（即時 Web Dashboard，多 session + 遠端控制）
+- 更新 topics：[[wiki/topics/ai-agent|ai-agent]]、[[wiki/topics/extension-dev|extension-dev]] 加入導航
+- 更新 index：AI Agent + Extension Dev Entities 區塊
+- 來源：raw/web（BlackBeltTechnology/pi-agent-dashboard GitHub README）
+
 ## [2026-08-08] ingest | QwenPaw — YouTube + GitHub README
 
 - 新增 entity：[[wiki/entities/qwenpaw|qwenpaw]]（AgentScope 本地 AI 助理，Agent OS 架構）
