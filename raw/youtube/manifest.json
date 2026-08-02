@@ -1,0 +1,16 @@
+{
+  "source_kind": "youtube",
+  "fetched_at": "2026-07-22",
+  "videos": [
+    {
+      "slug": "tau-python-port-of-pi",
+      "title": "Tau: A Python Port of Pi - Coding Harness Deep Dive",
+      "youtube_id": "qo1QNxWcm28",
+      "url": "https://www.youtube.com/watch?v=qo1QNxWcm28",
+      "duration": "25:03",
+      "segments": 261,
+      "paragraphs": 76,
+      "language": "en"
+    }
+  ]
+}

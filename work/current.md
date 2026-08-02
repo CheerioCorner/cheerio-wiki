@@ -29,9 +29,10 @@
 - [ ] W-2026-08-005 測試 URL → raw/web → ingest 全流程 🔼 #knowledge
   - refs: [[wiki/sources/README|Sources]]、[[raw/web|Raw web sources]]
 
-- [x] W-2026-08-006 研究 YouTube 字幕抓取方案 🔼 #knowledge ⏳
-  - next: 研究 coleam00/cole-medin-knowledge-base 的 channel-to-kb pipeline，評估可用性
+- [x] W-2026-08-006 研究 YouTube 字幕抓取方案 🔼 #knowledge ✅
   - refs: [[raw/youtube|Raw YouTube sources]]、https://github.com/coleam00/cole-medin-knowledge-base/blob/main/.claude/skills/channel-to-kb/SKILL.md
+  - 結論：`fetch_transcripts.py`（pytubefix + youtube_transcript_api）可直接複用；Extract→Canonicalize→Write pipeline 可改造為適合我們架構的版本
+  - 2026-08-02 實測：成功抓取 `qo1QNxWcm28`（Tau: A Python Port of Pi），25:03 / 261 segments → raw/youtube/tau-python-port-of-pi.md
 
 - [ ] W-2026-08-007 確認 canonical wiki 頁面與交叉引用一致 🔼 #wiki
   - refs: [[wiki/index|Wiki Index]]
