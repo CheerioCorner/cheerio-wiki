@@ -119,10 +119,13 @@ Obsidian/
 **單筆流程（推薦，可監督）：**
 1. 讀完來源（文本一次讀完；有圖片時另外批次讀）。
 2. 與人類討論重點，確認要提取什麼知識點。
-3. 在 `wiki/topics/` 建立/更新相關頁面（單一來源可能會動到多頁）：
+3. 在正確的 canonical collection 建立／更新相關頁面（單一來源可能會動到多頁）：
    - 建立「來源筆記」（`wiki/sources/`，1 頁彙整該資料的重點）
-   - 更新相關主題頁面，加入雙向連結
-   - 標記新資料是否推翻/補充既有結論
+   - 可重用抽象放入 `wiki/concepts/`
+   - 具體人／工具／package 放入 `wiki/entities/`
+   - 尚未定案內容放入 `wiki/discussions/`；已確認的全域選擇放入 `wiki/decisions/`
+   - `wiki/topics/` 只更新導航／taxonomy
+   - 標記新資料是否推翻／補充既有結論
 4. 更新 `wiki/index.md`（加入新頁或更新摘要）。
 5. 在 `wiki/log.md` 附加一條 ingest 紀錄。
 6. **git push** 同步回 GitHub。

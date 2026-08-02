@@ -68,8 +68,8 @@ Omnigent 是一個 **meta-harness（元鞍具）** 層，運行在你已經在�
 
 ## Roadmap
 
-- 整合 [[GEPA]] — 在 meta-harness 層做自動最佳化
-- 整合 [[MemEx]]（programmable scratchpad）和 [[RLM]]（code-based introspection）
+- 整合 `GEPA` — 在 meta-harness 層做自動最佳化（尚未建立 Wiki entity 頁）
+- 整合 `MemEx`（programmable scratchpad）和 `RLM`（code-based introspection；尚未建立 Wiki entity 頁）
 - Omnigent Server MCP — 讓 agents 可以跨 session 工作
 - 更多 harness 支援
 
@@ -101,4 +101,4 @@ Omnigent 是一個 **meta-harness（元鞍具）** 層，運行在你已經在�
 
 ## 來源
 
-- Databricks Blog：*Introducing Omnigent: A Meta-Harness to Combine, Control and Share Your Agents*（[[2026-07-13-omnigent-meta-harness-databricks]]）
+- Databricks Blog：*Introducing Omnigent: A Meta-Harness to Combine, Control and Share Your Agents*（[[raw/2026-07-13-omnigent-meta-harness-databricks]]）

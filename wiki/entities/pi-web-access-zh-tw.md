@@ -70,5 +70,5 @@ URL → 偵測類型 → 選擇擷取器
 ## 相關頁面
 - Source: [[sources/2026-07-18-pi-resource-inventory]]
 - Entities: [[entities/wiki-knowledge]], [[entities/notionApi]]
-- Concepts: [[provider-abstraction]]
+- Concepts: `provider-abstraction`（尚未建立的 future concept）
 - Packages: [[entities/pi-mono]] (pi-web-access 是獨立擴充，非 pi-mono 子 package)

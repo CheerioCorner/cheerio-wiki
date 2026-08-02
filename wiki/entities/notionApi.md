@@ -69,4 +69,4 @@ canonical: entities/notionApi
 ## 相關頁面
 - Source: [[sources/2026-07-18-pi-resource-inventory]]
 - Entities: [[entities/wiki-knowledge]], [[entities/pi-web-access-zh-tw]]
-- Skills: [[notion-cli]]（CLI 替代方案，可寫入）
+- Skills: `notion-cli`（CLI 替代方案，可寫入；尚未建立 Wiki entity 頁）

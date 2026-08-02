@@ -68,4 +68,4 @@ Repo 中沒有 obsidian 或 notion 相關代碼。但支援 markdown 文件審�
 
 - 主體頁面：[[entities/plannotator]]
 - Notion 同步：已建立「Plannotator Fork 開發規劃」頁面（用於多人協作/跨 IDE）
-- 知識花園：[[plannotator-seedling]]（待建立）
+- 知識花園：`plannotator-seedling`（待建立；非 Wiki canonical page）

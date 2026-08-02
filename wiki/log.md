@@ -170,7 +170,7 @@
 - 人類要求：整理 Omnigent 相關知識，重新定位研究方向
 - 背景：昨天實驗發現 Omnigent 目前不支援 Windows，只支援 Linux/Mac
 - 重整內容：
-  - 更新 Entities:[[omnigent]] — 加入「實驗觀察」章節（平台相容性表格、Windows 不相容結論）
+  - 更新 Entities:[[entities/omnigent|omnigent]] — 加入「實驗觀察」章節（平台相容性表格、Windows 不相容結論）
   - 更新 Concepts:[[meta-harness]] — 加入「我們的研究定位」章節，明確：
     - meta-harness = 研究專題
     - Omnigent = 進入這個領域的一棵樹苗（🌱 種子期）
@@ -261,8 +261,8 @@
 - 來源：https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents
 - 發現：Omnigent 是定義 B（業界版 meta-harness）的具體開源實作，由 Databricks 開發
 - 新頁：
-  - raw:[[2026-07-13-omnigent-meta-harness-databricks]]
-  - Entities:[[omnigent]]
+  - raw:[[raw/2026-07-13-omnigent-meta-harness-databricks]]
+  - Entities:[[entities/omnigent|omnigent]]
 - 更新頁：[[meta-harness]] — 加入定義 B 的實作比較表（Omnigent vs OmniAgent）、更新來源
 - 更新 index 計數：來源 3 → 4，頁面 10 → 11
 

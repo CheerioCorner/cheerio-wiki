@@ -12,7 +12,7 @@ canonical: entities/pi-agent-core
 
 > pi-mono monorepo 內的 `packages/agent/`,全文為 agent runtime。**整個 runtime 由 5 個檔、約 1,500 行 TypeScript 構成**(以 [2026-02-10-pi-agent-core-design] 解析為準)。
 
-> 本頁主要記錄檔案分工與關鍵類別;深度型別設計獨立到 [[concepts/late-conversion]]、迴圈結構獨立到 [[minimal-agent-loop]]、可觀測性獨立到 [[observability-layer]]。
+> 本頁主要記錄檔案分工與關鍵類別；深度型別設計獨立到 [[concepts/late-conversion]]。迴圈結構與可觀測性目前僅作為 future concepts（`minimal-agent-loop`、`observability-layer`）追蹤，尚未建立獨立頁面。
 
 ## 來源
 - [[sources/2026-02-10-pi-agent-core-design]] — 主要來源(語言物理位元 + 行號層次的解析)
@@ -39,7 +39,7 @@ agent_start / agent_end
     message_start / message_update / message_end
     tool_execution_start / tool_execution_update / tool_execution_end
 ```
-→ 這是 [[observability-layer]] 的核心比喻對象。
+→ 這是 future concept `observability-layer` 的核心比喻對象。
 
 ## 兩個核心入口
 | 函數 | 前置條件 | 用途 |
@@ -58,10 +58,10 @@ agent_start / agent_end
 
 ## 不做的事(立場,精準條列)
 無 MCP / 無 sub-agents / 無 plan mode / 無權限檢查 / 無 maxSteps。
-→ 對應 [[yolo-by-default]] 與 [[entities/pi-mono]] 的「刻意不做」。
+→ 對應 future concept `yolo-by-default` 與 [[entities/pi-mono]] 的「刻意不做」。
 
 ## 相關頁面
 - Entities:[[entities/pi-mono]]、[[entities/mario-zechner]]
-- Concepts:[[concepts/late-conversion]]、[[minimal-agent-loop]]、[[observability-layer]]、[[steering-followup]]
+- Concepts:[[concepts/late-conversion]]；`minimal-agent-loop`、`observability-layer`、`steering-followup` 尚未建立
 - Source:[[sources/2026-02-10-pi-agent-core-design]]
 - Synthesis:[[concepts/minimal-agent-philosophy]]

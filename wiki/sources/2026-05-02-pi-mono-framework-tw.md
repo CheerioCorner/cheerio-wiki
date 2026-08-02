@@ -90,8 +90,8 @@ pi-coding-agent README 的代表性句:**adapt pi to your workflows, not the oth
 兩者**對極簡與不做清單的立場完全一致**。可見後續如果 lint 出現「簡化策略被推翻」之類的標記,優先看這個來源頁。
 
 ## 推導出的 wiki 頁
-- Entities:[[entities/pi-mono]]、[[pi-coding-agent]]、[[pi-ai]]、[[pi-tui]]、[[pi-web-ui]]
-- Concepts:[[provider-abstraction]]
+- Entities: [[entities/pi-mono|pi-mono]]；其餘 `pi-coding-agent`、`pi-ai`、`pi-tui`、`pi-web-ui` 尚未建立獨立頁面
+- Concepts: `provider-abstraction`（尚未建立的 future concept）
 - Synthesis:[[concepts/minimal-agent-philosophy]]
 
 ## 相關頁面

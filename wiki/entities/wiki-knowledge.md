@@ -25,14 +25,14 @@ canonical: entities/wiki-knowledge
 **步驟**：
 1. 讀取 `raw/` 新檔案
 2. 與人類確認重點
-3. 建立/更新 `wiki/sources/`、`wiki/topics/`
+3. 建立／更新正確的 canonical collection：`wiki/concepts/`、`wiki/entities/`、`wiki/sources/`、`wiki/decisions/`、`wiki/discussions/`；`wiki/topics/` 只作導航／taxonomy
 4. 更新 `wiki/index.md`
 5. 寫入 `wiki/log.md`（append-only）
 6. `git add -A && git commit && git push`
 
 ### 2. Query（查詢）
 1. 讀 `wiki/index.md` 找相關頁
-2. 讀取頁面 + 追溯 `[[wikilink]]`
+2. 讀取頁面 + 追溯 wikilinks
 3. 給出有引用的回答
 4. **可回填**：人類說「存到 wiki」即建新頁 + 更新 index + 寫 log
 
@@ -103,7 +103,7 @@ tags: [topic-a, topic-b]
 **格式檢查：** lint 流程會自動檢查格式一致性
 
 ### 交叉引用
-- 一律用 `[[wikilink]]` 雙中括號
+- 一律用 `[[wikilink]]` 雙中括號（文件示例中的 `wikilink` 使用 code text，不代表實際頁面）
 - 優先使用 vault-root 完整路徑，例如 `[[entities/pi-mono|pi-mono]]`；basename 只適合唯一 target
 - 提到重要概念／實體時**必須建連結**
 - compatibility stubs、Canvas 與歷史 log 可能造成合法 ambiguity；lint 應分別統計，不應自動建立 future concept

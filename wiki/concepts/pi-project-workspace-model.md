@@ -82,7 +82,7 @@ canonical: concepts/pi-project-workspace-model
 - Entities:[[entities/pi-mono]] — 含 `pi-coding-agent` 子套件說明
 - Sources:[[sources/2026-05-02-pi-mono-framework-tw]] — 來源文獻
 - Concepts:[[concepts/minimal-agent-philosophy]]、[[concepts/late-conversion]]
-- Comparisons:[[coding-agent-comparison]]（規劃中）
+- Comparisons: `coding-agent-comparison`（規劃中，尚未建立 Wiki page）
 
 ## 待補充 / 開放問題
 

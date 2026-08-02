@@ -60,6 +60,6 @@ export type AgentMessage = Message | CustomAgentMessages[keyof CustomAgentMessag
 
 ## 相關頁面
 - Entities:[[entities/pi-agent-core]]
-- Concepts:[[minimal-agent-loop]]、[[observability-layer]]、[[steering-followup]]
+- Concepts: `minimal-agent-loop`、`observability-layer`、`steering-followup`（尚未建立的 future concepts）
 - Source:[[sources/2026-02-10-pi-agent-core-design]]
 - Synthesis:[[concepts/minimal-agent-philosophy]]

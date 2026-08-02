@@ -58,8 +58,8 @@ canonical: concepts/meta-harness
 - TerminalBench-2：Claude Opus 4.6 **#2**（76.4%），Claude Haiku 4.5 **#1**（37.6%）
 
 **延伸專案：**
-- [[harness-forge]] — 將 Meta-Harness 實作為 Claude Code skill
-- [[SuperagenticAI-metaharness]] — Python library + CLI
+- `harness-forge` — 將 Meta-Harness 實作為 Claude Code skill（尚未建立 Wiki entity 頁）
+- `SuperagenticAI-metaharness` — Python library + CLI（尚未建立 Wiki entity 頁）
 - 「Don't Train the Model, Evolve the Harness」 — 應用於 Harvey Legal Agent Benchmark
 
 ---
@@ -117,12 +117,12 @@ canonical: concepts/meta-harness
 
 | 實作 | 開發者 | 特色 |
 |---|---|---|
-| [[OmniAgent]] | MindStudio | 最早提出 meta-harness 作為多 agent orchestration 的概念 |
+| `OmniAgent` | MindStudio | 最早提出 meta-harness 作為多 agent orchestration 的概念；尚未建立 Wiki entity 頁 |
 | [[entities/omnigent]] | Databricks | 開源（Apache 2.0），強調 security policies + 即時協作，roadmap 包含 GEPA 整合 |
 
 ## 相關頁面
 
-- [[harness-concept]] — 傳統測試 harness 與 model harness 的基本概念
+- `harness-concept` — 傳統測試 harness 與 model harness 的基本概念（尚未建立 Wiki concept 頁）
 - [[concepts/minimal-agent-philosophy]] — Pi 的 minimal agent 哲學，與 meta-harness 的「加法」取徑形成對比
 - [[entities/plannotator]] — 另一種 agent 視覺化審閱工具
 
