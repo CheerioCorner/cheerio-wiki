@@ -12,7 +12,7 @@ provenance:
   - kind: raw
     path: "raw/web/2026-08-02-Navigating the Future of Software Development Understanding Vibe Coding and Its Implications.md"
   - kind: external
-    url: https://www.blackduck.com/blog/vibe-coding
+    url: https://www.blackduck.com/blog/vibe-coding-and-its-implications.html
 ---
 
 # Vibe Coding 的未來與影響
@@ -66,6 +66,10 @@ provenance:
 - 與 [[wiki/concepts/ai-coding-workflow]] 互補：structured workflow 是 vibe coding 的解方
 - Security 警示：AI-generated code 需要同等的安全審查
 - 角色轉變：開發者 → AI 輸出的 curator
+
+## 相關頁面
+
+- [[wiki/concepts/vibe-coding]] — 本來源的 concept 頁面
 
 ## 來源
 

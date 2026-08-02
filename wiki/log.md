@@ -1,6 +1,15 @@
 
 # Log
 
+## [2026-08-08] lint | Vibe Coding 連結修復
+
+- 修復 `wiki/sources/2026-08-02-vibe-coding-implications.md` provenance URL（不完整 → 完整）
+- 新增 `wiki/concepts/vibe-coding.md` 的 backlink 到 `wiki/sources/2026-08-02-vibe-coding-implications.md`
+- 新增 `wiki/concepts/vibe-coding.md` 的 backlink 到 `wiki/concepts/ai-coding-workflow.md`（比較表 + 相關頁面）
+- 新增 `wiki/concepts/vibe-coding.md` 的 backlink 到 `wiki/concepts/minimal-agent-philosophy.md`
+- 新增 `wiki/concepts/vibe-coding.md` 的 backlink 到 `wiki/concepts/defect-metrics.md`
+- 所有交叉引用已驗證有效
+
 ## [2026-08-08] ingest | Hermes Architecture EXPLAINED: Memory, Context & Gateways
 
 - 來源：`raw/youtube/hermes-architecture-explained.md`（YouTube n32qq7Kwzh0，40:25）

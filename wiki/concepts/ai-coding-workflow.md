@@ -56,7 +56,7 @@ canonical: concepts/ai-coding-workflow
 | 方法 | 流程控制 | Context 管理 | 適用場景 |
 |------|---------|-------------|---------|
 | **AI Coding Workflow** | 鬆耦合，可選 | Smart zone 感知 | 中大型功能開發 |
-| **Vibe Coding** | 無 | 無 | 快速原型 |
+| [[wiki/concepts/vibe-coding|Vibe Coding]] | 無 | 無 | 快速原型 |
 | **GSD/BMAD** | 強制全流程 | 固定 | 全專案管理 |
 
 ## 實作要點
@@ -80,4 +80,5 @@ canonical: concepts/ai-coding-workflow
 
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — 實作此工作流程的 skills repo
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學
+- [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成，與本工作流程互補
 - [[wiki/concepts/late-conversion|late-conversion]] — 型別策略

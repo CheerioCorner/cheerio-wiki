@@ -60,4 +60,5 @@ canonical: concepts/minimal-agent-philosophy
 
 ## 相關頁面
 - Entities:[[wiki/entities/pi-mono]]、[[wiki/entities/pi-agent-core]]、[[wiki/entities/mario-zechner]]
+- Concepts:[[wiki/concepts/vibe-coding]] — 對比：Pi 的「減法」vs vibe coding 的「加法」
 - Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]]

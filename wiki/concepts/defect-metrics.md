@@ -67,3 +67,4 @@ AI 輔助 coding 改變了缺陷模式：
 
 - [[wiki/sources/2026-08-02-defect-density-escape-rate]] — 完整指南來源
 - [[wiki/concepts/ai-coding-workflow]] — 結構化 AI 編碼工作流程
+- [[wiki/concepts/vibe-coding]] — AI 生成程式碼改變了缺陷分佈模式
