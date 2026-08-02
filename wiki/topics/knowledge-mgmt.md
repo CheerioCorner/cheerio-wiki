@@ -11,6 +11,7 @@ updated: 2026-08-02
 
 ## Entities
 
+- [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian knowledge-base skill 🛠️
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP server
 
 ## Concepts

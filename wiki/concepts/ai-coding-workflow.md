@@ -6,7 +6,7 @@ updated: 2026-07-22
 sources: 2
 tags: [ai-coding, workflow, methodology, planning]
 collection: concepts
-topics: [skill]
+topics: [skill, ai-agent]
 canonical: concepts/ai-coding-workflow
 ---
 

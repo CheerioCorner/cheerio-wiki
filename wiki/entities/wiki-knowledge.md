@@ -6,7 +6,7 @@ updated: 2026-08-02
 sources: 1
 tags: [pi, skill, knowledge-base, obsidian, ingest, query, lint]
 collection: entities
-topics: [skill]
+topics: [skill, knowledge-mgmt]
 canonical: entities/wiki-knowledge
 ---
 
