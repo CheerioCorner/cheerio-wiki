@@ -64,7 +64,7 @@
 
 - [[projects/pi-plannotator-auto/index|pi-plannotator-auto]] — ✅ Project OKF Bundle pilot；GitHub + NPM
 - [[wiki/projects/pi-web-access-zh-tw/README|pi-web-access-zh-tw]] — ⚠️ 需維護（legacy README；有外部貢獻者）
-- [[wiki/projects/pi-todo-journal/README|pi-todo-journal]] — ✅ Phase 2 完成：Todo / Journal session 同步、OKF、測試；知識邊界已確認
+- [[projects/pi-todo-journal/index|pi-todo-journal]] — ✅ Project OKF Bundle；Phase 2 完成，Phase 3 待開始
 
 ---
 

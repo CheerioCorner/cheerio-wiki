@@ -17,6 +17,7 @@
 - 依據：[[audits/2026-08-02-wiki-collection-topic-link-audit|2026-08-02 Wiki collection/topic/link audit]]。
 - 完成後續規範對齊：root `projects/`、五個 shared collections、topic taxonomy、GitHub canonical references 與 system local date/time 規則。
 - Source collection provenance pass：7 個 source notes 保留 `sources: N` 相容欄位，並補上 `collection: sources` 與逐頁 provenance。
+- 建立 `projects/pi-todo-journal/` Project OKF Bundle，保留 package repository、package `docs/` 與 Obsidian bundle 的邊界。
 
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
