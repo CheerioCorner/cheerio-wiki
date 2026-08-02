@@ -1,6 +1,5 @@
-# Obsidian 工作區設定（機器專屬）
-.obsidian/workspace.json
-.obsidian/workspace
+# Obsidian 本地設定（機器專屬）
+.obsidian/
 
 # Pi 專案設定
 .pi/
