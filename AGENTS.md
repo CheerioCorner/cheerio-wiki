@@ -204,8 +204,16 @@ created: 2026-07-11
 updated: 2026-07-11
 sources: 3   # 引用過幾個 raw 來源
 tags: [topic-a, topic-b]
+topics: [skill, ai-agent]  # 頁面所屬的 topics（可多值陣列）
+canonical: entities/name    # 可選，canonical path
 ---
 ```
+
+**多 topic 關聯**：一個頁面可同時屬於多個 topic。在 topic 導航頁中，跨 topic 頁面用 🛠️ 標記。例如：
+```markdown
+- [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合 🛠️
+```
+在 `wiki/index.md` 底部加說明：`> 🛠️ = 同時屬於多個 topic（見各頁 frontmatter topics）`
 
 ### 4.3 內容結構（建議）
 
@@ -229,8 +237,9 @@ tags: [topic-a, topic-b]
 
 #### 5.1 `wiki/index.md`（內容索引）
 
-- 按 taxonomy 分區：Topics（AI Agent / Extension Dev / Meta Systems / Knowledge Mgmt）/ Collections / Projects / Sources。
+- 按 taxonomy 分區：Topics（AI Agent / Extension Dev / Meta Systems / Knowledge Mgmt / Skill）/ Collections / Projects / Sources。
 - 每頁一行：`[[collection/path|標題]] — 一句話摘要`。
+- **多 topic 頁面**：跨 topic 頁面在所有相關 topic 區塊都列出，用 🛠️ 標記。
 - 每次 ingest / lint 後更新。
 - 中等規模（~100 來源、數百頁）僅靠 index.md 就夠，不需搜尋引擎。
 
