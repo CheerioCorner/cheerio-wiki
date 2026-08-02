@@ -1,6 +1,13 @@
 
 # Log
 
+## [2026-08-06] update | Notion ↔ Obsidian 雙向同步機制 — Manifest 自動同步
+
+- `knowledge-garden` skill 新增 §Manifest 自動同步：每次 Notion 寫入操作後同步更新 `wiki/entities/knowledge-garden.md`
+- `notion-to-raw` skill 更新 Step 5：明確定義 manifest 同步格式
+- `wiki/discussions/notion-integration-architecture.md`：標記「Garden manifest 的更新時機與方式」為已解決
+- 三向資料流完整：raw → wiki（wiki-knowledge）、wiki → Notion（knowledge-garden）、Notion → raw（notion-to-raw）
+
 ## [2026-08-08] lint | Provenance 格式修正 + Vibe Coding 連結修復
 
 - **Provenance 格式修正**：所有 source notes 從 YAML nested object 改為 flat 欄位（`provenance_raw` / `provenance_url` / `provenance_session`），兼容 Obsidian Dataview

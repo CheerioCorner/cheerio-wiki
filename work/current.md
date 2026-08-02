@@ -35,8 +35,9 @@
   - 盤點結果：Pi-specific=pi-plannotator-auto、Obsidian-dependent=wiki-knowledge/youtube-to-wiki/work-tracker/todos、Agent-agnostic=knowledge-garden/notion-cli
 
 - [ ] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ⏫ #notion
-  - next: 建立 Notion → raw 抓取流程（W-2026-08-015）
+  - next: 測試端到端流程（W-2026-08-016）
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]
+  - 2026-08-06 完成 manifest 自動同步機制：`knowledge-garden` skill 新增 §Manifest 自動同步，每次 Notion 寫入操作後同步更新 `wiki/entities/knowledge-garden.md`；`notion-to-raw` skill 同步更新 Step 5 格式
 
 - [ ] W-2026-08-005 測試 URL → raw/web → ingest 全流程 🔼 #knowledge
   - refs: [[wiki/sources/README|Sources]]、[[raw/web|Raw web sources]]
