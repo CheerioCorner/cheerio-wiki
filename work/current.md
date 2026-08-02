@@ -9,6 +9,7 @@
   - next: Pi containerization 方案（Gondolin/Docker/OpenShell）比較、Tau 三層架構分離細節、Hermes 學習迴圈機制
   - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]、[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]
   - 2026-08-06 完成 Pi Architecture Walkthrough ingest：agentic loop 三步驟、session tree、compaction、skills 機制、extensions events、CLI entry point
+  - 2026-08-08 ingest waku-agent：四大支柱 readable blueprint（harness + loop + memory + eval），~95 lines Python loop，三層記憶 + retrieval gate，Pi sub-agent delegate_task
   - 2026-08-06 批次 ingest 5 筆 raw（omnigent/OKF catalog/defect metrics/morphir-dotnet/vibe-coding）+ 修復 topic page 遺漏 + 強化 skill/AGENTS.md topic 同步步驟
 
 - [ ] W-2026-08-010 建立 `pi-work-tracker` 並取代 `pi-todo-journal` ⏫ #extension
@@ -16,6 +17,12 @@
   - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]、[[work/README|Work System]]
 
 
+
+## In progress
+
+- [ ] W-2026-08-019 整理 OKF 概念和運用 ⏫ #knowledge
+  - next: 整理現有 wiki 內容，用 annotator UI 報告
+  - refs: [[wiki/concepts/okf-open-knowledge-format|OKF concept page]]、[[wiki/sources/2026-08-01-okf-extension-development|OKF extension development source]]
 
 ## Backlog
 
