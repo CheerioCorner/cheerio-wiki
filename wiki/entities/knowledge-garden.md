@@ -69,7 +69,7 @@ canonical: entities/knowledge-garden
 | 2026-07-31 | 種下 NPM Publishing Workflow | NPM Publishing |
 | 2026-07-31 | 種下 Agent Extension 安裝位置 | Agent Extension |
 | 2026-08-01 | 種下 OKF Extension 開發 | OKF Extension |
-| 2026-08-06 | E2E 測試完成（已清理） | E2E Test Artifact |
+| 2026-08-06 | E2E 測試完成（raw/wiki/Notion 全部清理） | E2E Test Artifact |
 
 ---
 
