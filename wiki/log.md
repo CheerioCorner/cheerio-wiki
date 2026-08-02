@@ -4,6 +4,7 @@
 
 - 建立完整工作紀錄：[[sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF migration complete]]。
 - 紀錄 audit、collections、canonical links、provenance、decisions、discussions、三個 Project Bundles、Git history 與保留邊界。
+- 同步完成 `todos/done/2026-08-02.md` 與 `todos/current.md`：本階段標記完成，後續工作另列。
 
 ## [2026-08-02] promotion | Confirmed architecture decisions and open discussions
 

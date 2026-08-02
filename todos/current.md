@@ -1,6 +1,6 @@
 # 目前進行中
 
-> 最後更新：2026-08-01
+> 最後更新：2026-08-02
 > 每次只專注 1-3 個任務。完成後移到 done/。
 
 ---
@@ -19,10 +19,12 @@
 - [x] 更新 Pi AGENTS.md — 指向 Obsidian todos #meta 📅 2026-08-02
 - [x] 刪除舊 ToDo 資料夾 — 避免混淆 #meta 📅 2026-08-02
 
-### 2. Wiki × OKF 架構優化 🚧
+### 2. Wiki × OKF 架構優化 ✅ 已完成
 - [x] 確認 PLAN 影響評估：不改 pi-todo-journal 核心 phases，只補 knowledge boundary 與 optional references ⏫ #wiki #knowledge 📅 2026-08-02
-- [ ] 設計 Project OKF Bundle、shared Wiki collections、topics 導航層與 annotator raw-conversation 流程 ⏫ #wiki #knowledge 📅 2026-08-02
-- [ ] 產生現有 Wiki collection/topic/link audit 報告，確認後再分批遷移 🔼 #wiki #knowledge 📅 2026-08-02
+- [x] 設計 Project OKF Bundle、shared Wiki collections、topics 導航層與 annotator raw-conversation 流程 ⏫ #wiki #knowledge 📅 2026-08-02
+- [x] 產生現有 Wiki collection/topic/link audit 報告，並完成分批 migration 🔼 #wiki #knowledge 📅 2026-08-02
+- [x] 建立 4 個 architecture decisions、3 個 discussions、7 個 source provenance records #wiki #knowledge 📅 2026-08-02
+- [x] 建立 3 個 Project OKF Bundles、完成 final health audit 與完整工作紀錄 #wiki #knowledge 📅 2026-08-02
 
 ### 3. pi-todo-journal 開發 🚧
 - [x] Phase 1：完成 Obsidian Markdown Todo/Journal MVP（含 OKF、checkpoint、commands、測試與 smoke test）⏫ #extension #meta 📅 2026-08-01
@@ -42,3 +44,11 @@
 ## 📋 進行中（暫時擱置）
 
 _（目前沒有）_
+
+## 📌 下一階段（已記錄於 `todos/done/2026-08-02.md`）
+
+- `topics/` compatibility stubs 最終策略
+- future concepts canonical page 策略
+- 獨立 `youtube-to-wiki` skill/workflow
+- 三個 Project OKF Bundles 的持續維護
+- `pi-web-access-zh-tw` 外部貢獻者 changes 審查
