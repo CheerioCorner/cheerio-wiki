@@ -1,5 +1,12 @@
 # Log
 
+## [2026-08-02] promotion | Confirmed architecture decisions and open discussions
+
+- 將已確認的 Wiki × OKF 架構方向整理至 `wiki/decisions/`：Project Bundle boundary、Shared Wiki collection model、raw conversation promotion workflow、package knowledge boundary。
+- 將尚未定案內容整理至 `wiki/discussions/`：YouTube pipeline timing、canonicalization／semantic linking、topic stub cleanup。
+- 所有正式頁面以 provenance 回指 immutable raw handoff；未建立 future concept pages。
+- 本次 promotion 不修改 `raw/`、`PLAN.md` 或 package source of truth。
+
 ## [2026-08-02] migration | Wiki collections + Project OKF Bundle pilot
 
 - 建立 shared collection skeleton：`wiki/concepts/`、`wiki/entities/`、`wiki/decisions/`、`wiki/discussions/`。

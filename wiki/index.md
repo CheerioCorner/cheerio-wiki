@@ -49,7 +49,14 @@
 - [[entities/README|Entities]] — 人、工具、package 與具體實作
 - [[sources/README|Sources]] — 整理後的外部資料與研究紀錄
 - [[decisions/README|Decisions]] — 全域／跨專案已確認選擇
+- [[decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]] — Project Bundle 與 package source-of-truth 邊界
+- [[decisions/shared-wiki-collection-model|Shared Wiki Collection Model]] — 五 collections 與 topics taxonomy
+- [[decisions/raw-conversation-promotion-workflow|Raw Conversation Promotion Workflow]] — raw 到 canonical page 的升格流程
+- [[decisions/package-knowledge-boundary|Package Knowledge Boundary]] — pi-todo-journal 與 YouTube-to-Wiki 邊界
 - [[discussions/README|Discussions]] — 尚未定案的方案與研究問題
+- [[discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]] — pipeline 延後條件
+- [[discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]] — AI-first + lint guardrail
+- [[discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]] — compatibility stub 最終策略
 
 ## Projects（專案維護）
 
