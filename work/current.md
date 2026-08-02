@@ -30,10 +30,10 @@
   - completed: 2026-08-06
   - result: 端到端測試全部通過：raw → wiki ingest ✅、wiki → Notion 種子建立 ✅、manifest 自動同步 ✅、Notion → raw 抓回 ✅
 
-- [ ] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ⏫ #skills
-  - next: 決定分 repo 策略（一 skill 一 repo？ Obsidian group？ agent-agnostic group？）
-  - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`
-  - 盤點結果：Pi-specific=pi-plannotator-auto、Obsidian-dependent=wiki-knowledge/youtube-to-wiki/work-tracker/todos、Agent-agnostic=knowledge-garden/notion-cli
+- [x] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ⏫ #skills ✅
+  - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`、https://github.com/CheerioCorner/cheerio-skills
+  - completed: 2026-08-08
+  - result: 建立 cheerio-skills 私有 repo，8 個自有 skills 分類：Agent-agnostic (knowledge-garden, notion-cli)、Obsidian-dependent (wiki-knowledge, youtube-to-wiki, work-tracker, notion-to-raw, plannotator-sync)、Pi-specific (pi-plannotator-auto)、Meta (skills-repo-manager)；格式符合 `npx skills add` 規範
 
 - [x] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ⏫ #notion ✅
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]
@@ -66,6 +66,11 @@
   - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]
 
 ## Completed
+
+- [x] W-2026-08-018 建立 skills-repo-manager skill ✅ #skills
+  - refs: https://github.com/CheerioCorner/cheerio-skills
+  - completed: 2026-08-08
+  - result: 建立 skills-repo-manager skill，用於管理 cheerio-skills repo 同步與更新
 
 - [x] W-2026-08-015 建立 Notion → raw 抓取流程 ✅ #notion
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]

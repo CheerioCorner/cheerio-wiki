@@ -1,6 +1,14 @@
 
 # Log
 
+## [2026-08-08] skills-repo | 建立 cheerio-skills 私有 repo
+
+- 盤點自有 skills 並分類（Agent-agnostic / Obsidian-dependent / Pi-specific）
+- 建立 `C:/cheerio/pi/cheerio-skills/`，格式符合 `npx skills add` 規範
+- 推送到 https://github.com/CheerioCorner/cheerio-skills
+- 建立 skills-repo-manager skill 用於後續同步
+- 移除 todos skill（已不適用，work/ 系統已取代）
+
 ## [2026-08-06] e2e-test | Notion ↔ Obsidian 雙向同步測試完成 ✅
 
 - 測試流程：raw → wiki → Notion → raw（回環測試）
