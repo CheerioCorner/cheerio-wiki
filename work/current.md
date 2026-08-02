@@ -5,10 +5,6 @@
 
 ## In progress
 
-- [ ] W-2026-08-001 釐清 Obsidian vault 架構 ⏫ #knowledge
-  - next: 完成 work migration 後的全域舊路徑與 broken-link 檢查
-  - refs: [[wiki/index|Wiki Index]]、[[raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff|Wiki × OKF session handoff]]
-
 - [ ] W-2026-08-010 建立 `pi-work-tracker` 並取代 `pi-todo-journal` ⏫ #extension
   - next: 等現行 agent 維運流程實際使用並穩定後，再建立新 repository 並搬移必要程式
   - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[work/README|Work System]]
@@ -42,6 +38,13 @@
 
 - [ ] W-2026-08-009 建立每週 wiki lint 與花園巡檢提醒 ⏫ #meta
   - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]
+
+## Completed
+
+- [x] W-2026-08-001 釐清 Obsidian vault 架構 ✅ #knowledge
+  - refs: [[wiki/index|Wiki Index]]、[[raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff|Wiki × OKF session handoff]]
+  - completed: 2026-08-03
+  - result: 完成全域 lint 檢查：修正 4 處 visualizations broken links，補上 4 個 topic pages frontmatter；確認 96 個 wikilink targets 全部正常，無孤立頁面。
 
 ## Work record contract
 
