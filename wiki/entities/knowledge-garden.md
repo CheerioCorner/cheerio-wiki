@@ -84,4 +84,5 @@ canonical: entities/knowledge-garden
 
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Wiki 操作 skill
+- [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → Raw 抓取 skill（「花園裡那篇 X 要深入研究」）
 - [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]] — 架構討論

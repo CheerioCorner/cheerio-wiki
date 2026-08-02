@@ -1,5 +1,14 @@
 # Log
 
+## [2026-08-05] skill | 建立 notion-to-raw skill
+
+- 決策：採用方案 A — 新建獨立 skill（而非擴展 youtube-to-wiki 或 knowledge-garden）
+- 理由：YouTube/Notion 抓取機制不同、raw 格式不同、觸發詞不同；knowledge-garden 保持 wiki→Notion 方向
+- 建立：`~/.agents/skills/notion-to-raw/SKILL.md`
+- 流程：查 manifest → MCP 抓 Notion 頁面 markdown → 建 raw/web/ → 提示 wiki-knowledge ingest
+- 完成 W-2026-08-015
+- 下一步：W-2026-08-016（測試 Notion 端到端流程）
+
 ## [2026-08-03] architecture | Notion 整合架構討論與實作
 
 - 透過 annotator UI 與人類討論 Notion 整合架構

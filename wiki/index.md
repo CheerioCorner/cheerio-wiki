@@ -10,7 +10,7 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-07-22（YouTube ingest — mattpocock/skills tutorial）
+- **最後更新**：2026-08-05（建立 notion-to-raw skill）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：10（全部已補 `collection: sources` 與 provenance）
 - **Canonical collections**：8 concepts、10 entities、4 decisions、3 discussions
@@ -44,6 +44,7 @@
 
 ### 📚 知識管理
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill 🛠️
+- [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → Raw 抓取 Skill（花園研究觸發）
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器（14 工具）+ 完整資料流
 - [[wiki/entities/knowledge-garden|knowledge-garden]] — Notion 知識花園 Manifest（本地索引/快取）
 - [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model]] — Pi 專案模型：不強制綁定單一實體路徑

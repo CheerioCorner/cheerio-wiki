@@ -84,6 +84,6 @@ raw/ ──wiki ingest──► wiki/ ──美化/整理──► Notion 花園
 
 ## 待確認
 
-- [ ] Notion → raw 抓取的具體實作方式
+- [x] Notion → raw 抓取的具體實作方式 → **已解決**：新建 `notion-to-raw` skill（2026-08-05）
 - [ ] 是否需要建立「研究觸發」skill
 - [ ] Garden manifest 的更新時機與方式

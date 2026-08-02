@@ -19,9 +19,11 @@
 
 ## Backlog
 
-- [ ] W-2026-08-015 建立 Notion → raw 抓取流程 🔼 #notion
-  - next: 決定實作方式（新 skill 或擴展 youtube-to-wiki）
+- [x] W-2026-08-015 建立 Notion → raw 抓取流程 🔼 #notion ✅
+  - next: —
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+  - 2026-08-05 決定採用方案 A：新建 `notion-to-raw` skill（`~/.agents/skills/notion-to-raw/SKILL.md`）
+  - 流程：查 manifest → MCP 抓 Notion 頁面 markdown → 建 raw/web/ → 提示 wiki-knowledge ingest
 
 - [ ] W-2026-08-016 測試 Notion 端到端流程（raw → wiki → Notion → raw） 🔼 #notion
   - next: 等 W-2026-08-015 完成後執行
