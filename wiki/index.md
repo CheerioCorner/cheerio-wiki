@@ -25,6 +25,7 @@
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
 - [[wiki/entities/pi-mono|pi-mono]] — `earendil-works/pi` monorepo + 4 個子 package（MIT）
 - [[wiki/entities/tau|tau]] — Hugging Face 開發的 Pi Python port，三層架構，extension 相容 🛠️
+- [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent，learning loop，多平台，7 terminal backends 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程 🛠️
@@ -44,6 +45,7 @@
 - [[wiki/entities/omnigent|omnigent]] — Databricks 開源的 meta-harness。⚠️ 目前不支援 Windows
 
 ### 📚 知識管理
+- [[wiki/entities/hermes-agent|hermes-agent]] — 自我改進 AI agent，learning loop + skills hub 🛠️
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill 🛠️
 - [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → Raw 抓取 Skill（花園研究觸發）
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器（14 工具）+ 完整資料流
@@ -113,6 +115,7 @@
 - [[wiki/sources/2026-08-03-tau-python-port-of-pi|2026-08-03 Tau: A Python Port of Pi]] — YouTube 影片：Pi 的 Python port，Textual TUI，session tree，extension 相容
 - [[wiki/sources/2026-08-05-tau-github-readme|2026-08-05 Tau: GitHub README]] — Hugging Face 開發，三層架構，設計哲學，library 用法
 - [[wiki/sources/2026-08-05-pi-github-readme|2026-08-05 Pi: GitHub README]] — 四 package 架構、containerization、supply-chain security、session publishing
+- [[wiki/sources/2026-08-05-hermes-agent-github-readme|2026-08-05 Hermes Agent: GitHub README]] — 自我改進 agent，learning loop，Honcho user modeling，agentskills.io
 
 ---
 

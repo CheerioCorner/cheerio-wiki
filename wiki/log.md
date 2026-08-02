@@ -1,5 +1,13 @@
 # Log
 
+## [2026-08-05] ingest | Hermes Agent GitHub README
+
+- 來源：`raw/web/2026-08-02-NousResearchhermes-agent The agent that grows with you.md`
+- 建立：`wiki/entities/hermes-agent.md`（self-improving agent, learning loop, multi-platform, 7 terminal backends）
+- 建立：`wiki/sources/2026-08-05-hermes-agent-github-readme.md`
+- 更新：`wiki/index.md`（AI Agent + Skill 雙 topic）
+- 重點：Hermes 與 Pi/Tau 最大差異 = 自我學習迴圈（自動建立/改進 skill）+ Honcho user modeling
+
 ## [2026-08-05] ingest | Pi GitHub README
 
 - 來源：`raw/web/2026-08-02-pipackagescoding-agent at main.md`
