@@ -1,5 +1,16 @@
 # Log
 
+## [2026-07-22] ingest | mattpocock/skills — 完整 AI Coding 工作流程教學
+
+- 來源：`raw/youtube/mattpocock-skills.md`（YouTube M6mYodf0dJM，17:16）
+- 建立：`wiki/sources/2026-07-22-mattpocock-skills-tutorial.md`（source note）
+- 建立：`wiki/entities/mattpocock-skills.md`（entity — Skills repo）
+- 建立：`wiki/concepts/ai-coding-workflow.md`（concept — AI 編碼工作流程）
+- 更新：`wiki/sources/2026-07-11-mattpocock-skills.md`（加入影片來源連結）
+- 更新：`wiki/topics/ai-agent.md`（加入 mattpocock-skills + ai-coding-workflow）
+- 更新：`wiki/index.md`（sources 9→10, entities 9→10, concepts 7→8）
+- 重點：Matt Pocock 官方教學，展示 grill with docs → spec → tickets → implement → code review 完整流程，context window smart zone ~140k tokens
+
 ## [2026-08-03] setup | youtube-to-wiki skill 建立
 
 - 建立：`~/.agents/skills/youtube-to-wiki/SKILL.md`

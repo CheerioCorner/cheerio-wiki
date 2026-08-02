@@ -171,6 +171,9 @@ npx skills update
 
 ## 相關頁面
 
+- [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills — 完整 AI Coding 工作流程教學]] — 官方教學影片
+- [[wiki/entities/mattpocock-skills|mattpocock-skills]] — Skills repo entity page
+- [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — AI 編碼工作流程概念
 - `pi-coding-agent` — Pi harness 本體（尚未建立獨立 entity 頁）
 - [[wiki/entities/wiki-knowledge]] — 知識庫操作 skill
 - `skill-creator` — 如何建立 skill（外部 skill，尚未建立獨立 entity 頁）

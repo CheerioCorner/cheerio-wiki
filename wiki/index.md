@@ -10,10 +10,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-03（YouTube ingest — Tau）
+- **最後更新**：2026-07-22（YouTube ingest — mattpocock/skills tutorial）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：9（全部已補 `collection: sources` 與 provenance）
-- **Canonical collections**：7 concepts、9 entities、4 decisions、3 discussions
+- **Source notes**：10（全部已補 `collection: sources` 與 provenance）
+- **Canonical collections**：8 concepts、10 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 - **工作系統**：`work/` — 統一管理目前工作、完成事件與 references
 
@@ -22,10 +22,12 @@
 ## Topics（主題式分類）
 
 ### 🤖 AI Agent
+- [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars）
 - [[wiki/entities/pi-mono|pi-mono]] — `badlogic/pi-mono` monorepo + 5 個子 package
 - [[wiki/entities/tau|tau]] — Pi 的 Python port，Textual TUI，extension 相容
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
+- [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學，2 來源、兩視角交點
 - [[wiki/concepts/late-conversion|late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
 
@@ -96,6 +98,7 @@
 - [[wiki/sources/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]] — Pi Agent Core 研究
 - [[wiki/sources/2026-05-02-pi-mono-framework-tw|2026-05-02-pi-mono-framework-tw]] — Pi mono framework 研究
 - [[wiki/sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF migration complete]] — 完整架構優化、決策、Project Bundle 與 audit 紀錄
+- [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|2026-07-22 mattpocock/skills tutorial]] — 完整 AI Coding 工作流程教學影片
 - [[wiki/sources/2026-08-03-tau-python-port-of-pi|2026-08-03 Tau: A Python Port of Pi]] — Pi 的 Python port，Textual TUI，session tree，extension 相容
 
 ---
