@@ -9,6 +9,7 @@
   - next: Pi containerization 方案（Gondolin/Docker/OpenShell）比較、Tau 三層架構分離細節、Hermes 學習迴圈機制
   - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]
   - 2026-08-06 完成 Pi Architecture Walkthrough ingest：agentic loop 三步驟、session tree、compaction、skills 機制、extensions events、CLI entry point
+  - 2026-08-06 批次 ingest 5 筆 raw（omnigent/OKF catalog/defect metrics/morphir-dotnet/vibe-coding）+ 修復 topic page 遺漏 + 強化 skill/AGENTS.md topic 同步步驟
 
 - [ ] W-2026-08-010 建立 `pi-work-tracker` 並取代 `pi-todo-journal` ⏫ #extension
   - next: 等現行 agent 維運流程實際使用並穩定後，再建立新 repository 並搬移必要程式
