@@ -2,8 +2,8 @@
 title: hermes-agent — 自我改進的 AI Agent
 type: entity
 created: 2026-08-05
-updated: 2026-08-05
-sources: 1
+updated: 2026-08-08
+sources: 2
 tags: [hermes, ai-agent, python, self-improving, skills, memory]
 collection: entities
 topics: [ai-agent, skill]
@@ -52,16 +52,70 @@ iex (irm https://hermes-agent.nousresearch.com/install.ps1)
 - Windows 安裝包含 MinGit（portable，不影響系統 Git）
 - 安裝路徑：`%LOCALAPPDATA%\hermes`（Windows）/ `~/.hermes`（Linux）
 
+## Agent Loop
+
+```
+User message → Build context → Send to LLM → Tool calls（可重複）→ Response → Memory update
+```
+
+每次使用者發訊息都跑一次完整 loop。Memory update 分析對話中是否有值得記憶的資訊，寫入記憶讓 agent 持續學習。
+
+## Context 構建
+
+每次 turn 都從零構建 context，由以下組件構成：
+
+| 檔案 | 用途 | 更新方式 |
+|---|---|---|
+| **soul.md** | Agent 個性（語調、靈感、目標） | 預設為空，可自訂或讓 agent 寫 |
+| **user.md** | 使用者資訊 | Agent 自動從對話中學習 |
+| **memory.md** | 任意記憶（工具用法、workflow） | Agent 自動更新 |
+
+額外 context：外部記憶摘要（需設定 external memory）、skill/tool 描述、最近訊息歷史。
+
+## Context Compression
+
+- 預設在 context window **50%** 時觸發（可設定 70% 或 80%）
+- **觸發時機**：(1) 每次 turn 前 (2) LLM 回傳 context error 時
+- Token 估算：第一次用 `字元數 / 4`，之後用 LLM response 的 `usage` 參數
+- Compression prompt（`context_compressor.py`）輸出：目標、約束、已完成動作、活躍狀態、歷史進度、阻塞、決策、已解決問題、相關檔案、關鍵 context、先前摘要
+
+## Gateway（多平台網關）
+
+- **平台**：Telegram、Discord、Slack、WhatsApp、Email、SMS
+- **架構**：Async.io loop 持續 poll 各 gateway
+- **每個平台需獨立設定**（bot ID、user ID），非統一 gateway
+- **Session ID**：`<platform>_<session_id>` 格式，存於 SQLite
+- **Session Manager**：處理 `/interrupt`、`/steer`、併列等指令
+- **Context 構建**：每次收到訊息從零構建（不像 CLI 有完整對話歷史）
+
+## Memory（三層記憶系統）
+
+| 層級 | 儲存方式 | 內容 |
+|---|---|---|
+| **Markdown 檔案** | soul.md / user.md / memory.md | 個性、使用者資訊、任意事實 |
+| **SQLite** | Session transcripts + bare text table | 完整對話 + 純文字供 similarity search |
+| **External Memory** | Mem0 / SuperMemory / Honcho 等 | 跨 session 智慧記憶，需額外設定 |
+
+- External memory 查詢時機：第一則訊息**之後**（類似人類「先聽問題再回想」）
+- 各 provider 差異：Mem0 用 similarity search、SuperMemory 傳整段歷史由 LLM 擷取、Honcho 用 dialectic user modeling
+
+## Cron Jobs
+
+- 非綁定系統 cron，Hermes 自己的 async loop
+- **Tick function** 每分鐘執行，檢查 `~/.hermes/cron/jobs.json`
+- 輸出：`cron/output/<job-id>/run.md`
+- 通知自動發送到 home messaging platform（設定 gateway 時指定），非透過 send_message tool
+
 ## 架構組件
 
 | 組件 | 說明 |
 |---|---|
 | **CLI** | 互動式終端，multiline editing, slash-command autocomplete |
-| **Gateway** | 多平台訊息網關，統一處理各平台輸入 |
+| **Gateway** | 多平台訊息網關，Async.io loop + session manager |
 | **Skills** | Procedural memory，可自動建立/改進，相容 agentskills.io |
-| **Memory** | 持久化記憶 + user profiles，FTS5 搜尋 |
+| **Memory** | 三層：Markdown files + SQLite + External providers |
 | **Tools** | 40+ tools，toolset system，可選 MCP |
-| **Cron** | 自然語言排程，跨平台投遞 |
+| **Cron** | 自然語言排程，tick function 每分鐘檢查 jobs.json |
 
 ## Nous Portal
 
@@ -80,6 +134,7 @@ hermes setup --portal
 ## 來源
 
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme|2026-08-05 Hermes Agent: GitHub README]]
+- [[wiki/sources/2026-08-08-hermes-architecture-explained|2026-08-08 Hermes Architecture EXPLAINED]]
 
 ## 相關頁面
 

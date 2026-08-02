@@ -2,7 +2,7 @@
 title: Extension Development
 topic: extension-dev
 created: 2026-08-02
-updated: 2026-08-02
+updated: 2026-08-06
 ---
 
 # Extension Development
@@ -11,6 +11,8 @@ updated: 2026-08-02
 
 ## Entities
 
+- [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime（extensions events 系統、register tools/commands/shortcuts） 🛠️
+- [[wiki/entities/pi-mono|pi-mono]] — Pi monorepo（CLI entry point、extension loading、read-only mode） 🛠️
 - [[wiki/entities/plannotator|Plannotator]]
 - [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]]
 

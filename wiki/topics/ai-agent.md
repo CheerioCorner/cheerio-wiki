@@ -2,7 +2,7 @@
 title: AI Agent
 topic: ai-agent
 created: 2026-08-02
-updated: 2026-08-05
+updated: 2026-08-06
 ---
 
 # AI Agent
@@ -12,11 +12,11 @@ updated: 2026-08-05
 ## Entities
 
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
-- [[wiki/entities/pi-mono|pi-mono]] — Pi Agent Toolkit monorepo
+- [[wiki/entities/pi-mono|pi-mono]] — Pi Agent Toolkit monorepo（CLI entry point、extensions、read-only mode） 🛠️
 - [[wiki/entities/tau|tau]] — Hugging Face 的 Pi Python port 🛠️
 - [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent 🛠️
 - [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS .NET binding，完整 AGENTS.md + TDD 強制 🛠️
-- [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime
+- [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime（agentic loop、session tree、compaction、skills） 🛠️
 - [[wiki/entities/mario-zechner|Mario Zechner]] — Pi 作者
 
 ## Concepts

@@ -1,6 +1,15 @@
 
 # Log
 
+## [2026-08-06] ingest | Pi Architecture Walkthrough（YouTube）
+
+- 來源：`raw/youtube/pi-architecture-walkthrough.md`（488 segments，~39 分鐘，英文）
+- 建立：`wiki/sources/2026-08-06-pi-architecture-walkthrough.md`
+- 更新：`wiki/entities/pi-agent-core.md`（+agentic loop 三步驟、session tree、compaction、skills 機制，sources 1→2，topics +extension-dev +skill）
+- 更新：`wiki/entities/pi-mono.md`（+CLI entry point、extensions events、read-only mode，sources 3→4，topics +extension-dev）
+- 更新：`wiki/index.md`（Sources 17→11 計數修正、extension-dev topic 加入 pi-agent-core + pi-mono）
+- 重點：session tree 結構、compaction token 計算、skills intercept → markup → read tool 機制
+
 ## [2026-08-05] ingest | 批次整理 5 筆 raw 資料入 wiki
 
 - **Omnigent Databricks Blog** → source note 更新 omnigent entity（sources: 1→2）

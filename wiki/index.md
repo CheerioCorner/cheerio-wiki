@@ -10,9 +10,9 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-05（ingest 5 筆 raw 資料入 wiki）
+- **最後更新**：2026-08-06（ingest Pi architecture walkthrough YouTube）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：17（全部已補 `collection: sources` 與 provenance）
+- **Source notes**：11（全部已補 `collection: sources` 與 provenance）
 - **Canonical collections**：10 concepts、11 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 - **工作系統**：`work/` — 統一管理目前工作、完成事件與 references
@@ -26,7 +26,7 @@
 - [[wiki/entities/pi-mono|pi-mono]] — `earendil-works/pi` monorepo + 4 個子 package（MIT）
 - [[wiki/entities/tau|tau]] — Hugging Face 開發的 Pi Python port，三層架構，extension 相容 🛠️
 - [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent，learning loop，多平台，7 terminal backends 🛠️
-- [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行
+- [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行 🛠️
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程 🛠️
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學，2 來源、兩視角交點
@@ -34,6 +34,8 @@
 - [[wiki/concepts/late-conversion|late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
 
 ### 🔌 Extension 開發
+- [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行（含 extensions events 系統） 🛠️
+- [[wiki/entities/pi-mono|pi-mono]] — Pi Agent Toolkit monorepo（含 CLI entry point、read-only mode） 🛠️
 - [[wiki/entities/tau|tau]] — Hugging Face 的 Pi Python port，extension 相容 🛠️
 - [[wiki/entities/plannotator|plannotator]] — AI coding agent 視覺化審閱工具，支援 9 種 agent
 - [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]] — Pi 繁體中文本地化套件
