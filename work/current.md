@@ -53,6 +53,11 @@
 
 ## Completed
 
+- [x] W-2026-07-022 YouTube ingest mattpocock/skills + 多 topic 機制 ✅ #knowledge #wiki
+  - refs: [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills tutorial]]、[[wiki/topics/skill|Skill topic]]
+  - completed: 2026-07-22
+  - result: ingest 17:16 影片 → source note + entity + concept；建立 Skill topic；實作多 topic 關聯（topics 多值陣列 + 🛠️ 標記）；更新 youtube-to-wiki / wiki-knowledge / AGENTS.md
+
 - [x] W-2026-08-001 釐清 Obsidian vault 架構 ✅ #knowledge
   - refs: [[wiki/index|Wiki Index]]、[[raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff|Wiki × OKF session handoff]]
   - completed: 2026-08-03
