@@ -2,8 +2,8 @@
 title: Plannotator
 type: entity
 created: 2026-07-11
-updated: 2026-07-30
-sources: 2
+updated: 2026-08-05
+sources: 3
 tags: [coding-agent, review-tool, browser-ui, open-source, pi-extension, custom-development]
 collection: entities
 topics: [extension-dev]
@@ -121,11 +121,29 @@ pi install git:github.com/CheerioCorner/pi-plannotator-auto
 | 開發體驗 | 模組化架構，容易理解 |
 | 授權 | Apache 2.0 + MIT，可自由 fork |
 
+### 已實現：Note 儲存
+
+Plannotator 已支援將 plan 存到 Obsidian 或 Bear：
+
+**Obsidian：**
+- Settings → Enable Obsidian → 選擇 vault 與 destination folder（預設 `plannotator`）
+- 存檔包含 YAML frontmatter（creation time, source, tags）
+- 自動從 plan title + code languages 產生 tags
+- 自動加入 `[[Plannotator Plans]]` backlink
+
+**Bear：**
+- Settings → Enable Bear（僅 macOS，使用 Bear URL scheme）
+- 建立 Bear note with title + body + tags
+
+**Octarine：**
+- 也支援 Octarine，需提供 workspace name
+
+> 這些 note actions 存的是**副本**，agent 的 source plan 和 Plannotator 本地 history 保持分離。
+
 ### 未來可能的發展
 
-1. **與知識花園整合** — 把 annotation 結果存到 Notion/Obsidian
-2. **多人協作模式** — 利用 Shared Event API 實現跨裝置審閱
-3. **AI 自動摘要** — 把人類的標注轉化為結構化 feedback
+1. **多人協作模式** — 利用 Shared Event API 實現跨裝置審閱
+2. **AI 自動摘要** — 把人類的標注轉化為結構化 feedback
 
 ---
 

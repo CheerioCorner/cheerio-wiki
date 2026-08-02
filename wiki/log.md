@@ -1,5 +1,11 @@
 # Log
 
+## [2026-08-05] ingest | Plannotator Note Storage
+
+- 來源：`raw/web/2026-08-02-Save Plannotator Plans to Obsidian or Bear.md`
+- 更新：`wiki/entities/plannotator.md`（Obsidian/Bear/Octarine note 儲存已實現）
+- 修正：「與知識花園整合」已從未來計畫移至已實現功能
+
 ## [2026-08-05] ingest | Hermes Agent GitHub README
 
 - 來源：`raw/web/2026-08-02-NousResearchhermes-agent The agent that grows with you.md`

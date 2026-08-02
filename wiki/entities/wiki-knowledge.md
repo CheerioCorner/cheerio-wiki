@@ -21,6 +21,8 @@ canonical: entities/wiki-knowledge
 ## 子 Skills
 - **youtube-to-wiki** — YouTube 影片 → wiki 頁面（`~/.agents/skills/youtube-to-wiki/SKILL.md`）
   - 觸發：YouTube URL、YouTube ingest、抓字幕
+- **plannotator-sync** — Plannotator 存檔 → raw/conversations/（`~/.agents/skills/plannotator-sync/SKILL.md`）
+  - 觸發：sync
 
 ## 三大標準流程
 
