@@ -14,4 +14,5 @@
 - [[wiki/entities/pi-mono|pi-mono]]
 - [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]]
 - [[wiki/entities/plannotator|Plannotator]]
+- [[wiki/entities/qwenpaw|QwenPaw]]
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]]

@@ -10,7 +10,7 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-08（ingest Hermes Architecture EXPLAINED）
+- **最後更新**：2026-08-08（ingest QwenPaw — YouTube + GitHub README）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：12（全部已補 `collection: sources` 與 provenance）
 - **Canonical collections**：10 concepts、11 entities、4 decisions、3 discussions
@@ -26,6 +26,7 @@
 - [[wiki/entities/pi-mono|pi-mono]] — `earendil-works/pi` monorepo + 4 個子 package（MIT）
 - [[wiki/entities/tau|tau]] — Hugging Face 開發的 Pi Python port，三層架構，extension 相容 🛠️
 - [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent，learning loop，多平台，7 terminal backends 🛠️
+- [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱 + 多通道
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行 🛠️
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程 🛠️
@@ -126,6 +127,8 @@
 - [[wiki/sources/2026-08-05-pi-github-readme|2026-08-05 Pi: GitHub README]] — 四 package 架構、containerization、supply-chain security、session publishing
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme|2026-08-05 Hermes Agent: GitHub README]] — 自我改進 agent，learning loop，Honcho user modeling，agentskills.io
 - [[wiki/sources/2026-08-08-hermes-architecture-explained|2026-08-08 Hermes Architecture EXPLAINED]] — Agent loop、context compression、gateway、三層記憶系統、cron jobs
+- [[wiki/sources/2026-08-08-qwenpaw-youtube-intro|2026-08-08 QwenPaw YouTube 介紹]] — Agent OS 架構、安全沙箱、本地部署、Scroll Context 記憶
+- [[wiki/sources/2026-08-02-qwenpaw-github-readme|2026-08-02 QwenPaw GitHub README]] — 完整功能、7 種安裝方式、安全四層防護、路線圖
 - [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks|2026-07-13 Omnigent: Databricks Meta-Harness]] — 三大支柱、技術架構、Windows 不相容
 - [[wiki/sources/2026-08-01-okf-knowledge-catalog|2026-08-01 OKF Knowledge Catalog]] — Google Cloud 參考實作，reference agent + visualizer
 - [[wiki/sources/2026-08-02-defect-density-escape-rate|2026-08-02 Defect Metrics]] — Defect Density & Escape Rate 完整指南

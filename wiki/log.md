@@ -1,6 +1,15 @@
 
 # Log
 
+## [2026-08-08] ingest | QwenPaw — YouTube + GitHub README
+
+- 新增 entity：[[wiki/entities/qwenpaw|qwenpaw]]（AgentScope 本地 AI 助理，Agent OS 架構）
+- 新增 source：[[wiki/sources/2026-08-08-qwenpaw-youtube-intro|YouTube 介紹影片]]（zh-TW，6:44）
+- 新增 source：[[wiki/sources/2026-08-02-qwenpaw-github-readme|GitHub README]]（完整功能與安裝指南）
+- 更新 topic：[[wiki/topics/ai-agent|ai-agent]] 加入 qwenpaw 導航
+- 更新 index：ai-agent Entities 區塊 + Sources 區塊
+- 來源：raw/web + raw/youtube（QE6FVnNcd3Y）
+
 ## [2026-08-08] skills-repo | 建立 cheerio-skills 私有 repo
 
 - 盤點自有 skills 並分類（Agent-agnostic / Obsidian-dependent / Pi-specific）

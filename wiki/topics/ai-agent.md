@@ -2,7 +2,7 @@
 title: AI Agent
 topic: ai-agent
 created: 2026-08-02
-updated: 2026-08-06
+updated: 2026-08-08
 ---
 
 # AI Agent
@@ -18,6 +18,7 @@ updated: 2026-08-06
 - [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS .NET binding，完整 AGENTS.md + TDD 強制 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime（agentic loop、session tree、compaction、skills） 🛠️
 - [[wiki/entities/mario-zechner|Mario Zechner]] — Pi 作者
+- [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱
 
 ## Concepts
 

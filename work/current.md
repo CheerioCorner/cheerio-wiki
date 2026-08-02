@@ -12,16 +12,10 @@
   - 2026-08-06 批次 ingest 5 筆 raw（omnigent/OKF catalog/defect metrics/morphir-dotnet/vibe-coding）+ 修復 topic page 遺漏 + 強化 skill/AGENTS.md topic 同步步驟
 
 - [ ] W-2026-08-010 建立 `pi-work-tracker` 並取代 `pi-todo-journal` ⏫ #extension
-  - next: 等現行 agent 維運流程實際使用並穩定後，再建立新 repository 並搬移必要程式
-  - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[work/README|Work System]]
+  - next: 抽象 TaskStore / JournalStore adapters（原 W-2026-08-002）→ 測試、CI 與 npm 發布（原 W-2026-08-003）→ 搬移必要程式
+  - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]、[[work/README|Work System]]
 
-- [ ] W-2026-08-002 完成 `pi-todo-journal` Phase 3：抽象 TaskStore / JournalStore adapters 🔼 #extension
-  - next: 確認 adapter boundary 與 implementation plan
-  - refs: [[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]
 
-- [ ] W-2026-08-003 完成 `pi-todo-journal` Phase 4：測試、CI 與 npm 發布 🔼 #extension
-  - next: 等 Phase 3 adapter boundary 確認後拆解 tickets
-  - refs: [[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]
 
 ## Backlog
 
