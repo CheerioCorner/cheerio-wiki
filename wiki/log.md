@@ -1,5 +1,14 @@
 # Log
 
+## [2026-07-22] taxonomy | 新增 Skill topic
+
+- 建立：`wiki/topics/skill.md`（Skill topic 導航頁）
+- 移動：`mattpocock-skills`、`ai-coding-workflow`、`wiki-knowledge` → Skill topic
+- 更新：`wiki/topics/ai-agent.md`、`wiki/topics/knowledge-mgmt.md`（移除已遷出頁面）
+- 更新：`wiki/topics.md`（加入 Skill topic）
+- 更新：`wiki/index.md`（新增 🛠️ Skill 區塊）
+- 更新：三個頁面的 frontmatter `topics` field
+
 ## [2026-07-22] ingest | mattpocock/skills — 完整 AI Coding 工作流程教學
 
 - 來源：`raw/youtube/mattpocock-skills.md`（YouTube M6mYodf0dJM，17:16）

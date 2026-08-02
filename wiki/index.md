@@ -22,12 +22,10 @@
 ## Topics（主題式分類）
 
 ### 🤖 AI Agent
-- [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars）
 - [[wiki/entities/pi-mono|pi-mono]] — `badlogic/pi-mono` monorepo + 5 個子 package
 - [[wiki/entities/tau|tau]] — Pi 的 Python port，Textual TUI，extension 相容
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
-- [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學，2 來源、兩視角交點
 - [[wiki/concepts/late-conversion|late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
 
@@ -43,9 +41,13 @@
 - [[wiki/entities/omnigent|omnigent]] — Databricks 開源的 meta-harness。⚠️ 目前不支援 Windows
 
 ### 📚 知識管理
-- [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器（14 工具）
 - [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model]] — Pi 專案模型：不強制綁定單一實體路徑
+
+### 🛠️ Skill
+- [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars）
+- [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill
+- [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程（grill → spec → tickets → implement）
 
 ---
 

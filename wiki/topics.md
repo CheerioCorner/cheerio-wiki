@@ -8,6 +8,7 @@
 - [[wiki/topics/extension-dev|Extension Development]] — package、extension、發布與 OKF
 - [[wiki/topics/knowledge-mgmt|Knowledge Management]] — Wiki、provenance 與 workspace
 - [[wiki/topics/meta-systems|Meta Systems]] — harness、orchestration 與研究主題
+- [[wiki/topics/skill|Skill]] — AI agent skill 生態系：安裝、工作流程、設計方法論
 
 Canonical content 請前往：
 
