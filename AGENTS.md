@@ -139,7 +139,8 @@ Obsidian/
    - 可重用抽象放入 `wiki/concepts/`
    - 具體人／工具／package 放入 `wiki/entities/`
    - 尚未定案內容放入 `wiki/discussions/`；已確認的全域選擇放入 `wiki/decisions/`
-   - `wiki/topics.md` 與 `wiki/topics/*.md` 只更新導航／taxonomy；不得在 topic 目錄建立內容副本或 compatibility stub
+   - **⚠️ Topic pages 必須同步更新**：每當新增或更新 entity/concept，必須同時更新對應的 `wiki/topics/*.md` 導航頁（讀取新頁面 frontmatter 的 `topics: [...]`，在每個相關 topic page 的 Entities 或 Concepts 列表加入新頁面，跨 topic 頁面用 🛠️ 標記）
+   - `wiki/topics.md` 與 `wiki/topics/*.md` 只放導航內容；不得在 topic 目錄建立內容副本或 compatibility stub
    - 標記新資料是否推翻／補充既有結論
 4. 更新 `wiki/index.md`（加入新頁或更新摘要）。
 5. 在 `wiki/log.md` 附加一條 ingest 紀錄。
@@ -168,6 +169,7 @@ Obsidian/
    - 孤立頁面（沒有 inbound 連結）
    - 出現多次但沒有自己頁面的概念
    - 缺漏的交叉引用
+   - **Topic page 遺漏**：每個 entity/concept frontmatter 的 `topics: [...]` 都應在對應 `wiki/topics/*.md` 的 Entities 或 Concepts 列表中出現；反之，topic page 列出的頁面都應存在
 2. 提出「該修什麼、該查什麼、該補什麼資料」的清單。
 3. 人類確認後開始修改。
 4. **git push** 同步回 GitHub。
