@@ -20,6 +20,15 @@
       "duration": "17:16",
       "segments": 505,
       "language": "en"
+    },
+    {
+      "slug": "pi-architecture-walkthrough",
+      "title": "Pi Architecture Walkthrough — Full Agent Core + Interactive Layer Explained",
+      "youtube_id": "gTeujlv8qK0",
+      "url": "https://www.youtube.com/watch?v=gTeujlv8qK0",
+      "duration": "~39:00",
+      "segments": 488,
+      "language": "en"
     }
   ]
 }

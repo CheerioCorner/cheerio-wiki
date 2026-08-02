@@ -1,0 +1,519 @@
+---
+title: "Hermes Architecture EXPLAINED: Memory, Context & Gateways"
+type: transcript
+source: youtube
+video_id: n32qq7Kwzh0
+url: https://youtu.be/n32qq7Kwzh0
+duration: "40:25"
+segments: 501
+fetched: 2026-08-08
+---
+
+# Hermes Architecture EXPLAINED: Memory, Context & Gateways
+
+> Source: YouTube — [Hermes Architecture EXPLAINED: Memory, Context & Gateways](https://youtu.be/n32qq7Kwzh0)
+> Duration: 40:25 | Segments: 501
+
+## Transcript
+
+- [00:00:00] Good morning, everyone. How's it going today? Today, we're going to be taking a look at the Hermes agent and its architecture.
+- [00:00:07] So we're going to be covering a pretty high level overview of how this agent is built so that you understand a little bit better how to use it and also how to build one like this one if you ever want to build your own.
+- [00:00:19] So we're going to be taking a look at the high level architecture, first of all, then we're going to be taking a look at the agent loop and how it works.
+- [00:00:27] then we're going to be taking a look at cron jobs then we're going to see how Hermes deals with
+- [00:00:33] memory and we're also going to see how it builds up its context and before i forget i also want to
+- [00:00:41] talk about the gateway that it has in order to and that allows it to connect to different messaging
+- [00:00:46] services and its prompts if we have time we're going to see how its prompts are constructed okay
+- [00:00:52] Okay, so without any further ado, let's actually start working on this.
+- [00:00:58] All right, so the first thing that we're going to do is we're going to start with a very quick
+- [00:01:02] bird side view of the entire architecture and the structure.
+- [00:01:07] And it's has very simple components.
+- [00:01:09] Okay.
+- [00:01:09] So first of all, let me just switch right here.
+- [00:01:12] First of all, we're going to talk about the AI agent core, which is going to be its agentic
+- [00:01:19] loop.
+- [00:01:19] Okay.
+- [00:01:20] and there are multiple ways to connect to it.
+- [00:01:24] So there is, of course, the CLI that you can use to connect to your AI agent.
+- [00:01:30] That happens when you just type Hermes on your CLI, on your command line.
+- [00:01:35] And there is also the gateway.
+- [00:01:38] And the gateway is the system that is always running
+- [00:01:42] that allows you to connect to your Hermes agent via Telegram, email, Slack, etc.
+- [00:01:48] So this is kind of like the gateway that allows you to connect to your messaging services.
+- [00:01:54] And there is also the possibility of connecting to it via an API.
+- [00:01:58] And all of this come together and allow you to connect to your AI agent, okay, which is
+- [00:02:04] going to be the core of the whole thing.
+- [00:02:06] And talking about the AI agent, this one right here has a bunch of other services that it
+- [00:02:11] also connects to.
+- [00:02:13] So first of all, when you install Hermes Agent, it comes with a bunch of different things that
+- [00:02:17] are pre-installed and ready for you to use out of the box. So it comes with a bunch of
+- [00:02:22] tools So it has all these tools available It also has a bunch of skills available that you can use It has a memory as well And that is here is an interesting thing to keep in mind So it has a memory but the memory
+- [00:02:39] comes in two different parts. So it comes in the form of external memory, which we're going to be
+- [00:02:46] talking a little bit more about later in the video, which can be external providers such as
+- [00:02:53] mem0, supermemory, etc.
+- [00:02:55] And there is internal memory,
+- [00:02:59] which are essentially just the session transcripts.
+- [00:03:07] So every conversation is stored in your AI agent
+- [00:03:11] in its internal memory in the form of session transcript.
+- [00:03:16] And there are also other files that it can modify,
+- [00:03:19] such as its soul.md, its user.md that tell the agent information about its personality
+- [00:03:29] and about the user that is currently using it.
+- [00:03:32] Okay, so these are the main elements of the entire system.
+- [00:03:37] As you can see, it's actually very simple, but we're going to be taking a look at them
+- [00:03:40] a little bit more in detail in just a moment.
+- [00:03:43] So here we're going to just save it like this, and we're going to call it bird side view.
+- [00:03:50] All right, so that was the bird side view.
+- [00:03:53] Now let's take a little bit of a closer look at the agent loop.
+- [00:03:58] So the agent loop that we have inside Hermes.
+- [00:04:04] And this loop right here actually is very, very simple.
+- [00:04:08] It's similar to what you would see in other more minimalist agents, such as the PyAgent, OpenCode, etc.
+- [00:04:15] This is just a very simple loop in the sense that what happens is that it is a system that happens every single time that the user sends a message.
+- [00:04:26] So let's say that the first step is the user sends a message like this.
+- [00:04:33] then after the user sends a message
+- [00:04:36] the Hermes is going to build
+- [00:04:40] its context
+- [00:04:42] and the context is going to come from
+- [00:04:45] all of this internal memory that it has
+- [00:04:49] and also the prompts that it has prepared for it
+- [00:04:52] which come out of the box
+- [00:04:54] and once that is done the entire context and the message history is going to be sent to the LLM Right here in the context by the way we have the system prompt
+- [00:05:09] We have all the sole.md files.
+- [00:05:16] We have the user.md files.
+- [00:05:19] We're going to talk a little bit more about the actual context in just a moment.
+- [00:05:22] But just to give you a quick idea, we have the message history.
+- [00:05:29] And if you don't know what the sole end users MD found,
+- [00:05:32] I'm going to also cover them a little bit later in the context section.
+- [00:05:36] But sole is essentially a markdown document,
+- [00:05:39] a text document that gives your agent its personality,
+- [00:05:42] like what it actually is, like what it inspires it,
+- [00:05:46] what kind of tone it uses.
+- [00:05:49] and user.md is basically just a description of you who are using the agent.
+- [00:05:57] So once the whole context is built and everything is sent to the language model,
+- [00:06:02] the language model can decide to call a tool.
+- [00:06:05] And if the language model calls a tool,
+- [00:06:07] then we're going to call the tool, execute it,
+- [00:06:10] and give back the result to the language model.
+- [00:06:13] And that's going to continue happening as long as it has to happen,
+- [00:06:17] as long as the language model decides that it wants to continue using tools.
+- [00:06:21] And after finishing all the tool calls that it needed,
+- [00:06:25] so for example, it may have used a web search as a tool
+- [00:06:28] or a write file or read file or update some files in your file system.
+- [00:06:34] And then after that is done, it is going to give you a final response.
+- [00:06:39] And here is a final part of the loop, actually,
+- [00:06:43] because after it gives you a response,
+- [00:06:45] there is another part called memory update.
+- [00:06:50] And this essentially tells the agent to analyze that message
+- [00:06:56] and to see if there is anything worthy of being remembered
+- [00:07:00] and being written into the memory
+- [00:07:02] to actually be able to learn throughout the entire interaction
+- [00:07:08] so that it will have learned the next time you ask it something similar.
+- [00:07:12] And that's basically what makes Hermes an agent that is continuously learning and improving the more you use it.
+- [00:07:20] Okay, so that's about the agent loop.
+- [00:07:23] It's very, very straightforward.
+- [00:07:24] Let now take a look at a little bit more fun parts of this agent that are a little bit more All right so there we go
+- [00:07:36] We have pretty much very well understood the agent loop already.
+- [00:07:39] As you can see, it's very straightforward.
+- [00:07:41] And we have a little bit of a better understanding of what's actually going on right here.
+- [00:07:46] As you can see, it's just a loop that runs time after time, every single time that the user sends a message.
+- [00:07:52] Now let's take a look at the context that it puts together.
+- [00:07:55] So we briefly mentioned it right here,
+- [00:07:57] but I want to give it its own section
+- [00:07:59] because this is quite an important thing
+- [00:08:01] when you're building an agent.
+- [00:08:03] So the context, let me just open a new branch right here,
+- [00:08:06] the context like this.
+- [00:08:10] And the context of Hermes is actually very,
+- [00:08:13] very straightforward and very minimalist.
+- [00:08:15] It consists of a few markdown files, okay?
+- [00:08:20] So first of all, you have your soul.md file.
+- [00:08:25] And this one right here is going to be the personality.
+- [00:08:28] Okay?
+- [00:08:30] The personality of your agent.
+- [00:08:32] In other words, right here, you're going to write what kind of tone you want the agent to use,
+- [00:08:39] what inspires it, what are its goals, what it needs to do.
+- [00:08:44] I mean, what kind of approach it takes to you.
+- [00:08:46] and basically anything that you want your agent to behave like.
+- [00:08:51] So if you have seen, for example, the huge prompts from Claude, for example,
+- [00:08:57] those are beautifully written system prompts,
+- [00:09:00] that is precisely what you want to write here,
+- [00:09:02] and you want to personalize it for yourself.
+- [00:09:07] And for the record, this one right here is usually completely empty
+- [00:09:12] when you just install Hermes.
+- [00:09:14] So what's going to happen is that if you do not set this one manually or ask Hermes to write it itself, this is going to be replaced by the default system prompt that essentially just tells your agent that it is Hermes, virtual assistant, that is always on, etc, etc.
+- [00:09:36] But you probably want to have your own soul.md to actually have your agent tailored to you.
+- [00:09:42] So that's the first and most important part of the context that is sent to you to the language model.
+- [00:09:49] After that, you're going to have inside the memory directory, you have a couple of very important files.
+- [00:09:57] The first one is user.com.
+- [00:09:59] So, useRMIS.md.
+- [00:10:01] Okay.
+- [00:10:02] And this one, unlike Sol.md, Hermes will automatically update it whenever it learns something about you.
+- [00:10:09] So, let's suppose that you're talking with your agent and telling it about yourself.
+- [00:10:15] And you're telling it, oh, yeah, by the way, so I am a software engineer and I am working on this.
+- [00:10:19] Or I am a market analyst and I'm working on this.
+- [00:10:22] Then since the agent identified that that is information about yourself, it is going to store it inside here.
+- [00:10:28] So user info from conversations, okay?
+- [00:10:33] Then inside the memory directory as well, you have another markdown file called memory.md.
+- [00:10:42] And this one right here is more of an arbitrary memory of arbitrary facts, okay?
+- [00:10:48] So the agent, this one right here, also the agent will update it manually.
+- [00:10:52] unless, of course, you ask it to update it itself
+- [00:10:56] or you go yourself and update it yourself.
+- [00:10:59] But this one right here is going to be
+- [00:11:01] not necessarily information about you,
+- [00:11:04] but information about how to use tools,
+- [00:11:07] about different workflows,
+- [00:11:08] about interesting things that it learned
+- [00:11:11] during your conversations with it.
+- [00:11:13] So it's arbitrary memory.
+- [00:11:18] Okay?
+- [00:11:19] And this basically means that it will just
+- [00:11:22] learn anything, whenever it learns something from you, and it finds that interesting or useful for
+- [00:11:27] future conversations, depending, of course, also on its goals that were set on Sol.md,
+- [00:11:31] it will save them in memory.md. Now, that's about the markdown files. And as you can see,
+- [00:11:39] it's very straightforward. So these are the markdown files. But apart from that, usually,
+- [00:11:44] you also get other different things in the context. So you can get also information,
+- [00:11:51] information about past threats for past sessions or past conversations with it.
+- [00:12:00] And this one right here will also appear if you have external, external memory set up, okay,
+- [00:12:09] if you have not set up your external memory, this is not going to appear.
+- [00:12:14] We're going to talk a little bit more about memory later on.
+- [00:12:17] But this right here is basically just a summary of past conversations that might be irrelevant to the conversation that you currently having But again this only happens if you have set up external memory This is not going to be the case by default if you do not set that up After that you will find other interesting
+- [00:12:38] things such as the skill descriptions and the tools descriptions. Okay, and then of course,
+- [00:12:47] the messages, the latest messages that you that you have been interacting with Hermes,
+- [00:12:52] It can be the entire conversation or if the conversation exceeds a certain threshold, what Hermes does is that it summarizes the summary of the conversation after it has reached a certain threshold of the context window of your agent.
+- [00:13:11] Okay, so that is the basically the context that is sent every single time that you send a message to the to Hermes. And that's basically what happens right here during the build context step of the of the loop. Okay, so that's for the context.
+- [00:13:29] All right, so now that we're talking about context, I think it's also a good moment to talk about context compression.
+- [00:13:39] And let me just add a new branch right here.
+- [00:13:44] I'm just going to call it context compression.
+- [00:13:49] And what happens right here is that, you know, whenever you're talking to a large language model, there is a certain context window.
+- [00:14:01] It can be a certain number of tokens, so usually it's between 250,000 or maybe even a million tokens.
+- [00:14:08] And what happens with Hermes is that when you're setting up Hermes, you're asked when you wanted to trigger a compression for the message history.
+- [00:14:21] And usually, by default, it happens at 50% of the context.
+- [00:14:27] So if you have used 50% of the context, Hermes will trigger a compression function and will compress all your messages and summarize them.
+- [00:14:36] But basically compression, that's what it means.
+- [00:14:38] That whenever you cross this threshold right here,
+- [00:14:42] it will go into summarize previous messages
+- [00:14:49] and then append that summary to the context.
+- [00:14:53] And of course replace the previous messages with this summary This however of course is customizable So when you setting up Hermes if you are setting it up with a bit more detail
+- [00:15:06] it asks you whether you want to leave it on default,
+- [00:15:10] which is 50%,
+- [00:15:11] or if you're using a smaller model
+- [00:15:13] or a model with not huge context window,
+- [00:15:17] you can also set it to 70% or 80% if you want.
+- [00:15:20] It's probably a better call.
+- [00:15:22] but that is by default how it works and when does it actually check the compression so it checks on
+- [00:15:29] two different moments two moments two moments two moments two moments checks
+- [00:15:37] and these two moments are first of all before each message so before before the language model
+- [00:15:47] is called so before each turn and second on error okay so whenever the whenever the llm returns an
+- [00:15:58] error about the context window then of course it's going to check its context and summarize it
+- [00:16:03] else if it has not reached the maximum context window then before every turn so after you send
+- [00:16:11] each message, it is going to check the context on every single iteration. And in order to actually
+- [00:16:19] check it, so how does it do it? So there are two ways in which it does it. First of all,
+- [00:16:26] since whenever you are preparing your message, and you haven't sent anything to your large
+- [00:16:30] language model, it just built its entire context, as we saw before, it has its whole list of
+- [00:16:37] messages and you're going to send the message to the LLM. Now you do not yet have data on how many
+- [00:16:46] tokens your current context is so there is no clear way of saying how many tokens you're going
+- [00:16:55] to be sending unless you actually use a tokenizer which you could do but actually what they do is
+- [00:17:00] more straightforward and simple. They basically just take the total number of characters divided
+- [00:17:05] by 4, and that is the approximative context.
+- [00:17:09] And if that context is above the 50% threshold
+- [00:17:14] or whatever threshold you set up,
+- [00:17:16] it's going to trigger a summary compression.
+- [00:17:20] So that is on first message, okay?
+- [00:17:23] On first message.
+- [00:17:25] After the first message there is actually a better way because whenever you send a message to the LLM and it returns an answer to you it actually gives you a usage response
+- [00:17:37] So whenever you send a message and the message,
+- [00:17:40] the LLM gives you a response,
+- [00:17:41] there is a parameter in the response with the usage
+- [00:17:44] and then you just have to add that.
+- [00:17:47] And so it sometimes includes input,
+- [00:17:49] it sometimes includes output tokens,
+- [00:17:51] it sometimes includes a usage parameter.
+- [00:17:52] It really depends on the LLM provider.
+- [00:17:55] But here is a more accurate description of the total tokens that you're using, since it, of course, uses the same tokenizer as the model that you're using.
+- [00:18:03] And we could naturally, of course, use that same tokenizer at this stage right here.
+- [00:18:09] That is just too expensive.
+- [00:18:10] And this is a good enough way to measure it.
+- [00:18:16] And it's not very expensive.
+- [00:18:18] So that is how it actually happens.
+- [00:18:20] and if you're interested in which prompt it actually uses to do this let me see if I can
+- [00:18:28] find it right here for you and here we go so we have the context compressor prompt right here if
+- [00:18:36] you want to take a look at it it's inside the context compressor.py file as you can see right
+- [00:18:41] here and it is at about the line 1400 or something like that I mean it really changes whenever they
+- [00:18:49] refactor some stuff but it's somewhere around here and as you can see it basically you can
+- [00:18:55] pause the video if you want to actually read it but it asks the LLM to summarize the whole thing
+- [00:19:02] and to create multiple different sections in the summary so for example the full goal of the whole
+- [00:19:07] thing, constraints, completed actions, active state, some historical progress, what the agent is blocked
+- [00:19:15] done currently, the key decisions it has made, the resolved questions that it already has,
+- [00:19:20] some relevant files, critical context, previous summaries, next turns to incorporate, turns
+- [00:19:25] to summarize, etc.
+- [00:19:26] So, I mean, you can see that there is a lot of different things.
+- [00:19:29] It's definitely less minimalist than Pi, for example.
+- [00:19:32] I remember that in the previous video, I talked about how the Pi architecture works, and we
+- [00:19:39] also saw the context summarizing prompt for that one.
+- [00:19:42] and it's a much, much smaller one and minimalist one.
+- [00:19:48] But in this case, as you can see, it's much richer
+- [00:19:51] and it gives more context necessarily to your agent
+- [00:19:54] about what's actually going on.
+- [00:19:56] So that is the context from Pressure Prompt.
+- [00:19:58] Take a look at the next section right now.
+- [00:20:02] All right, so we have covered quite a bit, actually, on the Hermes agent.
+- [00:20:06] We know a little bit more about how the agent loop works,
+- [00:20:09] how the context is built during the agent loop.
+- [00:20:14] And we have still a pretty good bird side view of the architecture.
+- [00:20:18] I figure that it's actually a good time to talk about this, the gateway,
+- [00:20:22] because this is what allows you to call, to talk to your agent
+- [00:20:26] via different messaging platforms such as Telegram, WhatsApp, email, text message, etc.
+- [00:20:32] Slack.
+- [00:20:34] And even though that is not necessarily the most difficult or complex thing about Hermes,
+- [00:20:39] I think that it is the part that made it as mainstream or as popular as it became.
+- [00:20:46] So let's talk about it right now right here.
+- [00:20:48] So let's open a new branch and call it gateway like this.
+- [00:20:54] Okay.
+- [00:20:55] So what is this gateway?
+- [00:20:57] So I was telling you it is this way that allows you to,
+- [00:20:59] this system that allows you to talk to your agent
+- [00:21:02] through different message providers.
+- [00:21:07] And essentially what happens is that it opens a gateway
+- [00:21:10] to talk to the AI agent through many different message providers.
+- [00:21:18] So for example, Telegram, email, Slack, et cetera, okay?
+- [00:21:24] And the gateway's responsibility is to put those messages in the right...
+- [00:21:29] I mean, first of all, to listen to those incoming messages once the gateway is configured.
+- [00:21:35] And then put them in the right format and send them to the AI agent
+- [00:21:40] after putting all the context together and building the entire conversation.
+- [00:21:44] So what happens first is that this starts an async.io...
+- [00:21:50] async
+- [00:21:52] sorry about your grammar
+- [00:21:56] async io
+- [00:21:57] loop
+- [00:21:59] that will
+- [00:22:01] continuously loop through
+- [00:22:04] I mean run continuously
+- [00:22:06] and wait on or pull
+- [00:22:08] different gateways
+- [00:22:09] so this one right here is going to
+- [00:22:11] listen to as we were saying
+- [00:22:14] telegram, discord
+- [00:22:16] email
+- [00:22:18] SMS WhatsApp etc And every single one of those actually has a different way to be pulled So some of them work with webhooks Some of them are actually a tiny loop that runs every second that calls that system
+- [00:22:40] For example, Telegram also has this.
+- [00:22:42] You can run a tiny little loop that runs every second and pulls the Telegram API to see if your chatbot has new messages, etc.
+- [00:22:51] some of them work with web sockets etc so as you can see this is a bit of a huge part of the whole
+- [00:22:59] thing because every single integration with a third party gateway has to be configured
+- [00:23:07] independently so this is not just a single gateway that works with everything by default
+- [00:23:11] every single gateway has to be configured by Hermes and this of course happens when you do
+- [00:23:19] Hermes set up gateway
+- [00:23:23] and then you set it up for Telegram for example
+- [00:23:26] and then you create your bot ID
+- [00:23:29] and then you create your user IDs
+- [00:23:32] that are going to be allowed to communicate
+- [00:23:34] with your Hermes agent etc.
+- [00:23:37] So that is what happens right here
+- [00:23:40] but the gateway is not only receiving the messages
+- [00:23:45] it's also putting the message conversation
+- [00:23:48] and everything together
+- [00:23:49] and since we are not building the whole thing
+- [00:23:52] within the command line right here
+- [00:23:55] so it's not like a direct interface
+- [00:23:57] that keeps your conversation
+- [00:23:59] and sends the entire history of the conversation back
+- [00:24:01] we're going to have to construct the context
+- [00:24:06] so construct context
+- [00:24:10] and this is more similar to what we had right here
+- [00:24:15] so the build context part of the loop
+- [00:24:18] actually makes more sense when we're in the gateway because it really builds it from scratch
+- [00:24:22] on every single message that it receives. So for example, when the gateway receives a message from
+- [00:24:28] Telegram, it receives the single message. It doesn't receive the entire conversation. So your gateway
+- [00:24:33] has to put together the message history and the context, etc. We already saw how it sets together
+- [00:24:40] the rest of the context, but it also will set together the message history. Okay,
+- [00:24:47] and the message history is going to come from the from the session ID from the session ID and then a telegram or so I mean this is going to be kind of its identifier the first part of the identifier of your message history is going to be the telegram
+- [00:25:08] session the telegram the name of the gateway so the name of your session identifier is going to
+- [00:25:14] be telegram then the session ID that telegram returned and then some other IDs to build the
+- [00:25:20] whole thing. And this is going to be stored in a local SQLite database. Okay, so all of your
+- [00:25:30] messages of all of your conversations from previous conversations with your agent are always going to
+- [00:25:35] be stored in SQLite as we're going to see in just a moment. And what happens is that when the gateway
+- [00:25:40] receives a new message from Telegram, it is going to check in your SQLite database. Okay, so we're
+- [00:25:48] talking about telegram so we're going to take the telegram prefix to it we're going to append to it
+- [00:25:55] the system the session id that was returned by telegram and then from there it's going to query
+- [00:26:01] all the history of all the messages from your sqlite database and then append them to your
+- [00:26:08] context and then that is what is going what it is going to send to your ai agent so as you can see
+- [00:26:16] the gateway is doing quite a bit. It's not just receiving the messages, because if it was just
+- [00:26:21] receiving the messages, we would not have message history. The message history is built like this,
+- [00:26:27] as you see right here. And something else that I should not forget to mention is that the gateway
+- [00:26:35] also has some sort of a session,
+- [00:26:42] let's just call it like a session manager.
+- [00:26:46] And this is important because it handles
+- [00:26:49] what messages actually reach the large language model
+- [00:26:51] and depending on when you send them.
+- [00:26:56] So for example, if you send a message
+- [00:26:58] right after you just sent another message
+- [00:27:00] and the agent is already working on it,
+- [00:27:04] this session manager will decide whether to interrupt
+- [00:27:08] interrupt your agent or to steer it
+- [00:27:13] or to queue it up
+- [00:27:16] and this of course depends on how you send the message
+- [00:27:21] if you use slash interrupt for example in Telegram it is going to interrupt it if you just send it like that it going to queue it up If you send slash steer it is going to steer it etc So that is what going to happen with the gateway
+- [00:27:34] As you can see, it is a pretty fun part
+- [00:27:37] and one that you could also code yourself for another kind of agent.
+- [00:27:41] I actually have my own Pi gateway where I run my Pi instance in my VPS
+- [00:27:47] and I can communicate with it on Telegram, for example.
+- [00:27:51] So this is a very, very fun part.
+- [00:27:53] and very, very useful because it allows you to connect your Hermes agent with all of these messaging systems.
+- [00:27:59] Now, on to the next section.
+- [00:28:03] All right, so we have covered quite a bit, as you can see right here.
+- [00:28:07] Next thing that I want to cover right now is memory.
+- [00:28:10] And we have already mentioned a little bit about it and talked about it on context compression and the gateway in the agent loop.
+- [00:28:18] But I figured that it actually requires its own section right here.
+- [00:28:22] So let's just write down here memory like this.
+- [00:28:27] And let's just write it like this.
+- [00:28:30] And memory actually comes in three different ways.
+- [00:28:35] The first one is the markdown.
+- [00:28:37] Whoops.
+- [00:28:38] The first one is the markdown files that we already mentioned.
+- [00:28:47] And those are, as we said before, there is sol.md, there is memory.md, and there is user.md.
+- [00:29:00] And these two are inside memory, okay?
+- [00:29:03] So memory and memory right here.
+- [00:29:07] And those are essentially just the marked on files, and they will be always appended to the context window right after the system prompt.
+- [00:29:17] But something very fun right here is that this, so Hermes has the ability of recalling previous conversations.
+- [00:29:26] And all the previous conversations are, of course, not going to be stored right here as a Markdown file.
+- [00:29:32] So it actually also has a SQLite database that stores every single message of every single interaction that you have with Hermes.
+- [00:29:44] So there are many different tables in this system
+- [00:29:50] and many different rows and many different data models,
+- [00:29:53] but all of them are actually the same thing,
+- [00:29:55] just maybe different ways
+- [00:29:58] displaying the same thing and it is essentially just full transcripts full transcripts
+- [00:30:07] of all the sessions okay so every single session is stored in sqlite and it has different ids etc
+- [00:30:16] and that is where where the sessions that come from the gateway are going to be pulled from okay
+- [00:30:24] So maybe in your Telegram, in your SQLite database, you're going to have a session ID and you're going to also have an identifier saying that it came from Telegram.
+- [00:30:35] Then that is the one that it is going to pull to continue the conversation on Telegram.
+- [00:30:40] But very, very interesting thing right here.
+- [00:30:43] It also has a bare text section, bare text table with only the text of all the conversations to make it easy to actually perform some similarity search on it.
+- [00:30:53] very, very useful to have a SQLite memory right here. And something else that is also very,
+- [00:31:02] very important, very useful is not the SQLite part, but the external, external memory. And this
+- [00:31:12] one, as I mentioned before, this one is not configured by default. So the external memory
+- [00:31:19] actually comes from different external providers.
+- [00:31:23] And there are a bunch.
+- [00:31:25] So there is, for example, Mem0.
+- [00:31:28] There is SuperMemory.
+- [00:31:30] There is Honcho.
+- [00:31:33] And there are a lot of different external memory providers
+- [00:31:36] that Hermes Agent supports.
+- [00:31:39] And what happens is that every single provider works differently.
+- [00:31:44] But all of these providers are specialized
+- [00:31:47] in providing intelligence or memory for agents.
+- [00:31:52] And what they do is they basically do it in different ways.
+- [00:31:56] For example, I believe that it is Mem0,
+- [00:31:59] which uses similarity search or something like that.
+- [00:32:02] Honcho does differently.
+- [00:32:04] SuperMemory requires you to send the entire history
+- [00:32:09] of your conversation after every turn for it to store it.
+- [00:32:12] And then it uses a language model, if I remember correctly,
+- [00:32:15] to actually extract the right memory from it.
+- [00:32:19] We can actually do a dedicated video on this external memory systems because I mean this would be going into too much detail for an architecture on Hermes And most people actually do not enable this external memory anyways But I do recommend that you do it
+- [00:32:35] There are a bunch of external memory providers that are supported that are actually free.
+- [00:32:43] And that will, of course, improve a lot the way that Hermes actually learns from you.
+- [00:32:48] So very, very important to do that.
+- [00:32:51] So that's for external memory.
+- [00:32:53] And just for the record, when external memory is set up, it will query that external memory on every second message.
+- [00:33:03] Okay?
+- [00:33:04] Not on every second message.
+- [00:33:05] So after the first message.
+- [00:33:07] Okay?
+- [00:33:08] So after the first message.
+- [00:33:11] And what happens is that, for example, let's suppose that you start a conversation about a new feature or a new workflow that you're starting.
+- [00:33:20] and you start a conversation, the LLM responds to you
+- [00:33:24] and after that first message,
+- [00:33:26] you will not have queried the database.
+- [00:33:29] I mean, before that first message.
+- [00:33:30] But after that first message,
+- [00:33:32] once the agent already knows what you are talking about,
+- [00:33:35] after it has already responded,
+- [00:33:36] it will query the database, I mean, the external memory,
+- [00:33:40] trying to guess what your next question is going to be about.
+- [00:33:44] It's basically kind of like what a human does
+- [00:33:46] when you ask a question and they just respond
+- [00:33:48] and then at the same time they're thinking about the previous conversations
+- [00:33:51] that they had about this in the past.
+- [00:33:54] And then if they remember something using these external memories,
+- [00:33:58] it will come in the following messages.
+- [00:34:01] So something important to know about.
+- [00:34:03] So in the future, if you're talking with Hermes and on the first try
+- [00:34:07] it doesn't remember something and you have external memory set up,
+- [00:34:11] you can just on the first message describe what you're trying to remember
+- [00:34:14] and then have a follow-up message asking more about it,
+- [00:34:18] and it will have queried the external memory system.
+- [00:34:23] And yeah, maybe we can later make a ranking of these external memory systems
+- [00:34:28] because they're very different.
+- [00:34:29] Some of them work with enriched LLM queries.
+- [00:34:32] Some of them work with semantic search, et cetera.
+- [00:34:35] So that is for external for memory in Hermes.
+- [00:34:39] All right.
+- [00:34:40] So as you can see, we have covered quite a bit.
+- [00:34:42] Now let's talk about something that is also very important and very characteristic of this kind of events, which are the cron jobs.
+- [00:34:52] And cron jobs are very straightforward If you have worked with servers before you probably know they usually a system process that runs every minute that pulls whatever tasks were scheduled for that particular minute and just executes them whenever that minute arrives
+- [00:35:10] That's basically what happens.
+- [00:35:12] And Hermes is pretty much the same thing.
+- [00:35:15] Now, for the record, cron on Hermes is not tied to the server cron process.
+- [00:35:21] In Hermes, the cron process is its own loop that runs every minute.
+- [00:35:25] And every minute, it runs a function called tick, like this.
+- [00:35:30] So it ticks every minute.
+- [00:35:34] and it pulls the list of jobs
+- [00:35:38] that you have scheduled in your cron jobs
+- [00:35:41] and actually executes them on that spot.
+- [00:35:44] And before I go any further,
+- [00:35:46] just in case you don't know what cron jobs are in Hermes,
+- [00:35:49] cron jobs are what allows you to tell your Hermes agent
+- [00:35:54] things like, okay, so every morning send me an email
+- [00:35:59] with the latest news on AI.
+- [00:36:04] or every day send an email or send a message on Slack to my community
+- [00:36:10] telling them about the new developments in AI,
+- [00:36:13] or every Friday send an email to my boss telling them about this.
+- [00:36:18] So it basically allows you to automate some tasks for Hermes to do
+- [00:36:22] on a very specific moment, and this runs continuously every week
+- [00:36:27] or every day or every month, etc.
+- [00:36:29] And what happens is that there is this tick function
+- [00:36:33] that runs every minute and checks if there are any tasks scheduled for that particular minute.
+- [00:36:40] And this is actually where it becomes a little tricky, especially on the documentation side,
+- [00:36:46] because the documentation says that the cron jobs are stored in SQLite.
+- [00:36:53] But in my analysis, I did not find any cron jobs in my SQLite database.
+- [00:36:59] actually and the code also doesn't seem to pull them from SQLite what actually happens is that
+- [00:37:06] the cron jobs are stored as plain json okay so there is a json file let me actually tell you
+- [00:37:15] exactly where it is.
+- [00:37:16] So inside dot Hermes slash cron,
+- [00:37:23] there is a jobs dot JSON And this one right here is where all the cron jobs are listed with their prompts
+- [00:37:35] and what it should do, et cetera,
+- [00:37:36] so that Hermes checks this JSON file
+- [00:37:39] every time that it ticks
+- [00:37:44] and it figures out if it has to run a job or not.
+- [00:37:49] And then after that, or after you update a cron job,
+- [00:37:53] it is updated right here.
+- [00:37:56] And also inside the cron directory,
+- [00:37:58] there is an output directory
+- [00:38:01] where you will find a bunch of job ID directories.
+- [00:38:07] And inside each job ID, you will have each run,
+- [00:38:11] each run that, I mean, the markdown file of all your runs
+- [00:38:17] that have happened for this particular job.
+- [00:38:22] so basically that's all that happens a very straightforward function that runs in loop
+- [00:38:27] every minute and every minute it checks your jobs.json file to see if there are jobs to be
+- [00:38:34] run on that at that moment if there are it executes them and then stores the result in
+- [00:38:39] run.md i mean in your markdown file for that particular run now something important to
+- [00:38:47] notice right here, I mean, just kind of a trivia, Cron does not automatically send you a message
+- [00:38:56] on Telegram or whatever you want. It will send you a message on your home messaging platform.
+- [00:39:04] So when you're setting up your gateway, so for example, with Telegram or with Discord or with
+- [00:39:10] Slack, it will ask you if you want that particular gateway, like for example, in Telegram, it will
+- [00:39:16] ask you if you want your particular user ID to be your home for that gateway. And what will happen
+- [00:39:22] is that whenever you run a cron job, it will deliver the notification on your home, on your
+- [00:39:29] home integration or your home messaging app. And that's what happens. So cron does not use the
+- [00:39:37] send message function or send message tool. It will automatically send you a notification message
+- [00:39:43] on the system, not the agent calling a send message tool.
+- [00:39:51] And that's basically all there is about Hermes.
+- [00:39:54] I mean, there is, of course, a lot more,
+- [00:39:56] but this we have covered quite a bit already.
+- [00:39:58] And I figured that this is a very good high level overview of the whole thing.
+- [00:40:01] I hope that this has been useful.
+- [00:40:04] I hope that this will help you build better agents or better claws,
+- [00:40:08] such as Hermes or OpenClaw, etc.
+- [00:40:10] We can do more architecture overviews later if you're interested,
+- [00:40:14] if you like the format and the concept.
+- [00:40:16] Please let me know if you have any questions
+- [00:40:18] and if you would like to see more videos like this here in the channel.
+- [00:40:21] Thank you.
+- [00:40:22] Thanks a lot for being here and for watching.
+- [00:40:23] And I will see you in the next one.

@@ -2,11 +2,11 @@
 title: pi-agent-core — 5 檔 / 1,500 行的 Agent Runtime
 type: entity
 created: 2026-07-11
-updated: 2026-07-11
-sources: 1
+updated: 2026-08-06
+sources: 2
 tags: [pi, agent, runtime, zechner]
 collection: entities
-topics: [ai-agent]
+topics: [ai-agent, extension-dev, skill]
 canonical: entities/pi-agent-core
 ---
 
@@ -16,6 +16,7 @@ canonical: entities/pi-agent-core
 
 ## 來源
 - [[wiki/sources/2026-02-10-pi-agent-core-design]] — 主要來源(語言物理位元 + 行號層次的解析)
+- [[wiki/sources/2026-08-06-pi-architecture-walkthrough]] — 架構 walkthrough（session tree、compaction、skills、extensions 機制）
 - 程式碼位置:`https://github.com/badlogic/pi-mono/blob/main/packages/agent/src/`
 - 由 [[wiki/entities/pi-mono]] 主頁面統合;本頁是它的下層 runtime 焦點。
 
@@ -55,6 +56,37 @@ agent_start / agent_end
 - **可干預性**(steering / follow-up 雙 queue)
 - **最晚轉換**→ 獨立頁 [[wiki/concepts/late-conversion]]
 - **自我進化**(透過 bash 自我呼叫)
+
+## Agentic Loop 三步驟（Walkthrough 補充）
+
+來源：[[wiki/sources/2026-08-06-pi-architecture-walkthrough]]
+
+1. **Context Initialization**：system prompt + AGENTS.md + skills markup + tools descriptions + message history/current message
+2. **Context Transformation**：check-compaction → 若需要則 LLM 摘要替換 history
+3. **LLM Call + Tool Loop**：LLM → tool call → 工具執行 → 結果回傳 → LLM 決定下一步（可達數百次）
+
+## Session Tree 結構
+
+Session 以 **tree**（非 list）儲存於 `~/.pi/agent/sessions/<cwd>/`：
+- 格式：JSONL（每行一個 JSON 物件）
+- 每個 message 有 `id` + `parent` 欄位
+- 支援 fork（分叉對話）：從同一 parent 建立分支
+- `/tree` 指令導覽
+
+## Compaction 機制
+
+- **觸發**：`agent_end` 與 `before_prompt` 兩個時機
+- **token 計算**：優先用 LLM 回傳 context tokens；否則累加 `usage.input + output + cache.read + cache.write`
+- **不使用**字元數除以 4 的粗估
+- **Summary 格式**：goal / constraints / progress / decisions / next steps / critical context
+
+## Skills 機制
+
+1. System prompt 中以 markup 列出所有 skill（name + description）
+2. `/skill:<name>` 被 **interactive layer 攔截**，不送入 core
+3. 替換為 `<skill>` markup（含 name、description、location）
+4. LLM 依 prompt 指示用 `read` 工具讀取 location
+5. Skill 內容**不自動注入**——LLM 主動讀取，保留 tool call 可觀測性
 
 ## 不做的事(立場,精準條列)
 無 MCP / 無 sub-agents / 無 plan mode / 無權限檢查 / 無 maxSteps。

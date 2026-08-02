@@ -2,7 +2,7 @@
 title: Meta Systems
 topic: meta-systems
 created: 2026-08-02
-updated: 2026-08-02
+updated: 2026-08-05
 ---
 
 # Meta Systems

@@ -2,13 +2,12 @@
 title: pi-mono — Agent Toolkit Monorepo
 type: entity
 created: 2026-07-11
-updated: 2026-07-11
-sources: 3
+updated: 2026-08-06
+sources: 4
 tags: [pi, coding-agent, monorepo]
 collection: entities
-topics: [ai-agent]
+topics: [ai-agent, extension-dev]
 canonical: entities/pi-mono
-updated: 2026-08-05
 ---
 
 > [`earendil-works/pi`](https://github.com/earendil-works/pi)（前身 `badlogic/pi-mono`）是 Mario Zechner 維護的 TypeScript agent toolkit monorepo。核心定位：**「你的 agent 平台」**——不是單一既定體驗,而是一組可組合的 runtime、模型抽象層、UI。License：MIT。
@@ -96,8 +95,34 @@ badlogicgames/pi-mono on Hugging Face: https://huggingface.co/datasets/badlogicg
 
 **Tau**（[[wiki/entities/tau|tau]]）是 Pi 的 **Python port**，由 Hugging Face 開發。架構與 Pi 完全相同（session tree、skills、extensions、system prompt），差異只在 TUI 層使用 Textual 框架。Tau 的存在證明了 Pi 架構的可移植性——extension events API 跨語言相容。
 
+## CLI Entry Point（Walkthrough 補充）
+
+來源：[[wiki/sources/2026-08-06-pi-architecture-walkthrough]]
+
+1. `client.ts`：接收 `pi` 命令 → 設定 process title → 呼叫 `main()`
+2. `main.ts`：
+   - 解析 arguments
+   - 解析 configuration（cwd 等）
+   - **載入 extensions**
+   - 建立 agent session（初始化 PyCore）
+   - 依模式執行：interactive / RPC / print-to-STDIO
+
+## Extensions Events 系統
+
+每個 agentic loop 步驟都會觸發 events，extension 可訂閱：
+`tool_call` / `agent_response` / `user_message` 等
+
+Extension 能力清單：
+- 註冊新 tools / 註冊 commands
+- 新增 keyboard shortcuts / CLI flags
+- 更新 system prompt / 渲染 custom messages
+
+## Read-only Mode
+
+`--tools read,grep,find`：啟用隱藏的 grep + find 工具，停用 bash/write/edit，適用於 RPC / 程式化自動化。
+
 ## 相關頁面
 - Entities:[[wiki/entities/mario-zechner]]、[[wiki/entities/pi-agent-core]]、[[wiki/entities/tau]]
-- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]] / [[wiki/sources/2026-08-03-tau-python-port-of-pi]] / [[wiki/sources/2026-08-05-pi-github-readme]]
+- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]] / [[wiki/sources/2026-08-03-tau-python-port-of-pi]] / [[wiki/sources/2026-08-05-pi-github-readme]] / [[wiki/sources/2026-08-06-pi-architecture-walkthrough]]
 - Concepts:[[wiki/concepts/late-conversion]]、[[wiki/concepts/minimal-agent-philosophy]]
 - Synthesis:（待建立：coding-agent-comparison — Claude Code / Codex / Pi 五維對比表）
