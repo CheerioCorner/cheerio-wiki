@@ -1,5 +1,14 @@
 # Log
 
+## [2026-08-05] ingest | Tau GitHub README
+
+- 來源：`raw/web/2026-08-02-huggingfacetau A Python port of Pi’s minimalist coding agent.md`
+- 修正：tau 開發者從「Pi 團隊內部」改為「Hugging Face」
+- 新增：三層架構（tau_ai → tau_agent → tau_coding）、設計哲學 6 條、library 用法、安裝選項、MIT license
+- 更新：`wiki/entities/tau.md`（sources: 1→2，新增架構/哲學/library 章節）
+- 建立：`wiki/sources/2026-08-05-tau-github-readme.md`
+- 更新：`wiki/index.md`（AI Agent + Extension Development 雙 topic 標記）
+
 ## [2026-08-05] skill | 建立 notion-to-raw skill
 
 - 決策：採用方案 A — 新建獨立 skill（而非擴展 youtube-to-wiki 或 knowledge-garden）

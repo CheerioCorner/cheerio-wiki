@@ -10,7 +10,7 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-05（建立 notion-to-raw skill）
+- **最後更新**：2026-08-05（ingest tau GitHub README）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：10（全部已補 `collection: sources` 與 provenance）
 - **Canonical collections**：8 concepts、10 entities、4 decisions、3 discussions
@@ -24,7 +24,7 @@
 ### 🤖 AI Agent
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
 - [[wiki/entities/pi-mono|pi-mono]] — `badlogic/pi-mono` monorepo + 5 個子 package
-- [[wiki/entities/tau|tau]] — Pi 的 Python port，Textual TUI，extension 相容
+- [[wiki/entities/tau|tau]] — Hugging Face 開發的 Pi Python port，三層架構，extension 相容 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程 🛠️
@@ -32,6 +32,7 @@
 - [[wiki/concepts/late-conversion|late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
 
 ### 🔌 Extension 開發
+- [[wiki/entities/tau|tau]] — Hugging Face 的 Pi Python port，extension 相容 🛠️
 - [[wiki/entities/plannotator|plannotator]] — AI coding agent 視覺化審閱工具，支援 9 種 agent
 - [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]] — Pi 繁體中文本地化套件
 - [[wiki/concepts/okf-open-knowledge-format|okf-open-knowledge-format]] — OKF：Markdown + YAML frontmatter 表示知識
@@ -109,7 +110,8 @@
 - [[wiki/sources/2026-05-02-pi-mono-framework-tw|2026-05-02-pi-mono-framework-tw]] — Pi mono framework 研究
 - [[wiki/sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF migration complete]] — 完整架構優化、決策、Project Bundle 與 audit 紀錄
 - [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|2026-07-22 mattpocock/skills tutorial]] — 完整 AI Coding 工作流程教學影片
-- [[wiki/sources/2026-08-03-tau-python-port-of-pi|2026-08-03 Tau: A Python Port of Pi]] — Pi 的 Python port，Textual TUI，session tree，extension 相容
+- [[wiki/sources/2026-08-03-tau-python-port-of-pi|2026-08-03 Tau: A Python Port of Pi]] — YouTube 影片：Pi 的 Python port，Textual TUI，session tree，extension 相容
+- [[wiki/sources/2026-08-05-tau-github-readme|2026-08-05 Tau: GitHub README]] — Hugging Face 開發，三層架構，設計哲學，library 用法
 
 ---
 
