@@ -169,7 +169,7 @@ Obsidian/
    - 孤立頁面（沒有 inbound 連結）
    - 出現多次但沒有自己頁面的概念
    - 缺漏的交叉引用
-   - **Source note provenance 缺漏**：`wiki/sources/` 下的頁面應有 `provenance` 指向 raw 檔案或外部 URL；指向不存在檔案的 provenance 須標記
+   - **Source note provenance 缺漏**：`wiki/sources/` 下的頁面應有 `provenance_raw` 或 `provenance_url` 指向 raw 檔案或外部 URL；指向不存在檔案的 provenance 須標記
    - **Topic page 遺漏**：每個 entity/concept frontmatter 的 `topics: [...]` 都應在對應 `wiki/topics/*.md` 的 Entities 或 Concepts 列表中出現；反之，topic page 列出的頁面都應存在
 2. 提出「該修什麼、該查什麼、該補什麼資料」的清單。
 3. 人類確認後開始修改。
@@ -209,14 +209,13 @@ sources: 3   # 引用過幾個 raw 來源
 tags: [topic-a, topic-b]
 topics: [skill, ai-agent]  # 頁面所屬的 topics（可多值陣列）
 canonical: entities/name    # 可選，canonical path
-provenance:                 # source 類型必填；其他類型可選
-  - kind: raw | external | project | session
-    path: raw/example.md    # kind: raw 時填 raw 相對路徑
-    url: https://...        # kind: external/project 時填 URL
+provenance_raw: "raw/example.md"   # source 類型必填；指向 raw 檔案
+provenance_url: https://...         # source 類型必填；指向外部 URL
+provenance_session: "description"  # 選填；對話 session 來源
 ---
 ```
 
-**Source note provenance 強制規則：** `wiki/sources/` 下的每個頁面**必須**有 `provenance` frontmatter，至少一筆指向 raw 檔案或外部 URL。`kind: raw` 必須填 `path`（raw 相對路徑），`kind: external` / `project` 必須填 `url`。YouTube 來源的 raw transcript 也應記錄在 provenance 中（例如 `path: raw/youtube/video-slug.md`）。
+**Source note provenance 強制規則：** `wiki/sources/` 下的每個頁面**必須**有 `provenance_raw` 或 `provenance_url` frontmatter（至少一筆）。YouTube 來源的 raw transcript 也應記錄在 `provenance_raw` 中（例如 `provenance_raw: "raw/youtube/video-slug.md"`）。
 
 **多 topic 關聯**：一個頁面可同時屬於多個 topic。在 topic 導航頁中，跨 topic 頁面用 🛠️ 標記。例如：
 ```markdown

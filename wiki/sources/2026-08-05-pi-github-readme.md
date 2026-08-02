@@ -8,10 +8,7 @@ tags: [pi, coding-agent, monorepo, containerization, supply-chain]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-05-pi-github-readme
-provenance:
-  - kind: external
-    url: https://github.com/earendil-works/pi
----
+provenance_url: https://github.com/earendil-works/pi---
 
 > 來源：[earendil-works/pi GitHub README](https://github.com/earendil-works/pi)
 > Clipped：2026-08-02

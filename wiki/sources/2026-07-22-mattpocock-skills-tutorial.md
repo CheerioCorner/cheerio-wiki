@@ -8,12 +8,8 @@ tags: [skills, ai-coding, workflow, matt-pocock, tutorial]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-07-22-mattpocock-skills-tutorial
-provenance:
-  - kind: raw
-    path: raw/youtube/mattpocock-skills.md
-  - kind: external
-    url: https://www.youtube.com/watch?v=M6mYodf0dJM
----
+provenance_raw: "raw/youtube/mattpocock-skills.md"
+provenance_url: https://www.youtube.com/watch?v=M6mYodf0dJM---
 
 > 來源：[YouTube — mattpocock/skills: A complete AI Coding workflow, end-to-end](https://www.youtube.com/watch?v=M6mYodf0dJM)
 > 原始字幕：[[raw/youtube/mattpocock-skills|raw transcript]]

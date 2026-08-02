@@ -1,13 +1,12 @@
 
 # Log
 
-## [2026-08-08] lint | Vibe Coding 連結修復
+## [2026-08-08] lint | Provenance 格式修正 + Vibe Coding 連結修復
 
+- **Provenance 格式修正**：所有 source notes 從 YAML nested object 改為 flat 欄位（`provenance_raw` / `provenance_url` / `provenance_session`），兼容 Obsidian Dataview
 - 修復 `wiki/sources/2026-08-02-vibe-coding-implications.md` provenance URL（不完整 → 完整）
-- 新增 `wiki/concepts/vibe-coding.md` 的 backlink 到 `wiki/sources/2026-08-02-vibe-coding-implications.md`
-- 新增 `wiki/concepts/vibe-coding.md` 的 backlink 到 `wiki/concepts/ai-coding-workflow.md`（比較表 + 相關頁面）
-- 新增 `wiki/concepts/vibe-coding.md` 的 backlink 到 `wiki/concepts/minimal-agent-philosophy.md`
-- 新增 `wiki/concepts/vibe-coding.md` 的 backlink 到 `wiki/concepts/defect-metrics.md`
+- 新增 `wiki/concepts/vibe-coding.md` 的 backlinks 到 ai-coding-workflow、minimal-agent-philosophy、defect-metrics、source note
+- 更新 `AGENTS.md` 和 `wiki/sources/README.md` 文件，反映新格式
 - 所有交叉引用已驗證有效
 
 ## [2026-08-08] ingest | Hermes Architecture EXPLAINED: Memory, Context & Gateways

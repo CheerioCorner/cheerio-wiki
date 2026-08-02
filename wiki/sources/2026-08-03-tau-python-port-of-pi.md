@@ -8,12 +8,8 @@ tags: [pi, tau, python, coding-harness, textual]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-03-tau-python-port-of-pi
-provenance:
-  - kind: raw
-    path: raw/youtube/tau-python-port-of-pi.md
-  - kind: external
-    url: https://www.youtube.com/watch?v=qo1QNxWcm28
----
+provenance_raw: "raw/youtube/tau-python-port-of-pi.md"
+provenance_url: https://www.youtube.com/watch?v=qo1QNxWcm28---
 
 > 來源：[YouTube — Tau: A Python Port of Pi](https://www.youtube.com/watch?v=qo1QNxWcm28)（25:03）
 > 原始字幕：[[raw/youtube/tau-python-port-of-pi|raw transcript]]

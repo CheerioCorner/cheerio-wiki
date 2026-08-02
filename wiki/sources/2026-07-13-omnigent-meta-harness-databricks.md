@@ -8,10 +8,7 @@ tags: [meta-harness, orchestration, databricks, open-source, multi-agent, securi
 collection: sources
 topics: [meta-systems]
 canonical: sources/2026-07-13-omnigent-meta-harness-databricks
-provenance:
-  - kind: raw
-    path: "raw/web/2026-07-13-omnigent-meta-harness-databricks.md"
----
+provenance_raw: "raw/web/2026-07-13-omnigent-meta-harness-databricks.md"---
 
 # Omnigent: Databricks 開源 Meta-Harness
 

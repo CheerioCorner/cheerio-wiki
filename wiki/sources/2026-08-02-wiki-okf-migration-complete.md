@@ -7,12 +7,7 @@ status: complete
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
-provenance:
-  - kind: raw
-    path: raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md
-  - kind: session
-    description: Wiki × OKF migration sessions and annotator reviews
-verified:
+provenance_raw: "raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md"verified:
   by: human:Cheer
   at: 2026-08-02
 tags: [wiki, okf, migration, audit, provenance, project-bundle]
