@@ -10,10 +10,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-05（ingest tau GitHub README）
+- **最後更新**：2026-08-05（ingest 5 筆 raw 資料入 wiki）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：10（全部已補 `collection: sources` 與 provenance）
-- **Canonical collections**：8 concepts、10 entities、4 decisions、3 discussions
+- **Source notes**：17（全部已補 `collection: sources` 與 provenance）
+- **Canonical collections**：10 concepts、11 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 - **工作系統**：`work/` — 統一管理目前工作、完成事件與 references
 
@@ -30,6 +30,7 @@
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程 🛠️
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學，2 來源、兩視角交點
+- [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成，與 minimal-agent-philosophy 形成對比
 - [[wiki/concepts/late-conversion|late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
 
 ### 🔌 Extension 開發
@@ -37,6 +38,7 @@
 - [[wiki/entities/plannotator|plannotator]] — AI coding agent 視覺化審閱工具，支援 9 種 agent
 - [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]] — Pi 繁體中文本地化套件
 - [[wiki/concepts/okf-open-knowledge-format|okf-open-knowledge-format]] — OKF：Markdown + YAML frontmatter 表示知識
+- [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS .NET binding，完整 AGENTS.md + TDD 強制 🛠️
 - [[wiki/concepts/npm-publishing-workflow|npm-publishing-workflow]] — Package Publishing 統一觀點
 - [[wiki/concepts/agent-extension-installation|agent-extension-installation]] — Agent Extension 安裝位置與方式
 
@@ -44,8 +46,13 @@
 - [[wiki/concepts/meta-harness|meta-harness]] — 對 harness 的再抽象/最佳化層。**📌 我們的研究專題**
 - [[wiki/entities/omnigent|omnigent]] — Databricks 開源的 meta-harness。⚠️ 目前不支援 Windows
 
+### 🔧 軟體工程
+- [[wiki/concepts/defect-metrics|defect-metrics]] — Defect Density & Escape Rate，軟體品質測量指標
+- [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成，降低門檻但引入安全挑戰
+
 ### 📚 知識管理
 - [[wiki/entities/hermes-agent|hermes-agent]] — 自我改進 AI agent，learning loop + skills hub 🛠️
+- [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS .NET binding for Morphir，完整 AGENTS.md + 專業化 skills
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill 🛠️
 - [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → Raw 抓取 Skill（花園研究觸發）
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器（14 工具）+ 完整資料流
@@ -116,6 +123,11 @@
 - [[wiki/sources/2026-08-05-tau-github-readme|2026-08-05 Tau: GitHub README]] — Hugging Face 開發，三層架構，設計哲學，library 用法
 - [[wiki/sources/2026-08-05-pi-github-readme|2026-08-05 Pi: GitHub README]] — 四 package 架構、containerization、supply-chain security、session publishing
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme|2026-08-05 Hermes Agent: GitHub README]] — 自我改進 agent，learning loop，Honcho user modeling，agentskills.io
+- [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks|2026-07-13 Omnigent: Databricks Meta-Harness]] — 三大支柱、技術架構、Windows 不相容
+- [[wiki/sources/2026-08-01-okf-knowledge-catalog|2026-08-01 OKF Knowledge Catalog]] — Google Cloud 參考實作，reference agent + visualizer
+- [[wiki/sources/2026-08-02-defect-density-escape-rate|2026-08-02 Defect Metrics]] — Defect Density & Escape Rate 完整指南
+- [[wiki/sources/2026-08-02-morphir-dotnet-agents|2026-08-02 morphir-dotnet AGENTS.md]] — 企業級 .NET AI agent 指南
+- [[wiki/sources/2026-08-02-vibe-coding-implications|2026-08-02 Vibe Coding Implications]] — 自然語言 coding 的風險與最佳實踐
 
 ---
 

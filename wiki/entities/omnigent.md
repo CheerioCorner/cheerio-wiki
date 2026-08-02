@@ -3,7 +3,7 @@ title: Omnigent
 type: entity
 created: 2026-07-13
 updated: 2026-07-30
-sources: 1
+sources: 2
 tags: [meta-harness, orchestration, databricks, open-source, multi-agent, windows-compatibility]
 collection: entities
 topics: [meta-systems]
@@ -101,4 +101,4 @@ Omnigent 是一個 **meta-harness（元鞍具）** 層，運行在你已經在�
 
 ## 來源
 
-- Databricks Blog：*Introducing Omnigent: A Meta-Harness to Combine, Control and Share Your Agents*（[[../../raw/web/2026-07-13-omnigent-meta-harness-databricks]]）
+- [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks]] — Databricks Blog 完整摘要

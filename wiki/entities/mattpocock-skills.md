@@ -30,6 +30,8 @@ canonical: entities/mattpocock-skills
 | Skill | 類型 | 說明 |
 |-------|------|------|
 | `grill-with-docs` | User | 深度追問 + 自動建立領域模型 |
+| `grill-me` | User | 深度追問（thin wrapper → `grilling`） |
+| `grilling` | Model | 追問核心循環（被 grill-me/grill-with-docs 呼叫） |
 | `to-spec` | User | 對話 → 正式規格書 |
 | `to-tickets` | User | 規格書 → 可執行 tickets |
 | `implement` | User | 依照 tickets 實作 + code review |
@@ -61,6 +63,15 @@ canonical: entities/mattpocock-skills
 
 - Universal agents：Cursor、Codex、Claude Code 等
 - Claude skills 需額外設定（symlink 或 copy）
+
+## 依賴關係
+
+```
+grill-me → grilling（核心追問邏輯）
+grill-with-docs → grilling + 自動建立領域模型
+```
+
+⚠️ 安裝 `grill-me` 時必須同時安裝 `grilling`，否則會失敗。
 
 ## 來源
 

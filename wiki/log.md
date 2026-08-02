@@ -1,4 +1,19 @@
+
 # Log
+
+## [2026-08-05] ingest | 批次整理 5 筆 raw 資料入 wiki
+
+- **Omnigent Databricks Blog** → source note 更新 omnigent entity（sources: 1→2）
+- **OKF Knowledge Catalog** → source note 更新 okf-open-knowledge-format concept（sources: 1→2）
+- **Defect Density & Escape Rate** → source note + new concept `defect-metrics`
+- **morphir-dotnet AGENTS.md** → source note + new entity `morphir-dotnet`
+- **Vibe Coding Implications** → source note + new concept `vibe-coding`
+- 更新：`wiki/index.md`（sources 10→17, concepts 8→10, entities 10→11）
+- 建立：5 個 source notes, 1 個 entity, 2 個 concepts
+- 維護：omnigent entity、okf-open-knowledge-format concept 來源更新
+- 跳過：`raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md`（immutable raw conversation）
+- 跳過：`raw/web/2026-08-02-pipackagescoding-agent at main.md`（已在 2026-08-05 ingest）
+- 跳過：`raw/web/2026-08-02-Save Plannotator Plans to Obsidian or Bear.md`（已在 2026-08-05 ingest）
 
 ## [2026-08-05] skill | plannotator-sync
 
@@ -12,6 +27,14 @@
 - 來源：`raw/web/2026-08-02-Save Plannotator Plans to Obsidian or Bear.md`
 - 更新：`wiki/entities/plannotator.md`（Obsidian/Bear/Octarine note 儲存已實現）
 - 修正：「與知識花園整合」已從未來計畫移至已實現功能
+
+## [2026-08-05] skill | 安裝 grilling + 釐清 grill-me 依賴
+
+- 發現 `grill-me` 是 thin wrapper，只呼叫 `/grilling`
+- `grilling` 是核心追問邏輯，但安裝 `grill-me` 時未自動安裝
+- 補安裝：`~/.agents/skills/grilling/SKILL.md`
+- 更新：`wiki/entities/mattpocock-skills.md`（補充依賴關係說明）
+- 更新：Notion 花園 mattpocock/skills 種子（安裝清單 + 成長計畫）
 
 ## [2026-08-05] ingest | Hermes Agent GitHub README
 

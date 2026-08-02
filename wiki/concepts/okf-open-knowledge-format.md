@@ -3,7 +3,7 @@ title: OKF (Open Knowledge Format) — 統一的知識表示格式
 type: concept
 created: 2026-08-01
 updated: 2026-08-01
-sources: 1
+sources: 2
 tags: [okf, knowledge-format, google, ai-agent, documentation]
 source_url: https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf
 collection: concepts
@@ -409,6 +409,7 @@ OKF 依賴 git，多人同時編輯會有衝突。
 
 ## 相關資源
 
+- [[wiki/sources/2026-08-01-okf-knowledge-catalog]] — Google Cloud 參考實作（reference agent + visualizer）
 - [OKF 官方文件](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)
 - [OKF v0.2 規範](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
 - [Pi-plannotator-auto OKF 實作](https://github.com/CheerioCorner/pi-plannotator-auto/tree/master/docs)
