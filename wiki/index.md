@@ -23,7 +23,7 @@
 
 ### 🤖 AI Agent
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
-- [[wiki/entities/pi-mono|pi-mono]] — `badlogic/pi-mono` monorepo + 5 個子 package
+- [[wiki/entities/pi-mono|pi-mono]] — `earendil-works/pi` monorepo + 4 個子 package（MIT）
 - [[wiki/entities/tau|tau]] — Hugging Face 開發的 Pi Python port，三層架構，extension 相容 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
@@ -112,6 +112,7 @@
 - [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|2026-07-22 mattpocock/skills tutorial]] — 完整 AI Coding 工作流程教學影片
 - [[wiki/sources/2026-08-03-tau-python-port-of-pi|2026-08-03 Tau: A Python Port of Pi]] — YouTube 影片：Pi 的 Python port，Textual TUI，session tree，extension 相容
 - [[wiki/sources/2026-08-05-tau-github-readme|2026-08-05 Tau: GitHub README]] — Hugging Face 開發，三層架構，設計哲學，library 用法
+- [[wiki/sources/2026-08-05-pi-github-readme|2026-08-05 Pi: GitHub README]] — 四 package 架構、containerization、supply-chain security、session publishing
 
 ---
 

@@ -3,28 +3,26 @@ title: pi-mono — Agent Toolkit Monorepo
 type: entity
 created: 2026-07-11
 updated: 2026-07-11
-sources: 2
+sources: 3
 tags: [pi, coding-agent, monorepo]
 collection: entities
 topics: [ai-agent]
 canonical: entities/pi-mono
+updated: 2026-08-05
 ---
 
-> `badlogic/pi-mono` 是 Mario Zechner 維護的 TypeScript agent toolkit monorepo。截至 2026-05-02 約 43,777 stars、release v0.72.1,高頻更新中(Node.js ≥ 20.6.0)。
->
-> 核心定位:**「你的 agent 平台」**——不是單一既定體驗,而是一組可組合的 runtime、模型抽象層、UI。
+> [`earendil-works/pi`](https://github.com/earendil-works/pi)（前身 `badlogic/pi-mono`）是 Mario Zechner 維護的 TypeScript agent toolkit monorepo。核心定位：**「你的 agent 平台」**——不是單一既定體驗,而是一組可組合的 runtime、模型抽象層、UI。License：MIT。
 
-## 五個子 package
+## 四個子 package（2026-08 更新）
 
 | Package | 角色 | 備註 |
 |---|---|---|
-| `@mariozechner/pi-ai` | 模型抽象層 | 處理多 provider 切換與自訂模型;`~/.pi/agent/models.json` 是入口 |
-| `@mariozechner/pi-agent-core` | agent runtime | 文章 [[wiki/sources/2026-02-10-pi-agent-core-design]] 重點解剖的對象;5 檔 / 1,500 行 |
-| `@mariozechner/pi-coding-agent` | 最上層 CLI | `npm install -g …pi-coding-agent` 即裝,`pi` 即可執行 |
-| `@mariozechner/pi-tui` | terminal UI | 互動介面層 |
-| `@mariozechner/pi-web-ui` | web UI | 瀏覽器前端對應層 |
+| `@earendil-works/pi-ai` | 模型抽象層 | 處理多 provider 切換與自訂模型;`~/.pi/agent/models.json` 是入口 |
+| `@earendil-works/pi-agent-core` | agent runtime | 文章 [[wiki/sources/2026-02-10-pi-agent-core-design]] 重點解剖的對象;5 檔 / 1,500 行 |
+| `@earendil-works/pi-coding-agent` | 最上層 CLI | `npm install -g …pi-coding-agent` 即裝,`pi` 即可執行 |
+| `@earendil-works/pi-tui` | terminal UI | 互動介面層 |
 
-> 這五個 package **不一定各開獨立 wiki 頁**——目前只在這張總表中說明。日後哪個子 package 出現第二來源深度討論,才考慮升級為獨立 entity 頁。
+> ~~`pi-web-ui`~~（web UI）已不在 README 列出，可能已移除或獨立。Package scope 從 `@mariozechner` 改為 `@earendil-works`。
 
 ## 設計立場(整合 A 與 B 兩文)
 
@@ -66,12 +64,40 @@ canonical: entities/pi-mono
 - 「換個 CLI 換 provider」→ 不,這恰恰是它的設計透點
 - 「適合裝了就用」的 team-wide 標準化 → 不,builder-oriented 優先
 
+## Containerization（沙箱隔離）
+
+Pi 預設以使用者權限運行，無內建權限系統。需強制隔離時有三種方案：
+
+| 方案 | 說明 |
+|---|---|
+| **Gondolin extension** | `pi` 與 provider auth 留在 host，built-in tools 與 `!` commands 路由到本地 Linux micro-VM |
+| **Docker** | 整個 `pi` process 在本地 container 中運行 |
+| **OpenShell** | 整個 `pi` process 在 policy-controlled sandbox 中運行 |
+
+## Supply-chain Security
+
+- 外部依賴釘死確切版本（`save-exact=true`）
+- `package-lock.json` 為 dependency ground truth，pre-commit 阻擋意外更動
+- `npm run check` 驗證 pinned deps、TypeScript import 相容性、shrinkwrap
+- 發布前 local release smoke test（`npm run release:local`）
+- CI 用 `npm ci --ignore-scripts`，定期 `npm audit`
+
+## Session Publishing
+
+OSS session 可發布到 Hugging Face 幫助改進 coding agent：
+
+```bash
+# 使用 badlogic/pi-share-hf 工具
+# 需要 Hugging Face 帳號 + HF CLI
+badlogicgames/pi-mono on Hugging Face: https://huggingface.co/datasets/badlogicgames/pi-mono
+```
+
 ## 跨語言移植
 
-**Tau**（`wiki/entities/tau`）是 Pi 的 **Python port**，由 Pi 團隊內部開發。架構與 Pi 完全相同（session tree、skills、extensions、system prompt），差異只在 TUI 層使用 Textual 框架而非 TypeScript 從零打造。Tau 的存在證明了 Pi 架構的可移植性——extension events API 跨語言相容。
+**Tau**（[[wiki/entities/tau|tau]]）是 Pi 的 **Python port**，由 Hugging Face 開發。架構與 Pi 完全相同（session tree、skills、extensions、system prompt），差異只在 TUI 層使用 Textual 框架。Tau 的存在證明了 Pi 架構的可移植性——extension events API 跨語言相容。
 
 ## 相關頁面
 - Entities:[[wiki/entities/mario-zechner]]、[[wiki/entities/pi-agent-core]]、[[wiki/entities/tau]]
-- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]] / [[wiki/sources/2026-08-03-tau-python-port-of-pi]]
+- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]] / [[wiki/sources/2026-08-03-tau-python-port-of-pi]] / [[wiki/sources/2026-08-05-pi-github-readme]]
 - Concepts:[[wiki/concepts/late-conversion]]、[[wiki/concepts/minimal-agent-philosophy]]
 - Synthesis:（待建立：coding-agent-comparison — Claude Code / Codex / Pi 五維對比表）

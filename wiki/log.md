@@ -1,5 +1,14 @@
 # Log
 
+## [2026-08-05] ingest | Pi GitHub README
+
+- 來源：`raw/web/2026-08-02-pipackagescoding-agent at main.md`
+- 修正：repo 從 `badlogic/pi-mono` 改為 `earendil-works/pi`；package 從 5 個改為 4 個（pi-web-ui 已移除）
+- 新增：containerization 三方案（Gondolin / Docker / OpenShell）、supply-chain security 策略、session publishing to Hugging Face、MIT license
+- 更新：`wiki/entities/pi-mono.md`（repo name、package count、containerization、supply-chain 章節）
+- 建立：`wiki/sources/2026-08-05-pi-github-readme.md`
+- 更新：`wiki/index.md`
+
 ## [2026-08-05] ingest | Tau GitHub README
 
 - 來源：`raw/web/2026-08-02-huggingfacetau A Python port of Pi’s minimalist coding agent.md`
