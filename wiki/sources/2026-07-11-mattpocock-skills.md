@@ -15,6 +15,8 @@ provenance:
 
 # mattpocock/skills
 
+> 視覺化：[[wiki/visualizations/mattpocock-skills.canvas|mattpocock/skills Canvas]]
+
 Matt Pocock（Total TypeScript 作者）維護的 coding agent skills 集合。核心理念：用工程方法做 real engineering，不是 vibe coding。
 
 ## 設計哲學
@@ -170,5 +172,5 @@ npx skills update
 ## 相關頁面
 
 - `pi-coding-agent` — Pi harness 本體（尚未建立獨立 entity 頁）
-- [[entities/wiki-knowledge]] — 知識庫操作 skill
+- [[wiki/entities/wiki-knowledge]] — 知識庫操作 skill
 - `skill-creator` — 如何建立 skill（外部 skill，尚未建立獨立 entity 頁）

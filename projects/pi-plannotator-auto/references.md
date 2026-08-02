@@ -11,5 +11,5 @@ tags: [project-bundle, references]
 - Repository: <https://github.com/CheerioCorner/pi-plannotator-auto>
 - Package: <https://www.npmjs.com/package/@cheeriocorner/pi-plannotator-auto>
 - Package OKF docs: <https://github.com/CheerioCorner/pi-plannotator-auto/tree/master/docs>
-- Shared entity: [[entities/plannotator|Plannotator]]
-- Shared concept: [[concepts/okf-open-knowledge-format|OKF]]
+- Shared entity: [[wiki/entities/plannotator|Plannotator]]
+- Shared concept: [[wiki/concepts/okf-open-knowledge-format|OKF]]

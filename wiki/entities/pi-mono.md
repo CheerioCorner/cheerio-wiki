@@ -19,7 +19,7 @@ canonical: entities/pi-mono
 | Package | 角色 | 備註 |
 |---|---|---|
 | `@mariozechner/pi-ai` | 模型抽象層 | 處理多 provider 切換與自訂模型;`~/.pi/agent/models.json` 是入口 |
-| `@mariozechner/pi-agent-core` | agent runtime | 文章 [[sources/2026-02-10-pi-agent-core-design]] 重點解剖的對象;5 檔 / 1,500 行 |
+| `@mariozechner/pi-agent-core` | agent runtime | 文章 [[wiki/sources/2026-02-10-pi-agent-core-design]] 重點解剖的對象;5 檔 / 1,500 行 |
 | `@mariozechner/pi-coding-agent` | 最上層 CLI | `npm install -g …pi-coding-agent` 即裝,`pi` 即可執行 |
 | `@mariozechner/pi-tui` | terminal UI | 互動介面層 |
 | `@mariozechner/pi-web-ui` | web UI | 瀏覽器前端對應層 |
@@ -59,7 +59,7 @@ canonical: entities/pi-mono
 | **無 built-in to-dos** | — |
 | **無 maxSteps** | 迴圈自然結束。Zechner 原話:「我從來沒找到需要 maxSteps 的用例,所以為什麼要加?」 |
 
-→ 這是 [[sources/2026-02-10-pi-agent-core-design]] 7.1 + [[sources/2026-05-02-pi-mono-framework-tw]] 第 4 判斷的合併視角。
+→ 這是 [[wiki/sources/2026-02-10-pi-agent-core-design]] 7.1 + [[wiki/sources/2026-05-02-pi-mono-framework-tw]] 第 4 判斷的合併視角。
 
 ## 入口最常見的快取誤判(原文)
 - 「沒內建 MCP 就是不完整」→ 不,它認為 MCP 不該在 runtime
@@ -67,7 +67,7 @@ canonical: entities/pi-mono
 - 「適合裝了就用」的 team-wide 標準化 → 不,builder-oriented 優先
 
 ## 相關頁面
-- Entities:[[entities/mario-zechner]]、[[entities/pi-agent-core]]
-- Sources:[[sources/2026-02-10-pi-agent-core-design]] / [[sources/2026-05-02-pi-mono-framework-tw]]
-- Concepts:[[concepts/late-conversion]]、[[concepts/minimal-agent-philosophy]]
+- Entities:[[wiki/entities/mario-zechner]]、[[wiki/entities/pi-agent-core]]
+- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]]
+- Concepts:[[wiki/concepts/late-conversion]]、[[wiki/concepts/minimal-agent-philosophy]]
 - Synthesis:（待建立：coding-agent-comparison — Claude Code / Codex / Pi 五維對比表）

@@ -16,6 +16,5 @@ provenance:
 - Package source：`C:/Cheerio/pi/packages/pi-todo-journal/`（local development path only; not canonical cross-environment reference）
 - Package plan：`PLAN.md` in the package repository（package source of truth；本 bundle 不複製）
 - Package OKF docs：`docs/` in the package repository
-- Shared package boundary：[[decisions/package-knowledge-boundary|Package Knowledge Boundary]]
-- Shared collection model：[[decisions/shared-wiki-collection-model|Shared Wiki Collection Model]]
-- Shared project entity：[[wiki/projects/pi-todo-journal/README|pi-todo-journal project README]]
+- Shared package boundary：[[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]]
+- Shared collection model：[[wiki/decisions/shared-wiki-collection-model|Shared Wiki Collection Model]]

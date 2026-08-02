@@ -7,6 +7,7 @@ status: open
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
+tags: [knowledge-mgmt, youtube, pipeline]
 provenance:
   - kind: raw
     path: raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md
@@ -31,5 +32,5 @@ Revisit after shared collections, provenance, canonical linking, lint, and migra
 
 ## Related
 
-- [[decisions/package-knowledge-boundary|Package Knowledge Boundary]]
-- [[concepts/README|Shared collections]]
+- [[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]]
+- [[wiki/concepts/README|Shared collections]]

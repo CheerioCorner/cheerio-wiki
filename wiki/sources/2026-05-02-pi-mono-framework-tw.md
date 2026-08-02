@@ -15,7 +15,7 @@ provenance:
 
 一篇 ai-chain.tw 的繁體中文長文,從**整個 monorepo**與**代理人生態**角度切入,評析 `badlogic/pi-mono`。發布於 2026-05-02,作者署為「AI-Chain」團隊。
 
-> 與 [[sources/2026-02-10-pi-agent-core-design]] 為姊妹篇:**同一個專題的兩個視角**——A 篇解剖 `packages/agent/src/` 五支檔,B 篇俯瞰整個 monorepo。互不矛盾。
+> 與 [[wiki/sources/2026-02-10-pi-agent-core-design]] 為姊妹篇:**同一個專題的兩個視角**——A 篇解剖 `packages/agent/src/` 五支檔,B 篇俯瞰整個 monorepo。互不矛盾。
 
 ## URL 與原始檔
 - 原文:[ai-chain.tw/blog/pi-mono-intuitive-typescript-ai-agent-framework](https://ai-chain.tw/blog/pi-mono-intuitive-typescript-ai-agent-framework)
@@ -96,12 +96,12 @@ pi-coding-agent README 的代表性句:**adapt pi to your workflows, not the oth
 兩者**對極簡與不做清單的立場完全一致**。可見後續如果 lint 出現「簡化策略被推翻」之類的標記,優先看這個來源頁。
 
 ## 推導出的 wiki 頁
-- Entities: [[entities/pi-mono|pi-mono]]；其餘 `pi-coding-agent`、`pi-ai`、`pi-tui`、`pi-web-ui` 尚未建立獨立頁面
+- Entities: [[wiki/entities/pi-mono|pi-mono]]；其餘 `pi-coding-agent`、`pi-ai`、`pi-tui`、`pi-web-ui` 尚未建立獨立頁面
 - Concepts: `provider-abstraction`（尚未建立的 future concept）
-- Synthesis:[[concepts/minimal-agent-philosophy]]
+- Synthesis:[[wiki/concepts/minimal-agent-philosophy]]
 
 ## 相關頁面
-- [[sources/2026-02-10-pi-agent-core-design]] — 姊妹篇
-- [[entities/pi-agent-core]]
-- [[entities/pi-mono]]
-- [[concepts/minimal-agent-philosophy]]
+- [[wiki/sources/2026-02-10-pi-agent-core-design]] — 姊妹篇
+- [[wiki/entities/pi-agent-core]]
+- [[wiki/entities/pi-mono]]
+- [[wiki/concepts/minimal-agent-philosophy]]

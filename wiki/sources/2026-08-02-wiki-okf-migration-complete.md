@@ -28,6 +28,10 @@ tags: [wiki, okf, migration, audit, provenance, project-bundle]
 
 ```text
 raw/                    # immutable 原始資料與對話
+├── web/                # browser / Web Clipper
+├── youtube/            # YouTube 原始資料
+├── conversations/      # annotator / agent 對話
+├── assets/             # 原始附件
 projects/<project-id>/  # 跨 session、跨環境 Project OKF Bundles
 wiki/
 ├── concepts/           # 可重用抽象
@@ -36,7 +40,8 @@ wiki/
 ├── decisions/          # 已確認全域／跨專案選擇
 ├── discussions/        # 尚未定案內容
 ├── topics/             # taxonomy／導航
-└── audits/             # audit 報告
+├── visualizations/      # Canvas 視覺化投影
+└── audits/              # audit 報告
 ```
 
 ## 2. Operating rules
@@ -46,6 +51,7 @@ wiki/
 - package repository 與原始碼仍是 package source of truth。
 - package 內 `docs/` 是隨 package 發布的開發／維運 OKF bundle。
 - Obsidian root `projects/` 是跨 session project knowledge bundle，不是第二份 package source of truth。
+- 工作狀態與可追溯事件使用 `work/current.md` 與 `work/history/YYYY-MM.md`；不再依賴 todos/journal 作為 active workflow source of truth。
 - 跨環境 canonical reference 優先使用 GitHub repository URL，不使用固定本地路徑。
 - `verified.by` 使用 `human:Cheer`；Cheerio 是 AI assistant 名稱。
 - 日期現行規則使用執行環境的 system local date/time；歷史文件不為了新規則而改寫。
@@ -60,16 +66,16 @@ wiki/
 
 ### Formal decisions
 
-- [[decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]]
-- [[decisions/shared-wiki-collection-model|Shared Wiki Collection Model]]
-- [[decisions/raw-conversation-promotion-workflow|Raw Conversation Promotion Workflow]]
-- [[decisions/package-knowledge-boundary|Package Knowledge Boundary]]
+- [[wiki/decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]]
+- [[wiki/decisions/shared-wiki-collection-model|Shared Wiki Collection Model]]
+- [[wiki/decisions/raw-conversation-promotion-workflow|Raw Conversation Promotion Workflow]]
+- [[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]]
 
 ### Open discussions
 
-- [[discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]
-- [[discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]]
-- [[discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]]
+- [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]
+- [[wiki/discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]]
+- [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]]
 
 ### Annotator reviews
 
@@ -94,7 +100,7 @@ wiki/
 - `wiki/projects/` 遷移風險
 - 低風險 migration phases
 
-Audit：[[audits/2026-08-02-wiki-collection-topic-link-audit|Wiki collection/topic/link audit]]。
+Audit：[[wiki/audits/2026-08-02-wiki-collection-topic-link-audit|Wiki collection/topic/link audit]]。
 
 ### Phase B — Shared collections
 

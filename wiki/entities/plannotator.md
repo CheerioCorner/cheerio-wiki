@@ -131,6 +131,6 @@ pi install git:github.com/CheerioCorner/pi-plannotator-auto
 
 ## 相關頁面
 
-- [[entities/pi-agent-core]] — Pi agent 核心
-- [[sources/2026-07-11-plannotator-research]] — 初始研究來源
-- [[concepts/meta-harness]] — 另一種 agent 工具，與 Plannotator 的「加法」取徑形成對比
+- [[wiki/entities/pi-agent-core]] — Pi agent 核心
+- [[wiki/sources/2026-07-11-plannotator-research]] — 初始研究來源
+- [[wiki/concepts/meta-harness]] — 另一種 agent 工具，與 Plannotator 的「加法」取徑形成對比

@@ -68,7 +68,7 @@ URL → 偵測類型 → 選擇擷取器
 - WebSocket 即時更新前端狀態
 
 ## 相關頁面
-- Source: [[sources/2026-07-18-pi-resource-inventory]]
-- Entities: [[entities/wiki-knowledge]], [[entities/notionApi]]
+- Source: [[wiki/sources/2026-07-18-pi-resource-inventory]]
+- Entities: [[wiki/entities/wiki-knowledge]], [[wiki/entities/notionApi]]
 - Concepts: `provider-abstraction`（尚未建立的 future concept）
-- Packages: [[entities/pi-mono]] (pi-web-access 是獨立擴充，非 pi-mono 子 package)
+- Packages: [[wiki/entities/pi-mono]] (pi-web-access 是獨立擴充，非 pi-mono 子 package)

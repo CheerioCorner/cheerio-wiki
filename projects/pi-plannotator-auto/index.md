@@ -25,8 +25,8 @@ tags: [project-bundle, pi-plannotator-auto, okf, pilot]
 
 - GitHub：<https://github.com/CheerioCorner/pi-plannotator-auto>
 - NPM：`@cheeriocorner/pi-plannotator-auto`
-- Shared entity：[[entities/plannotator|Plannotator]]
-- Shared concepts：[[concepts/okf-open-knowledge-format|OKF]]、[[concepts/npm-publishing-workflow|Package Publishing Workflow]]
+- Shared entity：[[wiki/entities/plannotator|Plannotator]]
+- Shared concepts：[[wiki/concepts/okf-open-knowledge-format|OKF]]、[[wiki/concepts/npm-publishing-workflow|Package Publishing Workflow]]
 
 ## Bundle contents
 

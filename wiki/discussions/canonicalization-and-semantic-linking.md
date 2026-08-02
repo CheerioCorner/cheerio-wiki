@@ -7,6 +7,7 @@ status: open
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
+tags: [knowledge-mgmt, linking, canonicalization]
 provenance:
   - kind: raw
     path: raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md
@@ -32,5 +33,5 @@ Use an AI-first approach with lint guardrails:
 
 ## Related
 
-- [[decisions/shared-wiki-collection-model|Shared Wiki Collection Model]]
-- [[audits/2026-08-02-wiki-collection-topic-link-audit|Collection/topic/link audit]]
+- [[wiki/decisions/shared-wiki-collection-model|Shared Wiki Collection Model]]
+- [[wiki/audits/2026-08-02-wiki-collection-topic-link-audit|Collection/topic/link audit]]

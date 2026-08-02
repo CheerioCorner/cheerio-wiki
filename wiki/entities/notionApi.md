@@ -87,6 +87,6 @@ canonical: entities/notionApi
 **原則：讀用 MCP，寫用 `ntn` CLI。**
 
 ## 相關頁面
-- Source: [[sources/2026-07-18-pi-resource-inventory]]
-- Entities: [[entities/wiki-knowledge]], [[entities/pi-web-access-zh-tw]]
+- Source: [[wiki/sources/2026-07-18-pi-resource-inventory]]
+- Entities: [[wiki/entities/wiki-knowledge]], [[wiki/entities/pi-web-access-zh-tw]]
 - Skills: `knowledge-garden`（花園維護）、`notion-cli`（CLI 參考）

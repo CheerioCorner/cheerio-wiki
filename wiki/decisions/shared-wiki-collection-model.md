@@ -7,6 +7,7 @@ status: confirmed
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
+tags: [knowledge-mgmt, wiki-architecture, okf]
 provenance:
   - kind: raw
     path: raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md
@@ -46,10 +47,10 @@ The shared Wiki uses five content collections:
 
 ## Related
 
-- [[concepts/README|Concepts collection]]
-- [[entities/README|Entities collection]]
-- [[sources/README|Sources collection]]
-- [[decisions/README|Decisions collection]]
-- [[discussions/README|Discussions collection]]
-- [[topics/README|Topics taxonomy]]
-- [[audits/2026-08-02-wiki-collection-topic-link-audit|Collection/topic/link audit]]
+- [[wiki/concepts/README|Concepts collection]]
+- [[wiki/entities/README|Entities collection]]
+- [[wiki/sources/README|Sources collection]]
+- [[wiki/decisions/README|Decisions collection]]
+- [[wiki/discussions/README|Discussions collection]]
+- [[wiki/topics/README|Topics taxonomy]]
+- [[wiki/audits/2026-08-02-wiki-collection-topic-link-audit|Collection/topic/link audit]]

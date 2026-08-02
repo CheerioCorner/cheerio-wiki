@@ -57,26 +57,24 @@ Obsidian/
 │   ├── entities/           # 人、工具、package 與具體實作
 │   ├── decisions/          # 全域／跨專案已確認決策
 │   ├── discussions/        # 尚未定案的討論
-│   ├── topics/             # 導航／taxonomy 層
+│   ├── topics/             # 導航／taxonomy 層，只放導航頁與 Canvas
 │   │   ├── ai-agent/
 │   │   ├── extension-dev/
 │   │   ├── meta-systems/
 │   │   └── knowledge-mgmt/
-│   ├── projects/           # legacy project documentation（新 bundle 在 root projects/）
 │   ├── sources/            # 來源筆記
 │   ├── index.md            # 內容索引
 │   └── log.md              # 時間日誌
-├── todos/                  # 任務系統
-│   ├── current.md          # 目前進行中
-│   ├── backlog.md          # 待辦清單
-│   └── done/               # 已完成
-├── journal/                # 日記系統
-│   ├── daily/
-│   └── templates/
+├── work/                   # 工作狀態與可追溯 history events
+│   ├── README.md
+│   ├── current.md
+│   └── history/YYYY-MM.md
 └── AGENTS.md               # 工作守則（共同演化）
 ```
 
 `projects/<project-id>/` 使用 GitHub repository URL 作為跨環境 canonical reference，不取代 package repository、原始碼或 package 內的 `docs/`。原始 annotator feedback 保留在 `raw/conversations/`，並使用 `type: raw-conversation`、`immutable: true`。
+
+工作結果與決策若需追溯，追加至 `work/history/YYYY-MM.md`，並使用 `refs:` 連到 raw、project 或 wiki；不寫入 todos / journal。
 
 ## Git 同步設定
 - **Remote**: `https://github.com/CheerioCorner/cheerio-wiki`（私有）
@@ -104,12 +102,13 @@ tags: [topic-a, topic-b]
 
 ### 交叉引用
 - 一律用 Obsidian Wikilink 雙中括號；文件示例中的 target 使用 `wikilink` code text，不代表實際頁面
-- 優先使用 vault-root 完整路徑，例如 `[[entities/pi-mono|pi-mono]]`；basename 只適合唯一 target
+- 優先使用 vault-root 完整路徑，例如 `[[wiki/entities/pi-mono|pi-mono]]`；basename 只適合唯一 target
 - 提到重要概念／實體時**必須建連結**
-- compatibility stubs、Canvas 與歷史 log 可能造成合法 ambiguity；lint 應分別統計，不應自動建立 future concept
+- Canvas、工作 history 與 raw conversation 可能造成合法 ambiguity；lint 應分別統計，不應自動建立 future concept
+- 工作 history event 的 `refs:` 一律優先使用 canonical vault-root path
 
 ## 相關頁面
-- Source: [[sources/2026-07-18-pi-resource-inventory]]
-- Entities: [[entities/pi-web-access-zh-tw]], [[entities/notionApi]], [[entities/pi-mono]]
-- Concepts: [[concepts/meta-harness]], [[concepts/minimal-agent-philosophy]]
+- Source: [[wiki/sources/2026-07-18-pi-resource-inventory]]
+- Entities: [[wiki/entities/pi-web-access-zh-tw]], [[wiki/entities/notionApi]], [[wiki/entities/pi-mono]]
+- Concepts: [[wiki/concepts/meta-harness]], [[wiki/concepts/minimal-agent-philosophy]]
 - Wiki 系統頁: [[wiki/index|Wiki index]], [[wiki/log|Wiki log]]

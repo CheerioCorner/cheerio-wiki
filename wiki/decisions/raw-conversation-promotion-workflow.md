@@ -7,6 +7,7 @@ status: confirmed
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
+tags: [knowledge-mgmt, provenance, annotator]
 provenance:
   - kind: raw
     path: raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md
@@ -39,7 +40,7 @@ Annotator feedback and session handoffs are captured as immutable raw conversati
 
 ## Related
 
-- [[concepts/README|Concepts]]
-- [[decisions/README|Decisions]]
-- [[discussions/README|Discussions]]
+- [[wiki/concepts/README|Concepts]]
+- [[wiki/decisions/README|Decisions]]
+- [[wiki/discussions/README|Discussions]]
 - [[raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff|Source handoff]]

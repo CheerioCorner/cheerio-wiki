@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"id":"control_root","type":"text","text":"# PI AGENT 的能力與主導權\n\n在 Pi 裡面，你不是在使用一個被產品經理閹割好的軟體，而是在控制一個由你組合的「代理人外殼」。\n\n這裡拆解你能**做什麼**（操作能力）與你能**控制到什麼程度**（控制深度）。","x":0,"y":-80,"width":320,"height":280},
+		{"id":"what_can_do","type":"text","text":"## 🛠️ 你可以用它做什麼？ (操作層面)\n\n- **自動化程式編寫與重構**: 建立檔案、修改既有程式碼、重構複雜函式、修復專案架構 Bug。\n- **與終端機 (Shell) 深度互動**: 執行編譯、跑單元測試、自動部署部署或進行系統環境設定。\n- **即時干預 (Steering)**: 當 Agent 正在背景大改檔案或瘋狂跑指令時，你不需要等它結束。你可以隨時按下 Enter 輸入訊息「打斷並修正它的路線」，或按 Alt+Enter 排程下一步。\n- **分支追溯 (Branching)**: 程式寫爛時，輸入 `/tree` 查看對話樹，直接點選回到 10 分鐘前還沒出錯的那個節點，開啟一個全新方向重新執行。\n- **環境自適應**: 它可以是終端機裡的互動式 TUI（像 Vim 介面），也可以用 `-p \"query\"` 變成腳本中的一條 Linux Pipeline，或作為 RPC 服務塞進你既有的 CI/CD 流程中。","x":420,"y":-320,"width":450,"height":450},
+		{"id":"how_much_control","type":"text","text":"## 🎛️ 你可以自己控制什麼？ (控制深度)\n\n### 1. 完全控制 Context Window (上下文)\n- **不會撐爆 Token**: 預設提供自動摘要（Compaction）。\n- **自訂摘要邏輯**: 你可以控制「當對話太長時，它是要摘要歷史，還是要針對程式碼結構保留關鍵邏輯？」甚至指定不同的低成本模型來幫忙做摘要。\n\n### 2. 完全控制專案指令 (Context Engineering)\n- **`AGENTS.md`**: 你可以控制專案啟動時載入什麼規範（例如：本專案一律使用 .NET 8 / C# 12 語法，依賴注入必須符合特定架構）。\n- **`SYSTEM.md`**: 徹底覆寫或疊加 Pi 的預設 System Prompt，完全掌握 AI 的人格與輸出格式。\n\n### 3. 完全控制安全與權限\n- 許多 Agent 會有惱人的安全確認彈窗（Permission Popups）。\n- Pi 的做法是：**它不幫你做安全性防護**。你可以選擇在安全沙盒（Container/Docker）裡跑它，或者你自己寫一個 TypeScript 擴充套件（Extension）來過濾特定高風險的 `rm -rf` 指令。怎麼攔截、何時彈窗，百分之百由你寫程式決定。\n\n### 4. 完全控制模型與路由\n- 隨時用 `/model` 換腦袋。程式邏輯打底用 Claude，簡單重複的腳本用 Groq/Ollama，成本與速度完全自己調配。","x":420,"y":180,"width":450,"height":900},
+		{"id":"summary_quote","type":"text","text":"> 💡 **總結來說：**\n> 只要你想，你可以請 Pi 幫你寫一個擴充功能，把它自己改造成擁有「進度條 UI」、「任務看板」或「自動背書審查」的客製化工具。\n> \n> **它不會自作聰明，所有的失控或掌控，都在你的設定檔（TS 擴充/Markdown 範本）之中。**","x":0,"y":260,"width":320,"height":260}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"control_root","fromSide":"right","toNode":"what_can_do","toSide":"left"},
+		{"id":"e2","fromNode":"control_root","fromSide":"right","toNode":"how_much_control","toSide":"left"},
+		{"id":"e3","fromNode":"control_root","fromSide":"bottom","toNode":"summary_quote","toSide":"top"}
+	]
+}

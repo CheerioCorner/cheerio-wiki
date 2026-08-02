@@ -8,4 +8,4 @@
 - Phase 4 TUI、CI、npm 與發布驗證
 - Phase 5 Notion / Git / other adapters
 
-YouTube-to-Wiki 不屬於本 package；共用邊界參見 [[decisions/package-knowledge-boundary|Package Knowledge Boundary]]。
+YouTube-to-Wiki 不屬於本 package；共用邊界參見 [[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]]。

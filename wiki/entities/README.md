@@ -7,11 +7,11 @@
 
 ## Canonical pages
 
-- [[entities/mario-zechner|Mario Zechner]]
-- [[entities/notionApi|notionApi]]
-- [[entities/omnigent|Omnigent]]
-- [[entities/pi-agent-core|pi-agent-core]]
-- [[entities/pi-mono|pi-mono]]
-- [[entities/pi-web-access-zh-tw|pi-web-access-zh-tw]]
-- [[entities/plannotator|Plannotator]]
-- [[entities/wiki-knowledge|wiki-knowledge]]
+- [[wiki/entities/mario-zechner|Mario Zechner]]
+- [[wiki/entities/notionApi|notionApi]]
+- [[wiki/entities/omnigent|Omnigent]]
+- [[wiki/entities/pi-agent-core|pi-agent-core]]
+- [[wiki/entities/pi-mono|pi-mono]]
+- [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]]
+- [[wiki/entities/plannotator|Plannotator]]
+- [[wiki/entities/wiki-knowledge|wiki-knowledge]]

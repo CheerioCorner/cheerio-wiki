@@ -1,5 +1,13 @@
 # AGENTS.md — LLM 知識庫工作守則
 
+## Vault 入口
+
+- [[wiki/index|Wiki Index]] — canonical knowledge entry
+- [[wiki/topics|Topics / Taxonomy]] — navigation entry
+- [[work/current|Current Work]] — current work and references
+- [[raw/README|Raw Sources]] — immutable input contract
+
+
 > 本檔案規範 LLM agent 如何維護這個知識庫。
 > 維護者：Cheerio
 > 建立日期：2026-07-11
@@ -12,8 +20,11 @@
 ```
 Obsidian/
 ├── raw/                    # 原始資料（只讀，不修改）
-│   ├── assets/             # Obsidian 下載的本機圖片
-│   └── conversations/      # 原始對話／annotator handoff
+│   ├── web/                # Browser / Obsidian Web Clipper 原始剪藏
+│   ├── youtube/            # YouTube 字幕、逐字稿與影片資訊
+│   ├── conversations/      # 原始對話／annotator handoff
+│   ├── assets/             # 原始來源使用的圖片與附件
+│   └── README.md            # raw contract
 ├── projects/               # Project OKF Bundles（跨 session、跨環境）
 │   └── <project-id>/       # project-local decisions、discussions、references
 ├── wiki/                   # Shared cross-project knowledge graph
@@ -22,27 +33,31 @@ Obsidian/
 │   ├── sources/            # 整理後的外部資料與研究紀錄
 │   ├── decisions/          # 全域／跨專案已確認的架構與技術選擇
 │   ├── discussions/        # 尚未定案的方案與研究問題
-│   ├── topics/             # 導航／taxonomy 層，不是主要內容 collection
+│   ├── topics.md           # taxonomy 總入口
+│   ├── topics/             # topic landing pages（.md）
+│   ├── visualizations/     # 所有 Canvas 視覺化投影
 │   ├── audits/             # 分析報告與 migration audit
 │   ├── index.md            # 內容索引
 │   └── log.md              # 時間日誌（append-only）
-├── todos/                  # 任務系統
-├── journal/                # 日記系統
+├── work/                   # 可追溯工作狀態與歷史事件
+│   ├── README.md            # work contract
+│   ├── current.md          # 唯一的目前工作清單
+│   └── history/YYYY-MM.md  # 按月分片的完成／決策／活動事件
 └── AGENTS.md               # 本檔，工作守則
 ```
 
 **各資料夾用途：**
-- `raw/` = 原始資料與對話。永遠只讀；原始 annotator feedback 使用 `type: raw-conversation`、`immutable: true`。
+- `raw/` = 原始資料與對話。永遠只讀；依來源通道分為 `web/`、`youtube/`、`conversations/`，附件集中於 `assets/`。原始 annotator feedback 使用 `type: raw-conversation`、`immutable: true`。
 - `projects/<project-id>/` = 跨 session、跨本地環境的 Project OKF Bundle；不取代 package repository、原始碼或 package 內的 `docs/`。
 - `wiki/concepts/` = 可跨專案重用的抽象知識，`type: concept`。
 - `wiki/entities/` = 人、工具、package、服務與具體實作，`type: entity`。
 - `wiki/sources/` = 整理後的外部資料，`type: source`；raw 仍是原始 source of truth。
 - `wiki/decisions/` = 全域或跨專案已確認的決策；project-local decisions 留在 Project Bundle。
 - `wiki/discussions/` = 尚未定案的討論；確認後才提升為 decision 或 concept。
-- `wiki/topics/` = 導航與 taxonomy；canonical content 優先連到五個 collections。
-- `todos/` = 任務系統，管理所有待辦和進行中任務。
-- `journal/` = 日記系統，由 Obsidian Daily Notes + Calendar 外掛管理。
-- `AGENTS.md` = 工作守則，由人類與 LLM 共同演化。
+- `wiki/topics.md` 與 `wiki/topics/*.md` = 導航與 taxonomy；只放 topic 導航頁，canonical content 優先連到五個 collections。
+- `wiki/visualizations/` = Canvas 視覺化投影；Canvas 不取代 canonical page，且必須有 Markdown 入口或 backlink。
+- `work/` = 唯一的工作狀態與可追溯事件系統；`README.md` 定義 contract，`current.md` 管理目前工作，`history/YYYY-MM.md` 保存完成、決策與重要處理結果。舊工作目錄已完成遷移並刪除，不得重新建立。
+- `AGENTS.md` = 工作守則，由人類與 LLM 共同演化；它是治理入口，不要求每個內容頁反向連結。
 
 ---
 
@@ -51,11 +66,11 @@ Obsidian/
 ### 2.1 什麼進 raw/？
 | 類型 | 範例 | 觸發方式 |
 |------|------|---------|
-| 網頁文章 | 部落格、新聞、知乎回答 | Web Clipper 或 agent 存入 |
+| 網頁文章 | 部落格、新聞、知乎回答 | Web Clipper 或 agent 存入 `raw/web/` |
 | URL 連結 | 你貼給我的 URL | agent 用 web_fetch 抓取後存入 |
-| YouTube | 影片字幕/逐字稿 | 字幕抓取工具（待研究） |
+| YouTube | 影片字幕/逐字稿 | 字幕抓取工具（待研究）存入 `raw/youtube/` |
 | PDF/論文 | 學術論文、技術報告 | 手動放入 raw/ |
-| 原始文字 | 你直接貼的一段文字 | agent 存入 raw/ |
+| 原始文字 | 你直接貼的一段文字 | agent 存入適當的 raw source channel |
 
 **關鍵：未經整理的原始資料。**
 
@@ -79,15 +94,15 @@ Obsidian/
 
 **關鍵：值得跟別人分享的精華，也是自己要能快速找到的速查手冊。**
 
-### 2.4 什麼進日記？
+### 2.4 什麼進 work/？
 | 類型 | 範例 |
 |------|------|
-| 今日完成 | 做了哪些事 |
-| 學到的 | 今天的洞見 |
-| 心情反思 | 對工作的感受 |
-| 明日計畫 | 明天要做什麼 |
+| 目前工作 | 要做什麼、正在做什麼、下一步 |
+| 完成事件 | 做過哪些事、結果是什麼 |
+| 決策事件 | 討論後確認了什麼 |
+| 可追溯關係 | 對應的 raw、project、wiki references |
 
-**關鍵：日常記錄，不需要結構化。**
+**關鍵：只記錄 AI 未來需要追溯的工作、討論與處理結果；不建立個人生活日誌。**
 
 ### 2.5 什麼進 projects/？
 | 類型 | 範例 |
@@ -114,7 +129,7 @@ Obsidian/
 
 ### 3.1 Ingest（吸收新資料）
 
-**觸發條件：** 人類在 `raw/` 放入新檔案並說「處理這個」或「ingest」。
+**觸發條件：** 人類在 `raw/` 放入新檔案並說「處理這個」或「ingest」。若 ingest 產生明確 follow-up 或完成事件，依 `work/README.md` 更新 work。
 
 **單筆流程（推薦，可監督）：**
 1. 讀完來源（文本一次讀完；有圖片時另外批次讀）。
@@ -124,7 +139,7 @@ Obsidian/
    - 可重用抽象放入 `wiki/concepts/`
    - 具體人／工具／package 放入 `wiki/entities/`
    - 尚未定案內容放入 `wiki/discussions/`；已確認的全域選擇放入 `wiki/decisions/`
-   - `wiki/topics/` 只更新導航／taxonomy
+   - `wiki/topics.md` 與 `wiki/topics/*.md` 只更新導航／taxonomy；不得在 topic 目錄建立內容副本或 compatibility stub
    - 標記新資料是否推翻／補充既有結論
 4. 更新 `wiki/index.md`（加入新頁或更新摘要）。
 5. 在 `wiki/log.md` 附加一條 ingest 紀錄。
@@ -136,7 +151,9 @@ Obsidian/
 
 **觸發條件：** 人類對 wiki 提出問題。
 
-1. 先讀 `wiki/index.md` 找出相關頁面。
+若問題涉及「之前做過什麼」「上次進度」或既有決策，才讀取相關 `work/history/YYYY-MM.md`；一般 query 不在啟動時預先載入 history。
+
+1. 先讀 `wiki/index.md` 找出相關頁面；啟動時只讀 `work/current.md`，history 僅在需要追溯過去時讀取。
 2. 讀那些頁面（必要時追溯其連結）。
 3. 給出有引用的回答，並標明來源頁面。
 4. **重要：好的回答可以回填成新頁面**（比較表、新分析、新發現）。人類說「把這個存到 wiki」就建檔 + 更新 index + 寫 log。
@@ -164,7 +181,7 @@ Obsidian/
 3. 可選：`decisions/`、`discussions/`、`references.md`、`log.md`。
 4. 使用 GitHub repository URL 作為跨環境 canonical reference。
 5. 不複製 package source code、完整 PLAN 或 package `docs/`；更新 `wiki/index.md` 的 Projects 區塊。
-6. 舊 `wiki/projects/` 目前保留作 legacy project documentation，未經確認不批量刪除或搬移。
+6. 專案 canonical 入口一律是 `projects/<project-id>/index.md`。舊的 `wiki/projects/` 已完成退場，不再建立或更新 legacy project README。
 
 ---
 
@@ -172,12 +189,12 @@ Obsidian/
 
 ### 4.1 檔名
 - 全小寫、英文或中文皆可，以一致性為原則。
-- 主題頁用主題名（`pi-mono.md`、`meta-harness.md`）。
-- 來源筆記用日期+標題（`2026-07-11-podcast-name.md`）。
+- Canonical content page 用穩定主題名（`pi-mono.md`、`meta-harness.md`）。
+- 來源筆記若是時間型研究／工作紀錄，使用日期+標題（`2026-07-11-podcast-name.md`）。穩定型來源可不加日期，但建立後不因規則改名。
 
 ### 4.2 Frontmatter（YAML，給 Obsidian Dataview 用）
 
-每頁開頭要有：
+每個 canonical content page 開頭要有；`README.md`、`index.md`、`log.md` 與 topic 導航頁可作為結構性例外：
 
 ```yaml
 ---
@@ -202,24 +219,24 @@ tags: [topic-a, topic-b]
 - 一律用 Obsidian 的 `[[wikilink]]` 風格（雙中括號）。
 - 提到任何重要概念/實體時，**也要建立連結**。這是 wiki 能編譯一次就永久受用的關鍵。
 - 連結斷掉的頁面（`[[foo]]` 指向不存在檔案）是 lint 的目標之一。
-- 使用 vault-root 完整路徑連結，例如 `[[entities/pi-mono|pi-mono]]`、`[[concepts/okf-open-knowledge-format|OKF]]`，確保連結在任何位置都能正確解析。
+- 使用 vault-root 完整路徑連結，例如 `[[wiki/entities/pi-mono|pi-mono]]`、`[[wiki/concepts/okf-open-knowledge-format|OKF]]`，確保連結在任何位置都能正確解析。
 - `[[basename]]` 只適合唯一 target；當 compatibility stub 或 Canvas 造成歧義時，改用完整路徑。
 - Audit／歷史 log 中的 link 要與正文 link 分開統計；不要因已刪除歷史頁而重建頁面。
 
 ---
 
-## 5. 索引與日誌
+## 5. 索引與工作歷史
 
-### 5.1 `wiki/index.md`（內容索引）
+#### 5.1 `wiki/index.md`（內容索引）
 
 - 按 taxonomy 分區：Topics（AI Agent / Extension Dev / Meta Systems / Knowledge Mgmt）/ Collections / Projects / Sources。
 - 每頁一行：`[[collection/path|標題]] — 一句話摘要`。
 - 每次 ingest / lint 後更新。
 - 中等規模（~100 來源、數百頁）僅靠 index.md 就夠，不需搜尋引擎。
 
-### 5.2 `wiki/log.md`（時間日誌）
+#### 5.2 `wiki/log.md`（知識庫變更日誌）
 
-- Append-only，不刪舊紀錄。
+- Append-only，不刪舊紀錄；工作完成、決策與處理事件另寫入 `work/history/YYYY-MM.md`，不混入 wiki log。
 - 每條統一前綴方便 grep：
   ```
   ## [2026-07-11] ingest | <標題>
@@ -247,7 +264,7 @@ tags: [topic-a, topic-b]
 規模小（目前階段）不需要。如果之後 wiki 膨脹：
 
 - 搜尋引擎：[qmd](https://github.com/tobi/qmd)（BM25 + 向量 + reranking，本地）。
-- Obsidian 插件：Graph View、DATAVIEW、Marp（投影片）、Web Clipper（剪網頁到 raw/）。
+- Obsidian 插件：Graph View、DATAVIEW、Marp（投影片）、Web Clipper（剪網頁到 `raw/web/`）。
 
 ---
 
@@ -258,9 +275,9 @@ tags: [topic-a, topic-b]
 ### 8.1 設定（僅一次）
 - 在 Obsidian Web Clipper 中設定預設值：
   - **Format**：Markdown
-  - **Destination**：資料夾路徑填 `raw/`（而不是 vault root 或 `Clippings/`）
+  - **Destination**：資料夾路徑填 `raw/web/`（而不是 vault root 或 `Clippings/`）
   - **Filename 模板**：`{{date|date:"YYYY-MM-DD"}}-{{title}}`（避免空白、連字符、遵 §4.1）
-  - 「**Download all images to vault**」項目打勾，實體路徑設為 `raw/assets/`。
+  - Template 不宣稱能指定圖片目錄；若 Clipper 實際設定可指定，使用 `raw/assets/`，否則由 ingest normalize 搬移並修正引用。
 
 ### 8.2 活動 SOP
 - 看到文章 → 點 Clipper icon → 確認 Format/Destination/Filename 沒被改變 → 送出。
@@ -274,7 +291,7 @@ tags: [topic-a, topic-b]
 
 ## 9. 圖片處理
 
-- 圖片放 `raw/assets/`，由 Obsidian Web Clipper 或手動下載後複製過來。
+- 圖片與附件的最終歸檔位置是 `raw/assets/`；由 Web Clipper 或手動下載後保存。若工具不能指定路徑，ingest 時搬移並修正引用。
 - 在 markdown 中以相對路徑引用：`![[raw/assets/image.png]]`。
 - agent 讀取時**先讀文字**，再分批讀相關圖片（LLM 無法在同一次讀取 markdown 中的內嵌圖片）。
 
@@ -296,7 +313,7 @@ TODO收集    log記錄      TDD/CR      過時清理
 ### 各階段做法
 
 **① 收集（每天/每次對話）**
-- 浮現的新想法 → 加入 `ToDo/current.md` Backlog
+- 浮現的新想法 → 加入 `work/current.md`，並建立至少一個 reference；不得重新建立舊工作目錄
 - 看到好文章 → Web Clipper 到 `raw/`
 - 好的對話洞見 → 說「存到 wiki」
 - 新工具/方法 → 說「這概念值得記下來」
@@ -307,8 +324,8 @@ TODO收集    log記錄      TDD/CR      過時清理
 - Notion 花園灌溉
 
 **③ 實踐（每天）**
-- 從 Backlog 拉任務做
-- 做了就要記 —— 日記 + wiki 雙記
+- 從 `work/current.md` 拉任務做
+- 有實際進展就追加 `work/history/YYYY-MM.md`，並連結 raw、project 或 wiki；沒有可追溯結果的對話不必記錄
 - 用 `tdd`、`code-review`、`grill-me` 等 skill 跑完整流程
 - 每次實踐後問：「這個學到什麼可以存到 wiki？」
 
@@ -316,7 +333,7 @@ TODO收集    log記錄      TDD/CR      過時清理
 - Lint wiki：找矛盾、孤頁、過時資訊
 - 花園巡檢：哪些種子停滯了？
 - 日記回顧：本週學了什麼？
-- 更新 Backlog：重新排列優先級
+- 檢查 `work/current.md`：重新排列工作優先級與 references
 - 優化 skill：哪個不好用？用 `skill-creator` 改
 
 ---

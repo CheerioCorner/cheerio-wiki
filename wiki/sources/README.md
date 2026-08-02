@@ -18,4 +18,4 @@ provenance:
 
 ## Migration records
 
-- [[sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF migration complete]]
+- [[wiki/sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF migration complete]]

@@ -12,12 +12,12 @@ canonical: entities/pi-agent-core
 
 > pi-mono monorepo 內的 `packages/agent/`,全文為 agent runtime。**整個 runtime 由 5 個檔、約 1,500 行 TypeScript 構成**(以 [2026-02-10-pi-agent-core-design] 解析為準)。
 
-> 本頁主要記錄檔案分工與關鍵類別；深度型別設計獨立到 [[concepts/late-conversion]]。迴圈結構與可觀測性目前僅作為 future concepts（`minimal-agent-loop`、`observability-layer`）追蹤，尚未建立獨立頁面。
+> 本頁主要記錄檔案分工與關鍵類別；深度型別設計獨立到 [[wiki/concepts/late-conversion]]。迴圈結構與可觀測性目前僅作為 future concepts（`minimal-agent-loop`、`observability-layer`）追蹤，尚未建立獨立頁面。
 
 ## 來源
-- [[sources/2026-02-10-pi-agent-core-design]] — 主要來源(語言物理位元 + 行號層次的解析)
+- [[wiki/sources/2026-02-10-pi-agent-core-design]] — 主要來源(語言物理位元 + 行號層次的解析)
 - 程式碼位置:`https://github.com/badlogic/pi-mono/blob/main/packages/agent/src/`
-- 由 [[entities/pi-mono]] 主頁面統合;本頁是它的下層 runtime 焦點。
+- 由 [[wiki/entities/pi-mono]] 主頁面統合;本頁是它的下層 runtime 焦點。
 
 ## 5 個檔(原始清單)
 1. **`types.ts`**
@@ -47,21 +47,21 @@ agent_start / agent_end
 | `agentLoop(prompts, context, config)` | 可從空上下文開始 | 使用者發了新訊息 |
 | `agentLoopContinue(context, config)` | 上下文最後一條非 assistant | 重試 / 恢復 |
 
-→ 讓 continue() 變得優雅的關鍵設計:**構造錯誤訊息也會成為上下文**(`AssistantMessage, stopReason: "error"`)。詳見 [[concepts/late-conversion]]。
+→ 讓 continue() 變得優雅的關鍵設計:**構造錯誤訊息也會成為上下文**(`AssistantMessage, stopReason: "error"`)。詳見 [[wiki/concepts/late-conversion]]。
 
 ## 五項設計原則(由本類別衍生出)
 - **極簡主義**(5 個檔 / 1,500 行 / 4 工具 / < 1000 token 系統提示)
 - **可觀測性**(三層事件)
 - **可干預性**(steering / follow-up 雙 queue)
-- **最晚轉換**→ 獨立頁 [[concepts/late-conversion]]
+- **最晚轉換**→ 獨立頁 [[wiki/concepts/late-conversion]]
 - **自我進化**(透過 bash 自我呼叫)
 
 ## 不做的事(立場,精準條列)
 無 MCP / 無 sub-agents / 無 plan mode / 無權限檢查 / 無 maxSteps。
-→ 對應 future concept `yolo-by-default` 與 [[entities/pi-mono]] 的「刻意不做」。
+→ 對應 future concept `yolo-by-default` 與 [[wiki/entities/pi-mono]] 的「刻意不做」。
 
 ## 相關頁面
-- Entities:[[entities/pi-mono]]、[[entities/mario-zechner]]
-- Concepts:[[concepts/late-conversion]]；`minimal-agent-loop`、`observability-layer`、`steering-followup` 尚未建立
-- Source:[[sources/2026-02-10-pi-agent-core-design]]
-- Synthesis:[[concepts/minimal-agent-philosophy]]
+- Entities:[[wiki/entities/pi-mono]]、[[wiki/entities/mario-zechner]]
+- Concepts:[[wiki/concepts/late-conversion]]；`minimal-agent-loop`、`observability-layer`、`steering-followup` 尚未建立
+- Source:[[wiki/sources/2026-02-10-pi-agent-core-design]]
+- Synthesis:[[wiki/concepts/minimal-agent-philosophy]]

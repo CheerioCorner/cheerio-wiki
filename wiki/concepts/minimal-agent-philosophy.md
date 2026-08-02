@@ -54,10 +54,10 @@ canonical: concepts/minimal-agent-philosophy
 - 需要即裝即用、絕低學習成本的消費產品(B 篇明示不適)
 
 ## 相關概念（散見於其他頁面）
-- [[entities/pi-agent-core]] — 5 檔架構、三層事件生命週期、雙層 while 迴圈、steering/follow-up 雙 queue
-- [[concepts/late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
-- [[entities/pi-mono]] — 「刻意不做」清單（無 MCP、無 sub-agents、無 plan mode、無權限檢查、無 maxSteps）
+- [[wiki/entities/pi-agent-core]] — 5 檔架構、三層事件生命週期、雙層 while 迴圈、steering/follow-up 雙 queue
+- [[wiki/concepts/late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
+- [[wiki/entities/pi-mono]] — 「刻意不做」清單（無 MCP、無 sub-agents、無 plan mode、無權限檢查、無 maxSteps）
 
 ## 相關頁面
-- Entities:[[entities/pi-mono]]、[[entities/pi-agent-core]]、[[entities/mario-zechner]]
-- Sources:[[sources/2026-02-10-pi-agent-core-design]] / [[sources/2026-05-02-pi-mono-framework-tw]]
+- Entities:[[wiki/entities/pi-mono]]、[[wiki/entities/pi-agent-core]]、[[wiki/entities/mario-zechner]]
+- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]]

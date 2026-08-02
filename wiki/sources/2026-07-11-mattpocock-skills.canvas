@@ -1,7 +1,7 @@
 {
 	"nodes":[
 		{"id":"center","type":"text","text":"# mattpocock/skills\n\n> Skills for Real Engineers\n> github.com/mattpocock/skills\n\n**22 個 active skills** | Engineering 17 + Productivity 5\n作者：Matt Pocock（Total TypeScript）","x":-200,"y":-450,"width":500,"height":120,"color":"1"},
-		{"id":"philosophy","type":"text","text":"## 設計哲學\n\n1. **小而可組合** — 每個 skill 做一件事\n2. **模型無關** — Claude Code / Codex / Pi 通用\n3. **強調基礎** — TDD、review、領域建模、架構\n4. **人保留控制** — 不強制接管流程","x":-200,"y":-310,"width":500,"height":140,"color":"4"},
+		{"id":"philosophy","type":"text","text":"## 設計哲學\n\n1. **小而可組合** — 每個 skill 做一件事\n2. **模型無關** — Claude Code / Codex / Pi 通用\n3. **強調基礎** — TDD、review、領域建模、架構\n4. **人保留控制** — 不強制接管流程","x":-200,"y":-310,"width":500,"height":190,"color":"4"},
 		{"id":"legend","type":"text","text":"## 圖例\n\n🟢 **綠色** = ✅ 已安裝\n⚪ **灰色** = 未安裝\n\n**User** = 使用者手動呼叫 `/skill`\n**Model** = agent 可自動選用\n\nUser-invoked 負責**編排流程**\nModel-invoked 持有**可重用紀律**\n\n---\n已安裝 7 / 22","x":400,"y":-450,"width":280,"height":220,"color":"6"},
 		{"id":"cat-eng-user","type":"text","text":"## 🔧 Engineering — User-invoked","x":-650,"y":-50,"width":280,"height":115,"color":"2"},
 		{"id":"cat-eng-model","type":"text","text":"## 🔧 Engineering — Model-invoked","x":-650,"y":530,"width":280,"height":50,"color":"5"},

@@ -371,4 +371,4 @@ npm unpublish @scope/package@version --force
 ## 相關頁面
 
 - [[projects/pi-plannotator-auto/index]] — 我們的第一個 NPM 發佈實例
-- [[entities/pi-web-access-zh-tw]] — 另一個 Pi extension
+- [[wiki/entities/pi-web-access-zh-tw]] — 另一個 Pi extension

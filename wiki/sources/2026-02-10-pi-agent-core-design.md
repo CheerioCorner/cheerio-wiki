@@ -65,11 +65,11 @@ provenance:
 - ❌ 嚴格安全沙箱 → 明確選了 YOLO
 
 ## 推導出的 wiki 頁(由這篇衍生)
-- Entities:[[entities/pi-agent-core]]、[[entities/mario-zechner]]
+- Entities:[[wiki/entities/pi-agent-core]]、[[wiki/entities/mario-zechner]]
 - Concepts: `steering-followup`、`minimal-agent-loop`、`observability-layer`、`yolo-by-default`（均為尚未建立的 future concepts）
 - Comparisons: `coding-agent-comparison`（Claude Code / Codex / Pi 五維表，尚未建立）
 
 ## 相關頁面
-- [[sources/2026-05-02-pi-mono-framework-tw]] — 同一作者族、但從整個 monorepo 角度看的姊妹篇
-- [[entities/pi-mono]]
-- [[concepts/minimal-agent-philosophy]]
+- [[wiki/sources/2026-05-02-pi-mono-framework-tw]] — 同一作者族、但從整個 monorepo 角度看的姊妹篇
+- [[wiki/entities/pi-mono]]
+- [[wiki/concepts/minimal-agent-philosophy]]

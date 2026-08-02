@@ -7,6 +7,7 @@ status: confirmed
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
+tags: [knowledge-mgmt, okf, project-architecture]
 provenance:
   - kind: raw
     path: raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md
@@ -32,7 +33,7 @@ Obsidian root `projects/<project-id>/` is the Project OKF Bundle location. It st
 
 ## Related
 
-- [[concepts/okf-open-knowledge-format|OKF]]
-- [[concepts/pi-project-workspace-model|Pi Project / Workspace Model]]
+- [[wiki/concepts/okf-open-knowledge-format|OKF]]
+- [[wiki/concepts/pi-project-workspace-model|Pi Project / Workspace Model]]
 - [[projects/pi-plannotator-auto/index|pi-plannotator-auto Project Bundle]]
 - [[raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff|Source handoff]]

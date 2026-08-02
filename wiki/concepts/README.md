@@ -8,10 +8,10 @@
 
 ## Canonical pages
 
-- [[concepts/agent-extension-installation|Agent Extension 安裝位置與方式]]
-- [[concepts/late-conversion|Late Conversion]]
-- [[concepts/meta-harness|Meta-Harness]]
-- [[concepts/minimal-agent-philosophy|Minimal Agent Philosophy]]
-- [[concepts/npm-publishing-workflow|Package Publishing Workflow]]
-- [[concepts/okf-open-knowledge-format|OKF]]
-- [[concepts/pi-project-workspace-model|Pi Project / Workspace Model]]
+- [[wiki/concepts/agent-extension-installation|Agent Extension 安裝位置與方式]]
+- [[wiki/concepts/late-conversion|Late Conversion]]
+- [[wiki/concepts/meta-harness|Meta-Harness]]
+- [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]]
+- [[wiki/concepts/npm-publishing-workflow|Package Publishing Workflow]]
+- [[wiki/concepts/okf-open-knowledge-format|OKF]]
+- [[wiki/concepts/pi-project-workspace-model|Pi Project / Workspace Model]]

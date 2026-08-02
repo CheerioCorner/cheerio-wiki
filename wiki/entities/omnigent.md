@@ -95,10 +95,10 @@ Omnigent 是一個 **meta-harness（元鞍具）** 層，運行在你已經在�
 
 ## 相關頁面
 
-- [[concepts/meta-harness]] — 概念總覽頁（含學術版定義 A 與業界版定義 B），**meta-harness 是我們的研究專題，Omnigent 是進入這個領域的一棵樹苗**
-- [[entities/plannotator]] — 另一種 agent 視覺化審閱工具
-- [[concepts/minimal-agent-philosophy]] — Pi 的哲學，與 meta-harness 的加法取徑對比
+- [[wiki/concepts/meta-harness]] — 概念總覽頁（含學術版定義 A 與業界版定義 B），**meta-harness 是我們的研究專題，Omnigent 是進入這個領域的一棵樹苗**
+- [[wiki/entities/plannotator]] — 另一種 agent 視覺化審閱工具
+- [[wiki/concepts/minimal-agent-philosophy]] — Pi 的哲學，與 meta-harness 的加法取徑對比
 
 ## 來源
 
-- Databricks Blog：*Introducing Omnigent: A Meta-Harness to Combine, Control and Share Your Agents*（[[raw/2026-07-13-omnigent-meta-harness-databricks]]）
+- Databricks Blog：*Introducing Omnigent: A Meta-Harness to Combine, Control and Share Your Agents*（[[../../raw/web/2026-07-13-omnigent-meta-harness-databricks]]）

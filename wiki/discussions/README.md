@@ -6,6 +6,6 @@
 
 ## Open discussions
 
-- [[discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]
-- [[discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]]
-- [[discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]]
+- [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]
+- [[wiki/discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]]
+- [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]]

@@ -3,10 +3,11 @@ title: Existing Topic Stub Cleanup
 type: discussion
 collection: discussions
 topics: [knowledge-mgmt, migration, topics]
-status: open
+status: resolved
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
+tags: [knowledge-mgmt, migration, topics]
 provenance:
   - kind: raw
     path: raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md
@@ -14,17 +15,16 @@ provenance:
 
 # Existing Topic Stub Cleanup
 
-## Current position
+## Resolution
 
-The original `wiki/topics/` pages are retained as compatibility stubs after canonical pages were created in `wiki/concepts/` and `wiki/entities/`.
+The former `wiki/topics/<domain>/<page>.md` compatibility stubs have been removed after canonical links were updated. `wiki/topics/` now contains only domain navigation pages and visualizations.
 
-## Open decision
+## Policy
 
-The final policy for these stubs is not yet fixed:
-
-- retain them permanently as taxonomy-compatible entry points;
-- convert them to explicit redirects;
-- remove them after all known references are canonicalized.
+- Canonical content belongs in `wiki/concepts/`, `wiki/entities/`, `wiki/sources/`, `wiki/decisions/`, or `wiki/discussions/`.
+- Topic directories contain navigation pages only.
+- New journal and正文 links use canonical vault-root paths to avoid basename ambiguity.
+- Historical `wiki/log.md` links are retained as append-only history and are not repaired by recreating deleted pages.
 
 ## Evaluation criteria
 
@@ -36,6 +36,6 @@ The final policy for these stubs is not yet fixed:
 
 ## Related
 
-- [[topics/README|Topics taxonomy]]
-- [[decisions/shared-wiki-collection-model|Shared Wiki Collection Model]]
-- [[audits/2026-08-02-wiki-collection-topic-link-audit|Collection/topic/link audit]]
+- [[wiki/topics/README|Topics taxonomy]]
+- [[wiki/decisions/shared-wiki-collection-model|Shared Wiki Collection Model]]
+- [[wiki/audits/2026-08-02-wiki-collection-topic-link-audit|Collection/topic/link audit]]

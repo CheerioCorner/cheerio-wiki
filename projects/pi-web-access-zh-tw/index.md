@@ -21,8 +21,7 @@ tags: [project-bundle, pi-web-access-zh-tw, pi-extension, localization, maintena
 - GitHub：<https://github.com/CheerioCorner/pi-web-access-zh-tw>
 - Upstream：<https://github.com/nicobailon/pi-web-access>
 - Package source of truth：自有 GitHub repository 與其原始碼
-- Shared entity：[[entities/pi-web-access-zh-tw|pi-web-access-zh-tw]]
-- Legacy project README：[[wiki/projects/pi-web-access-zh-tw/README|legacy project README]]
+- Shared entity：[[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]]
 
 ## Current state
 

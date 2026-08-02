@@ -11,4 +11,4 @@
 
 ## Decision records
 
-本 pilot 尚未新增 project-local ADR；現有 package-level knowledge boundary 參見 [[decisions/package-knowledge-boundary|Shared Package Knowledge Boundary]]。
+本 pilot 尚未新增 project-local ADR；現有 package-level knowledge boundary 參見 [[wiki/decisions/package-knowledge-boundary|Shared Package Knowledge Boundary]]。

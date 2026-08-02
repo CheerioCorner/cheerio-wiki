@@ -123,5 +123,5 @@ provenance:
 
 ## 相關頁面
 
-- [[concepts/npm-publishing-workflow]] — 完整的 NPM 發佈流程文件
+- [[wiki/concepts/npm-publishing-workflow]] — 完整的 NPM 發佈流程文件
 - [[projects/pi-plannotator-auto/index]] — 我們的第一個 NPM 發佈實例

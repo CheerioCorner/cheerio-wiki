@@ -7,6 +7,7 @@ status: confirmed
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
+tags: [pi-todo-journal, knowledge-mgmt, okf]
 provenance:
   - kind: raw
     path: raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md
@@ -19,7 +20,7 @@ verified:
 
 ## Decision
 
-`pi-todo-journal` owns session state, explicit tasks, Journal, checkpoints, and user-provided references. It does not own external knowledge ingest, concept canonicalization, Wiki taxonomy, or semantic linking.
+`pi-todo-journal` package source still owns session state, explicit tasks, Journal, checkpoints, and user-provided references. The vault no longer uses its Todo/Journal layout: current work and history are maintained under `work/`. The package has not yet been refactored. It does not own external knowledge ingest, concept canonicalization, Wiki taxonomy, or semantic linking.
 
 ## Explicit references
 
@@ -38,6 +39,6 @@ These are references, not a semantic knowledge graph or canonicalization engine.
 
 ## Related
 
-- [[projects/pi-todo-journal/README|pi-todo-journal]]
-- [[concepts/okf-open-knowledge-format|OKF]]
-- [[decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]]
+- [[projects/pi-todo-journal/index|pi-todo-journal]]
+- [[wiki/concepts/okf-open-knowledge-format|OKF]]
+- [[wiki/decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]]

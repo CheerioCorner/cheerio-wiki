@@ -15,7 +15,7 @@ canonical: entities/mario-zechner
 ## 來源
 - GitHub:`badlogic/pi-mono`
 - 原文「What I learned building an opinionated and minimal coding agent」(mariozechner.at,2025-11-30)—— A 篇多次引用,**目前未直接 ingest**,可以視為第三層上游來源。
-- Wiki 內:[[sources/2026-02-10-pi-agent-core-design]]、[[sources/2026-05-02-pi-mono-framework-tw]]
+- Wiki 內:[[wiki/sources/2026-02-10-pi-agent-core-design]]、[[wiki/sources/2026-05-02-pi-mono-framework-tw]]
 
 ## 核心論點(彙整,目前所有來源都指向同一立場)
 1. **前沿模型已被 RL 訓練得足夠理解「coding agent 是什麼」**——不需要 10000-token 系統提示詞。
@@ -39,6 +39,6 @@ canonical: entities/mario-zechner
 > 他原 blog「What I learned building an opinionated and minimal coding agent」(2025-11-30)在本知識庫尚未直接 ingest,且是多個第二手來源(A)的主源。短期內視為上游來源,**可在下次 ingest 時建立獨立 source 頁**。
 
 ## 相關頁面
-- Entities:[[entities/pi-mono]]、[[entities/pi-agent-core]]
-- Synthesis:[[concepts/minimal-agent-philosophy]]
-- Sources:[[sources/2026-02-10-pi-agent-core-design]] / [[sources/2026-05-02-pi-mono-framework-tw]]
+- Entities:[[wiki/entities/pi-mono]]、[[wiki/entities/pi-agent-core]]
+- Synthesis:[[wiki/concepts/minimal-agent-philosophy]]
+- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]]

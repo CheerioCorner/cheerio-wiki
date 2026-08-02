@@ -12,7 +12,7 @@ canonical: concepts/late-conversion
 
 > 一種型別設計策略:**整個內部邏輯都以「應用層 AgentMessage」運作,只在邊界(打 LLM 前一刻)才濾成 LLM 能懂的 `Message[]`**。換句話說:保留訊息的「應用程式語義」直到最後一刻再翻譯。
 >
-> 原出處:[[sources/2026-02-10-pi-agent-core-design]] 3.1;發明人:Zechner 在 pi-agent-core 用 TypeScript `Declaration Merging` 實現。
+> 原出處:[[wiki/sources/2026-02-10-pi-agent-core-design]] 3.1;發明人:Zechner 在 pi-agent-core 用 TypeScript `Declaration Merging` 實現。
 
 ## 為什麼存在
 
@@ -59,7 +59,7 @@ export type AgentMessage = Message | CustomAgentMessages[keyof CustomAgentMessag
 - ❌ 不在意上下文 token 預算
 
 ## 相關頁面
-- Entities:[[entities/pi-agent-core]]
+- Entities:[[wiki/entities/pi-agent-core]]
 - Concepts: `minimal-agent-loop`、`observability-layer`、`steering-followup`（尚未建立的 future concepts）
-- Source:[[sources/2026-02-10-pi-agent-core-design]]
-- Synthesis:[[concepts/minimal-agent-philosophy]]
+- Source:[[wiki/sources/2026-02-10-pi-agent-core-design]]
+- Synthesis:[[wiki/concepts/minimal-agent-philosophy]]

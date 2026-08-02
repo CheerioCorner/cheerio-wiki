@@ -137,5 +137,5 @@ pi install npm:@cheeriocorner/pi-plannotator-auto
 
 ## 相關頁面
 
-- [[concepts/npm-publishing-workflow]] — Package Publishing 統一觀點
+- [[wiki/concepts/npm-publishing-workflow]] — Package Publishing 統一觀點
 - [[projects/pi-plannotator-auto/index]] — 我們的第一個 NPM 發佈實例

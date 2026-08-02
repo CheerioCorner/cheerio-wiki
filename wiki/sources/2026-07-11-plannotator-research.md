@@ -49,7 +49,7 @@ Repo 中沒有 obsidian 或 notion 相關代碼。但支援 markdown 文件審�
 - ✅ packages/webtui 可自定義瀏覽器 UI
 
 ### 未納入 Wiki 的點
-- 詳細的 Shared Event API 規格（見 [[entities/plannotator]] 頁面）
+- 詳細的 Shared Event API 規格（見 [[wiki/entities/plannotator]] 頁面）
 - 各 agent 整合的技術細節（需進一步研究）
 
 ## 後續發展（2026-07-30）
@@ -74,6 +74,6 @@ Repo 中沒有 obsidian 或 notion 相關代碼。但支援 markdown 文件審�
 
 ## 知識沉澱
 
-- 主體頁面：[[entities/plannotator]]
+- 主體頁面：[[wiki/entities/plannotator]]
 - Notion 同步：已建立「Plannotator Fork 開發規劃」頁面（用於多人協作/跨 IDE）
 - 知識花園：`plannotator-seedling`（待建立；非 Wiki canonical page）

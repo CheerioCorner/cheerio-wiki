@@ -1,5 +1,19 @@
 # Log
 
+## [2026-08-03] lint | visualizations broken links + topic frontmatter
+
+- 修正 4 處 `[[wiki/visualizations]]` broken link → `[[wiki/visualizations/README]]`（wiki/index.md、wiki/topics.md、wiki/topics/README.md、wiki/topics/knowledge-mgmt.md）
+- 為 4 個 topic pages 補上 frontmatter：ai-agent、extension-dev、knowledge-mgmt、meta-systems
+- 全域 lint 結果：0 broken links（除上述已修復）、0 orphan pages、所有 canonical pages frontmatter 完整
+
+## [2026-08-03] migration | Obsidian vault structure v2
+
+- 透過 annotator UI 確認 `AGENTS.md` ↔ `wiki/index.md` 少量入口 linking。
+- 建立 `work/current.md` 與按月分片的 `work/history/YYYY-MM.md`，以 references 取代 todos/journal 的多重 active workflow。
+- raw 改採 `web/`、`youtube/`、`conversations/` 來源通道，保留共用 `assets/`。
+- Web Clipper note destination 改為 `raw/web/`；template 不宣稱能指定圖片目錄，無法指定時由 ingest normalize。
+- topics 改採 `wiki/topics.md` 與 `wiki/topics/*.md` landing pages；Canvas 統一集中於 `wiki/visualizations/`。
+
 ## [2026-08-02] update | Notion 整合修復與 skill 更新
 
 - 連接 MCP `notionApi` 伺服器，驗證讀取功能正常。
@@ -12,14 +26,14 @@
 
 - 移除已退場的 `wiki/projects/` legacy project documentation；canonical project 入口統一為 root `projects/<project-id>/index.md`。
 - 移除 `wiki/topics/` 下 15 個 compatibility stubs，改為四個 topic domain navigation pages；Canvas 保留於 `topics/ai-agent/`。
-- 移除 `todos/archive/`；`todos/done/` 保留為 pi-todo-journal 使用的精確機器可讀完成紀錄，日記保存活動敘事。
-- 更新 `AGENTS.md`、`todos/README.md`、`wiki/index.md`、journal template 與相關 skills，明確分離 wiki、project、todo、journal 邊界。
+- 舊工作紀錄已遷移至 `work/history/`；`todos/` 與 `journal/` 已刪除，不再維護第二套工作或日誌系統。
+- 更新 `AGENTS.md`、`work/README.md`、`wiki/index.md` 與相關 skills，明確以 work/ 作為唯一工作系統。
 
 ## [2026-08-02] record | Wiki × OKF migration complete work record
 
 - 建立完整工作紀錄：[[sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF migration complete]]。
 - 紀錄 audit、collections、canonical links、provenance、decisions、discussions、三個 Project Bundles、Git history 與保留邊界。
-- 同步完成 `todos/done/2026-08-02.md` 與 `todos/current.md`：本階段標記完成，後續工作另列。
+- 同步完成舊工作資料至 `work/history/2026-08.md`；本階段標記完成，後續工作改由 `work/current.md` 管理。
 
 ## [2026-08-02] promotion | Confirmed architecture decisions and open discussions
 
@@ -292,7 +306,7 @@
 - 來源：https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents
 - 發現：Omnigent 是定義 B（業界版 meta-harness）的具體開源實作，由 Databricks 開發
 - 新頁：
-  - raw:[[raw/2026-07-13-omnigent-meta-harness-databricks]]
+  - raw:[[../raw/web/2026-07-13-omnigent-meta-harness-databricks]]
   - Entities:[[entities/omnigent|omnigent]]
 - 更新頁：[[meta-harness]] — 加入定義 B 的實作比較表（Omnigent vs OmniAgent）、更新來源
 - 更新 index 計數：來源 3 → 4，頁面 10 → 11
