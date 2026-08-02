@@ -66,8 +66,12 @@ canonical: entities/pi-mono
 - 「換個 CLI 換 provider」→ 不,這恰恰是它的設計透點
 - 「適合裝了就用」的 team-wide 標準化 → 不,builder-oriented 優先
 
+## 跨語言移植
+
+**Tau**（`wiki/entities/tau`）是 Pi 的 **Python port**，由 Pi 團隊內部開發。架構與 Pi 完全相同（session tree、skills、extensions、system prompt），差異只在 TUI 層使用 Textual 框架而非 TypeScript 從零打造。Tau 的存在證明了 Pi 架構的可移植性——extension events API 跨語言相容。
+
 ## 相關頁面
-- Entities:[[wiki/entities/mario-zechner]]、[[wiki/entities/pi-agent-core]]
-- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]]
+- Entities:[[wiki/entities/mario-zechner]]、[[wiki/entities/pi-agent-core]]、[[wiki/entities/tau]]
+- Sources:[[wiki/sources/2026-02-10-pi-agent-core-design]] / [[wiki/sources/2026-05-02-pi-mono-framework-tw]] / [[wiki/sources/2026-08-03-tau-python-port-of-pi]]
 - Concepts:[[wiki/concepts/late-conversion]]、[[wiki/concepts/minimal-agent-philosophy]]
 - Synthesis:（待建立：coding-agent-comparison — Claude Code / Codex / Pi 五維對比表）

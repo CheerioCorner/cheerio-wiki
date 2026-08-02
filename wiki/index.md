@@ -10,10 +10,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-02（Notion 整合更新）
+- **最後更新**：2026-08-03（YouTube ingest — Tau）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：8（全部已補 `collection: sources` 與 provenance）
-- **Canonical collections**：7 concepts、8 entities、4 decisions、3 discussions
+- **Source notes**：9（全部已補 `collection: sources` 與 provenance）
+- **Canonical collections**：7 concepts、9 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 - **工作系統**：`work/` — 統一管理目前工作、完成事件與 references
 
@@ -23,6 +23,7 @@
 
 ### 🤖 AI Agent
 - [[wiki/entities/pi-mono|pi-mono]] — `badlogic/pi-mono` monorepo + 5 個子 package
+- [[wiki/entities/tau|tau]] — Pi 的 Python port，Textual TUI，extension 相容
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行
 - [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學，2 來源、兩視角交點
@@ -95,6 +96,7 @@
 - [[wiki/sources/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]] — Pi Agent Core 研究
 - [[wiki/sources/2026-05-02-pi-mono-framework-tw|2026-05-02-pi-mono-framework-tw]] — Pi mono framework 研究
 - [[wiki/sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF migration complete]] — 完整架構優化、決策、Project Bundle 與 audit 紀錄
+- [[wiki/sources/2026-08-03-tau-python-port-of-pi|2026-08-03 Tau: A Python Port of Pi]] — Pi 的 Python port，Textual TUI，session tree，extension 相容
 
 ---
 
@@ -110,4 +112,4 @@ _（目前尚無）_
 
 - **未獨立成頁**：`pi-ai` / `pi-tui` / `pi-web-ui` / `pi-coding-agent` — 暫收進 [[wiki/entities/pi-mono|pi-mono]]
 - **未決**：是否要 ingest Zechner 原 blog 作為上游文獻
-- **待研究**：YouTube 字幕抓取方案（collection、linking contract、lint 與 migration 規則穩定後才建立獨立 pipeline）
+- **✅ 已完成**：YouTube 字幕抓取方案（`pytubefix` + `youtube_transcript_api`，2026-08-03 實測成功）

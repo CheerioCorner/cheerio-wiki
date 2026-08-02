@@ -1,5 +1,14 @@
 # Log
 
+## [2026-08-03] ingest | Tau: A Python Port of Pi
+
+- 來源：`raw/youtube/tau-python-port-of-pi.md`（YouTube qo1QNxWcm28，25:03）
+- 建立：`wiki/sources/2026-08-03-tau-python-port-of-pi.md`（source note）
+- 建立：`wiki/entities/tau.md`（entity — Pi 的 Python port）
+- 更新：`wiki/entities/pi-mono.md`（加入「跨語言移植」章節 + Tau 連結）
+- 更新：`wiki/index.md`（sources 8→9, entities 8→9, tau 加入 Topics）
+- 重點：Tau 與 Pi 架構完全相同（session tree, skills, extensions），TUI 用 Textual，extension events API 跨語言相容
+
 ## [2026-08-03] lint | visualizations broken links + topic frontmatter
 
 - 修正 4 處 `[[wiki/visualizations]]` broken link → `[[wiki/visualizations/README]]`（wiki/index.md、wiki/topics.md、wiki/topics/README.md、wiki/topics/knowledge-mgmt.md）
