@@ -10,9 +10,9 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-06（ingest Pi architecture walkthrough YouTube）
+- **最後更新**：2026-08-08（ingest Hermes Architecture EXPLAINED）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：11（全部已補 `collection: sources` 與 provenance）
+- **Source notes**：12（全部已補 `collection: sources` 與 provenance）
 - **Canonical collections**：10 concepts、11 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 - **工作系統**：`work/` — 統一管理目前工作、完成事件與 references
@@ -125,6 +125,7 @@
 - [[wiki/sources/2026-08-05-tau-github-readme|2026-08-05 Tau: GitHub README]] — Hugging Face 開發，三層架構，設計哲學，library 用法
 - [[wiki/sources/2026-08-05-pi-github-readme|2026-08-05 Pi: GitHub README]] — 四 package 架構、containerization、supply-chain security、session publishing
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme|2026-08-05 Hermes Agent: GitHub README]] — 自我改進 agent，learning loop，Honcho user modeling，agentskills.io
+- [[wiki/sources/2026-08-08-hermes-architecture-explained|2026-08-08 Hermes Architecture EXPLAINED]] — Agent loop、context compression、gateway、三層記憶系統、cron jobs
 - [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks|2026-07-13 Omnigent: Databricks Meta-Harness]] — 三大支柱、技術架構、Windows 不相容
 - [[wiki/sources/2026-08-01-okf-knowledge-catalog|2026-08-01 OKF Knowledge Catalog]] — Google Cloud 參考實作，reference agent + visualizer
 - [[wiki/sources/2026-08-02-defect-density-escape-rate|2026-08-02 Defect Metrics]] — Defect Density & Escape Rate 完整指南

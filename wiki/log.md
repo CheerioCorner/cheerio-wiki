@@ -1,6 +1,15 @@
 
 # Log
 
+## [2026-08-08] ingest | Hermes Architecture EXPLAINED: Memory, Context & Gateways
+
+- 來源：`raw/youtube/hermes-architecture-explained.md`（YouTube n32qq7Kwzh0，40:25）
+- 建立：`wiki/sources/2026-08-08-hermes-architecture-explained.md`（source note）
+- 更新：`wiki/entities/hermes-agent.md`（sources: 1→2，新增 Agent Loop / Context / Compression / Gateway / Memory / Cron 架構章節）
+- 更新：`wiki/topics/skill.md`（hermes-agent 加入 skill topic 導航）
+- 更新：`wiki/index.md`（sources 11→12）
+- 重點：Hermes 架構深度解析——agent loop、context compression（50% threshold, char/4 estimation）、gateway（async.io + session manager）、三層記憶（markdown + SQLite + external providers）、cron（tick function 每分鐘）
+
 ## [2026-08-06] ingest | Pi Architecture Walkthrough（YouTube）
 
 - 來源：`raw/youtube/pi-architecture-walkthrough.md`（488 segments，~39 分鐘，英文）

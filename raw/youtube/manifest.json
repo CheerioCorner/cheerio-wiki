@@ -1,6 +1,6 @@
 {
   "source_kind": "youtube",
-  "fetched_at": "2026-07-22",
+  "fetched_at": "2026-08-08",
   "videos": [
     {
       "slug": "tau-python-port-of-pi",
@@ -28,6 +28,15 @@
       "url": "https://www.youtube.com/watch?v=gTeujlv8qK0",
       "duration": "~39:00",
       "segments": 488,
+      "language": "en"
+    },
+    {
+      "slug": "hermes-architecture-explained",
+      "title": "Hermes Architecture EXPLAINED: Memory, Context & Gateways",
+      "youtube_id": "n32qq7Kwzh0",
+      "url": "https://youtu.be/n32qq7Kwzh0",
+      "duration": "40:25",
+      "segments": 501,
       "language": "en"
     }
   ]
