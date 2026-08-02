@@ -2,7 +2,7 @@
 title: notionApi — Notion MCP 伺服器
 type: entity
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-08-02
 sources: 1
 tags: [pi, mcp, notion, api, integration]
 collection: entities
@@ -66,7 +66,27 @@ canonical: entities/notionApi
 - **刻意移除所有寫入/修改/刪除工具** → 避免 AI 誤操作生產資料
 - Token 存放在本機 `mcp.json`，不應 commit 到 repo（已在 `.gitignore`）
 
+## CheerioPi Integration
+
+- **Integration 名稱：** CheerioPi
+- **Integration ID：** `39e5979e-3a8c-81e9-95f2-00279e993de5`
+- **頁面共享方式：** 在 Notion 頁面 → `⋯` → Connections → 搜尋 CheerioPi → 加入
+- **⚠️ 錯誤處理：** 如果遇到 404 `object_not_found`，表示頁面尚未共享給 CheerioPi
+
+## 完整 Workflow：MCP + ntn CLI
+
+| 操作 | 工具 | 命令範例 |
+|------|------|----------|
+| 讀取頁面 | MCP `notionApi` | `notionApi_API-retrieve-a-page` |
+| 讀取 Markdown | MCP `notionApi` | `notionApi_API-retrieve-page-markdown` |
+| 搜尋 | MCP `notionApi` | `notionApi_API-post-search` |
+| 建立頁面 | `ntn` CLI | `ntn pages create --parent page:<id> --content '<md>'` |
+| 更新頁面 | `ntn` CLI | `ntn pages update <id> --content '<md>'` |
+| 設定 icon | `ntn` CLI | `ntn api v1/pages/<id> -X PATCH -d '{"icon":...}'` |
+
+**原則：讀用 MCP，寫用 `ntn` CLI。**
+
 ## 相關頁面
 - Source: [[sources/2026-07-18-pi-resource-inventory]]
 - Entities: [[entities/wiki-knowledge]], [[entities/pi-web-access-zh-tw]]
-- Skills: `notion-cli`（CLI 替代方案，可寫入；尚未建立 Wiki entity 頁）
+- Skills: `knowledge-garden`（花園維護）、`notion-cli`（CLI 參考）

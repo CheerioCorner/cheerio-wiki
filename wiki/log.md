@@ -1,5 +1,20 @@
 # Log
 
+## [2026-08-02] update | Notion 整合修復與 skill 更新
+
+- 連接 MCP `notionApi` 伺服器，驗證讀取功能正常。
+- 共享 Notion 花園頁面給 CheerioPi integration，解決 404 問題。
+- 更新 `knowledge-garden` skill：加入前置條件、MCP 讀取 workflow、錯誤處理指引。
+- 更新 `entities/notionApi.md`：補充 CheerioPi integration 資訊、MCP + ntn CLI 完整 workflow。
+- 決策：讀用 MCP，寫用 `ntn` CLI。
+
+## [2026-08-02] lint | Obsidian structure cleanup
+
+- 移除已退場的 `wiki/projects/` legacy project documentation；canonical project 入口統一為 root `projects/<project-id>/index.md`。
+- 移除 `wiki/topics/` 下 15 個 compatibility stubs，改為四個 topic domain navigation pages；Canvas 保留於 `topics/ai-agent/`。
+- 移除 `todos/archive/`；`todos/done/` 保留為 pi-todo-journal 使用的精確機器可讀完成紀錄，日記保存活動敘事。
+- 更新 `AGENTS.md`、`todos/README.md`、`wiki/index.md`、journal template 與相關 skills，明確分離 wiki、project、todo、journal 邊界。
+
 ## [2026-08-02] record | Wiki × OKF migration complete work record
 
 - 建立完整工作紀錄：[[sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF migration complete]]。

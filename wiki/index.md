@@ -8,10 +8,11 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-02
+- **最後更新**：2026-08-02（Notion 整合更新）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **總來源數**：7（全部已補 `collection: sources` 與 provenance）
-- **Wiki Markdown（audit 前）**：28；canonical collection / bundle migration 進行中
+- **Source notes**：8（全部已補 `collection: sources` 與 provenance）
+- **Canonical collections**：7 concepts、8 entities、4 decisions、3 discussions
+- **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 - **任務系統**：`todos/` — 統一管理所有待辦事項
 
 ---
@@ -58,9 +59,13 @@
 - [[discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]] — AI-first + lint guardrail
 - [[discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]] — compatibility stub 最終策略
 
+## Topic navigation
+
+- [[topics/README|Topics taxonomy]] — 依主題瀏覽 canonical collections
+
 ## Projects（專案維護）
 
-> Root `projects/<project-id>/` 是跨 session、跨環境的 Project OKF Bundle；`wiki/projects/` 暫保留作 legacy project documentation。
+> Root `projects/<project-id>/` 是唯一的跨 session、跨環境 Project OKF Bundle；舊 `wiki/projects/` 已退場。
 
 - [[projects/pi-plannotator-auto/index|pi-plannotator-auto]] — ✅ Project OKF Bundle pilot；GitHub + NPM
 - [[projects/pi-web-access-zh-tw/index|pi-web-access-zh-tw]] — ⚠️ Project OKF Bundle；需維護（有外部貢獻者）
