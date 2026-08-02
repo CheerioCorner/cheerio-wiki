@@ -140,6 +140,14 @@ Plannotator 已支援將 plan 存到 Obsidian 或 Bear：
 
 > 這些 note actions 存的是**副本**，agent 的 source plan 和 Plannotator 本地 history 保持分離。
 
+### 已實現：Plannotator → Wiki 整合
+
+透過 `plannotator-sync` skill（`~/.agents/skills/plannotator-sync/`），Plannotator 存到 `plannotator/` 的檔案可以同步到 `raw/conversations/`，再 ingest 進 wiki：
+
+1. 從 Plannotator UI 存檔到 `plannotator/`
+2. 說「sync」→ skill 自動搬到 `raw/conversations/` 並修正 frontmatter
+3. 說「ingest」→ wiki-knowledge 處理進 wiki
+
 ### 未來可能的發展
 
 1. **多人協作模式** — 利用 Shared Event API 實現跨裝置審閱

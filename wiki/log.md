@@ -1,5 +1,12 @@
 # Log
 
+## [2026-08-05] skill | plannotator-sync
+
+- 建立 `~/.agents/skills/plannotator-sync/SKILL.md`
+- 功能：把 Plannotator 存到 `plannotator/` 的檔案搬到 `raw/conversations/` 並修正 frontmatter
+- 觸發詞：sync
+- 更新 `wiki/entities/wiki-knowledge.md` 子 skill 列表
+
 ## [2026-08-05] ingest | Plannotator Note Storage
 
 - 來源：`raw/web/2026-08-02-Save Plannotator Plans to Obsidian or Bear.md`
