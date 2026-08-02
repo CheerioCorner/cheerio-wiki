@@ -4,9 +4,14 @@ type: source
 created: 2026-07-11
 updated: 2026-07-11
 sources: 1
-tags: [pi, agent, coding-agent, zechner, source-zh]
+tags:
+  - pi
+  - agent
+  - coding-agent
+  - zechner
+  - source-zh
 collection: sources
-provenance_raw: "raw/web/2026-02-10-pi-agent-core-design.md"
+provenance_raw: obsidian://open?vault=Obsidian&file=raw%2Fweb%2F2026-02-10-pi-agent-core-design
 provenance_url: https://zhuanlan.zhihu.com/p/2004665077618458930
 ---
 
@@ -16,7 +21,7 @@ provenance_url: https://zhuanlan.zhihu.com/p/2004665077618458930
 
 ## URL 與原始檔
 - 原文:[zhuanlan.zhihu.com/p/2004665077618458930](https://zhuanlan.zhihu.com/p/2004665077618458930)
-- 本知識庫內的 clean markdown:`raw/2026-02-10-pi-agent-core-design.md`(由 Obsidian Web Clipper 收下後搬入)。
+- 本知識庫內的 clean markdown:`raw/[[../../raw/web/[[../../raw/web/[[../../raw/web/[[../../raw/web/[[../../raw/web/[[../../raw/web/[[../../raw/web/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]]|2026-02-10-pi-agent-core-design]]|2026-02-10-pi-agent-core-design]]|2026-02-10-pi-agent-core-design]]|2026-02-10-pi-agent-core-design]]|2026-02-10-pi-agent-core-design]]|2026-02-10-pi-agent-core-design]].md`(由 Obsidian Web Clipper 收下後搬入)。
 - 圖片(原表示架構圖、迴圈圖、事件生命週期、Proxy stream 對比圖):目前仍以 Zhihu 圖床 URL 形式存在 markdown 內,**未下載**——若 lint 需要可逐批拉。
 
 ## 作者核心主張(一句話)

@@ -16,7 +16,7 @@ canonical: concepts/minimal-agent-philosophy
 
 ## 證據出處
 
-### A 篇([2026-02-10-pi-agent-core-design])
+### A 篇([[[../../raw/web/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]]])
 - 「An autonomous agent is just an LLM + tools + a loop.」— 直接引用 Zechner
 - 「前沿模型已經被 RL 訓練得足夠理解『編碼 Agent』是什麼。你不需要 10,000 token 的系統提示詞。」
 - 實證:Pi Agent Core **5 檔 /約 1,500 行**,**4 個工具**(read / write / edit / bash),**系統提示 + 工具定義 < 1000 token**,在 Terminal-Bench 2.0 與 Codex / Cursor / Windsurf 同列榜。

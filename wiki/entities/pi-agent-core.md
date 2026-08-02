@@ -10,7 +10,7 @@ topics: [ai-agent, extension-dev, skill]
 canonical: entities/pi-agent-core
 ---
 
-> pi-mono monorepo 內的 `packages/agent/`,全文為 agent runtime。**整個 runtime 由 5 個檔、約 1,500 行 TypeScript 構成**(以 [2026-02-10-pi-agent-core-design] 解析為準)。
+> pi-mono monorepo 內的 `packages/agent/`,全文為 agent runtime。**整個 runtime 由 5 個檔、約 1,500 行 TypeScript 構成**(以 [[[../../raw/web/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]]] 解析為準)。
 
 > 本頁主要記錄檔案分工與關鍵類別；深度型別設計獨立到 [[wiki/concepts/late-conversion]]。迴圈結構與可觀測性目前僅作為 future concepts（`minimal-agent-loop`、`observability-layer`）追蹤，尚未建立獨立頁面。
 

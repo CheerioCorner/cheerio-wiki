@@ -1,13 +1,13 @@
 ---
-title: "下一代Agent架构——Pi Agent Core 设计逻辑深度解析"
-source: "https://zhuanlan.zhihu.com/p/2004665077618458930"
+title: 下一代Agent架构——Pi Agent Core 设计逻辑深度解析
+source: https://zhuanlan.zhihu.com/p/2004665077618458930
 author:
   - "[[王鹏LLM​]]"
 published:
 created: 2026-07-11
-description: "项目地址： https://github.com/badlogic/pi-mono核心哲学: \"An autonomous agent is just an LLM + tools + a loop.\" — Mario Zechner, What I learned building an opinionated and minimal coding age…"
+description: '项目地址： https://github.com/badlogic/pi-mono核心哲学: "An autonomous agent is just an LLM + tools + a loop." — Mario Zechner, What I learned building an opinionated and minimal coding age…'
 tags:
-  - "clippings"
+  - clippings
 ---
 286 人赞同了该文章
 

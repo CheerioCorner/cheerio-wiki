@@ -42,7 +42,7 @@ created: 2026-08-08
 updated: 2026-08-08
 sources: 1
 tags: [hermes, ai-agent]
-provenance_raw: "raw/youtube/hermes-architecture-explained.md"
+provenance_raw: "raw/youtube/[[../../raw/youtube/[[../../raw/youtube/hermes-architecture-explained|[[../../raw/youtube/hermes-architecture-explained|hermes-architecture-explained]]]]|[[../../raw/youtube/[[../../raw/youtube/hermes-architecture-explained|hermes-architecture-explained]]|hermes-architecture-explained]]]].md"
 provenance_url: https://youtu.be/n32qq7Kwzh0
 ---
 ```
@@ -57,7 +57,7 @@ created: 2026-08-02
 updated: 2026-08-02
 sources: 2
 tags: [defect-metrics, quality]
-provenance_raw: "raw/web/2026-08-02-Defect Density & Escape Rate Agile Metrics Guide 2026.md"
+provenance_raw: "raw/web/[[../../raw/web/2026-08-02-Defect Density & Escape Rate Agile Metrics Guide 2026|2026-08-02-Defect Density & Escape Rate Agile Metrics Guide 2026]].md"
 provenance_url: https://example.com/original-article
 ---
 ```

@@ -1,14 +1,18 @@
 ---
-title: "mattpocock/skills — 工程實踐 Skills 集合"
+title: mattpocock/skills — 工程實踐 Skills 集合
 type: source
 created: 2026-07-11
 updated: 2026-07-11
 sources: 1
-tags: [skills, engineering-practices, coding-agent, matt-pocock]
-upstream: "https://github.com/mattpocock/skills"
+tags:
+  - skills
+  - engineering-practices
+  - coding-agent
+  - matt-pocock
+upstream: https://github.com/mattpocock/skills
 last_checked: 2026-07-11
 collection: sources
-provenance_url: https://github.com/mattpocock/skills
+provenance_url:
 ---
 
 # mattpocock/skills
