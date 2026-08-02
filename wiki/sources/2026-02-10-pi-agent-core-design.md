@@ -59,11 +59,11 @@ tags: [pi, agent, coding-agent, zechner, source-zh]
 - ❌ 嚴格安全沙箱 → 明確選了 YOLO
 
 ## 推導出的 wiki 頁(由這篇衍生)
-- Entities:[[pi-agent-core]]、[[mario-zechner]]
-- Concepts:[[late-conversion]]、[[steering-followup]]、[[minimal-agent-loop]]、[[observability-layer]]、[[yolo-by-default]]
+- Entities:[[entities/pi-agent-core]]、[[entities/mario-zechner]]
+- Concepts:[[concepts/late-conversion]]、[[steering-followup]]、[[minimal-agent-loop]]、[[observability-layer]]、[[yolo-by-default]]
 - Comparisons:[[coding-agent-comparison]] (Claude Code / Codex / Pi 五維表)
 
 ## 相關頁面
-- [[2026-05-02-pi-mono-framework-tw]] — 同一作者族、但從整個 monorepo 角度看的姊妹篇
-- [[pi-mono]]
-- [[minimal-agent-philosophy]]
+- [[sources/2026-05-02-pi-mono-framework-tw]] — 同一作者族、但從整個 monorepo 角度看的姊妹篇
+- [[entities/pi-mono]]
+- [[concepts/minimal-agent-philosophy]]

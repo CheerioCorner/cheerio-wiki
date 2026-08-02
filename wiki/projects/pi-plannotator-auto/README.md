@@ -26,6 +26,6 @@
 - 2026-08-01：採用 OKF 標準
 
 ## 相關頁面
-- [[plannotator]]
-- [[okf-open-knowledge-format]]
-- [[npm-publishing-workflow]]
+- [[entities/plannotator]]
+- [[concepts/okf-open-knowledge-format]]
+- [[concepts/npm-publishing-workflow]]

@@ -27,4 +27,4 @@
 - 2026-07-18：安裝到 Pi 全域
 
 ## 相關頁面
-- [[pi-web-access-zh-tw]]
+- [[entities/pi-web-access-zh-tw]]

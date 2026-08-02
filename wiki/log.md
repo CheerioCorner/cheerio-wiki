@@ -1,5 +1,15 @@
 # Log
 
+## [2026-08-02] migration | Wiki collections + Project OKF Bundle pilot
+
+- 建立 shared collection skeleton：`wiki/concepts/`、`wiki/entities/`、`wiki/decisions/`、`wiki/discussions/`。
+- 將 15 個 `topics/` 頁面建立 canonical copies，並保留原 topic pages 作為暫時 taxonomy compatibility stubs。
+- 修正 `wiki/projects/README.md` 的兩個 escaped aliases。
+- 建立 `projects/pi-plannotator-auto/` Project OKF Bundle pilot；package repository、package `docs/` 與 Obsidian bundle 的 source-of-truth 邊界維持分離。
+- 將現行 index、project README 與正文 links 指向 collection canonical pages；未建立 unresolved future concepts。
+- 依據：[[audits/2026-08-02-wiki-collection-topic-link-audit|2026-08-02 Wiki collection/topic/link audit]]。
+- 完成後續規範對齊：root `projects/`、五個 shared collections、topic taxonomy、GitHub canonical references 與 system local date/time 規則。
+
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 

@@ -109,8 +109,8 @@ npm pack --dry-run → passed
 
 ## 相關頁面
 
-- [[topics/extension-dev/okf-open-knowledge-format|okf-open-knowledge-format]] — OKF 格式說明
-- [[topics/extension-dev/npm-publishing-workflow|npm-publishing-workflow]] — npm 發布流程
+- [[concepts/okf-open-knowledge-format|okf-open-knowledge-format]] — OKF 格式說明
+- [[concepts/npm-publishing-workflow|npm-publishing-workflow]] — npm 發布流程
 - [[todos/README]] — 任務系統格式規範
 
 ## 知識邊界與未來相容性

@@ -166,5 +166,5 @@ npx skills update
 ## 相關頁面
 
 - [[pi-coding-agent]] — Pi harness 本體
-- [[wiki-knowledge]] — 知識庫操作 skill
+- [[entities/wiki-knowledge]] — 知識庫操作 skill
 - [[skill-creator]] — 如何建立 skill

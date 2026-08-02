@@ -13,36 +13,36 @@
 Obsidian/
 ├── raw/                    # 原始資料（只讀，不修改）
 │   ├── assets/             # Obsidian 下載的本機圖片
-│   └── 2026-07-11-xxx.md   # 收集的網頁、文章、論文等
-├── wiki/                   # 所有筆記（LLM 維護）
-│   ├── topics/             # 主題式分類
-│   │   ├── ai-agent/       # AI Agent 相關
-│   │   ├── extension-dev/  # Extension 開發
-│   │   ├── meta-systems/   # 元系統
-│   │   └── knowledge-mgmt/ # 知識管理
-│   ├── projects/           # 專案維護（README、進度、決策紀錄）
-│   ├── sources/            # 來源筆記（AI 整理過的摘要）
-│   ├── index.md            # 內容索引（按主題分類）
+│   └── conversations/      # 原始對話／annotator handoff
+├── projects/               # Project OKF Bundles（跨 session、跨環境）
+│   └── <project-id>/       # project-local decisions、discussions、references
+├── wiki/                   # Shared cross-project knowledge graph
+│   ├── concepts/           # 可跨專案重用的抽象知識
+│   ├── entities/           # 人、工具、package、服務與具體實作
+│   ├── sources/            # 整理後的外部資料與研究紀錄
+│   ├── decisions/          # 全域／跨專案已確認的架構與技術選擇
+│   ├── discussions/        # 尚未定案的方案與研究問題
+│   ├── topics/             # 導航／taxonomy 層，不是主要內容 collection
+│   ├── audits/             # 分析報告與 migration audit
+│   ├── index.md            # 內容索引
 │   └── log.md              # 時間日誌（append-only）
 ├── todos/                  # 任務系統
-│   ├── current.md          # 目前進行中（1-3 個任務）
-│   ├── backlog.md          # 待辦清單（按優先級排列）
-│   ├── done/               # 已完成（按日期歸檔）
-│   └── archive/            # 舊的已完成項目（超過 30 天）
 ├── journal/                # 日記系統
-│   ├── daily/              # 每日日記（YYYY-MM-DD.md）
-│   └── templates/          # 日記模板
 └── AGENTS.md               # 本檔，工作守則
 ```
 
 **各資料夾用途：**
-- `raw/` = 原始資料（網頁剪藏、PDF、外部文章）。只讀不寫。
-- `wiki/topics/` = 結構化筆記，按主題分類。LLM 維護。
-- `wiki/projects/` = 專案維護，追蹤所有建造中的東西。
-- `wiki/sources/` = 來源筆記，AI 整理過的摘要。
+- `raw/` = 原始資料與對話。永遠只讀；原始 annotator feedback 使用 `type: raw-conversation`、`immutable: true`。
+- `projects/<project-id>/` = 跨 session、跨本地環境的 Project OKF Bundle；不取代 package repository、原始碼或 package 內的 `docs/`。
+- `wiki/concepts/` = 可跨專案重用的抽象知識，`type: concept`。
+- `wiki/entities/` = 人、工具、package、服務與具體實作，`type: entity`。
+- `wiki/sources/` = 整理後的外部資料，`type: source`；raw 仍是原始 source of truth。
+- `wiki/decisions/` = 全域或跨專案已確認的決策；project-local decisions 留在 Project Bundle。
+- `wiki/discussions/` = 尚未定案的討論；確認後才提升為 decision 或 concept。
+- `wiki/topics/` = 導航與 taxonomy；canonical content 優先連到五個 collections。
 - `todos/` = 任務系統，管理所有待辦和進行中任務。
-- `journal/` = 日記系統。用 Obsidian Daily Notes + Calendar 外掛管理。
-- `AGENTS.md` = 工作守則。由人類與 LLM 共同演化。
+- `journal/` = 日記系統，由 Obsidian Daily Notes + Calendar 外掛管理。
+- `AGENTS.md` = 工作守則，由人類與 LLM 共同演化。
 
 ---
 
@@ -156,10 +156,12 @@ Obsidian/
 
 **觸發條件：** 開始新專案、或專案有重大進展時。
 
-1. 在 `wiki/projects/` 建立子資料夾。
-2. 至少建立 `README.md`（專案簡介、目標、進度）。
-3. 可選：`decisions.md`（技術決策）、`issues.md`（問題紀錄）。
-4. 更新 `wiki/index.md` 的 Projects 區塊。
+1. 在 root `projects/<project-id>/` 建立 Project OKF Bundle。
+2. 至少建立 `index.md`（project identity、邊界、目標、入口）。
+3. 可選：`decisions/`、`discussions/`、`references.md`、`log.md`。
+4. 使用 GitHub repository URL 作為跨環境 canonical reference。
+5. 不複製 package source code、完整 PLAN 或 package `docs/`；更新 `wiki/index.md` 的 Projects 區塊。
+6. 舊 `wiki/projects/` 目前保留作 legacy project documentation，未經確認不批量刪除或搬移。
 
 ---
 
@@ -177,7 +179,7 @@ Obsidian/
 ```yaml
 ---
 title: 頁面標題
-type: entity | concept | source | comparison | synthesis
+type: entity | concept | source | comparison | synthesis | decision | discussion | audit | project-bundle
 created: 2026-07-11
 updated: 2026-07-11
 sources: 3   # 引用過幾個 raw 來源
@@ -197,7 +199,9 @@ tags: [topic-a, topic-b]
 - 一律用 Obsidian 的 `[[wikilink]]` 風格（雙中括號）。
 - 提到任何重要概念/實體時，**也要建立連結**。這是 wiki 能編譯一次就永久受用的關鍵。
 - 連結斷掉的頁面（`[[foo]]` 指向不存在檔案）是 lint 的目標之一。
-- **新規則**：使用完整路徑連結，例如 `[[topics/ai-agent/pi-mono|pi-mono]]`，確保連結在任何位置都能正確解析。
+- 使用 vault-root 完整路徑連結，例如 `[[entities/pi-mono|pi-mono]]`、`[[concepts/okf-open-knowledge-format|OKF]]`，確保連結在任何位置都能正確解析。
+- `[[basename]]` 只適合唯一 target；當 compatibility stub 或 Canvas 造成歧義時，改用完整路徑。
+- Audit／歷史 log 中的 link 要與正文 link 分開統計；不要因已刪除歷史頁而重建頁面。
 
 ---
 
@@ -205,8 +209,8 @@ tags: [topic-a, topic-b]
 
 ### 5.1 `wiki/index.md`（內容索引）
 
-- 按主題分區：Topics（AI Agent / Extension Dev / Meta Systems / Knowledge Mgmt）/ Projects / Sources。
-- 每頁一行：`[[link|標題]] — 一句話摘要`。
+- 按 taxonomy 分區：Topics（AI Agent / Extension Dev / Meta Systems / Knowledge Mgmt）/ Collections / Projects / Sources。
+- 每頁一行：`[[collection/path|標題]] — 一句話摘要`。
 - 每次 ingest / lint 後更新。
 - 中等規模（~100 來源、數百頁）僅靠 index.md 就夠，不需搜尋引擎。
 
@@ -231,7 +235,7 @@ tags: [topic-a, topic-b]
 - **關鍵判斷先問**：這個來源要不要建獨立頁？這條結論要不要標記為「暫定」？要併入舊頁還是另開新頁？
 - **保持精簡**：wiki 是工具不是目的，不要水文。
 - **不預設立場**：發現矛盾就明標出來，不要掩飾。
-- **日期一律使用臺北時間（Asia/Taipei）**：建立日記、done 檔案、frontmatter 日期等所有 `YYYY-MM-DD` 欄位時，必須以臺北時區計算當日日期，不可直接使用 UTC 或系統本地時間。避免因時差導致日期跳天。
+- **日期使用執行環境的 system local date/time**：建立日記、done 檔案、frontmatter 日期等 `YYYY-MM-DD` 欄位時，使用當前執行環境的本地日期；不要將 `Asia/Taipei` 當作現行固定規則。歷史文件中的舊日期策略只保留其歷史事實，後續更新才採現行規則。
 
 ---
 

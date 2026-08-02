@@ -119,5 +119,5 @@ tags: [publishing, package, extension, marketplace, npm, github-actions, ci-cd]
 
 ## 相關頁面
 
-- [[npm-publishing-workflow]] — 完整的 NPM 發佈流程文件
-- [[pi-plannotator-auto]] — 我們的第一個 NPM 發佈實例
+- [[concepts/npm-publishing-workflow]] — 完整的 NPM 發佈流程文件
+- [[projects/pi-plannotator-auto/index]] — 我們的第一個 NPM 發佈實例
