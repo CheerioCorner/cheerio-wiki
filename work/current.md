@@ -25,14 +25,8 @@
 
 ## Backlog
 
-- [x] W-2026-08-015 建立 Notion → raw 抓取流程 🔼 #notion ✅
-  - next: —
-  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
-  - 2026-08-05 決定採用方案 A：新建 `notion-to-raw` skill（`~/.agents/skills/notion-to-raw/SKILL.md`）
-  - 流程：查 manifest → MCP 抓 Notion 頁面 markdown → 建 raw/web/ → 提示 wiki-knowledge ingest
-
 - [ ] W-2026-08-016 測試 Notion 端到端流程（raw → wiki → Notion → raw） 🔼 #notion
-  - next: 等 W-2026-08-015 完成後執行
+  - next: W-2026-08-015 已完成，可執行測試
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]
 
 - [ ] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ⏫ #skills
@@ -63,12 +57,18 @@
   - refs: [[wiki/index|Wiki Index]]
 
 - [ ] W-2026-08-008 用 `grill-me` 跑一次完整需求追問（Pi Web） ⏫ #skills
+  - next: grilling 已安裝，可執行
   - refs: [[projects/pi-web-access-zh-tw/index|Pi Web project context]]
 
 - [ ] W-2026-08-009 建立每週 wiki lint 與花園巡檢提醒 ⏫ #meta
   - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]
 
 ## Completed
+
+- [x] W-2026-08-015 建立 Notion → raw 抓取流程 ✅ #notion
+  - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+  - completed: 2026-08-05
+  - result: 建立 `notion-to-raw` skill（`~/.agents/skills/notion-to-raw/SKILL.md`），三條路徑：只是看看 / 寫 raw / deep research；迭代改進為「先呈現→問下一步」模式
 
 - [x] W-2026-07-022 YouTube ingest mattpocock/skills + 多 topic 機制 ✅ #knowledge #wiki
   - refs: [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills tutorial]]、[[wiki/topics/skill|Skill topic]]
