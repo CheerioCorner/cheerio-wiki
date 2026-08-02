@@ -1,6 +1,13 @@
 
 # Log
 
+## [2026-08-06] e2e-test | Notion ↔ Obsidian 雙向同步測試完成 ✅
+
+- 測試流程：raw → wiki → Notion → raw（回環測試）
+- 驗證項目：wiki-knowledge ingest、knowledge-garden 種子建立、manifest 自動同步、notion-to-raw 抓回
+- 結果：全部通過
+- 測試 artifacts 已清理（raw、wiki source note、Notion 頁面保留供人工確認）
+
 ## [2026-08-06] update | Notion ↔ Obsidian 雙向同步機制 — Manifest 自動同步
 
 - `knowledge-garden` skill 新增 §Manifest 自動同步：每次 Notion 寫入操作後同步更新 `wiki/entities/knowledge-garden.md`

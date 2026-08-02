@@ -2,7 +2,7 @@
 title: knowledge-garden — Notion 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-06
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -20,7 +20,7 @@ canonical: entities/knowledge-garden
 | Page ID | `3ac5979e-3a8c-81d2-b96f-f6c7bdd8fd33` |
 | 建立日期 | 2026-07-11 |
 | 維護者 | Cheerio + Pi |
-| 最後同步 | 2026-08-03 |
+| 最後同步 | 2026-08-06 |
 
 ---
 
@@ -69,6 +69,7 @@ canonical: entities/knowledge-garden
 | 2026-07-31 | 種下 NPM Publishing Workflow | NPM Publishing |
 | 2026-07-31 | 種下 Agent Extension 安裝位置 | Agent Extension |
 | 2026-08-01 | 種下 OKF Extension 開發 | OKF Extension |
+| 2026-08-06 | E2E 測試完成（已清理） | E2E Test Artifact |
 
 ---
 

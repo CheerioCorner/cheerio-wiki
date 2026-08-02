@@ -25,19 +25,20 @@
 
 ## Backlog
 
-- [ ] W-2026-08-016 測試 Notion 端到端流程（raw → wiki → Notion → raw） 🔼 #notion
-  - next: W-2026-08-015 已完成，可執行測試
+- [x] W-2026-08-016 測試 Notion 端到端流程（raw → wiki → Notion → raw） 🔼 #notion ✅
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]
+  - completed: 2026-08-06
+  - result: 端到端測試全部通過：raw → wiki ingest ✅、wiki → Notion 種子建立 ✅、manifest 自動同步 ✅、Notion → raw 抓回 ✅
 
 - [ ] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ⏫ #skills
   - next: 決定分 repo 策略（一 skill 一 repo？ Obsidian group？ agent-agnostic group？）
   - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`
   - 盤點結果：Pi-specific=pi-plannotator-auto、Obsidian-dependent=wiki-knowledge/youtube-to-wiki/work-tracker/todos、Agent-agnostic=knowledge-garden/notion-cli
 
-- [ ] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ⏫ #notion
-  - next: 測試端到端流程（W-2026-08-016）
+- [x] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ⏫ #notion ✅
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]
-  - 2026-08-06 完成 manifest 自動同步機制：`knowledge-garden` skill 新增 §Manifest 自動同步，每次 Notion 寫入操作後同步更新 `wiki/entities/knowledge-garden.md`；`notion-to-raw` skill 同步更新 Step 5 格式
+  - completed: 2026-08-06
+  - result: 雙向同步機制完成：manifest 自動同步（knowledge-garden skill §Manifest 自動同步）、端到端測試通過（W-2026-08-016）
 
 - [ ] W-2026-08-005 測試 URL → raw/web → ingest 全流程 🔼 #knowledge
   - refs: [[wiki/sources/README|Sources]]、[[raw/web|Raw web sources]]
