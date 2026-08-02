@@ -3,6 +3,14 @@
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
 
+## [2026-08-02] decision | pi-todo-journal 知識邊界與未來自有 harness 相容性
+
+- 確認不重寫 `pi-todo-journal` Phase 0–5 核心 phases；只在 `PLAN.md` 補充 knowledge boundary 與未來 optional explicit references。
+- `pi-todo-journal` 的責任維持在 session 狀態、明確任務、Journal、checkpoint 與使用者提供的 references；不負責外部知識 ingest、概念統一、Wiki taxonomy 或語意 linking。
+- Project OKF Bundle 與 package 內 `docs/` 分工：前者是 Obsidian 的跨 session project knowledge，後者是隨 package 發布的開發／維運 bundle；兩者不互相依賴，也不形成第二份 package source of truth。
+- 未來自有 Agent harness 可以消費相同的純 Markdown／JSON 資料與抽象 store contract；本次不提前把自有 harness 實作或依賴加入 package。
+- 依據：[[projects/pi-todo-journal/README|pi-todo-journal]]、package `PLAN.md`、`raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff.md`。
+
 ## [2026-08-01] dev | pi-todo-journal Phase 1 完成
 
 - 人類確認 package 名稱為 `pi-todo-journal`，並要求先保存完整計畫，再進行階段性開發。
