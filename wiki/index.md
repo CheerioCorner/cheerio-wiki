@@ -10,7 +10,7 @@
 - **建立日期**：2026-07-11
 - **最後更新**：2026-08-02
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **總來源數**：7
+- **總來源數**：7（全部已補 `collection: sources` 與 provenance）
 - **Wiki Markdown（audit 前）**：28；canonical collection / bundle migration 進行中
 - **任務系統**：`todos/` — 統一管理所有待辦事項
 

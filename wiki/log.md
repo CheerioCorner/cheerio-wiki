@@ -9,6 +9,7 @@
 - 將現行 index、project README 與正文 links 指向 collection canonical pages；未建立 unresolved future concepts。
 - 依據：[[audits/2026-08-02-wiki-collection-topic-link-audit|2026-08-02 Wiki collection/topic/link audit]]。
 - 完成後續規範對齊：root `projects/`、五個 shared collections、topic taxonomy、GitHub canonical references 與 system local date/time 規則。
+- Source collection provenance pass：7 個 source notes 保留 `sources: N` 相容欄位，並補上 `collection: sources` 與逐頁 provenance。
 
 > Append-only 時間日誌。每條以前綴開頭，方便 grep：
 > `grep "^## \[" log.md | head -10`
@@ -91,7 +92,7 @@
   - 發佈 v1.0.3 到 npm
 - 建立文件：
   - [[okf-open-knowledge-format]] — OKF 完整教學，用 pi-plannotator-auto 作為案例
-  - [[2026-08-01-okf-extension-development]] — 今日工作記錄
+  - [[sources/2026-08-01-okf-extension-development]] — 今日工作記錄
 - 更新：[[index]] — 加入新頁面
 - 學到的知識：
   - **OKF 核心：** Markdown + YAML frontmatter 表示知識，人類和 AI 都能讀
@@ -117,7 +118,7 @@
   - 成功發佈套件到 NPM：@cheeriocorner/pi-plannotator-auto
 - 建立文件：
   - [[npm-publishing-workflow]] — Package Publishing 統一觀點文件
-  - [[2026-07-31-npm-publishing-setup]] — 今日工作記錄
+  - [[sources/2026-07-31-npm-publishing-setup]] — 今日工作記錄
 - 更新：[[index]] — 加入新頁面
 - 學到的知識：
   - **核心觀點：** 不管叫什麼名字（Package、Extension、Marketplace），發佈到市場的流程本質上是一樣的
@@ -157,7 +158,7 @@
     - pi-plannotator-auto 功能與技術細節
     - 實驗觀察（Shared Event API、Pi 整合、授權）
     - 未來可能的發展（與知識花園整合、多人協作、AI 自動摘要）
-  - 更新 Sources:[[2026-07-11-plannotator-research]] — 加入「後續發展」章節：
+  - 更新 Sources:[[sources/2026-07-11-plannotator-research]] — 加入「後續發展」章節：
     - pi-plannotator-auto 開發過程
     - 實驗結論
   - 更新 [[index]] — plannotator 條目加入自訂 extension 說明
@@ -218,7 +219,7 @@
   - User-invoked 負責編排，Model-invoked 持有可重用紀律
 - 安裝了 7 個建議 skills 到 `~/.agents/skills/`：
   - setup-matt-pocock-skills、grill-me、to-spec、to-tickets、tdd、code-review、improve-codebase-architecture
-- 新頁：Sources:[[2026-07-11-mattpocock-skills]]
+- 新頁：Sources:[[sources/2026-07-11-mattpocock-skills]]
 - 更新頁：[[index]] — 來源 5→6，頁面 15→16
 - 維護設計：wiki 頁面使用表格追蹤每個 skill 的安裝狀態和上游狀態，方便未來比對更新
 
@@ -236,7 +237,7 @@
   - MCP：Notion API (lazy connect，14 工具，排除 9 寫入類)
   - 當前工作目錄：C:/Cheerio/pi/ (含 PLAN.md、notion-reorg/ 等)
 - 新頁：
-  - Sources:[[2026-07-18-pi-resource-inventory]]
+  - Sources:[[sources/2026-07-18-pi-resource-inventory]]
   - Entities:[[pi-web-access-zh-tw]]、[[wiki-knowledge]]、[[notionApi]]
 - 更新頁：[[index]] — 來源 4→5，頁面 11→15，新增 3 實體頁
 
@@ -309,7 +310,7 @@
 - 來源:GitHub repo + 官網 + pi-extension README。
 - 新頁:
   - Entities:[[plannotator]]—— 功能概述、支援 agent 列表、架構說明
-  - Sources:[[2026-07-11-plannotator-research]]—— 研究動機與發現摘要
+  - Sources:[[sources/2026-07-11-plannotator-research]]—— 研究動機與發現摘要
 - 另在 Notion 建立「Plannotator Fork 開發規劃」頁面(用於多人協作)
 - 發現:repo 無 obsidian/notion 直接整合，但支援 markdown 審閱可間接用於 Obsidian vault
 
@@ -323,7 +324,7 @@
 - 新頁:
   - Entities:[[pi-mono]]、[[pi-agent-core]]、[[mario-zechner]]
   - Concepts:[[late-conversion]]、[[minimal-agent-philosophy]]
-  - Sources:[[2026-02-10-pi-agent-core-design]]、[[2026-05-02-pi-mono-framework-tw]]
+  - Sources:[[sources/2026-02-10-pi-agent-core-design]]、[[sources/2026-05-02-pi-mono-framework-tw]]
 - 判斷續記(見上對話):
   - 決定「只建 4 個新頁」不一次到位 16 頁,避免「拆太細」之後 lint 頭緣。
   - 下一階段暫先不寫 comparison / 與其他 agent 的細表,A 提供原始材料但人類未指示起個。

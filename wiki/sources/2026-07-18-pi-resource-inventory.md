@@ -5,6 +5,10 @@ created: 2026-07-18
 updated: 2026-07-18
 sources: 1
 tags: [pi, inventory, configuration, packages, skills, mcp, wiki]
+collection: sources
+provenance:
+  - kind: session
+    description: Pi resource inventory session on 2026-07-18
 ---
 
 > 來源：人類在 Pi 互動模式下要求「檢視我們現在擁有的所有資源」，Agent 掃描專案目錄、Pi 設定目錄、Obsidian 知識庫，彙整而成。

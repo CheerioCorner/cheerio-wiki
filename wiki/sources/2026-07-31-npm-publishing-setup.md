@@ -5,6 +5,10 @@ created: 2026-07-31
 updated: 2026-07-31
 sources: 1
 tags: [publishing, package, extension, marketplace, npm, github-actions, ci-cd]
+collection: sources
+provenance:
+  - kind: project
+    url: https://github.com/CheerioCorner/pi-plannotator-auto
 ---
 
 # 2026-07-31 Package Publishing 首次實作
