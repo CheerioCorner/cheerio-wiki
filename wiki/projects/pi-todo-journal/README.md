@@ -2,7 +2,7 @@
 title: pi-todo-journal
 type: entity
 created: 2026-08-01
-updated: 2026-08-01
+updated: 2026-08-02
 sources: 1
 tags: [pi, extension, todo, journal, obsidian, package]
 ---
@@ -18,7 +18,8 @@ tags: [pi, extension, todo, journal, obsidian, package]
 3. 用 checkpoint 降低非正常關閉造成的資料遺失。
 4. 預設採 `confirm`，正式寫入前讓使用者確認。
 5. 所有同步操作必須可重跑而不重複寫入（idempotent）。
-6. 所有日曆日期使用 `Asia/Taipei`，不使用 UTC 日期。
+6. 所有日曆日期與 ISO timestamp 使用系統本地時間，不使用 UTC。
+7. Package 可保存使用者明確提供的 references，但不負責外部知識 ingest、概念統一、Wiki taxonomy 或語意 linking。
 
 ## Phase 1 — 已完成 ✅
 
@@ -101,7 +102,7 @@ npm pack --dry-run → passed
 
 - **Phase 0：** ✅ 完成規劃與 package 命名
 - **Phase 1：** ✅ 完成 — package skeleton、OKF、parser、journal、checkpoint、commands、測試
-- **Phase 2：** 📋 待開始 — 改善 confirm UI、task start/pause/note 與 session 摘要
+- **Phase 2：** ✅ 完成 — confirm UI、task start/pause/note、session 摘要與 recovery
 - **Phase 3：** 📋 待開始 — TaskStore / JournalStore adapter 抽象化
 - **Phase 4：** 📋 待開始 — 測試、CI、npm 發布、TUI 安裝驗證
 - **Phase 5：** 📋 待決定 — Notion / Git / 其他 adapter
@@ -112,6 +113,12 @@ npm pack --dry-run → passed
 - [[topics/extension-dev/npm-publishing-workflow|npm-publishing-workflow]] — npm 發布流程
 - [[todos/README]] — 任務系統格式規範
 
+## 知識邊界與未來相容性
+
+`pi-todo-journal` 維持 session、Todo、Journal、checkpoint 與 explicit references 的責任邊界；不負責外部知識 ingest、Wiki taxonomy 或語意 linking。Project OKF Bundle 由 Obsidian 維護，package 內 `docs/` 是隨 package 發布的開發／維運 bundle，兩者不互相依賴。
+
+未來 Cheerio 自建 Agent harness 時，可以消費本 package 使用的純 Markdown／JSON 資料與抽象 store contract；目前不將自有 harness 實作提前放入 package。
+
 ## 下一步
 
-開始 Phase 2；新 session 閱讀 `AGENTS.md`、`docs/index.md`、`PLAN.md` 和 `todos/current.md` 後即可接續。
+開始 Phase 3；新 session 閱讀 `AGENTS.md`、`docs/index.md`、`PLAN.md` 和 `todos/current.md` 後即可接續。

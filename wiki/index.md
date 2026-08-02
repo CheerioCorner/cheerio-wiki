@@ -47,7 +47,7 @@
 
 - [[projects/pi-plannotator-auto/README|pi-plannotator-auto]] — ✅ 已發布（GitHub + NPM）
 - [[projects/pi-web-access-zh-tw/README|pi-web-access-zh-tw]] — ⚠️ 需維護（有外部貢獻者）
-- [[projects/pi-todo-journal/README|pi-todo-journal]] — ✅ Phase 1 完成：Todo / Journal session 同步、OKF、測試
+- [[projects/pi-todo-journal/README|pi-todo-journal]] — ✅ Phase 2 完成：Todo / Journal session 同步、OKF、測試；知識邊界已確認
 
 ---
 
