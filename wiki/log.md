@@ -86,7 +86,7 @@
   - `guide.md` 比 `overview.md` 更明確表示用途
   - 閉環優化系統讓知識管理可以自我驅動
 - 相關頁面：
-  - [[index]] — 更新後的索引
+  - [[index|Wiki index]] — 更新後的索引
   - [[guide]] — 使用指南
   - [[快速開始]] — 新手入門
 
@@ -102,7 +102,7 @@
 - 建立文件：
   - [[okf-open-knowledge-format]] — OKF 完整教學，用 pi-plannotator-auto 作為案例
   - [[sources/2026-08-01-okf-extension-development]] — 今日工作記錄
-- 更新：[[index]] — 加入新頁面
+- 更新：[[index|Wiki index]] — 加入新頁面
 - 學到的知識：
   - **OKF 核心：** Markdown + YAML frontmatter 表示知識，人類和 AI 都能讀
   - **適用場景：** Extension 文件、AI 知識庫、團隊知識管理
@@ -128,7 +128,7 @@
 - 建立文件：
   - [[npm-publishing-workflow]] — Package Publishing 統一觀點文件
   - [[sources/2026-07-31-npm-publishing-setup]] — 今日工作記錄
-- 更新：[[index]] — 加入新頁面
+- 更新：[[index|Wiki index]] — 加入新頁面
 - 學到的知識：
   - **核心觀點：** 不管叫什麼名字（Package、Extension、Marketplace），發佈到市場的流程本質上是一樣的
   - 差異只在平台、市場和來源不同
@@ -150,7 +150,7 @@
   - [[agent-extension-installation]] — Agent Extension 安裝位置與方式
   - 記錄了 Pi 的兩種安裝來源（git/ vs npm/）
   - 比較了不同 Agent 框架的做法（Claude Code、Cursor、Continue、Aider）
-- 更新：[[index]] — 加入新頁面
+- 更新：[[index|Wiki index]] — 加入新頁面
 - 學到的知識：
   - Pi 用目錄結構區分安裝來源（`git/` vs `npm/`）
   - 不同 Agent 有不同的安裝和儲存方式
@@ -170,7 +170,7 @@
   - 更新 Sources:[[sources/2026-07-11-plannotator-research]] — 加入「後續發展」章節：
     - pi-plannotator-auto 開發過程
     - 實驗結論
-  - 更新 [[index]] — plannotator 條目加入自訂 extension 說明
+  - 更新 [[index|Wiki index]] — plannotator 條目加入自訂 extension 說明
 - 下一步：在 Notion 知識花園種下 Plannotator 樹苗
 
 ---
@@ -186,7 +186,7 @@
     - Omnigent = 進入這個領域的一棵樹苗（🌱 種子期）
     - 列出未來可能收集的樹苗
     - 列出 4 個研究方向
-  - 更新 [[index]] — omnigent 條目加入 Windows 警告，meta-harness 標記為研究專題
+  - 更新 [[index|Wiki index]] — omnigent 條目加入 Windows 警告，meta-harness 標記為研究專題
 - 下一步：在 Notion 知識花園種下 Omnigent 樹苗
 
 ---
@@ -229,7 +229,7 @@
 - 安裝了 7 個建議 skills 到 `~/.agents/skills/`：
   - setup-matt-pocock-skills、grill-me、to-spec、to-tickets、tdd、code-review、improve-codebase-architecture
 - 新頁：Sources:[[sources/2026-07-11-mattpocock-skills]]
-- 更新頁：[[index]] — 來源 5→6，頁面 15→16
+- 更新頁：[[index|Wiki index]] — 來源 5→6，頁面 15→16
 - 維護設計：wiki 頁面使用表格追蹤每個 skill 的安裝狀態和上游狀態，方便未來比對更新
 
 ---
@@ -248,7 +248,7 @@
 - 新頁：
   - Sources:[[sources/2026-07-18-pi-resource-inventory]]
   - Entities:[[pi-web-access-zh-tw]]、[[wiki-knowledge]]、[[notionApi]]
-- 更新頁：[[index]] — 來源 4→5，頁面 11→15，新增 3 實體頁
+- 更新頁：[[index|Wiki index]] — 來源 4→5，頁面 11→15，新增 3 實體頁
 
 ---
 
@@ -260,7 +260,7 @@
 - 新頁：
   - Concepts:[[pi-project-workspace-model]]
 - 更新頁：
-  - [[index]] — 總頁面數 11 → 12，新增概念頁連結
+  - [[index|Wiki index]] — 總頁面數 11 → 12，新增概念頁連結
 - 更新 index 計數：頁面 11 → 12
 
 ---
@@ -295,7 +295,7 @@
 
 - 補完 `AGENTS.md` 所有預留位置，替換 `PERSON_NAME]`、`[ADDRESS]` 等佔位符
 - 新增 [[快速開始]] 頁面——三種收集資料方法與基本操作說明
-- 更新 [[index]] 與 [[overview]] 加入新頁面連結
+- 更新 [[index|Wiki index]] 與 [[overview]] 加入新頁面連結
 - 系統現在可以直接使用
 
 ---

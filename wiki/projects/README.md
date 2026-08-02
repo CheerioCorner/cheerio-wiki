@@ -1,6 +1,8 @@
 # Legacy Projects 追蹤
 
 > 舊版 `wiki/projects/` project documentation 入口。新的跨 session、跨環境 Project OKF Bundle 位於 root `projects/<project-id>/`。
+>
+> Shared entry point：[[wiki/index|Wiki index]]。本頁不再作為 canonical project collection。
 
 ## 活躍專案
 

@@ -1,5 +1,7 @@
 # pi-plannotator-auto
 
+> Legacy project README。Canonical Project OKF Bundle 已移至 [[projects/pi-plannotator-auto/index|root projects/pi-plannotator-auto]]。
+>
 > AI coding agent 視覺化審閱工具的自動化 extension
 
 ## 基本資訊

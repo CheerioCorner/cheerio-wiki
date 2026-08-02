@@ -52,3 +52,4 @@ The shared Wiki uses five content collections:
 - [[decisions/README|Decisions collection]]
 - [[discussions/README|Discussions collection]]
 - [[topics/README|Topics taxonomy]]
+- [[audits/2026-08-02-wiki-collection-topic-link-audit|Collection/topic/link audit]]

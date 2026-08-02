@@ -44,7 +44,7 @@ canonical: entities/wiki-knowledge
 - 出現多次無自己頁面的概念
 - 缺漏交叉引用
 - Frontmatter 格式不一致（缺少必填欄位、格式錯誤）
-→ 提出清單 → 人類確認 → 修改 → git push
+→ 提出清單 → 對需要人工判斷的項目使用 annotator review → 修改 → git push
 
 ## 知識庫架構（受管轄）
 ```
@@ -103,7 +103,7 @@ tags: [topic-a, topic-b]
 **格式檢查：** lint 流程會自動檢查格式一致性
 
 ### 交叉引用
-- 一律用 `[[wikilink]]` 雙中括號（文件示例中的 `wikilink` 使用 code text，不代表實際頁面）
+- 一律用 Obsidian Wikilink 雙中括號；文件示例中的 target 使用 `wikilink` code text，不代表實際頁面
 - 優先使用 vault-root 完整路徑，例如 `[[entities/pi-mono|pi-mono]]`；basename 只適合唯一 target
 - 提到重要概念／實體時**必須建連結**
 - compatibility stubs、Canvas 與歷史 log 可能造成合法 ambiguity；lint 應分別統計，不應自動建立 future concept
@@ -112,4 +112,4 @@ tags: [topic-a, topic-b]
 - Source: [[sources/2026-07-18-pi-resource-inventory]]
 - Entities: [[entities/pi-web-access-zh-tw]], [[entities/notionApi]], [[entities/pi-mono]]
 - Concepts: [[concepts/meta-harness]], [[concepts/minimal-agent-philosophy]]
-- Wiki 系統頁: [[index]], [[log]]
+- Wiki 系統頁: [[wiki/index|Wiki index]], [[wiki/log|Wiki log]]
