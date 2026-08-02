@@ -1,5 +1,10 @@
 # Log
 
+## [2026-08-02] record | Wiki × OKF migration complete work record
+
+- 建立完整工作紀錄：[[sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF migration complete]]。
+- 紀錄 audit、collections、canonical links、provenance、decisions、discussions、三個 Project Bundles、Git history 與保留邊界。
+
 ## [2026-08-02] promotion | Confirmed architecture decisions and open discussions
 
 - 將已確認的 Wiki × OKF 架構方向整理至 `wiki/decisions/`：Project Bundle boundary、Shared Wiki collection model、raw conversation promotion workflow、package knowledge boundary。

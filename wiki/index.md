@@ -79,6 +79,7 @@
 - [[sources/2026-07-31-npm-publishing-setup|2026-07-31-npm-publishing-setup]] — Package publishing 實作記錄
 - [[sources/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]] — Pi Agent Core 研究
 - [[sources/2026-05-02-pi-mono-framework-tw|2026-05-02-pi-mono-framework-tw]] — Pi mono framework 研究
+- [[sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF migration complete]] — 完整架構優化、決策、Project Bundle 與 audit 紀錄
 
 ---
 

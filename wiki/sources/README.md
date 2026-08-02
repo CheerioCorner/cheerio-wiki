@@ -15,3 +15,7 @@ provenance:
 ```
 
 現階段保留 `sources: N` 作為相容性摘要欄位；`provenance` 是逐步補強的可追溯來源資料。
+
+## Migration records
+
+- [[sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF migration complete]]
