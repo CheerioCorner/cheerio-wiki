@@ -1,4 +1,4 @@
-# Current Work
+/# Current Work
 
 > 唯一的工作狀態入口。完成事件寫入 `work/history/YYYY-MM.md`。
 > 每個工作項目都要有穩定 ID、下一步與至少一個 reference。
@@ -18,6 +18,10 @@
   - refs: [[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]
 
 ## Backlog
+
+- [ ] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ⏫ #skills
+  - next: 盤點所有自寫 skill，決定分 repo 策略
+  - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`
 
 - [ ] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ⏫ #notion
   - refs: [[wiki/entities/notionApi|notionApi]]
