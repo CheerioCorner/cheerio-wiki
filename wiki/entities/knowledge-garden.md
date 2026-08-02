@@ -2,7 +2,7 @@
 title: knowledge-garden — Notion 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-06
+updated: 2026-08-10
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -20,7 +20,7 @@ canonical: entities/knowledge-garden
 | Page ID | `3ac5979e-3a8c-81d2-b96f-f6c7bdd8fd33` |
 | 建立日期 | 2026-07-11 |
 | 維護者 | Cheerio + Pi |
-| 最後同步 | 2026-08-06 |
+| 最後同步 | 2026-08-10 |
 
 ---
 
@@ -43,6 +43,7 @@ canonical: entities/knowledge-garden
 | mattpocock/skills — 第一棵樹苗 | [連結](https://app.notion.com/p/3ac5979e3a8c817d9c40d22e1eed94fb) | 🌱 種子期 | [[wiki/entities/mattpocock-skills\|mattpocock-skills]] |
 | Omnigent — Databricks 開源 meta-harness | [連結](https://app.notion.com/p/3ad5979e3a8c8172a580ea3e890bb2d1) | 🌱 種子期 | [[wiki/entities/omnigent\|omnigent]] |
 | Agent Extension 安裝位置與方式 | [連結](https://app.notion.com/p/3ae5979e3a8c81368c3ad7f614773c07) | 🌱 種子期 | [[wiki/concepts/agent-extension-installation\|agent-extension-installation]] |
+| OKF (Open Knowledge Format) — AI 時代的知識格式 | [連結](https://app.notion.com/p/3b05979e3a8c81d1a4cef54284281238) | 🌿 成長期 | [[wiki/concepts/okf-open-knowledge-format\|okf-open-knowledge-format]] |
 
 ---
 
@@ -70,6 +71,7 @@ canonical: entities/knowledge-garden
 | 2026-07-31 | 種下 Agent Extension 安裝位置 | Agent Extension |
 | 2026-08-01 | 種下 OKF Extension 開發 | OKF Extension |
 | 2026-08-06 | E2E 測試完成（raw/wiki/Notion 全部清理） | E2E Test Artifact |
+| 2026-08-10 | 種下 OKF (Open Knowledge Format) | OKF |
 
 ---
 

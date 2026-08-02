@@ -413,7 +413,8 @@ OKF 依賴 git，多人同時編輯會有衝突。
 - [OKF 官方文件](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)
 - [OKF v0.2 規範](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
 - [Pi-plannotator-auto OKF 實作](https://github.com/CheerioCorner/pi-plannotator-auto/tree/master/docs)
+- 🌱 [Notion 花園種子](https://app.notion.com/p/3b05979e3a8c81d1a4cef54284281238) — OKF 概念與運用整理
 
 ---
 
-*Last updated: 2026-08-01*
+*Last updated: 2026-08-10*

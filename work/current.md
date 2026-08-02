@@ -16,13 +16,11 @@
   - next: 抽象 TaskStore / JournalStore adapters（原 W-2026-08-002）→ 測試、CI 與 npm 發布（原 W-2026-08-003）→ 搬移必要程式
   - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]、[[work/README|Work System]]
 
-
-
-## In progress
-
-- [ ] W-2026-08-019 整理 OKF 概念和運用 ⏫ #knowledge
-  - next: 整理現有 wiki 內容，用 annotator UI 報告
-  - refs: [[wiki/concepts/okf-open-knowledge-format|OKF concept page]]、[[wiki/sources/2026-08-01-okf-extension-development|OKF extension development source]]
+- [ ] W-2026-08-020 研究 Gemini CLI 整合方案 ⏫ #ai-agent
+  - next: 使用者安裝 Gemini CLI → 測試 headless 模式 (`gemini -p`) → 實作 subagent 呼叫流程
+  - refs: [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - 2026-08-09 決策：採用 Gemini CLI headless 模式整合（免費 1000 req/day），而非 Pi model 設定或 Antigravity API
+  - 2026-08-09 調查：Antigravity 是 Google 新的 managed agent 平台（沙箱環境），Gemini CLI 將被 Antigravity CLI 取代（2026-06-18 起）
 
 ## Backlog
 
