@@ -534,6 +534,46 @@ projects/pi-plannotator-auto/
 3. 舊 topic stubs 會造成 basename ambiguity，因此後續若要將 compatibility stubs 移除或改成明確 redirect，需要 Cheer 另行確認。
 4. `.obsidian/graph.json` 有一個外部工作區變更（`scale` 數值），不屬於本 migration pilot，應在 commit 前由 Cheer 決定保留或還原。
 
+## 16. Final health audit
+
+### Final scope
+
+- Wiki Markdown（audit report excluded from link gate）：**57**
+- `concepts` canonical pages：**7**
+- `entities` canonical pages：**8**
+- `sources` notes：**7**，全部具備 `collection: sources` 與 `provenance`
+- `decisions` pages：**4**
+- `discussions` pages：**3**
+- Root Project OKF Bundles：**3**（`pi-plannotator-auto`、`pi-todo-journal`、`pi-web-access-zh-tw`）
+
+### Link gate
+
+- Wiki links scanned：**233**（audit report excluded）
+- Resolved：**233**
+- Current non-historical broken links：**0**
+- Historical log unresolved links：**3**（`guide`、`快速開始`、`overview`）；append-only log intentionally unchanged
+- Future concepts are represented as code text or explicit “not yet created” notes, not unresolved Wiki links.
+- Project Bundle links：all resolved.
+
+### Orphan review
+
+Remaining legacy or navigation-only pages without inbound content links:
+
+- `wiki/projects/README.md`
+- `wiki/projects/pi-plannotator-auto/README.md`
+- `wiki/topics/meta-systems/omnigent.md`
+
+These are compatibility／legacy or taxonomy pages, not canonical content orphans. The canonical project／entity pages are linked from `wiki/index.md` and collection navigation.
+
+### Final status
+
+The current architecture goal is complete for this migration scope. Remaining work is intentionally outside automatic migration:
+
+- deciding the long-term fate of `topics/` compatibility stubs;
+- deciding whether unresolved future concepts deserve canonical pages;
+- designing and building YouTube-to-Wiki only after the discussion gate is closed;
+- future maintenance updates to individual Project Bundles.
+
 ## 附錄 A：原始工作樹狀態
 
 Audit 開始前 `git status --short` 顯示 `raw/conversations/` 為未追蹤項目；本輪沒有修改或加入該 raw 路徑。Audit report 是本輪先前產生的報告；本次 migration pilot 另新增 canonical collections 與 Project Bundle。
