@@ -14,7 +14,10 @@
 - 決策：採用方案 A — 新建獨立 skill（而非擴展 youtube-to-wiki 或 knowledge-garden）
 - 理由：YouTube/Notion 抓取機制不同、raw 格式不同、觸發詞不同；knowledge-garden 保持 wiki→Notion 方向
 - 建立：`~/.agents/skills/notion-to-raw/SKILL.md`
-- 流程：查 manifest → MCP 抓 Notion 頁面 markdown → 建 raw/web/ → 提示 wiki-knowledge ingest
+- 初始版本：固定路徑 Notion → raw → wiki ingest
+- **迭代**：重新設計為三條路徑（只是看看 / 寫 raw / deep research）
+  - Notion 頁面是起點，不一定每次都要寫進 raw
+  - Phase 1（取得內容）→ Phase 2（呈現+問下一步）→ Phase 3（根據選擇執行）
 - 完成 W-2026-08-015
 - 下一步：W-2026-08-016（測試 Notion 端到端流程）
 

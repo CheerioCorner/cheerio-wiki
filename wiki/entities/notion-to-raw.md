@@ -24,24 +24,35 @@ canonical: entities/notion-to-raw
 ## 流程
 
 ```
-使用者觸發（種子名稱 / Notion URL）
-    ↓
-Step 1: 查 manifest → 找到 Page ID
-    ↓
-Step 2: MCP 抓 Notion 頁面 markdown
-    ↓
-Step 3: 建立 raw/web/<YYYY-MM-DD>-<slug>.md
-    ↓
-Step 4: 更新花園 manifest（紀錄研究事件）
-    ↓
-Step 5: 提示下一步 → wiki-knowledge ingest
+Notion 頁面
+    │
+    ├──→ 📖 只是看看（摘要 + 回答問題）→ 結束
+    │
+    ├──→ 📝 直接寫 raw → wiki ingest
+    │
+    └──→ 🔬 深入研究（抓引用 URL → 搜尋 → 整合）
+              │
+              └──→ 決定是否寫 raw
 ```
+
+### Phase 1：取得內容（永遠先做）
+1. 解析輸入（URL / 種子名稱 / 選擇）
+2. MCP 抓 Notion 頁面 markdown
+
+### Phase 2：呈現 + 問下一步
+3. 摘要呈現 + 問使用者想要做什麼
+
+### Phase 3：根據選擇執行
+- **A) 只是看看** → 回答問題，結束
+- **B) 寫進 raw** → 建 raw/web/ → 提示 wiki-knowledge ingest
+- **C) Deep research** → 抓引用 URL → 搜尋 → 整合 → 再問一次
 
 ## 設計決策
 
 | 決策 | 理由 |
 |------|------|
 | 獨立 skill（非擴展 youtube-to-wiki） | 抓取機制不同（MCP vs Python API）、raw 格式不同、觸發詞不同 |
+| 三條路徑（只是看看 / 寫 raw / deep research） | Notion 頁面是起點，不一定每次都要寫進 raw |
 | 不在 skill 內處理 wiki ingest | 職責分離：notion-to-raw 只負責 Notion → raw，wiki-knowledge 處理 raw → wiki |
 | knowledge-garden 保持 wiki→Notion 方向 | 避免方向混亂 |
 
