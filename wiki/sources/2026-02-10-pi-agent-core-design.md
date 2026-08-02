@@ -8,7 +8,7 @@ tags: [pi, agent, coding-agent, zechner, source-zh]
 collection: sources
 provenance:
   - kind: raw
-    path: raw/2026-02-10-pi-agent-core-design.md
+    path: raw/web/2026-02-10-pi-agent-core-design.md
   - kind: external
     url: https://zhuanlan.zhihu.com/p/2004665077618458930
 ---
