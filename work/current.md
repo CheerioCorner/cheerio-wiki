@@ -20,8 +20,9 @@
 ## Backlog
 
 - [ ] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ⏫ #skills
-  - next: 盤點所有自寫 skill，決定分 repo 策略
+  - next: 決定分 repo 策略（一 skill 一 repo？ Obsidian group？ agent-agnostic group？）
   - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`
+  - 盤點結果：Pi-specific=pi-plannotator-auto、Obsidian-dependent=wiki-knowledge/youtube-to-wiki/work-tracker/todos、Agent-agnostic=knowledge-garden/notion-cli
 
 - [ ] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ⏫ #notion
   - refs: [[wiki/entities/notionApi|notionApi]]
