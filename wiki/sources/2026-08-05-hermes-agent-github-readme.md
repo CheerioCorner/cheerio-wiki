@@ -8,6 +8,9 @@ tags: [hermes, ai-agent, python, self-improving, skills, memory, nous-research]
 collection: sources
 topics: [ai-agent, skill]
 canonical: sources/2026-08-05-hermes-agent-github-readme
+provenance:
+  - kind: external
+    url: https://github.com/NousResearch/hermes-agent
 ---
 
 > 來源：[NousResearch/hermes-agent GitHub README](https://github.com/NousResearch/hermes-agent)

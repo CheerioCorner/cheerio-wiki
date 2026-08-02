@@ -8,6 +8,11 @@ tags: [pi, architecture, agent-core, sessions, tools, extensions, skills, compac
 collection: sources
 topics: [ai-agent, extension-dev, skill]
 canonical: sources/2026-08-06-pi-architecture-walkthrough
+provenance:
+  - kind: raw
+    path: raw/youtube/pi-architecture-walkthrough.md
+  - kind: external
+    url: https://www.youtube.com/watch?v=gTeujlv8qK0
 ---
 
 > 來源：[YouTube — Pi Architecture Walkthrough — Full Agent Core + Interactive Layer Explained](https://www.youtube.com/watch?v=gTeujlv8qK0)

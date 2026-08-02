@@ -8,6 +8,11 @@ tags: [software-quality, metrics, agile, devops, defect-tracking, testing]
 collection: sources
 topics: []
 canonical: sources/2026-08-02-defect-density-escape-rate
+provenance:
+  - kind: raw
+    path: "raw/web/2026-08-02-Defect Density & Escape Rate Agile Metrics Guide 2026.md"
+  - kind: raw
+    path: "raw/web/2026-08-02-Step-by-step guide on how to measure Defect Escape Rate.md"
 ---
 
 # Defect Density & Escape Rate — Agile 品質指標指南

@@ -8,6 +8,11 @@ tags: [vibe-coding, ai-coding, software-engineering, security, application-secur
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-02-vibe-coding-implications
+provenance:
+  - kind: raw
+    path: "raw/web/2026-08-02-Navigating the Future of Software Development Understanding Vibe Coding and Its Implications.md"
+  - kind: external
+    url: https://www.blackduck.com/blog/vibe-coding
 ---
 
 # Vibe Coding 的未來與影響

@@ -8,6 +8,11 @@ tags: [morphir, dotnet, agents-md, ai-coding-agent, tdd, finos, enterprise]
 collection: sources
 topics: [ai-agent, skill]
 canonical: sources/2026-08-02-morphir-dotnet-agents
+provenance:
+  - kind: raw
+    path: "raw/web/2026-08-02-morphir-dotnetAGENTS.md at main.md"
+  - kind: external
+    url: https://github.com/finos/morphir-dotnet
 ---
 
 # morphir-dotnet AGENTS.md — AI Agent 貢獻指南

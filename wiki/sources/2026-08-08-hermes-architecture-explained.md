@@ -8,6 +8,11 @@ tags: [hermes, ai-agent, architecture, memory, context, gateway]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-08-hermes-architecture-explained
+provenance:
+  - kind: raw
+    path: raw/youtube/hermes-architecture-explained.md
+  - kind: external
+    url: https://youtu.be/n32qq7Kwzh0
 ---
 
 > 來源：[YouTube — Hermes Architecture EXPLAINED: Memory, Context & Gateways](https://youtu.be/n32qq7Kwzh0)
