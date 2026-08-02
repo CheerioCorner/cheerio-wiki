@@ -1,5 +1,12 @@
 # Log
 
+## [2026-08-03] setup | youtube-to-wiki skill 建立
+
+- 建立：`~/.agents/skills/youtube-to-wiki/SKILL.md`
+- 功能：YouTube 字幕抓取（pytubefix + youtube_transcript_api）→ `raw/youtube/` → source note + entity/concept pages → index + log → git push
+- 觸發：YouTube URL、YouTube ingest、抓字幕
+- 更新：`wiki/entities/wiki-knowledge.md`（加入子 skill 說明）
+
 ## [2026-08-03] ingest | Tau: A Python Port of Pi
 
 - 來源：`raw/youtube/tau-python-port-of-pi.md`（YouTube qo1QNxWcm28，25:03）

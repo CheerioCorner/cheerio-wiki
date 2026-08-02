@@ -18,6 +18,10 @@ canonical: entities/wiki-knowledge
 - 「查 wiki」「查詢 wiki」
 - 「lint wiki」「健康檢查」
 
+## 子 Skills
+- **youtube-to-wiki** — YouTube 影片 → wiki 頁面（`~/.agents/skills/youtube-to-wiki/SKILL.md`）
+  - 觸發：YouTube URL、YouTube ingest、抓字幕
+
 ## 三大標準流程
 
 ### 1. Ingest（吸收新資料）

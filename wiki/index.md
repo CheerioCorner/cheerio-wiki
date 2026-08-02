@@ -41,7 +41,7 @@
 - [[wiki/entities/omnigent|omnigent]] — Databricks 開源的 meta-harness。⚠️ 目前不支援 Windows
 
 ### 📚 知識管理
-- [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）
+- [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器（14 工具）
 - [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model]] — Pi 專案模型：不強制綁定單一實體路徑
 

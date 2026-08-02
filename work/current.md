@@ -29,6 +29,12 @@
   - refs: [[raw/youtube|Raw YouTube sources]]、https://github.com/coleam00/cole-medin-knowledge-base/blob/main/.claude/skills/channel-to-kb/SKILL.md
   - 結論：`fetch_transcripts.py`（pytubefix + youtube_transcript_api）可直接複用；Extract→Canonicalize→Write pipeline 可改造為適合我們架構的版本
   - 2026-08-02 實測：成功抓取 `qo1QNxWcm28`（Tau: A Python Port of Pi），25:03 / 261 segments → raw/youtube/tau-python-port-of-pi.md
+  - 2026-08-03 完成 ingest：source note + entity page → wiki
+
+- [x] W-2026-08-012 建立 `youtube-to-wiki` skill ⏫ #knowledge ✅
+  - next: —
+  - refs: [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]、[[wiki/entities/wiki-knowledge|wiki-knowledge]]
+  - 2026-08-03 建立 skill，固化 YouTube 字幕抓取 → raw/youtube/ → wiki ingest 流程
 
 - [ ] W-2026-08-007 確認 canonical wiki 頁面與交叉引用一致 🔼 #wiki
   - refs: [[wiki/index|Wiki Index]]
