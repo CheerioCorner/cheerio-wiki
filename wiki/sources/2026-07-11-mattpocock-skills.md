@@ -4,6 +4,9 @@ type: source
 created: 2026-07-11
 updated: 2026-07-11
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/youtube/mattpocock-skills.md
 tags:
   - skills
   - engineering-practices

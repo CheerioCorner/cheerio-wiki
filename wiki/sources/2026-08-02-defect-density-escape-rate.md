@@ -4,6 +4,9 @@ type: source
 created: 2026-08-02
 updated: 2026-08-05
 sources: 2
+provenance:
+  - kind: raw
+    path: raw/web/2026-08-02-Defect Density & Escape Rate Agile Metrics Guide 2026.md
 tags: [software-quality, metrics, agile, devops, defect-tracking, testing]
 collection: sources
 topics: []

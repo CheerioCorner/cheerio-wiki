@@ -4,6 +4,9 @@ type: source
 created: 2026-08-05
 updated: 2026-08-05
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/web/2026-08-02-huggingfacetau A Python port of Pi's minimalist coding agent.md
 tags: [pi, tau, python, coding-harness, textual, huggingface]
 collection: sources
 topics: [ai-agent]

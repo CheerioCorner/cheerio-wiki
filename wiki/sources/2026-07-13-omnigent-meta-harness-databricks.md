@@ -4,6 +4,9 @@ type: source
 created: 2026-07-13
 updated: 2026-08-05
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/web/2026-07-13-omnigent-meta-harness-databricks.md
 tags: [meta-harness, orchestration, databricks, open-source, multi-agent, security, collaboration]
 collection: sources
 topics: [meta-systems]

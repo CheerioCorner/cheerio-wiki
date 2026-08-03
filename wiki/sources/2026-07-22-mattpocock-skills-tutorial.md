@@ -4,6 +4,9 @@ type: source
 created: 2026-07-22
 updated: 2026-07-22
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/youtube/mattpocock-skills.md
 tags: [skills, ai-coding, workflow, matt-pocock, tutorial]
 collection: sources
 topics: [ai-agent]

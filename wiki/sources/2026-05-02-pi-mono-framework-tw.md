@@ -4,6 +4,9 @@ type: source
 created: 2026-07-11
 updated: 2026-07-11
 sources: 1
+provenance:
+  - kind: external
+    url: https://github.com/nicepkg/pi-mono
 tags: [pi, agent, coding-agent, framework, source-zh-tw]
 collection: sources
 provenance_raw: "raw/2026-07-11-pi-mono-intro.html"

@@ -4,6 +4,9 @@ type: source
 created: 2026-08-08
 updated: 2026-08-08
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/youtube/qwenpaw-personal-ai-assistant.md
 tags: [qwenpaw, ai-agent, agent-os, security, local-deploy, youtube]
 collection: sources
 topics: [ai-agent]

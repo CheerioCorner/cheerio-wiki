@@ -4,6 +4,9 @@ type: source
 created: 2026-08-08
 updated: 2026-08-08
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/youtube/hermes-architecture-explained.md
 tags: [hermes, ai-agent, architecture, memory, context, gateway]
 collection: sources
 topics: [ai-agent]

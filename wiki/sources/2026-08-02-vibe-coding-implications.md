@@ -4,6 +4,9 @@ type: source
 created: 2026-08-02
 updated: 2026-08-05
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/web/2026-08-02-Navigating the Future of Software Development Understanding Vibe Coding and Its Implications.md
 tags: [vibe-coding, ai-coding, software-engineering, security, application-security]
 collection: sources
 topics: [ai-agent]

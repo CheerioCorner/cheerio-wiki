@@ -4,6 +4,9 @@ type: source
 created: 2026-07-31
 updated: 2026-07-31
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/conversations/2026-07-31-npm-publishing-setup.md
 tags: [publishing, package, extension, marketplace, npm, github-actions, ci-cd]
 collection: sources
 provenance_url: https://github.com/CheerioCorner/pi-plannotator-auto

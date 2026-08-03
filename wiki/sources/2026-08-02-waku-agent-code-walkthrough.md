@@ -4,6 +4,9 @@ type: source
 created: 2026-08-02
 updated: 2026-08-02
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/youtube/2026-08-02-waku-agent-code-walkthrough.md
 tags: [youtube, ai-agent, local-first, memory-system]
 collection: sources
 topics: [ai-agent]

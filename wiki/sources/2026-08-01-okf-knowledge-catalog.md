@@ -4,6 +4,9 @@ type: source
 created: 2026-08-01
 updated: 2026-08-05
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/web/2026-08-01-knowledge-catalog-okf-at-main.md
 tags: [okf, knowledge-format, google-cloud, bigquery, data-catalog, ai-agent]
 collection: sources
 topics: [extension-dev, knowledge-mgmt]

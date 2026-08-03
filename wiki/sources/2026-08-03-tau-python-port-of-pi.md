@@ -4,6 +4,9 @@ type: source
 created: 2026-08-03
 updated: 2026-08-03
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/youtube/tau-python-port-of-pi.md
 tags: [pi, tau, python, coding-harness, textual]
 collection: sources
 topics: [ai-agent]

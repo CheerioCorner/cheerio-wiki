@@ -4,6 +4,9 @@ type: source
 created: 2026-08-05
 updated: 2026-08-05
 sources: 1
+provenance:
+  - kind: raw
+    path: raw/web/2026-08-02-NousResearchhermes-agent The agent that grows with you.md
 tags: [hermes, ai-agent, python, self-improving, skills, memory, nous-research]
 collection: sources
 topics: [ai-agent, skill]
