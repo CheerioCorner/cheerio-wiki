@@ -10,7 +10,7 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-08（ingest waku-agent — local-first personal AI agent）
+- **最後更新**：2026-08-09（ingest redis-caching-patterns — Redis 緩存模式完整指南）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：14（全部已補 `collection: sources` 與 provenance）
 - **Canonical collections**：10 concepts、12 entities、4 decisions、3 discussions
@@ -139,6 +139,7 @@
 - [[wiki/sources/2026-08-02-vibe-coding-implications|2026-08-02 Vibe Coding Implications]] — 自然語言 coding 的風險與最佳實踐
 - [[wiki/sources/2026-08-02-waku-agent-code-walkthrough|2026-08-02 Waku agent code walkthrough]] — YouTube：Sean Chen 走讀 waku-agent 程式碼，四大支柱完整展示
 - [[wiki/sources/2026-08-02-waku-agent-github-readme|2026-08-02 Waku agent GitHub README]] — GitHub README：架構、功能、Quickstart、升級路徑
+- [[wiki/sources/2026-08-09-redis-caching-patterns|2026-08-09 Redis Caching Patterns]] — Redis 五種數據結構、四種緩存模式、Session/Rate Limiting 實作、最佳實踐
 
 ---
 

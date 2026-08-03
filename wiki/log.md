@@ -1,6 +1,14 @@
 
 # Log
 
+## [2026-08-09] ingest | Redis Caching Patterns — 完整指南
+
+- 新增 source：[[wiki/sources/2026-08-09-redis-caching-patterns|2026-08-09 Redis Caching Patterns]]（五種數據結構、四種緩存模式、Session/Rate Limiting）
+- 更新 index：Sources 區塊加入新 source note（sources 17→18）
+- 來源：raw/web（Medium Artem Khrienov 文章）
+- 重點：Cache-Aside + stampede 防護、Write-Through/Write-Behind 權衡、Hashes 省頻寬、滑動視窗 Rate Limiting、Circuit breaker graceful degradation
+- 測試：URL → web_fetch → raw/web/ → ingest 全流程驗證成功
+
 ## [2026-08-08] ingest | Waku agent — Local-first personal AI agent（YouTube + GitHub README）
 
 - 新增 entity：[[wiki/entities/waku-agent|waku-agent]]（local-first personal AI agent，四大支柱 readable blueprint）
