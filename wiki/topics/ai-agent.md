@@ -24,6 +24,7 @@ updated: 2026-08-08
 
 ## Concepts
 
+- [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — AI Agent 兩種核心工作流模式
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程 🛠️
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成，與 minimal-agent-philosophy 形成對比

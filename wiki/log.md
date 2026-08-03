@@ -3,6 +3,16 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-03] ingest | Loop vs Graph Engineering — AI Agent Concepts Demystified
+
+- 新增 source：`wiki/sources/2026-08-03-loop-vs-graph-engineering.md`
+- 新增 concept：`wiki/concepts/loop-vs-graph-engineering.md`
+- 更新 entity：`wiki/entities/waku-agent.md`（加入 graph engineering 章節，sources 2→3）
+- 更新 topic：`wiki/topics/ai-agent.md`（加入 loop-vs-graph-engineering concept）
+- 更新 index：Sources 18→19，Concepts 10→11
+- 來源：raw/youtube（YouTube IMLwvK08JVc，21:30，610 segments）
+- 重點：AI Agent 工程階梯（Prompt→Context→Skills→Loop→Graph）、Loop 自主迭代 vs Graph 預定義流程、兩者共存非替代、Graph 內含 Loop
+
 ## [2026-08-09] ingest | Redis Caching Patterns — 完整指南
 
 - 新增 source：`wiki/sources/2026-08-09-redis-caching-patterns.md`

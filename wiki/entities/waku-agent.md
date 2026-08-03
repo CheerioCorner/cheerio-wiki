@@ -2,8 +2,8 @@
 title: "waku-agent — Local-first personal AI agent with harness + loop + memory + eval"
 type: entity
 created: 2026-08-02
-updated: 2026-08-02
-sources: 2
+updated: 2026-08-03
+sources: 3
 tags: [ai-agent, local-first, memory-system, python, open-source]
 collection: entities
 topics: [ai-agent]
@@ -80,6 +80,20 @@ Gateway (CLI / Telegram / Voice / Dashboard)
 | Sub-Agents | `delegate_task` | 委派 coding 任務給 Pi agent（experimental） |
 | Google Calendar | `WAKU_GOOGLE_CALENDAR=1` | opt-in，Application Default Credentials |
 
+## Graph Engineering（工作流圖）
+
+Waku Agent 不只有 loop，還支援 graph 工作流：
+
+- **Triage graph**：分類是否需要複雜 agent call + 平行查行事曆
+- **Gather graph**：同時查 GitHub PR + 網路搜尋 + 行事曆 + 記憶，綜合回覆
+- **定義位置**：`waku/graph/` 目錄
+  - `graph.py`：定義 graph engine（nodes + edges）
+  - `workflows/`：具體 workflow（triage.py, gather.py）
+- **節點類型**：tool call、LLM call、agent call、router
+- **核心觀點**：Graph 內含 Loop（如 web search 節點内部是 agent loop）
+
+> 詳見 [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] 概念頁。
+
 ## 與 Pi 的關係
 
 - waku-agent 使用 [Pi](https://github.com/earendil-works/pi) 作為 sub-agent（`delegate_task` tool）
@@ -99,6 +113,7 @@ Gateway (CLI / Telegram / Voice / Dashboard)
 ## 來源
 - [[wiki/sources/2026-08-02-waku-agent-code-walkthrough|YouTube code walkthrough]]
 - [[wiki/sources/2026-08-02-waku-agent-github-readme|GitHub README]]
+- [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering — YouTube video]]
 
 ## 相關頁面
 - [[wiki/entities/hermes-agent|hermes-agent]] — 同類 local-first AI agent（自我改進 + learning loop）
@@ -106,3 +121,4 @@ Gateway (CLI / Telegram / Voice / Dashboard)
 - [[wiki/entities/pi-mono|pi-mono]] — Pi monorepo
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 簡約 agent 設計哲學
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程
+- [[wiki/concepts/loop-vs-graph-engineering|loop-vs-graph-engineering]] — Loop 與 Graph 兩種工作流模式

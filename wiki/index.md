@@ -39,7 +39,7 @@
 
 - [[wiki/concepts/README|Concepts]] — 可跨專案重用的抽象知識
 - [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作
-- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（18 筆）
+- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（19 筆）
 - [[wiki/decisions/README|Decisions]] — 全域／跨專案已確認選擇
 - [[wiki/discussions/README|Discussions]] — 尚未定案的方案與研究問題
 
