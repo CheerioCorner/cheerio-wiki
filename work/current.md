@@ -29,7 +29,7 @@
 - [x] W-2026-08-007 確認 canonical wiki 頁面與交叉引用一致 ✅ #wiki
   - refs: [[wiki/index|Wiki Index]]
   - completed: 2026-08-09
-  - result: 解決 graph 超級節點問題，structural files 連結數減少 87%
+  - result: 解決 graph 超級節點問題，structural files 連結數減少 87%；設定 graph exclusion 排除 work/、log.md、README.md、raw/
 
 - [ ] W-2026-08-008 用 `grill-me` 跑一次完整需求追問（Pi Web） ⏫ #skills
   - next: grilling 已安裝，可執行
