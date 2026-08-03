@@ -306,15 +306,7 @@ provenance_session: "description"  # 選填；對話 session 來源
 
 ---
 
-## 9. 圖片處理
-
-- 圖片與附件的最終歸檔位置是 `raw/assets/`；由 Web Clipper 或手動下載後保存。若工具不能指定路徑，ingest 時搬移並修正引用。
-- 在 markdown 中以相對路徑引用：`![[raw/assets/image.png]]`。
-- agent 讀取時**先讀文字**，再分批讀相關圖片（LLM 無法在同一次讀取 markdown 中的內嵌圖片）。
-
----
-
-## 10. 閉環優化系統
+## 9. 閉環優化系統
 
 ### 核心循環：收集 → 消化 → 實踐 → 反思
 
@@ -355,7 +347,7 @@ TODO收集    log記錄      TDD/CR      過時清理
 
 ---
 
-## 11. 架構靈感
+## 10. 架構靈感
 
 本系統基於：
 
