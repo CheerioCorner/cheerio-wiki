@@ -12,63 +12,22 @@
 - **建立日期**：2026-07-11
 - **最後更新**：2026-08-09（ingest redis-caching-patterns — Redis 緩存模式完整指南）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：14（全部已補 `collection: sources` 與 provenance）
+- **Source notes**：18（全部已補 provenance）
 - **Canonical collections**：10 concepts、12 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
-- **工作系統**：`work/` — 統一管理目前工作、完成事件與 references
 
 ---
 
 ## Topics（主題式分類）
 
-### 🤖 AI Agent
-- [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
-- [[wiki/entities/pi-mono|pi-mono]] — `earendil-works/pi` monorepo + 4 個子 package（MIT）
-- [[wiki/entities/tau|tau]] — Hugging Face 開發的 Pi Python port，三層架構，extension 相容 🛠️
-- [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent，learning loop，多平台，7 terminal backends 🛠️
-- [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱 + 多通道
-- [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行 🛠️
-- [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard，多 session + 遠端控制 🛠️
-- [[wiki/entities/waku-agent|waku-agent]] — Local-first personal AI agent，四大支柱（harness + loop + memory + eval）readable blueprint
-- [[wiki/entities/mario-zechner|mario-zechner]] — 作者。「An autonomous agent is just an LLM + tools + a loop.」
-- [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程 🛠️
-- [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學，2 來源、兩視角交點
-- [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成，與 minimal-agent-philosophy 形成對比
-- [[wiki/concepts/late-conversion|late-conversion]] — TS Declaration Merging 實作的「最晚轉換」型別策略
+> 點進 topic page 看該主題下的 entities 和 concepts。
 
-### 🔌 Extension 開發
-- [[wiki/entities/pi-agent-core|pi-agent-core]] — agent runtime，5 檔 / 1,500 行（含 extensions events 系統） 🛠️
-- [[wiki/entities/pi-mono|pi-mono]] — Pi Agent Toolkit monorepo（含 CLI entry point、read-only mode） 🛠️
-- [[wiki/entities/tau|tau]] — Hugging Face 的 Pi Python port，extension 相容 🛠️
-- [[wiki/entities/plannotator|plannotator]] — AI coding agent 視覺化審閱工具，支援 9 種 agent
-- [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard，Plugin 系統 + Model Proxy 🛠️
-- [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]] — Pi 繁體中文本地化套件
-- [[wiki/concepts/okf-open-knowledge-format|okf-open-knowledge-format]] — OKF：Markdown + YAML frontmatter 表示知識
-- [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS .NET binding，完整 AGENTS.md + TDD 強制 🛠️
-- [[wiki/concepts/npm-publishing-workflow|npm-publishing-workflow]] — Package Publishing 統一觀點
-- [[wiki/concepts/agent-extension-installation|agent-extension-installation]] — Agent Extension 安裝位置與方式
-
-### 🧠 元系統
-- [[wiki/concepts/meta-harness|meta-harness]] — 對 harness 的再抽象/最佳化層。**📌 我們的研究專題**
-- [[wiki/entities/omnigent|omnigent]] — Databricks 開源的 meta-harness。⚠️ 目前不支援 Windows
-
-### 🔧 軟體工程
-- [[wiki/concepts/defect-metrics|defect-metrics]] — Defect Density & Escape Rate，軟體品質測量指標
-- [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成，降低門檻但引入安全挑戰
-
-### 📚 知識管理
-- [[wiki/entities/hermes-agent|hermes-agent]] — 自我改進 AI agent，learning loop + skills hub 🛠️
-- [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS .NET binding for Morphir，完整 AGENTS.md + 專業化 skills
-- [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill 🛠️
-- [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → Raw 抓取 Skill（花園研究觸發）
-- [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器（14 工具）+ 完整資料流
-- [[wiki/entities/knowledge-garden|knowledge-garden]] — Notion 知識花園 Manifest（本地索引/快取）
-- [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model]] — Pi 專案模型：不強制綁定單一實體路徑
-
-### 🛠️ Skill
-- [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars）
-- [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill（ingest / query / lint）+ youtube-to-wiki 子 skill
-- [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程（grill → spec → tickets → implement）
+- [[wiki/topics/ai-agent|🤖 AI Agent]] — Pi、Tau、Hermes、Waku、QwenPaw 等 agent 框架
+- [[wiki/topics/extension-dev|🔌 Extension 開發]] — Pi extension 生態、OKF、publishing
+- [[wiki/topics/meta-systems|🧠 元系統]] — meta-harness 研究
+- [[wiki/topics/backend-systems|🔧 後端系統]] — Redis、Caching、Database patterns
+- [[wiki/topics/knowledge-mgmt|📚 知識管理]] — Obsidian wiki、Notion 花園、ingest 流程
+- [[wiki/topics/skill|🛠️ Skill]] — AI coding skills、workflow
 
 > 🛠️ = 同時屬於多個 topic（見各頁 frontmatter `topics`）
 
@@ -76,78 +35,38 @@
 
 ## Collections（內容集合）
 
+> 每個 collection 有自己的 README，點進去看完整列表。
+
 - [[wiki/concepts/README|Concepts]] — 可跨專案重用的抽象知識
 - [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作
-- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄
+- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（18 筆）
 - [[wiki/decisions/README|Decisions]] — 全域／跨專案已確認選擇
-- [[wiki/decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]] — Project Bundle 與 package source-of-truth 邊界
-- [[wiki/decisions/shared-wiki-collection-model|Shared Wiki Collection Model]] — 五 collections 與 topics taxonomy
-- [[wiki/decisions/raw-conversation-promotion-workflow|Raw Conversation Promotion Workflow]] — raw 到 canonical page 的升格流程
-- [[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]] — pi-todo-journal 與 YouTube-to-Wiki 邊界
 - [[wiki/discussions/README|Discussions]] — 尚未定案的方案與研究問題
-- [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]] — pipeline 延後條件
-- [[wiki/discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]] — AI-first + lint guardrail
-- [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]] — compatibility stub 已移除，topic 改為導航頁
-- [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]] — Notion 整合架構討論
 
-## Topic navigation
+---
 
-- [[wiki/topics|Topics taxonomy]] — 依主題瀏覽 canonical collections
-- [[wiki/visualizations/README|Visualizations]] — Canvas 視覺化投影
-
-## Work（可追溯工作）
-
-- [[work/README|Work System]] — 工作狀態與 history event contract
+## Work & Projects
 
 - [[work/current|Current Work]] — 目前工作、下一步與 references
-- [[work/history/2026-08|2026-08 Work History]] — 完成、決策與重要處理事件
-
-## Projects（專案維護）
-
-> Root `projects/<project-id>/` 是唯一的跨 session、跨環境 Project OKF Bundle；舊 `wiki/projects/` 已退場。
-
-- [[projects/pi-plannotator-auto/index|pi-plannotator-auto]] — ✅ Project OKF Bundle pilot；GitHub + NPM
-- [[projects/pi-web-access-zh-tw/index|pi-web-access-zh-tw]] — ⚠️ Project OKF Bundle；需維護（有外部貢獻者）
-- [[projects/pi-work-tracker/index|pi-work-tracker]] — 📋 新 Project OKF Bundle；取代 pi-todo-journal
+- [[projects/pi-plannotator-auto/index|pi-plannotator-auto]] — ✅ Project OKF Bundle pilot
+- [[projects/pi-web-access-zh-tw/index|pi-web-access-zh-tw]] — ⚠️ 需維護
+- [[projects/pi-work-tracker/index|pi-work-tracker]] — 📋 取代 pi-todo-journal
 
 ---
 
-## Sources（來源筆記）
+## 進階式揭露
 
-> 原始資料依來源通道位於 `raw/web/`、`raw/youtube/`、`raw/conversations/`，這裡放 AI 整理過的摘要筆記。
+> 這是 OKF 的核心原則：先看 overview，再深入特定主題。
 
-- [[wiki/sources/2026-08-01-okf-extension-development|2026-08-01-okf-extension-development]] — OKF Extension 開發實作記錄
-- [[wiki/sources/2026-07-11-mattpocock-skills|2026-07-11-mattpocock-skills]] — Engineering skills 研究
-- [[wiki/sources/2026-07-11-plannotator-research|2026-07-11-plannotator-research]] — Plannotator 研究
-- [[wiki/sources/2026-07-18-pi-resource-inventory|2026-07-18-pi-resource-inventory]] — Pi 資源盤點
-- [[wiki/sources/2026-07-31-npm-publishing-setup|2026-07-31-npm-publishing-setup]] — Package publishing 實作記錄
-- [[wiki/sources/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]] — Pi Agent Core 研究
-- [[wiki/sources/2026-05-02-pi-mono-framework-tw|2026-05-02-pi-mono-framework-tw]] — Pi mono framework 研究
-- [[wiki/sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF migration complete]] — 完整架構優化、決策、Project Bundle 與 audit 紀錄
-- [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|2026-07-22 mattpocock/skills tutorial]] — 完整 AI Coding 工作流程教學影片
-- [[wiki/sources/2026-08-03-tau-python-port-of-pi|2026-08-03 Tau: A Python Port of Pi]] — YouTube 影片：Pi 的 Python port，Textual TUI，session tree，extension 相容
-- [[wiki/sources/2026-08-05-tau-github-readme|2026-08-05 Tau: GitHub README]] — Hugging Face 開發，三層架構，設計哲學，library 用法
-- [[wiki/sources/2026-08-05-pi-github-readme|2026-08-05 Pi: GitHub README]] — 四 package 架構、containerization、supply-chain security、session publishing
-- [[wiki/sources/2026-08-05-hermes-agent-github-readme|2026-08-05 Hermes Agent: GitHub README]] — 自我改進 agent，learning loop，Honcho user modeling，agentskills.io
-- [[wiki/sources/2026-08-08-hermes-architecture-explained|2026-08-08 Hermes Architecture EXPLAINED]] — Agent loop、context compression、gateway、三層記憶系統、cron jobs
-- [[wiki/sources/2026-08-08-qwenpaw-youtube-intro|2026-08-08 QwenPaw YouTube 介紹]] — Agent OS 架構、安全沙箱、本地部署、Scroll Context 記憶
-- [[wiki/sources/2026-08-02-qwenpaw-github-readme|2026-08-02 QwenPaw GitHub README]] — 完整功能、7 種安裝方式、安全四層防護、路線圖
-- [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks|2026-07-13 Omnigent: Databricks Meta-Harness]] — 三大支柱、技術架構、Windows 不相容
-- [[wiki/sources/2026-08-01-okf-knowledge-catalog|2026-08-01 OKF Knowledge Catalog]] — Google Cloud 參考實作，reference agent + visualizer
-- [[wiki/sources/2026-08-02-defect-density-escape-rate|2026-08-02 Defect Metrics]] — Defect Density & Escape Rate 完整指南
-- [[wiki/sources/2026-08-02-morphir-dotnet-agents|2026-08-02 morphir-dotnet AGENTS.md]] — 企業級 .NET AI agent 指南
-- [[wiki/sources/2026-08-02-vibe-coding-implications|2026-08-02 Vibe Coding Implications]] — 自然語言 coding 的風險與最佳實踐
-- [[wiki/sources/2026-08-02-waku-agent-code-walkthrough|2026-08-02 Waku agent code walkthrough]] — YouTube：Sean Chen 走讀 waku-agent 程式碼，四大支柱完整展示
-- [[wiki/sources/2026-08-02-waku-agent-github-readme|2026-08-02 Waku agent GitHub README]] — GitHub README：架構、功能、Quickstart、升級路徑
-- [[wiki/sources/2026-08-09-redis-caching-patterns|2026-08-09 Redis Caching Patterns]] — Redis 五種數據結構、四種緩存模式、Session/Rate Limiting 實作、最佳實踐
-
----
-
-## 比較與綜合
-
-_（目前尚無）_
-
-> 計畫中：coding-agent-comparison — Claude Code / Codex / Pi 五維對比表（待建立）
+```
+index.md（你這裡）
+    ↓
+Topic pages（6 個主題入口）
+    ↓
+Entities / Concepts（具體知識）
+    ↓
+Sources（原始來源）
+```
 
 ---
 
@@ -155,4 +74,4 @@ _（目前尚無）_
 
 - **未獨立成頁**：`pi-ai` / `pi-tui` / `pi-web-ui` / `pi-coding-agent` — 暫收進 [[wiki/entities/pi-mono|pi-mono]]
 - **未決**：是否要 ingest Zechner 原 blog 作為上游文獻
-- **✅ 已完成**：YouTube 字幕抓取方案（`pytubefix` + `youtube_transcript_api`，2026-08-03 實測成功）
+- **✅ 已完成**：YouTube 字幕抓取方案（2026-08-03 實測成功）
