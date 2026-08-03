@@ -24,8 +24,10 @@
 
 ## Backlog
 
-- [ ] W-2026-08-005 測試 URL → raw/web → ingest 全流程 🔼 #knowledge
+- [x] W-2026-08-005 測試 URL → raw/web → ingest 全流程 ✅ #knowledge
   - refs: [[wiki/sources/README|Sources]]、[[raw/web|Raw web sources]]
+  - completed: 2026-08-09
+  - result: 全流程驗證成功（Medium 文章），AWS 有 Cloudflare 保護需注意
 
 - [ ] W-2026-08-007 確認 canonical wiki 頁面與交叉引用一致 🔼 #wiki
   - refs: [[wiki/index|Wiki Index]]
