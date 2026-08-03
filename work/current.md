@@ -35,8 +35,10 @@
   - next: grilling 已安裝，可執行
   - refs: [[projects/pi-web-access-zh-tw/index|Pi Web project context]]
 
-- [ ] W-2026-08-009 建立每週 wiki lint 與花園巡檢提醒 ⏫ #meta
-  - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]
+- [x] W-2026-08-009 建立每週 wiki lint 與花園巡檢提醒 ✅ #meta
+  - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+  - completed: 2026-08-10
+  - result: 設定每週一 09:00 wiki lint（ID: 7b26bb64）、每週三 10:00 花園巡檢（ID: f9aa104e）
 
 ## Completed
 
