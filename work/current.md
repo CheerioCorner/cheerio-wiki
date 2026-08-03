@@ -1,4 +1,4 @@
-/# Current Work
+# Current Work
 
 > 唯一的工作狀態入口。完成事件寫入 `work/history/YYYY-MM.md`。
 > 每個工作項目都要有穩定 ID、下一步與至少一個 reference。
@@ -8,26 +8,23 @@
 - [ ] W-2026-08-017 研究 harness 架構，開發自己的 AGENT ⏫ #ai-agent
   - next: Pi containerization 方案（Gondolin/Docker/OpenShell）比較、Tau 三層架構分離細節、Hermes 學習迴圈機制
   - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]、[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]
-  - 2026-08-06 完成 Pi Architecture Walkthrough ingest：agentic loop 三步驟、session tree、compaction、skills 機制、extensions events、CLI entry point
-  - 2026-08-08 ingest waku-agent：四大支柱 readable blueprint（harness + loop + memory + eval），~95 lines Python loop，三層記憶 + retrieval gate，Pi sub-agent delegate_task
-  - 2026-08-06 批次 ingest 5 筆 raw（omnigent/OKF catalog/defect metrics/morphir-dotnet/vibe-coding）+ 修復 topic page 遺漏 + 強化 skill/AGENTS.md topic 同步步驟
+  - 2026-08-06 完成 Pi Architecture Walkthrough ingest
+  - 2026-08-08 ingest waku-agent：四大支柱 readable blueprint
 
 - [ ] W-2026-08-010 建立 `pi-work-tracker` 並取代 `pi-todo-journal` ⏫ #extension
-  - next: 抽象 TaskStore / JournalStore adapters（原 W-2026-08-002）→ 測試、CI 與 npm 發布（原 W-2026-08-003）→ 搬移必要程式
+  - next: 抽象 TaskStore / JournalStore adapters → 測試、CI 與 npm 發布 → 搬移必要程式
   - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]、[[work/README|Work System]]
 
 - [ ] W-2026-08-020 研究 Gemini CLI 整合方案 ⏫ #ai-agent
-  - next: 使用者安裝 Gemini CLI → 測試 headless 模式 (`gemini -p`) → 實作 subagent 呼叫流程
+  - next: 安裝 Gemini CLI → 測試 headless 模式 (`gemini -p`) → 實作 subagent 呼叫流程
   - refs: [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]、[[wiki/concepts/meta-harness|meta-harness]]
-  - 2026-08-09 決策：採用 Gemini CLI headless 模式整合（免費 1000 req/day），而非 Pi model 設定或 Antigravity API
-  - 2026-08-09 調查：Antigravity 是 Google 新的 managed agent 平台（沙箱環境），Gemini CLI 將被 Antigravity CLI 取代（2026-06-18 起）
+  - 2026-08-09 決策：採用 Gemini CLI headless 模式整合（免費 1000 req/day）
 
 ## Backlog
 
 - [x] W-2026-08-005 測試 URL → raw/web → ingest 全流程 ✅ #knowledge
   - refs: [[wiki/sources/README|Sources]]、[[raw/web|Raw web sources]]
   - completed: 2026-08-09
-  - result: 全流程驗證成功（Medium 文章），AWS 有 Cloudflare 保護需注意
 
 - [x] W-2026-08-007 確認 canonical wiki 頁面與交叉引用一致 ✅ #wiki
   - refs: [[wiki/index|Wiki Index]]
@@ -46,47 +43,38 @@
 - [x] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ✅ #notion
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]
   - completed: 2026-08-06
-  - result: 雙向同步機制完成：manifest 自動同步（knowledge-garden skill §Manifest 自動同步）、端到端測試通過（W-2026-08-016）
 
-- [x] W-2026-08-016 測試 Notion 端到端流程（raw → wiki → Notion → raw） ✅ #notion
+- [x] W-2026-08-016 測試 Notion 端到端流程 ✅ #notion
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]
   - completed: 2026-08-06
-  - result: 端到端測試全部通過：raw → wiki ingest ✅、wiki → Notion 種子建立 ✅、manifest 自動同步 ✅、Notion → raw 抓回 ✅
 
-- [x] W-2026-08-013 規劃 skill GitHub repos：分類 Pi-specific vs agent-agnostic ✅ #skills
+- [x] W-2026-08-013 規劃 skill GitHub repos ✅ #skills
   - refs: [[wiki/entities/wiki-knowledge|wiki-knowledge]]、`~/.agents/skills/`、https://github.com/CheerioCorner/cheerio-skills
   - completed: 2026-08-08
-  - result: 建立 cheerio-skills 私有 repo，8 個自有 skills 分類：Agent-agnostic (knowledge-garden, notion-cli)、Obsidian-dependent (wiki-knowledge, youtube-to-wiki, work-tracker, notion-to-raw, plannotator-sync)、Pi-specific (pi-plannotator-auto)、Meta (skills-repo-manager)；格式符合 `npx skills add` 規範
 
 - [x] W-2026-08-018 建立 skills-repo-manager skill ✅ #skills
   - refs: https://github.com/CheerioCorner/cheerio-skills
   - completed: 2026-08-08
-  - result: 建立 skills-repo-manager skill，用於管理 cheerio-skills repo 同步與更新
 
 - [x] W-2026-08-015 建立 Notion → raw 抓取流程 ✅ #notion
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
   - completed: 2026-08-05
-  - result: 建立 `notion-to-raw` skill（`~/.agents/skills/notion-to-raw/SKILL.md`），三條路徑：只是看看 / 寫 raw / deep research；迭代改進為「先呈現→問下一步」模式
 
 - [x] W-2026-08-006 研究 YouTube 字幕抓取方案 ✅ #knowledge
   - refs: [[raw/youtube|Raw YouTube sources]]、https://github.com/coleam00/cole-medin-knowledge-base/blob/main/.claude/skills/channel-to-kb/SKILL.md
   - completed: 2026-08-03
-  - result: `fetch_transcripts.py`（pytubefix + youtube_transcript_api）可直接複用；實測抓取 Tau 影片成功
 
 - [x] W-2026-08-012 建立 `youtube-to-wiki` skill ✅ #knowledge
   - refs: [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]、[[wiki/entities/wiki-knowledge|wiki-knowledge]]
   - completed: 2026-08-03
-  - result: 固化 YouTube 字幕抓取 → raw/youtube/ → wiki ingest 流程
 
-- [x] W-2026-07-022 YouTube ingest mattpocock/skills + 多 topic 機制 ✅ #knowledge #wiki
+- [x] W-2026-07-022 YouTube ingest mattpocock/skills ✅ #knowledge #wiki
   - refs: [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills tutorial]]、[[wiki/topics/skill|Skill topic]]
   - completed: 2026-07-22
-  - result: ingest 17:16 影片 → source note + entity + concept；建立 Skill topic；實作多 topic 關聯（topics 多值陣列 + 🛠️ 標記）；更新 youtube-to-wiki / wiki-knowledge / AGENTS.md
 
 - [x] W-2026-08-001 釐清 Obsidian vault 架構 ✅ #knowledge
   - refs: [[wiki/index|Wiki Index]]、[[raw/conversations/2026-08-02-wiki-okf-youtube-session-handoff|Wiki × OKF session handoff]]
   - completed: 2026-08-03
-  - result: 完成全域 lint 檢查：修正 4 處 visualizations broken links，補上 4 個 topic pages frontmatter；確認 96 個 wikilink targets 全部正常，無孤立頁面。
 
 ## Work record contract
 
