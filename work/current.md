@@ -17,10 +17,13 @@
   - next: 抽象 TaskStore / JournalStore adapters → 測試、CI 與 npm 發布 → 搬移必要程式
   - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]、[[work/README|Work System]]
 
-- [ ] W-2026-08-020 研究 Gemini CLI 整合方案 ⏫ #ai-agent
-  - next: 安裝 Gemini CLI → 測試 headless 模式 (`gemini -p`) → 實作 subagent 呼叫流程
+- [x] W-2026-08-020 研究 Antigravity CLI 整合方案 ✅ #ai-agent
   - refs: [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]、[[wiki/concepts/meta-harness|meta-harness]]
-  - 2026-08-09 決策：採用 Gemini CLI headless 模式整合（免費 1000 req/day）
+  - 2026-08-10 決策：改用 Antigravity CLI（Gemini CLI 免費層已停用）
+  - 2026-08-10 安裝 Antigravity CLI v1.0.14，完成 OAuth 認證
+  - 2026-08-10 建立 gy skill，測試完整流程成功（agy -p + log 存取）
+  - completed: 2026-08-10
+  - result: Antigravity CLI 整合完成，gy skill 可用，log 存取正常
 
 ## Backlog
 
