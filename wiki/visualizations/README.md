@@ -12,6 +12,8 @@
 
 ## Canvas
 
-- [[wiki/visualizations/pi-agent-control.canvas|PI Agent Control]]
-- [[wiki/visualizations/pi-agent-overview.canvas|PI Agent Overview]]
-- [[wiki/visualizations/mattpocock-skills.canvas|mattpocock/skills]]
+| Canvas | Topics | 說明 |
+|--------|--------|------|
+| [[wiki/visualizations/pi-agent-control.canvas|PI Agent Control]] | ai-agent | Pi agent 控制流視覺化 |
+| [[wiki/visualizations/pi-agent-overview.canvas|PI Agent Overview]] | ai-agent | Pi agent 全景概覽 |
+| [[wiki/visualizations/mattpocock-skills.canvas|mattpocock/skills]] | skill | 22 個 skills 視覺化地圖 |

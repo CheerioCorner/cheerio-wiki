@@ -16,6 +16,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 sources: N             # 引用過幾個 raw 來源（相容性摘要欄位）
 tags: [...]
+topics: [topic1, topic2]  # 所屬 topics（建議填，方便 topic page 自動連結）
 provenance_raw: "raw/web/filename.md"  # 本機 raw 檔案（相對路徑）
 provenance_url: https://...             # 外部來源 URL
 provenance_session: "description"       # 對話 session（選填）

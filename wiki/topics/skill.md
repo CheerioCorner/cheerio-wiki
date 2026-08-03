@@ -27,3 +27,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-02-morphir-dotnet-agents|Morphir .NET Agents]] — AGENTS.md + TDD 強制實踐
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme|Hermes Agent GitHub README]] — Skills hub + learning loop
 - [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough]] — Skills 機制解析
+
+## Visualizations
+
+- [[wiki/visualizations/mattpocock-skills.canvas|mattpocock/skills]] — 22 個 skills 視覺化地圖

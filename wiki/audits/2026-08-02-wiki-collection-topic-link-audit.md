@@ -143,7 +143,7 @@ immutable: true
 ### 3.4 格式瑕疵
 
 - `wiki/projects/README.md` 兩條 link 寫成 `[[pi-plannotator-auto/README\|pi-plannotator-auto]]` 與 `[[pi-web-access-zh-tw/README\|pi-web-access-zh-tw]]`；反斜線使其不是正常 alias pipe，屬於可明確修復的格式問題，但本輪不直接修改。
-- `wiki/sources/2026-07-11-mattpocock-skills.canvas` 與同 basename 的 Markdown 造成 basename link 歧義；應透過完整 path 或明確命名處理，不應猜測哪一個是歷史 log 想指向的對象。
+- `wiki/sources/[[../sources/2026-07-11-mattpocock-skills.canvas|2026-07-11-mattpocock-skills]].canvas` 與同 basename 的 Markdown 造成 basename link 歧義；應透過完整 path 或明確命名處理，不應猜測哪一個是歷史 log 想指向的對象。
 - `wiki/topics/ai-agent/pi-agent-core.md` 等正文使用的 `minimal-agent-loop`、`observability-layer`、`steering-followup` 等概念頁尚未建立。這是 unresolved reference，不代表應自動建立頁面。
 
 ---
