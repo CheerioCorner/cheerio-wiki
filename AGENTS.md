@@ -357,10 +357,21 @@ TODO收集    log記錄      TDD/CR      過時清理
 
 ## 11. 架構靈感
 
-本系統基於 [Andrej Karpathy 的 LLM Knowledge Base 概念](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)。
+本系統基於：
+
+1. **[Andrej Karpathy 的 LLM Knowledge Base 概念](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)**
+   - 核心理念：不需要向量資料庫，個人規模下 wiki + index 就夠用
+
+2. **[Google Cloud OKF (Open Knowledge Format)](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)**
+   - 核心理念：Markdown + YAML frontmatter 表示知識，人類和 AI 都能讀
+   - 進階式揭露（Progressive Disclosure）：index → topics → entities
+   - Graph-shaped, not tree-shaped：概念之間互相連結形成語義網路
+   - Trust tier + Provenance：內建信任機制和來源追蹤
 
 核心理念：
 - **不需要向量資料庫**：個人規模下，簡單的 wiki + index 就夠用。
 - **LLM 即編譯器**：原始資料進來，結構化 wiki 出來。
 - **回饋循環**：query 答案可以存回 wiki，讓知識持續累積。
 - **閉環優化**：收集→消化→實踐→反思，不斷自我改進。
+- **Progressive Disclosure**：先看 overview，再深入特定主題。
+- **Graph is knowledge**：graph view 應該只顯示知識內容，不被 structural files 污染。
