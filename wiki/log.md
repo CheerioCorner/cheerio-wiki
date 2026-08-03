@@ -3,6 +3,14 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-10] ingest | Antigravity CLI 整合 — Gemini CLI 免費層停用後的整合方案
+
+- 新增 source：`wiki/sources/2026-08-10-antigravity-cli-integration.md`
+- 更新 topic：`wiki/topics/ai-agent.md`（加入新 source）
+- 更新 index：Sources 20→21
+- 來源：raw/conversations/2026-08-10-antigravity-cli-integration.md
+- 重點：Gemini CLI 免費層已停用（2026/6/18）、Antigravity CLI（agy）安裝與整合、gy skill 建立、週制配額注意事項
+
 ## [2026-08-10] ingest | pi-loop-scheduler — Pi Cron Job 實作原理
 
 - 新增 entity：`wiki/entities/pi-loop-scheduler.md`（@pi-agents/loop 架構解析）
