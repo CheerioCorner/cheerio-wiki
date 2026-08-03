@@ -11,6 +11,7 @@
 - [[wiki/entities/notionApi|notionApi]]
 - [[wiki/entities/omnigent|Omnigent]]
 - [[wiki/entities/pi-agent-core|pi-agent-core]]
+- [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]]
 - [[wiki/entities/pi-mono|pi-mono]]
 - [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]]
 - [[wiki/entities/plannotator|Plannotator]]

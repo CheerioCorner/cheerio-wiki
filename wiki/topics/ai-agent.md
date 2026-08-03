@@ -17,6 +17,7 @@ updated: 2026-08-08
 - [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent 🛠️
 - [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS .NET binding，完整 AGENTS.md + TDD 強制 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime（agentic loop、session tree、compaction、skills） 🛠️
+- [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]] — Pi 的 Cron Job 與排程系統（@pi-agents/loop） 🛠️
 - [[wiki/entities/mario-zechner|Mario Zechner]] — Pi 作者
 - [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard 🛠️

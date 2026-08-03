@@ -3,6 +3,15 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-10] ingest | pi-loop-scheduler — Pi Cron Job 實作原理
+
+- 新增 entity：`wiki/entities/pi-loop-scheduler.md`（@pi-agents/loop 架構解析）
+- 新增 source：`wiki/sources/2026-08-10-pi-cron-job-explained.md`
+- 更新 topic：`wiki/topics/ai-agent.md`、`wiki/topics/extension-dev.md`
+- 更新 index：Entities 12→13，Sources 19→20
+- 來源：@pi-agents/loop 原始碼與文件
+- 重點：Idle gating（只在 agent 閒置時觸發）、Anti-thundering-herd（50% jitter）、Durable vs Session tasks、Multi-instance safety、Cron expression 5-field format
+
 ## [2026-08-03] ingest | Loop vs Graph Engineering — AI Agent Concepts Demystified
 
 - 新增 source：`wiki/sources/2026-08-03-loop-vs-graph-engineering.md`

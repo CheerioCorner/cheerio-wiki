@@ -10,10 +10,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-09（ingest redis-caching-patterns — Redis 緩存模式完整指南）
+- **最後更新**：2026-08-10（新增 pi-loop-scheduler — Pi cron job 實作原理）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：18（全部已補 provenance）
-- **Canonical collections**：10 concepts、12 entities、4 decisions、3 discussions
+- **Source notes**：20（全部已補 provenance）
+- **Canonical collections**：10 concepts、13 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---
