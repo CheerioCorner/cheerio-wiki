@@ -19,3 +19,11 @@ updated: 2026-08-08
 ## Concepts
 
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程（grill → spec → tickets → implement）
+
+## Sources
+
+- [[wiki/sources/2026-07-11-mattpocock-skills|mattpocock/skills — 工程實踐 Skills 集合]] — repo 研究與完整清單
+- [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills — 完整 AI Coding 工作流程教學]] — 官方教學影片
+- [[wiki/sources/2026-08-02-morphir-dotnet-agents|Morphir .NET Agents]] — AGENTS.md + TDD 強制實踐
+- [[wiki/sources/2026-08-05-hermes-agent-github-readme|Hermes Agent GitHub README]] — Skills hub + learning loop
+- [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough]] — Skills 機制解析

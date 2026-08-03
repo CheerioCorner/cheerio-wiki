@@ -16,3 +16,7 @@ updated: 2026-08-05
 ## Concepts
 
 - [[wiki/concepts/meta-harness|Meta-Harness]]
+
+## Sources
+
+- [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks|Omnigent Meta-Harness]] — Databricks 開源 multi-agent orchestration

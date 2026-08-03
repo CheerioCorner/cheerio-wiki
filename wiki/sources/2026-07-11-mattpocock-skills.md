@@ -12,6 +12,7 @@ tags:
   - engineering-practices
   - coding-agent
   - matt-pocock
+topics: [skill]
 upstream: https://github.com/mattpocock/skills
 last_checked: 2026-07-11
 collection: sources

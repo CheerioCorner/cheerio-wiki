@@ -8,6 +8,7 @@ provenance:
   - kind: raw
     path: raw/conversations/2026-07-31-npm-publishing-setup.md
 tags: [publishing, package, extension, marketplace, npm, github-actions, ci-cd]
+topics: [extension-dev]
 collection: sources
 provenance_url: https://github.com/CheerioCorner/pi-plannotator-auto
 ---

@@ -19,6 +19,12 @@ updated: 2026-08-02
 - [[wiki/concepts/pi-project-workspace-model|Pi Project / Workspace Model]]
 - [[wiki/concepts/okf-open-knowledge-format|OKF]]
 
+## Sources
+
+- [[wiki/sources/2026-08-01-okf-knowledge-catalog|OKF Knowledge Catalog]] — Google Cloud 參考實作
+- [[wiki/sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF 架構優化]] — 完整 migration 工作紀錄
+- [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
+
 ## Systems
 
 - [[wiki/index|Wiki index]]

@@ -6,6 +6,7 @@
 ## In progress
 
 - [ ] W-2026-08-017 研究 harness 架構，開發自己的 AGENT ⏫ #ai-agent
+  - 2026-08-10 新增 pi-loop-scheduler entity：Pi cron job 實作原理（@pi-agents/loop）
   - next: Pi containerization 方案（Gondolin/Docker/OpenShell）比較、Tau 三層架構分離細節、Hermes 學習迴圈機制
   - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]、[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]
   - 2026-08-06 完成 Pi Architecture Walkthrough ingest
@@ -42,6 +43,16 @@
   - result: 設定每週一 09:00 wiki lint（ID: 7b26bb64）、每週三 10:00 花園巡檢（ID: f9aa104e）
 
 ## Completed
+
+- [x] W-2026-08-011 Wiki Lint：批量補上 source note provenance ✅ #wiki
+  - refs: [[wiki/index|Wiki Index]]、[[wiki/sources/README|Sources README]]
+  - completed: 2026-08-10
+  - result: 25 個 source notes 補上 provenance，指向對應的 raw/web/、raw/youtube/、raw/conversations/ 檔案
+
+- [x] W-2026-08-014 新增 pi-loop-scheduler entity：Pi Cron Job 實作原理 ✅ #ai-agent
+  - refs: [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]]、[[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job Explained]]
+  - completed: 2026-08-10
+  - result: 記錄 @pi-agents/loop 架構、Idle gating、Anti-thundering-herd、Durable vs Session tasks
 
 - [x] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ✅ #notion
   - refs: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]

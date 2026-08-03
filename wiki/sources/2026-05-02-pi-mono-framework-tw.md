@@ -8,6 +8,7 @@ provenance:
   - kind: external
     url: https://github.com/nicepkg/pi-mono
 tags: [pi, agent, coding-agent, framework, source-zh-tw]
+topics: [ai-agent]
 collection: sources
 provenance_raw: "raw/2026-07-11-pi-mono-intro.html"
 provenance_url: https://ai-chain.tw/blog/pi-mono-intuitive-typescript-ai-agent-framework

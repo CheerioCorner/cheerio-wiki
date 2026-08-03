@@ -8,6 +8,7 @@ provenance:
   - kind: raw
     path: raw/web/2026-08-02-Save Plannotator Plans to Obsidian or Bear.md
 tags: [plannotator, research, custom-development, pi-extension]
+topics: [extension-dev]
 collection: sources
 provenance_url: https://github.com/backnotprop/plannotator
 ---

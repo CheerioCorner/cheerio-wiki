@@ -8,6 +8,7 @@ provenance:
   - kind: raw
     path: raw/conversations/2026-08-01-okf-extension-development.md
 tags: [okf, extension, pi-plannotator-auto, workflow, automation]
+topics: [extension-dev]
 collection: sources
 provenance_url: https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf
 ---

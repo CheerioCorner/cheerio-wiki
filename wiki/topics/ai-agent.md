@@ -31,6 +31,26 @@ updated: 2026-08-08
 - [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成，與 minimal-agent-philosophy 形成對比
 - [[wiki/concepts/late-conversion|Late Conversion]]
 
+## Sources
+
+- [[wiki/sources/2026-02-10-pi-agent-core-design|Pi Agent Core 設計]] — Mario Zechner 原始設計文件
+- [[wiki/sources/2026-05-02-pi-mono-framework-tw|Pi Mono Framework 中文介紹]] — 中文入門文章
+- [[wiki/sources/2026-08-05-pi-github-readme|Pi GitHub README]] — Pi repo 結構與安裝
+- [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough]] — 完整架構解析（YouTube）
+- [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理]] — @pi-agents/loop 排程系統
+- [[wiki/sources/2026-08-03-tau-python-port-of-pi|Tau — Pi Python Port]] — Hugging Face Python 版
+- [[wiki/sources/2026-08-05-tau-github-readme|Tau GitHub README]] — Tau repo 結構
+- [[wiki/sources/2026-08-05-hermes-agent-github-readme|Hermes Agent GitHub README]] — 自我改進 AI agent
+- [[wiki/sources/2026-08-08-hermes-architecture-explained|Hermes Architecture Explained]] — 架構深度解析（YouTube）
+- [[wiki/sources/2026-08-02-qwenpaw-github-readme|QwenPaw GitHub README]] — AgentScope 本地 AI 助理
+- [[wiki/sources/2026-08-08-qwenpaw-youtube-intro|QwenPaw YouTube Intro]] — QwenPaw 介紹（YouTube）
+- [[wiki/sources/2026-08-02-waku-agent-github-readme|Waku Agent GitHub README]] — Local-first personal AI agent
+- [[wiki/sources/2026-08-02-waku-agent-code-walkthrough|Waku Agent Code Walkthrough]] — 原始碼解析（YouTube）
+- [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種 AI Agent 工作流模式
+- [[wiki/sources/2026-08-02-vibe-coding-implications|Vibe Coding Implications]] — Vibe Coding 影響分析
+- [[wiki/sources/2026-08-02-morphir-dotnet-agents|Morphir .NET Agents]] — FINOS .NET binding
+- [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
+
 ## Visualizations
 
 - [[wiki/visualizations/pi-agent-control.canvas|PI-AGENT Control]]
