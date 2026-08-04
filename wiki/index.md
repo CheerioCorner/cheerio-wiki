@@ -10,7 +10,7 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-04（新增 OKF+LSP+CodeGraph AI Agent 整合研究）
+- **最後更新**：2026-08-11（建立知識花園導覽 Database）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：23（全部已補 provenance）
 - **Canonical collections**：11 concepts、19 entities、4 decisions、3 discussions

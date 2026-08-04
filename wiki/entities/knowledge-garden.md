@@ -2,7 +2,7 @@
 title: knowledge-garden — Notion 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-10
+updated: 2026-08-11
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -18,9 +18,40 @@ canonical: entities/knowledge-garden
 |------|-----|
 | Notion 主頁 | https://app.notion.com/p/3ac5979e-3a8c-81d2-b96f-f6c7bdd8fd33 |
 | Page ID | `3ac5979e-3a8c-81d2-b96f-f6c7bdd8fd33` |
+| 導覽 Database | https://app.notion.com/p/4f0c3d638d5f4e02b6a9e7d6540bebb3 |
+| Database ID | `4f0c3d63-8d5f-4e02-b6a9-e7d6540bebb3` |
+| 導覽頁 | https://app.notion.com/p/3b25979e3a8c81b6a2eeff4945a79e43 |
+| 研究專題管理 | https://app.notion.com/p/3b25979e3a8c81a69f98c1016d370dff |
 | 建立日期 | 2026-07-11 |
 | 維護者 | Cheerio + Pi |
-| 最後同步 | 2026-08-10 |
+| 最後同步 | 2026-08-11 |
+
+---
+
+## 導覽 Database 結構
+
+### Properties
+
+| 欄位 | 類型 | 說明 |
+|------|------|------|
+| 成長狀態 | Select | 🌱 種子期 / 🌿 成長期 / 🌳 成熟期 |
+| Notion 頁面 | URL | 種子/知識的名稱（主要連結） |
+| 靈感/心得 | Text | 這顆種子帶來的啟發 |
+| 研究專題 | URL | 所屬研究專題頁面（如有） |
+| Tags | Multi-select | 🔬 研究, 🛠️ 實作, 📝 筆記, 💡 靈感, 📚 學習, 🎯 研究專題 |
+| 一句話 | Text | 30 字以內摘要（給 LLM 快速理解） |
+| Wiki GitHub | URL | 對應的 wiki 頁面 GitHub 連結（導覽頁不顯示） |
+| 種下日期 | Date | 首次建立時間 |
+| 最後更新 | Date | 最近一次灌溉/更新 |
+
+### Views
+
+1. 🗺️ 花園全景（Gallery，按成長狀態分組）
+2. 📋 清單視圖（Table，完整資料）
+3. 🏷️ 按 Tags（Board，按 Tags 分組）
+4. 🔍 LLM 索引（Table，給 AI 用）
+5. 📅 時間線（Timeline，按種下日期）
+6. 💡 靈感集（Gallery，篩選有靈感/心得的）
 
 ---
 
@@ -72,6 +103,7 @@ canonical: entities/knowledge-garden
 | 2026-08-01 | 種下 OKF Extension 開發 | OKF Extension |
 | 2026-08-06 | E2E 測試完成（raw/wiki/Notion 全部清理） | E2E Test Artifact |
 | 2026-08-10 | 種下 OKF (Open Knowledge Format) | OKF |
+| 2026-08-11 | 建立導覽 Database + 導覽頁 + 研究專題管理頁 | — |
 
 ---
 
@@ -80,6 +112,7 @@ canonical: entities/knowledge-garden
 1. **每次 Notion 寫入操作後**，自動同步更新本頁面（詳見 `knowledge-garden` skill §Manifest 自動同步）
 2. **查詢花園時**，先讀本頁 → 快速回答 → 需要詳細內容再去 Notion
 3. **新種子**加入時，同時更新「最近更新紀錄」表格
+4. **導覽 Database** 為主要資料來源，本 manifest 為離線快取
 
 ---
 
@@ -89,3 +122,6 @@ canonical: entities/knowledge-garden
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Wiki 操作 skill
 - [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → Raw 抓取 skill（「花園裡那篇 X 要深入研究」）
 - [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]] — 架構討論
+- [導覽頁](https://app.notion.com/p/3b25979e3a8c81b6a2eeff4945a79e43) — Notion 導覽頁
+- [研究專題管理](https://app.notion.com/p/3b25979e3a8c81a69f98c1016d370dff) — Notion 研究專題管理頁
+- [Design Spec](work/designs/knowledge-garden-navigator.md) — 導覽頁設計規格
