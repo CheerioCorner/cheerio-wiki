@@ -10,10 +10,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-10（新增 Antigravity CLI 整合 — Gemini CLI 免費層停用後的整合方案）
+- **最後更新**：2026-08-04（新增 LSP 與 Code Graph 研究 — Gemini Deep Research）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：21（全部已補 provenance）
-- **Canonical collections**：10 concepts、13 entities、4 decisions、3 discussions
+- **Source notes**：22（全部已補 provenance）
+- **Canonical collections**：11 concepts、15 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---

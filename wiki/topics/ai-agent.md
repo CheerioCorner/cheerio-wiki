@@ -30,6 +30,7 @@ updated: 2026-08-08
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成，與 minimal-agent-philosophy 形成對比
 - [[wiki/concepts/late-conversion|Late Conversion]]
+- [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施 🛠️
 
 ## Sources
 
@@ -51,6 +52,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-02-morphir-dotnet-agents|Morphir .NET Agents]] — FINOS .NET binding
 - [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
 - [[wiki/sources/2026-08-10-antigravity-cli-integration|Antigravity CLI 整合]] — Gemini CLI 免費層停用後的整合方案
+- [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]] — AI Code Assistant 核心基礎 🛠️
 
 ## Visualizations
 

@@ -37,6 +37,15 @@
   - completed: 2026-08-10
   - result: 設定每週一 09:00 wiki lint（ID: 7b26bb64）、每週三 10:00 花園巡檢（ID: f9aa104e）
 
+- [x] W-2026-08-019 研究 LSP（Language Server Protocol）與 Code Graph ✅ #ai-agent
+  - refs: [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 研究]]、[[wiki/entities/lsp|LSP]]、[[wiki/entities/tree-sitter|Tree-sitter]]、[[wiki/concepts/code-graph|Code Graph]]
+  - completed: 2026-08-04
+  - result: Gemini Deep Research 完成深度研究報告；新增 wiki 頁面：source note、2 entities、1 concept；5 篇 raw/web URLs 已加入知識庫
+
+- [ ] W-2026-08-020 盤點 wiki 內容，找出可轉化為花園種子的素材
+  - next: 瀏覽 wiki/entities/、wiki/concepts/、wiki/topics/，評估哪些適合放入 Notion 知識花園
+  - refs: [[wiki/index|Wiki Index]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+
 ## Completed
 
 - [x] W-2026-08-011 Wiki Lint：批量補上 source note provenance ✅ #wiki

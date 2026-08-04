@@ -3,6 +3,18 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-04] ingest | LSP 與 Code Graph 技術深度研究
+
+- 新增 source：`wiki/sources/2026-08-04-lsp-code-graph-research.md`
+- 新增 entity：`wiki/entities/lsp.md`（Language Server Protocol）
+- 新增 entity：`wiki/entities/tree-sitter.md`（Parser Generator）
+- 新增 concept：`wiki/concepts/code-graph.md`（代碼語意圖譜）
+- 更新 topic：`wiki/topics/meta-systems.md`（加入 LSP、Tree-sitter、Code Graph）
+- 更新 topic：`wiki/topics/ai-agent.md`（加入 Code Graph concept、LSP source）
+- 更新 index：Sources 21→22，Entities 13→15，Concepts 10→11
+- 來源：Gemini Deep Research + raw/web（5 篇 URL）
+- 重點：LSP $M \times N \rightarrow M + N$ 架構革新、Tree-sitter 增量解析、Code Graph 語意網路、AI Code Assistant 整合（Graph-RAG、Self-Correction Loop、SCIP/LSIF）
+
 ## [2026-08-10] ingest | Antigravity CLI 整合 — Gemini CLI 免費層停用後的整合方案
 
 - 新增 source：`wiki/sources/2026-08-10-antigravity-cli-integration.md`
