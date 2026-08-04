@@ -17,6 +17,11 @@
   - next: 抽象 TaskStore / JournalStore adapters → 測試、CI 與 npm 發布 → 搬移必要程式
   - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]、[[work/README|Work System]]
 
+- [ ] W-2026-08-021 建立知識花園導覽 Database ⏫ #knowledge #notion
+  - 2026-08-11 建立 Notion Database + 導覽頁 + 研究專題管理頁
+  - next: 人類調整 Notion 結構後，遷移 6 顆種子、建立 Views
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[Design Spec](work/designs/knowledge-garden-navigator.md)
+
 ## Backlog
 
 - [x] W-2026-08-005 測試 URL → raw/web → ingest 全流程 ✅ #knowledge
@@ -38,13 +43,28 @@
   - result: 設定每週一 09:00 wiki lint（ID: 7b26bb64）、每週三 10:00 花園巡檢（ID: f9aa104e）
 
 - [x] W-2026-08-019 研究 LSP（Language Server Protocol）與 Code Graph ✅ #ai-agent
-  - refs: [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 研究]]、[[wiki/entities/lsp|LSP]]、[[wiki/entities/tree-sitter|Tree-sitter]]、[[wiki/concepts/code-graph|Code Graph]]
+  - refs: [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 研究]]、[[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF+LSP+CodeGraph AI Agent 研究]]、[[wiki/entities/lsp|LSP]]、[[wiki/entities/tree-sitter|Tree-sitter]]、[[wiki/concepts/code-graph|Code Graph]]、[[wiki/entities/mcp-model-context-protocol|MCP]]、[[wiki/entities/github-copilot|GitHub Copilot]]、[[wiki/entities/claude-code|Claude Code]]、[[wiki/entities/openai-codex|OpenAI Codex]]
   - completed: 2026-08-04
-  - result: Gemini Deep Research 完成深度研究報告；新增 wiki 頁面：source note、2 entities、1 concept；5 篇 raw/web URLs 已加入知識庫
+  - result: Gemini Deep Research 完成兩份深度研究報告（LSP+CodeGraph + OKF+LSP+CodeGraph AI Agent 整合）；新增 wiki 頁面：2 source notes、6 entities、1 concept；20+ 篇 raw/web URLs 已加入知識庫
 
 - [ ] W-2026-08-020 盤點 wiki 內容，找出可轉化為花園種子的素材
   - next: 瀏覽 wiki/entities/、wiki/concepts/、wiki/topics/，評估哪些適合放入 Notion 知識花園
   - refs: [[wiki/index|Wiki Index]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+
+- [ ] W-2026-08-021 研究 Hook 機制：不同 IDE / Harness 的實作比較 #ai-agent
+  - next: 調研 Claude Code（Anthropic）、Cursor、Windsurf、GitHub Copilot App、Pi Agent 的 hook 系統
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - 範疇：Hook 類型（pre/post tool call、on error、session lifecycle）、觸發時機、擴充方式、與 skill 的整合
+
+- [ ] W-2026-08-022 研究 MCP Server 架構與實作 #ai-agent
+  - next: 調研 MCP protocol spec、server 生態（official/community servers）、 transport 層（stdio/SSE/streamable HTTP）、tool/resource/prompt 三大原語
+  - refs: [[wiki/entities/pi-mono|pi-mono]]
+  - 範疇：Server 開發框架（TypeScript/Python SDK）、安全模型、permission 系統、與 harness 整合方式
+
+- [ ] W-2026-08-023 研究 MCP Registry 與企業級管理 #ai-agent
+  - next: 調研 MCP registry 方案（官方 registry、企業自建）、server 發現與註冊機制、版本管控、存取控制
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - 範疇：企業 MCP 管理平台設計、server 託管與審核流程、多 team 共用策略、audit logging、compliance
 
 ## Completed
 

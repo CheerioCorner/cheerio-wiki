@@ -22,6 +22,10 @@ updated: 2026-08-08
 - [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard 🛠️
 - [[wiki/entities/waku-agent|waku-agent]] — Local-first personal AI agent，四大支柱 readable blueprint
+- [[wiki/entities/github-copilot|GitHub Copilot]] — GitHub AI 程式碼輔助工具生態系 🛠️
+- [[wiki/entities/claude-code|Claude Code]] — Anthropic AI Coding Agent，MCP Protocol 整合 🛠️
+- [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI AI Coding Agent，CLI 工具 🛠️
+- [[wiki/entities/mcp-model-context-protocol|MCP]] — Model Context Protocol，AI Agent 工具整合標準 🛠️
 
 ## Concepts
 

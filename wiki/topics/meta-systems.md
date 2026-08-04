@@ -14,6 +14,7 @@ updated: 2026-08-05
 - [[wiki/entities/omnigent|Omnigent]]
 - [[wiki/entities/lsp|LSP]] — Language Server Protocol，程式語言語意分析標準化協定 🛠️
 - [[wiki/entities/tree-sitter|Tree-sitter]] — 高效能 Parser Generator，支援增量解析
+- [[wiki/entities/mcp-model-context-protocol|MCP]] — Model Context Protocol，AI Agent 工具整合標準 🛠️
 
 ## Concepts
 

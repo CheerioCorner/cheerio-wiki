@@ -3,6 +3,19 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-04] ingest | OKF + LSP + Code Graph 在 AI Coding Agent 生態系的整合應用
+
+- 新增 source：`wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research.md`
+- 新增 entity：`wiki/entities/mcp-model-context-protocol.md`（Model Context Protocol）
+- 新增 entity：`wiki/entities/github-copilot.md`（GitHub Copilot 生態系）
+- 新增 entity：`wiki/entities/claude-code.md`（Claude Code + MCP）
+- 新增 entity：`wiki/entities/openai-codex.md`（OpenAI Codex CLI）
+- 更新 topic：`wiki/topics/ai-agent.md`（加入 Copilot、Claude Code、Codex、MCP）
+- 更新 topic：`wiki/topics/meta-systems.md`（加入 MCP）
+- 更新 index：Sources 22→23，Entities 15→19
+- 來源：Gemini Deep Research + raw/web（15+ 篇 URLs）
+- 重點：三位一體架構（OKF+LSP+CodeGraph）、主流 AI Agent 分析、語言工具鏈、安裝指南、安全性、演進時間線
+
 ## [2026-08-04] ingest | LSP 與 Code Graph 技術深度研究
 
 - 新增 source：`wiki/sources/2026-08-04-lsp-code-graph-research.md`

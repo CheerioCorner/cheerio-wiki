@@ -10,10 +10,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-04（新增 LSP 與 Code Graph 研究 — Gemini Deep Research）
+- **最後更新**：2026-08-04（新增 OKF+LSP+CodeGraph AI Agent 整合研究）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：22（全部已補 provenance）
-- **Canonical collections**：11 concepts、15 entities、4 decisions、3 discussions
+- **Source notes**：23（全部已補 provenance）
+- **Canonical collections**：11 concepts、19 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---
