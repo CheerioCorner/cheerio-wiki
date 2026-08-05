@@ -54,7 +54,6 @@
     - 輸出格式：structured report format（evidence → conclusion → refs）
     - 與 agy CLI 整合：prompt template 如何嵌入 gy skill 的呼叫流程
   - refs: W-2026-08-024（gemini-deep-research skill）、[[wiki/entities/hermes-agent|hermes-agent]]
-  - blocked by: W-2026-024（skill 本體先建立，再優化 prompt）
 
 - [ ] W-2026-08-027 設定 Gemini CLI 環境：安裝 MCP Server 與常用插件 #ai-agent #extension
   - next: 調研 Gemini CLI 支援的 MCP server 生態，挑選必裝工具並實作安裝
@@ -128,8 +127,9 @@
   - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
   - 範疇：企業 MCP 管理平台設計、server 託管與審核流程、多 team 共用策略、audit logging、compliance
 
-- [ ] W-2026-08-024 建立 `gemini-deep-research` skill：Gemini 深度研究 + 出處標註 #skills
-  - next: 設計 skill spec、串接 agy CLI、要求每段結論附上 sources/citations
+- [x] W-2026-08-024 建立 `gemini-deep-research` skill：Gemini 深度研究 + 出處標註 ✅ #skills
+  - completed: 2026-08-06
+  - result: 建立完整 skill 結構，包含 3 個 prompt 模板（general/comparison/tutorial）、引用驗證腳本、README 文檔。可透過 agy CLI 執行深度研究，強制要求 citations。可與 wiki-knowledge 整合自動 ingest。
   - refs: [[wiki/entities/mattpocock-skills|mattpocock-skills]]、[[wiki/topics/skill|Skill topic]]、[[wiki/entities/hermes-agent|hermes-agent]]
   - 範疇：Prompt 模板設計（強制 citation 輸出格式）、Deep Research mode 啟用、結果後處理（格式化 report）、與 wiki-knowledge 整合（自動 ingest 研究結果）
 
