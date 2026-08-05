@@ -24,7 +24,7 @@ canonical: entities/knowledge-garden
 | 研究專題管理 | https://app.notion.com/p/3b25979e3a8c81a69f98c1016d370dff |
 | 建立日期 | 2026-07-11 |
 | 維護者 | Cheerio + Pi |
-| 最後同步 | 2026-08-11 |
+| 最後同步 | 2026-08-18 |
 
 ---
 
@@ -89,6 +89,17 @@ canonical: entities/knowledge-garden
 
 ---
 
+## ⚠️ 導覽 Database 狀態
+
+| 項目 | 狀態 |
+|------|------|
+| Database ID | `4f0c3d63-8d5f-4e02-b6a9-e7d6540bebb3` |
+| 狀態 | **已歸檔（in_trash）** — 2026-08-18 巡檢發現 |
+| 原因 | 未知（可能誤刪或測試後未恢復） |
+| 影響 | 無法用結構化方式管理種子，需重建或改用手動管理 |
+
+---
+
 ## 最近更新紀錄
 
 | 日期 | 事件 | 種子 |
@@ -104,6 +115,7 @@ canonical: entities/knowledge-garden
 | 2026-08-06 | E2E 測試完成（raw/wiki/Notion 全部清理） | E2E Test Artifact |
 | 2026-08-10 | 種下 OKF (Open Knowledge Format) | OKF |
 | 2026-08-11 | 建立導覽 Database + 導覽頁 + 研究專題管理頁 | — |
+| 2026-08-18 | 每週巡檢：Notion token 修復、Database 歸檔確認 | — |
 
 ---
 

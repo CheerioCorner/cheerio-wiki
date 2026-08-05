@@ -3,7 +3,20 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
-## [2026-08-11] knowledge-garden | 建立導覽 Database + 導覽頁 + 研究專題管理頁
+## [2026-08-19] source | 新增 Pi Agent GitHub Copilot Provider 設定指南
+
+- 新增 source note：2026-08-19-pi-agent-github-copilot-provider-setup
+- 內容：Pi Agent 原生支援 Copilot OAuth 設定流程、模型清單、常見問題
+- 重點：執行 `/login` → 選擇 GitHub Copilot → 完成授權即可；模型清單為靜態，如模型不出現需在 VS Code 中先 Enable
+- 來源：Pi Agent 官方文件 + GitHub Issue #4599
+- refs: W-2026-08-028
+
+## [2026-08-19] work | 新增 4 個工作項目
+
+- W-2026-08-025：AI Agent 網路查詢能力研究
+- W-2026-08-026：優化 Gemini Deep Search Prompt
+- W-2026-08-027：設定 Gemini CLI 環境
+- W-2026-08-028：研究 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider
 
 - 新增 Notion Database：`4f0c3d63-8d5f-4e02-b6a9-e7d6540bebb3`（9 個欄位）
 - 新增導覽頁：`3b25979e-3a8c-81b6-a2ee-ff4945a79e43`（使用指南、統計、相關連結）
@@ -12,7 +25,13 @@
 - 更新 knowledge-mgmt topic：新增 knowledge-garden entity、Notion 花園連結
 - 更新 work/current：新增 W-2026-08-021
 - 重點：人機共用導覽系統、混合式組織（成長狀態 + Tags）、6 Views
-- 待辦：遷移 6 顆種子、人類調整 Notion 結構
+- 待辦：遷移 6 顆種子、人類調整 Notion 結構、建立 Views
+
+## [2026-08-11] work | Notion 工作盤點
+
+- 整理所有 Notion 相關待辦工作到 work/current.md
+- 包括：遷移種子、建立 Views、盤點 wiki 素材、確認 Database 結構等
+- 新增 Notion 工作清單區塊
 
 ## [2026-08-04] ingest | OKF + LSP + Code Graph 在 AI Coding Agent 生態系的整合應用
 

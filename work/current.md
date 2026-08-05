@@ -19,8 +19,75 @@
 
 - [ ] W-2026-08-021 建立知識花園導覽 Database ⏫ #knowledge #notion
   - 2026-08-11 建立 Notion Database + 導覽頁 + 研究專題管理頁
-  - next: 人類調整 Notion 結構後，遷移 6 顆種子、建立 Views
+  - 2026-08-12 確認 Database 已嵌入花園主頁（inline, ID: 3b25979e-3a8c-807b-a51a-ecc63800531c），標題仍為 "New database"
+  - 2026-08-12 導覽頁 + 研究專題管理頁結構完成，統計為 placeholder
+  - 2026-08-18 每週巡檢：✅ Notion token 修復完成；⚠️ 導覽 Database 被歸檔（in_trash）
+  - 2026-08-19 ✅ 建立新 Database（ID: a3ce8309，inline 於導覽頁）+ 遷移 6 顆種子
+  - next:
+    - [ ] 修復 pi-hypa：設定 `HYPA_BIN` 環境變數指向 `C:\Users\User\.pi\agent\npm\node_modules\@hypabolic\hypa-win32-x64\bin\hypa.exe`，或直接移除 pi-hypa 套件
+    - [x] ~~更新 MCP Notion token~~ ✅ 2026-08-18 修復
+    - [x] ~~Database 建立~~ ✅ 2026-08-19（導覽頁 inline: a3ce8309）
+    - [x] ~~確認 Database Schema~~ ✅ 2026-08-19（9 欄位已建）
+    - [x] ~~遷移 6 顆種子到 Database~~ ✅ 2026-08-19（全部完成）
+    - [ ] 建立 6 個 Views
+    - [ ] 更新導覽頁統計數字
+    - [ ] 更新 manifest（knowledge-garden.md）
   - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[Design Spec](work/designs/knowledge-garden-navigator.md)
+
+- [ ] W-2026-08-025 研究 AI Agent 網路查詢能力：Extension 機制與 Search 架構 #ai-agent
+  - next: 調研主流 AI agent（Pi、Claude Code、Cursor、Copilot）的 web search / deep research extension 實作方式
+  - 範疇：
+    - Extension 機制：新裝 agent 如何加入查詢能力（MCP server？built-in tool？skill？）
+    - Search 適配性：什麼样的搜尋方式適合 AI consumption（structured results vs raw HTML）
+    - AI-fetch 與 AI-browser：是否需要專為 AI 設計的 fetcher（如 firecrawl、jina reader）或 browser（如 Playwright headless）
+    - Deep Research 模式：Gemini Deep Research、Perplexity 等深度研究的實作模式
+    - Private writer / output 機制：查詢結果如何回傳給 agent（inline context vs file output）
+    - 安全與隱私：web search 的 data retention、privacy implications
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]、W-2026-08-024（gemini-deep-research skill）
+
+- [ ] W-2026-08-026 優化 Gemini Deep Search Prompt：提升查詢品質與引用可靠性 #ai-agent #skills
+  - next: 設計 prompt template，確保 Gemini deep search 結果具備：多元化來源、精準度、reference/citation
+  - 範疇：
+    - Prompt engineering：如何指示 Gemini 進行多角度搜尋（避免 echo chamber）
+    - Citation 要求：強制每段結論附上 sources（URL + 標題 + 摘要）
+    - 品質控制：如何驗證搜尋結果的可靠性（交叉比對、來源權威度）
+    - 輸出格式：structured report format（evidence → conclusion → refs）
+    - 與 agy CLI 整合：prompt template 如何嵌入 gy skill 的呼叫流程
+  - refs: W-2026-08-024（gemini-deep-research skill）、[[wiki/entities/hermes-agent|hermes-agent]]
+  - blocked by: W-2026-024（skill 本體先建立，再優化 prompt）
+
+- [ ] W-2026-08-027 設定 Gemini CLI 環境：安裝 MCP Server 與常用插件 #ai-agent #extension
+  - next: 調研 Gemini CLI 支援的 MCP server 生態，挑選必裝工具並實作安裝
+  - 範疇：
+    - MCP server 挑選：web search（Tavily/Exa）、file system、browser automation、notion
+    - 安裝流程：Gemini CLI 如何設定 MCP server（config 檔案格式、啟動方式）
+    - 常用工具優先序：哪些是「一定會用到的」先裝（search、fetch、file ops）
+    - 與 Pi 的 MCP 設定差異比較
+    - 驗證：安裝後測試每個 server 是否正常運作
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、W-2026-08-025（AI Agent 網路查詢能力研究）
+  - 與 W-025 有重疊：W-025 做研究，W-027 做實作
+
+- [ ] W-2026-08-028 研究 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider #ai-agent #extension
+  - next: 調查 Pi Agent 如何設定 GitHub Copilot 作為 model provider（browser-based auth）
+  - 範疇：
+    - Pi Agent 支援的 provider 類型：OpenAI-compatible / Anthropic Messages / Google Generative AI
+    - GitHub Copilot 認證流程：browser-based auth 如何運作（OAuth token 取得）
+    - models.json 設定：如何在 `~/.pi/agent/models.json` 配置 Copilot 模型
+    - 模型可用性：Copilot 訂閱能用哪些模型（GPT-4o、Claude Sonnet、Gemini？）
+    - 與 Claude Code / Cursor 的 Copilot 整合比較
+    - 實測：到公司後實際設定並驗證
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/github-copilot|github-copilot]]、[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]、[[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Copilot Provider Setup Guide]]
+  - 備註：目前這台電腦無 Copilot 訂閱，需到公司後實測
+  - 2026-08-19 研究完成：Pi Agent 原生支援 Copilot OAuth，執行 `/login` → 選擇 GitHub Copilot → 完成授權即可。模型清單為靜態（from models.dev），如模型不出現需在 VS Code 中先 Enable。
+
+- [x] W-2026-08-020 盤點 wiki 內容，找出可轉化為花園種子的素材 ✅ #knowledge #notion
+  - completed: 2026-08-18
+  - result: 巡檢完成，wiki 35 個頁面中僅 6 個進花園（覆蓋率 30%）。建議優先種植：claude-code、copilot、codex、MCP、tau、ai-coding-workflow、vibe-coding 等高價值 entity/concept
+  - refs: [[wiki/index|Wiki Index]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+
+## Notion 工作清單（已整合到 W-2026-08-021）
+
+> 以下事項已合併到 W-2026-08-021 的 next 清單中。
 
 ## Backlog
 

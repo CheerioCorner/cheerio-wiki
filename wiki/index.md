@@ -10,9 +10,9 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-11（建立知識花園導覽 Database）
+- **最後更新**：2026-08-19（新增 Pi Agent GitHub Copilot Provider Setup Guide）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：23（全部已補 provenance）
+- **Source notes**：24（全部已補 provenance）
 - **Canonical collections**：11 concepts、19 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
