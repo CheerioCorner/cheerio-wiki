@@ -22,11 +22,11 @@
   - 2026-08-12 確認 Database 已嵌入花園主頁（inline, ID: 3b25979e-3a8c-807b-a51a-ecc63800531c），標題仍為 "New database"
   - 2026-08-12 導覽頁 + 研究專題管理頁結構完成，統計為 placeholder
   - 2026-08-18 每週巡檢：✅ Notion token 修復完成；⚠️ 導覽 Database 被歸檔（in_trash）
-  - 2026-08-19 ✅ 建立新 Database（ID: a3ce8309，inline 於導覽頁）+ 遷移 6 顆種子
+  - 2026-08-19 ✅ 建立新 Database（ID: f3aa419a，inline 於花園主頁）+ 遷移 6 顆種子
   - next:
     - [ ] 修復 pi-hypa：設定 `HYPA_BIN` 環境變數指向 `C:\Users\User\.pi\agent\npm\node_modules\@hypabolic\hypa-win32-x64\bin\hypa.exe`，或直接移除 pi-hypa 套件
     - [x] ~~更新 MCP Notion token~~ ✅ 2026-08-18 修復
-    - [x] ~~Database 建立~~ ✅ 2026-08-19（導覽頁 inline: a3ce8309）
+    - [x] ~~Database 建立~~ ✅ 2026-08-19（花園主頁 inline: f3aa419a）
     - [x] ~~確認 Database Schema~~ ✅ 2026-08-19（9 欄位已建）
     - [x] ~~遷移 6 顆種子到 Database~~ ✅ 2026-08-19（全部完成）
     - [ ] 建立 6 個 Views

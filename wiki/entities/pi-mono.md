@@ -2,8 +2,8 @@
 title: pi-mono — Agent Toolkit Monorepo
 type: entity
 created: 2026-07-11
-updated: 2026-08-06
-sources: 4
+updated: 2026-08-19
+sources: 5
 tags: [pi, coding-agent, monorepo]
 collection: entities
 topics: [ai-agent, extension-dev]
@@ -37,12 +37,24 @@ canonical: entities/pi-mono
 - **Themes**(TUI 視覺)
 - **Pi Packages**(`pi install` / `list` / `update` 的一系列 unit)
 
-### 三、provider 抽象完整(現況 2026-05)
+### 三、provider 抽象完整(現況 2026-08)
 - 訂閱登入:ChatGPT Plus / Pro、Claude Pro / Max、GitHub Copilot
 - API key:OpenAI、Anthropic、Gemini、Bedrock、OpenRouter、Groq、Mistral、Cloudflare
 - 自訂:`~/.pi/agent/models.json`
 - 抽象目標:OpenAI-compatible / Anthropic Messages / Google Generative AI 三種 API 類型
 - 重點:讓你能「換 provider 不用換 CLI」
+
+#### GitHub Copilot 設定方式
+
+```bash
+pi
+/login
+# 選擇 GitHub Copilot → 瀏覽器完成 OAuth
+```
+
+Token 自動存入 `~/.pi/agent/auth.json`，之後自動刷新。模型清單為靜態（from models.dev），如模型不出現需在 VS Code 中先 Enable。
+
+→ 詳見 [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Copilot Provider Setup Guide]]
 
 ### 四、刻意不做(原文 Philosophy 條列)
 缺 ≠ bug,以下為立場——全部交由 extension 自補:
