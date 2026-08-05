@@ -5,6 +5,9 @@ created: 2026-08-19
 updated: 2026-08-19
 tags: [pi-agent, github-copilot, provider, oauth, setup]
 topics: [ai-agent]
+provenance:
+  - kind: external
+    url: https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/providers.md
 sources:
   - url: https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/providers.md
     title: Pi Agent Official Providers Documentation

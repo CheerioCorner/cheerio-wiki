@@ -45,26 +45,15 @@
     - 安全與隱私：web search 的 data retention、privacy implications
   - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]、W-2026-08-024（gemini-deep-research skill）
 
-- [ ] W-2026-08-026 優化 Gemini Deep Search Prompt：提升查詢品質與引用可靠性 #ai-agent #skills
-  - next: 設計 prompt template，確保 Gemini deep search 結果具備：多元化來源、精準度、reference/citation
-  - 範疇：
-    - Prompt engineering：如何指示 Gemini 進行多角度搜尋（避免 echo chamber）
-    - Citation 要求：強制每段結論附上 sources（URL + 標題 + 摘要）
-    - 品質控制：如何驗證搜尋結果的可靠性（交叉比對、來源權威度）
-    - 輸出格式：structured report format（evidence → conclusion → refs）
-    - 與 agy CLI 整合：prompt template 如何嵌入 gy skill 的呼叫流程
+- [x] W-2026-08-026 優化 Gemini Deep Search Prompt：提升查詢品質與引用可靠性 ✅ #ai-agent #skills
+  - completed: 2026-08-06
+  - result: 建立 3 個 prompt 模板（general/comparison/tutorial），加入 Source Quality Tiers（T1/T2/T3）、Claim Confidence 標記（VERIFIED/INFERRD/UNVERIFIED）、強制引用規則
   - refs: W-2026-08-024（gemini-deep-research skill）、[[wiki/entities/hermes-agent|hermes-agent]]
 
-- [ ] W-2026-08-027 設定 Gemini CLI 環境：安裝 MCP Server 與常用插件 #ai-agent #extension
-  - next: 調研 Gemini CLI 支援的 MCP server 生態，挑選必裝工具並實作安裝
-  - 範疇：
-    - MCP server 挑選：web search（Tavily/Exa）、file system、browser automation、notion
-    - 安裝流程：Gemini CLI 如何設定 MCP server（config 檔案格式、啟動方式）
-    - 常用工具優先序：哪些是「一定會用到的」先裝（search、fetch、file ops）
-    - 與 Pi 的 MCP 設定差異比較
-    - 驗證：安裝後測試每個 server 是否正常運作
+- [x] W-2026-08-027 設定 Antigravity CLI 環境：安裝 MCP Server 與常用插件 ✅ #ai-agent #extension
+  - completed: 2026-08-06
+  - result: agy v1.1.10 已安裝，設定 5 個 MCP server：notion-mcp-server、gmp-code-assist、chrome-devtools-mcp、context7、sequential-thinking。用戶自行安裝 filesystem MCP。
   - refs: [[wiki/entities/pi-mono|pi-mono]]、W-2026-08-025（AI Agent 網路查詢能力研究）
-  - 與 W-025 有重疊：W-025 做研究，W-027 做實作
 
 - [ ] W-2026-08-028 研究 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider #ai-agent #extension
   - next: 調查 Pi Agent 如何設定 GitHub Copilot 作為 model provider（browser-based auth）
@@ -108,9 +97,7 @@
   - completed: 2026-08-10
   - result: 設定每週一 09:00 wiki lint（ID: 7b26bb64）、每週三 10:00 花園巡檢（ID: f9aa104e）
 
-- [ ] W-2026-08-020 盤點 wiki 內容，找出可轉化為花園種子的素材
-  - next: 瀏覽 wiki/entities/、wiki/concepts/、wiki/topics/，評估哪些適合放入 Notion 知識花園
-  - refs: [[wiki/index|Wiki Index]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+
 
 - [ ] W-2026-08-021 研究 Hook 機制：不同 IDE / Harness 的實作比較 #ai-agent
   - next: 調研 Claude Code（Anthropic）、Cursor、Windsurf、GitHub Copilot App、Pi Agent 的 hook 系統

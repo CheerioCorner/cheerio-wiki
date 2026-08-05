@@ -6,7 +6,7 @@ updated: 2026-08-05
 sources: 2
 tags: [software-quality, metrics, agile, devops, defect-tracking, testing]
 collection: concepts
-topics: []
+topics: [backend-systems]
 canonical: concepts/defect-metrics
 ---
 
