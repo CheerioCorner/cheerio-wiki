@@ -17,21 +17,21 @@
   - next: 抽象 TaskStore / JournalStore adapters → 測試、CI 與 npm 發布 → 搬移必要程式
   - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]、[[work/README|Work System]]
 
-- [ ] W-2026-08-021 建立知識花園導覽 Database ⏫ #knowledge #notion
+- [x] W-2026-08-021 建立知識花園導覽 Database ✅ #knowledge #notion
   - 2026-08-11 建立 Notion Database + 導覽頁 + 研究專題管理頁
   - 2026-08-12 確認 Database 已嵌入花園主頁（inline, ID: 3b25979e-3a8c-807b-a51a-ecc63800531c），標題仍為 "New database"
   - 2026-08-12 導覽頁 + 研究專題管理頁結構完成，統計為 placeholder
   - 2026-08-18 每週巡檢：✅ Notion token 修復完成；⚠️ 導覽 Database 被歸檔（in_trash）
-  - 2026-08-19 ✅ 建立新 Database（ID: f3aa419a，inline 於花園主頁）+ 遷移 6 顆種子
-  - next:
-    - [ ] 修復 pi-hypa：設定 `HYPA_BIN` 環境變數指向 `C:\Users\User\.pi\agent\npm\node_modules\@hypabolic\hypa-win32-x64\bin\hypa.exe`，或直接移除 pi-hypa 套件
-    - [x] ~~更新 MCP Notion token~~ ✅ 2026-08-18 修復
-    - [x] ~~Database 建立~~ ✅ 2026-08-19（花園主頁 inline: f3aa419a）
-    - [x] ~~確認 Database Schema~~ ✅ 2026-08-19（9 欄位已建）
-    - [x] ~~遷移 6 顆種子到 Database~~ ✅ 2026-08-19（全部完成）
-    - [ ] 建立 6 個 Views
-    - [ ] 更新導覽頁統計數字
-    - [ ] 更新 manifest（knowledge-garden.md）
+  - 2026-08-05 ✅ 建立新 Database（ID: f3aa419a，inline 於花園主頁）+ 遷移 6 顆種子 + 更新 SKILL.md + 搬移種子內容 + 補齊欄位資料
+  - completed: 2026-08-19
+  - result:
+  1) 建立 Database（11 欄位：種子、成長狀態、Tags、來源 URL、一句話、給我的啟發？、備註、研究專題、Wiki GitHub、種下日期、最後更新）
+  2) 遷移 6 顆種子（Plannotator 🌿、NPM 🌿、OKF 🌱、mattpocock 🌱、Omnigent 🌱、Extension 🌱）
+  3) 建立 6 個新頁面（套用模板格式）
+  4) 歸檔舊頁面
+  5) 更新 SKILL.md（反映最新結構、來源 URL 定義）
+  6) 補齊所有種子的「給我的啟發？」欄位
+  7) 清空 NPM Publishing、Agent Extension 的「來源 URL」（個人經驗無原始來源）
   - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[Design Spec](work/designs/knowledge-garden-navigator.md)
 
 - [ ] W-2026-08-025 研究 AI Agent 網路查詢能力：Extension 機制與 Search 架構 #ai-agent
