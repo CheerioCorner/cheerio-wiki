@@ -65,12 +65,15 @@
     - 安全與隱私：web search 的 data retention、privacy implications
   - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]、W-2026-08-024（gemini-deep-research skill）
 
-- [x] W-2026-08-028 研究 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider ✅ #ai-agent #extension
-  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/github-copilot|github-copilot]]、[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]、[[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Copilot Provider Setup Guide]]
-  - completed: 2026-08-19
-  - result: Pi Agent 原生支援 Copilot OAuth，執行 `/login` → 選擇 GitHub Copilot → 完成授權即可。模型清單為靜態（from models.dev），如模型不出現需在 VS Code 中先 Enable。
+
 
 ## Backlog
+
+- [ ] W-2026-08-028 設定 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider #ai-agent #extension
+  - next: 到公司後實際執行 `/login` → 選擇 GitHub Copilot → 完成 OAuth 授權 → 測試模型可用性
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/github-copilot|github-copilot]]、[[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Copilot Provider Setup Guide]]
+  - 狀態：研究階段完成（已知流程），但本機無 Copilot 訂閱，需到公司實測
+  - 已知資訊：OAuth 設定流程、模型清單為靜態（from models.dev）、模型不出現需在 VS Code 先 Enable
 
 - [ ] W-2026-08-033 研究 Hook 機制：不同 IDE / Harness 的實作比較 #ai-agent
   - next: 調研 Claude Code（Anthropic）、Cursor、Windsurf、GitHub Copilot App、Pi Agent 的 hook 系統
