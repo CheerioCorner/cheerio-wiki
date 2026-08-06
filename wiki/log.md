@@ -14,6 +14,21 @@
 - 方法：yt-dlp 提取影片 metadata → Gemini Deep Research 深度研究 → wiki 整合
 - 注意：所有5支影片均無字幕（subtitles disabled），內容來自描述 + Gemini 研究
 
+## [2026-08-20] ingest | OpenCodeReview Gemini 深度研究
+
+- 新增 source：`wiki/sources/2026-08-20-opencode-review-deep-research.md`
+- 新增 raw：`raw/research/2026-08-20-opencode-review-deep-research.md`
+- 來源：Gemini 2.5-pro 深度研究（9 個來源，3 Tier-1）
+- 重點：阿里內部使用故事、社群討論細節、SonarQube 互補關係、私有模型適配、AI 趨勢洞察
+- refs: [[wiki/entities/open-code-review|OpenCodeReview]]
+
+## [2026-08-20] work | 新增 3 個 OpenCodeReview 相關任務
+
+- W-2026-08-030：安裝並測試 OCR
+- W-2026-08-031：比較實驗 OCR vs code-review skill
+- W-2026-08-032：整合 OCR 到 Code Review 工作流
+- refs: [[wiki/entities/open-code-review|OpenCodeReview]]
+
 ## [2026-08-20] ingest | OpenCodeReview 深度分析與比較
 
 - 新增 entity：`wiki/entities/open-code-review.md`（阿里巴巴 AI 代碼審查工具）

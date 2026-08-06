@@ -59,7 +59,7 @@
 
 - [[wiki/concepts/README|Concepts]] — 可跨專案重用的抽象知識
 - [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作（含 [[wiki/entities/open-code-review|OpenCodeReview]] 19.3k ⭐）
-- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（19 筆）
+- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（20 筆，含 [[wiki/sources/2026-08-20-opencode-review-deep-research|OCR Gemini 研究]]）
 - [[wiki/decisions/README|Decisions]] — 全域／跨專案已確認選擇
 - [[wiki/discussions/README|Discussions]] — 尚未定案的方案與研究問題
 

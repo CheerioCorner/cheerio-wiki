@@ -7,13 +7,14 @@
 
 - [ ] W-2026-08-030 安裝並測試 OpenCodeReview（OCR） ⏫ #ai-agent #code-review
   - next: 安裝 OCR、設定 LLM provider、跑一次 `ocr review` 測試
-  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、https://github.com/alibaba/open-code-review
+  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|Gemini 深度研究]]、https://github.com/alibaba/open-code-review
   - 範疇：
     - 安裝：`npm install -g @alibaba-group/open-code-review`
     - 設定：`ocr config provider` + `ocr config model`
     - 測試：在現有專案跑 `ocr review`，觀察輸出品質
     - 比較：與 `code-review` skill 的結果做比較
-  - 2026-08-20 完成深度分析：確定性工程×Agent混合架構、Benchmark（Token 1/9）、與 Plannotator/code-review skill 比較
+  - 2026-08-20 完成深度分析（README 整理）
+  - 2026-08-20 完成 Gemini 深度研究：阿里內部故事、社群討論、SonarQube 互補、私有模型適配、AI 趨勢洞察
 
 - [ ] W-2026-08-031 比較實驗：OCR vs code-review skill #ai-agent #code-review
   - next: 找一個有 diff 的專案，分別用兩種工具審查，比較結果
@@ -38,8 +39,9 @@
 
 - [ ] W-2026-08-029 建立 Pi Agent 更新學習系統 ⏫ #ai-agent #learning
   - next: 完成 v0.84.0 更新學習任務（全螢幕模式、AGENTS.override.md、samplingParams）
-  - refs: [[work/designs/pi-agent-learning-system|學習系統設計]]、[[wiki/topics/pi-agent-learning/roadmap|學習路線圖]]、[[wiki/entities/pi-agent/changelog/v0.84.0|v0.84.0 分析]]
-  - 2026-08-20 建立學習系統：流程文件 + wiki 結構 + v0.84.0 分析 + 核心概念頁面
+  - refs: [[work/designs/pi-agent-learning-system|學習系統設計]]、[[wiki/topics/pi-agent-learning/roadmap|學習路線圖]]、[[wiki/entities/pi-agent/changelog/v0.84.0|v0.84.0 分析]]、[[wiki/entities/ai-agent-core/chain-of-thought|Chain-of-thought]]、[[wiki/entities/ai-agent-core/token-budget|Token 預算]]
+  - 2026-08-20 建立學習系統：流程文件 + wiki 結構 + v0.84.0 分析 + 核心概念頁面（chain-of-thought、token-budget）
+  - 2026-08-20 完成 OpenCodeReview 深度分析 + Gemini 深度研究（9 個來源、7 個新洞察）
 
 - [ ] W-2026-08-017 研究 harness 架構，開發自己的 AGENT ⏫ #ai-agent
   - 2026-08-10 新增 pi-loop-scheduler entity：Pi cron job 實作原理（@pi-agents/loop）
