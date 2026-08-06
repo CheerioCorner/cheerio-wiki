@@ -7,13 +7,32 @@
 
 ---
 
+## 📚 AI Agent 學習系統
+
+> 從「使用工具」到「理解原理」到「自己建造」的學習路徑。
+
+- [[wiki/topics/pi-agent-learning/roadmap|🗺️ 學習路線圖]] — 四階段學習路徑
+- [[wiki/topics/pi-agent-learning/progress|📊 學習進度]] — 追蹤每次學習成果
+- [[work/designs/pi-agent-learning-system|📋 學習系統設計]] — 完整流程文件
+
+### Pi Agent 更新追蹤
+
+- [[wiki/entities/pi-agent/changelog/v0.84.0|v0.84.0 更新分析]] — 全螢幕 TUI、Mermaid 渲染、samplingParams
+
+### 核心概念
+
+- [[wiki/entities/ai-agent-core/chain-of-thought|Chain-of-thought]] — 讓模型「先想再答」
+- [[wiki/entities/ai-agent-core/token-budget|Token 預算]] — 模型資源分配
+
+---
+
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-19（新增 Pi Agent GitHub Copilot Provider Setup Guide）
+- **最後更新**：2026-08-06（新增 Wow YouTube 5支 AI Agent 研究）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：24（全部已補 provenance）
-- **Canonical collections**：11 concepts、19 entities、4 decisions、3 discussions
+- **Source notes**：25（全部已補 provenance）
+- **Canonical collections**：15 concepts、24 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---
@@ -23,6 +42,7 @@
 > 點進 topic page 看該主題下的 entities 和 concepts。
 
 - [[wiki/topics/ai-agent|🤖 AI Agent]] — Pi、Tau、Hermes、Waku、QwenPaw 等 agent 框架
+- [[wiki/topics/pi-agent-learning|📚 AI Agent 學習]] — 從使用到建造的學習路徑
 - [[wiki/topics/extension-dev|🔌 Extension 開發]] — Pi extension 生態、OKF、publishing
 - [[wiki/topics/meta-systems|🧠 元系統]] — meta-harness 研究
 - [[wiki/topics/backend-systems|🔧 後端系統]] — Redis、Caching、Database patterns
@@ -38,7 +58,7 @@
 > 每個 collection 有自己的 README，點進去看完整列表。
 
 - [[wiki/concepts/README|Concepts]] — 可跨專案重用的抽象知識
-- [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作
+- [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作（含 [[wiki/entities/open-code-review|OpenCodeReview]] 19.3k ⭐）
 - [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（19 筆）
 - [[wiki/decisions/README|Decisions]] — 全域／跨專案已確認選擇
 - [[wiki/discussions/README|Discussions]] — 尚未定案的方案與研究問題

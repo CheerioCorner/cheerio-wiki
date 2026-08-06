@@ -22,6 +22,10 @@ updated: 2026-08-08
 - [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard 🛠️
 - [[wiki/entities/waku-agent|waku-agent]] — Local-first personal AI agent，四大支柱 readable blueprint
+- [[wiki/entities/graphify|Graphify]] — 開源代碼知識圖譜工具（~100K stars）
+- [[wiki/entities/area-l|AReaL]] — Ant Group 開源 Agent 強化學習基礎設施
+- [[wiki/entities/skillopt|SkillOpt]] — 微軟技能優化器，文字空間優化實現 Agent 自我進化
+- [[wiki/entities/memgraph-rag|MemGraph-RAG]] — KDD 2026 記憶圖譜多智能體 RAG
 - [[wiki/entities/github-copilot|GitHub Copilot]] — GitHub AI 程式碼輔助工具生態系 🛠️
 - [[wiki/entities/claude-code|Claude Code]] — Anthropic AI Coding Agent，MCP Protocol 整合 🛠️
 - [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI AI Coding Agent，CLI 工具 🛠️
@@ -35,6 +39,10 @@ updated: 2026-08-08
 - [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成，與 minimal-agent-philosophy 形成對比
 - [[wiki/concepts/late-conversion|Late Conversion]]
 - [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施 🛠️
+- [[wiki/concepts/code-knowledge-graph|Code Knowledge Graph]] — tree-sitter AST + 圖論算法的代碼知識圖譜
+- [[wiki/concepts/atdp|ATDP]] — Agent Trajectory Data Protocol，結構化 Agent 軌跡數據
+- [[wiki/concepts/context-cot|Context-CoT]] — 上下文思維鏈，解決 LLM 「作弊」問題
+- [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill]] — 技能優化元技能，SKILL.md 的文字空間優化
 
 ## Sources
 
@@ -43,6 +51,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-05-pi-github-readme|Pi GitHub README]] — Pi repo 結構與安裝
 - [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough]] — 完整架構解析（YouTube）
 - [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理]] — @pi-agents/loop 排程系統
+- [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research|Wow 5支AI Agent研究]] — 知識圖譜+自我進化+Context-CoT+SkillOpt+MemGraph-RAG
 - [[wiki/sources/2026-08-03-tau-python-port-of-pi|Tau — Pi Python Port]] — Hugging Face Python 版
 - [[wiki/sources/2026-08-05-tau-github-readme|Tau GitHub README]] — Tau repo 結構
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme|Hermes Agent GitHub README]] — 自我改進 AI agent

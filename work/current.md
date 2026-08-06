@@ -5,6 +5,11 @@
 
 ## In progress
 
+- [ ] W-2026-08-029 建立 Pi Agent 更新學習系統 ⏫ #ai-agent #learning
+  - next: 完成 v0.84.0 更新學習任務（全螢幕模式、AGENTS.override.md、samplingParams）
+  - refs: [[work/designs/pi-agent-learning-system|學習系統設計]]、[[wiki/topics/pi-agent-learning/roadmap|學習路線圖]]、[[wiki/entities/pi-agent/changelog/v0.84.0|v0.84.0 分析]]
+  - 2026-08-20 建立學習系統：流程文件 + wiki 結構 + v0.84.0 分析 + 核心概念頁面
+
 - [ ] W-2026-08-017 研究 harness 架構，開發自己的 AGENT ⏫ #ai-agent
   - 2026-08-10 新增 pi-loop-scheduler entity：Pi cron job 實作原理（@pi-agents/loop）
   - next: Pi containerization 方案（Gondolin/Docker/OpenShell）比較、Tau 三層架構分離細節、Hermes 學習迴圈機制

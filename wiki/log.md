@@ -3,6 +3,36 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-06] ingest | Wow YouTube 5支 AI Agent 前沿研究
+
+- 來源：Wow 頻道 5 支影片（Knowledge Graph、AReaL2.0、Context-CoT、SkillOpt、MemGraph-RAG）
+- 新增 source note：`wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research.md`
+- 新增 entities：graphify、area-l、skillopt、memgraph-rag、hermes-agent（更新）
+- 新增 concepts：code-knowledge-graph、atdp、context-cot、skillopt-meta-skill
+- 更新 topics：ai-agent（+5 entities, +4 concepts）、skill（+1 entity, +1 concept）
+- 原始研究報告：`raw/research/2026-08-06-wow-youtube-5-ai-agent-topics.md`
+- 方法：yt-dlp 提取影片 metadata → Gemini Deep Research 深度研究 → wiki 整合
+- 注意：所有5支影片均無字幕（subtitles disabled），內容來自描述 + Gemini 研究
+
+## [2026-08-20] ingest | OpenCodeReview 深度分析與比較
+
+- 新增 entity：`wiki/entities/open-code-review.md`（阿里巴巴 AI 代碼審查工具）
+- 內容：核心設計（確定性工程 × Agent 混合）、爆紅原因、使用方式、Benchmark、與 Plannotator / code-review skill 比較
+- 重點：19.3k stars、解決通用 Agent 做 code review 的痛點（覆蓋不全、位置漂移、效果不穩定）、Token 消耗僅 1/9
+- refs: W-2026-08-029
+
+## [2026-08-20] ingest | 建立 Pi Agent 更新學習系統
+
+- 新增 topic：`wiki/topics/pi-agent-learning/roadmap.md`（四階段學習路線圖）
+- 新增 topic：`wiki/topics/pi-agent-learning/progress.md`（學習進度追蹤）
+- 新增 entity：`wiki/entities/pi-agent/changelog/v0.84.0.md`（v0.84.0 更新分析）
+- 新增 entity：`wiki/entities/ai-agent-core/chain-of-thought.md`（Chain-of-thought 概念）
+- 新增 entity：`wiki/entities/ai-agent-core/token-budget.md`（Token 預算概念）
+- 新增 design：`work/designs/pi-agent-learning-system.md`（完整學習系統設計）
+- 更新 index：新增 AI Agent 學習系統區塊
+- 更新 work/current：新增 W-2026-08-029
+- 重點：從「使用工具」到「理解原理」到「自己建造」的學習路徑，每次 Pi 更新時執行分析學習迴路
+
 ## [2026-08-19] source | 新增 Pi Agent GitHub Copilot Provider 設定指南
 
 - 新增 source note：2026-08-19-pi-agent-github-copilot-provider-setup
