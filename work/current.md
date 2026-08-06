@@ -70,32 +70,121 @@
 
 
 
-## Backlog
+## 🔴 Phase 1：前置知識（建立 Agent 前必學）
 
-- [ ] W-2026-08-028 設定 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider #ai-agent #extension
-  - next: 到公司後實際執行 `/login` → 選擇 GitHub Copilot → 完成 OAuth 授權 → 測試模型可用性
-  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/github-copilot|github-copilot]]、[[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Copilot Provider Setup Guide]]
-  - 狀態：研究階段完成（已知流程），但本機無 Copilot 訂閱，需到公司實測
-  - 已知資訊：OAuth 設定流程、模型清單為靜態（from models.dev）、模型不出現需在 VS Code 先 Enable
+> 目標：理解 Agent 的核心組件，知道要建造什麼。
 
-- [ ] W-2026-08-033 研究 Hook 機制：不同 IDE / Harness 的實作比較 #ai-agent
-  - next: 調研 Claude Code（Anthropic）、Cursor、Windsurf、GitHub Copilot App、Pi Agent 的 hook 系統
+### 🔥 立即可做（簡單、快速、有價值）
+
+- [ ] W-2026-08-030 安裝並測試 OpenCodeReview（OCR） ⏫ #ai-agent #code-review
+  - next: 安裝 OCR、設定 LLM provider、跑一次 `ocr review` 測試
+  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-020-opencode-review-deep-research|Gemini 深度研究]]
+  - 預估時間：30 分鐘
+  - 為什麼先做：安裝簡單，能立即體驗「確定性工程 × Agent」混合架構
+  - 步驟：
+    1. `npm install -g @alibaba-group/open-code-review`
+    2. `ocr config provider` + `ocr config model`
+    3. 在本專案跑 `ocr review`
+
+- [ ] W-2026-08-029 學習系統 + v0.84.0 學習任務 ⏫ #ai-agent #learning
+  - next: 嘗試全螢幕模式、測試 AGENTS.override.md、玩 samplingParams
+  - refs: [[work/designs/pi-agent-learning-system|學習系統設計]]、[[wiki/entities/pi-agent/changelog/v0.84.0|v0.84.0 分析]]
+  - 預估時間：1 小時
+  - 為什麼先做：這些是 Pi 的新功能，動手玩能加深理解
+
+### 📚 核心研究（需要時間，但很重要）
+
+- [ ] W-2026-08-017 研究 harness 架構，開發自己的 AGENT ⏫ #ai-agent
+  - next: Pi containerization 方案比較、Tau 三層架構、Hermes 學習迴圈
+  - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - 預估時間：多天（持續研究）
+  - 為什麼重要：這是 Agent 的骨架，決定了整個架構設計
+  - 已完成：Pi Architecture Walkthrough、waku-agent、loop-vs-graph-engineering
+
+- [ ] W-2026-08-025 研究 AI Agent 網路查詢能力：Extension 機制與 Search 架構 #ai-agent
+  - next: 調研 web search / deep research extension 實作方式
   - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
-  - 範疇：Hook 類型（pre/post tool call、on error、session lifecycle）、觸發時機、擴充方式、與 skill 的整合
+  - 預估時間：2-3 小時
+  - 為什麼重要：Tool 系統是 Agent 的手腳，怎麼擴充功能
 
 - [ ] W-2026-08-022 研究 MCP Server 架構與實作 #ai-agent
-  - next: 調研 MCP protocol spec、server 生態（official/community servers）、 transport 層（stdio/SSE/streamable HTTP）、tool/resource/prompt 三大原語
+  - next: 調研 MCP protocol spec、transport 層、tool/resource/prompt 三大原語
   - refs: [[wiki/entities/pi-mono|pi-mono]]
-  - 範疇：Server 開發框架（TypeScript/Python SDK）、安全模型、permission 系統、與 harness 整合方式
+  - 預估時間：2-3 小時
+  - 為什麼重要：MCP 是 Tool 系統的標準協定
 
-- [ ] W-2026-08-023 研究 MCP Registry 與企業級管理 #ai-agent
-  - next: 調研 MCP registry 方案（官方 registry、企業自建）、server 發現與註冊機制、版本管控、存取控制
+- [ ] W-2026-08-033 研究 Hook 機制：不同 IDE / Harness 的實作比較 #ai-agent
+  - next: 調研 Claude Code、Cursor、Windsurf、Pi Agent 的 hook 系統
   - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
-  - 範疇：企業 MCP 管理平台設計、server 託管與審核流程、多 team 共用策略、audit logging、compliance
+  - 預估時間：2-3 小時
+  - 為什麼重要：理解 Agent 的事件系統
 
-- [ ] W-2026-08-008 用 `grill-me` 跑一次完整需求追問（Pi Web） ⏫ #skills
+- [ ] W-2026-08-NEW-001 研究 Session 管理：對話如何持久化與壓縮 #ai-agent
+  - next: 調研 Pi、Claude Code、LangChain 的 session storage 機制
+  - refs: [[wiki/entities/pi-agent-core|pi-agent-core]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - 預估時間：2 小時
+  - 為什麼重要：Agent 需要記住對話，這是核心功能
+
+- [ ] W-2026-08-NEW-002 研究 Context 管理：長對話如何處理 #ai-agent
+  - next: 調研 compaction、sliding window、summarization 等策略
+  - refs: [[wiki/entities/ai-agent-core/token-budget|Token 預算]]、[[wiki/entities/pi-agent-core|pi-agent-core]]
+  - 預估時間：2 小時
+  - 為什麼重要：Context window 有限，必須有效管理
+
+## 🟡 Phase 2：實作經驗（在現有 Agent 上練功）
+
+> 目標：親手操作，把知識變成經驗。
+
+- [ ] W-2026-08-031 比較實驗：OCR vs code-review skill #ai-agent #code-review
+  - next: 找一個有 diff 的專案，分別用兩種工具審查，比較結果
+  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/entities/plannotator|Plannotator]]、~/.agents/skills/code-review/
+  - blockedBy: [W-2026-08-030]
+  - 預估時間：1 小時
+  - 為什麼重要：親身體驗不同 code review 方式的差異
+
+- [ ] W-2026-08-032 整合 OCR 到 Code Review 工作流 #ai-agent #code-review
+  - next: 設計 OCR → code-review skill → Plannotator 的完整流程
+  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[work/designs/pi-agent-learning-system|學習系統]]
+  - blockedBy: [W-2026-08-031]
+  - 預估時間：1-2 小時
+  - 為什麼重要：建立自己的 code review 流程
+
+- [ ] W-2026-08-010 建立 `pi-work-tracker` 並取代 `pi-todo-journal` ⏫ #extension
+  - next: 抽象 TaskStore / JournalStore adapters → 測試、CI 與 npm 發布
+  - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[work/README|Work System]]
+  - 預估時間：多天
+  - 為什麼重要：Extension 開發經驗，以後自己的 Agent 也可能需要類似機制
+
+## 🟢 Phase 3：工具整合（提升效率）
+
+> 目標：把好的工具整合到工作流。
+
+- [ ] W-2026-08-028 設定 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider #ai-agent #extension
+  - next: 到公司後執行 `/login` → 選擇 GitHub Copilot → 完成 OAuth
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/github-copilot|github-copilot]]
+  - 預估時間：30 分鐘（到公司後）
+  - 為什麼重要：有更多模型可用
+  - 備註：本機無 Copilot 訂閱，需到公司實測
+
+- [ ] W-2026-08-008 用 `grill-me` 跑一次完整需求追問（Pi Web） #skills
   - next: grilling 已安裝，可執行
   - refs: [[projects/pi-web-access-zh-tw/index|Pi Web project context]]
+  - 預估時間：1 小時
+  - 為什麼重要：確認 Pi Web 專案需求
+
+## ⚪ Phase 4：延伸研究（有空再做）
+
+> 目標：深入了解，為未來做準備。
+
+- [ ] W-2026-08-023 研究 MCP Registry 與企業級管理 #ai-agent
+  - next: 調研 MCP registry 方案、server 發現與註冊機制、版本管控
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - 預估時間：2 小時
+  - 為什麼可以等：企業級管理，個人建造不需要
+
+## Backlog
+
+（目前無其他待辦任務）
 
 ## Completed
 
