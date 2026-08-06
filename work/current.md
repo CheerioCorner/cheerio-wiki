@@ -49,6 +49,7 @@
   - 2026-08-06 完成 Pi Architecture Walkthrough ingest
   - 2026-08-08 ingest waku-agent：四大支柱 readable blueprint
   - 2026-08-03 ingest loop-vs-graph-engineering：Loop vs Graph 兩種工作流模式，更新 waku-agent 加入 graph engineering
+  - 2026-08-06 知識花園：建立研究專題 Database + 映射種子到專題
 
 - [ ] W-2026-08-010 建立 `pi-work-tracker` 並取代 `pi-todo-journal` ⏫ #extension
   - next: 抽象 TaskStore / JournalStore adapters → 測試、CI 與 npm 發布 → 搬移必要程式
@@ -103,8 +104,17 @@
 
 - [x] W-2026-08-021 建立知識花園導覽 Database ✅ #knowledge #notion
   - completed: 2026-08-19
-  - result: 建立 Database（11 欄位）+ 遷移 6 顆種子 + 建立 6 個新頁面 + 歸檔舊頁面 + 更新 SKILL.md + 補齊「給我的啟發？」欄位
+  - result: 建立 Database（12 欄位）+ 遷移 6 顆種子 + 建立 6 個新頁面 + 歸檔舊頁面 + 更新 SKILL.md + 補齊「給我的啟發？」欄位
+  - 2026-08-06 調整欄位：移除「一句話」，新增「視覺地圖頁面」
+  - 2026-08-06 重建 mattpocock/skills 視覺地圖頁面
+  - 2026-08-06 建立研究專題 Database（5 個專題：AI Agent 架構、Extension 開發、Meta-Harness、AI Coding Workflow、知識管理）
+  - 2026-08-06 映射 6 顆種子到專題
   - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[Design Spec](work/designs/knowledge-garden-navigator.md)
+
+- [x] W-2026-08-035 知識花園：建立研究專題 Database + 映射種子 ✅ #knowledge #notion
+  - completed: 2026-08-06
+  - result: 建立研究專題 Database（10 欄位）+ 5 個初始專題 + 映射 6 顆種子到專題 + 更新 SKILL.md 和 manifest
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[work/current|Current Work]]
 
 - [x] W-2026-08-026 優化 Gemini Deep Search Prompt ✅ #ai-agent #skills
   - completed: 2026-08-06

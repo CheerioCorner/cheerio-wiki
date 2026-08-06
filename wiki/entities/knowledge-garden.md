@@ -93,6 +93,26 @@ canonical: entities/knowledge-garden
 
 ---
 
+## 研究專題 Database
+
+| 項目 | 值 |
+|------|-----|
+| Database ID | `f29355ae-1f10-4ba6-9bcb-960efd57e547` |
+| Data Source ID | `438cfd50-5ff8-4d77-a31e-4123df13934b` |
+| 位置 | Cheer Corner 主頁（inline） |
+
+### 專題清單
+
+| 專題 | 狀態 | 進度 | 相關種子 |
+|------|------|------|----------|
+| 🤖 AI Agent 架構研究 | 🔬 研究中 | 🌿 發展中 | Plannotator, mattpocock/skills, Omnigent |
+| 🔌 Extension 開發生態 | 🔬 研究中 | 🌱 起步 | NPM Publishing, OKF, Agent Extension |
+| 🧠 Meta-Harness 元鞍具 | 🔬 研究中 | 🌱 起步 | Omnigent |
+| 🛠️ AI Coding Workflow | 🔬 研究中 | 🌿 發展中 | mattpocock/skills |
+| 📚 知識管理系統 | 🌿 進行中 | 🌿 發展中 | OKF |
+
+---
+
 ## 種植守則
 
 1. **交叉授粉** — 不同植物之間的連結，往往是最有價值的
@@ -118,6 +138,10 @@ canonical: entities/knowledge-garden
 | 2026-08-05 | 建立 6 個新頁面（套用模板格式） | 全部 |
 | 2026-08-05 | 補齊「給我的啟發？」欄位 | 全部 |
 | 2026-08-05 | 更新 SKILL.md（結構、來源 URL 定義） | — |
+| 2026-08-06 | 調整 Database 欄位：移除「一句話」，新增「視覺地圖頁面」 | — |
+| 2026-08-06 | 重建 mattpocock/skills 視覺地圖頁面 | mattpocock/skills |
+| 2026-08-06 | 建立研究專題 Database（5 個專題） | — |
+| 2026-08-06 | 映射 6 顆種子到專題 | 全部 |
 
 ---
 
