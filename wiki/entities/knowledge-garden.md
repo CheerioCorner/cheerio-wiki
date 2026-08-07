@@ -2,7 +2,7 @@
 title: knowledge-garden — Notion 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-05
+updated: 2026-08-07
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -52,10 +52,10 @@ canonical: entities/knowledge-garden
 | 成長狀態 | Select | 🌱 種子期 / 🌿 成長期 / 🌳 成熟期 |
 | Tags | Multi-select | 🔬 研究 / 🛠️ 實作 / 📝 筆記 / 💡 靈感 / 📚 學習 / 🎯 研究專題 |
 | 來源 URL | URL | 原始來源（最初發現/學習的來源） |
-| 一句話 | Rich text | 30 字以內摘要（給 LLM 快速理解） |
+| 視覺地圖頁面 | URL | 該種子的視覺地圖/架構圖頁面連結 |
 | 給我的啟發？ | Rich text | 心得、靈感 |
 | 備註 | Rich text | 額外備註 |
-| 研究專題 | URL | 所屬研究專題頁面（如有） |
+| 🔬 研究專題 | Relation | 所屬研究專題（雙向關聯） |
 | Wiki GitHub | URL | 對應的 wiki 頁面 GitHub 連結 |
 | 種下日期 | Date | 首次建立時間 |
 | 最後更新 | Date | 最近一次灌溉/更新 |
@@ -66,9 +66,9 @@ canonical: entities/knowledge-garden
 
 ### 🌿 成長期
 
-| 種子名稱 | Notion Link | Wiki 來源 |
-|----------|-------------|-----------|
-| Plannotator — AI Agent 視覺化審閱工具 | [連結](https://app.notion.com/p/3b35979e3a8c81a0a75ef7c41d3175b9) | [[wiki/entities/plannotator\|plannotator]] |
+| 種子名稱 | Notion Link | Wiki 來源 | 視覺地圖 |
+|----------|-------------|-----------|----------|
+| Plannotator — AI Agent 視覺化審閱工具 | [連結](https://app.notion.com/p/3b35979e3a8c817c8ffce30d8361b92a) | [[wiki/entities/plannotator\|plannotator]] | 🗺️ [視覺地圖](https://app.notion.com/p/3b55979e-3a8c-81d8-8abd-dc018b872d0b) |
 | NPM Publishing Workflow — 從零建立 NPM 套件發佈流程 | [連結](https://app.notion.com/p/3b35979e3a8c811abe94cf22af3ce7ef) | — |
 
 ### 🌱 種子期
@@ -79,6 +79,7 @@ canonical: entities/knowledge-garden
 | mattpocock/skills — 第一棵樹苗 | [連結](https://app.notion.com/p/3b35979e3a8c81a5b198f2c28fa2c192) | [[wiki/entities/mattpocock-skills\|mattpocock-skills]] |
 | Omnigent — Databricks 開源 meta-harness | [連結](https://app.notion.com/p/3b35979e3a8c811c9240d23bc23317ae) | [[wiki/entities/omnigent\|omnigent]] |
 | Agent Extension 安裝位置與方式 | [連結](https://app.notion.com/p/3b35979e3a8c81538dd9cd03e458d911) | [[wiki/concepts/agent-extension-installation\|agent-extension-installation]] |
+| OpenCodeReview (OCR) — AI 代碼審查 CLI 工具 | [連結](https://app.notion.com/p/3b55979e3a8c8171a13cdb21b0269bd1) | [[wiki/entities/open-code-review\|open-code-review]] |
 
 ---
 
@@ -142,6 +143,9 @@ canonical: entities/knowledge-garden
 | 2026-08-06 | 重建 mattpocock/skills 視覺地圖頁面 | mattpocock/skills |
 | 2026-08-06 | 建立研究專題 Database（5 個專題） | — |
 | 2026-08-06 | 映射 6 顆種子到專題 | 全部 |
+| 2026-08-07 | 種下 OpenCodeReview (OCR) | OpenCodeReview |
+| 2026-08-07 | 建立種子 ↔ 專題雙向 Relation 關聯 | 全部 |
+| 2026-08-07 | 建立 Plannotator 視覺地圖頁面 | Plannotator |
 
 ---
 
