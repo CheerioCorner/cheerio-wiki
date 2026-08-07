@@ -68,7 +68,7 @@ canonical: entities/knowledge-garden
 
 | 種子名稱 | Notion Link | Wiki 來源 | 視覺地圖 |
 |----------|-------------|-----------|----------|
-| Plannotator — AI Agent 視覺化審閱工具 | [連結](https://app.notion.com/p/3b35979e3a8c817c8ffce30d8361b92a) | [[wiki/entities/plannotator\|plannotator]] | 🗺️ [視覺地圖](https://app.notion.com/p/3b55979e-3a8c-81d8-8abd-dc018b872d0b) |
+| Plannotator — AI Agent 視覺化審閱工具 | [連結](https://app.notion.com/p/3b35979e3a8c817c8ffce30d8361b92a) | [[wiki/entities/plannotator\|plannotator]] | 🗺️ [視覺地圖](https://app.notion.com/p/3ad5979e3a8c811f-a76e-e94a6bb808df) |
 | NPM Publishing Workflow — 從零建立 NPM 套件發佈流程 | [連結](https://app.notion.com/p/3b35979e3a8c811abe94cf22af3ce7ef) | — |
 
 ### 🌱 種子期
@@ -79,7 +79,7 @@ canonical: entities/knowledge-garden
 | mattpocock/skills — 第一棵樹苗 | [連結](https://app.notion.com/p/3b35979e3a8c81a5b198f2c28fa2c192) | [[wiki/entities/mattpocock-skills\|mattpocock-skills]] |
 | Omnigent — Databricks 開源 meta-harness | [連結](https://app.notion.com/p/3b35979e3a8c811c9240d23bc23317ae) | [[wiki/entities/omnigent\|omnigent]] |
 | Agent Extension 安裝位置與方式 | [連結](https://app.notion.com/p/3b35979e3a8c81538dd9cd03e458d911) | [[wiki/concepts/agent-extension-installation\|agent-extension-installation]] |
-| OpenCodeReview (OCR) — AI 代碼審查 CLI 工具 | [連結](https://app.notion.com/p/3b55979e3a8c8171a13cdb21b0269bd1) | [[wiki/entities/open-code-review\|open-code-review]] |
+| OpenCodeReview (OCR) — AI 代碼審查 CLI 工具 | [連結](https://app.notion.com/p/3b55979e3a8c81c88283f0e3eaf4f9d6) | [[wiki/entities/open-code-review\|open-code-review]] |
 
 ---
 
