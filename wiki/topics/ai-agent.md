@@ -30,6 +30,8 @@ updated: 2026-08-08
 - [[wiki/entities/claude-code|Claude Code]] — Anthropic AI Coding Agent，MCP Protocol 整合 🛠️
 - [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI AI Coding Agent，CLI 工具 🛠️
 - [[wiki/entities/mcp-model-context-protocol|MCP]] — Model Context Protocol，AI Agent 工具整合標準 🛠️
+- [[wiki/entities/agentskills-io-standard|agentskills-io-standard]] — AI Agent Skill 開放標準，跨平台相容 🛠️
+- [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層，MCP + Guardrails + Agent 管理 🛠️
 
 ## Concepts
 

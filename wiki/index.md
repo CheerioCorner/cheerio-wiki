@@ -29,10 +29,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-07（新增 Learning Loop entity）
+- **最後更新**：2026-08-07（新增 agentskills-io-standard、axway-amplify-ai-gateway）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：25（全部已補 provenance）
-- **Canonical collections**：15 concepts、24 entities、4 decisions、3 discussions
+- **Canonical collections**：15 concepts、26 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---

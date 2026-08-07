@@ -188,6 +188,11 @@
 
 ## Completed
 
+- [x] W-2026-08-036 Notion「任何當下 → AI相關」頁面 ingest ✅ #knowledge #notion
+  - completed: 2026-08-07
+  - result: 讀取 Notion「任何當下 → AI相關」頁面（Skill、Copilot、Claude、AI Gateway）。新增 wiki 2 entities：agentskills-io-standard（Skill 開放標準）、axway-amplify-ai-gateway（企業 AI Gateway 治理）。使用 agy + Gemini 視覺分析 19 張 AI Gateway 截圖，提取完整企業 AI 治理教材。花園種子已備妥待寫入（raw/notion-ingest/2026-08-07-ai-related-seeds.md）
+  - refs: [[wiki/entities/agentskills-io-standard|agentskills-io-standard]]、[[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]]、[[raw/notion-ingest/2026-08-07-ai-related-seeds|待寫入花園種子]]
+
 - [x] W-2026-08-034 YouTube ingest：Wow 頻道 5支 AI Agent 前沿研究 ✅ #knowledge #ai-agent
   - completed: 2026-08-06
   - result: 5支影片無字幕，透過 yt-dlp + Gemini Deep Research 深度研究。新增 wiki：1 source note、5 entities（Graphify/AReaL/SkillOpt/MemGraph-RAG/hermes-agent）、4 concepts（Code KG/ATDP/Context-CoT/Meta-skill）。交叉分析：三大趨勢（自進化系統、確定性+機率融合、離線→線上）

@@ -17,3 +17,5 @@
 - [[wiki/entities/plannotator|Plannotator]]
 - [[wiki/entities/qwenpaw|QwenPaw]]
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]]
+- [[wiki/entities/agentskills-io-standard|agentskills-io-standard]] — AI Agent Skill 開放標準
+- [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層
