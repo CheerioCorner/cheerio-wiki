@@ -144,8 +144,19 @@ canonical: entities/knowledge-garden
 | 2026-08-06 | 建立研究專題 Database（5 個專題） | — |
 | 2026-08-06 | 映射 6 顆種子到專題 | 全部 |
 | 2026-08-07 | 種下 OpenCodeReview (OCR) | OpenCodeReview |
+| 2026-08-07 | 花園內容檢查：發現連結缺口 | — |
 | 2026-08-07 | 建立種子 ↔ 專題雙向 Relation 關聯 | 全部 |
 | 2026-08-07 | 建立 Plannotator 視覺地圖頁面 | Plannotator |
+
+---
+
+## ⚠️ 待修問題
+
+| 問題 | 說明 | 處理方式 |
+|------|------|----------|
+ | OKF 缺專題連結 | OKF 種子沒有連結到 Extension 開發生態 | 更新 Database relation |
+| OpenCodeReview 缺專題連結 | OCR 種子沒有連結到 AI Agent 架構研究 | 更新 Database relation |
+| 知識管理系統缺種子 | 該專題沒有任何種子 | 尋找或建立相關種子 |
 
 ---
 

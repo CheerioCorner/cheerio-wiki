@@ -3,6 +3,22 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-07] ingest | Notion「任何當下 → AI相關」頁面 ingest
+
+- 來源：Notion「任何當下 → AI相關」頁面（Skill、Copilot、Claude、AI Gateway）
+- 新增 entities：agentskills-io-standard、axway-amplify-ai-gateway
+- 更新 topics：ai-agent.md、skill.md
+- 方法：Notion MCP 讀取 + agy Gemini 視覺分析 19 張截圖
+- refs: [[wiki/entities/agentskills-io-standard|agentskills-io-standard]]、[[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]]
+
+## [2026-08-07] work | 花園內容檢查 + Learning Loop 建立
+
+- 檢查花園：7 顆種子全有內容，5 個專題全有定義
+- 發現連結缺口：OKF、OpenCodeReview 缺專題連結；知識管理系統缺種子
+- 新增 learning-loop entity + skill
+- 修正 knowledge-garden SKILL：種子建立流程
+- refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/learning-loop|learning-loop]]
+
 ## [2026-08-07] new entity | Learning Loop — 自動學習優化系統
 
 - 新增 entity：`wiki/entities/learning-loop.md`
