@@ -29,7 +29,7 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-06（新增 Wow YouTube 5支 AI Agent 研究）
+- **最後更新**：2026-08-07（新增 Learning Loop entity）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：25（全部已補 provenance）
 - **Canonical collections**：15 concepts、24 entities、4 decisions、3 discussions
@@ -58,7 +58,7 @@
 > 每個 collection 有自己的 README，點進去看完整列表。
 
 - [[wiki/concepts/README|Concepts]] — 可跨專案重用的抽象知識
-- [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作（含 [[wiki/entities/open-code-review|OpenCodeReview]] 19.3k ⭐）
+- [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作（含 [[wiki/entities/open-code-review|OpenCodeReview]] 19.3k ⭐、[[wiki/entities/learning-loop|Learning Loop]]）
 - [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（20 筆，含 [[wiki/sources/2026-08-20-opencode-review-deep-research|OCR Gemini 研究]]）
 - [[wiki/decisions/README|Decisions]] — 全域／跨專案已確認選擇
 - [[wiki/discussions/README|Discussions]] — 尚未定案的方案與研究問題

@@ -3,6 +3,15 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-07] new entity | Learning Loop — 自動學習優化系統
+
+- 新增 entity：`wiki/entities/learning-loop.md`
+- 新增 skill：`~/.agents/skills/learning-loop/SKILL.md`
+- 功能：任務後自動沉淀、工作模式分析、Skill 自我優化
+- 修正 knowledge-garden SKILL：種子建立流程（先建 Database 記錄，再補內容）
+- 首次測試：回顧 2026-08-07 工作，建立 Learning Journal
+- refs: [[wiki/entities/learning-loop|Learning Loop]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+
 ## [2026-08-06] ingest | Wow YouTube 5支 AI Agent 前沿研究
 
 - 來源：Wow 頻道 5 支影片（Knowledge Graph、AReaL2.0、Context-CoT、SkillOpt、MemGraph-RAG）
