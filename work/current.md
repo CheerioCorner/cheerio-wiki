@@ -5,6 +5,22 @@
 
 ## In progress
 
+- [ ] W-2026-08-037 知識花園加強：Relation 關聯 + 視覺地圖 + 改名 ⏫ #knowledge #notion
+  - next: 手動在 Notion 視覺地圖 Database 新增進階欄位（類型、關聯種子、網址、描述、建立時間、標籤）
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、https://app.notion.com/p/5f2a0e0f-91de-466f-879e-9042c8a02169
+  - 已完成：
+    - ✅ 建立種子 ↔ 專題雙向 Relation 關聯（6 顆種子 + 5 個專題）
+    - ✅ 更新 Plannotator 視覺地圖頁面（完整 Skills 介紹、分類、安裝狀態）
+    - ✅ 修正視覺地圖頁面位置（從 CHEERIO CORNER 移到種子頁面子頁面）
+    - ✅ 改名 CHEERIO CORNER → Cheerio 知識花園
+    - ✅ 建立視覺地圖 Database（在 Cheerio 知識花園下）
+    - ✅ 加入 Plannotator 視覺地圖 entry
+    - ✅ 本地 manifest 同步 + git push
+  - 待辦：
+    - ⏳ 手動新增進階欄位到視覺地圖 Database（API 限制）
+    - ⏳ 建立視覺地圖 ↔ 種子的多對多 Relation
+    - ⏳ 為其他種子建立視覺地圖（mattpocock/skills 已有，可考慮 NPM Publishing）
+
 - [ ] W-2026-08-030 安裝並測試 OpenCodeReview（OCR） ⏫ #ai-agent #code-review
   - next: 安裝 OCR、設定 LLM provider、跑一次 `ocr review` 測試
   - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|Gemini 深度研究]]、https://github.com/alibaba/open-code-review
