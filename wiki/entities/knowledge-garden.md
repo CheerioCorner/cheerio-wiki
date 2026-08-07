@@ -1,5 +1,5 @@
 ---
-title: knowledge-garden — Notion 知識花園 Manifest
+title: knowledge-garden — Cheerio 知識花園 Manifest
 type: entity
 created: 2026-08-03
 updated: 2026-08-07
@@ -16,8 +16,9 @@ canonical: entities/knowledge-garden
 
 | 項目 | 值 |
 |------|-----|
-| Notion 主頁 | https://app.notion.com/p/3ac5979e-3a8c-81d2-b96f-f6c7bdd8fd33 |
+| Notion 主頁 | https://app.notion.com/p/3ac5979e-3a8c-81d2-b96f-f6c7bdd8fd33（Cheerio 知識花園） |
 | Page ID | `3ac5979e-3a8c-81d2-b96f-f6c7bdd8fd33` |
+| 視覺地圖 Database | https://app.notion.com/p/5f2a0e0f-91de-466f-879e-9042c8a02169 |
 | 知識花園 Database | https://app.notion.com/p/f3aa419a348b4c66a8a131b67780ebf3 |
 | Database ID | `f3aa419a-348b-4c66-a8a1-31b67780ebf3` |
 | Data Source ID | `0785b58a-9976-4163-85be-6854410b6563` |
@@ -147,6 +148,8 @@ canonical: entities/knowledge-garden
 | 2026-08-07 | 花園內容檢查：發現連結缺口 | — |
 | 2026-08-07 | 建立種子 ↔ 專題雙向 Relation 關聯 | 全部 |
 | 2026-08-07 | 建立 Plannotator 視覺地圖頁面 | Plannotator |
+| 2026-08-07 | 改名 CHEERIO CORNER → Cheerio 知識花園 | — |
+| 2026-08-07 | 建立視覺地圖 Database | — |
 
 ---
 
