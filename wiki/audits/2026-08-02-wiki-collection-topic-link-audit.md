@@ -446,7 +446,7 @@ projects/pi-plannotator-auto/
 
 ### Phase G — YouTube pipeline gate
 
-在 collection、linking contract、lint、migration 規則穩定前，不建立 YouTube pipeline。完成 gate 後才另行研究獨立 `youtube-to-wiki` skill/workflow。
+在 collection、linking contract、lint、migration 規則穩定前，不建立 YouTube pipeline。完成 gate 後才另行研究獨立 `wiki-youtube` skill/workflow。
 
 ---
 

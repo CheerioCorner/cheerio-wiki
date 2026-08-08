@@ -71,7 +71,7 @@ wiki/
 
 ### Open discussions
 
-- [[wiki/discussions/youtube-to-wiki-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]
+- [[wiki/discussions/wiki-youtube-pipeline-timing|YouTube-to-Wiki Pipeline Timing]]
 - [[wiki/discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]]
 - [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]]
 
@@ -216,7 +216,7 @@ All commits were pushed to `origin/master`.
 1. `topics/` compatibility stubs 最終要永久保留、改成 redirect 或移除。
 2. Future concepts 是否值得建立 canonical pages。
 3. `sources: N` 是否在未來升級為完全 provenance-first schema。
-4. `youtube-to-wiki` 的獨立 skill/workflow 設計與實作。
+4. `wiki-youtube` 的獨立 skill/workflow 設計與實作。
 5. 各 Project Bundle 的持續 maintenance updates。
 6. `pi-web-access-zh-tw` 外部貢獻者 changes 的實際審查與合併。
 

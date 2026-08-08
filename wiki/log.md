@@ -5,18 +5,17 @@
 
 ## [2026-08-08] ingest | 知識花園 Skill 架構重構 + 命名統一
 
-- 重構 8 個 knowledge-garden 相關 skills：
-  - 拆分 wiki-knowledge → wiki-ingest + wiki-query + wiki-lint（三個獨立 skill）
-  - 合併 knowledge-garden-trigger + notion-wiki-feedback → 統一的 knowledge-garden-trigger
-  - 重寫 notion-page-content：加入來源研究步驟、三種成長階段模板
-- 命名統一：
-  - Notion 花園操作 → `knowledge-garden-*`（page-content、to-raw、trigger、visualmap）
-  - 大腦操作 → `wiki-*`（ingest、query、lint）
-  - 刪除 wiki-knowledge（dispatcher 多餘）、notion-wiki-feedback（已合併）
-- 新增 concepts：knowledge-garden-skill-architecture（全景架構圖）
-- 更新 entities：wiki-knowledge（標記為已刪除）
-- 更新 topics：knowledge-mgmt、skill（+新概念頁）
-- refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]、[[wiki/entities/wiki-knowledge|wiki-knowledge]]、[[wiki/topics/knowledge-mgmt|knowledge-mgmt]]
+- 重構 10 個相關 skills：
+  - 拆分 wiki-knowledge → wiki-ingest + wiki-query + wiki-lint
+  - 合併 knowledge-garden-trigger + notion-wiki-feedback → knowledge-garden-trigger
+  - 重寫 notion-page-content → knowledge-garden-page-content
+  - rename notion-to-raw → knowledge-garden-to-raw
+  - rename youtube-to-wiki → wiki-youtube
+  - rename pdf-to-wiki → wiki-pdf
+  - 刪除 wiki-knowledge、notion-wiki-feedback
+- 命名規則：`knowledge-garden-*` = Notion 花園、`wiki-*` = 大腦
+- 新增 concepts：knowledge-garden-skill-architecture
+- refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]
 
 ## [2026-08-08] ingest | Plannotator Copilot CLI 安裝手冊（PDF）+ MarkItDown 研究
 

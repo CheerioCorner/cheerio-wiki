@@ -35,7 +35,7 @@ These are references, not a semantic knowledge graph or canonicalization engine.
 
 ## Independent workflows
 
-`youtube-to-wiki` is an independent skill or workflow. It does not belong inside `pi-todo-journal`, and it is not part of the package's core feature boundary.
+`wiki-youtube` is an independent skill or workflow. It does not belong inside `pi-todo-journal`, and it is not part of the package's core feature boundary.
 
 ## Related
 

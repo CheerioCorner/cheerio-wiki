@@ -29,7 +29,7 @@ canonical: entities/wiki-knowledge
 | 「lint wiki」、「整理 wiki」 | **wiki-lint** | 掃描全部頁面 → 找問題 → 提清單 |
 
 其他相關 skills：
-- **youtube-to-wiki** — YouTube 影片 → wiki 頁面（`~/.agents/skills/youtube-to-wiki/SKILL.md`）
+- **wiki-youtube** — YouTube 影片 → wiki 頁面（`~/.agents/skills/wiki-youtube/SKILL.md`）
 - **plannotator-sync** — Plannotator 存檔 → raw/conversations/（`~/.agents/skills/plannotator-sync/SKILL.md`）
 
 ## 知識庫架構（受管轄）
