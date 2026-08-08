@@ -21,6 +21,7 @@ updated: 2026-08-11
 ## Concepts
 
 - [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 8 個 skill 的全景圖與資料流 🛠️
+- [[wiki/concepts/content-redesign|Content 設計 Redesign]] — 從套模板到針對性報告的重構 🛠️
 - [[wiki/concepts/pi-project-workspace-model|Pi Project / Workspace Model]]
 - [[wiki/concepts/okf-open-knowledge-format|OKF]]
 
