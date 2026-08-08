@@ -5,6 +5,18 @@
 
 ## In progress
 
+- [ ] W-2026-08-042 知識花園 Skill 架構重構：Schema + 模板 + 資料流 ⏫ #knowledge #skill
+  - next: 分派 subagent 執行實作（建 schema、改 knowledge-garden、改 page-content、更新架構圖）
+  - refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]、Copilot+Gemini 三輪討論決策
+  - 已完成：
+    - ✅ Copilot + Gemini 三輪架構討論，確立6項最終決策
+    - ✅ 更新架構頁（含完整資料流圖）
+  - 待辦：
+    - ⏳ 建立 ~/.agents/schemas/seed_schema.yaml
+    - ⏳ 重構 knowledge-garden（移除模板、加引用）
+    - ⏳ 重構 page-content（加品質關卡、mode 切換）
+    - ⏳ 更新架構頁（最終版）
+
 - [ ] W-2026-08-038 Notion 整合設計全面重構：Schema + Skill + 回流 ⏫ #knowledge #notion
   - next: 為 7 筆種子撰寫完整知識卡片（用 notion-page-content skill）
   - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]、.pi/gemini-runs/notion-review/session-summary.md
