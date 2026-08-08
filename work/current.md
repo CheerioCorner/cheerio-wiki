@@ -226,6 +226,18 @@
 
 ## Completed
 
+- [x] W-2026-08-039 PDF 處理流程建立：markitdown + pymupdf + pdf-to-wiki skill ✅ #knowledge #tools
+  - completed: 2026-08-08
+  - result: 建立完整 PDF → Markdown → wiki 流程。markitdown 取代 pdftotext（解決中文亂碼），pymupdf 提取圖片。新建 pdf-to-wiki skill 並推送到 cheerio-skills。處理安裝手冊 PDF（9 張截圖 + 完整中文 Markdown）。
+  - 新增 wiki：markitdown entity、plannotator-copilot-setup source
+  - 更新：plannotator entity（+Copilot CLI 整合）、AGENTS.md（PDF 處理方式）、wiki-knowledge skill
+  - refs: [[wiki/entities/markitdown|markitdown]]、[[wiki/sources/2026-07-23-plannotator-copilot-setup|source]]、cheerio-skills/pdf-to-wiki
+
+- [x] W-2026-08-040 cheerio-skills 同步：7 個新 skills + 2 個更新 ✅ #skills
+  - completed: 2026-08-08
+  - result: 同步本地 skills 到 cheerio-skills repo。新增 gemini-notion-workflow、knowledge-garden-trigger、knowledge-garden-visualmap、notion-page-content、notion-wiki-feedback、learning-loop、todos。更新 knowledge-garden、wiki-knowledge。
+  - refs: https://github.com/CheerioCorner/cheerio-skills
+
 - [x] W-2026-08-036 Notion「任何當下 → AI相關」頁面 ingest ✅ #knowledge #notion
   - completed: 2026-08-07
   - result: 讀取 Notion「任何當下 → AI相關」頁面（Skill、Copilot、Claude、AI Gateway）。新增 wiki 2 entities：agentskills-io-standard（Skill 開放標準）、axway-amplify-ai-gateway（企業 AI Gateway 治理）。使用 agy + Gemini 視覺分析 19 張 AI Gateway 截圖，提取完整企業 AI 治理教材。花園種子已備妥待寫入（raw/notion-ingest/2026-08-07-ai-related-seeds.md）
