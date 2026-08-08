@@ -1,5 +1,5 @@
 ---
-title: wiki-knowledge — Obsidian 知識庫操作 Skill（Dispatcher）
+title: wiki-knowledge — Obsidian 知識庫操作 Skill（已刪除）
 type: entity
 created: 2026-07-18
 updated: 2026-08-08
@@ -10,9 +10,9 @@ topics: [skill, knowledge-mgmt]
 canonical: entities/wiki-knowledge
 ---
 
-> **Dispatcher Skill**，位於 `C:/Users/User/.agents/skills/wiki-knowledge/`，根據使用者意圖分派到三個子 skill：**wiki-ingest**、**wiki-query**、**wiki-lint**。
+> ⚠️ **已刪除**（2026-08-08）。原始的三大流程已拆成三個獨立 skill，dispatcher 功能不再需要。
 > 
-> ⚠️ 2026-08-08 拆分：原始的三大流程已拆成獨立 skill，本頁面改為薄 dispatcher。
+> 替代方案：`wiki-ingest`、`wiki-query`、`wiki-lint`
 
 ## 觸發關鍵字
 人類說出以下任一詞彙即自動載入：

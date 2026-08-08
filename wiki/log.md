@@ -3,15 +3,19 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
-## [2026-08-08] ingest | 知識花園 Skill 架構重構
+## [2026-08-08] ingest | 知識花園 Skill 架構重構 + 命名統一
 
 - 重構 8 個 knowledge-garden 相關 skills：
   - 拆分 wiki-knowledge → wiki-ingest + wiki-query + wiki-lint（三個獨立 skill）
   - 合併 knowledge-garden-trigger + notion-wiki-feedback → 統一的 knowledge-garden-trigger
   - 重寫 notion-page-content：加入來源研究步驟、三種成長階段模板
+- 命名統一：
+  - Notion 花園操作 → `knowledge-garden-*`（page-content、to-raw、trigger、visualmap）
+  - 大腦操作 → `wiki-*`（ingest、query、lint）
+  - 刪除 wiki-knowledge（dispatcher 多餘）、notion-wiki-feedback（已合併）
 - 新增 concepts：knowledge-garden-skill-architecture（全景架構圖）
-- 更新 entities：wiki-knowledge（改為薄 dispatcher）
-- 更新 topics：knowledge-mgmt（+新概念頁）
+- 更新 entities：wiki-knowledge（標記為已刪除）
+- 更新 topics：knowledge-mgmt、skill（+新概念頁）
 - refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]、[[wiki/entities/wiki-knowledge|wiki-knowledge]]、[[wiki/topics/knowledge-mgmt|knowledge-mgmt]]
 
 ## [2026-08-08] ingest | Plannotator Copilot CLI 安裝手冊（PDF）+ MarkItDown 研究
