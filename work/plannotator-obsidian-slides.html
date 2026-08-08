@@ -4,321 +4,282 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="plannotator-theme" content="host">
-<title>Plannotator × Obsidian — 簡報</title>
+<title>Plannotator × Obsidian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* ═══════════ Swiss International Style ═══════════ */
 :root {
-  --background: oklch(0.97 0.005 260);
-  --foreground: oklch(0.18 0.02 260);
-  --card: oklch(1 0 0);
-  --muted: oklch(0.92 0.01 260);
-  --muted-foreground: oklch(0.40 0.02 260);
-  --primary: oklch(0.50 0.25 280);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.50 0.18 180);
-  --accent: oklch(0.60 0.22 50);
-  --success: oklch(0.45 0.20 150);
-  --warning: oklch(0.55 0.18 85);
-  --destructive: oklch(0.50 0.25 25);
-  --border: oklch(0.88 0.01 260);
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
-  --font-display: ui-serif, Georgia, 'Times New Roman', serif;
+  --bg: #F7F9FC;
+  --fg: #1A1A2E;
+  --muted: #6B7280;
+  --primary: #0F9D8A;
+  --accent: #C97936;
+  --danger: #DC3545;
+  --surface: #FFFFFF;
+  --border: #D1D5DB;
+  --code-bg: #F3F4F6;
+  --font-cn: 'Noto Sans TC', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius: 2px;
+  --slide-w: 100vw;
+  --slide-h: 100vh;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: oklch(0.15 0.02 260);
-    --foreground: oklch(0.90 0.01 260);
-    --card: oklch(0.22 0.02 260);
-    --muted: oklch(0.26 0.02 260);
-    --muted-foreground: oklch(0.72 0.02 260);
-    --primary: oklch(0.75 0.18 280);
-    --primary-foreground: oklch(0.15 0.02 260);
-    --accent: oklch(0.70 0.20 60);
-    --border: oklch(0.35 0.02 260);
+    --bg: #111827;
+    --fg: #F9FAFB;
+    --muted: #9CA3AF;
+    --primary: #34D399;
+    --accent: #FBBF24;
+    --surface: #1F2937;
+    --border: #374151;
+    --code-bg: #1F2937;
   }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
+html { scroll-behavior: smooth; }
 body {
-  font-family: var(--font-sans);
-  background: var(--background);
-  color: var(--foreground);
+  font-family: var(--font-cn);
+  background: var(--bg);
+  color: var(--fg);
   overflow: hidden;
-  height: 100vh;
 }
 
-/* Slide Container */
-.slides-container {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
+/* ─── Slide Container ─── */
+.deck {
+  display: flex;
+  width: calc(var(--slide-w) * 14);
+  height: var(--slide-h);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  flex-shrink: 0;
+  padding: 4vh 6vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 4rem 6rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.slide.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Slide Content */
-.slide-content {
-  max-width: 1000px;
-  width: 100%;
-}
-
-/* Typography */
+/* ─── Typography ─── */
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   color: var(--primary);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5vh;
 }
 
 h1 {
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
   line-height: 1.1;
-  margin-bottom: 1rem;
+  margin-bottom: 2vh;
 }
 
 h2 {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
   line-height: 1.2;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3vh;
 }
 
 h3 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.subtitle {
-  font-size: 1.3rem;
-  color: var(--muted-foreground);
-  max-width: 700px;
-}
-
-/* KPI Cards */
-.kpi-row {
-  display: flex;
-  gap: 2rem;
-  margin: 2rem 0;
-  justify-content: center;
-}
-
-.kpi {
-  text-align: center;
-  padding: 1.5rem 2rem;
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: 0.625rem;
-  min-width: 160px;
-}
-
-.kpi .num {
-  font-size: 3rem;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 700;
-  color: var(--primary);
-  font-family: var(--font-mono);
-  line-height: 1;
+  margin-bottom: 1.5vh;
 }
 
-.kpi .label {
-  font-size: 0.9rem;
-  color: var(--muted-foreground);
-  margin-top: 0.5rem;
+p, li {
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--muted);
 }
 
-/* Lists */
-.feature-list {
-  list-style: none;
-  font-size: 1.2rem;
+p.lead {
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  color: var(--fg);
+  max-width: 70vw;
 }
 
-.feature-list li {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border);
+/* ─── Grid (16-col) ─── */
+.grid { display: grid; gap: 2vw; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+/* ─── Card ─── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2.5vh 2vw;
+  position: relative;
+}
+
+.card-num {
+  position: absolute;
+  top: -1.5vh;
+  left: 1.5vw;
+  background: var(--danger);
+  color: #fff;
+  width: 3vh;
+  height: 3vh;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.2vw, 1.1rem);
 }
 
-.feature-list li:last-child {
-  border-bottom: none;
-}
+.card p { margin-top: 1vh; }
+.card .highlight { color: var(--primary); font-weight: 700; }
 
-.icon {
-  font-size: 1.5rem;
-  width: 2rem;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-/* Architecture Flow */
+/* ─── Flow ─── */
 .flow {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
+  gap: 1.5vw;
+  margin: 3vh 0;
   flex-wrap: wrap;
 }
 
 .flow-box {
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: 0.625rem;
-  padding: 1.25rem 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2vh 2vw;
   text-align: center;
-  min-width: 140px;
+  min-width: 12vw;
+  position: relative;
 }
 
-.flow-box.highlight {
-  background: color-mix(in oklab, var(--primary) 15%, var(--card));
+.flow-box.active {
   border-color: var(--primary);
+  border-width: 2px;
 }
 
-.flow-box .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
-.flow-box .name { font-weight: 600; font-size: 1rem; }
+.flow-box .label {
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  margin-bottom: 0.5vh;
+}
+
+.flow-box .sub {
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  color: var(--muted);
+}
 
 .flow-arrow {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
   color: var(--primary);
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
-/* Comparison */
-.compare-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-top: 1.5rem;
+/* ─── Table ─── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
 }
 
-.compare-card {
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: 0.625rem;
-  padding: 1.5rem;
+th, td {
+  padding: 1.5vh 1.5vw;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
 }
 
-.compare-card.bad {
-  border-left: 4px solid var(--destructive);
+th {
+  font-weight: 700;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
 }
 
-.compare-card.good {
-  border-left: 4px solid var(--success);
-}
-
-.compare-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.compare-card ul {
-  list-style: none;
-  font-size: 1rem;
-}
-
-.compare-card ul li {
-  padding: 0.5rem 0;
-  color: var(--muted-foreground);
-}
-
-/* Code Block */
-.code {
-  background: var(--muted);
-  border-radius: 0.625rem;
-  padding: 1.25rem 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  margin: 1rem 0;
-  overflow-x: auto;
-}
-
-/* Tags */
+/* ─── Tag ─── */
 .tag {
   display: inline-block;
-  padding: 0.3rem 0.8rem;
-  border-radius: 1rem;
-  font-size: 0.85rem;
+  padding: 0.4vh 1.2vw;
+  border: 1px solid var(--border);
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   font-weight: 500;
-  margin-right: 0.5rem;
-  margin-top: 0.5rem;
+  margin-right: 0.8vw;
+  margin-bottom: 0.8vh;
 }
 
-.tag-purple {
-  background: color-mix(in oklab, var(--primary) 15%, transparent);
-  color: var(--primary);
+/* ─── Code ─── */
+.code {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  padding: 1.5vh 2vw;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  overflow-x: auto;
+  margin: 1.5vh 0;
 }
 
-.tag-green {
-  background: color-mix(in oklab, var(--success) 15%, transparent);
-  color: var(--success);
-}
-
-.tag-orange {
-  background: color-mix(in oklab, var(--accent) 15%, transparent);
-  color: var(--accent);
-}
-
-/* Callout */
+/* ─── Callout ─── */
 .callout {
-  background: color-mix(in oklab, var(--primary) 8%, var(--card));
-  border: 1.5px solid var(--primary);
-  border-radius: 0.625rem;
-  padding: 1.25rem 1.5rem;
-  margin-top: 1.5rem;
-  font-size: 1rem;
+  border-left: 3px solid var(--primary);
+  padding: 1.5vh 2vw;
+  margin: 2vh 0;
+  background: color-mix(in oklab, var(--primary) 5%, var(--surface));
 }
 
-/* Navigation */
+.callout p { color: var(--fg); }
+
+/* ─── Quote ─── */
+.quote {
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-style: italic;
+  color: var(--fg);
+  border-left: 3px solid var(--primary);
+  padding-left: 2vw;
+  margin: 3vh 0;
+  max-width: 80vw;
+}
+
+/* ─── Demo Banner ─── */
+.demo-banner {
+  text-align: center;
+  padding: 4vh 4vw;
+  border: 2px dashed var(--accent);
+  background: color-mix(in oklab, var(--accent) 5%, var(--surface));
+  margin: 2vh 0;
+}
+
+.demo-banner h3 { color: var(--accent); font-size: clamp(1.5rem, 3vw, 2.5rem); }
+
+/* ─── Navigation ─── */
 .nav {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 3vh;
+  right: 3vw;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.8vw;
   z-index: 100;
 }
 
 .nav button {
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1vh 2vw;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   cursor: pointer;
-  color: var(--foreground);
-  transition: background 0.2s, border-color 0.2s;
+  color: var(--fg);
+  font-family: var(--font-cn);
 }
 
 .nav button:hover {
   background: var(--primary);
-  color: var(--primary-foreground);
+  color: #fff;
   border-color: var(--primary);
 }
 
@@ -326,418 +287,422 @@ h3 {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 4px;
+  height: 3px;
   background: var(--primary);
-  transition: width 0.3s ease;
+  transition: width 0.4s ease;
   z-index: 100;
 }
 
 .page-num {
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
+  bottom: 3vh;
+  left: 3vw;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--muted-foreground);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  color: var(--muted);
   z-index: 100;
 }
 
-/* Two Column */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-top: 1.5rem;
+/* ─── Horizontal Rule ─── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2vh 0;
 }
 
-.col {
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: 0.625rem;
-  padding: 1.5rem;
+/* ─── Slide Backgrounds ─── */
+.slide--dark {
+  background: var(--fg);
+  color: var(--bg);
 }
 
-.col h3 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+.slide--dark h1, .slide--dark h2, .slide--dark h3 { color: var(--bg); }
+.slide--dark p { color: var(--muted); }
+.slide--dark .eyebrow { color: var(--primary); }
+.slide--dark .card { background: #1F2937; border-color: #374151; }
+.slide--dark .card p { color: var(--muted); }
+.slide--dark .flow-box { background: #1F2937; border-color: #374151; }
+.slide--dark .flow-box .label { color: var(--bg); }
+
+.slide--accent {
+  background: var(--primary);
+  color: #fff;
 }
 
-.col ul {
-  list-style: none;
-  font-size: 1rem;
-}
-
-.col ul li {
-  padding: 0.4rem 0;
-  color: var(--muted-foreground);
-}
+.slide--accent h1, .slide--accent h2, .slide--accent h3 { color: #fff; }
+.slide--accent p { color: rgba(255,255,255,0.8); }
+.slide--accent .eyebrow { color: rgba(255,255,255,0.6); }
 </style>
 </head>
 <body>
 
-<div class="slides-container">
+<div class="deck" id="deck">
 
-  <!-- Slide 1: Title -->
-  <div class="slide active" data-slide="1">
-    <div class="slide-content" style="text-align: center;">
-      <div class="eyebrow">AI × Knowledge Management</div>
+  <!-- ═══════════ 1. Title ═══════════ -->
+  <div class="slide slide--dark">
+    <div>
+      <p class="eyebrow">系統架構課 · DIN/AAS · 2026-08</p>
       <h1>Plannotator × Obsidian</h1>
-      <p class="subtitle" style="margin: 0 auto;">
-        讓 AI Agent 的產出與個人知識庫無縫整合<br>
-        從「對話中產生」走向「結構化沉澱」
+      <p class="lead" style="color: rgba(255,255,255,0.7); max-width: 60vw;">
+        把一次 AI 討論，變成可審查、可累積、可分享的工作成果
       </p>
-      <div class="kpi-row">
-        <div class="kpi">
-          <div class="num">3</div>
-          <div class="label">整合模式</div>
-        </div>
-        <div class="kpi">
-          <div class="num">9+</div>
-          <div class="label">支援 Agent</div>
-        </div>
-        <div class="kpi">
-          <div class="num">0</div>
-          <div class="label">手動搬運</div>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- Slide 2: Problem -->
-  <div class="slide" data-slide="2">
-    <div class="slide-content">
-      <div class="eyebrow">問題</div>
-      <h2>對話結束，知識消失</h2>
-      <div class="compare-grid">
-        <div class="compare-card bad">
-          <h3>❌ 傳統痛點</h3>
-          <ul>
-            <li>💬 深度討論結束後，內容留在對話歷史</li>
-            <li>📝 手動複製到筆記？容易忘記、格式跑掉</li>
-            <li>🔍 重要決策散落在不同對話</li>
-            <li>👥 團隊看不到彼此與 AI 的討論成果</li>
-          </ul>
+  <!-- ═══════════ 2. Problem ═══════════ -->
+  <div class="slide">
+    <div>
+      <p class="eyebrow">The Problem</p>
+      <h2>大家是不是也遇到這些問題？</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-num">1</div>
+          <h3>AI 產出的結果，常常不是我要的</h3>
+          <p>有時候和 AI 討論，它出來的規劃有多處我不是很認同。但往往<strong>很難一次性地全部表達</strong>，讓 AI 一次統整性地去思考。</p>
         </div>
-        <div class="compare-card good">
-          <h3>✅ 整合後</h3>
-          <ul>
-            <li>🔄 Plan 標註後自動存入 Obsidian</li>
-            <li>🗂️ Code Review 結構化歸檔</li>
-            <li>🔗 自動建立雙向連結</li>
-            <li>📊 知識花園自動吸收</li>
-          </ul>
+        <div class="card">
+          <div class="card-num">2</div>
+          <h3>讀了很多資料，但它們散落各處</h3>
+          <p>過往常常讀到很多資料，它們之間都是有關聯的，但<strong>資料總是被散落各處</strong>。我需要一個工具，幫我把關聯整理出來。</p>
         </div>
       </div>
+      <p style="margin-top: 3vh; font-weight: 500; color: var(--fg);">
+        這些是我個人的困境。這是不是也是你們遇到的問題？
+      </p>
     </div>
   </div>
 
-  <!-- Slide 3: Architecture -->
-  <div class="slide" data-slide="3">
-    <div class="slide-content">
-      <div class="eyebrow">架構</div>
-      <h2>資料如何流動</h2>
-      <div class="flow">
-        <div class="flow-box">
-          <div class="emoji">🤖</div>
-          <div class="name">AI Agent</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-box highlight">
-          <div class="emoji">📐</div>
-          <div class="name">Plannotator</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-box" style="border-color: var(--accent);">
-          <div class="emoji">📝</div>
-          <div class="name">Note Action</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-box">
-          <div class="emoji">📚</div>
-          <div class="name">Obsidian</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-box" style="border-color: var(--success);">
-          <div class="emoji">🌱</div>
-          <div class="name">Knowledge Garden</div>
-        </div>
+  <!-- ═══════════ 3. Knowledge Flow ═══════════ -->
+  <div class="slide">
+    <div>
+      <p class="eyebrow">Knowledge Flow</p>
+      <h2>知識迴流：一個不斷循環的過程</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5vw; margin: 3vh 0;">
+        <div class="flow-box"><div class="label">1. 任何來源</div><div class="sub">YouTube / Web / PDF / 音檔</div></div>
+        <div class="flow-box active"><div class="label">2. AI 整理</div><div class="sub">摘要、分類、連結</div></div>
+        <div class="flow-box"><div class="label">3. 大腦</div><div class="sub">Obsidian Wiki</div></div>
+        <div class="flow-box"><div class="label">4. Graph View</div><div class="sub">發現缺口</div></div>
+        <div class="flow-box active"><div class="label">5. Plannotator</div><div class="sub">審查 Plan</div></div>
+        <div class="flow-box"><div class="label">6. 成果輸出</div><div class="sub">PPT / Wiki / Notion</div></div>
       </div>
+
       <div class="callout">
-        💡 <strong>關鍵：</strong>Shared Event API 讓任何 Agent 都能觸發標準化標注事件，存檔時自動產生帶 YAML frontmatter 的 Markdown。
+        <p><strong>輸出到哪裡？</strong> 同一份研究內容可以輸出到：</p>
+        <div style="margin-top: 1.5vh; display: flex; gap: 2vw; flex-wrap: wrap;">
+          <span class="tag">Notion 知識花園</span>
+          <span class="tag">Azure DevOps Wiki</span>
+          <span class="tag">SharePoint</span>
+          <span class="tag">PPT / Word / PDF</span>
+        </div>
+        <p style="margin-top: 1.5vh;">輸出後的成果，又會成為下一次餵養的來源 — 這就是<strong>迴流</strong>。</p>
       </div>
     </div>
   </div>
 
-  <!-- Slide 4: Three Modes -->
-  <div class="slide" data-slide="4">
-    <div class="slide-content">
-      <div class="eyebrow">功能</div>
-      <h2>三種整合模式</h2>
-      <div class="two-col">
-        <div class="col">
-          <h3>📋 Plan Review</h3>
-          <p style="color: var(--muted-foreground); margin-bottom: 1rem;">
-            AI 產生執行計劃 → 人類在瀏覽器標註 → 存入 Obsidian
-          </p>
-          <div class="code" style="font-size: 0.85rem;">
-/plannotator  <span style="color: var(--primary);">切換 plan mode</span>
-          </div>
-          <div>
-            <span class="tag tag-purple">視覺化審閱</span>
-            <span class="tag tag-green">Approve/Deny</span>
-          </div>
+  <!-- ═══════════ 4. Loop Engineering ═══════════ -->
+  <div class="slide">
+    <div>
+      <h2 style="font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; margin-bottom: 1vh;">Loop Engineering</h2>
+      <p class="lead" style="margin-bottom: 4vh;">在讓 AI 做事之前，先讓它說清楚「它打算怎麼做」，然後人類審查、回饋，反覆收斂。</p>
+
+      <div style="margin-bottom: 3vh;">
+        <div class="flow" style="justify-content: flex-start;">
+          <div class="flow-box"><div class="label">問題</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box"><div class="label">工具</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box"><div class="label">證據</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box"><div class="label">回饋</div></div>
+          <div class="flow-arrow">↩</div>
         </div>
-        <div class="col">
-          <h3>🔍 Code Review</h3>
-          <p style="color: var(--muted-foreground); margin-bottom: 1rem;">
-            支援 Git / GitHub PR / GitLab MR → 逐行標註
-          </p>
-          <div class="code" style="font-size: 0.85rem;">
-/plannotator-review
-          </div>
-          <div>
-            <span class="tag tag-purple">Diff 標註</span>
-            <span class="tag tag-orange">Risk 標記</span>
-          </div>
-        </div>
-        <div class="col">
-          <h3>✏️ Markdown Annotation</h3>
-          <p style="color: var(--muted-foreground); margin-bottom: 1rem;">
-            對任意 Markdown 進行標註
-          </p>
-          <div class="code" style="font-size: 0.85rem;">
-open_annotate  <span style="color: var(--success);">自動觸發</span>
-          </div>
-          <div>
-            <span class="tag tag-purple">任意 MD</span>
-            <span class="tag tag-green">自動觸發</span>
-          </div>
-        </div>
-        <div class="col">
-          <h3>💾 Note Storage</h3>
-          <p style="color: var(--muted-foreground); margin-bottom: 1rem;">
-            存檔時自動產生 frontmatter Markdown
-          </p>
-          <div class="code" style="font-size: 0.85rem;">
-<span style="color: var(--success);">✓</span> Obsidian  <span style="color: var(--success);">✓</span> Bear  <span style="color: var(--success);">✓</span> Octarine
-          </div>
-          <div>
-            <span class="tag tag-purple">YAML Frontmatter</span>
-            <span class="tag tag-green">Auto Tags</span>
-          </div>
-        </div>
+        <p style="margin-top: 1.5vh; color: var(--muted); font-size: clamp(0.85rem, 1.3vw, 1.1rem);">反覆收斂，直到證據足以支持結論。</p>
+      </div>
+
+      <div class="card" style="border-left: 3px solid var(--primary);">
+        <h3>這就是為什麼 Plannotator 在此時很關鍵</h3>
+        <p style="margin-top: 1vh;">當 AI 說「我打算這樣做」的時候，它需要一個人類的 <strong>Review Gate</strong> — 幫你問：</p>
+        <p style="margin-top: 1.5vh; font-size: clamp(1rem, 1.6vw, 1.3rem);">
+          你說清楚了嗎？ · 你的假設對嗎？ · 你有漏掉什麼嗎？ · 你的範圍對嗎？
+        </p>
+        <p style="margin-top: 1.5vh; color: var(--primary); font-weight: 700; font-size: clamp(1rem, 1.5vw, 1.2rem);">Plannotator 就是那個 Review Gate — 讓 AI 的計畫在執行前被審查。</p>
       </div>
     </div>
   </div>
 
-  <!-- Slide 5: Demo Workflow -->
-  <div class="slide" data-slide="5">
-    <div class="slide-content">
-      <div class="eyebrow">Demo</div>
-      <h2>完整工作流</h2>
-      <ul class="feature-list">
-        <li>
-          <span class="icon">1️⃣</span>
-          <div>
-            <strong>AI 產生 Plan</strong>
-            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
-              Agent 根據需求自動生成執行計劃，Plannotator 視覺化呈現
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="icon">2️⃣</span>
-          <div>
-            <strong>人類瀏覽器標註</strong>
-            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
-              在 Plannotator UI 中逐項 approve / deny / comment
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="icon">3️⃣</span>
-          <div>
-            <strong>Feedback 回傳 Agent</strong>
-            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
-              標註透過 Shared Event API 回傳，Agent 據此調整方案
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="icon">4️⃣</span>
-          <div>
-            <strong>存入 Obsidian</strong>
-            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
-              自動存入 vault，帶有 YAML frontmatter + tags
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="icon">5️⃣</span>
-          <div>
-            <strong>知識花園吸收</strong>
-            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
-              sync → raw/conversations → ingest → wiki
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Slide 6: Real Example -->
-  <div class="slide" data-slide="6">
-    <div class="slide-content">
-      <div class="eyebrow">案例</div>
-      <h2>我們的實驗</h2>
-      <div class="two-col">
-        <div class="col">
-          <h3>🧪 pi-plannotator-auto</h3>
-          <ul>
-            <li><code>open_annotate</code> 工具 — AI 自動觸發標注</li>
-            <li><code>/annotate</code> 指令 — 手動標註</li>
-            <li>視覺化 approve/deny + feedback</li>
-            <li style="color: var(--success);">✓ 已發佈到 GitHub</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h3>🔄 plannotator-sync</h3>
-          <ul>
-            <li>Plannotator 存檔到 <code>plannotator/</code></li>
-            <li>sync → <code>raw/conversations/</code></li>
-            <li>ingest → <code>wiki/</code></li>
-            <li style="color: var(--success);">✓ 已上線運作</li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout" style="margin-top: 1.5rem;">
-        📈 <strong>成果：</strong>25+ source notes、35+ wiki 頁面、6 顆知識花園種子
-      </div>
-    </div>
-  </div>
-
-  <!-- Slide 7: Getting Started -->
-  <div class="slide" data-slide="7">
-    <div class="slide-content">
-      <div class="eyebrow">開始使用</div>
-      <h2>如何開始</h2>
-      <div class="code" style="font-size: 1rem;">
-<span style="color: var(--muted-foreground);"># 1. 安裝 Plannotator</span>
-<span style="color: var(--primary);">curl</span> -fsSL https://plannotator.ai/install.sh | bash
-
-<span style="color: var(--muted-foreground);"># 2. 安裝 Pi Extension</span>
-pi install npm:@plannotator/pi-extension
-
-<span style="color: var(--muted-foreground);"># 3. 開啟 Plan Mode</span>
-/plannotator
-
-<span style="color: var(--muted-foreground);"># 4. 設定 Obsidian 存檔</span>
-<span style="color: var(--muted-foreground);"># Plannotator Settings → Enable Obsidian</span>
-      </div>
-      <div class="callout" style="margin-top: 1.5rem;">
-        ⚠️ <strong>授權：</strong>Apache 2.0 + MIT 雙授權，可自由 fork 與自定義開發
-      </div>
-    </div>
-  </div>
-
-  <!-- Slide 8: Next Steps -->
-  <div class="slide" data-slide="8">
-    <div class="slide-content">
-      <div class="eyebrow">展望</div>
-      <h2>未來方向</h2>
-      <div class="two-col">
-        <div class="col">
-          <h3>🤝 多人協作</h3>
-          <p style="color: var(--muted-foreground);">
-            跨裝置、跨團隊的 Plan 審閱，標註同步到共享 vault
-          </p>
-        </div>
-        <div class="col">
-          <h3>🧠 AI 自動摘要</h3>
-          <p style="color: var(--muted-foreground);">
-            標註轉化為結構化 feedback，Agent 學習人類偏好
-          </p>
-        </div>
-        <div class="col">
-          <h3>📊 知識圖譜</h3>
-          <p style="color: var(--muted-foreground);">
-            視覺化 vault 連結關係，呈現決策與知識的關聯
-          </p>
-        </div>
-        <div class="col">
-          <h3>🔗 MCP 整合</h3>
-          <p style="color: var(--muted-foreground);">
-            成為 AI Agent 標註的通用標準
-          </p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 3rem;">
-        <h3 style="font-size: 1.3rem; color: var(--primary);">
-          🚀 準備好開始了嗎？
-        </h3>
-        <p style="color: var(--muted-foreground); margin-top: 0.5rem;">
-          plannotator.ai
+  <!-- ═══════════ 5. Demo ═══════════ -->
+  <div class="slide">
+    <div>
+      <div class="demo-banner">
+        <h3>DEMO</h3>
+        <p style="font-size: clamp(1.2rem, 2vw, 1.6rem); color: var(--fg); margin-top: 2vh;">
+          現在，讓我們實際操作<br>
+          從「提出問題」到「AI 產出 Plan」到「Plannotator 審查」到「存入 Obsidian」
         </p>
       </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 6. Plannotator ═══════════ -->
+  <div class="slide">
+    <div>
+      <p class="eyebrow">Review Gate</p>
+      <h2>Plannotator：AI 工作的審查門</h2>
+      <p class="lead">不只是 coding tool — 所有 AI 產出都可以納入審查。</p>
+
+      <div class="flow" style="margin-top: 3vh;">
+        <div class="flow-box"><div class="label">AI 產生 Plan</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box active"><div class="label">Plannotator Review</div><div class="sub">瀏覽器標註 UI</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box"><div class="label">核准 / 駁回</div><div class="sub">含批註回饋</div></div>
+      </div>
+
+      <div style="margin-top: 4vh;">
+        <table>
+          <thead>
+            <tr><th>功能</th><th>指令</th><th>說明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Plan Review</strong></td><td><code>Shift+Tab</code></td><td>檢查範圍、假設、證據、評估維度</td></tr>
+            <tr><td><strong>Code Review</strong></td><td><code>/plannotator-review</code></td><td>審查程式碼變更或 PR</td></tr>
+            <tr><td><strong>Markdown 標註</strong></td><td><code>/plannotator-annotate</code></td><td>對報告、架構圖逐段加註</td></tr>
+            <tr><td><strong>標註最後回覆</strong></td><td><code>/plannotator-last</code></td><td>對 AI 回答直接加註</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 7. Integration ═══════════ -->
+  <div class="slide">
+    <div>
+      <p class="eyebrow">Native Integration</p>
+      <h2>Plannotator × Obsidian：無縫整合</h2>
+      <p class="lead">Review Gate 與知識庫之間真正的橋樑 — 不用手動搬運。</p>
+
+      <div class="grid grid-2" style="margin-top: 4vh;">
+        <div>
+          <h3>設定</h3>
+          <div class="code" style="font-size: clamp(0.9rem, 1.4vw, 1.2rem); color: var(--fg); background: var(--surface); padding: 2vh 2.5vw;">
+Settings → Obsidian<br>
+&nbsp;&nbsp;Integration: <strong style="color: var(--primary);">ON</strong><br>
+&nbsp;&nbsp;Vault: <code>C:\CheerSpace\90_Wiki</code><br>
+&nbsp;&nbsp;Folder: <code>raw/plannotator</code>
+          </div>
+          <h3 style="margin-top: 3vh;">自動產生 Frontmatter</h3>
+          <div class="code" style="font-size: clamp(0.9rem, 1.4vw, 1.2rem); color: var(--fg); background: var(--surface); padding: 2vh 2.5vw;">
+created: 2026-08-21<br>
+source: plannotator<br>
+tags: [plan, ...]
+          </div>
+        </div>
+        <div>
+          <h3>操作流程</h3>
+          <p style="font-size: clamp(1rem, 1.6vw, 1.3rem);">1. 在 Plannotator 中核准計畫</p>
+          <p style="font-size: clamp(1rem, 1.6vw, 1.3rem);">2. Options → <strong style="color: var(--primary);">Save to Obsidian</strong></p>
+          <p style="font-size: clamp(1rem, 1.6vw, 1.3rem);">3. 檔案直接出現在 <code>raw/plannotator/*.md</code></p>
+          <p style="font-size: clamp(1rem, 1.6vw, 1.3rem);">4. 帶著 frontmatter，銜接 wiki 整理</p>
+          <div class="callout" style="margin-top: 3vh; background: color-mix(in oklab, var(--primary) 8%, var(--surface)); border-color: var(--primary);">
+            <p style="font-weight: 700; color: var(--primary); font-size: clamp(1.1rem, 1.8vw, 1.5rem);">0 手動搬運</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 8. Evidence ═══════════ -->
+  <div class="slide">
+    <div>
+      <p class="eyebrow">Evidence Capture</p>
+      <h2>執行研究：先把原始資料保存下來</h2>
+
+      <div class="grid grid-3" style="margin-top: 3vh;">
+        <div class="card">
+          <h3>來源類型</h3>
+          <p>官方文件、內部標準、既有架構文件、會議紀錄、外部技術資料</p>
+          <p style="margin-top: 1.5vh;">全部先落地到 <code>raw/</code></p>
+        </div>
+        <div class="card">
+          <h3>保存原則</h3>
+          <p>✓ 原始資料保留，不直接覆蓋</p>
+          <p>✓ 每個結論保留來源與日期</p>
+          <p>✓ 不用推測取代證據</p>
+        </div>
+        <div class="card">
+          <h3>分開記錄</h3>
+          <p>✓ 來源</p>
+          <p>✓ 假設</p>
+          <p>✓ 限制</p>
+          <p>✓ 待確認問題</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 9. Obsidian ═══════════ -->
+  <div class="slide">
+    <div>
+      <p class="eyebrow">Second Brain</p>
+      <h2>Obsidian：第二大腦與 Knowledge Graph</h2>
+      <p class="lead">源自 Andrej Karpathy 的 LLM Wiki 想法，結合 Google OKF 精神。</p>
+
+      <div class="flow" style="margin-top: 3vh;">
+        <div class="flow-box"><div class="label">raw/</div><div class="sub">原始資料（唯讀）</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box active"><div class="label">wiki ingest</div><div class="sub">整理、萃取、建立連結</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box"><div class="label">wiki/</div><div class="sub">sources / concepts / entities</div></div>
+      </div>
+
+      <p style="margin-top: 3vh;">Markdown 才是可長期保存、可被 AI 讀寫的知識格式。</p>
+
+      <div class="grid grid-2" style="margin-top: 3vh;">
+        <div class="card">
+          <h3>Graph View 的四個價值</h3>
+          <p>不是炫技的圖，而是系統性治理判斷工具。</p>
+        </div>
+        <div class="card">
+          <p><strong>發現關聯</strong> — 節點間的連線</p>
+          <p><strong>知識缺口</strong> — 應該存在卻缺少的連結</p>
+          <p><strong>孤兒頁</strong> — 沒有任何連結的獨立節點</p>
+          <p><strong>決策樞紐</strong> — 連結數量最多的核心節點</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 10. Deliverables ═══════════ -->
+  <div class="slide">
+    <div>
+      <p class="eyebrow">From Knowledge to Deliverables</p>
+      <h2>從同一份知識，輸出多種成果</h2>
+      <p class="lead">Obsidian Wiki 是作業工廠；PPT 與 Wiki 是面向不同受眾的成品。</p>
+
+      <div class="grid grid-3" style="margin-top: 4vh;">
+        <div class="card">
+          <h3 style="color: var(--primary);">PPT</h3>
+          <p><strong>對象：</strong>主管與聽眾</p>
+          <p style="margin-top: 1vh;">快速掌握背景、問題、方案、風險與建議</p>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--primary);">Wiki</h3>
+          <p><strong>對象：</strong>ITD 團隊</p>
+          <p style="margin-top: 1vh;">可搜尋、持續更新、成為知識基礎</p>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--primary);">其他</h3>
+          <p><strong>對象：</strong>視需求而定</p>
+          <p style="margin-top: 1vh;">Dapps、SharePoint、Word / PDF</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 11. Setup ═══════════ -->
+  <div class="slide">
+    <div>
+      <p class="eyebrow">Setup</p>
+      <h2>安裝與落地</h2>
+
+      <div class="grid grid-2">
+        <div>
+          <h3>推薦方法</h3>
+          <div class="code" style="font-size: clamp(0.8rem, 1.1vw, 0.95rem);">
+npx skills@latest add \
+  https://github.com/EVACopilot/skills-itd-aas \
+  --skill plannotator-copilot-setup
+          </div>
+          <p style="margin-top: 2vh;">然後在 AI 對話框輸入：</p>
+          <div class="code">/plannotator-copilot-setup</div>
+        </div>
+        <div>
+          <h3>接下來 3 件事</h3>
+          <p>1. 安裝 Copilot 外掛</p>
+          <p>2. 完整重新啟動 App</p>
+          <p>3. <code>Shift+Tab</code> 驗證 Plan Mode</p>
+
+          <h3 style="margin-top: 3vh;">隱私與資安</h3>
+          <p>核心功能全程在 localhost 執行</p>
+          <p>不經 Plannotator 伺服器</p>
+          <p>不要額外安裝其他 CLI 帳號</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 12. Closing ═══════════ -->
+  <div class="slide slide--dark">
+    <div style="text-align: center;">
+      <p class="eyebrow">Closing</p>
+      <h1 style="font-size: clamp(2.5rem, 5vw, 4.5rem);">這不是唯一的做法</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85); max-width: 70vw; margin: 0 auto;">
+        這是我個人摸索出來的工作方式。工具可以用別的，流程可以不一樣。<br>
+        <strong style="color: var(--primary);">重要的是：找到適合你自己的方式。</strong>
+      </p>
+      <div class="quote" style="border-color: var(--primary); color: rgba(255,255,255,0.9); margin-top: 5vh; max-width: 70vw; margin-left: auto; margin-right: auto;">
+        「不要只問 AI 答案是什麼，<br>要先讓 AI 說明它打算怎麼回答。」
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 13. Q&A ═══════════ -->
+  <div class="slide slide--dark">
+    <div style="text-align: center;">
+      <h1 style="font-size: clamp(3rem, 8vw, 7rem);">Q & A</h1>
+      <p style="color: rgba(255,255,255,0.6); font-size: clamp(1rem, 1.5vw, 1.3rem); margin-top: 3vh;">
+        謝謝聆聽 · 歡迎提問
+      </p>
+      <p style="color: rgba(255,255,255,0.4); font-family: var(--font-mono); font-size: clamp(0.7rem, 1vw, 0.9rem); margin-top: 5vh;">
+        系統架構課 · DIN/AAS · 2026-08
+      </p>
     </div>
   </div>
 
 </div>
 
 <!-- Navigation -->
-<div class="page-num" id="pageNum">1 / 8</div>
-<div class="progress" id="progress" style="width: 12.5%;"></div>
+<div class="page-num" id="pageNum">1 / 13</div>
+<div class="progress" id="progress" style="width: 7.69%;"></div>
 <div class="nav">
-  <button onclick="prevSlide()">← 上一頁</button>
-  <button onclick="nextSlide()">下一頁 →</button>
+  <button onclick="prev()">← Prev</button>
+  <button onclick="next()">Next →</button>
 </div>
 
 <script>
-let currentSlide = 1;
-const totalSlides = 8;
+let current = 0;
+const total = 13;
+const deck = document.getElementById('deck');
 
-function showSlide(n) {
-  if (n < 1 || n > totalSlides) return;
-  
-  document.querySelector('.slide.active').classList.remove('active');
-  document.querySelector(`[data-slide="${n}"]`).classList.add('active');
-  
-  currentSlide = n;
-  document.getElementById('pageNum').textContent = `${n} / ${totalSlides}`;
-  document.getElementById('progress').style.width = `${(n / totalSlides) * 100}%`;
+function goTo(n) {
+  if (n < 0 || n >= total) return;
+  current = n;
+  deck.style.transform = `translateX(-${current * 100}vw)`;
+  document.getElementById('pageNum').textContent = `${current + 1} / ${total}`;
+  document.getElementById('progress').style.width = `${((current + 1) / total) * 100}%`;
 }
 
-function nextSlide() { showSlide(currentSlide + 1); }
-function prevSlide() { showSlide(currentSlide - 1); }
+function next() { goTo(current + 1); }
+function prev() { goTo(current - 1); }
 
-// Keyboard navigation
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); next(); }
+  else if (e.key === 'ArrowLeft' || e.key === 'Backspace') { e.preventDefault(); prev(); }
+  else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+  else if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+  else if (e.key === 'f' || e.key === 'F') {
     e.preventDefault();
-    nextSlide();
-  } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
-    e.preventDefault();
-    prevSlide();
-  } else if (e.key === 'Home') {
-    e.preventDefault();
-    showSlide(1);
-  } else if (e.key === 'End') {
-    e.preventDefault();
-    showSlide(totalSlides);
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
   }
 });
 
-// Click to advance (on slide area, not buttons)
-document.querySelector('.slides-container').addEventListener('click', (e) => {
-  if (!e.target.closest('.nav')) {
-    const rect = e.target.closest('.slides-container').getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    if (clickX > rect.width / 2) {
-      nextSlide();
-    } else {
-      prevSlide();
-    }
-  }
+// Click sides to navigate
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.nav')) return;
+  if (e.clientX > window.innerWidth / 2) next();
+  else prev();
 });
 </script>
 
