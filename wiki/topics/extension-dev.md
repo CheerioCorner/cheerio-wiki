@@ -33,3 +33,4 @@ updated: 2026-08-06
 - [[wiki/sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF 架構優化]] — 完整 migration 工作紀錄
 - [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough]] — Extensions events 系統解析
 - [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理]] — @pi-agents/loop extension 實作
+- [[wiki/sources/2026-07-23-plannotator-copilot-setup|Plannotator Copilot 安裝手冊]] — Windows 上 Copilot CLI 整合安裝

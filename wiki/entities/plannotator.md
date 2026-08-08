@@ -2,9 +2,9 @@
 title: Plannotator
 type: entity
 created: 2026-07-11
-updated: 2026-08-05
-sources: 3
-tags: [coding-agent, review-tool, browser-ui, open-source, pi-extension, custom-development]
+updated: 2026-08-08
+sources: 4
+tags: [coding-agent, review-tool, browser-ui, open-source, pi-extension, custom-development, copilot, installation]
 collection: entities
 topics: [extension-dev]
 canonical: entities/plannotator
@@ -79,6 +79,38 @@ curl -fsSL https://plannotator.ai/install.sh | bash
 # Windows PowerShell
 irm https://plannotator.ai/install.ps1 | iex
 ```
+
+### GitHub Copilot CLI 整合安裝（Windows）
+
+**快速安裝（3 步）：**
+
+1. 安裝 Plannotator：`irm https://plannotator.ai/install.ps1 | iex`
+2. 停用 Share：`[Environment]::SetEnvironmentVariable("PLANNOTATOR_SHARE", "disabled", "User")` 或編輯 `~/.plannotator/config.json` 設定 `{ "share": "disabled" }`
+3. 安裝 Copilot CLI 插件：
+   ```
+   /plugin marketplace add backnotprop/plannotator
+   /plugin install plannotator-copilot@plannotator
+   ```
+
+**安裝 Skill：**
+```
+npx skills@latest add https://github.com/EVACopilot/skills-itd-aas --skill plannotator-copilot-setup
+```
+
+**完整設定流程（12 步，3 階段）：**
+
+| 階段 | 步驟 | 內容 |
+|------|------|------|
+| 基礎安裝 | 1-4 | 安裝 Plannotator → 停用 Share → 安裝插件 → 確認 App PATH |
+| 整合測試 | 5 | Shift+Tab 進入 plan mode → 瀏覽器標注 → exit_plan_mode 發送 |
+| 進階整合 | 6-12 | 與 Obsidian 整合、slash commands、進階設定 |
+
+**架構原理：**
+```
+Copilot CLI/App → localhost → Plannotator → 瀏覽器 UI → 人類標注 → 發送 Prompt
+```
+
+Plannotator 在 Copilot 的 plan mode 中攔截 AI 請求，人類在瀏覽器中完成標注後才發送給 AI。
 
 ## Pi 整合細節
 
@@ -159,4 +191,5 @@ Plannotator 已支援將 plan 存到 Obsidian 或 Bear：
 
 - [[wiki/entities/pi-agent-core]] — Pi agent 核心
 - [[wiki/sources/2026-07-11-plannotator-research]] — 初始研究來源
+- [[wiki/sources/2026-07-23-plannotator-copilot-setup]] — GitHub Copilot CLI 整合安裝手冊
 - [[wiki/concepts/meta-harness]] — 另一種 agent 工具，與 Plannotator 的「加法」取徑形成對比
