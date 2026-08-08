@@ -87,6 +87,24 @@ canonical: entities/notionApi
 
 **原則：讀用 MCP，寫用 `ntn` CLI。**
 
+## Skill 架構（2026-08-08 更新）
+
+```
+Notion 操作層（純工具）
+├── notion-cli          — CLI 命令參考
+├── notion-page-content — 頁面內容產生（知識卡片 + 研究報告）
+└── notion-to-raw       — Notion → raw 抓取
+
+知識花園層（知識管理）
+├── knowledge-garden           — 花園維護（架構、配置、成長）
+├── knowledge-garden-trigger   — 研究觸發（💡 靈感、啟發更新）
+├── knowledge-garden-visualmap — 視覺地圖（Mermaid → Notion）
+└── notion-wiki-feedback       — Notion → Wiki 回流機制
+
+跨 AI 協作
+└── gemini-notion-workflow     — Gemini 完整存取 Notion + Git
+```
+
 ## 資料流
 
 ### 兩個系統的分工
