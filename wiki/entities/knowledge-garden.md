@@ -114,6 +114,8 @@ canonical: entities/knowledge-garden
 | 🛠️ AI Coding Workflow | 🔬 研究 | [[wiki/topics/ai-development-tools\|ai-development-tools]] | mattpocock/skills |
 | 📚 知識管理系統 | 📋 立案 | [[wiki/topics/knowledge-mgmt\|knowledge-mgmt]] | OKF |
 
+> ✅ 所有 Relation 已於 2026-08-08 修復完成（多對多） |
+
 ---
 
 ## 種植守則
