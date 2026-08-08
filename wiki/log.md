@@ -3,6 +3,20 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-08] ingest | Content Redesign 實作：重寫 page-content + 更新 visualmap
+
+- 重寫 knowledge-garden-page-content：
+  - 移除模板綁定（🌱/🌿/🌳 不再決定內容結構）
+  - 改為按標的物類型（種子/專題/地圖）
+  - 四層通用骨架（識別→客觀事實→主觀現實→roadmap）
+  - 加入 Mode 切換（Quick Draft vs Enriched）
+  - 加入品質關卡（Evaluator-Optimizer Loop）
+- 更新 knowledge-garden-visualmap：
+  - 視覺地圖 Database = 索引/註冊表（不是內容存放）
+  - 6 個欄位：頁面、類型、關聯種子、關聯專題、建立時間、更新時間
+- 更新架構頁：加入 Content 設計區塊
+- refs: [[wiki/concepts/content-redesign|Content Redesign]]、[[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]
+
 ## [2026-08-08] ingest | Content 設計 Redesign（Copilot + Gemini 三輪討論）
 
 - 確立四個共識：

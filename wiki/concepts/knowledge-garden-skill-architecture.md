@@ -82,6 +82,19 @@ canonical: concepts/knowledge-garden-skill-architecture
 | `wiki-youtube` | YouTube→wiki | 抓字幕 → 建 source note → 建 entity pages |
 | `wiki-pdf` | PDF→wiki | markitdown 轉 Markdown → 提取圖片 → 建頁面 |
 
+### Content 設計（2026-08-08 Redesign）
+
+所有標的物使用**四層通用骨架**：
+
+| 層 | 內容 |
+|----|------|
+| 第一層 | 標的識別與中繼資料 |
+| 第二層 | 客觀事實層 |
+| 第三層 | 主觀現實層（人的決策、想法、判斷） |
+| 第四層 | 延伸路線圖（下一步） |
+
+詳細設計見 [[wiki/concepts/content-redesign|Content 設計 Redesign]]。
+
 ### 工具
 
 | Skill | 功能 |
