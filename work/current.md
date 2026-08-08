@@ -5,35 +5,28 @@
 
 ## In progress
 
-- [ ] W-2026-08-043 Content 設計 Redesign：四層骨架 + 主觀現實 + Roadmap ⏫ #knowledge #skill
-  - next: 重寫 knowledge-garden-page-content skill（移除模板綁定、改為按標的物類型、加入主觀現實層+roadmap）
+- [x] W-2026-08-043 Content 設計 Redesign：四層骨架 + 主觀現實 + Roadmap ✅ #knowledge #skill
   - refs: [[wiki/concepts/content-redesign|Content Redesign]]、Copilot+Gemini 三輪討論
   - 已完成：
     - ✅ Copilot + Gemini 三輪討論，確立四個共識
-    - ✅ 更新架構頁
-  - 已完成：
     - ✅ 重寫 page-content skill（四層骨架+主觀現實+roadmap）
     - ✅ 更新 visualmap skill（索引/註冊表設計）
     - ✅ 更新架構頁
-  - 待辦：
+  - 待辦（手動）：
     - ⏳ 手動在 Notion 視覺地圖 Database 加進階欄位（類型、關聯種子、關聯專題）
     - ⏳ 建立視覺地圖 ↔ 種子/專題的 Relation 綁定
 
-- [ ] W-2026-08-042 知識花園 Skill 架構重構：Schema + 模板 + 資料流 ⏫ #knowledge #skill
-  - next: 分派 subagent 執行實作（建 schema、改 knowledge-garden、改 page-content、更新架構圖）
+- [x] W-2026-08-042 知識花園 Skill 架構重構：Schema + 模板 + 資料流 ✅ #knowledge #skill
   - refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]、Copilot+Gemini 三輪討論決策
   - 已完成：
     - ✅ Copilot + Gemini 三輪架構討論，確立6項最終決策
-    - ✅ 更新架構頁（含完整資料流圖）
-  - 已完成：
-    - ✅ Copilot + Gemini 三輪架構討論，確立6項最終決策
-    - ✅ 更新架構頁（含完整資料流圖）
-    - ✅ 建立 ~/.agents/schemas/seed_schema.yaml
+    - ✅ 建立 knowledge-garden/schemas/seed_schema.yaml（跟著主 skill）
     - ✅ 重構 knowledge-garden（移除模板、加引用）
     - ✅ 重構 page-content（加品質關卡、mode 切換）
+    - ✅ 更新架構頁（含完整資料流圖）
 
-- [ ] W-2026-08-038 Notion 整合設計全面重構：Schema + Skill + 回流 ⏫ #knowledge #notion
-  - next: 為 7 筆種子撰寫完整知識卡片（用 notion-page-content skill）
+- [x] W-2026-08-038 Notion 整合設計全面重構：Schema + Skill + 回流 ✅ #knowledge #notion
+  - next: 為 7 筆種子撰寫完整知識卡片（用 knowledge-garden-page-content skill）
   - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]、.pi/gemini-runs/notion-review/session-summary.md
   - 已完成：
     - ✅ Phase 1：Topic 重組（ai-agent 拆分為 5 個子 topic）+ Schema 對齊 + Manifest 重構
