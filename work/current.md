@@ -5,6 +5,17 @@
 
 ## In progress
 
+- [ ] W-2026-08-043 Content 設計 Redesign：四層骨架 + 主觀現實 + Roadmap ⏫ #knowledge #skill
+  - next: 重寫 knowledge-garden-page-content skill（移除模板綁定、改為按標的物類型、加入主觀現實層+roadmap）
+  - refs: [[wiki/concepts/content-redesign|Content Redesign]]、Copilot+Gemini 三輪討論
+  - 已完成：
+    - ✅ Copilot + Gemini 三輪討論，確立四個共識
+    - ✅ 更新架構頁
+  - 待辦：
+    - ⏳ 重寫 page-content skill
+    - ⏳ 手動在 Notion 視覺地圖 Database 加進階欄位（類型、關聯種子、關聯專題）
+    - ⏳ 建立視覺地圖 ↔ 種子/專題的 Relation 綁定
+
 - [ ] W-2026-08-042 知識花園 Skill 架構重構：Schema + 模板 + 資料流 ⏫ #knowledge #skill
   - next: 分派 subagent 執行實作（建 schema、改 knowledge-garden、改 page-content、更新架構圖）
   - refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]、Copilot+Gemini 三輪討論決策
