@@ -235,6 +235,11 @@
 
 ## Completed
 
+- [x] W-2026-08-041 YouTube ingest：LangGraph in 10 Minutes ✅ #knowledge #ai-agent
+  - completed: 2026-08-08
+  - result: 抓 auto-generated English 字幕（347 segments → 40 paragraphs）。新增 wiki：source note + entity（langgraph）+ concept（agent-durability-patterns）。重點：Pregel model、reducers、checkpointing、delta channels（5.3GB→129MB）。建立 Pi vs LangGraph 三種持久化路徑比較，作為未來 agent 設計取捨參考。
+  - refs: [[wiki/sources/2026-08-21-langgraph-in-10-minutes|source note]]、[[wiki/entities/langgraph|langgraph]]、[[wiki/concepts/agent-durability-patterns|agent-durability-patterns]]
+
 - [x] W-2026-08-039 PDF 處理流程建立：markitdown + pymupdf + pdf-to-wiki skill ✅ #knowledge #tools
   - completed: 2026-08-08
   - result: 建立完整 PDF → Markdown → wiki 流程。markitdown 取代 pdftotext（解決中文亂碼），pymupdf 提取圖片。新建 pdf-to-wiki skill 並推送到 cheerio-skills。處理安裝手冊 PDF（9 張截圖 + 完整中文 Markdown）。
