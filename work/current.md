@@ -207,11 +207,11 @@
 > 目標：把好的工具整合到工作流。
 
 - [ ] W-2026-08-028 設定 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider #ai-agent #extension
-  - next: 到公司後執行 `/login` → 選擇 GitHub Copilot → 完成 OAuth
+  - next: 執行 `/login` → 選擇 GitHub Copilot → 完成 OAuth
   - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/github-copilot|github-copilot]]
-  - 預估時間：30 分鐘（到公司後）
+  - 預估時間：30 分鐘
   - 為什麼重要：有更多模型可用
-  - 備註：本機無 Copilot 訂閱，需到公司實測
+  - 備註：有免費 GitHub Copilot 訂閱，可在本機設定
 
 - [ ] W-2026-08-008 用 `grill-me` 跑一次完整需求追問（Pi Web） #skills
   - next: grilling 已安裝，可執行

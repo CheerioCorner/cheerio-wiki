@@ -85,6 +85,32 @@ canonical: entities/github-copilot
 - [Copilot Extensions SDK](https://docs.github.com/en/copilot/building-copilot-extensions)
 - [Copilot 官方文件](https://docs.github.com/en/copilot)
 
+## Pi Agent 整合
+
+### Copilot Skill（2026-08-08 建立）
+
+Pi 可透過 `gh copilot` CLI 直接與 Copilot 討論：
+
+```bash
+# 使用方式
+gh copilot -p "prompt" --allow-tool 'shell(echo)'
+
+# 範例
+gh copilot -p "What is recursion?" --allow-tool 'shell(echo)'
+```
+
+**Skill 位置：** `~/.agents/skills/copilot/SKILL.md`
+**觸發詞：** 「問 Copilot」、「用 Copilot」、「/copilot」
+**執行目錄：** `~/.pi/copilot-runs/`
+
+**與 gy skill 比較：**
+| | gy (Gemini) | copilot |
+|---|---|---|
+| CLI | agy (Antigravity) | gh copilot |
+| 執行方式 | tmux/Windows Terminal pane | 背景執行 |
+| 認證 | Google OAuth | GitHub auth login |
+| Token 消耗 | 免費額度 | AI Credits |
+
 ## 相關頁面
 
 - [[wiki/entities/mcp-model-context-protocol|MCP]] — Copilot 可整合的 Protocol
