@@ -6,7 +6,7 @@ updated: 2026-08-06
 sources: 1
 tags: [skill, meta-learning, self-evolving]
 collection: concepts
-topics: [ai-agent, skill]
+topics: [agent-research, skill]
 canonical: concepts/skillopt-meta-skill
 ---
 

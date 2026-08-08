@@ -5,7 +5,7 @@ created: 2026-08-07
 updated: 2026-08-07
 sources: 1
 tags: [ai-agent, gateway, enterprise, governance, mcp]
-topics: [ai-agent]
+topics: [agent-infrastructure]
 canonical: entities/axway-amplify-ai-gateway
 provenance:
   - kind: external

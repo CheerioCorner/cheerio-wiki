@@ -6,7 +6,7 @@ updated: 2026-07-18
 sources: 1
 tags: [pi, coding-agent, project-model, workspace]
 collection: concepts
-topics: [knowledge-mgmt]
+topics: [pi-agent, knowledge-mgmt]
 canonical: concepts/pi-project-workspace-model
 ---
 

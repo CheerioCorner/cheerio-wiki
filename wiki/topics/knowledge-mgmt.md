@@ -15,6 +15,7 @@ updated: 2026-08-11
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP server
 - [[wiki/entities/knowledge-garden|knowledge-garden]] — Notion 知識花園 Manifest
 - [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → raw 抓取流程 🛠️
+- [[wiki/entities/learning-loop|learning-loop]] — 自動學習優化系統
 
 ## Concepts
 

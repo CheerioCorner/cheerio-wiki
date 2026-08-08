@@ -6,7 +6,7 @@ updated: 2026-08-06
 sources: 1
 tags: [agent, data-protocol, reinforcement-learning]
 collection: concepts
-topics: [ai-agent]
+topics: [agent-research]
 canonical: concepts/atdp
 ---
 

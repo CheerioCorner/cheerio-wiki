@@ -6,7 +6,7 @@ updated: 2026-08-06
 sources: 1
 tags: [reinforcement-learning, agent, self-evolving]
 collection: entities
-topics: [ai-agent]
+topics: [agent-research]
 canonical: entities/area-l
 ---
 

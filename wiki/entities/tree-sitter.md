@@ -5,7 +5,7 @@ created: 2026-08-04
 updated: 2026-08-04
 sources: 1
 tags: [tree-sitter, parser, incremental-parsing, code-analysis]
-topics: [meta-systems]
+topics: [agent-infrastructure, meta-systems]
 canonical: entities/tree-sitter
 ---
 

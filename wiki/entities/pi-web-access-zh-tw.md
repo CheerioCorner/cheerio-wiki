@@ -6,7 +6,7 @@ updated: 2026-07-18
 sources: 1
 tags: [pi, extension, web-search, localization, zh-tw, package]
 collection: entities
-topics: [extension-dev]
+topics: [pi-agent, extension-dev]
 canonical: entities/pi-web-access-zh-tw
 ---
 

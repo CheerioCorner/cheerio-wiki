@@ -6,7 +6,7 @@ updated: 2026-08-05
 sources: 1
 tags: [morphir, dotnet, finos, enterprise, ir, domain-driven]
 collection: entities
-topics: [ai-agent]
+topics: [agent-research]
 canonical: entities/morphir-dotnet
 ---
 

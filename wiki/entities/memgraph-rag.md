@@ -6,7 +6,7 @@ updated: 2026-08-06
 sources: 1
 tags: [rag, knowledge-graph, multi-agent, kdd]
 collection: entities
-topics: [ai-agent]
+topics: [agent-research]
 canonical: entities/memgraph-rag
 ---
 

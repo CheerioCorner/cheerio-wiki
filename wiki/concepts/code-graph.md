@@ -5,7 +5,7 @@ created: 2026-08-04
 updated: 2026-08-04
 sources: 1
 tags: [code-graph, code-intelligence, semantic-analysis, rag]
-topics: [meta-systems, ai-agent]
+topics: [agent-infrastructure, meta-systems]
 canonical: concepts/code-graph
 ---
 

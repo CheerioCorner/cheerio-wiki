@@ -5,7 +5,7 @@ created: 2026-08-04
 updated: 2026-08-04
 sources: 1
 tags: [lsp, protocol, code-intelligence, microsoft]
-topics: [meta-systems, ai-agent]
+topics: [agent-infrastructure, meta-systems]
 canonical: entities/lsp
 ---
 

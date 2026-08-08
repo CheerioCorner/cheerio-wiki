@@ -6,7 +6,7 @@ updated: 2026-08-06
 sources: 1
 tags: [knowledge-graph, code-analysis, tree-sitter]
 collection: concepts
-topics: [ai-agent]
+topics: [agent-research]
 canonical: concepts/code-knowledge-graph
 ---
 

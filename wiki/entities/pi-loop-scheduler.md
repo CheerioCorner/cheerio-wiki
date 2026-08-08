@@ -5,7 +5,7 @@ created: 2026-08-10
 updated: 2026-08-10
 sources: 1
 tags: [pi, cron, scheduler, extension, loop]
-topics: [ai-agent, extension-dev]
+topics: [pi-agent, extension-dev]
 canonical: entities/pi-loop-scheduler
 provenance:
   - kind: session

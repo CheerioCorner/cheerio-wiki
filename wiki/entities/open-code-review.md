@@ -6,7 +6,7 @@ updated: 2026-08-20
 sources: 3
 tags: [code-review, ai-agent, cli-tool, alibaba, open-source, benchmark]
 collection: entities
-topics: [ai-agent, extension-dev]
+topics: [ai-development-tools, extension-dev]
 canonical: entities/open-code-review
 ---
 

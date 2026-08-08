@@ -6,7 +6,7 @@ updated: 2026-08-07
 sources: 1
 tags: [skill, learning, automation, meta]
 collection: entities
-topics: [ai-agent, learning-mgmt]
+topics: [knowledge-mgmt, ai-agent]
 canonical: entities/learning-loop
 ---
 

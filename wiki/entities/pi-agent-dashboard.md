@@ -6,7 +6,7 @@ updated: 2026-08-08
 sources: 1
 tags: [pi, dashboard, web-ui, coding-agent]
 collection: entities
-topics: [ai-agent, extension-dev]
+topics: [pi-agent, extension-dev]
 canonical: entities/pi-agent-dashboard
 provenance_raw: "raw/web/2026-08-02-pi-agent-dashboard.md"
 ---
