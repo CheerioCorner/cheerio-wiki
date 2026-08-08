@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="plannotator-theme" content="host">
+<title>Plannotator × Obsidian — AI 工作流整合展示</title>
+<style>
+:root {
+  --background: oklch(0.97 0.005 260);
+  --foreground: oklch(0.18 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 260);
+  --muted: oklch(0.92 0.01 260);
+  --muted-foreground: oklch(0.40 0.02 260);
+  --primary: oklch(0.50 0.25 280);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.50 0.18 180);
+  --accent: oklch(0.60 0.22 50);
+  --destructive: oklch(0.50 0.25 25);
+  --success: oklch(0.45 0.20 150);
+  --warning: oklch(0.55 0.18 85);
+  --border: oklch(0.88 0.01 260);
+  --code-bg: oklch(0.92 0.01 260);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-display: ui-serif, Georgia, 'Times New Roman', serif;
+  --radius: 0.625rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.15 0.02 260);
+    --foreground: oklch(0.90 0.01 260);
+    --card: oklch(0.22 0.02 260);
+    --card-foreground: oklch(0.90 0.01 260);
+    --muted: oklch(0.26 0.02 260);
+    --muted-foreground: oklch(0.72 0.02 260);
+    --primary: oklch(0.75 0.18 280);
+    --primary-foreground: oklch(0.15 0.02 260);
+    --accent: oklch(0.70 0.20 60);
+    --border: oklch(0.35 0.02 260);
+    --code-bg: oklch(0.26 0.02 260);
+    --destructive: oklch(0.65 0.20 25);
+    --success: oklch(0.72 0.17 150);
+    --warning: oklch(0.75 0.15 85);
+  }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+/* ─── Hero ─── */
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-bottom: 3rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 8%, transparent), color-mix(in oklab, var(--accent) 8%, transparent));
+  border: 1.5px solid var(--border);
+}
+
+.hero .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.hero .subtitle {
+  font-size: 1.1rem;
+  color: var(--muted-foreground);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ─── Section ─── */
+.section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+/* ─── KPI Strip ─── */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.kpi-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.kpi-card .value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: var(--font-mono);
+}
+
+.kpi-card .label {
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+  margin-top: 0.25rem;
+}
+
+/* ─── Cards ─── */
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card--accent {
+  border-left: 4px solid var(--primary);
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ─── Two Column Grid ─── */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ─── Architecture Diagram ─── */
+.arch-diagram {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.arch-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  min-height: 120px;
+}
+
+.arch-box {
+  background: var(--muted);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  text-align: center;
+  min-width: 140px;
+  transition: transform 0.2s;
+}
+
+.arch-box:hover { transform: translateY(-2px); }
+
+.arch-box.primary {
+  background: color-mix(in oklab, var(--primary) 15%, var(--card));
+  border-color: var(--primary);
+}
+
+.arch-box.accent {
+  background: color-mix(in oklab, var(--accent) 15%, var(--card));
+  border-color: var(--accent);
+}
+
+.arch-box .icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+.arch-box .name { font-weight: 600; font-size: 0.9rem; }
+.arch-box .desc { font-size: 0.75rem; color: var(--muted-foreground); }
+
+.arch-arrow {
+  font-size: 1.5rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* ─── Workflow Steps ─── */
+.workflow-steps {
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.workflow-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.workflow-step::before {
+  counter-increment: step;
+  content: counter(step);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.workflow-step .step-content h4 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.workflow-step .step-content p {
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+}
+
+/* ─── Mockup Browser ─── */
+.mockup-browser {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.mockup-bar {
+  background: var(--muted);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.mockup-dots span {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.mockup-url {
+  flex: 1;
+  background: var(--card);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.mockup-body {
+  padding: 1.5rem;
+}
+
+/* ─── Code Block ─── */
+.code-block {
+  background: var(--code-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  overflow-x: auto;
+  margin: 0.75rem 0;
+}
+
+.code-block .kw { color: var(--primary); }
+.code-block .fn { color: var(--accent); }
+.code-block .str { color: var(--success); }
+.code-block .cm { color: var(--muted-foreground); font-style: italic; }
+.code-block .num { color: var(--warning); }
+
+/* ─── Tags ─── */
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 0.35rem;
+}
+
+.tag--primary {
+  background: color-mix(in oklab, var(--primary) 15%, transparent);
+  color: var(--primary);
+}
+
+.tag--success {
+  background: color-mix(in oklab, var(--success) 15%, transparent);
+  color: var(--success);
+}
+
+.tag--warning {
+  background: color-mix(in oklab, var(--warning) 15%, transparent);
+  color: var(--warning);
+}
+
+.tag--accent {
+  background: color-mix(in oklab, var(--accent) 15%, transparent);
+  color: var(--accent);
+}
+
+/* ─── Comparison Table ─── */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table th {
+  background: var(--muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
+}
+
+.comparison-table tr:hover td {
+  background: color-mix(in oklab, var(--primary) 5%, transparent);
+}
+
+/* ─── Callout ─── */
+.callout {
+  background: color-mix(in oklab, var(--primary) 8%, var(--card));
+  border: 1.5px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+}
+
+.callout--success {
+  background: color-mix(in oklab, var(--success) 8%, var(--card));
+  border-color: var(--success);
+}
+
+.callout--warning {
+  background: color-mix(in oklab, var(--warning) 8%, var(--card));
+  border-color: var(--warning);
+}
+
+.callout .callout-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ─── Footer ─── */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.85rem;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="eyebrow">AI × Knowledge Management</div>
+    <h1>Plannotator × Obsidian</h1>
+    <p class="subtitle">
+      讓 AI Agent 的產出（Plan、Code Review、HTML）與個人知識庫無縫整合，
+      從「對話中產生」走向「結構化沉澱」。
+    </p>
+  </section>
+
+  <!-- KPI Strip -->
+  <div class="kpi-strip">
+    <div class="kpi-card">
+      <div class="value">3</div>
+      <div class="label">整合模式</div>
+    </div>
+    <div class="kpi-card">
+      <div class="value">9+</div>
+      <div class="label">支援 Agent</div>
+    </div>
+    <div class="kpi-card">
+      <div class="value">&lt;5 min</div>
+      <div class="label">從對話到 Wiki</div>
+    </div>
+    <div class="kpi-card">
+      <div class="value">0</div>
+      <div class="label">手動搬運</div>
+    </div>
+  </div>
+
+  <!-- Problem -->
+  <section class="section">
+    <h2 class="section-title">🎯 問題：對話結束，知識消失</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>❌ 傳統痛點</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 0.5rem;">💬 與 AI 的深度討論結束後，內容留在對話歷史</li>
+          <li style="margin-bottom: 0.5rem;">📝 手動複製到筆記？容易忘記、格式跑掉</li>
+          <li style="margin-bottom: 0.5rem;">🔍 重要決策散落在不同對話，無法追溯</li>
+          <li style="margin-bottom: 0.5rem;">👥 團隊無法看到彼此與 AI 的討論成果</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--success);">
+        <h3>✅ 整合後</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 0.5rem;">🔄 Plan 標註後自動存入 Obsidian vault</li>
+          <li style="margin-bottom: 0.5rem;">🗂️ Code Review 結構化歸檔，含 diff 摘要</li>
+          <li style="margin-bottom: 0.5rem;">🔗 自動建立雙向連結，串接知識圖譜</li>
+          <li style="margin-bottom: 0.5rem;">📊 知識花園自動吸收，長期累積價值</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="section">
+    <h2 class="section-title">🏗️ 架構：資料如何流動</h2>
+    <div class="arch-diagram">
+      <div class="arch-flow">
+        <div class="arch-box">
+          <div class="icon">🤖</div>
+          <div class="name">AI Agent</div>
+          <div class="desc">Pi / Claude Code / Copilot</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box primary">
+          <div class="icon">📐</div>
+          <div class="name">Plannotator</div>
+          <div class="desc">Plan / Code Review UI</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box accent">
+          <div class="icon">📝</div>
+          <div class="name">Note Action</div>
+          <div class="desc">存檔到 Obsidian / Bear</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">
+          <div class="icon">📚</div>
+          <div class="name">Obsidian Vault</div>
+          <div class="desc">結構化知識庫</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="border-color: var(--success);">
+          <div class="icon">🌱</div>
+          <div class="name">Knowledge Garden</div>
+          <div class="desc">長期知識累積</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">💡 關鍵設計</div>
+      <p style="font-size: 0.9rem;">
+        Plannotator 的 <strong>Shared Event API</strong> 讓任何 Agent 都能透過標準化事件（plan-review, code-review, annotate）觸發標注 UI。
+        存檔時產生帶有 YAML frontmatter 的 Markdown，Obsidian 可直接讀取。
+      </p>
+    </div>
+  </section>
+
+  <!-- 3 Integration Modes -->
+  <section class="section">
+    <h2 class="section-title">🔧 三種整合模式</h2>
+
+    <div class="grid-2">
+      <!-- Mode 1: Plan Review -->
+      <div class="card card--accent">
+        <h3>📋 Plan Review</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground); margin-bottom: 1rem;">
+          AI 產生執行計劃 → 人類在瀏覽器標註 approve/deny → 存入 Obsidian
+        </p>
+        <div class="code-block">
+<span class="cm">// Agent 端觸發</span>
+<span class="kw">plannotator</span> plan-review
+
+<span class="cm">// 或 Pi 指令</span>
+/plannotator <span class="str">切換 plan mode</span>
+        </div>
+        <div style="margin-top: 0.75rem;">
+          <span class="tag tag--primary">視覺化審閱</span>
+          <span class="tag tag--success">Approve/Deny</span>
+          <span class="tag tag--accent">Feedback 回傳</span>
+        </div>
+      </div>
+
+      <!-- Mode 2: Code Review -->
+      <div class="card card--accent">
+        <h3>🔍 Code Review</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground); margin-bottom: 1rem;">
+          支援 Git / GitHub PR / GitLab MR → 逐行標註 → 歸檔
+        </p>
+        <div class="code-block">
+<span class="cm">// Pi 指令</span>
+/plannotator-review
+
+<span class="cm">// 支援多種來源</span>
+<span class="str">✓</span> local git diff
+<span class="str">✓</span> GitHub Pull Request
+<span class="str">✓</span> GitLab Merge Request
+        </div>
+        <div style="margin-top: 0.75rem;">
+          <span class="tag tag--primary">Diff 標註</span>
+          <span class="tag tag--success">行級審閱</span>
+          <span class="tag tag--warning">Risk 標記</span>
+        </div>
+      </div>
+
+      <!-- Mode 3: Markdown Annotation -->
+      <div class="card card--accent">
+        <h3>✏️ Markdown Annotation</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground); margin-bottom: 1rem;">
+          對任意 Markdown 進行標註，包括 AI 生成的報告、文件
+        </p>
+        <div class="code-block">
+<span class="cm">// Pi 指令</span>
+/plannotator-annotate
+
+<span class="cm">// 自動觸發（pi-plannotator-auto）</span>
+open_annotate  <span class="str">工具自動呼叫</span>
+        </div>
+        <div style="margin-top: 0.75rem;">
+          <span class="tag tag--primary">任意 MD</span>
+          <span class="tag tag--accent">自動觸發</span>
+          <span class="tag tag--success">視覺化反饋</span>
+        </div>
+      </div>
+
+      <!-- Mode 4: Note Storage -->
+      <div class="card card--accent">
+        <h3>💾 Note Storage</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground); margin-bottom: 1rem;">
+          存檔時自動產生帶 frontmatter 的 Markdown，可選多種目的地
+        </p>
+        <div class="code-block">
+<span class="cm">// 支援的存檔目的地</span>
+<span class="str">✓</span> Obsidian vault <span class="cm">（推薦）</span>
+<span class="str">✓</span> Bear <span class="cm">（macOS）</span>
+<span class="str">✓</span> Octarine
+<span class="str">✓</span> 本地資料夾
+        </div>
+        <div style="margin-top: 0.75rem;">
+          <span class="tag tag--primary">YAML Frontmatter</span>
+          <span class="tag tag--success">Auto Tags</span>
+          <span class="tag tag--accent">Backlinks</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow Demo -->
+  <section class="section">
+    <h2 class="section-title">🔄 完整工作流：從對話到知識庫</h2>
+
+    <div class="mockup-browser">
+      <div class="mockup-bar">
+        <div class="mockup-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mockup-url">plannotator://plan-review</div>
+      </div>
+      <div class="mockup-body">
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="step-content">
+              <h4>1️⃣ AI 產生 Plan</h4>
+              <p>Agent 根據需求自動生成執行計劃，包含步驟、依賴、風險評估。Plannotator 以視覺化 Checklist 呈現。</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-content">
+              <h4>2️⃣ 人類瀏覽器標註</h4>
+              <p>在 Plannotator UI 中，逐項 approve / deny / add comment。支援行級標註和整體決策。</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-content">
+              <h4>3️⃣ Feedback 回傳 Agent</h4>
+              <p>人類的標註透過 Shared Event API 回傳給 Agent，Agent 據此調整執行方案。</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-content">
+              <h4>4️⃣ 存入 Obsidian</h4>
+              <p>標註完成的 Plan 自動存入 Obsidian vault，帶有 YAML frontmatter（時間、來源、tags）。</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-content">
+              <h4>5️⃣ 知識花園吸收</h4>
+              <p>透過 plannotator-sync → raw/conversations → ingest，自動成為 wiki 的一部分。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="section">
+    <h2 class="section-title">📊 整合前後比較</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>面向</th>
+          <th>❌ 沒有整合</th>
+          <th>✅ 整合後</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>對話結束後</strong></td>
+          <td>內容留在對話歷史，逐漸遺忘</td>
+          <td>自動存入 vault，結構化歸檔</td>
+        </tr>
+        <tr>
+          <td><strong>Code Review</strong></td>
+          <td>口頭描述，難以追溯</td>
+          <td>逐行標註 + diff 歸檔</td>
+        </tr>
+        <tr>
+          <td><strong>決策追溯</strong></td>
+          <td>散落不同對話，無法搜尋</td>
+          <td>帶 frontmatter，可搜尋、可連結</td>
+        </tr>
+        <tr>
+          <td><strong>團隊協作</strong></td>
+          <td>各自為政，重複討論</td>
+          <td>共享知識庫，成果可見</td>
+        </tr>
+        <tr>
+          <td><strong>知識累積</strong></td>
+          <td>對話結束 = 知識消失</td>
+          <td>對話結束 = 知識沉澱</td>
+        </tr>
+        <tr>
+          <td><strong>手動成本</strong></td>
+          <td>每次手動複製、格式調整</td>
+          <td>一鍵存檔，0 手動</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Real World Example -->
+  <section class="section">
+    <h2 class="section-title">💼 實際案例：我們的實驗</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>🧪 pi-plannotator-auto</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground); margin-bottom: 1rem;">
+          基於 Shared Event API 開發的自訂 Extension
+        </p>
+        <ul style="font-size: 0.9rem; list-style: none; padding: 0;">
+          <li style="margin-bottom: 0.5rem;">🔧 <code>open_annotate</code> 工具 — AI 自動觸發標注 UI</li>
+          <li style="margin-bottom: 0.5rem;">⌨️ <code>/annotate</code> 指令 — 手動標註最後訊息</li>
+          <li style="margin-bottom: 0.5rem;">👁️ 視覺化 approve/deny + feedback</li>
+          <li>📦 已發佈：<code>github.com/CheerioCorner/pi-plannotator-auto</code></li>
+        </ul>
+        <div style="margin-top: 1rem;">
+          <span class="tag tag--success">已驗證</span>
+          <span class="tag tag--primary">Apache 2.0</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔄 plannotator-sync skill</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground); margin-bottom: 1rem;">
+          自動同步 Plannotator 產出到知識庫
+        </p>
+        <div class="code-block" style="font-size: 0.8rem;">
+<span class="cm"># 完整流程</span>
+1. Plannotator 存檔到 <span class="str">plannotator/</span>
+2. 說「sync」→ 搬到 <span class="str">raw/conversations/</span>
+3. 說「ingest」→ 進入 <span class="str">wiki/</span>
+4. 知識花園吸收 → <span class="str">Notion</span>
+        </div>
+        <div style="margin-top: 1rem;">
+          <span class="tag tag--accent">全自動</span>
+          <span class="tag tag--success">已上線</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout--success callout" style="margin-top: 1rem;">
+      <div class="callout-title">📈 成果</div>
+      <p style="font-size: 0.9rem;">
+        從 2026-07 開始實驗，至今已累積：
+        <strong>25+ 個 source notes</strong>、
+        <strong>35+ 個 wiki 頁面</strong>、
+        <strong>6 顆知識花園種子</strong>。
+        所有與 AI 的深度討論都結構化沉澱，可追溯、可搜尋。
+      </p>
+    </div>
+  </section>
+
+  <!-- Getting Started -->
+  <section class="section">
+    <h2 class="section-title">🚀 如何開始</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>⚡ 快速安裝</h3>
+        <div class="code-block">
+<span class="cm"># 1. 安裝 Plannotator</span>
+<span class="kw">curl</span> -fsSL https://plannotator.ai/install.sh | bash
+
+<span class="cm"># 2. 安裝 Pi Extension</span>
+pi install npm:@plannotator/pi-extension
+
+<span class="cm"># 3. 開啟 Plan Mode</span>
+/plannotator
+
+<span class="cm"># 4. 設定 Obsidian 存檔</span>
+<span class="cm"># Plannotator Settings → Enable Obsidian</span>
+<span class="cm"># 選擇 vault 與 destination folder</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔧 進階整合（選配）</h3>
+        <div class="code-block">
+<span class="cm"># 安裝 pi-plannotator-auto</span>
+pi install git:github.com/CheerioCorner/pi-plannotator-auto
+
+<span class="cm"># 安裝 plannotator-sync skill</span>
+<span class="cm"># 已內建於 ~/.agents/skills/plannotator-sync/</span>
+
+<span class="cm"># 使用流程</span>
+1. AI 產生 Plan → 自動觸發瀏覽器標註
+2. 標註完成 → 自動存入 Obsidian
+3. 說「sync」→ 自動同步到知識庫
+        </div>
+      </div>
+    </div>
+
+    <div class="callout--warning callout" style="margin-top: 1rem;">
+      <div class="callout-title">⚠️ 注意事項</div>
+      <p style="font-size: 0.9rem;">
+        <strong>授權：</strong>Plannotator 採用 Apache 2.0 + MIT 雙授權，可自由 fork 與自定義開發。<br>
+        <strong>相容性：</strong>支援 Pi、Claude Code、Copilot CLI、Codex、Gemini CLI 等 9+ 種 Agent。<br>
+        <strong>環境需求：</strong>需要瀏覽器（用於標注 UI），支援 macOS / Linux / Windows。
+      </p>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section class="section">
+    <h2 class="section-title">🔮 未來展望</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>🤝 多人協作</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground);">
+          利用 Shared Event API 實現跨裝置、跨團隊的 Plan 審閱。
+          標註同步到共享 vault，團隊成員可即時看到彼此的決策。
+        </p>
+      </div>
+      <div class="card">
+        <h3>🧠 AI 自動摘要</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground);">
+          將人類的標註轉化為結構化 feedback，自動生成 learning log。
+          Agent 從歷史標註中學習人類偏好，提升未來提案品質。
+        </p>
+      </div>
+      <div class="card">
+        <h3>📊 知識圖譜視覺化</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground);">
+          將 Obsidian vault 的連結關係視覺化，搭配 Plannotator 的標註歷史，
+          呈現「哪些決策影響了哪些知識」。
+        </p>
+      </div>
+      <div class="card">
+        <h3>🔗 更多 Agent 整合</h3>
+        <p style="font-size: 0.9rem; color: var(--muted-foreground);">
+          目前已支援 9+ 種 Agent，持續擴展。
+          未來可能支援 MCP server 整合，成為 AI Agent 標註的通用標準。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Plannotator × Obsidian 整合展示 — 2026-08</p>
+    <p style="margin-top: 0.5rem;">
+      Plannotator: <a href="https://plannotator.ai" style="color: var(--primary);">plannotator.ai</a> |
+      GitHub: <a href="https://github.com/backnotprop/plannotator" style="color: var(--primary);">backnotprop/plannotator</a>
+    </p>
+  </footer>
+
+</div>
+
+</body>
+</html>

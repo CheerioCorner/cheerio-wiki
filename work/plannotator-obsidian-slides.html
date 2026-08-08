@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="plannotator-theme" content="host">
+<title>Plannotator × Obsidian — 簡報</title>
+<style>
+:root {
+  --background: oklch(0.97 0.005 260);
+  --foreground: oklch(0.18 0.02 260);
+  --card: oklch(1 0 0);
+  --muted: oklch(0.92 0.01 260);
+  --muted-foreground: oklch(0.40 0.02 260);
+  --primary: oklch(0.50 0.25 280);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.50 0.18 180);
+  --accent: oklch(0.60 0.22 50);
+  --success: oklch(0.45 0.20 150);
+  --warning: oklch(0.55 0.18 85);
+  --destructive: oklch(0.50 0.25 25);
+  --border: oklch(0.88 0.01 260);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-display: ui-serif, Georgia, 'Times New Roman', serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.15 0.02 260);
+    --foreground: oklch(0.90 0.01 260);
+    --card: oklch(0.22 0.02 260);
+    --muted: oklch(0.26 0.02 260);
+    --muted-foreground: oklch(0.72 0.02 260);
+    --primary: oklch(0.75 0.18 280);
+    --primary-foreground: oklch(0.15 0.02 260);
+    --accent: oklch(0.70 0.20 60);
+    --border: oklch(0.35 0.02 260);
+  }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Slide Container */
+.slides-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 6rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Slide Content */
+.slide-content {
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* Typography */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--muted-foreground);
+  max-width: 700px;
+}
+
+/* KPI Cards */
+.kpi-row {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+  justify-content: center;
+}
+
+.kpi {
+  text-align: center;
+  padding: 1.5rem 2rem;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 0.625rem;
+  min-width: 160px;
+}
+
+.kpi .num {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+
+.kpi .label {
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+  margin-top: 0.5rem;
+}
+
+/* Lists */
+.feature-list {
+  list-style: none;
+  font-size: 1.2rem;
+}
+
+.feature-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.feature-list li:last-child {
+  border-bottom: none;
+}
+
+.icon {
+  font-size: 1.5rem;
+  width: 2rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Architecture Flow */
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.flow-box {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 0.625rem;
+  padding: 1.25rem 1.75rem;
+  text-align: center;
+  min-width: 140px;
+}
+
+.flow-box.highlight {
+  background: color-mix(in oklab, var(--primary) 15%, var(--card));
+  border-color: var(--primary);
+}
+
+.flow-box .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+.flow-box .name { font-weight: 600; font-size: 1rem; }
+
+.flow-arrow {
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+/* Comparison */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.compare-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 0.625rem;
+  padding: 1.5rem;
+}
+
+.compare-card.bad {
+  border-left: 4px solid var(--destructive);
+}
+
+.compare-card.good {
+  border-left: 4px solid var(--success);
+}
+
+.compare-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.compare-card ul {
+  list-style: none;
+  font-size: 1rem;
+}
+
+.compare-card ul li {
+  padding: 0.5rem 0;
+  color: var(--muted-foreground);
+}
+
+/* Code Block */
+.code {
+  background: var(--muted);
+  border-radius: 0.625rem;
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag-purple {
+  background: color-mix(in oklab, var(--primary) 15%, transparent);
+  color: var(--primary);
+}
+
+.tag-green {
+  background: color-mix(in oklab, var(--success) 15%, transparent);
+  color: var(--success);
+}
+
+.tag-orange {
+  background: color-mix(in oklab, var(--accent) 15%, transparent);
+  color: var(--accent);
+}
+
+/* Callout */
+.callout {
+  background: color-mix(in oklab, var(--primary) 8%, var(--card));
+  border: 1.5px solid var(--primary);
+  border-radius: 0.625rem;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 100;
+}
+
+.nav button {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--foreground);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.nav button:hover {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.progress {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+  z-index: 100;
+}
+
+.page-num {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+  z-index: 100;
+}
+
+/* Two Column */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.col {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 0.625rem;
+  padding: 1.5rem;
+}
+
+.col h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.col ul {
+  list-style: none;
+  font-size: 1rem;
+}
+
+.col ul li {
+  padding: 0.4rem 0;
+  color: var(--muted-foreground);
+}
+</style>
+</head>
+<body>
+
+<div class="slides-container">
+
+  <!-- Slide 1: Title -->
+  <div class="slide active" data-slide="1">
+    <div class="slide-content" style="text-align: center;">
+      <div class="eyebrow">AI × Knowledge Management</div>
+      <h1>Plannotator × Obsidian</h1>
+      <p class="subtitle" style="margin: 0 auto;">
+        讓 AI Agent 的產出與個人知識庫無縫整合<br>
+        從「對話中產生」走向「結構化沉澱」
+      </p>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="num">3</div>
+          <div class="label">整合模式</div>
+        </div>
+        <div class="kpi">
+          <div class="num">9+</div>
+          <div class="label">支援 Agent</div>
+        </div>
+        <div class="kpi">
+          <div class="num">0</div>
+          <div class="label">手動搬運</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2: Problem -->
+  <div class="slide" data-slide="2">
+    <div class="slide-content">
+      <div class="eyebrow">問題</div>
+      <h2>對話結束，知識消失</h2>
+      <div class="compare-grid">
+        <div class="compare-card bad">
+          <h3>❌ 傳統痛點</h3>
+          <ul>
+            <li>💬 深度討論結束後，內容留在對話歷史</li>
+            <li>📝 手動複製到筆記？容易忘記、格式跑掉</li>
+            <li>🔍 重要決策散落在不同對話</li>
+            <li>👥 團隊看不到彼此與 AI 的討論成果</li>
+          </ul>
+        </div>
+        <div class="compare-card good">
+          <h3>✅ 整合後</h3>
+          <ul>
+            <li>🔄 Plan 標註後自動存入 Obsidian</li>
+            <li>🗂️ Code Review 結構化歸檔</li>
+            <li>🔗 自動建立雙向連結</li>
+            <li>📊 知識花園自動吸收</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Architecture -->
+  <div class="slide" data-slide="3">
+    <div class="slide-content">
+      <div class="eyebrow">架構</div>
+      <h2>資料如何流動</h2>
+      <div class="flow">
+        <div class="flow-box">
+          <div class="emoji">🤖</div>
+          <div class="name">AI Agent</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box highlight">
+          <div class="emoji">📐</div>
+          <div class="name">Plannotator</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box" style="border-color: var(--accent);">
+          <div class="emoji">📝</div>
+          <div class="name">Note Action</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">
+          <div class="emoji">📚</div>
+          <div class="name">Obsidian</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box" style="border-color: var(--success);">
+          <div class="emoji">🌱</div>
+          <div class="name">Knowledge Garden</div>
+        </div>
+      </div>
+      <div class="callout">
+        💡 <strong>關鍵：</strong>Shared Event API 讓任何 Agent 都能觸發標準化標注事件，存檔時自動產生帶 YAML frontmatter 的 Markdown。
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Three Modes -->
+  <div class="slide" data-slide="4">
+    <div class="slide-content">
+      <div class="eyebrow">功能</div>
+      <h2>三種整合模式</h2>
+      <div class="two-col">
+        <div class="col">
+          <h3>📋 Plan Review</h3>
+          <p style="color: var(--muted-foreground); margin-bottom: 1rem;">
+            AI 產生執行計劃 → 人類在瀏覽器標註 → 存入 Obsidian
+          </p>
+          <div class="code" style="font-size: 0.85rem;">
+/plannotator  <span style="color: var(--primary);">切換 plan mode</span>
+          </div>
+          <div>
+            <span class="tag tag-purple">視覺化審閱</span>
+            <span class="tag tag-green">Approve/Deny</span>
+          </div>
+        </div>
+        <div class="col">
+          <h3>🔍 Code Review</h3>
+          <p style="color: var(--muted-foreground); margin-bottom: 1rem;">
+            支援 Git / GitHub PR / GitLab MR → 逐行標註
+          </p>
+          <div class="code" style="font-size: 0.85rem;">
+/plannotator-review
+          </div>
+          <div>
+            <span class="tag tag-purple">Diff 標註</span>
+            <span class="tag tag-orange">Risk 標記</span>
+          </div>
+        </div>
+        <div class="col">
+          <h3>✏️ Markdown Annotation</h3>
+          <p style="color: var(--muted-foreground); margin-bottom: 1rem;">
+            對任意 Markdown 進行標註
+          </p>
+          <div class="code" style="font-size: 0.85rem;">
+open_annotate  <span style="color: var(--success);">自動觸發</span>
+          </div>
+          <div>
+            <span class="tag tag-purple">任意 MD</span>
+            <span class="tag tag-green">自動觸發</span>
+          </div>
+        </div>
+        <div class="col">
+          <h3>💾 Note Storage</h3>
+          <p style="color: var(--muted-foreground); margin-bottom: 1rem;">
+            存檔時自動產生 frontmatter Markdown
+          </p>
+          <div class="code" style="font-size: 0.85rem;">
+<span style="color: var(--success);">✓</span> Obsidian  <span style="color: var(--success);">✓</span> Bear  <span style="color: var(--success);">✓</span> Octarine
+          </div>
+          <div>
+            <span class="tag tag-purple">YAML Frontmatter</span>
+            <span class="tag tag-green">Auto Tags</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Demo Workflow -->
+  <div class="slide" data-slide="5">
+    <div class="slide-content">
+      <div class="eyebrow">Demo</div>
+      <h2>完整工作流</h2>
+      <ul class="feature-list">
+        <li>
+          <span class="icon">1️⃣</span>
+          <div>
+            <strong>AI 產生 Plan</strong>
+            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
+              Agent 根據需求自動生成執行計劃，Plannotator 視覺化呈現
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="icon">2️⃣</span>
+          <div>
+            <strong>人類瀏覽器標註</strong>
+            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
+              在 Plannotator UI 中逐項 approve / deny / comment
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="icon">3️⃣</span>
+          <div>
+            <strong>Feedback 回傳 Agent</strong>
+            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
+              標註透過 Shared Event API 回傳，Agent 據此調整方案
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="icon">4️⃣</span>
+          <div>
+            <strong>存入 Obsidian</strong>
+            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
+              自動存入 vault，帶有 YAML frontmatter + tags
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="icon">5️⃣</span>
+          <div>
+            <strong>知識花園吸收</strong>
+            <div style="color: var(--muted-foreground); font-size: 0.95rem;">
+              sync → raw/conversations → ingest → wiki
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Slide 6: Real Example -->
+  <div class="slide" data-slide="6">
+    <div class="slide-content">
+      <div class="eyebrow">案例</div>
+      <h2>我們的實驗</h2>
+      <div class="two-col">
+        <div class="col">
+          <h3>🧪 pi-plannotator-auto</h3>
+          <ul>
+            <li><code>open_annotate</code> 工具 — AI 自動觸發標注</li>
+            <li><code>/annotate</code> 指令 — 手動標註</li>
+            <li>視覺化 approve/deny + feedback</li>
+            <li style="color: var(--success);">✓ 已發佈到 GitHub</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>🔄 plannotator-sync</h3>
+          <ul>
+            <li>Plannotator 存檔到 <code>plannotator/</code></li>
+            <li>sync → <code>raw/conversations/</code></li>
+            <li>ingest → <code>wiki/</code></li>
+            <li style="color: var(--success);">✓ 已上線運作</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout" style="margin-top: 1.5rem;">
+        📈 <strong>成果：</strong>25+ source notes、35+ wiki 頁面、6 顆知識花園種子
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Getting Started -->
+  <div class="slide" data-slide="7">
+    <div class="slide-content">
+      <div class="eyebrow">開始使用</div>
+      <h2>如何開始</h2>
+      <div class="code" style="font-size: 1rem;">
+<span style="color: var(--muted-foreground);"># 1. 安裝 Plannotator</span>
+<span style="color: var(--primary);">curl</span> -fsSL https://plannotator.ai/install.sh | bash
+
+<span style="color: var(--muted-foreground);"># 2. 安裝 Pi Extension</span>
+pi install npm:@plannotator/pi-extension
+
+<span style="color: var(--muted-foreground);"># 3. 開啟 Plan Mode</span>
+/plannotator
+
+<span style="color: var(--muted-foreground);"># 4. 設定 Obsidian 存檔</span>
+<span style="color: var(--muted-foreground);"># Plannotator Settings → Enable Obsidian</span>
+      </div>
+      <div class="callout" style="margin-top: 1.5rem;">
+        ⚠️ <strong>授權：</strong>Apache 2.0 + MIT 雙授權，可自由 fork 與自定義開發
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 8: Next Steps -->
+  <div class="slide" data-slide="8">
+    <div class="slide-content">
+      <div class="eyebrow">展望</div>
+      <h2>未來方向</h2>
+      <div class="two-col">
+        <div class="col">
+          <h3>🤝 多人協作</h3>
+          <p style="color: var(--muted-foreground);">
+            跨裝置、跨團隊的 Plan 審閱，標註同步到共享 vault
+          </p>
+        </div>
+        <div class="col">
+          <h3>🧠 AI 自動摘要</h3>
+          <p style="color: var(--muted-foreground);">
+            標註轉化為結構化 feedback，Agent 學習人類偏好
+          </p>
+        </div>
+        <div class="col">
+          <h3>📊 知識圖譜</h3>
+          <p style="color: var(--muted-foreground);">
+            視覺化 vault 連結關係，呈現決策與知識的關聯
+          </p>
+        </div>
+        <div class="col">
+          <h3>🔗 MCP 整合</h3>
+          <p style="color: var(--muted-foreground);">
+            成為 AI Agent 標註的通用標準
+          </p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 3rem;">
+        <h3 style="font-size: 1.3rem; color: var(--primary);">
+          🚀 準備好開始了嗎？
+        </h3>
+        <p style="color: var(--muted-foreground); margin-top: 0.5rem;">
+          plannotator.ai
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="page-num" id="pageNum">1 / 8</div>
+<div class="progress" id="progress" style="width: 12.5%;"></div>
+<div class="nav">
+  <button onclick="prevSlide()">← 上一頁</button>
+  <button onclick="nextSlide()">下一頁 →</button>
+</div>
+
+<script>
+let currentSlide = 1;
+const totalSlides = 8;
+
+function showSlide(n) {
+  if (n < 1 || n > totalSlides) return;
+  
+  document.querySelector('.slide.active').classList.remove('active');
+  document.querySelector(`[data-slide="${n}"]`).classList.add('active');
+  
+  currentSlide = n;
+  document.getElementById('pageNum').textContent = `${n} / ${totalSlides}`;
+  document.getElementById('progress').style.width = `${(n / totalSlides) * 100}%`;
+}
+
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+    e.preventDefault();
+    nextSlide();
+  } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+    e.preventDefault();
+    prevSlide();
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    showSlide(1);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    showSlide(totalSlides);
+  }
+});
+
+// Click to advance (on slide area, not buttons)
+document.querySelector('.slides-container').addEventListener('click', (e) => {
+  if (!e.target.closest('.nav')) {
+    const rect = e.target.closest('.slides-container').getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    if (clickX > rect.width / 2) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  }
+});
+</script>
+
+</body>
+</html>

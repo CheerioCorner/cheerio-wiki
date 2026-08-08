@@ -5,6 +5,28 @@
 
 ## In progress
 
+- [ ] W-2026-08-038 Notion 整合設計全面重構：Schema + Skill + 回流 ⏫ #knowledge #notion
+  - next: 為 7 筆種子撰寫完整知識卡片（用 notion-page-content skill）
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]、.pi/gemini-runs/notion-review/session-summary.md
+  - 已完成：
+    - ✅ Phase 1：Topic 重組（ai-agent 拆分為 5 個子 topic）+ Schema 對齊 + Manifest 重構
+    - ✅ Phase 2：Notion Relation 多對多修復（7 筆種子全部修復）
+    - ✅ Phase 3：建立 3 個新 Skill（notion-page-content、trigger、visualmap）
+    - ✅ Phase 4：Gemini 完整存取（gemini-notion-workflow skill）
+    - ✅ Phase 5：Notion→Wiki 回流機制（notion-wiki-feedback skill）
+  - 待辦（🔴 高優先）：
+    - ⏳ 為 7 筆種子撰寫完整知識卡片
+    - ⏳ 為 5 個專題撰寫完整研究報告
+    - ⏳ 為 NPM Publishing 建立 wiki 頁面（目前無 wiki 來源）
+  - 待辦（🟡 中優先）：
+    - ⏳ 為 2-3 個種子建立視覺地圖
+    - ⏳ 測試回流機制
+    - ⏳ 更新所有 Sync Status
+  - 待辦（🟢 低優先）：
+    - ⏳ 建立 gemini-wiki-co-maintainer Skill
+    - ⏳ 設定 cron 定期觸發 Gemini 巡檢
+    - ⏳ 測試完整資料流閉環
+
 - [ ] W-2026-08-037 知識花園加強：Relation 關聯 + 視覺地圖 + 改名 ⏫ #knowledge #notion
   - next: 手動在 Notion 視覺地圖 Database 新增進階欄位（類型、關聯種子、網址、描述、建立時間、標籤）
   - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、https://app.notion.com/p/5f2a0e0f-91de-466f-879e-9042c8a02169
