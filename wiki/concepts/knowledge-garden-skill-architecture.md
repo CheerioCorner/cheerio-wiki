@@ -10,6 +10,8 @@ canonical: concepts/knowledge-garden-skill-architecture
 ---
 
 > 知識花園相關 skills 的架構全景圖，描述 11 個 skill 的職責、資料流和關聯。
+> 
+> 2026-08-08：經 Copilot + Gemini 三輪討論，確立最終架構決策。
 
 ---
 
@@ -88,7 +90,35 @@ canonical: concepts/knowledge-garden-skill-architecture
 
 ---
 
-## 資料流方向
+## 全域資料流圖（2026-08-08 三輪討論後更新）
+
+```
+[輸入源 / User / Web Search]
+        │
+        ▼
+[Agent 處理層]
+  ├─ 啟發式判斷 / 顯式覆寫 (Mode: Seed / Topic / Map)
+  ├─ 讀取 Schema (via ~/.agents/schemas/seed_schema.yaml)
+  └─ Evaluator-Optimizer Loop (非阻斷品質檢查)
+        │
+        ├─────────────────────────────────────────┐
+        ▼                                         ▼
+[元資料與結構判斷]                     [內容與模板生成]
+ (knowledge-garden)                    (page-content)
+        │                                         │
+        └────────────────────┬────────────────────┘
+                             ▼
+              [持久層：Local Wiki (.md)]
+                 ├─ 種子筆記 (Seed Notes)
+                 ├─ 研究專題 (Research Topics)
+                 └─ 視覺地圖 (Visual Maps - Mermaid/SVG)
+                             │
+                             ▼ (Cron Polling 同步引擎)
+            [展示層：Notion Workspace]
+                 ├─ 知識資料庫
+                 ├─ 專題畫布頁面
+                 └─ 視覺地圖區塊
+```
 
 ### 路徑 A：wiki → Notion（整理到花園）
 ```
@@ -114,6 +144,35 @@ Notion 觸發條件 → knowledge-garden-trigger（偵測+評估）→ 路徑 A 
 ```
 YouTube/PDF/URL → wiki-youtube / wiki-pdf → raw/ → wiki-ingest → wiki 頁面
 ```
+
+---
+
+## 三輪討論最終決策（Copilot + Gemini 共識）
+
+### 決策 A：Schema 位置
+- **決策**：`~/.agents/schemas/seed_schema.yaml`
+- **理由**：全域資產，所有 skill 統一訪問，支援專案級覆寫
+- **結構**：`properties`（Notion 欄位）+ `content_body`（頁面模板）
+
+### 決策 B：knowledge-garden 模板處理
+- **決策**：改為引用 page-content skill，刪除模板細節
+- **理由**：職責分離，消除重複維護（SSOT）
+
+### 決策 C：資料流擴展
+- **決策**：Wiki = 持久層，Notion = 展示層，納入研究專題+視覺地圖
+- **理由**：不需第三個儲存層，研究專題存在 wiki/topics/，視覺地圖存在 wiki/visualizations/
+
+### 決策 D：事件同步
+- **決策**：不需要事件總線/webhook，用 cron poll
+- **理由**：個人 agent 系統不需要 webhook 架構
+
+### 決策 E：品質關卡
+- **決策**：Evaluator-Optimizer Loop（prompt 自我評估），非阻斷式
+- **理由**：無程式碼環境下最實際的品質控制方式
+
+### 決策 F：Mode 切換
+- **決策**：啟發式判斷 + 顯式覆寫
+- **理由**：兼顾自然語言流暢性與精確控制
 
 ---
 

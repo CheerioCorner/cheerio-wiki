@@ -3,18 +3,17 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
-## [2026-08-08] ingest | 知識花園 Skill 架構重構 + 命名統一
+## [2026-08-08] ingest | 知識花園 Skill 架構重構 + 命名統一 + 三輪討論決策
 
-- 重構 10 個相關 skills：
-  - 拆分 wiki-knowledge → wiki-ingest + wiki-query + wiki-lint
-  - 合併 knowledge-garden-trigger + notion-wiki-feedback → knowledge-garden-trigger
-  - 重寫 notion-page-content → knowledge-garden-page-content
-  - rename notion-to-raw → knowledge-garden-to-raw
-  - rename youtube-to-wiki → wiki-youtube
-  - rename pdf-to-wiki → wiki-pdf
-  - 刪除 wiki-knowledge、notion-wiki-feedback
-- 命名規則：`knowledge-garden-*` = Notion 花園、`wiki-*` = 大腦
-- 新增 concepts：knowledge-garden-skill-architecture
+- 重構 10 個相關 skills + 命名統一
+- Copilot + Gemini 三輪架構討論，確立6項最終決策：
+  - Schema 位置：~/.agents/schemas/seed_schema.yaml
+  - knowledge-garden 模板改為引用 page-content
+  - 資料流擴展：Wiki=持久層、Notion=展示層、納入研究專題+視覺地圖
+  - 不需要事件總線，用 cron poll
+  - 品質關卡：Evaluator-Optimizer Loop（prompt 自我評估）
+  - Mode 切換：啟發式判斷 + 顯式覆寫
+- 新增 concepts：knowledge-garden-skill-architecture（含完整資料流圖）
 - refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]
 
 ## [2026-08-08] ingest | Plannotator Copilot CLI 安裝手冊（PDF）+ MarkItDown 研究
