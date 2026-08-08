@@ -15,9 +15,9 @@
     - ✅ Phase 4：Gemini 完整存取（gemini-notion-workflow skill）
     - ✅ Phase 5：Notion→Wiki 回流機制（notion-wiki-feedback skill）
   - 待辦（🔴 高優先）：
-    - ⏳ 為 7 筆種子撰寫完整知識卡片
-    - ⏳ 為 5 個專題撰寫完整研究報告
-    - ⏳ 為 NPM Publishing 建立 wiki 頁面（目前無 wiki 來源）
+    - ✅ 為 7 筆種子撰寫完整知識卡片
+    - ✅ 為 5 個專題撰寫完整研究報告
+    - ✅ 為 NPM Publishing 建立 wiki 頁面
   - 待辦（🟡 中優先）：
     - ⏳ 為 2-3 個種子建立視覺地圖
     - ⏳ 測試回流機制
@@ -26,6 +26,15 @@
     - ⏳ 建立 gemini-wiki-co-maintainer Skill
     - ⏳ 設定 cron 定期觸發 Gemini 巡檢
     - ⏳ 測試完整資料流閉環
+
+- [ ] W-2026-08-039 Notion 頁面內容逐一手動調整 ⏫ #knowledge #notion
+  - next: 人類逐一手動調整每個 Notion 頁面的內容
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、W-2026-08-038
+  - 說明：人類審閱 AI 自動產生的 7 筆種子 + 5 個專題頁面內容，逐一調整至滿意
+  - 頁面清單：
+    - 種子：Plannotator, OpenCodeReview, Omnigent, OKF, mattpocock/skills, Agent Extension, NPM Publishing
+    - 專題：AI Agent 架構研究, Extension 開發生態, Meta-Harness, AI Coding Workflow, 知識管理系統
+  - 進行方式：人類在 Notion UI 直接編輯，或告訴 AI 要改什麼，AI 執行 ntn pages update
 
 - [ ] W-2026-08-037 知識花園加強：Relation 關聯 + 視覺地圖 + 改名 ⏫ #knowledge #notion
   - next: 手動在 Notion 視覺地圖 Database 新增進階欄位（類型、關聯種子、網址、描述、建立時間、標籤）
