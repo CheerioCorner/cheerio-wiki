@@ -98,7 +98,7 @@ canonical: concepts/knowledge-garden-skill-architecture
         ▼
 [Agent 處理層]
   ├─ 啟發式判斷 / 顯式覆寫 (Mode: Seed / Topic / Map)
-  ├─ 讀取 Schema (via ~/.agents/schemas/seed_schema.yaml)
+  ├─ 讀取 Schema (via knowledge-garden/schemas/seed_schema.yaml)
   └─ Evaluator-Optimizer Loop (非阻斷品質檢查)
         │
         ├─────────────────────────────────────────┐
@@ -150,7 +150,7 @@ YouTube/PDF/URL → wiki-youtube / wiki-pdf → raw/ → wiki-ingest → wiki �
 ## 三輪討論最終決策（Copilot + Gemini 共識）
 
 ### 決策 A：Schema 位置
-- **決策**：`~/.agents/schemas/seed_schema.yaml`
+- **決策**：`~/.agents/skills/knowledge-garden/schemas/seed_schema.yaml`（跟著主 skill 走）
 - **理由**：全域資產，所有 skill 統一訪問，支援專案級覆寫
 - **結構**：`properties`（Notion 欄位）+ `content_body`（頁面模板）
 
