@@ -14,6 +14,14 @@
 - 清理：卸載我安裝的 PyMuPDF（markitdown 已取代）
 - refs: [[wiki/sources/2026-07-23-plannotator-copilot-setup|source note]]、[[wiki/entities/plannotator|plannotator]]、[[wiki/entities/markitdown|markitdown]]、[[raw/web/2026-07-23-plannotator-copilot-setup-manual|raw]]
 
+## [2026-08-08] ingest | Plannotator × Obsidian 簡報企劃
+
+- 來源：Pi 整理的簡報企劃文件（經過 Gemini + Copilot 雙重審閱）
+- 新增：source note（2026-08-08-plannotator-obsidian-presentation）
+- 更新：skill.md、knowledge-mgmt.md topic nav、index.md
+- 重點：14 頁 HTML slide deck 企劃，知識迴流系統報告，系統架構課分享會
+- refs: [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|source note]]
+
 ## [2026-08-08] ingest | guizang-ppt-skill + huashu-design
 
 - 來源：raw/web/ — 歸藏 PPT Skill + 花叔 Huashu Design GitHub README
