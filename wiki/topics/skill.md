@@ -37,6 +37,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-08-guizang-ppt-skill|guizang-ppt-skill GitHub README]] — 歸藏 HTML PPT 技能
 - [[wiki/sources/2026-08-08-huashu-design|huashu-design GitHub README]] — 花叔 HTML 原生設計技能
 - [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|Plannotator × Obsidian 簡報企劃]] — 知識迴流系統報告簡報企劃（Gemini+Copilot 審閱）
+- [[wiki/concepts/html-slide-deck-workflow|HTML Slide Deck 製作工作流]] — 整合 guizang + huashu 的簡報製作流程 🛠️
 
 ## Visualizations
 

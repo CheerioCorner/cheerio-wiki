@@ -29,7 +29,7 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-08（新增 Plannotator × Obsidian 簡報企劃 source note）
+- **最後更新**：2026-08-08（新增 HTML Slide Deck 製作工作流 concept + presentation skill）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：26（全部已補 provenance）
 - **Canonical collections**：16 concepts、27 entities、4 decisions、3 discussions

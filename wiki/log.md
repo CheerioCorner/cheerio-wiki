@@ -29,6 +29,15 @@
 - 清理：卸載我安裝的 PyMuPDF（markitdown 已取代）
 - refs: [[wiki/sources/2026-07-23-plannotator-copilot-setup|source note]]、[[wiki/entities/plannotator|plannotator]]、[[wiki/entities/markitdown|markitdown]]、[[raw/web/2026-07-23-plannotator-copilot-setup-manual|raw]]
 
+## [2026-08-08] ingest | HTML Slide Deck 製作工作流 + presentation skill
+
+- 來源：Plannotator × Obsidian 簡報製作過程的經驗沉澱
+- 新增 concept：html-slide-deck-workflow（整合 guizang + huashu 設計系統）
+- 新增 skill：presentation（讓「做簡報」自動觸發正確工作流）
+- 更新：skill.md topic nav、index.md
+- 重點：guizang 靛藍瓷主題 + huashu deck_stage.js + 反 AI slop + Gemini/Copilot 雙審閱
+- refs: [[wiki/concepts/html-slide-deck-workflow|concept]]、presentation skill
+
 ## [2026-08-08] ingest | Plannotator × Obsidian 簡報企劃
 
 - 來源：Pi 整理的簡報企劃文件（經過 Gemini + Copilot 雙重審閱）
