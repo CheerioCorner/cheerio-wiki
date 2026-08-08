@@ -17,6 +17,8 @@ updated: 2026-08-08
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Pi skills 機制：intercept → markup → read tool 🛠️
 - [[wiki/entities/skillopt|SkillOpt]] — 微軟技能優化器，文字空間優化實現 Agent 自我進化
 - [[wiki/entities/agentskills-io-standard|agentskills-io-standard]] — AI Agent Skill 開放標準，跨平台相容 🛠️
+- [[wiki/entities/guizang-ppt-skill|guizang-ppt-skill]] — 歸藏 HTML PPT 技能，電子雜誌 + 瑞士國際主義雙視覺系統
+- [[wiki/entities/huashu-design|huashu-design]] — 花叔 HTML 原生設計技能，原型/簡報/動畫/MP4/5維評審
 
 ## Concepts
 
@@ -31,6 +33,8 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme|Hermes Agent GitHub README]] — Skills hub + learning loop
 - [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research|Wow 5支AI Agent研究]] — SkillOpt + 其他 AI Agent 前沿研究
 - [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough]] — Skills 機制解析
+- [[wiki/sources/2026-08-08-guizang-ppt-skill|guizang-ppt-skill GitHub README]] — 歸藏 HTML PPT 技能
+- [[wiki/sources/2026-08-08-huashu-design|huashu-design GitHub README]] — 花叔 HTML 原生設計技能
 
 ## Visualizations
 

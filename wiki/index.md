@@ -29,7 +29,7 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-21（新增 LangGraph entity + source note）
+- **最後更新**：2026-08-08（新增 guizang-ppt-skill + huashu-design）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：26（全部已補 provenance）
 - **Canonical collections**：15 concepts、27 entities、4 decisions、3 discussions
@@ -59,7 +59,7 @@
 
 - [[wiki/concepts/README|Concepts]] — 可跨專案重用的抽象知識
 - [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作（含 [[wiki/entities/open-code-review|OpenCodeReview]] 19.3k ⭐、[[wiki/entities/learning-loop|Learning Loop]]）
-- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（26 筆，含 [[wiki/sources/2026-08-20-opencode-review-deep-research|OCR Gemini 研究]]、[[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]]）
+- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（28 筆，含 [[wiki/sources/2026-08-20-opencode-review-deep-research|OCR Gemini 研究]]、[[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]]、[[wiki/sources/2026-08-08-guizang-ppt-skill|guizang-ppt-skill]]、[[wiki/sources/2026-08-08-huashu-design|huashu-design]]）
 - [[wiki/decisions/README|Decisions]] — 全域／跨專案已確認選擇
 - [[wiki/discussions/README|Discussions]] — 尚未定案的方案與研究問題
 

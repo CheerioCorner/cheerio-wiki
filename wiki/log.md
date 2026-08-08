@@ -3,6 +3,15 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-08] ingest | guizang-ppt-skill + huashu-design
+
+- 來源：raw/web/ — 歸藏 PPT Skill + 花叔 Huashu Design GitHub README
+- 新增 entities：guizang-ppt-skill、huashu-design
+- 新增 sources：2026-08-08-guizang-ppt-skill、2026-08-08-huashu-design
+- 更新：skill.md topic nav、index.md
+- 重點：兩款 HTML 原生設計技能，guizang 專注 PPT（雙視覺系統+演講者模式），huashu 覆蓋原型/動畫/MP4/評審
+- refs: [[wiki/entities/guizang-ppt-skill|guizang-ppt-skill]]、[[wiki/entities/huashu-design|huashu-design]]、[[wiki/sources/2026-08-08-guizang-ppt-skill|source 1]]、[[wiki/sources/2026-08-08-huashu-design|source 2]]
+
 ## [2026-08-21] ingest | LangGraph in 10 Minutes (Explained Clearly)
 
 - 來源：YouTube — Cloud Codes 解析 LangGraph runtime 架構
