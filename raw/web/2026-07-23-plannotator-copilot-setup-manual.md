@@ -1,190 +1,253 @@
 ---
-title: Plannotator IT 安裝手冊（Copilot CLI 整合）
+title: Plannotator 安裝手冊（Copilot CLI 整合）
 source_type: pdf
 source_file: "C:/Users/User/Downloads/安裝手冊.pdf"
 original_date: 2026-07-23
 extracted_date: 2026-08-08
-extraction_method: pdftotext + pymupdf (image extraction disabled)
+extraction_method: markitdown (Microsoft)
 ---
 
-# Plannotator IT 安裝手冊
+# Plannotator 安裝手冊
 
 > 來源：PDF 檔案 `安裝手冊.pdf`，2026-07-23 建立
-> 內容：Plannotator 與 GitHub Copilot CLI 的整合安裝指南
+> 提取工具：markitdown (Microsoft)
 
 ---
 
-## 概述
+# Plannotator 安裝手冊（給長榮 IT 同仁自行安裝）
 
-Plannotator IT 是一套將 Plannotator 與 GitHub Copilot CLI 整合的解決方案。主要用途：
+適用對象：已經在用 GitHub Copilot CLI／GitHub Copilot App 的同仁 適用平台：Windows
 
-- 透過 GitHub Copilot CLI 和 GitHub Copilot App 在 Windows PowerShell 中使用 Plannotator
-- Plannotator 在 Copilot 的 plan mode 中攔截 AI 請求（localhost），人類可以在瀏覽器中標注後再發送 Prompt 給 Copilot
+（PowerShell） 目的：在自己的電腦上裝好 Plannotator，讓 Copilot 在 plan mode 要退出時，自動跳出
 
-**Skill 名稱：** plannotator-copilot-setup
+瀏覽器讓你先審查、標註、核准或打回計畫，而不是盲目信任 AI 產生的計畫。 隱私預設：本手冊會順
 
-**安裝 Skill：**
-```
-npx skills@latest add https://github.com/EVACopilot/skills-itd-aas --skill plannotator-copilot-setup
-```
+手把「分享到雲端」功能關掉，全程只在 localhost 執行，不會把你的計畫內容送到外部伺服器。
 
-Copilot CLI 和 App 都會安裝對應的 Skill。
+方法一（推薦）：複製一段 Prompt，讓你的 Copilot 自己動手裝
 
-**使用方式：** `/plannotator-copilot-setup`
+安裝SKILL - plannotator-copilot-setup
 
-AI 會引導你完成 Prompt 設定（分 3 個階段），設定完成後 Prompt 就會自動送給 Copilot。
+npx skills@latest add https://github.com/EVACopilot/skills-itd-aas --skill
+plannotator-copilot-setup
 
----
+到 Copilot CLI／App 的對話輸入框（不是終端機），執行 Skill
 
-## 快速安裝（3 步驟）
+/plannotator-copilot-setup
 
-### 步驟 1：安裝 Plannotator
+AI 會完成同方法二的 Prompt 內容後，會回報一份「你接下來要手動做的事」清單，照著做完第 3 步就完成安
 
-在 Windows PowerShell 中執行：
+裝了。
 
-```powershell
+方法二（推薦）：複製一段 Prompt，讓你的 Copilot 自己動手裝
+
+不用自己打指令，把下面整段複製貼到 Copilot CLI／App 的對話輸入框（不是終端機），送出就好：
+
+請幫我在這台 Windows 電腦上安裝 Plannotator（一個給 AI coding agent 用的本機
+Plan/Code Review 工具），
+並完成以下設定：
+
+1. 用 PowerShell 執行官方安裝腳本安裝執行檔本體：
+   irm https://plannotator.ai/install.ps1 | iex
+   裝完後幫我確認執行檔版本號有正確裝好。
+
+2. 停用分享功能，避免我的計畫內容被送到 share.plannotator.ai：
+   - 設定使用者層級環境變數 PLANNOTATOR_SHARE=disabled
+   - 在 ~/.plannotator/config.json 寫入 { "share": "disabled" }（如果檔案已存在就合
+併，不要整個覆蓋掉）
+
+3. 完成後，用清單列出接下來還需要我自己手動做的事：
+   - 要在這個對話視窗手動輸入哪兩行指令來安裝 GitHub Copilot CLI 專用外掛
+（plannotator-copilot），
+     或者要去 Settings → Plugins 按哪個按鈕操作
+   - 提醒我裝完外掛後要「完整重新啟動」GitHub Copilot App（不是只開新的終端機分頁），
+
+1 / 8
+
+安裝手冊.md
+
+2026-07-23
+
+PATH 跟外掛才會生效
+   - 教我怎麼用 Shift+Tab 進入 plan mode，驗證有沒有跳出 Plannotator 的審查頁面
+
+請直接動手執行第 1、2 步（不要只是把指令印出來叫我自己貼），第 3 步等你做完 1、2 之後再列
+給我看。
+
+AI 做完第 1、2 步後，會回報一份「你接下來要手動做的事」清單，照著做完第 3 步就完成安裝了。
+
+方法三：自己手動一步步裝（AI 幫不了忙、或想搞懂細節時用）
+
+1. 安裝執行檔本體
+
+打開 PowerShell：
+
 irm https://plannotator.ai/install.ps1 | iex
-```
 
-安裝完成後會顯示：
-```
-plannotator vX.Y.Z installed to C:\Users\<用户名>\AppData\Local\plannotator\plannotator.exe
-```
+跑完會看到 plannotator vX.Y.Z installed to C:\Users\<你的帳號
 
-**注意：** 安裝後需要確認 PATH 環境變數包含 Plannotator，GitHub Copilot App 才能找到它。
+>\AppData\Local\plannotator\plannotator.exe， 並自動把該路徑加進 PATH（需要完整重啟 GitHub
 
-### 步驟 2：停用 Share 功能
+Copilot App 才會生效，開新終端機分頁沒有用）。
 
-**方法 A：環境變數**
-```powershell
+2. 關閉分享功能（建議一定要做）
+
 [Environment]::SetEnvironmentVariable("PLANNOTATOR_SHARE", "disabled", "User")
-```
 
-**方法 B：設定檔**
-編輯 `C:\Users\<用户名>\.plannotator\config.json`：
-```json
+再到 C:\Users\<你的帳號>\.plannotator\config.json 建立（或編輯）成：
+
 { "share": "disabled" }
-```
 
-> Export 功能中的 Share（Copy Share Link 到 share.plannotator.ai）會被停用。
+這樣「Export → Share」「Copy Share Link」等功能都會消失，確保計畫內容不會被送到
 
-### 步驟 3：安裝 GitHub Copilot CLI 的 plannotator-copilot 插件
+share.plannotator.ai。
 
-**方法 A：透過 slash command（推薦）**
+3. 安裝 GitHub Copilot CLI 專用外掛
 
-在 PowerShell 中執行 Copilot CLI 命令：
-```
+兩種方式擇一：
+
+A. 對話框輸入 slash command（在跟 Copilot 聊天的輸入框，不是 PowerShell）：
+
 /plugin marketplace add backnotprop/plannotator
 /plugin install plannotator-copilot@plannotator
-```
 
-**方法 B：透過 GUI**
+B. 用 GUI 介面：GitHub Copilot App → 左下角 Settings → Plugins → 右上角 + Install → 搜尋 plannotator
 
-在 GitHub Copilot App 中：Settings → Plugins → + Install → 搜尋 `plannotator` → 安裝 `plannotator-copilot`
+→ 安裝 plannotator-copilot 並打開啟用開關。
 
-> 方法 B 和方法 A 效果相同。
+2 / 8
 
----
+安裝手冊.md
 
-## 完整設定流程（12 步，3 個階段）
+2026-07-23
 
-### 階段一：基礎安裝（步驟 1-4）
+（兩種方式效果一樣，B 比較直覺、不用打指令；A 比較快。）
 
-**步驟 1：安裝 Plannotator**
-（同上述步驟 1）
+4. 完整重啟 GitHub Copilot App
 
-**步驟 2：停用 Share**
-（同上述步驟 2）
+3 / 8
 
-**步驟 3：安裝 Copilot CLI 插件**
-（同上述步驟 3）
+安裝手冊.md
 
-**步驟 4：確認 GitHub Copilot App**
-確認 App 的 PATH 設定正確，能找到 Plannotator。
+2026-07-23
 
-### 階段二：整合測試（步驟 5）
+不是重開一個分頁或終端機視窗，是整個 App 關掉、重新打開，PATH 跟剛裝的外掛才會生效。
 
-**步驟 5：測試 plan mode**
-- 按 `Shift+Tab` 進入 plan mode
-- Copilot 會進入 plan mode
-- Plannotator 會在瀏覽器中開啟
-- 人類可以在瀏覽器中標注、審閱
-- 完成後按 `exit_plan_mode` 發送
-- Plannotator 會顯示 "Send Feedback" 給 Copilot
+5. 驗證安裝成功
 
-### 階段三：進階整合（步驟 6-12）
+重啟後，在對話裡按 Shift+Tab 進入 plan mode，讓 Copilot 產生一個計畫並準備退出 plan mode （呼叫
 
-**步驟 6：與 Obsidian 整合**
+exit_plan_mode）——這時應該會自動跳出瀏覽器，顯示 Plannotator 的計畫審查頁面。 你可以在頁面上畫
 
-在 Obsidian 中使用 Plannotator：
+線、留言、標記核准或打回，按 Send Feedback 後結果會直接回饋給 Copilot。
 
-1. **Plan Mode + Skill + Markdown**
-   ```
-   /plannotator-annotate obsidian-plannotator-plannotator-plannot.md
-   ```
+6. Obsidian × Plannotator 設定（已安裝 Obsidian 前提）
 
-2. **Plannotator 標註**
-   在 Plannotator UI 中進行標註。
+1. 選擇 Plan Mode 或直接指定 skill 後，任意給予一個 markdown 檔
 
-3. **在 Obsidian 中檢視**
-   標註結果會同步到 Obsidian。
+/plannotator-annotate obsidian-plannotator-plannotator-plannot.md
 
----
+2. 進行 Plannotator 設定
 
-## Slash Commands
+4 / 8
 
-| 命令 | 功能 |
-|------|------|
-| `/plannotator-review` | 審查 PR |
-| `/plannotator-annotate <file>` | 標註 Markdown / HTML / TXT 等檔案 |
-| `/plannotator-last` | 標註 Copilot 最後回應 |
+安裝手冊.md
 
----
+2026-07-23
 
-## 進階設定
+5 / 8
 
-### 自訂 URL
+安裝手冊.md
 
-可設定 `PLANNOTATOR_SHARE_URL` 和 `PLANNOTATOR_PASTE_URL` 環境變數。
+2026-07-23
 
-詳細參考：`research/plannotator-githubcopilt-app-vs-code-gi.md` 第 5.2 節
+3. 將編輯好的檔案，存入Obsidian
 
-### Ask AI 功能
+6 / 8
 
-Plannotator 支援 Ask AI，可選擇 AI CLI provider：
-- Anthropic
-- OpenAI
-- 也可使用 GitHub Copilot
+安裝手冊.md
 
-支援的 Agent：Claude、Codex、Pi、OpenCode
+2026-07-23
 
-Ask AI 功能包括：
-- Plan Review
-- Code Review
-- Annotate
+常用指令（裝完之後）
 
-Ask AI 透過 localhost 通訊，不會將資料送往外部 telemetry。
+指令
 
----
+用途
 
-## FAQ
+/plannotator-review
 
-**Q: 為什麼 plannotator 沒有出現在 PATH 中？**
-A: 需要確認 GitHub Copilot App 的 PATH 設定。安裝 Plannotator 後，確認 `C:\Users\<用户名>\AppData\Local\plannotator\` 在 PATH 中。
+審查目前未提交的程式碼變更，或貼 PR 網址審查
 
-**Q: /plugin install 失敗怎麼辦？**
-A: 確認 Copilot CLI 已正確安裝。嘗試在 PowerShell 或 VS Code 中執行。
+/plannotator-annotate <檔案路徑> 標註任一 Markdown / HTML / TXT...等檔案
 
-**Q: 在 VS Code 中如何使用？**
-A: 從 VS Code Marketplace 安裝 Plannotator 擴充套件（backnotprop.plannotator-webview）。VS Code 中的 copilot 和 VS Code 的 GitHub Copilot Chat 有不同的整合方式（第 4 節）。
+/plannotator-last
 
-**Q: Skill 安裝後在哪裡？**
-A: 安裝路徑：`skills/plannotator-copilotsetup/SKILL.md`。Copilot skill 會安裝到 GitHub Copilot CLI 和 Copilot App。也支援 Claude Code、Codex、Gemini CLI 等 agent。`plannotator-copilot-setup` 的安裝位置：%USERPROFILE%\.agents\skills\。Copilot CLI 的 Plannotator AI skill 也可用於其他 agent。
+標註 Copilot 最後一則回覆訊息
 
----
+資安提醒
 
-## 相關資源
+一定要做：關閉分享功能（方法一、二的第 2 步），避免計畫內容外流到官方雲端分享服務。
 
-- 研究文件：`research/plannotator-githubcopilt-app-vs-code-gi.md`
-- 官方文件：https://plannotator.ai/docs
-- GitHub：https://github.com/backnotprop/plannotator
+若要更謹慎，可以進一步改用「自架分享服務」（PLANNOTATOR_SHARE_URL /
+
+PLANNOTATOR_PASTE_URL 指到內網網址），詳見團隊研究報告 research/plannotator-github-
+
+copilt-app-vs-code-gi.md 第 5.2 節。
+
+Plannotator 內建的「Ask AI」／自動程式碼審查功能，資料會直接送到你機器上已登入的 AI CLI 供應商
+
+（Anthropic／OpenAI 等），不經 Plannotator 伺服器。若公司政策只核准 GitHub Copilot，不要額外安
+
+裝並登入 claude／codex／pi／opencode 等個人帳號，這樣 Ask AI 側欄就不會出現其他供應商選項。
+
+核心 Plan Review／Code Review／Annotate 三大功能全程只在 localhost 執行，官方隱私政策明講不
+
+蒐集使用行為 telemetry。
+
+常見問題
+
+7 / 8
+
+安裝手冊.md
+
+2026-07-23
+
+Q: 裝完之後 plannotator 指令說找不到？ A: 正常——PATH 是安裝腳本自動加的，但要完整重啟 GitHub
+
+Copilot App（不是開新終端機）才會生效。
+
+Q: /plugin install 這種指令要打在哪裡？ A: 打在跟 Copilot 聊天的輸入框，跟你平常打字問問題的地方一
+
+樣，不是打在 PowerShell 或 VS Code 的終端機裡。
+
+Q: 在 VS Code 裡可以用嗎？ A: 可以，但要另外裝 VS Code Marketplace 的 Plannotator 擴充套件
+
+（backnotprop.plannotator-webview）， 而且要從 VS Code 的「整合終端機」裡打字啟動 copilot，而
+
+不是用 VS Code 側邊原生的 GitHub Copilot Chat 面板—— 兩者是不同的整合機制，細節見團隊研究報告第 4
+
+節。
+
+Q: 想把這份安裝流程包成可重複使用的「Skill」？ A: 已經包好了，見 skills/plannotator-copilot-
+
+setup/SKILL.md（命名特別標明 copilot，因為這份 skill 只針對 GitHub Copilot CLI／Copilot App，不是
+
+給 Claude Code、Codex、Gemini CLI 等其他 agent 用的通用版）。 把整個 plannotator-copilot-setup 資
+
+料夾複製到自己電腦的 %USERPROFILE%\.agents\skills\ 底下， 重啟 Copilot CLI 後，之後只要說「幫我裝
+
+Plannotator」，AI 就會照著這份 skill 自動執行方法一的步驟。
+
+參考資料
+
+更完整的研究背景（架構原理、企業內部部署選項、已知限制）：research/plannotator-github-
+
+copilt-app-vs-code-gi.md
+
+官方文件：https://plannotator.ai/docs
+
+原始碼：https://github.com/backnotprop/plannotator
+
+8 / 8
+

@@ -16,6 +16,7 @@ updated: 2026-08-11
 - [[wiki/entities/knowledge-garden|knowledge-garden]] — Notion 知識花園 Manifest
 - [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → raw 抓取流程 🛠️
 - [[wiki/entities/learning-loop|learning-loop]] — 自動學習優化系統
+- [[wiki/entities/markitdown|MarkItDown]] — Microsoft 萬能格式→Markdown 轉換器（PDF/Word/Excel/PPT → Markdown）
 
 ## Concepts
 

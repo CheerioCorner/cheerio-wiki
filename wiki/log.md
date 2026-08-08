@@ -3,14 +3,16 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
-## [2026-08-08] ingest | Plannotator Copilot CLI 安裝手冊（PDF）
+## [2026-08-08] ingest | Plannotator Copilot CLI 安裝手冊（PDF）+ MarkItDown 研究
 
-- 來源：PDF `C:/Users/User/Downloads/安裝手冊.pdf` → pdftotext 提取 → raw/web/
+- 來源：PDF `C:/Users/User/Downloads/安裝手冊.pdf` → markitdown 提取 → raw/web/
+- 新增 entities：markitdown（Microsoft 萬能格式→Markdown 轉換器）
 - 新增 sources：2026-07-23-plannotator-copilot-setup
 - 更新 entities：plannotator（+Copilot CLI 整合安裝、+source reference）
-- 重點：Windows 上 Plannotator + GitHub Copilot CLI 的 3 步快速安裝、12 步完整設定、Obsidian 整合、slash commands
-- 方法：pdftotext 文字提取（圖片因 image reading disabled 無法視覺化）
-- refs: [[wiki/sources/2026-07-23-plannotator-copilot-setup|source note]]、[[wiki/entities/plannotator|plannotator]]、[[raw/web/2026-07-23-plannotator-copilot-setup-manual|raw]]
+- 重點：三種安裝方式（Skill / Prompt / 手動）、資安提醒、常用指令、FAQ
+- 方法：先用 pdftotext（中文亂碼），後改用 markitdown（完整保留中文與結構）
+- 清理：卸載我安裝的 PyMuPDF（markitdown 已取代）
+- refs: [[wiki/sources/2026-07-23-plannotator-copilot-setup|source note]]、[[wiki/entities/plannotator|plannotator]]、[[wiki/entities/markitdown|markitdown]]、[[raw/web/2026-07-23-plannotator-copilot-setup-manual|raw]]
 
 ## [2026-08-08] ingest | guizang-ppt-skill + huashu-design
 
