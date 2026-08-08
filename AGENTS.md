@@ -73,7 +73,7 @@ Obsidian/
 | 網頁文章 | 部落格、新聞、知乎回答 | Web Clipper 或 agent 存入 `raw/web/` |
 | URL 連結 | 你貼給我的 URL | agent 用 web_fetch 抓取後存入 |
 | YouTube | 影片字幕/逐字稿 | 字幕抓取工具（待研究）存入 `raw/youtube/` |
-| PDF/論文 | 學術論文、技術報告 | 手動放入 raw/ |
+| PDF/論文 | 學術論文、技術報告 | `markitdown` 轉 Markdown + `pymupdf` 提取圖片 → `raw/web/`（用 `pdf-to-wiki` skill） |
 | 原始文字 | 你直接貼的一段文字 | agent 存入適當的 raw source channel |
 
 **關鍵：未經整理的原始資料。**
