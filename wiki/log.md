@@ -3,6 +3,14 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-21] ingest | LangGraph in 10 Minutes (Explained Clearly)
+
+- 來源：YouTube — Cloud Codes 解析 LangGraph runtime 架構
+- 新增：source note + entity（langgraph）
+- 更新：loop-vs-graph-engineering（+1 source）、ai-agent topic nav、index
+- 重點：Pregel model、reducers、checkpointing、delta channels（5.3GB→129MB）、Deep Agents / Functional API 替代方案
+- refs: [[wiki/sources/2026-08-21-langgraph-in-10-minutes|source note]]、[[wiki/entities/langgraph|langgraph]]
+
 ## [2026-08-07] ingest | Notion「任何當下 → AI相關」頁面 ingest
 
 - 來源：Notion「任何當下 → AI相關」頁面（Skill、Copilot、Claude、AI Gateway）

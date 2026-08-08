@@ -2,7 +2,7 @@
 title: AI Agent
 topic: ai-agent
 created: 2026-08-02
-updated: 2026-08-08
+updated: 2026-08-21
 ---
 
 # AI Agent
@@ -32,6 +32,7 @@ updated: 2026-08-08
 - [[wiki/entities/mcp-model-context-protocol|MCP]] — Model Context Protocol，AI Agent 工具整合標準 🛠️
 - [[wiki/entities/agentskills-io-standard|agentskills-io-standard]] — AI Agent Skill 開放標準，跨平台相容 🛠️
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層，MCP + Guardrails + Agent 管理 🛠️
+- [[wiki/entities/langgraph|LangGraph]] — Graph-based agent runtime，Pregel model + checkpointing 🛠️
 
 ## Concepts
 
@@ -68,6 +69,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
 - [[wiki/sources/2026-08-10-antigravity-cli-integration|Antigravity CLI 整合]] — Gemini CLI 免費層停用後的整合方案
 - [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]] — AI Code Assistant 核心基礎 🛠️
+- [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]] — LangGraph runtime 深度解析（Pregel / reducers / delta channels）
 
 ## Visualizations
 

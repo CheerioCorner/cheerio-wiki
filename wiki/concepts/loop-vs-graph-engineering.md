@@ -2,8 +2,8 @@
 title: "Loop vs Graph Engineering — AI Agent 兩種核心工作流模式"
 type: concept
 created: 2026-08-03
-updated: 2026-08-03
-sources: 1
+updated: 2026-08-21
+sources: 2
 tags: [ai-agent, loop-engineering, graph-engineering, system-design, workflow]
 collection: concepts
 topics: [ai-agent]
@@ -108,9 +108,11 @@ Graph 是這個階梯的最新階段，結合了：
 
 ## 來源
 - [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering — YouTube video]]
+- [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes — YouTube]]（補充 LangGraph runtime 細節：Pregel model、reducers、delta channels）
 
 ## 相關頁面
 - [[wiki/entities/waku-agent|waku-agent]] — 展示 loop + graph 的實際框架
+- [[wiki/entities/langgraph|LangGraph]] — Graph-based agent runtime，Pregel model 實作
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 簡約設計哲學
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼流程
 - [[wiki/entities/hermes-agent|hermes-agent]] — 同類 local-first agent
