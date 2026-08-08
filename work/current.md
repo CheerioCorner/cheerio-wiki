@@ -11,11 +11,12 @@
   - 已完成：
     - ✅ Copilot + Gemini 三輪架構討論，確立6項最終決策
     - ✅ 更新架構頁（含完整資料流圖）
-  - 待辦：
-    - ⏳ 建立 ~/.agents/schemas/seed_schema.yaml
-    - ⏳ 重構 knowledge-garden（移除模板、加引用）
-    - ⏳ 重構 page-content（加品質關卡、mode 切換）
-    - ⏳ 更新架構頁（最終版）
+  - 已完成：
+    - ✅ Copilot + Gemini 三輪架構討論，確立6項最終決策
+    - ✅ 更新架構頁（含完整資料流圖）
+    - ✅ 建立 ~/.agents/schemas/seed_schema.yaml
+    - ✅ 重構 knowledge-garden（移除模板、加引用）
+    - ✅ 重構 page-content（加品質關卡、mode 切換）
 
 - [ ] W-2026-08-038 Notion 整合設計全面重構：Schema + Skill + 回流 ⏫ #knowledge #notion
   - next: 為 7 筆種子撰寫完整知識卡片（用 notion-page-content skill）
