@@ -1,8 +1,8 @@
 ---
-title: wiki-knowledge — Obsidian 知識庫操作 Skill
+title: wiki-knowledge — Obsidian 知識庫操作 Skill（Dispatcher）
 type: entity
 created: 2026-07-18
-updated: 2026-08-02
+updated: 2026-08-08
 sources: 1
 tags: [pi, skill, knowledge-base, obsidian, ingest, query, lint]
 collection: entities
@@ -10,7 +10,9 @@ topics: [skill, knowledge-mgmt]
 canonical: entities/wiki-knowledge
 ---
 
-> **內建 Skill**，位於 `C:/Users/User/.agents/skills/wiki-knowledge/`，封裝 **ingest / query / lint** 三大標準流程，專門維護 `C:/Cheerio/Obsidian/` 知識庫。
+> **Dispatcher Skill**，位於 `C:/Users/User/.agents/skills/wiki-knowledge/`，根據使用者意圖分派到三個子 skill：**wiki-ingest**、**wiki-query**、**wiki-lint**。
+> 
+> ⚠️ 2026-08-08 拆分：原始的三大流程已拆成獨立 skill，本頁面改為薄 dispatcher。
 
 ## 觸發關鍵字
 人類說出以下任一詞彙即自動載入：
@@ -18,39 +20,17 @@ canonical: entities/wiki-knowledge
 - 「查 wiki」「查詢 wiki」
 - 「lint wiki」「健康檢查」
 
-## 子 Skills
+## 子 Skills（2026-08-08 拆分）
+
+| 使用者說 | 子 Skill | 功能 |
+|---------|---------|------|
+| 「處理這個」、「存進 wiki」、「ingest」 | **wiki-ingest** | 讀 raw → 建/更新 wiki 頁面 → 更新 index/log |
+| 「查 wiki」、「wiki 裡有什麼」 | **wiki-query** | 讀 index → 讀頁面 → 回答問題 |
+| 「lint wiki」、「整理 wiki」 | **wiki-lint** | 掃描全部頁面 → 找問題 → 提清單 |
+
+其他相關 skills：
 - **youtube-to-wiki** — YouTube 影片 → wiki 頁面（`~/.agents/skills/youtube-to-wiki/SKILL.md`）
-  - 觸發：YouTube URL、YouTube ingest、抓字幕
 - **plannotator-sync** — Plannotator 存檔 → raw/conversations/（`~/.agents/skills/plannotator-sync/SKILL.md`）
-  - 觸發：sync
-
-## 三大標準流程
-
-### 1. Ingest（吸收新資料）
-**前置**：`cd C:/Cheerio/Obsidian && git pull`
-**步驟**：
-1. 讀取 `raw/` 新檔案
-2. 與人類確認重點
-3. 建立／更新正確的 canonical collection：`wiki/concepts/`、`wiki/entities/`、`wiki/sources/`、`wiki/decisions/`、`wiki/discussions/`；`wiki/topics/` 只作導航／taxonomy
-4. 更新 `wiki/index.md`
-5. 寫入 `wiki/log.md`（append-only）
-6. `git add -A && git commit && git push`
-
-### 2. Query（查詢）
-1. 讀 `wiki/index.md` 找相關頁
-2. 讀取頁面 + 追溯 wikilinks
-3. 給出有引用的回答
-4. **可回填**：人類說「存到 wiki」即建新頁 + 更新 index + 寫 log
-
-### 3. Lint（健康檢查）
-掃描 `wiki/` 找：
-- 頁面間矛盾
-- 過時主張未標記
-- 孤立頁面（無 inbound link）
-- 出現多次無自己頁面的概念
-- 缺漏交叉引用
-- Frontmatter 格式不一致（缺少必填欄位、格式錯誤）
-→ 提出清單 → 對需要人工判斷的項目使用 annotator review → 修改 → git push
 
 ## 知識庫架構（受管轄）
 ```

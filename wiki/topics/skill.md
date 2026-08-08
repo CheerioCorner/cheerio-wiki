@@ -22,6 +22,7 @@ updated: 2026-08-08
 
 ## Concepts
 
+- [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 8 個 knowledge-garden 相關 skills 的全景圖 🛠️
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程（grill → spec → tickets → implement）
 - [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill]] — 技能優化元技能，SKILL.md 的文字空間優化
 
