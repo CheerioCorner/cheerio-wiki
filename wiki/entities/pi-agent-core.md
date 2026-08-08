@@ -93,7 +93,7 @@ Session 以 **tree**（非 list）儲存於 `~/.pi/agent/sessions/<cwd>/`：
 → 對應 future concept `yolo-by-default` 與 [[wiki/entities/pi-mono]] 的「刻意不做」。
 
 ## 相關頁面
-- Entities:[[wiki/entities/pi-mono]]、[[wiki/entities/mario-zechner]]
-- Concepts:[[wiki/concepts/late-conversion]]；`minimal-agent-loop`、`observability-layer`、`steering-followup` 尚未建立
+- Entities:[[wiki/entities/pi-mono]]、[[wiki/entities/mario-zechner]]、[[wiki/entities/langgraph|LangGraph]]（持久化對比）
+- Concepts:[[wiki/concepts/late-conversion]]、[[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]]（Pi vs LangGraph 持久化路徑比較）
 - Source:[[wiki/sources/2026-02-10-pi-agent-core-design]]
 - Synthesis:[[wiki/concepts/minimal-agent-philosophy]]

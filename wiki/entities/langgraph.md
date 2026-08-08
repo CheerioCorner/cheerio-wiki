@@ -112,6 +112,7 @@ graph.invoke(input, config={"thread_id": "abc"})
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes — YouTube]]
 
 ## 相關頁面
+- [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 三種持久化路徑比較（Pi vs LangGraph）
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — Loop vs Graph 兩種模式
 - [[wiki/entities/waku-agent|waku-agent]] — Local-first agent，展現 loop + graph 混合
 - [[wiki/entities/hermes-agent|hermes-agent]] — 自我改進 AI agent

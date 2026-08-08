@@ -32,6 +32,7 @@ updated: 2026-08-08
 - [[wiki/concepts/meta-harness|Meta-Harness]] — 對 harness 本身的再抽象/最佳化層
 - [[wiki/concepts/late-conversion|Late Conversion]] — 延遲轉換模式
 - [[wiki/concepts/defect-metrics|Defect Metrics]] — 缺陷密度與逃脫率指標
+- [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑（Pi vs LangGraph）
 
 ## Sources
 

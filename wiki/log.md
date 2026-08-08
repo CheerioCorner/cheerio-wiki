@@ -26,10 +26,11 @@
 ## [2026-08-21] ingest | LangGraph in 10 Minutes (Explained Clearly)
 
 - 來源：YouTube — Cloud Codes 解析 LangGraph runtime 架構
-- 新增：source note + entity（langgraph）
-- 更新：loop-vs-graph-engineering（+1 source）、ai-agent topic nav、index
+- 新增：source note + entity（langgraph）+ concept（agent-durability-patterns）
+- 更新：loop-vs-graph-engineering（+1 source）、pi-agent-core（+cross-ref）、ai-agent topic nav、index
 - 重點：Pregel model、reducers、checkpointing、delta channels（5.3GB→129MB）、Deep Agents / Functional API 替代方案
-- refs: [[wiki/sources/2026-08-21-langgraph-in-10-minutes|source note]]、[[wiki/entities/langgraph|langgraph]]
+- 新 concept：Agent Durability Patterns — Pi vs LangGraph 三種持久化路徑比較，作為未來 agent 設計的取捨參考
+- refs: [[wiki/sources/2026-08-21-langgraph-in-10-minutes|source note]]、[[wiki/entities/langgraph|langgraph]]、[[wiki/concepts/agent-durability-patterns|agent-durability-patterns]]
 
 ## [2026-08-07] ingest | Notion「任何當下 → AI相關」頁面 ingest
 

@@ -32,7 +32,7 @@
 - **最後更新**：2026-08-08（新增 guizang-ppt-skill + huashu-design）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：26（全部已補 provenance）
-- **Canonical collections**：15 concepts、27 entities、4 decisions、3 discussions
+- **Canonical collections**：16 concepts、27 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---
