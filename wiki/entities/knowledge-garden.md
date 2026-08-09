@@ -131,6 +131,6 @@ canonical: entities/knowledge-garden
 
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP 伺服器
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Wiki 操作 skill
-- [[wiki/entities/notion-to-raw|notion-to-raw]] — Notion → Raw 抓取 skill
+- [[wiki/entities/knowledge-garden-to-raw|knowledge-garden-to-raw]] — Notion → Raw 抓取 skill（原 notion-to-raw）
 - [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]] — 架構討論
 - [Design Spec](work/designs/knowledge-garden-navigator.md) — 導覽頁設計規格

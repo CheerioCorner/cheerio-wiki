@@ -87,25 +87,27 @@ canonical: entities/notionApi
 
 **原則：讀用 MCP，寫用 `ntn` CLI。**
 
-## Skill 架構（2026-08-08 更新）
+## Skill 架構（2026-08-09 更新）
 
 ```
 Notion 操作層（純工具）
-├── notion-cli          — CLI 命令參考
-├── notion-page-content — 頁面內容產生（知識卡片 + 研究報告）
-└── notion-to-raw       — Notion → raw 抓取
-
+├── notion-cli                   — CLI 命令參考
 知識花園層（知識管理）
-├── knowledge-garden           — 花園維護（架構、配置、成長）
-├── knowledge-garden-trigger   — 研究觸發（💡 靈感、啟發更新）
-├── knowledge-garden-visualmap — 視覺地圖（Mermaid → Notion）
-└── notion-wiki-feedback       — Notion → Wiki 回流機制
+├── knowledge-garden              — 花園維護（架構、配置、成長）
+├── knowledge-garden-page-content — 頁面內容產生（知識卡片 + 研究報告）
+├── knowledge-garden-to-raw       — Notion → raw 抓取（原 notion-to-raw）
+├── knowledge-garden-trigger      — 研究觸發 + Notion → Wiki 回流
+├── knowledge-garden-visualmap    — 視覺地圖（Mermaid → Notion）
+
+AI 聊天層
+├── chat-with-copilot             — 單獨跟 Copilot 聊天
+├── chat-with-gemini              — 單獨跟 Gemini 聊天
+├── chat-with-gemini-research     — 叫 Gemini 做深度研究（原 gemini-deep-research）
+└── round-table                   — 多 AI 圓桌會議（Pi 主持 + subagent + Gemini + Copilot）
 
 跨 AI 協作
-└── gemini-notion-workflow     — Gemini 完整存取 Notion + Git
+└── gemini-notion-workflow        — Gemini 完整存取 Notion + Git
 ```
-
-## 資料流
 
 ### 兩個系統的分工
 | 系統 | 用途 | 主要使用者 |
