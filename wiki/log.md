@@ -6,13 +6,14 @@
 ## [2026-08-09] seed | Obsidian — AI Agent 時代的知識管理基礎設施
 
 - 新增種子：Obsidian（Notion + 視覺地圖）
+- 新增 wiki 頁面：wiki/entities/obsidian.md
 - 來源：Gemini Deep Research + 本機 wiki 知識庫
 - 新增：wiki/visualizations/obsidian-seed-map.md（視覺地圖 wiki 頁面）
 - 新增：.pi/obsidian-visualmap.svg（SVG 視覺地圖）
 - 更新：knowledge-garden.md manifest（加入 Obsidian 種子）
 - 重點：疫情催生→150 萬用戶、LLM Wiki 範式、raw→wiki→Notion 資料流、OKF 90%+ 相容
 - 關聯專題：AI Agent 架構研究、知識管理系統
-- refs: [[wiki/visualizations/obsidian-seed-map|視覺地圖]]、Notion 種子 #3b75979e-3a8c-81d8-b7aa-f1f4c88aa957
+- refs: [[wiki/entities/obsidian|Obsidian]]、[[wiki/visualizations/obsidian-seed-map|視覺地圖]]、Notion 種子 #3b75979e-3a8c-81d8-b7aa-f1f4c88aa957
 
 ## [2026-08-08] ingest | Content Redesign 實作：重寫 page-content + 更新 visualmap
 

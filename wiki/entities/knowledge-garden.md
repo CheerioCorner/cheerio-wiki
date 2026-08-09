@@ -101,7 +101,7 @@ canonical: entities/knowledge-garden
 | Omnigent | [連結](https://app.notion.com/p/3b35979e3a8c811c9240d23bc23317ae) | [[wiki/entities/omnigent\|omnigent]] | 🗺️ [[wiki/visualizations/omnigent.canvas\|視覺地圖]] |
 | Agent Extension 安裝 | [連結](https://app.notion.com/p/3b35979e3a8c81538dd9cd03e458d911) | [[wiki/concepts/agent-extension-installation\|agent-extension-installation]] | 🗺️ [[wiki/visualizations/agent-extension-installation.canvas\|視覺地圖]] |
 | OpenCodeReview | [連結](https://app.notion.com/p/3b55979e3a8c81c88283f0e3eaf4f9d6) | [[wiki/entities/open-code-review\|open-code-review]] | 🗺️ [[wiki/visualizations/open-code-review.canvas\|視覺地圖]] |
-| **Obsidian** | [連結](https://app.notion.com/p/3b75979e3a8c81d8b7aaf1f4c88aa957) | [[wiki/visualizations/obsidian-seed-map\|視覺地圖 wiki]] | 🗺️ [[wiki/visualizations/obsidian-seed-map\|視覺地圖]] |
+| **Obsidian** | [連結](https://app.notion.com/p/3b75979e3a8c81d8b7aaf1f4c88aa957) | [[wiki/entities/obsidian\|obsidian]] | 🗺️ [[wiki/visualizations/obsidian-seed-map\|視覺地圖]] |
 
 ---
 
