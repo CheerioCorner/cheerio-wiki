@@ -59,7 +59,7 @@ Obsidian/
 - `wiki/decisions/` = 全域或跨專案已確認的決策；project-local decisions 留在 Project Bundle。
 - `wiki/discussions/` = 尚未定案的討論；確認後才提升為 decision 或 concept。
 - `wiki/topics.md` 與 `wiki/topics/*.md` = 導航與 taxonomy；只放 topic 導航頁，canonical content 優先連到五個 collections。
-- `wiki/visualizations/` = Canvas 視覺化投影；Canvas 不取代 canonical page，且必須有 Markdown 入口或 backlink。每張 Canvas 必須在 `visualizations/README.md` 註冊並標示所屬 topics；對應 topic page 的 `## Visualizations` 區塊須列出相關 Canvas。
+- `wiki/visualizations/` = 視覺化投影；**新格式**：直接在 Notion 寫入 Mermaid code block（不需要轉換為圖片）；舊有 Canvas 檔案仍保留。每張視覺地圖必須在 `visualizations/README.md` 註冊並標示所屬 topics；對應 topic page 的 `## Visualizations` 區塊須列出相關視覺地圖。
 - `work/` = 唯一的工作狀態與可追溯事件系統；`README.md` 定義 contract，`current.md` 管理目前工作，`history/YYYY-MM.md` 保存完成、決策與重要處理結果。舊工作目錄已完成遷移並刪除，不得重新建立。
 - `AGENTS.md` = 工作守則，由人類與 LLM 共同演化；它是治理入口，不要求每個內容頁反向連結。
 
@@ -175,7 +175,7 @@ Obsidian/
    - 缺漏的交叉引用
    - **Source note provenance 缺漏**：`wiki/sources/` 下的頁面應有 `provenance_raw` 或 `provenance_url` 指向 raw 檔案或外部 URL；指向不存在檔案的 provenance 須標記
    - **Topic page 遺漏**：每個 entity/concept/source frontmatter 的 `topics: [...]` 都應在對應 `wiki/topics/*.md` 的 Entities、Concepts 或 Sources 列表中出現；反之，topic page 列出的頁面都應存在
-   - **Canvas 遺漏**：`wiki/visualizations/*.canvas` 都應在 `visualizations/README.md` 註冊並標示 topics；對應 topic page 的 `## Visualizations` 區塊須列出相關 Canvas
+   - **視覺地圖遺漏**：`wiki/visualizations/` 下的視覺地圖都應在 `visualizations/README.md` 註冊並標示 topics；對應 topic page 的 `## Visualizations` 區塊須列出相關視覺地圖
 2. 提出「該修什麼、該查什麼、該補什麼資料」的清單。
 3. 人類確認後開始修改。
 4. **git push** 同步回 GitHub。
