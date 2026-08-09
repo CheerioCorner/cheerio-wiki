@@ -13,8 +13,8 @@
     - ✅ 更新 visualmap skill（索引/註冊表設計）
     - ✅ 更新架構頁
   - 待辦（手動）：
-    - ⏳ 手動在 Notion 視覺地圖 Database 加進階欄位（類型、關聯種子、關聯專題）
-    - ⏳ 建立視覺地圖 ↔ 種子/專題的 Relation 綁定
+    - ✅ 手動在 Notion 視覺地圖 Database 加進階欄位（類型、關聯種子、關聯專題）
+    - ✅ 建立視覺地圖 ↔ 種子/專題的 Relation 綁定（Plannotator 已完成）
 
 - [x] W-2026-08-042 知識花園 Skill 架構重構：Schema + 模板 + 資料流 ✅ #knowledge #skill
   - refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]、Copilot+Gemini 三輪討論決策
