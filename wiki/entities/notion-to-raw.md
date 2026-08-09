@@ -55,13 +55,13 @@ Notion 頁面
 |------|------|
 | 獨立 skill（非擴展 wiki-youtube） | 抓取機制不同（MCP vs Python API）、raw 格式不同、觸發詞不同 |
 | 三條路徑（只是看看 / 寫 raw / deep research） | Notion 頁面是起點，不一定每次都要寫進 raw |
-| 不在 skill 內處理 wiki ingest | 職責分離：notion-to-raw 只負責 Notion → raw，wiki-knowledge 處理 raw → wiki |
+| 不在 skill 內處理 wiki ingest | 職責分離：knowledge-garden-to-raw 只負責 Notion → raw，wiki-knowledge 處理 raw → wiki |
 | knowledge-garden 保持 wiki→Notion 方向 | 避免方向混亂 |
 
 ## 與其他 Skill 的關係
 
 ```
-knowledge-garden（wiki → Notion）  ←→  notion-to-raw（Notion → raw）
+knowledge-garden（wiki → Notion）  ←→  knowledge-garden-to-raw（Notion → raw）
          ↕                                    ↕
     wiki-knowledge（raw → wiki）         wiki-knowledge（raw → wiki）
 ```
