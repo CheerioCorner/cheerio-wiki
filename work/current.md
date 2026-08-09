@@ -6,11 +6,15 @@
 ## In progress
 
 - [ ] W-2026-08-044 建立「圓桌會議」skill：多 AI 對談討論 🆕 #skills #ai-agent
-  - next: 依照設計文件實作 SKILL.md + prompt 模板 + 測試一次完整流程
-  - refs: [[work/designs/round-table-skill-design|設計文件]]、copilot skill、gy skill
-  - 說明：Pi 主持，Gemini→Copilot 固定順序序列討論，最多 N 輪後 Pi 摺疊
-  - 決策：Pi 預設只主持（可選參與）、兩處都存（.pi/round-table/ + work/history/）、固定 Gemini 先發言
-  - 待確認：timeout 設定、失敗處理策略
+  - next: 依照 v2 設計文件實作 SKILL.md + prompt 模板 + 測試三人圓桌
+  - refs: [[work/designs/round-table-skill-design|設計文件 v2]]、copilot skill、gy skill、pi-subagents
+  - 說明：Pi 主持（不參與），派出 subagent（使用者指定模型）+ Gemini + Copilot 共同討論
+  - 決策：
+    - Pi 只主持，不坐在桌上
+    - 使用者可指定 0-N 個 subagent 參與者，每個可指定 model
+    - 發言順序由 Pi 每輪動態決定（平衡發言、回應缺口、辯證張力）
+    - 兩處都存（.pi/round-table/ + work/history/）
+    - 結束條件：maxRounds + 共識偵測 + 人類介入
 
 - [x] W-2026-08-043 Content 設計 Redesign：四層骨架 + 主觀現實 + Roadmap ✅ #knowledge #skill
   - refs: [[wiki/concepts/content-redesign|Content Redesign]]、Copilot+Gemini 三輪討論
