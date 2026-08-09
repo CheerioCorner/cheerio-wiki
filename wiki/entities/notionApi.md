@@ -141,5 +141,5 @@ raw/ ──wiki ingest──► wiki/ ──美化/整理──► Notion 花園
 ## 相關頁面
 - Source: [[wiki/sources/2026-07-18-pi-resource-inventory]]
 - Entities: [[wiki/entities/wiki-knowledge]], [[wiki/entities/pi-web-access-zh-tw]], [[wiki/entities/knowledge-garden]]
-- Skills: `knowledge-garden`（花園維護）、`notion-cli`（CLI 參考）、`notion-page-content`（頁面內容產生）、`knowledge-garden-trigger`（研究觸發）、`knowledge-garden-visualmap`（視覺地圖）
+- Skills: `knowledge-garden`（花園維護）、`notion-cli`（CLI 參考）、`knowledge-garden-page-content`（頁面內容產生）、`knowledge-garden-to-raw`（Notion → raw）、`knowledge-garden-trigger`（研究觸發）、`knowledge-garden-visualmap`（視覺地圖）、`chat-with-copilot`、`chat-with-gemini`、`chat-with-gemini-research`、`round-table`
 - Discussions: [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]]

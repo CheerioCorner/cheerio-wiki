@@ -1,24 +1,26 @@
 ---
-title: notion-to-raw — Notion → Raw 抓取 Skill
+title: knowledge-garden-to-raw — Notion → Raw 抓取 Skill
 type: entity
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-09
 sources: 1
 tags: [skill, notion, raw, ingest]
 collection: entities
 topics: [knowledge-mgmt]
-canonical: entities/notion-to-raw
+canonical: entities/knowledge-garden-to-raw
 ---
 
 > 從 Notion 知識花園抓取頁面內容，建立 raw 來源檔案，準備進行 wiki ingest。
+> **原名 `notion-to-raw`，2026-08-09 更名為 `knowledge-garden-to-raw`。**
 
 ## 基本資訊
 
 | 項目 | 值 |
 |------|-----|
-| Skill 位置 | `~/.agents/skills/notion-to-raw/SKILL.md` |
+| Skill 位置 | `~/.agents/skills/knowledge-garden-to-raw/SKILL.md` |
 | 觸發詞 | 「花園裡那篇 X 要深入研究」、「從 Notion 研究」、Notion URL |
 | 建立日期 | 2026-08-05 |
+| 更名日期 | 2026-08-09 |
 | 關聯工作 | W-2026-08-015 |
 
 ## 流程
