@@ -349,3 +349,11 @@
 ---
 
 *此 log 為 append-only。舊紀錄保留在 git 歷史中。*
+
+## [2026-08-09] update | 視覺地圖規則更新：直接寫入 Mermaid code block
+
+- 更新 skills：knowledge-garden-visualmap、knowledge-garden-page-content
+- 更新 AGENTS.md：visualizations 規則
+- 更新 visualizations/README.md：新增 Mermaid 視覺地圖區塊
+- 重點：不再轉換為 SVG/PNG，直接在 Notion 寫入 Mermaid code block
+- refs: knowledge-garden-visualmap skill、AGENTS.md
