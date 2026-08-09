@@ -31,6 +31,11 @@ updated: 2026-08-11
 - [[wiki/sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF 架構優化]] — 完整 migration 工作紀錄
 - [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
 - [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|Plannotator × Obsidian 簡報企劃]] — 知識迴流系統報告簡報企劃
+- [[wiki/sources/2026-08-09-obsidian-ai-knowledge-management|Obsidian Deep Research]] — Gemini 深度研究報告
+
+## Visualizations
+
+- [[wiki/visualizations/obsidian-seed-map|Obsidian 視覺地圖]] — 功能與延伸應用全景圖 🗺️
 
 ## Systems
 

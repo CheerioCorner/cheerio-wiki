@@ -94,13 +94,14 @@ canonical: entities/knowledge-garden
 
 ### 🌱 種子期
 
-| 種子名稱 | Notion Link | Wiki 來源 |
-|----------|-------------|-----------|
-| OKF | [連結](https://app.notion.com/p/3b35979e3a8c81e49ef9cadf81c4c318) | [[wiki/concepts/okf-open-knowledge-format\|okf-open-knowledge-format]] |
-| mattpocock/skills | [連結](https://app.notion.com/p/3b35979e3a8c81a5b198f2c28fa2c192) | [[wiki/entities/mattpocock-skills\|mattpocock-skills]] |
-| Omnigent | [連結](https://app.notion.com/p/3b35979e3a8c811c9240d23bc23317ae) | [[wiki/entities/omnigent\|omnigent]] |
-| Agent Extension 安裝 | [連結](https://app.notion.com/p/3b35979e3a8c81538dd9cd03e458d911) | [[wiki/concepts/agent-extension-installation\|agent-extension-installation]] |
-| OpenCodeReview | [連結](https://app.notion.com/p/3b55979e3a8c81c88283f0e3eaf4f9d6) | [[wiki/entities/open-code-review\|open-code-review]] |
+| 種子名稱 | Notion Link | Wiki 來源 | 視覺地圖 |
+|----------|-------------|-----------|----------|
+| OKF | [連結](https://app.notion.com/p/3b35979e3a8c81e49ef9cadf81c4c318) | [[wiki/concepts/okf-open-knowledge-format\|okf-open-knowledge-format]] | — |
+| mattpocock/skills | [連結](https://app.notion.com/p/3b35979e3a8c81a5b198f2c28fa2c192) | [[wiki/entities/mattpocock-skills\|mattpocock-skills]] | 🗺️ [[wiki/visualizations/mattpocock-skills.canvas\|視覺地圖]] |
+| Omnigent | [連結](https://app.notion.com/p/3b35979e3a8c811c9240d23bc23317ae) | [[wiki/entities/omnigent\|omnigent]] | 🗺️ [[wiki/visualizations/omnigent.canvas\|視覺地圖]] |
+| Agent Extension 安裝 | [連結](https://app.notion.com/p/3b35979e3a8c81538dd9cd03e458d911) | [[wiki/concepts/agent-extension-installation\|agent-extension-installation]] | 🗺️ [[wiki/visualizations/agent-extension-installation.canvas\|視覺地圖]] |
+| OpenCodeReview | [連結](https://app.notion.com/p/3b55979e3a8c81c88283f0e3eaf4f9d6) | [[wiki/entities/open-code-review\|open-code-review]] | 🗺️ [[wiki/visualizations/open-code-review.canvas\|視覺地圖]] |
+| **Obsidian** | [連結](https://app.notion.com/p/3b75979e3a8c81d8b7aaf1f4c88aa957) | [[wiki/visualizations/obsidian-seed-map\|視覺地圖 wiki]] | 🗺️ [[wiki/visualizations/obsidian-seed-map\|視覺地圖]] |
 
 ---
 
