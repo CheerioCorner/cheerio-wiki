@@ -398,6 +398,20 @@
 - 每個 history event 必須包含 `refs:`，至少指向 raw conversation、project 或 wiki 其中之一。
 - 沒有形成工作進展或可追溯結果的對話，不需要建立事件。
 
+- [x] W-2026-08-046 Obsidian 種子建立：AI Agent 時代的知識管理基礎設施 ✅ #knowledge #notion
+  - completed: 2026-08-09
+  - refs: [[wiki/entities/obsidian|Obsidian]]、[[wiki/visualizations/obsidian-seed-map|視覺地圖]]、Notion 種子 #3b75979e-3a8c81d8-b7aa-f1f4c88aa957
+  - 已完成：
+    - ✅ Gemini Deep Research 深度研究（8 個來源、6 個不同網域）
+    - ✅ 建立 Notion 種子（🌱 種子期）
+    - ✅ 建立視覺地圖（Mermaid code block 直接寫入 Notion）
+    - ✅ 建立 wiki 頁面：wiki/entities/obsidian.md
+    - ✅ 更新 knowledge-garden manifest
+    - ✅ 更新所有花園 Skill：視覺地圖改為直接寫入 Mermaid
+    - ✅ 同步 cheerio-skills repo
+  - 重點：疫情催生→150 萬用戶、LLM Wiki 範式、raw→wiki→Notion 資料流、OKF 90%+ 相容
+  - 關聯專題：AI Agent 架構研究、知識管理系統
+
 - [x] W-2026-08-045 知識花園種子全面更新 + 研究專題重構 ✅ #knowledge #notion
   - completed: 2026-08-09
   - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、Notion 知識花園
