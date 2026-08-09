@@ -2,12 +2,19 @@
 title: Skill
 topic: skill
 created: 2026-07-22
-updated: 2026-08-08
+updated: 2026-08-09
 ---
 
 # Skill
 
 > AI agent skill 生態系：安裝、工作流程、設計方法論與實作。
+
+## Skills（本地）
+
+- `chat-with-copilot` — 單獨跟 Copilot 聊天
+- `chat-with-gemini` — 單獨跟 Gemini 聊天
+- `chat-with-gemini-research` — 叫 Gemini 做深度研究（含引用驗證）
+- `round-table` — 多 AI 圓桌會議（Pi 主持，subagent + Gemini + Copilot）
 
 ## Entities
 
@@ -38,6 +45,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-08-huashu-design|huashu-design GitHub README]] — 花叔 HTML 原生設計技能
 - [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|Plannotator × Obsidian 簡報企劃]] — 知識迴流系統報告簡報企劃（Gemini+Copilot 審閱）
 - [[wiki/concepts/html-slide-deck-workflow|HTML Slide Deck 製作工作流]] — 整合 guizang + huashu 的簡報製作流程 🛠️
+- [[work/designs/round-table-skill-design|Round Table 設計文件]] — 多 AI 圓桌會議 skill 設計 v2 🛠️
 
 ## Visualizations
 

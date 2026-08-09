@@ -99,17 +99,22 @@ gh copilot -p "prompt" --allow-tool 'shell(echo)'
 gh copilot -p "What is recursion?" --allow-tool 'shell(echo)'
 ```
 
-**Skill 位置：** `~/.agents/skills/copilot/SKILL.md`
-**觸發詞：** 「問 Copilot」、「用 Copilot」、「/copilot」
+**Skill 位置：** `~/.agents/skills/chat-with-copilot/SKILL.md`
+**觸發詞：** 「問 Copilot」、「用 Copilot」、「chat-with-copilot」、「/copilot」
 **執行目錄：** `~/.pi/copilot-runs/`
 
-**與 gy skill 比較：**
-| | gy (Gemini) | copilot |
+**與 chat-with-gemini skill 比較：**
+| | chat-with-gemini (Gemini) | chat-with-copilot |
 |---|---|---|
 | CLI | agy (Antigravity) | gh copilot |
 | 執行方式 | tmux/Windows Terminal pane | 背景執行 |
 | 認證 | Google OAuth | GitHub auth login |
 | Token 消耗 | 免費額度 | AI Credits |
+
+**相關 Skill：**
+- `chat-with-gemini` — 單獨跟 Gemini 聊天
+- `chat-with-gemini-research` — 叫 Gemini 做深度研究
+- `round-table` — 多 AI 圓桌會議（Pi 主持，subagent + Gemini + Copilot 共同討論）
 
 ## 相關頁面
 

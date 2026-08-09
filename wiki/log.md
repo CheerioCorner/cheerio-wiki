@@ -328,6 +328,13 @@
 - 建立 Skill topic
 - 實作多 topic 關聯（topics 多值陣列 + 🛠️ 標記）
 
+## 2026-08-09
+
+- Skills 更名：`copilot` → `chat-with-copilot`、`gy` → `chat-with-gemini`、`gemini-deep-research` → `chat-with-gemini-research`
+- 新增 skill：`round-table`（多 AI 圓桌會議，Pi 主持 + subagent 參與者 + Gemini + Copilot）
+- 更新 cheerio-skills repo（已 push）
+- 更新 wiki：github-copilot.md（skill 引用）、skill topic page（新增本地 skills 區塊 + round-table 設計文件）
+
 ---
 
 *此 log 為 append-only。舊紀錄保留在 git 歷史中。*
