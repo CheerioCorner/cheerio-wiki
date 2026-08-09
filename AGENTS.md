@@ -11,7 +11,7 @@
 > 本檔案規範 LLM agent 如何維護這個知識庫。
 > 維護者：Cheerio
 > 建立日期：2026-07-11
-> 最後更新：2026-08-05
+> 最後更新：2026-08-21
 
 ## ⚠️ 鐵律
 
@@ -27,41 +27,40 @@ Obsidian/
 │   ├── web/                # Browser / Obsidian Web Clipper 原始剪藏
 │   ├── youtube/            # YouTube 字幕、逐字稿與影片資訊
 │   ├── conversations/      # 原始對話／annotator handoff
+│   ├── notion-ingest/      # 從 Notion 花園抓取的頁面內容（反向流程）
+│   ├── research/           # 深度研究的原始輸出（Gemini Deep Research 等）
 │   ├── assets/             # 原始來源使用的圖片與附件
-│   └── README.md            # raw contract
+│   └── README.md           # raw contract
 ├── projects/               # Project OKF Bundles（跨 session、跨環境）
 │   └── <project-id>/       # project-local decisions、discussions、references
 ├── wiki/                   # Shared cross-project knowledge graph
-│   ├── concepts/           # 可跨專案重用的抽象知識
-│   ├── entities/           # 人、工具、package、服務與具體實作
-│   ├── sources/            # 整理後的外部資料與研究紀錄
+│   ├── concepts/           # 可跨專案重用的抽象知識（type: concept）
+│   ├── entities/           # 人、工具、package、服務與具體實作（type: entity）
+│   ├── sources/            # 整理後的外部資料與研究紀錄（type: source）
 │   ├── decisions/          # 全域／跨專案已確認的架構與技術選擇
 │   ├── discussions/        # 尚未定案的方案與研究問題
 │   ├── topics.md           # taxonomy 總入口
-│   ├── topics/             # topic landing pages（.md）
-│   ├── visualizations/     # 所有 Canvas 視覺化投影
+│   ├── topics/             # topic landing pages（.md），只放導航，canonical content 連到 collections
+│   ├── visualizations/     # 視覺化投影（Mermaid code block 為主，舊 Canvas 保留）
 │   ├── audits/             # 分析報告與 migration audit
 │   ├── index.md            # 內容索引
 │   └── log.md              # 時間日誌（append-only）
 ├── work/                   # 可追溯工作狀態與歷史事件
-│   ├── README.md            # work contract
+│   ├── README.md           # work contract
 │   ├── current.md          # 唯一的目前工作清單
-│   └── history/YYYY-MM.md  # 按月分片的完成／決策／活動事件
+│   ├── history/YYYY-MM.md  # 按月分片的完成／決策／活動事件
+│   ├── designs/            # 設計文件（需求分析、架構規劃）
+│   ├── learning/           # 月度學習紀錄
+│   └── synthesis/          # 綜合分析報告
 └── AGENTS.md               # 本檔，工作守則
 ```
 
 **各資料夾用途：**
-- `raw/` = 原始資料與對話。永遠只讀；依來源通道分為 `web/`、`youtube/`、`conversations/`，附件集中於 `assets/`。原始 annotator feedback 使用 `type: raw-conversation`、`immutable: true`。
-- `projects/<project-id>/` = 跨 session、跨本地環境的 Project OKF Bundle；不取代 package repository、原始碼或 package 內的 `docs/`。
-- `wiki/concepts/` = 可跨專案重用的抽象知識，`type: concept`。
-- `wiki/entities/` = 人、工具、package、服務與具體實作，`type: entity`。
-- `wiki/sources/` = 整理後的外部資料，`type: source`；raw 仍是原始 source of truth。
-- `wiki/decisions/` = 全域或跨專案已確認的決策；project-local decisions 留在 Project Bundle。
-- `wiki/discussions/` = 尚未定案的討論；確認後才提升為 decision 或 concept。
-- `wiki/topics.md` 與 `wiki/topics/*.md` = 導航與 taxonomy；只放 topic 導航頁，canonical content 優先連到五個 collections。
-- `wiki/visualizations/` = 視覺化投影；**新格式**：直接在 Notion 寫入 Mermaid code block（不需要轉換為圖片）；舊有 Canvas 檔案仍保留。每張視覺地圖必須在 `visualizations/README.md` 註冊並標示所屬 topics；對應 topic page 的 `## Visualizations` 區塊須列出相關視覺地圖。
-- `work/` = 唯一的工作狀態與可追溯事件系統；`README.md` 定義 contract，`current.md` 管理目前工作，`history/YYYY-MM.md` 保存完成、決策與重要處理結果。舊工作目錄已完成遷移並刪除，不得重新建立。
-- `AGENTS.md` = 工作守則，由人類與 LLM 共同演化；它是治理入口，不要求每個內容頁反向連結。
+- `raw/` = 原始資料。永遠只讀；依來源通道分為 `web/`、`youtube/`、`conversations/`、`notion-ingest/`、`research/`，附件集中於 `assets/`。
+- `projects/<project-id>/` = Project OKF Bundle；不取代 package repository 或原始碼。
+- `wiki/` = canonical knowledge graph。`topics.md` 與 `topics/` 只放導航；`visualizations/` 每張地圖須在 `README.md` 註冊並標示 topics。
+- `work/` = 唯一的工作狀態系統。`current.md` 管理目前工作，`history/` 保存事件，`designs/` `learning/` `synthesis/` 保存輔助文件。舊工作目錄已完成遷移，不得重新建立。
+- `AGENTS.md` = 治理入口，由人類與 LLM 共同演化。
 
 ---
 
@@ -72,8 +71,10 @@ Obsidian/
 |------|------|---------|
 | 網頁文章 | 部落格、新聞、知乎回答 | Web Clipper 或 agent 存入 `raw/web/` |
 | URL 連結 | 你貼給我的 URL | agent 用 web_fetch 抓取後存入 |
-| YouTube | 影片字幕/逐字稿 | 字幕抓取工具（待研究）存入 `raw/youtube/` |
-| PDF/論文 | 學術論文、技術報告 | `markitdown` 轉 Markdown + `pymupdf` 提取圖片 → `raw/web/`（用 `pdf-to-wiki` skill） |
+| YouTube | 影片字幕/逐字稿 | `youtube-to-wiki` skill 抓字幕存入 `raw/youtube/` |
+| PDF/論文 | 學術論文、技術報告 | `wiki-pdf` skill（markitdown + pymupdf）存入 `raw/web/` |
+| Notion 頁面 | 花園種子要深入研究 | `knowledge-garden-to-raw` skill 抓取存入 `raw/notion-ingest/` |
+| 深度研究 | Gemini Deep Research 輸出 | `chat-with-gemini-research` skill 存入 `raw/research/` |
 | 原始文字 | 你直接貼的一段文字 | agent 存入適當的 raw source channel |
 
 **關鍵：未經整理的原始資料。**
@@ -139,7 +140,7 @@ Obsidian/
 1. 讀完來源（文本一次讀完；有圖片時另外批次讀）。
 2. 與人類討論重點，確認要提取什麼知識點。
 3. 在正確的 canonical collection 建立／更新相關頁面（單一來源可能會動到多頁）：
-   - 建立「來源筆記」（`wiki/sources/`，1 頁彙整該資料的重點）**，⚠️ 必須在 frontmatter 加入 `provenance` 指向 raw 檔案或外部來源**（格式見 §4.2）
+   - 建立「來源筆記」（`wiki/sources/`，1 頁彙整該資料的重點）**，⚠️ 必須在 frontmatter 加入 `provenance_raw` 或 `provenance_url`**（格式見 §4.2）
    - 可重用抽象放入 `wiki/concepts/`
    - 具體人／工具／package 放入 `wiki/entities/`
    - 尚未定案內容放入 `wiki/discussions/`；已確認的全域選擇放入 `wiki/decisions/`
@@ -167,18 +168,13 @@ Obsidian/
 
 **觸發條件：** 人類說「lint wiki」，或定期（例如每 10 次 ingest 後）。
 
-1. 掃 `wiki/` 找：
-   - 頁面間互相矛盾
-   - 過時主張被新資料推翻卻沒標記
-   - 孤立頁面（沒有 inbound 連結）
-   - 出現多次但沒有自己頁面的概念
-   - 缺漏的交叉引用
-   - **Source note provenance 缺漏**：`wiki/sources/` 下的頁面應有 `provenance_raw` 或 `provenance_url` 指向 raw 檔案或外部 URL；指向不存在檔案的 provenance 須標記
-   - **Topic page 遺漏**：每個 entity/concept/source frontmatter 的 `topics: [...]` 都應在對應 `wiki/topics/*.md` 的 Entities、Concepts 或 Sources 列表中出現；反之，topic page 列出的頁面都應存在
-   - **視覺地圖遺漏**：`wiki/visualizations/` 下的視覺地圖都應在 `visualizations/README.md` 註冊並標示 topics；對應 topic page 的 `## Visualizations` 區塊須列出相關視覺地圖
-2. 提出「該修什麼、該查什麼、該補什麼資料」的清單。
-3. 人類確認後開始修改。
-4. **git push** 同步回 GitHub。
+執行 `wiki-lint` skill（`~/.agents/skills/wiki-lint/SKILL.md`），該 skill 定義完整檢查清單與輸出格式。流程概要：
+
+1. `git pull` 取得最新版。
+2. 依 skill 定義的 9 項檢查掃描 `wiki/`。
+3. 產出結構化報告（🔴必須修復 / 🟡建議修復 / 🟢可選改善 / 📊統計）。
+4. 人類確認後修改。
+5. `git push` 同步。
 
 ### 3.4 Projects（專案維護）
 
@@ -311,44 +307,18 @@ provenance_session: "description"  # 選填；對話 session 來源
 
 ---
 
-## 9. 閉環優化系統
-
-### 核心循環：收集 → 消化 → 實踐 → 反思
+## 9. 閉環優化：收集 → 消化 → 實踐 → 反思
 
 ```
 ① 收集 ──→ ② 消化 ──→ ③ 實踐 ──→ ④ 反思 ──→ 回到①
  │           │           │           │
  ▼           ▼           ▼           ▼
 raw/剪藏    wiki/頁面    做專案      lint/巡檢
-花園種子    index整理    skill用     日記回顧
+花園種子    index整理    skill用     花園巡檢
 TODO收集    log記錄      TDD/CR      過時清理
 ```
 
-### 各階段做法
-
-**① 收集（每天/每次對話）**
-- 浮現的新想法 → 加入 `work/current.md`，並建立至少一個 reference；不得重新建立舊工作目錄
-- 看到好文章 → Web Clipper 到 `raw/`
-- 好的對話洞見 → 說「存到 wiki」
-- 新工具/方法 → 說「這概念值得記下來」
-
-**② 消化（每週 1-2 次）**
-- 執行 Ingest 處理 `raw/` 積壓
-- 更新 `wiki/index.md` 和 `wiki/log.md`
-- Notion 花園灌溉
-
-**③ 實踐（每天）**
-- 從 `work/current.md` 拉任務做
-- 有實際進展就追加 `work/history/YYYY-MM.md`，並連結 raw、project 或 wiki；沒有可追溯結果的對話不必記錄
-- 用 `tdd`、`code-review`、`grill-me` 等 skill 跑完整流程
-- 每次實踐後問：「這個學到什麼可以存到 wiki？」
-
-**④ 反思（每週末）**
-- Lint wiki：找矛盾、孤頁、過時資訊
-- 花園巡檢：哪些種子停滯了？
-- 日記回顧：本週學了什麼？
-- 檢查 `work/current.md`：重新排列工作優先級與 references
-- 優化 skill：哪個不好用？用 `skill-creator` 改
+各階段詳細流程見 §3（Ingest / Query / Lint / Projects）。核心節奏：收集與實踐每天進行，消化每週 1-2 次，反思每週末。
 
 ---
 
@@ -356,19 +326,6 @@ TODO收集    log記錄      TDD/CR      過時清理
 
 本系統基於：
 
-1. **[Andrej Karpathy 的 LLM Knowledge Base 概念](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)**
-   - 核心理念：不需要向量資料庫，個人規模下 wiki + index 就夠用
+1. **[Andrej Karpathy 的 LLM Knowledge Base 概念](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)** — 不需要向量資料庫，個人規模下 wiki + index 就夠用。LLM 即編譯器，原始資料進來、結構化 wiki 出來。query 答案回填 wiki，知識持續累積。
 
-2. **[Google Cloud OKF (Open Knowledge Format)](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)**
-   - 核心理念：Markdown + YAML frontmatter 表示知識，人類和 AI 都能讀
-   - 進階式揭露（Progressive Disclosure）：index → topics → entities
-   - Graph-shaped, not tree-shaped：概念之間互相連結形成語義網路
-   - Trust tier + Provenance：內建信任機制和來源追蹤
-
-核心理念：
-- **不需要向量資料庫**：個人規模下，簡單的 wiki + index 就夠用。
-- **LLM 即編譯器**：原始資料進來，結構化 wiki 出來。
-- **回饋循環**：query 答案可以存回 wiki，讓知識持續累積。
-- **閉環優化**：收集→消化→實踐→反思，不斷自我改進。
-- **Progressive Disclosure**：先看 overview，再深入特定主題。
-- **Graph is knowledge**：graph view 應該只顯示知識內容，不被 structural files 污染。
+2. **[Google Cloud OKF (Open Knowledge Format)](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)** — Markdown + YAML frontmatter 表示知識。進階式揭露（Progressive Disclosure：index → topics → entities）、Graph-shaped（概念互相連結形成語義網路）、Trust tier + Provenance（信任機制與來源追蹤）。
