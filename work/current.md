@@ -397,3 +397,22 @@
 - 完成、決策、重要討論與處理結果追加至 `work/history/YYYY-MM.md`。
 - 每個 history event 必須包含 `refs:`，至少指向 raw conversation、project 或 wiki 其中之一。
 - 沒有形成工作進展或可追溯結果的對話，不需要建立事件。
+
+- [x] W-2026-08-045 知識花園種子全面更新 + 研究專題重構 ✅ #knowledge #notion
+  - completed: 2026-08-09
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、Notion 知識花園
+  - 已完成：
+    - ✅ 7 筆種子頁面全部更新（內容補充、成長狀態更新）
+    - ✅ 建立 4 個新種子（LSP、Code Graph、MCP、LOOP Engineering）
+    - ✅ 強化 knowledge-garden skill（批量更新、狀態評估、GitHub 檢查）
+    - ✅ 強化 knowledge-garden-visualmap skill（自動從 wiki 產生、模板系統）
+    - ✅ 更新 knowledge-garden-page-content skill（四層骨架模板）
+    - ✅ 5 個研究專題全部更新（豐富內容、關聯種子、建立視覺地圖）
+    - ✅ 建立 8 個視覺地圖
+    - ✅ 種子總數從 7 顆增加到 11 顆
+  - 種子更新：
+    - OpenCodeReview、Plannotator、NPM Publishing、OKF、mattpocock/skills、Omnigent、Pi Agent
+  - 新種子：
+    - LSP、Code Graph、MCP、LOOP Engineering
+  - 研究專題更新：
+    - 知識管理系統、AI 驅動的開發系統、Meta-Harness 元鞍具、Extension 開發生態、AI Agent 架構研究
