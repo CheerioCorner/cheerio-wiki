@@ -6,7 +6,11 @@
 ## In progress
 
 - [ ] W-2026-08-044 建立「圓桌會議」skill：多 AI 對談討論 🆕 #skills #ai-agent
-  - next: 依照 v2 設計文件實作 SKILL.md + prompt 模板 + 測試三人圓桌
+  - next: 測試三人圓桌（1 個 subagent + Gemini + Copilot）
+  - 已完成：
+    - ✅ 設計文件 v2（subagent 參與者架構）
+    - ✅ 建立 SKILL.md（完整流程、prompt 模板、CLI 指令）
+    - ✅ 建立 ~/.agents/skills/round-table/
   - refs: [[work/designs/round-table-skill-design|設計文件 v2]]、copilot skill、gy skill、pi-subagents
   - 說明：Pi 主持（不參與），派出 subagent（使用者指定模型）+ Gemini + Copilot 共同討論
   - 決策：
