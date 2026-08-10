@@ -26,6 +26,7 @@ updated: 2026-08-08
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime（agentic loop、session tree、compaction、skills） 🛠️
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
 - [[wiki/entities/uncle-bob|Uncle Bob (Robert C. Martin)]] — Clean Code 作者、軟體工程資深實踐者
+- [[wiki/entities/theo-t3gg|Theo (t3gg)]] — 程式碼重要性光譜與驗證方法論倡導者
 
 ## Concepts
 
@@ -35,6 +36,7 @@ updated: 2026-08-08
 - [[wiki/concepts/meta-harness|Meta-Harness]] — 對 harness 本身的再抽象/最佳化層
 - [[wiki/concepts/late-conversion|Late Conversion]] — 延遲轉換模式
 - [[wiki/concepts/defect-metrics|Defect Metrics]] — 缺陷密度與逃脫率指標
+- [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜與驗證策略
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑（Pi vs LangGraph）
 
 ## Sources
@@ -54,3 +56,4 @@ updated: 2026-08-08
 - [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]] — LangGraph runtime 深度解析
 - [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob Stopped Reading AI-Generated Code]] — AI 程式碼驗證方法論（YouTube）
+- [[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Write Code You Will Never Read Again]] — 程式碼重要性光譜（YouTube）

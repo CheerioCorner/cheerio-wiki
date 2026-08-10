@@ -29,9 +29,9 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-10（新增 Uncle Bob AI 程式碼驗證 source + entity）
+- **最後更新**：2026-08-10（新增 Theo Code Importance Spectrum + Uncle Bob 互補觀點）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：31（全部已補 provenance）
+- **Source notes**：32（全部已補 provenance）
 - **Canonical collections**：16 concepts、27 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
@@ -58,8 +58,8 @@
 > 每個 collection 有自己的 README，點進去看完整列表。
 
 - [[wiki/concepts/README|Concepts]] — 可跨專案重用的抽象知識
-- [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作（含 [[wiki/entities/open-code-review|OpenCodeReview]] 19.3k ⭐、[[wiki/entities/learning-loop|Learning Loop]]、[[wiki/entities/markitdown|MarkItDown]] 172k ⭐、[[wiki/entities/obsidian|Obsidian]] 150 萬用戶、[[wiki/entities/uncle-bob|Uncle Bob]]）
-- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（31 筆，含 [[wiki/sources/2026-08-09-obsidian-ai-knowledge-management|Obsidian Deep Research]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|OCR Gemini 研究]]、[[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]]、[[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob AI Code Verification]]、[[wiki/sources/2026-08-08-guizang-ppt-skill|guizang-ppt-skill]]、[[wiki/sources/2026-08-08-huashu-design|huashu-design]]、[[wiki/sources/2026-07-23-plannotator-copilot-setup|Plannotator Copilot 安裝手冊]]）
+- [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作（含 [[wiki/entities/open-code-review|OpenCodeReview]] 19.3k ⭐、[[wiki/entities/learning-loop|Learning Loop]]、[[wiki/entities/markitdown|MarkItDown]] 172k ⭐、[[wiki/entities/obsidian|Obsidian]] 150 萬用戶、[[wiki/entities/uncle-bob|Uncle Bob]]、[[wiki/entities/theo-t3gg|Theo]]）
+- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（32 筆，含 [[wiki/sources/2026-08-09-obsidian-ai-knowledge-management|Obsidian Deep Research]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|OCR Gemini 研究]]、[[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]]、[[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob AI Code Verification]]、[[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Theo Code Importance Spectrum]]、[[wiki/sources/2026-08-08-guizang-ppt-skill|guizang-ppt-skill]]、[[wiki/sources/2026-08-08-huashu-design|huashu-design]]、[[wiki/sources/2026-07-23-plannotator-copilot-setup|Plannotator Copilot 安裝手冊]]）
 - [[wiki/decisions/README|Decisions]] — 全域／跨專案已確認選擇
 - [[wiki/discussions/README|Discussions]] — 尚未定案的方案與研究問題
 - [[wiki/visualizations/README|Visualizations]] — 知識花園視覺地圖（含 [[wiki/visualizations/obsidian-seed-map|Obsidian 功能全景圖]]）

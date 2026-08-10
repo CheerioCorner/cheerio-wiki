@@ -79,6 +79,8 @@ Uncle Bob 的方法論根植於：
 
 ## 相關頁面
 
+- [[wiki/entities/theo-t3gg|Theo (t3gg)]] — 互補觀點：用 cheap code 驗證 important code
+- [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜框架
 - [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Skills 集合

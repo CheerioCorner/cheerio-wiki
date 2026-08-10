@@ -3,6 +3,18 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-10] ingest | Write Code You Will Never Read Again
+
+- 新增 source note：wiki/sources/2026-08-10-write-code-you-will-never-read-again.md
+- 新增 entity：wiki/entities/theo-t3gg.md（Theo / t3gg）
+- 新增 concept：wiki/concepts/code-importance-spectrum.md（程式碼重要性光譜）
+- 更新 entity：wiki/entities/uncle-bob.md（加入 Theo 交叉引用）
+- 更新 topics：wiki/topics/ai-agent.md（加入 Theo + code-importance-spectrum + source）
+- 更新 index：wiki/index.md（Source notes 31→32、Entities 加入 Theo）
+- 來源：YouTube 字幕（yt-dlp auto-generated）
+- 重點：4 層程式碼重要性光譜、用 cheap code 驗證 important code、Code is useful for things other than merging
+- refs: [[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Source Note]]、[[wiki/entities/theo-t3gg|Theo]]、[[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]]
+
 ## [2026-08-10] ingest | Uncle Bob Stopped Reading AI-Generated Code
 
 - 新增 source note：wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code.md
