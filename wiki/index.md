@@ -56,6 +56,7 @@
 ## Concepts（抽象知識）
 
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑
+- [[wiki/concepts/knowledge-system-architecture|知識系統架構]] — 三個操作 + 一個機制 + 一個回流
 - [[wiki/concepts/agent-extension-installation|Agent Extension 安裝]] — 安裝位置與方式
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程
 - [[wiki/concepts/atdp|ATDP]] — Agent Trajectory Data Protocol

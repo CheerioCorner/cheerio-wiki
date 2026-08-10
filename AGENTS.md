@@ -11,7 +11,7 @@
 > 本檔案規範 LLM agent 如何維護這個知識庫。
 > 維護者：Cheerio
 > 建立日期：2026-07-11
-> 最後更新：2026-08-21
+> 最後更新：2026-08-10
 
 ## ⚠️ 鐵律
 
@@ -39,6 +39,7 @@ Obsidian/
 │   ├── sources/            # 整理後的外部資料與研究紀錄（type: source）
 │   ├── decisions/          # 全域／跨專案已確認的架構與技術選擇
 │   ├── discussions/        # 尚未定案的方案與研究問題
+│   ├── staging/            # 暫存區（backfill 草稿，TTL 21 天）
 │   ├── topics.md           # taxonomy 總入口
 │   ├── topics/             # topic landing pages（.md），只放導航，canonical content 連到 collections
 │   ├── visualizations/     # 視覺化投影（Mermaid code block 為主，舊 Canvas 保留）
@@ -317,6 +318,10 @@ provenance_session: "description"  # 選填；對話 session 來源
 - 半自動：LLM 偵測到某個 topic 下頁面過多時，建議分裂方案
 - 問人類：「是否要分裂這個 topic？」
 - 人類確認後才執行分裂
+
+---
+
+## 6. 與人類的協作原則
 
 ---
 
