@@ -29,9 +29,9 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-10（新增 Theo Code Importance Spectrum + Uncle Bob 互補觀點）
+- **最後更新**：2026-08-10（新增 Chunkless RAG + Docling）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：32（全部已補 provenance）
+- **Source notes**：33（全部已補 provenance）
 - **Canonical collections**：16 concepts、27 entities、4 decisions、3 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
@@ -61,6 +61,7 @@
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程
 - [[wiki/concepts/atdp|ATDP]] — Agent Trajectory Data Protocol
 - [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施
+- [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 保留文件結構的 RAG 方法，Agent 推理導航而非 chunks 相似度搜尋
 - [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜
 - [[wiki/concepts/code-knowledge-graph|Code Knowledge Graph]] — tree-sitter AST + 圖論算法
 - [[wiki/concepts/content-redesign|Content 設計 Redesign]] — 從套模板到針對性報告
@@ -83,6 +84,7 @@
 - [[wiki/entities/area-l|AReaL]] — Ant Group 開源 Agent 強化學習基礎設施
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層
 - [[wiki/entities/claude-code|Claude Code]] — Anthropic AI Coding Agent
+- [[wiki/entities/docling|Docling]] — IBM 文件解析框架，把 PDF 轉成結構化 tree document
 - [[wiki/entities/github-copilot|GitHub Copilot]] — GitHub AI 程式碼輔助工具
 - [[wiki/entities/graphify|Graphify]] — 開源代碼知識圖譜工具
 - [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent

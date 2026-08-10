@@ -27,6 +27,7 @@ updated: 2026-08-08
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
 - [[wiki/entities/uncle-bob|Uncle Bob (Robert C. Martin)]] — Clean Code 作者、軟體工程資深實踐者
 - [[wiki/entities/theo-t3gg|Theo (t3gg)]] — 程式碼重要性光譜與驗證方法論倡導者
+- [[wiki/entities/docling|Docling]] — IBM 文件解析框架，把 PDF 轉成結構化 tree document
 
 ## Concepts
 
@@ -38,6 +39,7 @@ updated: 2026-08-08
 - [[wiki/concepts/defect-metrics|Defect Metrics]] — 缺陷密度與逃脫率指標
 - [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜與驗證策略
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑（Pi vs LangGraph）
+- [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 保留文件結構的 RAG 方法，Agent 推導航而非 chunks 相似度搜尋
 
 ## Sources
 

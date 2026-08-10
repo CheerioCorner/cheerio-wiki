@@ -76,6 +76,15 @@
       "segments": 741,
       "paragraphs": 92,
       "language": "en"
+    },
+    {
+      "slug": "chunkless-rag-docling",
+      "title": "What Is Chunkless RAG? How Docling & AI Agents Navigate Documents",
+      "youtube_id": "vRZNJWw78BQ",
+      "url": "https://www.youtube.com/watch?v=vRZNJWw78BQ",
+      "duration": "00:07:00",
+      "segments": 98,
+      "language": "en"
     }
   ]
 }

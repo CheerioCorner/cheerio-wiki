@@ -3,6 +3,18 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-10] ingest | What Is Chunkless RAG? How Docling & AI Agents Navigate Documents
+
+- 新增 raw transcript：raw/youtube/chunkless-rag-docling.md（00:07:00 / 98 segments）
+- 新增 source note：wiki/sources/2026-08-10-chunkless-rag-docling.md
+- 新增 entity：wiki/entities/docling.md（IBM Docling 文件解析框架）
+- 新增 concept：wiki/concepts/chunkless-rag.md（保留文件結構的 RAG 方法）
+- 更新 topics：wiki/topics/ai-agent.md（加入 Docling + Chunkless RAG）
+- 更新 index：wiki/index.md（Source notes 32→33、Entities 加入 Docling、Concepts 加入 Chunkless RAG）
+- 來源：YouTube 字幕（pytubefix SRT fallback，手動英文字幕）
+- 重點：Chunkless RAG 保留 tree structure 讓 Agent 推理導航、Docling 把 PDF 解析成結構化 tree、兩者混用策略
+- refs: [[wiki/sources/2026-08-10-chunkless-rag-docling|Source Note]]、[[wiki/entities/docling|Docling]]、[[wiki/concepts/chunkless-rag|Chunkless RAG]]
+
 ## [2026-08-10] lint | Wiki Lint 完整健康檢查 + 知識系統架構設計
 
 - 執行完整 wiki lint：修復 6 筆 provenance、3 筆 frontmatter、建立 topics 連結
