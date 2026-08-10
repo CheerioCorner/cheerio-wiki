@@ -3,6 +3,16 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-10] ingest | Uncle Bob Stopped Reading AI-Generated Code
+
+- 新增 source note：wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code.md
+- 新增 entity：wiki/entities/uncle-bob.md（Robert C. Martin）
+- 更新 topics：wiki/topics/ai-agent.md（加入 Uncle Bob + source）
+- 更新 index：wiki/index.md（Source notes 26→31、Entities 加入 Uncle Bob）
+- 來源：YouTube 字幕（yt-dlp auto-generated）
+- 重點：Uncle Bob 宣布不再閱讀 AI 程式碼，改用極端約束驗證；引發工程師角色轉變討論
+- refs: [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Source Note]]、[[wiki/entities/uncle-bob|Uncle Bob]]
+
 ## [2026-08-09] seed | Obsidian — AI Agent 時代的知識管理基礎設施
 
 - 新增種子：Obsidian（Notion + 視覺地圖）

@@ -25,6 +25,7 @@ updated: 2026-08-08
 - [[wiki/entities/mario-zechner|Mario Zechner]] — Pi 作者
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime（agentic loop、session tree、compaction、skills） 🛠️
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
+- [[wiki/entities/uncle-bob|Uncle Bob (Robert C. Martin)]] — Clean Code 作者、軟體工程資深實踐者
 
 ## Concepts
 
@@ -52,3 +53,4 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種 AI Agent 工作流模式
 - [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]] — LangGraph runtime 深度解析
+- [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob Stopped Reading AI-Generated Code]] — AI 程式碼驗證方法論（YouTube）

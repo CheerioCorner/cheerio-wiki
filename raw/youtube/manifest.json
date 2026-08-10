@@ -56,6 +56,16 @@
       "duration": "21:30",
       "segments": 610,
       "language": "en"
+    },
+    {
+      "slug": "uncle-bob-stopped-reading-ai-generated-code",
+      "title": "Uncle Bob Stopped Reading AI-Generated Code",
+      "youtube_id": "sClTAvkQDOU",
+      "url": "https://www.youtube.com/watch?v=sClTAvkQDOU",
+      "duration": "00:08:21",
+      "segments": 253,
+      "paragraphs": 25,
+      "language": "en"
     }
   ]
 }
