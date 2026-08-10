@@ -5,6 +5,20 @@
 
 ## In progress
 
+- [x] W-2026-08-049 Wiki 大整理：Redis + CodeReview + Agentic AI + Knowledge Management ✅ #knowledge #wiki
+  - completed: 2026-08-10
+  - refs: [[wiki/concepts/redis|Redis]]、[[wiki/concepts/ai-code-review|AI Code Review]]、[[wiki/concepts/agentic-ai|Agentic AI]]、[[wiki/concepts/knowledge-management|Knowledge Management]]
+  - 已完成：
+    - ✅ Wiki Lint 修復：斷裂連結、provenance 缺漏、孤立頁面、index 數據、交叉引用
+    - ✅ Redis 整理：9 個 source notes + concept page（快取、叢架、Eviction、記憶體、效能、安全、ACL、Sentinel、授權）
+    - ✅ Code Review 整理：concept + topic + 2 個 source notes（OCR、code-review-graph）
+    - ✅ Agentic AI：concept page（四大支柱、設計模式、框架比較）
+    - ✅ Knowledge Management：concept page + ai-related-seeds source
+    - ✅ 其他 ingest：Defect Escape Rate 指南、rust-analyzer LSP、Redis Licenses
+    - ✅ 修復 provenance 連結（qwenpaw、waku-agent）
+    - ✅ 刪除重複檔案（Cluster Architecture 1.md）
+  - 統計：新增 15 個 wiki 頁面，ingest 12 個 raw 檔案
+
 - [x] W-2026-08-048 知識系統架構改進：4 輪圓桌會議 + 花園更新 ✅ #knowledge #meta #notion
   - completed: 2026-08-10
   - refs: [[wiki/decisions/knowledge-system-architecture-decision|架構決策]]、[[wiki/concepts/knowledge-system-architecture|架構概念]]、Notion 知識花園
