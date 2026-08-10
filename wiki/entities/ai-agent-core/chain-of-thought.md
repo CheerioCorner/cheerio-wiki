@@ -1,3 +1,14 @@
+---
+title: "Chain-of-thought (CoT)"
+type: entity
+created: 2026-08-06
+updated: 2026-08-06
+sources: 0
+tags: [chain-of-thought, cot, reasoning, inference, llm]
+topics: [ai-agent]
+canonical: entities/ai-agent-core/chain-of-thought
+---
+
 # Chain-of-thought (CoT)
 
 > 讓模型「先想再答」的推理技術。

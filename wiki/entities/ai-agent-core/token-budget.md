@@ -1,3 +1,14 @@
+---
+title: "Token 預算"
+type: entity
+created: 2026-08-06
+updated: 2026-08-06
+sources: 0
+tags: [token, budget, context-window, llm, resource-management]
+topics: [ai-agent]
+canonical: entities/ai-agent-core/token-budget
+---
+
 # Token 預算
 
 > 模型的「記憶力」和「思考力」都是有限的，要學會分配。
