@@ -85,7 +85,7 @@ Anthropic（default）、OpenAI、Gemini、DeepSeek、MiniMax、Kimi、GLM、Ope
 - **vs OpenClaw / Hermes**：相同架構，1/100th 代碼量
 
 ## 來源
-- [[raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop, in code you can read in an afternoon — harness + loop + memory + eval|Raw GitHub README]]
+- [[../../raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop|Raw GitHub README]]
 
 ## 相關頁面
 - [[wiki/entities/waku-agent|waku-agent]] — 專案 entity page

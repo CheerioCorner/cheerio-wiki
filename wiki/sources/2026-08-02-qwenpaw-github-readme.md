@@ -79,7 +79,7 @@ QwenPaw 是 AgentScope 的開源個人 AI 助理，支援本地/雲端部署、�
 
 ## 來源
 
-- [[raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabilities|Raw GitHub README]]
+- [[../../raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant|Raw GitHub README]]
 
 ## 相關頁面
 
