@@ -18,6 +18,20 @@ updated: 2026-08-11
 - [[wiki/entities/learning-loop|learning-loop]] — 自動學習優化系統
 - [[wiki/entities/markitdown|MarkItDown]] — Microsoft 萬能格式→Markdown 轉換器（PDF/Word/Excel/PPT → Markdown）
 
+## Decisions
+
+- [[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]] — Package 與 Knowledge 的邊界定義
+- [[wiki/decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]] — OKF bundle 的邊界劃分
+- [[wiki/decisions/raw-conversation-promotion-workflow|Raw Conversation Promotion Workflow]] — 對話紀錄提升為 raw 的流程
+- [[wiki/decisions/shared-wiki-collection-model|Shared Wiki Collection Model]] — 共享 wiki collection 架構
+
+## Discussions
+
+- [[wiki/discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]] — 規範化與語意連結策略
+- [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]] — Notion 整合架構討論
+- [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]] — Topic stub 清理討論
+- [[wiki/discussions/wiki-youtube-pipeline-timing|YouTube-to-Wiki Pipeline Timing]] — YouTube pipeline 時機討論
+
 ## Concepts
 
 - [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 8 個 skill 的全景圖與資料流 🛠️

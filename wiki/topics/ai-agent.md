@@ -13,6 +13,8 @@ updated: 2026-08-08
 
 ## Entities
 
+- [[wiki/entities/ai-agent-core/chain-of-thought|Chain-of-thought]] — 讓模型「先想再答」的推理技術
+- [[wiki/entities/ai-agent-core/token-budget|Token 預算]] — 模型資源分配與限制
 - [[wiki/entities/pi-mono|pi-mono]] — Pi Agent Toolkit monorepo（CLI entry point、extensions、read-only mode） 🛠️
 - [[wiki/entities/tau|tau]] — Hugging Face 的 Pi Python port 🛠️
 - [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent 🛠️

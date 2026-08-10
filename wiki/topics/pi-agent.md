@@ -11,6 +11,7 @@ updated: 2026-08-08
 
 ## Entities
 
+- [[wiki/entities/pi-agent/changelog/v0.84.0|Pi v0.84.0 更新]] — TUI/Mermaid/samplingParams/thinking_token_budget
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard 🛠️
 - [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]] — Pi 的 Cron Job 與排程系統（@pi-agents/loop） 🛠️
 - [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]] — Pi Web 中文化 Access 🛠️
