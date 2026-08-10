@@ -31,6 +31,7 @@ updated: 2026-08-08
 
 ## Concepts
 
+- [[wiki/concepts/agentic-ai|Agentic AI]] — AI Agent 核心定義、四大支柱、設計模式 🛠️
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — AI Agent 兩種核心工作流模式
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成

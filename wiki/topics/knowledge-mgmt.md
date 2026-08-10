@@ -35,6 +35,7 @@ updated: 2026-08-11
 
 ## Concepts
 
+- [[wiki/concepts/knowledge-management|Knowledge Management]] — 知識管理方法論與工具鏈 🛠️
 - [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 8 個 skill 的全景圖與資料流 🛠️
 - [[wiki/concepts/content-redesign|Content 設計 Redesign]] — 從套模板到針對性報告的重構 🛠️
 - [[wiki/concepts/pi-project-workspace-model|Pi Project / Workspace Model]]
@@ -47,6 +48,7 @@ updated: 2026-08-11
 - [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
 - [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|Plannotator × Obsidian 簡報企劃]] — 知識迴流系統報告簡報企劃
 - [[wiki/sources/2026-08-09-obsidian-ai-knowledge-management|Obsidian Deep Research]] — Gemini 深度研究報告
+- [[wiki/sources/2026-08-07-ai-related-seeds|Notion AI 相關種子]] — agentskills.io + Axway AI Gateway 🛠️
 
 ## Visualizations
 
