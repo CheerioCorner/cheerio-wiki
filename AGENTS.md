@@ -209,6 +209,12 @@ Obsidian/
 3. 觸發 Ingest 流程（§3.1）。
 4. 更新 `wiki/entities/knowledge-garden.md`（本地 manifest）。
 
+**種子成熟判定條件：**
+- 種子標籤從 `#seed` 變更為 `#mature`
+- 通過 `wiki-lint` 基本格式校驗
+- 備註字數 > 100 或連結數 > 3
+- 符合上述條件後，自動複製至 `raw/notion-ingest/` 觸發 Ingest 流程
+
 ---
 
 ## 4. Wiki 頁面規範
@@ -261,6 +267,13 @@ provenance_session: "description"  # 選填；對話 session 來源
 - 使用 vault-root 完整路徑連結，例如 `[[wiki/entities/pi-mono|pi-mono]]`、`[[wiki/concepts/okf-open-knowledge-format|OKF]]`，確保連結在任何位置都能正確解析。
 - `[[basename]]` 只適合唯一 target；當 compatibility stub 或 Canvas 造成歧義時，改用完整路徑。
 - Audit／歷史 log 中的 link 要與正文 link 分開統計；不要因已刪除歷史頁而重建頁面。
+
+### 4.5 雙向連結規範
+
+- **所有新增的 concept 頁面**必須至少包含 2 個以上的雙向連結（`[[target-concept]]`）
+- **所有新增的 entity 頁面**必須至少包含 1 個 inbound link（被其他頁面連結）
+- **交叉引用**：提到相關概念時，必須建立連結，讓 Obsidian 關聯檢視圖能正確繪製
+- **來源連結**：wiki 頁面必須連結到對應的 source note（`[[wiki/sources/...]]`）
 
 ---
 
