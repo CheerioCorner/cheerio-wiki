@@ -5,6 +5,21 @@
 
 ## In progress
 
+- [x] W-2026-08-048 知識系統架構改進：4 輪圓桌會議 + 花園更新 ✅ #knowledge #meta #notion
+  - completed: 2026-08-10
+  - refs: [[wiki/decisions/knowledge-system-architecture-decision|架構決策]]、[[wiki/concepts/knowledge-system-architecture|架構概念]]、Notion 知識花園
+  - 已完成：
+    - ✅ 4 輪圓桌會議（Pi + Gemini + Copilot）：確立「三個操作 + 一個機制 + 一個回流」架構
+    - ✅ 修改 AGENTS.md：新增知識演化協定、雙向連結規範、種子成熟標準
+    - ✅ 修改 wiki-lint skill：新增矛盾偵測、孤立頁面、半衰期、Source Fidelity
+    - ✅ 修改 wiki-ingest skill：新增查詢步驟、Backfill 流程、職責劃分
+    - ✅ 補強 index.md：完整列出所有 concepts、entities、sources
+    - ✅ 新增 wiki/concepts/knowledge-system-architecture.md
+    - ✅ 新增 wiki/decisions/knowledge-system-architecture-decision.md
+    - ✅ 更新 Notion 知識花園：研究專題 + 視覺地圖 + 5 個新種子
+    - ✅ 同步 cheerio-skills repo：wiki-lint + wiki-ingest + README
+  - 核心架構：三個操作（Ingest/Query/Lint）+ 一個機制（知識幫助知識）+ 一個回流（花園→大腦）
+
 - [ ] W-2026-08-047 知識系統健檢機制全面盤點 + AGENTS.md 整理 🆕 #knowledge #meta
   - next: 加強花園巡檢 skill（量化標準 + 結構化輸出）、建立工作追蹤 lint、重建 cron 排程
   - 已完成：
