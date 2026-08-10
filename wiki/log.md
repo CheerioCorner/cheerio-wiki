@@ -3,6 +3,18 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-10] lint | Wiki Lint 完整健康檢查 + 知識系統架構設計
+
+- 執行完整 wiki lint：修復 6 筆 provenance、3 筆 frontmatter、建立 topics 連結
+- 清理 raw 冗餘：移動 43 筆到 trash（Redis 18 + LSP 9 + pi-agent 2 + 其他 14）
+- 更新 wiki-lint skill：新增知識品質檢查（矛盾、過時、缺漏概念、交叉引用、資料缺口、Source Fidelity）
+- 圓桌會議 4 輪：Pi + Gemini + Copilot 討論知識系統架構
+- 產出最終報告：.pi/round-table/20260810-lint-improvement/FINAL-REPORT-v2.md
+- 修改 AGENTS.md：新增知識演化協定（回填機制、Staging Buffer、花園同步）
+- 補強 index.md：完整列出所有 concepts、entities、sources
+- 重點：三個操作 + 一個機制 + 一個回流、半自動回填、Staging Buffer TTL 21 天
+- refs: FINAL-REPORT-v2.md、AGENTS.md、wiki-lint SKILL.md
+
 ## [2026-08-10] ingest | Write Code You Will Never Read Again
 
 - 新增 source note：wiki/sources/2026-08-10-write-code-you-will-never-read-again.md

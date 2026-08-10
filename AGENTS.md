@@ -163,6 +163,8 @@ Obsidian/
 2. 讀那些頁面（必要時追溯其連結）。
 3. 給出有引用的回答，並標明來源頁面。
 4. **重要：好的回答可以回填成新頁面**（比較表、新分析、新發現）。人類說「把這個存到 wiki」就建檔 + 更新 index + 寫 log。
+5. **信心度回報**：如果對回答不確定（信心度 < 0.88），要明確告訴人類「我對這個回答不確定」，並說明不確定的原因。
+6. **半自動回填**：高價值洞察（信心度 ≥ 0.88）自動寫入 Staging Buffer（`wiki/staging/`），等待人類確認後才成為正式知識。
 
 ### 3.3 Lint（健康檢查）
 
@@ -186,6 +188,25 @@ Obsidian/
 4. 使用 GitHub repository URL 作為跨環境 canonical reference。
 5. 不複製 package source code、完整 PLAN 或 package `docs/`；更新 `wiki/index.md` 的 Projects 區塊。
 6. 專案 canonical 入口一律是 `projects/<project-id>/index.md`。舊的 `wiki/projects/` 已完成退場，不再建立或更新 legacy project README。
+
+### 3.5 Backfill（回填機制）
+
+**觸發條件：** Query 產出高價值洞察（信心度 ≥ 0.88）。
+
+1. 評估洞察品質：信心度 ≥ 0.88 → auto_verified；0.70 ≤ S < 0.88 → draft_backfill；S < 0.70 → 廢棄（但要告訴人類為什麼）。
+2. 寫入 Staging Buffer（`wiki/staging/`）：附帶 metadata（backfill_id, query, answer, confidence_score, status, created_at, ttl）。
+3. TTL：21 天。逾時自動清除。
+4. 人類確認後，提升為正式知識（移入 wiki/ 相應目錄）。
+5. 更新 index.md 和 log.md。
+
+### 3.6 Garden Sync（花園同步）
+
+**觸發條件：** 花園有新種子成熟（🌱 → 🌳）或研究專題有新發現。
+
+1. 偵測 Notion 種子狀態變化。
+2. 自動抓取 Notion 頁面內容，存入 `raw/notion-ingest/`。
+3. 觸發 Ingest 流程（§3.1）。
+4. 更新 `wiki/entities/knowledge-garden.md`（本地 manifest）。
 
 ---
 
@@ -263,6 +284,39 @@ provenance_session: "description"  # 選填；對話 session 來源
   ```
 - 最新的一條放在最上面。
 - 看最近活動：`grep "^## \[" wiki/log.md | head -10`
+
+---
+
+## 5a. 知識演化協定
+
+### 權責分工
+- 人類：sourcing、exploration、問好的問題、確認回填、確認 topics 分裂
+- LLM：summarizing、cross-referencing、filing、bookkeeping、偵測需要分裂的 topics
+
+### 回填機制（半自動）
+- Query 信心度 S ≥ 0.88 → auto_verified → Staging Buffer
+- 0.70 ≤ S < 0.88 → draft_backfill → Staging Buffer
+- S < 0.70 → 廢棄（但要告訴人類為什麼）
+- 所有回填都需要人類確認後才能成為正式知識
+
+### Staging Buffer
+- 位置：`wiki/staging/`
+- TTL：21 天
+- 逾時自動清除
+
+### 半衰期管理
+- 快訊類：7 天
+- 技術文件：180 天
+- 歷史常識：3650 天
+
+### 同步機制
+- 大腦 → 花園：單向同步（wiki → Notion）
+- 花園 → 大腦：單向回流（觸發條件：種子成熟、研究專題新發現、人類主動）
+
+### Topics 分裂
+- 半自動：LLM 偵測到某個 topic 下頁面過多時，建議分裂方案
+- 問人類：「是否要分裂這個 topic？」
+- 人類確認後才執行分裂
 
 ---
 

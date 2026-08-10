@@ -53,16 +53,105 @@
 
 ---
 
-## Collections（內容集合）
+## Concepts（抽象知識）
 
-> 每個 collection 有自己的 README，點進去看完整列表。
+- [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑
+- [[wiki/concepts/agent-extension-installation|Agent Extension 安裝]] — 安裝位置與方式
+- [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程
+- [[wiki/concepts/atdp|ATDP]] — Agent Trajectory Data Protocol
+- [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施
+- [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜
+- [[wiki/concepts/code-knowledge-graph|Code Knowledge Graph]] — tree-sitter AST + 圖論算法
+- [[wiki/concepts/content-redesign|Content 設計 Redesign]] — 從套模板到針對性報告
+- [[wiki/concepts/context-cot|Context-CoT]] — 上下文思維鏈
+- [[wiki/concepts/defect-metrics|Defect Metrics]] — 缺陷密度與逃脫率指標
+- [[wiki/concepts/html-slide-deck-workflow|HTML Slide Deck 製作工作流]] — 整合 guizang + huashu
+- [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 8 個 skill 的全景圖
+- [[wiki/concepts/late-conversion|Late Conversion]] — 延遲轉換模式
+- [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種核心工作流模式
+- [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
+- [[wiki/concepts/npm-publishing-workflow|NPM Publishing Workflow]] — Package Publishing 流程
+- [[wiki/concepts/okf-open-knowledge-format|OKF]] — Open Knowledge Format
+- [[wiki/concepts/pi-project-workspace-model|Pi Project Workspace Model]] — 專案工作區模型
+- [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill]] — 技能優化元技能
+- [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成
 
-- [[wiki/concepts/README|Concepts]] — 可跨專案重用的抽象知識
-- [[wiki/entities/README|Entities]] — 人、工具、package 與具體實作（含 [[wiki/entities/open-code-review|OpenCodeReview]] 19.3k ⭐、[[wiki/entities/learning-loop|Learning Loop]]、[[wiki/entities/markitdown|MarkItDown]] 172k ⭐、[[wiki/entities/obsidian|Obsidian]] 150 萬用戶、[[wiki/entities/uncle-bob|Uncle Bob]]、[[wiki/entities/theo-t3gg|Theo]]）
-- [[wiki/sources/README|Sources]] — 整理後的外部資料與研究紀錄（32 筆，含 [[wiki/sources/2026-08-09-obsidian-ai-knowledge-management|Obsidian Deep Research]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|OCR Gemini 研究]]、[[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]]、[[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob AI Code Verification]]、[[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Theo Code Importance Spectrum]]、[[wiki/sources/2026-08-08-guizang-ppt-skill|guizang-ppt-skill]]、[[wiki/sources/2026-08-08-huashu-design|huashu-design]]、[[wiki/sources/2026-07-23-plannotator-copilot-setup|Plannotator Copilot 安裝手冊]]）
+## Entities（具體實作）
+
+- [[wiki/entities/agentskills-io-standard|agentskills-io-standard]] — AI Agent Skill 開放標準
+- [[wiki/entities/area-l|AReaL]] — Ant Group 開源 Agent 強化學習基礎設施
+- [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層
+- [[wiki/entities/claude-code|Claude Code]] — Anthropic AI Coding Agent
+- [[wiki/entities/github-copilot|GitHub Copilot]] — GitHub AI 程式碼輔助工具
+- [[wiki/entities/graphify|Graphify]] — 開源代碼知識圖譜工具
+- [[wiki/entities/hermes-agent|hermes-agent]] — Nous Research 自我改進 AI agent
+- [[wiki/entities/knowledge-garden|knowledge-garden]] — Notion 知識花園 Manifest
+- [[wiki/entities/knowledge-garden-to-raw|knowledge-garden-to-raw]] — Notion → Raw 抓取 Skill
+- [[wiki/entities/langgraph|LangGraph]] — Graph-based agent runtime
+- [[wiki/entities/lsp|LSP]] — Language Server Protocol
+- [[wiki/entities/mario-zechner|Mario Zechner]] — Pi 作者
+- [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合
+- [[wiki/entities/mcp-model-context-protocol|MCP]] — Model Context Protocol
+- [[wiki/entities/memgraph-rag|MemGraph-RAG]] — KDD 2026 記憶圖譜多智能體 RAG
+- [[wiki/entities/morphir-dotnet|Morphir .NET]] — FINOS .NET binding
+- [[wiki/entities/notionApi|notionApi]] — Notion MCP server
+- [[wiki/entities/omnigent|Omnigent]] — Databricks 開源 meta-harness
+- [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI AI Coding Agent
+- [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime
+- [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard
+- [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]] — Pi 的 Cron Job 與排程系統
+- [[wiki/entities/qwenpaw|QwenPaw]] — AgentScope 本地 AI 助理
+- [[wiki/entities/skillopt|SkillOpt]] — 微軟技能優化器
+- [[wiki/entities/tau|tau]] — Hugging Face 的 Pi Python port
+- [[wiki/entities/tree-sitter|Tree-sitter]] — 增量解析器
+- [[wiki/entities/waku-agent|waku-agent]] — Local-first personal AI agent
+- [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill
+
+## Sources（來源筆記）
+
+- [[wiki/sources/2026-02-10-pi-agent-core-design|Pi Agent Core 設計]] — Mario Zechner 原始設計文件
+- [[wiki/sources/2026-05-02-pi-mono-framework-tw|Pi Mono Framework 中文介紹]] — 中文入門文章
+- [[wiki/sources/2026-07-11-mattpocock-skills|mattpocock/skills — 工程實踐 Skills 集合]] — repo 研究與完整清單
+- [[wiki/sources/2026-07-11-plannotator-research|Plannotator 研究]] — Pi extension 研究
+- [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks|Omnigent Meta-Harness]] — Databricks 開源 multi-agent orchestration
+- [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
+- [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills — 完整 AI Coding 工作流程教學]] — 官方教學影片
+- [[wiki/sources/2026-07-31-npm-publishing-setup|Package Publishing 首次實作]] — npm publish 流程建立
+- [[wiki/sources/2026-08-01-okf-extension-development|OKF Extension 開發實作]] — pi-plannotator-auto OKF 知識包建立
+- [[wiki/sources/2026-08-01-okf-knowledge-catalog|OKF Knowledge Catalog]] — Google Cloud 參考實作
+- [[wiki/sources/2026-08-02-defect-density-escape-rate|Defect Density & Escape Rate]] — 敏捷指標指南
+- [[wiki/sources/2026-08-02-morphir-dotnet-agents|Morphir .NET Agents]] — FINOS .NET binding
+- [[wiki/sources/2026-08-02-qwenpaw-github-readme|QwenPaw GitHub README]] — AgentScope 本地 AI 助理
+- [[wiki/sources/2026-08-02-vibe-coding-implications|Vibe Coding Implications]] — Vibe Coding 對開發工具的影響分析
+- [[wiki/sources/2026-08-02-waku-agent-code-walkthrough|Waku Agent Code Walkthrough]] — 原始碼解析（YouTube）
+- [[wiki/sources/2026-08-02-waku-agent-github-readme|Waku Agent GitHub README]] — Local-first personal AI agent
+- [[wiki/sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF 架構優化]] — 完整 migration 工作紀錄
+- [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種 AI Agent 工作流模式
+- [[wiki/sources/2026-08-03-tau-python-port-of-pi|Tau — Pi Python Port]] — Hugging Face Python 版
+- [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]] — Gemini Deep Research 報告
+- [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF + LSP + CodeGraph AI Agent 研究]] — 三者整合分析
+- [[wiki/sources/2026-08-05-hermes-agent-github-readme|Hermes Agent GitHub README]] — 自我改進 AI agent
+- [[wiki/sources/2026-08-05-pi-github-readme|Pi GitHub README]] — Pi repo 結構與安裝
+- [[wiki/sources/2026-08-05-tau-github-readme|Tau GitHub README]] — Tau repo 結構
+- [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough]] — 完整架構解析（YouTube）
+- [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research|Wow 5支AI Agent研究]] — 知識圖譜+自我進化+Context-CoT+SkillOpt+MemGraph-RAG
+- [[wiki/sources/2026-08-08-hermes-architecture-explained|Hermes Architecture Explained]] — 架構深度解析（YouTube）
+- [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|Plannotator × Obsidian 簡報企劃]] — 知識迴流系統報告簡報企劃
+- [[wiki/sources/2026-08-08-qwenpaw-youtube-intro|QwenPaw YouTube Intro]] — QwenPaw 介紹（YouTube）
+- [[wiki/sources/2026-08-09-redis-caching-patterns|Redis Caching Patterns]] — Redis 快取模式整合
+- [[wiki/sources/2026-08-10-antigravity-cli-integration|Antigravity CLI 整合]] — Gemini CLI 整合方案
+- [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理]] — @pi-agents/loop 排程系統
+- [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Pi GitHub Copilot Provider Setup]] — Copilot 整合設定
+
+## Decisions & Discussions
+
 - [[wiki/decisions/README|Decisions]] — 全域／跨專案已確認選擇
 - [[wiki/discussions/README|Discussions]] — 尚未定案的方案與研究問題
-- [[wiki/visualizations/README|Visualizations]] — 知識花園視覺地圖（含 [[wiki/visualizations/obsidian-seed-map|Obsidian 功能全景圖]]）
+
+## Visualizations
+
+- [[wiki/visualizations/README|Visualizations]] — 知識花園視覺地圖
+- [[wiki/visualizations/obsidian-seed-map|Obsidian 功能全景圖]] — 功能與延伸應用全景圖
 
 ---
 
