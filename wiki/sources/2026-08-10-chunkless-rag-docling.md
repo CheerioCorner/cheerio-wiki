@@ -8,6 +8,12 @@ tags: [rag, document-understanding, ai-agent, ibm, docling]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-10-chunkless-rag-docling
+provenance:
+  - kind: raw
+    path: raw/youtube/chunkless-rag-docling.md
+    url: https://www.youtube.com/watch?v=vRZNJWw78BQ
+provenance_raw: "raw/youtube/chunkless-rag-docling.md"
+provenance_url: https://www.youtube.com/watch?v=vRZNJWw78BQ
 ---
 
 > 來源：[YouTube — What Is Chunkless RAG? How Docling & AI Agents Navigate Documents](https://www.youtube.com/watch?v=vRZNJWw78BQ)

@@ -24,6 +24,7 @@ updated: 2026-08-11
 - [[wiki/decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]] — OKF bundle 的邊界劃分
 - [[wiki/decisions/raw-conversation-promotion-workflow|Raw Conversation Promotion Workflow]] — 對話紀錄提升為 raw 的流程
 - [[wiki/decisions/shared-wiki-collection-model|Shared Wiki Collection Model]] — 共享 wiki collection 架構
+- [[wiki/decisions/knowledge-system-architecture-decision|知識系統架構改進決策]] — 4 輪圓桌會議的架構改進最終報告
 
 ## Discussions
 

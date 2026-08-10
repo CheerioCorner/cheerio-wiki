@@ -24,3 +24,4 @@ updated: 2026-08-08
 
 - [[wiki/sources/2026-08-20-opencode-review-deep-research|OpenCodeReview Deep Research]] — 阿里內部故事、社群討論、互補分析
 - [[wiki/sources/2026-08-02-vibe-coding-implications|Vibe Coding Implications]] — Vibe Coding 對開發工具的影響分析
+- [[wiki/sources/2026-08-04-code-review-graph|code-review-graph]] — Tree-sitter 知識圖譜做 Code Review，省 8.2 倍 Token 🛠️

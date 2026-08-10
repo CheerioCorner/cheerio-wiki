@@ -29,10 +29,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-10（新增 Chunkless RAG + Docling）
+- **最後更新**：2026-08-10（lint 修復 + 新增 code-review-graph）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：33（全部已補 provenance）
-- **Canonical collections**：16 concepts、27 entities、4 decisions、3 discussions
+- **Source notes**：42（全部已補 provenance）
+- **Canonical collections**：23 concepts、40 entities、5 decisions、4 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---

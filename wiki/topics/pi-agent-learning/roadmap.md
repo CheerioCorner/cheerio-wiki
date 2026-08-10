@@ -103,6 +103,29 @@ Phase 4: 動手建造 ░░░░░░░░░░░░   0%
 4. **記錄**：更新 wiki、寫心得
 5. **連結**：跟已知概念串連
 
+## 🔗 相關頁面
+
+### Pi Agent 核心
+- [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime（agentic loop、session tree、compaction）
+- [[wiki/entities/ai-agent-core/chain-of-thought|Chain-of-thought]] — 讓模型「先想再答」的推理技術
+- [[wiki/entities/ai-agent-core/token-budget|Token 預算]] — 模型資源分配與限制
+- [[wiki/concepts/pi-project-workspace-model|Pi Project Workspace Model]] — 專案工作區模型
+
+### Extension 與排程
+- [[wiki/concepts/agent-extension-installation|Agent Extension 安裝]] — 安裝位置與方式
+- [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]] — Cron Job 與排程系統
+- [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — 即時 Web Dashboard
+
+### 架構與 Framework
+- [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種核心工作流模式
+- [[wiki/entities/langgraph|LangGraph]] — Graph-based agent runtime
+- [[wiki/entities/tau|tau]] — Hugging Face 的 Pi Python port
+
+### 學習追蹤
+- [[wiki/topics/pi-agent-learning/progress|📊 學習進度]] — 追蹤每次學習成果
+
+---
+
 ## 標籤
 
 #ai-agent #learning #roadmap
