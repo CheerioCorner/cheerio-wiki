@@ -31,8 +31,8 @@
 - **建立日期**：2026-07-11
 - **最後更新**：2026-08-10（lint 修復 + 新增 code-review-graph）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：42（全部已補 provenance）
-- **Canonical collections**：23 concepts、40 entities、5 decisions、4 discussions
+- **Source notes**：45（全部已補 provenance）
+- **Canonical collections**：24 concepts、40 entities、5 decisions、4 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---
@@ -75,6 +75,7 @@
 - [[wiki/concepts/npm-publishing-workflow|NPM Publishing Workflow]] — Package Publishing 流程
 - [[wiki/concepts/okf-open-knowledge-format|OKF]] — Open Knowledge Format
 - [[wiki/concepts/pi-project-workspace-model|Pi Project Workspace Model]] — 專案工作區模型
+- [[wiki/concepts/redis|Redis]] — In-memory key-value 資料庫，快取、Session、即時排行 🛠️
 - [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill]] — 技能優化元技能
 - [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成
 

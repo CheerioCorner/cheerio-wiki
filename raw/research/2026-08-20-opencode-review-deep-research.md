@@ -61,13 +61,13 @@ OCR 的核心技術架構為「**確定性工程 × LLM Agent 混合架構 (Dete
 
 ### 角度三：與競爭對手比較
 
-| 比較維度 | OpenCodeReview (OCR) | CodeRabbit | SonarQube AI | GitHub Copilot Code Review | Cursor / Claude Code 內建 Review |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **產品型態** | 開源 / CLI & CI 整合 [VERIFIED][REF-1] | 商業 SaaS 平台 [VERIFIED][REF-4] | 地端/雲端 靜態分析加強版 [VERIFIED][REF-9] | 平台內建 SaaS 功能 [VERIFIED][REF-9] | IDE 內建通用 Agent [VERIFIED][REF-3] |
-| **部署與隱私** | **自架 (Self-Hosted)**，可接私有 LLM [VERIFIED][REF-4] | SaaS，程式碼需傳送至第三方 [VERIFIED][REF-4] | 自架 / SaaS [VERIFIED][REF-9] | GitHub 雲端託管 [VERIFIED][REF-9] | 本地 IDE 發起 / 雲端 API [VERIFIED][REF-3] |
-| **計費模式** | **免費開源** (僅付自選 LLM API 費用) [VERIFIED][REF-4] | 按人頭/按訂閱付費 (Per-seat) [VERIFIED][REF-4] | 企業授權費 [VERIFIED][REF-9] | Copilot 訂閱內含 [VERIFIED][REF-9] | API / 訂閱使用 [VERIFIED][REF-3] |
-| **核心優勢** | 確定性+Agent 混合、1/9 Token 成本 [VERIFIED][REF-1] | 開箱即用、UI 互動介面友善 [VERIFIED][REF-4] | 傳統 Static Rules 與語法規範防護牆 [VERIFIED][REF-9] | GitHub 生態高度整合 [VERIFIED][REF-9] | 程式碼修改與重構能力強大 [VERIFIED][REF-3] |
-| **主要劣勢** | 需要維運 CI/CD 配置 [VERIFIED][REF-4] | 成本較高、資料離境限制 [VERIFIED][REF-4] | 對複雜邏輯缺陷識別較弱 [VERIFIED][REF-9] | 噪訊率較高、自訂彈性低 [VERIFIED][REF-9] | Token 消耗極大、缺乏審查邊界 [VERIFIED][REF-3] |
+| 比較維度      | OpenCodeReview (OCR)                            | CodeRabbit                             | SonarQube AI                               | GitHub Copilot Code Review      | Cursor / Claude Code 內建 Review       |
+| :-------- | :---------------------------------------------- | :------------------------------------- | :----------------------------------------- | :------------------------------ | :----------------------------------- |
+| **產品型態**  | 開源 / CLI & CI 整合 [VERIFIED][REF-1]              | 商業 SaaS 平台 [VERIFIED][REF-4]           | 地端/雲端 靜態分析加強版 [VERIFIED][REF-9]            | 平台內建 SaaS 功能 [VERIFIED][REF-9]  | IDE 內建通用 Agent [VERIFIED][REF-3]     |
+| **部署與隱私** | **自架 (Self-Hosted)**，可接私有 LLM [VERIFIED][REF-4] | SaaS，程式碼需傳送至第三方 [VERIFIED][REF-4]      | 自架 / SaaS [VERIFIED][REF-9]                | GitHub 雲端託管 [VERIFIED][REF-9]   | 本地 IDE 發起 / 雲端 API [VERIFIED][REF-3] |
+| **計費模式**  | **免費開源** (僅付自選 LLM API 費用) [VERIFIED][REF-4]    | 按人頭/按訂閱付費 (Per-seat) [VERIFIED][REF-4] | 企業授權費 [VERIFIED][REF-9]                    | Copilot 訂閱內含 [VERIFIED][REF-9]  | API / 訂閱使用 [VERIFIED][REF-3]         |
+| **核心優勢**  | 確定性+Agent 混合、1/9 Token 成本 [VERIFIED][REF-1]     | 開箱即用、UI 互動介面友善 [VERIFIED][REF-4]       | 傳統 Static Rules 與語法規範防護牆 [VERIFIED][REF-9] | GitHub 生態高度整合 [VERIFIED][REF-9] | 程式碼修改與重構能力強大 [VERIFIED][REF-3]       |
+| **主要劣勢**  | 需要維運 CI/CD 配置 [VERIFIED][REF-4]                 | 成本較高、資料離境限制 [VERIFIED][REF-4]          | 對複雜邏輯缺陷識別較弱 [VERIFIED][REF-9]              | 噪訊率較高、自訂彈性低 [VERIFIED][REF-9]   | Token 消耗極大、缺乏審查邊界 [VERIFIED][REF-3]  |
 
 - **與 CodeRabbit**：CodeRabbit 為優質 SaaS 產品，但費用隨團隊擴大而高昂，且需轉移程式碼 privacy [VERIFIED][REF-4]。OCR 則提供完全的數據主權 (Data Sovereignty) 與靈活模型選擇（如 DeepSeek, Qwen, Claude）[VERIFIED][REF-4]。
 - **與 SonarQube AI**：SonarQube 強於 Linting、語法與單元測試涵蓋率等傳統 Quality Gates [VERIFIED][REF-9]；OCR 強於跨檔案語意理解與邏輯錯誤判定，兩者在 CI/CD 中為極佳的**互補關係 (Complementary)** [INFERRED][REF-9]。
