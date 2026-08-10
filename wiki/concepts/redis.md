@@ -132,6 +132,7 @@ redis-cli --hotkeys
 - [[wiki/sources/2026-08-03-redis-security-practices|Redis Security Best Practices]] — 部署安全、叢集安全、資料庫安全 🛠️
 - [[wiki/sources/2026-08-03-redis-acl|Redis ACL 完整指南]] — 存取控制列表、權限管理 🛠️
 - [[wiki/sources/2026-08-03-redis-sentinel-client-spec|Redis Sentinel Client Spec]] — 客戶端整合規範、服務發現 🛠️
+- [[wiki/sources/2026-08-03-redis-licenses|Redis 授權指南]] — RSALv2/SSPLv1/AGPLv3 三選一授權 🛠️
 
 ### Topics
 - [[wiki/topics/backend-systems|Backend Systems]] — 後端系統導航頁
