@@ -32,7 +32,7 @@
 - **最後更新**：2026-08-10（lint 修復 + 新增 code-review-graph）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
 - **Source notes**：45（全部已補 provenance）
-- **Canonical collections**：24 concepts、40 entities、5 decisions、4 discussions
+- **Canonical collections**：25 concepts、40 entities、5 decisions、4 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---
@@ -48,6 +48,7 @@
 - [[wiki/topics/backend-systems|🔧 後端系統]] — Redis、Caching、Database patterns
 - [[wiki/topics/knowledge-mgmt|📚 知識管理]] — Obsidian wiki、Notion 花園、ingest 流程
 - [[wiki/topics/skill|🛠️ Skill]] — AI coding skills、workflow
+- [[wiki/topics/code-review|🔍 Code Review]] — AI 代碼審查工具、方法論、Benchmark
 
 > 🛠️ = 同時屬於多個 topic（見各頁 frontmatter `topics`）
 
@@ -59,6 +60,7 @@
 - [[wiki/concepts/knowledge-system-architecture|知識系統架構]] — 三個操作 + 一個機制 + 一個回流
 - [[wiki/concepts/agent-extension-installation|Agent Extension 安裝]] — 安裝位置與方式
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程
+- [[wiki/concepts/ai-code-review|AI Code Review]] — AI 自動化代碼審查工具與方法論 🛠️
 - [[wiki/concepts/atdp|ATDP]] — Agent Trajectory Data Protocol
 - [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施
 - [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 保留文件結構的 RAG 方法，Agent 推理導航而非 chunks 相似度搜尋

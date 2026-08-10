@@ -18,7 +18,12 @@ updated: 2026-08-08
 
 ## Concepts
 
+- [[wiki/concepts/ai-code-review|AI Code Review]] — AI 自動化代碼審查綜整 🛠️
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程 🛠️
+
+## 相關 Topics
+
+- [[wiki/topics/code-review|Code Review]] — Code Review 專題導航
 
 ## Sources
 

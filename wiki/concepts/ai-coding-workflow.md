@@ -78,6 +78,7 @@ canonical: concepts/ai-coding-workflow
 
 ## 相關頁面
 
+- [[wiki/concepts/ai-code-review|AI Code Review]] — Code Review 階段的詳細工具與方法論
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — 實作此工作流程的 skills repo
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成，與本工作流程互補
