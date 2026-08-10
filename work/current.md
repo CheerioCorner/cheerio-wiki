@@ -5,6 +5,20 @@
 
 ## In progress
 
+- [ ] W-2026-08-047 知識系統健檢機制全面盤點 + AGENTS.md 整理 🆕 #knowledge #meta
+  - next: 加強花園巡檢 skill（量化標準 + 結構化輸出）、建立工作追蹤 lint、重建 cron 排程
+  - 已完成：
+    - ✅ 三大健檢機制盤點（大腦 wiki-lint / 花園 knowledge-garden / 工作 work-tracker）
+    - ✅ AGENTS.md 與實際佈局比對（發現 raw/ 2 個 + work/ 5 個未記錄項目）
+    - ✅ AGENTS.md 品質掃描（14 項問題：5 過時 + 6 冗餘 + 3 可選）
+    - ✅ AGENTS.md 修復：§1 架構合併 + 補資料夾、§2.1 更新 skill 引用、§3.3 改引用 wiki-lint skill、§4.2 provenance 統一、§9 §10 去冗餘、日期更新
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki-lint skill]]、work-tracker SKILL.md
+  - 待辦：
+    - ⏳ 花園巡檢加強（量化停滯標準、Relation 一致性、Sync Status、視覺地圖完整性）
+    - ⏳ 工作追蹤 lint（current.md 格式、refs 完整性、history 一致性）
+    - ⏳ 重建 cron 排程（每週一 wiki lint + 每週三花園巡檢）
+    - ⏳ §2.4 work/ 定義與 work-tracker SKILL.md 對齊
+
 - [ ] W-2026-08-044 建立「圓桌會議」skill：多 AI 對談討論 🆕 #skills #ai-agent
   - next: 測試三人圓桌（1 個 subagent + Gemini + Copilot）
   - 已完成：

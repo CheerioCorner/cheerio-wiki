@@ -8,7 +8,9 @@ tags: [ai-agent, knowledge-graph, rag, skill, reinforcement-learning]
 collection: sources
 topics: [ai-agent, skill]
 canonical: sources/2026-08-06-wow-youtube-5-ai-agent-research
-provenance_raw: "raw/research/2026-08-06-wow-youtube-5-ai-agent-topics.md"
+provenance:
+  - kind: raw
+    path: raw/research/2026-08-06-wow-youtube-5-ai-agent-topics.md
 ---
 
 > 來源：[Wow YouTube 頻道](https://www.youtube.com/@wow.insight) 5 支前沿 AI Agent 研究影片

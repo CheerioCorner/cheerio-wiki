@@ -4,7 +4,9 @@ type: source
 created: 2026-08-08
 updated: 2026-08-08
 sources: 1
-provenance_raw: "raw/web/2026-08-08-guizang-ppt-skill.md"
+provenance:
+  - kind: raw
+    path: raw/web/2026-08-08-guizang-ppt-skill.md
 tags: [skill, ppt, html, slides, design, presentation, guizang]
 topics: [skill]
 canonical: sources/2026-08-08-guizang-ppt-skill

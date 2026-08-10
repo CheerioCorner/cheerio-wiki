@@ -8,6 +8,9 @@ tags: [langgraph, ai-agent, graph-engineering, state-management, durability, che
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-21-langgraph-in-10-minutes
+provenance:
+  - kind: raw
+    path: raw/youtube/langgraph-in-10-minutes.md
 ---
 
 > 來源：[YouTube — LangGraph in 10 Minutes (Explained Clearly)](https://www.youtube.com/watch?v=BwZbdCzmZJc)

@@ -4,7 +4,9 @@ type: source
 created: 2026-08-08
 updated: 2026-08-08
 sources: 1
-provenance_raw: "raw/web/2026-08-08-alchaincyfhuashu-design Huashu Design.md"
+provenance:
+  - kind: raw
+    path: raw/web/2026-08-08-alchaincyfhuashu-design Huashu Design.md
 tags: [skill, design, html, prototype, slides, animation, pptx, mp4, huashu]
 topics: [skill]
 canonical: sources/2026-08-08-huashu-design

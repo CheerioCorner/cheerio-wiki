@@ -4,7 +4,9 @@ type: source
 created: 2026-08-08
 updated: 2026-08-08
 sources: 2
-provenance_raw: "raw/web/2026-08-08-plannotator-obsidian-presentation-proposal.md"
+provenance:
+  - kind: raw
+    path: raw/web/2026-08-08-plannotator-obsidian-presentation-proposal.md
 tags: [plannotator, obsidian, presentation, knowledge-management, skill]
 topics: [skill, knowledge-mgmt]
 canonical: sources/2026-08-08-plannotator-obsidian-presentation

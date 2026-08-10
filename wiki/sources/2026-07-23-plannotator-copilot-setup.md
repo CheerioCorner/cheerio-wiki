@@ -7,7 +7,9 @@ sources: 1
 tags: [plannotator, copilot, installation, windows, setup-guide]
 topics: [extension-dev, coding-agent]
 canonical: sources/2026-07-23-plannotator-copilot-setup
-provenance_raw: "raw/web/2026-07-23-plannotator-copilot-setup-manual.md"
+provenance:
+  - kind: raw
+    path: raw/web/2026-07-23-plannotator-copilot-setup-manual.md
 ---
 
 # Plannotator IT 安裝手冊：GitHub Copilot CLI 整合
