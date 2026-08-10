@@ -6,12 +6,14 @@ updated: 2026-08-08
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabilities.md
+    path: raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant.md
+    url: https://github.com/agentscope-ai/QwenPaw
 tags: [qwenpaw, ai-agent, agent-os, security, local-deploy, agentscope, github]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-02-qwenpaw-github-readme
-provenance_raw: raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabilities.md
+provenance_raw: raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant.md
+provenance_url: https://github.com/agentscope-ai/QwenPaw
 provenance_url: https://github.com/agentscope-ai/QwenPaw
 ---
 

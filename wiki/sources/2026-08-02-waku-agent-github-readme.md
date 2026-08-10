@@ -6,12 +6,13 @@ updated: 2026-08-02
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop, in code you can read in an afternoon — harness + loop + memory + eval.md
+    path: raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop.md
+    url: https://github.com/ShenSeanChen/waku-agent
 tags: [github, ai-agent, local-first, memory-system]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-02-waku-agent-github-readme
-provenance_raw: "raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop, in code you can read in an afternoon — harness + loop + memory + eval.md"
+provenance_raw: "raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop.md"
 provenance_url: "https://github.com/ShenSeanChen/waku-agent"
 ---
 
