@@ -1,3 +1,15 @@
+---
+title: 知識系統架構改進決策
+type: decision
+created: 2026-08-10
+updated: 2026-08-10
+sources: 4
+tags: [knowledge-management, architecture, decision]
+topics: [knowledge-mgmt]
+canonical: decisions/knowledge-system-architecture-decision
+status: confirmed
+---
+
 # 知識系統架構改進最終報告
 
 > 版本：v2.0
