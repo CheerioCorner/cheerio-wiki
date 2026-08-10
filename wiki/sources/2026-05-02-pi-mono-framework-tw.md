@@ -24,7 +24,8 @@ provenance_url: https://ai-chain.tw/blog/pi-mono-intuitive-typescript-ai-agent-f
 
 ## 專案統計(截至 2026-05-02)
 - GitHub stars:**43,777**
-- 最新 release:**v0.72.1**
+- 當時最新 release:**v0.72.1**（2026-05-02）
+- ⚠️ **過時**：截至 2026-08-10，Pi 已更新至 v0.84.0+
 - 過去幾天屬「高頻更新」:2026-04-28 為 v0.70.6,2026-05-02 已 v0.72.1
 - Node.js 前置:`>=20.6.0`
 
