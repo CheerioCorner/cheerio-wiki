@@ -26,6 +26,7 @@ updated: 2026-08-10
 - [[wiki/sources/2026-08-20-opencode-review-deep-research|OpenCodeReview Deep Research]] — Gemini 深度研究（技術架構、Benchmark、競爭分析） 🛠️
 - [[wiki/sources/2026-08-04-code-review-graph|code-review-graph]] — Tree-sitter 知識圖譜省 8.2x Token 🛠️
 - [[wiki/sources/2026-08-02-defect-density-escape-rate|Defect Density & Escape Rate]] — 缺陷指標研究
+- [[wiki/sources/2026-08-02-defect-escape-rate-guide|Defect Escape Rate 測量指南]] — DER 實測步驟 🛠️
 
 ## 相關 Topics
 
