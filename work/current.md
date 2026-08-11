@@ -56,14 +56,21 @@
     - ✅ 建立 ~/.agents/skills/round-table/
     - ✅ 新增 Claude 為預設參與者（Claude + Gemini + Copilot）
     - ✅ 建立 chat-with-claude skill（使用 Claude Code CLI）
-  - refs: [[work/designs/round-table-skill-design|設計文件 v2]]、copilot skill、gy skill、pi-subagents
+    - ✅ 新增量化共識偵測機制（newArguments、coverageRate、agreementRate、openDisputes）
+    - ✅ 新增主持人結論（每輪 round-N-summary.md）
+    - ✅ 新增論點追蹤表（arguments-tracker.md）
+    - ✅ 修復重複 Gemini prompt 模板
+    - ✅ 新增分歧點阻止結束條件
+    - ✅ 更新 wiki entity page（wiki/entities/round-table.md）
+  - refs: [[wiki/entities/round-table|round-table entity]]、[[wiki/topics/skill|Skill Topic]]、copilot skill、gy skill、pi-subagents
   - 說明：Pi 主持（不參與），派出 subagent（使用者指定模型）+ Claude + Gemini + Copilot 共同討論
   - 決策：
     - Pi 只主持，不坐在桌上
     - 使用者可指定 0-N 個 subagent 參與者，每個可指定 model
     - 發言順序由 Pi 每輪動態決定（平衡發言、回應缺口、辯證張力）
     - 兩處都存（.pi/round-table/ + work/history/）
-    - 結束條件：maxRounds + 共識偵測 + 人類介入
+    - 結束條件：maxRounds + 量化共識偵測 + 無未解決分歧 + 人類介入
+    - 新增：每輪主持人結論 + 論點追蹤表 + 分歧點阻止結束
     - Claude 成為圓桌會議預設參與者（2026-08-11 決策）
 
 - [x] W-2026-08-043 Content 設計 Redesign：四層骨架 + 主觀現實 + Roadmap ✅ #knowledge #skill
