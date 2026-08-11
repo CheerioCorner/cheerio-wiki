@@ -48,20 +48,23 @@
     - ⏳ 重建 cron 排程（每週一 wiki lint + 每週三花園巡檢）
     - ⏳ §2.4 work/ 定義與 work-tracker SKILL.md 對齊
 
-- [ ] W-2026-08-044 建立「圓桌會議」skill：多 AI 對談討論 🆕 #skills #ai-agent
-  - next: 測試三人圓桌（1 個 subagent + Gemini + Copilot）
+- [x] W-2026-08-044 建立「圓桌會議」skill：多 AI 對談討論 ✅ #skills #ai-agent
+  - completed: 2026-08-11
   - 已完成：
     - ✅ 設計文件 v2（subagent 參與者架構）
     - ✅ 建立 SKILL.md（完整流程、prompt 模板、CLI 指令）
     - ✅ 建立 ~/.agents/skills/round-table/
+    - ✅ 新增 Claude 為預設參與者（Claude + Gemini + Copilot）
+    - ✅ 建立 chat-with-claude skill（使用 Claude Code CLI）
   - refs: [[work/designs/round-table-skill-design|設計文件 v2]]、copilot skill、gy skill、pi-subagents
-  - 說明：Pi 主持（不參與），派出 subagent（使用者指定模型）+ Gemini + Copilot 共同討論
+  - 說明：Pi 主持（不參與），派出 subagent（使用者指定模型）+ Claude + Gemini + Copilot 共同討論
   - 決策：
     - Pi 只主持，不坐在桌上
     - 使用者可指定 0-N 個 subagent 參與者，每個可指定 model
     - 發言順序由 Pi 每輪動態決定（平衡發言、回應缺口、辯證張力）
     - 兩處都存（.pi/round-table/ + work/history/）
     - 結束條件：maxRounds + 共識偵測 + 人類介入
+    - Claude 成為圓桌會議預設參與者（2026-08-11 決策）
 
 - [x] W-2026-08-043 Content 設計 Redesign：四層骨架 + 主觀現實 + Roadmap ✅ #knowledge #skill
   - refs: [[wiki/concepts/content-redesign|Content Redesign]]、Copilot+Gemini 三輪討論
