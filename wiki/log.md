@@ -3,6 +3,20 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-20] ingest | Round Table 多 AI 圓桌會議 Skill 更新
+
+- 新增 entity：wiki/entities/round-table.md（多 AI 圓桌會議 skill）
+- 更新 skill：C:/Users/User/.agents/skills/round-table/SKILL.md
+  - 新增量化共識偵測機制（newArguments、coverageRate、agreementRate、openDisputes）
+  - 新增主持人結論（每輪 round-N-summary.md）
+  - 新增論點追蹤表（arguments-tracker.md）
+  - 修復重複 Gemini prompt 模板
+  - 新增分歧點阻止結束條件
+- 更新 topics：wiki/topics/skill.md（加入 round-table entity）
+- 更新 index：wiki/index.md（Entities 加入 round-table）
+- 重點：雙重門檻結束條件（量化觸發 + 無未解決分歧）、每輪主持人結構化結論、全程論點追蹤
+- refs: [[wiki/entities/round-table|round-table]]、[[wiki/topics/skill|Skill Topic]]
+
 ## [2026-08-10] ingest | What Is Chunkless RAG? How Docling & AI Agents Navigate Documents
 
 - 新增 raw transcript：raw/youtube/chunkless-rag-docling.md（00:07:00 / 98 segments）

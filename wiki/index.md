@@ -109,6 +109,7 @@
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard
 - [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]] — Pi 的 Cron Job 與排程系統
 - [[wiki/entities/qwenpaw|QwenPaw]] — AgentScope 本地 AI 助理
+- [[wiki/entities/round-table|round-table]] — 多 AI 圓桌會議，量化共識偵測 + 主持人結論
 - [[wiki/entities/skillopt|SkillOpt]] — 微軟技能優化器
 - [[wiki/entities/tau|tau]] — Hugging Face 的 Pi Python port
 - [[wiki/entities/tree-sitter|Tree-sitter]] — 增量解析器

@@ -22,6 +22,7 @@ updated: 2026-08-09
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill
 - [[wiki/entities/hermes-agent|hermes-agent]] — 自我改進 AI agent，learning loop + skills hub 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Pi skills 機制：intercept → markup → read tool 🛠️
+- [[wiki/entities/round-table|round-table]] — 多 AI 圓桌會議，量化共識偵測 + 主持人結論 🛠️
 - [[wiki/entities/skillopt|SkillOpt]] — 微軟技能優化器，文字空間優化實現 Agent 自我進化
 - [[wiki/entities/agentskills-io-standard|agentskills-io-standard]] — AI Agent Skill 開放標準，跨平台相容 🛠️
 - [[wiki/entities/guizang-ppt-skill|guizang-ppt-skill]] — 歸藏 HTML PPT 技能，電子雜誌 + 瑞士國際主義雙視覺系統
