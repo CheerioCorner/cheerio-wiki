@@ -5,6 +5,22 @@
 
 ## In progress
 
+- [x] W-2026-08-050 知識系統架構 v3 修正：雙模型共識取代人類確認 + 花園整合寫入 ✅ #knowledge #meta #notion
+  - completed: 2026-08-12
+  - refs: [[wiki/decisions/knowledge-system-architecture-decision|架構決策 v3]]、[[wiki/concepts/knowledge-system-architecture|架構概念]]、AGENTS.md
+  - 已完成：
+    - ✅ 推翻 v2.0 的人類確認機制，改用雙模型交叉驗證（Pi 主持不投票，Claude+Gemini 預設參與者，分歧 Round 2 覆核，仍不一致才叫 Copilot 第三票，輪數上限 2 輪+第三票）
+    - ✅ 修改 AGENTS.md：§3.1 Ingest、§3.2 Query、§3.3 Lint、§3.5 Backfill、§5a 知識演化協定、§6 協作原則全面改寫
+    - ✅ Staging Buffer 語意從「等批准」改成「等共識」，TTL 逾時改自動晉升不清除
+    - ✅ decisions/discussions 語意調整為「共識已收斂／仍無法收斂」
+    - ✅ 修正 topics.md、topics/*.md、index.md 三處重複維護同一份清單的問題
+    - ✅ 修改 wiki-ingest、wiki-lint skill 同步雙模型交叉驗證與自動處理邏輯
+    - ✅ 知識花園 4 個 skill 全面調整：整合寫入取代累加（取代標記用刪除線）、Phase 0.5 多元觀點合成（round-table）、發布前確認、花園巡檢擴充、視覺地圖自動觸發、研究專題分裂量化標準
+    - ✅ 更新 wiki 決策文件與概念頁反映最終設計
+  - 待辦：
+    - ⏳ `~/.agents/skills` 目前沒有版本控制，本次 skill 異動只在本機，需要決定要不要建 git repo
+    - ⏳ 發現 `todos` skill 管理已刪除的 `todos/` 資料夾，與 work-tracker 的遷移聲明衝突，待確認是否刪除
+
 - [x] W-2026-08-049 Wiki 大整理：Redis + CodeReview + Agentic AI + Knowledge Management ✅ #knowledge #wiki
   - completed: 2026-08-10
   - refs: [[wiki/concepts/redis|Redis]]、[[wiki/concepts/ai-code-review|AI Code Review]]、[[wiki/concepts/agentic-ai|Agentic AI]]、[[wiki/concepts/knowledge-management|Knowledge Management]]

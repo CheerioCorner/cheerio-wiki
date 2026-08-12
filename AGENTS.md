@@ -59,7 +59,7 @@ Obsidian/
 **各資料夾用途：**
 - `raw/` = 原始資料。永遠只讀；依來源通道分為 `web/`、`youtube/`、`conversations/`、`notion-ingest/`、`research/`，附件集中於 `assets/`。
 - `projects/<project-id>/` = Project OKF Bundle；不取代 package repository 或原始碼。
-- `wiki/` = canonical knowledge graph。`topics.md` 與 `topics/` 只放導航；`visualizations/` 每張地圖須在 `README.md` 註冊並標示 topics。
+- `wiki/` = canonical knowledge graph。`topics.md` 是 `topics/` 的總目錄（只放連結，不重複列頁面）；`topics/*.md` 才是各 topic 的完整頁面清單；`index.md` 的 Topics 分區只連到 `topics/*.md`，不重複列出每一頁——三處只有一處是真正的全量清單，避免重複維護造成漂移。`visualizations/` 每張地圖須在 `README.md` 註冊並標示 topics。
 - `work/` = 唯一的工作狀態系統。`current.md` 管理目前工作，`history/` 保存事件，`designs/` `learning/` `synthesis/` 保存輔助文件。舊工作目錄已完成遷移，不得重新建立。
 - `AGENTS.md` = 治理入口，由人類與 LLM 共同演化。
 
@@ -135,12 +135,20 @@ Obsidian/
 
 ### 3.1 Ingest（吸收新資料）
 
-**觸發條件：** 人類在 `raw/` 放入新檔案並說「處理這個」或「ingest」。若 ingest 產生明確 follow-up 或完成事件，依 `work/README.md` 更新 work。
+**觸發條件：** 人類在 `raw/` 放入新檔案並說「處理這個」或「ingest」，或 Lint 稽核出未消化的 raw 檔案時自動觸發。全程不需要人類確認——人類的角色只有把資料放進 `raw/`，之後全交給 AI。
 
-**單筆流程（推薦，可監督）：**
+**流程：**
 1. 讀完來源（文本一次讀完；有圖片時另外批次讀）。
-2. 與人類討論重點，確認要提取什麼知識點。
-3. 在正確的 canonical collection 建立／更新相關頁面（單一來源可能會動到多頁）：
+2. 查詢既有知識（避免重複）：讀 `wiki/index.md` 找相關頁面。
+3. **雙模型交叉驗證（取代人類確認，Pi 主持不投票）**：
+   - Pi（執行 ingest 的 agent）**不自己提案**，只當主持人：分別呼叫 `chat-with-claude` 與 `chat-with-gemini` skill，讓兩個獨立參與者對同一份 raw 各自產出結構化提案（要建立/更新哪些頁面、分類、topics）
+   - **Round 1（盲判）**：只比對關鍵欄位——目標頁面（新建或併入哪一頁）、`type` 分類、`topics`、是否推翻既有結論。措辭/章節順序/次要 tag 不同不算分歧
+   - 關鍵欄位一致 → 採用，進入步驟 4
+   - 關鍵欄位不一致 → **Round 2（覆核）**：把對方的提案互相展示，各自決定是否修改立場
+   - Round 2 後仍不一致 → 呼叫 `chat-with-copilot` skill 當第三票，多數決；分歧與裁決記錄進 `wiki/log.md`
+   - 三方仍無共識（罕見）→ **仍然寫入**（不可因為沒有共識就放棄這筆資料），標記 frontmatter `confidence: draft`，列入下次 Lint 報告的「🤝 AI 已自動處理」區塊供人類選讀
+   - **輪數上限：2 輪**（Round 1 + Round 2），第三票不算額外一輪，避免無止盡討論
+4. 在正確的 canonical collection 建立／更新相關頁面（單一來源可能會動到多頁）：
    - 建立「來源筆記」（`wiki/sources/`，1 頁彙整該資料的重點）**，⚠️ 必須在 frontmatter 加入 `provenance_raw` 或 `provenance_url`**（格式見 §4.2）
    - 可重用抽象放入 `wiki/concepts/`
    - 具體人／工具／package 放入 `wiki/entities/`
@@ -148,11 +156,12 @@ Obsidian/
    - **⚠️ Topic pages 必須同步更新**：每當新增或更新 entity/concept/source，必須同時更新對應的 `wiki/topics/*.md` 導航頁（讀取新頁面 frontmatter 的 `topics: [...]`，在每個相關 topic page 的 Entities、Concepts 或 Sources 列表加入新頁面，跨 topic 頁面用 🛠️ 標記）
    - `wiki/topics.md` 與 `wiki/topics/*.md` 只放導航內容；不得在 topic 目錄建立內容副本或 compatibility stub
    - 標記新資料是否推翻／補充既有結論
-4. 更新 `wiki/index.md`（加入新頁或更新摘要）。
-5. 在 `wiki/log.md` 附加一條 ingest 紀錄。
-6. **git push** 同步回 GitHub。
+   - **不篩選、零遺漏**：每個 raw 檔案都必須產出至少一個 wiki 頁面，或在既有頁面明確記錄「已檢視、併入 XXX，理由：...」；不允許 AI 判斷「沒有意義」就無痕跡跳過
+5. 重新產生 `wiki/index.md`（自動全量重建，不是手動加一行；見 §5.1）。
+6. 在 `wiki/log.md` 附加一條 ingest 紀錄；若步驟 3 有仲裁，一併記錄分歧與裁決理由。
+7. **git push** 同步回 GitHub。
 
-**批次流程：** 相同步驟，但一次處理多筆、較少互動。適合不重要的積累型資料。
+**批次流程：** 相同步驟，但一次處理多筆。步驟 3 的雙模型交叉驗證仍然執行（這是唯一的品質防線，不可因批次而跳過），只是不需要人類在場互動。
 
 ### 3.2 Query（查詢）
 
@@ -162,10 +171,9 @@ Obsidian/
 
 1. 先讀 `wiki/index.md` 找出相關頁面；啟動時只讀 `work/current.md`，history 僅在需要追溯過去時讀取。
 2. 讀那些頁面（必要時追溯其連結）。
-3. 給出有引用的回答，並標明來源頁面。
-4. **重要：好的回答可以回填成新頁面**（比較表、新分析、新發現）。人類說「把這個存到 wiki」就建檔 + 更新 index + 寫 log。
-5. **信心度回報**：如果對回答不確定（信心度 < 0.88），要明確告訴人類「我對這個回答不確定」，並說明不確定的原因。
-6. **半自動回填**：高價值洞察（信心度 ≥ 0.88）自動寫入 Staging Buffer（`wiki/staging/`），等待人類確認後才成為正式知識。
+3. 給出有引用的回答，並標明來源頁面。這一步是即時互動，單一模型即可，不需要共識機制。
+4. **不確定時要說**：如果對回答沒把握，明確告訴人類「我對這個回答不確定」並說明原因——這是給人類的溝通訊號，不是回填門檻（回填品質改用共識判斷，見 §3.5，不再用自評信心分數）。
+5. **全自動回填**：任何有新意的洞察一律走 §3.5 的回填流程，不需要人類說「存到 wiki」才會動作；人類仍可隨時主動說「把這個存到 wiki」立即觸發。
 
 ### 3.3 Lint（健康檢查）
 
@@ -174,9 +182,9 @@ Obsidian/
 執行 `wiki-lint` skill（`~/.agents/skills/wiki-lint/SKILL.md`），該 skill 定義完整檢查清單與輸出格式。流程概要：
 
 1. `git pull` 取得最新版。
-2. 依 skill 定義的 9 項檢查掃描 `wiki/`。
-3. 產出結構化報告（🔴必須修復 / 🟡建議修復 / 🟢可選改善 / 📊統計）。
-4. 人類確認後修改。
+2. 依 skill 定義的檢查項掃描 `wiki/`，包含遺漏稽核（每個 `raw/` 檔案是否都有對應 wiki 頁面或明確排除紀錄）。
+3. 能自動處理的問題（矛盾仲裁、topics 分裂、Staging 逾時晉升、index.md 重建、觸發遺漏 raw 的 Ingest）直接執行，不等人類。
+4. 產出結構化報告（🔴需要人類判斷的極少數事項 / 🤝AI 已自動處理的紀錄 / 📊統計），人類選讀即可，不阻塞。
 5. `git push` 同步。
 
 ### 3.4 Projects（專案維護）
@@ -192,13 +200,20 @@ Obsidian/
 
 ### 3.5 Backfill（回填機制）
 
-**觸發條件：** Query 產出高價值洞察（信心度 ≥ 0.88）。
+**觸發條件：** Query 產出候選洞察，或 Ingest 雙模型交叉驗證後標記為 `draft` 的條目。
 
-1. 評估洞察品質：信心度 ≥ 0.88 → auto_verified；0.70 ≤ S < 0.88 → draft_backfill；S < 0.70 → 廢棄（但要告訴人類為什麼）。
-2. 寫入 Staging Buffer（`wiki/staging/`）：附帶 metadata（backfill_id, query, answer, confidence_score, status, created_at, ttl）。
-3. TTL：21 天。逾時自動清除。
-4. 人類確認後，提升為正式知識（移入 wiki/ 相應目錄）。
-5. 更新 index.md 和 log.md。
+1. **查重優先**：比對候選洞察與既有 wiki / Staging 內容是否高度重疊。
+   - 高度重疊 → 不新增頁面，只把既有頁面 frontmatter 的 `reinforcement` 計數 +1（見 §5a 半衰期管理），流程結束。
+   - 是新內容 → 進入步驟 2。
+2. **共識判斷（取代自評信心分數，Pi 主持不投票）**：Query 已產出的回答視為第一個參與者的提案，呼叫 `chat-with-gemini` 讓第二個獨立參與者對同一個洞察給出判斷。
+   - 兩者一致認同 → `status: auto_verified`
+   - 不一致 → 互相展示一次對方判斷（Round 2）；仍不一致才呼叫 `chat-with-copilot` 當第三票，多數決 → `status: verified_by_arbitration`
+   - 三方仍無共識 → 仍然寫入，`status: draft`（不廢棄，只降低信任層級）
+   - 輪數上限：2 輪 + 第三票
+3. 寫入 Staging Buffer（`wiki/staging/`）：附帶 metadata（backfill_id, query, answer, status, consensus_result, arbiter, reinforcement, created_at, ttl）。
+4. TTL：21 天。**逾時不刪除**——自動晉升為正式知識，保留 `status: draft` 標記（避免資料因為沒人來確認就悄悄消失，違反零遺漏原則）。
+5. 若在 TTL 內被同一主題的後續 Query 或 Ingest 再次印證，`reinforcement` 計數累加，可提前晉升為 `auto_verified`。
+6. 更新 index.md 和 log.md。
 
 ### 3.6 Garden Sync（花園同步）
 
@@ -281,10 +296,11 @@ provenance_session: "description"  # 選填；對話 session 來源
 
 #### 5.1 `wiki/index.md`（內容索引）
 
-- 按 taxonomy 分區：Topics（AI Agent / Extension Dev / Meta Systems / Knowledge Mgmt / Skill）/ Collections / Projects / Sources。
+- 按 taxonomy 分區：Topics / Collections / Projects / Sources。
+- **Topics 分區只連結到 `wiki/topics/*.md`，不重複列出每一頁**（那份全量清單的唯一正本在 topics 頁面本身）；Collections / Projects / Sources 才是全量條列。
 - 每頁一行：`[[collection/path|標題]] — 一句話摘要`。
-- **多 topic 頁面**：跨 topic 頁面在所有相關 topic 區塊都列出，用 🛠️ 標記。
-- 每次 ingest / lint 後更新。
+- **多 topic 頁面**：跨 topic 頁面在所有相關 topic 區塊都列出，用 🛠️ 標記（適用於 Collections 等全量列表區塊，以及 topics/*.md 本身）。
+- **每次 ingest / lint 後自動全量重建**（掃描 `wiki/` 底下所有頁面重新產生，不是手動加一行），確保不會因為忘記更新而漏頁。
 - 中等規模（~100 來源、數百頁）僅靠 index.md 就夠，不需搜尋引擎。
 
 #### 5.2 `wiki/log.md`（知識庫變更日誌）
@@ -304,47 +320,50 @@ provenance_session: "description"  # 選填；對話 session 來源
 ## 5a. 知識演化協定
 
 ### 權責分工
-- 人類：sourcing、exploration、問好的問題、確認回填、確認 topics 分裂
-- LLM：summarizing、cross-referencing、filing、bookkeeping、偵測需要分裂的 topics
+- 人類：把資料放進 `raw/`、在 Notion 花園整理與探索、（可選）閱讀 Lint 報告裡的自動處理紀錄
+- LLM：summarizing、cross-referencing、filing、bookkeeping、topics 分裂決策、回填品質把關、矛盾仲裁、遺漏稽核——這些一律不等人類確認
 
-### 回填機制（半自動）
-- Query 信心度 S ≥ 0.88 → auto_verified → Staging Buffer
-- 0.70 ≤ S < 0.88 → draft_backfill → Staging Buffer
-- S < 0.70 → 廢棄（但要告訴人類為什麼）
-- 所有回填都需要人類確認後才能成為正式知識
+### 品質把關機制（雙模型共識，Pi 主持不投票，取代人類確認與自評信心分數）
+- Pi 是主持人，不提案、不投票，只負責比對與裁決流程；實際提案由兩個獨立參與者產生（Ingest 用 Claude+Gemini；Backfill 用 Query 原始回答+Gemini）
+- **分歧判斷標準**：只比對關鍵結構化欄位（目標頁面、type、topics、是否推翻既有結論），不比對措辭；關鍵欄位一致就視為達成共識
+- Round 1 一致 → `auto_verified`；不一致 → Round 2（互相展示對方提案，各自覆核）；仍不一致 → `chat-with-copilot` 第三票多數決 → `verified_by_arbitration`
+- **輪數上限：2 輪 + 第三票**，不開放式討論
+- 三方仍無共識 → 照樣寫入並標記 `draft`
+- **核心原則：分歧只降低信任層級，不會阻止資料進入知識庫**（零遺漏優先於零錯誤）
 
 ### Staging Buffer
 - 位置：`wiki/staging/`
-- TTL：21 天
-- 逾時自動清除
+- 語意：不是「等人類批准」，是「等共識或後續印證」
+- TTL：21 天，逾時**自動晉升**為正式知識（保留 `draft` 標記），不刪除
+
+### decisions/ 與 discussions/ 的語意（因應共識機制調整）
+- `decisions/`：雙模型（或三方）**已達成共識**的結論——不再代表「人類已確認」，而是「AI 共識已收斂」
+- `discussions/`：共識仲裁後**仍無法收斂**的分歧——保留兩種觀點並存，標記為待深入，不強行選邊
+- 這兩個資料夾仍然必要：它們是系統對自己信心程度的誠實訊號，比全部塞進同一個 wiki 頁面更容易看出「這是穩固的知識」還是「這是還在打架的假說」
 
 ### 半衰期管理
 - 快訊類：7 天
 - 技術文件：180 天
 - 歷史常識：3650 天
+- 公式：`Score = BaseScore × e^(-λt) + Reinforcement`
+- `Reinforcement`：每被一次獨立 Query 或 Ingest 印證同一結論，計數 +0.1，用來讓被反覆驗證的知識分數回升，不會被單純的時間衰減判定為過時
 
 ### 同步機制
 - 大腦 → 花園：單向同步（wiki → Notion）
 - 花園 → 大腦：單向回流（觸發條件：種子成熟、研究專題新發現、人類主動）
 
 ### Topics 分裂
-- 半自動：LLM 偵測到某個 topic 下頁面過多時，建議分裂方案
-- 問人類：「是否要分裂這個 topic？」
-- 人類確認後才執行分裂
+- 全自動：LLM 偵測到某個 topic 下頁面過多時，用 `round-table` skill（claude + gemini + copilot）討論分裂方案並執行，結果記錄在 Lint 報告供選讀
 
 ---
 
 ## 6. 與人類的協作原則
 
----
-
-## 6. 與人類的協作原則
-
-- **不主動刪人類寫的東西**。要改前先問。
-- **不擅改 raw/**。永遠是只讀。
-- **關鍵判斷先問**：這個來源要不要建獨立頁？這條結論要不要標記為「暫定」？要併入舊頁還是另開新頁？
+- **不主動刪人類寫的東西**。要改前先問（人類手寫的內容仍需要問；AI 自己產生的知識走 §5a 的共識機制，不需要問）。
+- **不擅改 raw/**。永遠是只讀（Lint 的 raw 冗餘清理例外：只能 `mv` 到 `raw/.trash/`，可逆、git 有歷史，不算破壞只讀原則）。
+- **關鍵判斷走共識，不問人類**：這個來源要不要建獨立頁？這條結論要不要標記為「暫定」？要併入舊頁還是另開新頁？——一律由 §3.1/§3.5 的雙模型交叉驗證決定，理由記錄於 log，人類只在事後選讀。
 - **保持精簡**：wiki 是工具不是目的，不要水文。
-- **不預設立場**：發現矛盾就明標出來，不要掩飾。
+- **不預設立場**：發現矛盾先嘗試共識仲裁；仍無法收斂就明標兩種觀點並存（歸入 `discussions/`），不要掩飾也不要擅自選邊。
 - **日期使用執行環境的 system local date/time**：建立日記、done 檔案、frontmatter 日期等 `YYYY-MM-DD` 欄位時，使用當前執行環境的本地日期；不要將 `Asia/Taipei` 當作現行固定規則。歷史文件中的舊日期策略只保留其歷史事實，後續更新才採現行規則。
 
 ---

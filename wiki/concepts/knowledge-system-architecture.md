@@ -2,8 +2,8 @@
 title: 知識系統架構
 type: concept
 created: 2026-08-10
-updated: 2026-08-10
-sources: 4
+updated: 2026-08-12
+sources: 5
 tags: [knowledge-management, architecture, wiki, notion]
 topics: [knowledge-mgmt]
 canonical: concepts/knowledge-system-architecture
@@ -11,7 +11,7 @@ canonical: concepts/knowledge-system-architecture
 
 # 知識系統架構
 
-> 經過 4 輪圓桌會議（Pi + Gemini + Copilot）討論後確定的知識管理系統架構。
+> 經過 4 輪圓桌會議（Pi + Gemini + Copilot）討論確定，並於 2026-08-12 修正為雙模型共識機制（取代人類確認）的知識管理系統架構。詳見 [[wiki/decisions/knowledge-system-architecture-decision|決策文件]] 第十一節。
 
 ## 一句話
 
@@ -29,10 +29,10 @@ canonical: concepts/knowledge-system-architecture
 ┌─────────────────────────────────────────────────────────────┐
 │  三個操作 + 一個機制 + 一個回流                             │
 ├─────────────────────────────────────────────────────────────┤
-│  1. Ingest：raw/ → 查詢 → 合成 → Staging → 人類確認 → 寫入 │
+│  1. Ingest：raw/ → 查詢 → 雙模型交叉驗證 → Staging → 寫入   │
 │  2. Query：問問題 → 讀 index → 合成有引用回答 → 回填        │
-│  3. Lint：掃描結構 + 品質 + 半衰期 + 矛盾                   │
-│  機制：知識幫助知識（Query → Staging → 人類確認 → 正式知識）│
+│  3. Lint：掃描結構 + 品質 + 半衰期 + 矛盾（能自動處理就不等人）│
+│  機制：知識幫助知識（Query → 查重 → 雙模型共識 → 正式知識） │
 │  回流：花園 → 大腦（種子成熟 → 觸發 Ingest）                │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -45,14 +45,13 @@ canonical: concepts/knowledge-system-architecture
 
 - 讀取 raw 資料
 - 查詢既有 wiki（避免重複）
-- 合成新知識（不篩選，只結構化）
-- 寫入 Staging Buffer（安全隔離）
-- 人類確認後寫入 wiki
+- **雙模型交叉驗證**：Claude + Gemini 各自獨立提案，Pi 只主持比對，不自己下場提案；分歧才進入 Round 2、仍不一致才找 Copilot 當第三票
+- 全自動寫入 wiki，仲裁後仍無共識也照樣寫入，只是標記 `confidence: draft`
 
 **關鍵原則：**
-- 不篩選：所有 raw 都會被消化
+- 不篩選、零遺漏：所有 raw 都會被消化，且必須產出頁面或明確排除紀錄
 - 先查詢再寫入：避免重複，自動建立交叉引用
-- 人類確認：即使是 auto_verified，也需要人類確認
+- 品質把關靠共識，不靠人類：分歧只降低信任層級，不會阻止資料進入知識庫
 
 ### Query（查詢）
 
@@ -60,15 +59,14 @@ canonical: concepts/knowledge-system-architecture
 
 - 讀 index.md（快速找到相關頁面）
 - 讀相關頁面（追溯交叉引用）
-- 合成有引用的回答
-- 評估洞察品質（信心度 > 0.88?）
-- 高價值洞察 → Staging Buffer
-- 人類確認後 → 正式知識
+- 合成有引用的回答（即時互動，單一模型即可）
+- 查重：跟既有內容高度重疊就只累加 `reinforcement`，不是新內容才進共識判斷
+- 有新意的洞察 → 雙模型共識判斷 → 全自動回填
 
 **關鍵原則：**
 - 先讀 index：快速定位相關頁面
 - 追溯交叉引用：發現隱藏關聯
-- 不確定時要說：信心度 < 0.88 時，要告訴人類為什麼不確定
+- 不確定時要說：這是給人類的溝通訊號，不是回填門檻
 
 ### Lint（健康檢查）
 
@@ -85,10 +83,9 @@ canonical: concepts/knowledge-system-architecture
 
 **目標：查詢的結果能回填成新知識**
 
-- 信心度 S ≥ 0.88 → auto_verified → Staging Buffer
-- 0.70 ≤ S < 0.88 → draft_backfill → Staging Buffer
-- S < 0.70 → 廢棄（但要告訴人類為什麼）
-- 所有回填都需要人類確認後才能成為正式知識
+- 雙模型一致 → `auto_verified`；分歧經第三票收斂 → `verified_by_arbitration`；仍無共識 → `draft`（照樣寫入，不廢棄）
+- Staging Buffer TTL 21 天到期自動晉升為正式知識，不清除
+- 不再用自評信心分數把關——單一模型自評不可靠，改用雙模型共識
 
 ### 回流：花園 → 大腦
 
@@ -106,3 +103,4 @@ canonical: concepts/knowledge-system-architecture
 - Karpathy LLM Wiki 設計
 - LlmWikis.org 兩階段 ingest
 - OKF (Open Knowledge Format)
+- 2026-08-12 人類 feedback：推翻人類確認機制，改為雙模型共識（見 [[wiki/decisions/knowledge-system-architecture-decision|決策文件]] 第十一節）

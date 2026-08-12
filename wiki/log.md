@@ -3,6 +3,17 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-12] decision | 知識系統架構 v3 修正：雙模型共識取代人類確認
+
+- 更新 wiki/decisions/knowledge-system-architecture-decision.md：新增第十一節，記錄 v2.0 → v3.0 的修正與實作
+- 更新 wiki/concepts/knowledge-system-architecture.md：同步移除「人類確認」「0.88 信心度」等已推翻的描述
+- 更新 AGENTS.md（§3.1/§3.2/§3.3/§3.5/§5a/§6）：Ingest/Backfill 改為雙模型交叉驗證（Pi 主持不投票，Claude+Gemini 為預設參與者，分歧 Round 2 覆核，仍不一致才找 Copilot 第三票，輪數上限 2 輪+第三票）；Staging Buffer 語意從「等批准」改成「等共識」；decisions/discussions 語意調整為「共識已收斂／仍無法收斂」；topics.md、topics/*.md、index.md 三處重複列表收斂成一份正本
+- 更新 wiki-ingest skill：同步雙模型交叉驗證流程
+- 更新 wiki-lint skill：矛盾偵測改共識仲裁、新增遺漏稽核、Staging 逾時改自動晉升、輸出格式改為「需要人類判斷／AI 已自動處理」兩類
+- 更新知識花園 5 個 skills（knowledge-garden / knowledge-garden-page-content / knowledge-garden-trigger / knowledge-garden-visualmap）：Phase 3 改成整合重寫（取代標記用刪除線+說明，不再累加）、新增 Phase 0.5 多元觀點合成（研究專題/成熟種子用 round-table）、發布前確認機制、花園巡檢擴充（空洞頁面、缺視覺地圖、研究專題過大）、視覺地圖自動觸發
+- 重點：把「防遺漏」和「防品質問題」拆開處理——不篩選原則本身解決遺漏，雙模型共識取代不可靠的自評信心分數解決品質；花園保留人類預覽確認（唯一允許手動之處），大腦全自動
+- refs: wiki/decisions/knowledge-system-architecture-decision、wiki/concepts/knowledge-system-architecture
+
 ## [2026-08-20] ingest | Round Table 多 AI 圓桌會議 Skill 更新
 
 - 新增 entity：wiki/entities/round-table.md（多 AI 圓桌會議 skill）
