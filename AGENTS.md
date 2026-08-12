@@ -72,8 +72,8 @@ Obsidian/
 |------|------|---------|
 | 網頁文章 | 部落格、新聞、知乎回答 | Web Clipper 或 agent 存入 `raw/web/` |
 | URL 連結 | 你貼給我的 URL | agent 用 web_fetch 抓取後存入 |
-| YouTube | 影片字幕/逐字稿 | `youtube-to-wiki` skill 抓字幕存入 `raw/youtube/` |
-| PDF/論文 | 學術論文、技術報告 | `wiki-pdf` skill（markitdown + pymupdf）存入 `raw/web/` |
+| YouTube | 影片字幕/逐字稿 | `wiki-ingest-youtube` skill 抓字幕存入 `raw/youtube/`，轉檔後交給 `wiki-ingest` |
+| PDF/論文 | 學術論文、技術報告 | `wiki-ingest-pdf` skill（markitdown + pymupdf）存入 `raw/web/`，轉檔後交給 `wiki-ingest` |
 | Notion 頁面 | 花園種子要深入研究 | `knowledge-garden-to-raw` skill 抓取存入 `raw/notion-ingest/` |
 | 深度研究 | Gemini Deep Research 輸出 | `chat-with-gemini-research` skill 存入 `raw/research/` |
 | 原始文字 | 你直接貼的一段文字 | agent 存入適當的 raw source channel |
