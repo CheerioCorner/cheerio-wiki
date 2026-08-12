@@ -29,10 +29,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-10（lint 修復 + 新增 code-review-graph）
+- **最後更新**：2026-08-13（ingest Prime Agent）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：50（全部已補 provenance）
-- **Canonical collections**：27 concepts、40 entities、5 decisions、4 discussions
+- **Source notes**：52（全部已補 provenance）
+- **Canonical collections**：29 concepts、45 entities、5 decisions、4 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---
@@ -77,6 +77,8 @@
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種核心工作流模式
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/npm-publishing-workflow|NPM Publishing Workflow]] — Package Publishing 流程
+- [[wiki/concepts/code-execution-as-tool-calling|Code Execution as Tool Calling]] — 模型寫 Python 腳本執行多操作取代逐次 tool call 🛠️
+- [[wiki/concepts/recursive-language-model|Recursive Language Model]] — 可在 Python 程式邏輯中觸發的獨立 agent session 🛠️
 - [[wiki/concepts/okf-open-knowledge-format|OKF]] — Open Knowledge Format
 - [[wiki/concepts/pi-project-workspace-model|Pi Project Workspace Model]] — 專案工作區模型
 - [[wiki/concepts/redis|Redis]] — In-memory key-value 資料庫，快取、Session、即時排行 🛠️
@@ -105,6 +107,7 @@
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP server
 - [[wiki/entities/omnigent|Omnigent]] — Databricks 開源 meta-harness
 - [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI AI Coding Agent
+- [[wiki/entities/prime-agent|prime-agent]] — 建構於 Pi 之上，用 Python runtime 取代傳統 tool calling 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard
 - [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]] — Pi 的 Cron Job 與排程系統
@@ -150,6 +153,7 @@
 - [[wiki/sources/2026-08-09-redis-caching-patterns|Redis Caching Patterns]] — Redis 快取模式整合
 - [[wiki/sources/2026-08-10-antigravity-cli-integration|Antigravity CLI 整合]] — Gemini CLI 整合方案
 - [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理]] — @pi-agents/loop 排程系統
+- [[wiki/sources/2026-08-13-prime-agent-youtube|Prime Agent YouTube 介紹]] — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent
 - [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Pi GitHub Copilot Provider Setup]] — Copilot 整合設定
 
 ## Decisions & Discussions

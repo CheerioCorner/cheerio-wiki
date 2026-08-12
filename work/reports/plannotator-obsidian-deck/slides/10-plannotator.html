@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P6 · Plannotator</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:70%;line-height:1.45;margin-bottom:2vh}
+
+/* ====== Main Content Layout ====== */
+.content-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:2.2vw;flex:1;align-items:stretch;min-height:0}
+.left-column{display:flex;flex-direction:column}
+.right-column{display:flex;flex-direction:column;gap:1.8vh}
+
+/* ====== Flow Diagram Card ====== */
+.diagram-card{background:#ffffff;border:1px solid rgba(var(--ink-rgb),.12);border-radius:10px;padding:5vh 1.6vw;display:flex;align-items:center;justify-content:space-between;gap:1.2vw;box-shadow:0 4px 16px rgba(var(--ink-rgb),.04)}
+.diagram-box-source{background:#ffffff;border:1.5px solid rgba(var(--ink-rgb),.15);border-radius:8px;padding:1.6vh 1.2vw;text-align:center;flex:1.2}
+.diagram-box-source .main-txt{font-family:var(--sans-zh);font-weight:700;font-size:max(17px,1.2vw);color:var(--ink);line-height:1.2}
+.diagram-box-source .sub-txt{font-family:var(--sans-zh);font-weight:700;font-size:max(15px,1vw);color:var(--ink);opacity:.8;margin-top:.4vh}
+.diagram-arrow{font-size:max(20px,1.3vw);color:rgba(var(--ink-rgb),.35);flex-shrink:0}
+.diagram-gate{width:72px;height:72px;background:#0e8a75;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);display:flex;align-items:center;justify-content:center;color:#ffffff;font-weight:800;font-size:max(22px,1.5vw);flex-shrink:0}
+.diagram-outcomes{display:flex;flex-direction:column;gap:2.4vh;flex:1}
+.outcome-btn{padding:1vh .8vw;border-radius:8px;font-family:var(--sans-zh);font-weight:700;font-size:max(18px,1.05vw);text-align:center}
+.outcome-btn.approve{background:#e8f5e9;border:1.5px solid #0e8a75;color:#0e8a75}
+.outcome-btn.reject{background:#fff3e0;border:1.5px solid #e65100;color:#c2410c}
+
+.diagram-caption{font-family:var(--sans-zh);font-style:italic;font-size:max(22px,.98vw);color:var(--ink);opacity:.65;margin:1.4vh 0 1.8vh}
+
+/* ====== Commands Section ====== */
+.commands-section{display:flex;flex-direction:column;gap:1.2vh}
+.commands-title{font-family:var(--sans-zh);font-weight:700;font-size:max(19px,1.3vw);color:var(--ink)}
+.commands-table{display:flex;flex-direction:column;gap:1vh}
+.command-row{display:flex;align-items:center;justify-content:space-between;gap:1vw}
+.command-label{font-family:var(--sans-zh);font-size:max(16px,1.08vw);color:var(--ink);opacity:.85}
+.command-code{font-family:var(--mono);font-weight:600;font-size:max(15px,1vw);background:#d7e3e0;color:#0e8a75;padding:.9vh 1.2vw;border-radius:6px;min-width:400px;display:inline-block}
+
+/* ====== Right Column Cards ====== */
+.card-single-use{background:#edf7f5;border:1.5px solid #0e8a75;border-radius:10px;padding:3.6vh 2vw;display:flex;flex-direction:column}
+.card-single-use h3{font-family:var(--serif-zh);font-weight:700;font-size:max(22px,1.45vw);color:#0e8a75;margin-bottom:1.2vh}
+.card-single-use p{font-family:var(--sans-zh);font-size:max(16px,1.08vw);line-height:1.6;color:var(--ink);opacity:.85}
+
+.card-experience{background:#ffffff;border:1px solid rgba(var(--ink-rgb),.12);border-radius:10px;padding:2.5vh 2vw;display:flex;flex-direction:column;box-shadow:0 4px 16px rgba(var(--ink-rgb),.04);flex:1;justify-content:center}
+.card-experience h3{font-family:var(--sans-zh);font-weight:700;font-size:max(22px,1.45vw);color:var(--ink);margin-bottom:1.5vh;text-align:center}
+.stat-row{display:flex;align-items:center;justify-content:center;gap:2.2vw;margin:.8vh 0}
+.stat-from{font-family:var(--serif-en);font-weight:700;font-size:max(52px,3.8vw);color:#d97706;line-height:1}
+.stat-arrow{font-size:max(26px,1.8vw);color:rgba(var(--ink-rgb),.35)}
+.stat-to{font-family:var(--serif-en);font-weight:700;font-size:max(52px,3.8vw);color:#0e8a75;line-height:1}
+.stat-note{font-family:var(--sans-zh);font-size:max(14px,.95vw);color:var(--ink);opacity:.65;text-align:center;margin-top:1.5vh}
+.flow-divider{width:100%;height:1px;background:rgba(var(--ink-rgb),.1);margin:0.8vh 0 1.8vh}
+
+/* ====== Bottom Callout Banner ====== */
+.bottom-callout{background:rgba(var(--ink-rgb),.04);border-radius:6px;padding:1.4vh 2vw;margin-top:1.8vh;text-align:center;font-family:var(--serif-zh);font-size:max(17px,1.15vw);color:var(--ink)}
+.bottom-callout strong{font-weight:700}
+.bottom-callout em{font-style:italic;font-weight:700}
+
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>REVIEW GATE</span><span class="sep"></span></div></div>
+  <div class="kicker">審查閘門</div>
+  <h1>審查閘門： Plannotator</h1>
+  <p class="subtitle">循環中負責「審查」與「控制」的工具——不只是 coding tool，任何 AI 產出都能納入審查。</p>
+
+  <div class="content-grid">
+    <div class="left-column">
+      <div class="diagram-card">
+        <div class="diagram-box-source">
+          <div class="main-txt">AI 產生</div>
+          <div class="sub-txt">Plan ／ Code ／文件</div>
+        </div>
+        <div class="diagram-arrow">➔</div>
+        <div class="diagram-gate">G</div>
+        <div class="diagram-arrow">➔</div>
+        <div class="diagram-outcomes">
+          <div class="outcome-btn approve">核准</div>
+          <div class="outcome-btn reject">駁回（附批註）</div>
+        </div>
+      </div>
+      <p class="diagram-caption">任何符合格式的檔案都能進這個循環：計畫、程式碼、Markdown、HTML、URL。</p>
+      <div class="commands-section">
+        <div class="flow-divider"></div>
+        <div class="commands-title">常用指令</div>
+        <div class="commands-table">
+          <div class="command-row">
+            <span class="command-label">Plan Review</span>
+            <code class="command-code">Shift+Tab 進入 Plan Mode</code>
+          </div>
+          <div class="command-row">
+            <span class="command-label">Code Review</span>
+            <code class="command-code">/plannotator-review</code>
+          </div>
+          <div class="command-row">
+            <span class="command-label">Markdown ／ HTML 標註</span>
+            <code class="command-code">/plannotator-annotate &lt;路徑&gt;</code>
+          </div>
+          <div class="command-row">
+            <span class="command-label">標註最後一則回覆</span>
+            <code class="command-code">/plannotator-last</code>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="card-single-use">
+        <h3>重點：可以單獨使用</h3>
+        <p>不一定要搭配 Obsidian。任何跟 AI 討論時，想一次性表達所有反饋，都很適合用 Plannotator—— 像系統開發中的 PR 審查，在發佈前先做 Inspection。</p>
+      </div>
+      <div class="card-experience">
+        <h3>個人經驗</h3>
+        <div class="stat-row">
+          <span class="stat-from">10+</span>
+          <span class="stat-arrow">➔</span>
+          <span class="stat-to">1-2</span>
+        </div>
+        <p class="stat-note">複雜的問題可能仍需較多輪，但比沒用工具前好很多</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-callout">
+    <strong>一句話重點：</strong> <em>AI 說「我打算這樣做」時，讓你在執行前先審查它的計畫。</em>
+  </div>
+
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>10 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

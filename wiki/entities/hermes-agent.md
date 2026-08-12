@@ -2,7 +2,7 @@
 title: "hermes-agent — 開源 AI Agent 框架"
 type: entity
 created: 2026-08-06
-updated: 2026-08-06
+updated: 2026-08-13
 sources: 2
 tags: [agent, self-evolving, tool-use]
 collection: entities
@@ -31,3 +31,4 @@ canonical: entities/hermes-agent
 
 ## 相關頁面
 - [[wiki/entities/graphify|Graphify]]、[[wiki/entities/skillopt|SkillOpt]]
+- [[wiki/entities/prime-agent|Prime Agent]] — 建構於 Pi 之上，Continual Harness 比 Hermes 自動學習更進一步（直接修改 harness 本身），但同樣有學到錯誤行為的風險

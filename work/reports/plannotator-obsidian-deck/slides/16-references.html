@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P17 · References</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.card{background:rgba(var(--ink-rgb),.04);border:1px solid rgba(var(--ink-rgb),.1);border-radius:2px;padding:3.5vh 3vw;display:flex;flex-direction:column;flex:1}
+.card ul{list-style:none;padding:0;display:flex;flex-direction:column;justify-content:space-around;flex:1}
+.card li{display:flex;justify-content:space-between;align-items:center;padding:1.8vh 0;border-bottom:1px solid rgba(var(--ink-rgb),.08);font-family:var(--sans-zh);font-size:max(17px,1.15vw)}
+.card li:last-child{border-bottom:none}
+.ref-main{display:flex;align-items:center;gap:2.5vw}
+.ref-num{font-family:var(--mono);font-weight:700;color:#0a7e3f;font-size:max(18px,1.25vw);min-width:1.5rem}
+.ref-title{font-size:max(17px,1.15vw);color:var(--ink);opacity:.9}
+.ref-meta{font-style:italic;opacity:.6;font-size:max(15px,1vw);text-align:right}
+code{font-family:var(--mono);font-size:max(16px,1.1vw);background:rgba(var(--ink-rgb),.06);padding:2px 6px;border-radius:2px}
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2.5vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>REFERENCES</span><span class="sep"></span></div></div>
+  <div class="kicker">資料來源</div>
+  <h1>資料來源</h1>
+  <div class="card" style="margin-top:2vh">
+    <ul>
+      <li>
+        <div class="ref-main">
+          <span class="ref-num">1</span>
+          <span class="ref-title">Plannotator 官方文件與原始碼</span>
+        </div>
+        <span class="ref-meta">plannotator.ai/docs &nbsp;&nbsp;•&nbsp;&nbsp; github.com/backnotprop/plannotator</span>
+      </li>
+      <li>
+        <div class="ref-main">
+          <span class="ref-num">2</span>
+          <span class="ref-title">Obsidian 官方網站與知識管理理念</span>
+        </div>
+        <span class="ref-meta">obsidian.md</span>
+      </li>
+      <li>
+        <div class="ref-main">
+          <span class="ref-num">3</span>
+          <span class="ref-title">Andrej Karpathy： LLM Wiki 概念（詳見下一頁）</span>
+        </div>
+        <span class="ref-meta">見附錄</span>
+      </li>
+      <li>
+        <div class="ref-main">
+          <span class="ref-num">4</span>
+          <span class="ref-title">Google OKF（Open Knowledge Framework）指南（詳見下一頁）</span>
+        </div>
+        <span class="ref-meta">見附錄</span>
+      </li>
+      <li>
+        <div class="ref-main">
+          <span class="ref-num">5</span>
+          <span class="ref-title">Human-in-the-Loop（HITL）系統設計規範與實踐</span>
+        </div>
+        <span class="ref-meta">en.wikipedia.org/wiki/Human-in-the-loop</span>
+      </li>
+      <li>
+        <div class="ref-main">
+          <span class="ref-num">6</span>
+          <span class="ref-title">Prompt Engineering vs Loop Engineering 技術變革討論</span>
+        </div>
+        <span class="ref-meta">近期技術社群討論</span>
+      </li>
+    </ul>
+  </div>
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>16 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

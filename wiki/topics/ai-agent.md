@@ -2,7 +2,7 @@
 title: AI Agent
 topic: ai-agent
 created: 2026-08-02
-updated: 2026-08-08
+updated: 2026-08-13
 ---
 
 # AI Agent
@@ -22,6 +22,7 @@ updated: 2026-08-08
 - [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱
 - [[wiki/entities/langgraph|LangGraph]] — Graph-based agent runtime，Pregel model + checkpointing 🛠️
 - [[wiki/entities/omnigent|Omnigent]] — Databricks 開源 meta-harness
+- [[wiki/entities/prime-agent|prime-agent]] — 建構於 Pi 之上，用 Python runtime 取代傳統 tool calling 🛠️
 - [[wiki/entities/mario-zechner|Mario Zechner]] — Pi 作者
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime（agentic loop、session tree、compaction、skills） 🛠️
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
@@ -38,6 +39,8 @@ updated: 2026-08-08
 - [[wiki/concepts/meta-harness|Meta-Harness]] — 對 harness 本身的再抽象/最佳化層
 - [[wiki/concepts/late-conversion|Late Conversion]] — 延遲轉換模式
 - [[wiki/concepts/defect-metrics|Defect Metrics]] — 缺陷密度與逃脫率指標
+- [[wiki/concepts/code-execution-as-tool-calling|Code Execution as Tool Calling]] — 模型寫 Python 腳本執行多操作取代逐次 tool call 🛠️
+- [[wiki/concepts/recursive-language-model|Recursive Language Model]] — 可在 Python 程式邏輯中觸發的獨立 agent session 🛠️
 - [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜與驗證策略
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑（Pi vs LangGraph）
 - [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 保留文件結構的 RAG 方法，Agent 推導航而非 chunks 相似度搜尋
@@ -60,3 +63,4 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]] — LangGraph runtime 深度解析
 - [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob Stopped Reading AI-Generated Code]] — AI 程式碼驗證方法論（YouTube）
 - [[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Write Code You Will Never Read Again]] — 程式碼重要性光譜（YouTube）
+- [[wiki/sources/2026-08-13-prime-agent-youtube|Prime Agent YouTube 介紹]] — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent

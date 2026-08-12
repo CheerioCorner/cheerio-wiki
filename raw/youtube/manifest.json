@@ -85,6 +85,16 @@
       "duration": "00:07:00",
       "segments": 98,
       "language": "en"
+    },
+    {
+      "slug": "i-replaced-pi-and-opencode-with-this",
+      "title": "I Replaced Pi and OpenCode With This",
+      "youtube_id": "eQZQl_7-X40",
+      "url": "https://www.youtube.com/watch?v=eQZQl_7-X40",
+      "duration": "08:29",
+      "segments": 185,
+      "paragraphs": 22,
+      "language": "en"
     }
   ]
 }

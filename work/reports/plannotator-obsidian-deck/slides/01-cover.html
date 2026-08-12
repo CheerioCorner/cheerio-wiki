@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P1 · Cover</title>
+<script src="../deck_stage.js"></script>
+<style>
+  :root {
+    --ink:#061428;
+    --ink-rgb:10,31,61;
+    --paper:#f8f9fa;
+    --paper-rgb:241,243,245;
+    --paper-tint:#e4e8ec;
+    --ink-tint:#152a4a;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --serif-en:"Playfair Display",Georgia,serif;
+    --serif-zh:"Noto Serif SC",serif;
+    --sans-zh:"Noto Sans SC",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+
+  .slide{
+    width:1920px;height:1080px;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;
+    padding:8vh 8vw;
+    position:relative;
+    background:var(--paper);
+  }
+
+  .kicker{
+    font-family:var(--mono);font-size:22px;
+    letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ink);opacity:.55;margin-bottom:3vh;
+  }
+
+  h1{
+    font-family:var(--serif-zh);font-weight:700;
+    font-size:clamp(56px,6vw,96px);
+    line-height:1.08;letter-spacing:-.005em;
+    margin-bottom:1.5vh;
+  }
+
+  h1 em{
+    font-family:var(--serif-en);font-style:italic;
+    font-weight:700;
+  }
+
+  .subtitle{font-family:var(--sans-zh);font-size:max(20px,1.2vw);opacity:.65;max-width:max-content;line-height:1.5;margin-bottom:2vh}
+
+  .rule{
+    width:80px;height:1px;
+    background:var(--ink);opacity:.25;
+    margin:3.5vh auto;
+  }
+
+  .meta{
+    font-family:var(--mono);font-size:16px;
+    letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink);opacity:.45;
+  }
+
+  .foot{
+    position:absolute;bottom:0;left:0;right:0;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    padding:2.5vh 6vw;
+    font-family:var(--mono);font-size:16px;
+    letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink);opacity:.4;
+  }
+  .foot .title{
+    font-family:var(--serif-zh);font-weight:400;
+    letter-spacing:.05em;text-transform:none;
+    opacity:.7;font-size:18px;
+  }
+
+  .ghost{
+    position:absolute;
+    font-family:var(--serif-en);font-weight:900;
+    font-size:28vw;line-height:.8;
+    opacity:.035;letter-spacing:-.04em;
+    color:var(--ink);
+    bottom:-2vh;right:-1vw;
+    pointer-events:none;
+  }
+</style>
+</head>
+<body>
+<deck-stage>
+  <section>
+    <div class="slide">
+      <div class="ghost">P×O</div>
+      <div class="kicker">系統架構課 · 分享會</div>
+      <h1>Plannotator <em>×</em> Obsidian</h1>
+      <p class="subtitle">把一次 AI 討論，變成可審查、可累積、可分享的工作成果</p>
+      <div class="rule"></div>
+      <p class="meta">數位創新部 / 系統架構課 &nbsp;·&nbsp; 2026-08</p>
+      <div class="foot">
+        <span class="title">Plannotator × Obsidian</span>
+        <span>1 / 18</span>
+      </div>
+    </div>
+  </section>
+</deck-stage>
+</body>
+</html>

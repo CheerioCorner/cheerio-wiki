@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P14 · Appendix I — Karpathy LLM Wiki</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:85%;line-height:1.45;margin-bottom:2vh}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;min-height:0;align-items:stretch;margin-bottom:1.2vh}
+.card{background:rgba(var(--ink-rgb),.03);border:1px solid rgba(var(--ink-rgb),.09);border-radius:10px;padding:3vh 2.5vw;display:flex;flex-direction:column;justify-content:flex-start}
+.card h3{font-family:var(--serif-zh);font-weight:600;font-size:max(24px,1.45vw);margin-bottom:2vh;line-height:1.3;display:flex;align-items:center;gap:.4em;color:var(--ink)}
+.card p{font-family:var(--sans-zh);font-size:max(24px,1vw);opacity:.85;line-height:1.6}
+.card strong{color:#1b7042;font-weight:700;opacity:1}
+.arch-list{display:flex;flex-direction:column;justify-content:start;flex:1;gap:3.2vh;margin-top:.5vh}
+.arch-item{display:flex;align-items:flex-start;gap:1.5vw}
+.arch-item code{font-family:var(--mono);font-weight:700;font-size:max(24px,1.15vw);color:#1b7042;width:110px;flex-shrink:0;padding-top:2px;background:none;border-radius:0}
+.arch-item p{font-size:max(24px,.92vw);opacity:.8;line-height:1.55}
+.bottom-callout{background:rgba(27,112,66,.07);border-left:4px solid #1b7042;border-radius:4px;padding:1.6vh 1.8vw;margin-top:2vh;font-family:var(--sans-zh);font-size:max(22px,1.02vw);line-height:1.55;color:var(--ink)}
+.bottom-callout strong{color:#1b7042;font-weight:700}
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2vh 6vw;font-family:var(--mono);font-size:18px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:18px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>APPENDIX 1</span><span class="sep"></span></div></div>
+  <div class="kicker">附錄一</div>
+  <h1>靈感來源： Andrej Karpathy 的 LLM Wiki</h1>
+  <p class="subtitle">2026 年 4 月，Karpathy（OpenAI 共同創辦人、前 Tesla AI 總監）發佈了一篇 gist，提出用 LLM 取代傳統 RAG 的記憶方法。</p>
+  
+  <div class="grid-2">
+    <div class="card">
+      <h3><span style="display:inline-flex;align-items:center;color:#1b7042;"><svg width="1.1em" height="1.1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/></svg></span> 核心洞見</h3>
+      <div style="display:flex;flex-direction:column;justify-content:start;flex:1;gap:3.2vh;">
+        <p>RAG 像是每次都重新「解讀」原始文件——每個問題都要重新拆解、重新拼湊片段，知識不會累積。</p>
+        <p><strong>LLM Wiki 把 LLM 當成「知識編譯器」</strong>：讀一次原始資料，就把它「編譯」成結構化的 Wiki 頁面。往後的提問，直接命中 Wiki 層，得到的是連貫、有引用的答案，而不是拼湊的片段。</p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3><span style="display:inline-flex;align-items:center;color:#1b7042;"><svg width="1.1em" height="1.1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 12.5-8.58 3.91a2 2 0 0 1-1.66 0L3.17 12.5"/><path d="m22 17.5-8.58 3.91a2 2 0 0 1-1.66 0L3.17 17.5"/></svg></span> 三層架構</h3>
+      <div class="arch-list">
+        <div class="arch-item">
+          <code>raw/</code>
+          <p>原始來源，只增不改（append-only）。錯了就補一份修正文件，不直接改原檔——保留完整稽核軌跡。</p>
+        </div>
+        <div class="arch-item">
+          <code>wiki/</code>
+          <p>LLM 專屬的寫入層。每個檔案是一個主題的 Markdown 頁面：摘要、關鍵事實、相關頁面、回指原始來源的引用。</p>
+        </div>
+        <div class="arch-item">
+          <code>schema</code>
+          <p>一份設定文件（像 AGENTS.md），告訴 LLM Wiki 怎麼組織、命名慣例、更新規則——讓 LLM 是「有紀律的 Wiki 維護者」，不是隨性亂寫的聊天機器人。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-callout">
+    跟我們的關聯：<br> AGENTS.md 裡的 raw/ 與 wiki/（ concepts / entities / sources / decisions / discussions ）分層，正是套用這套三層架構。 <br>Karpathy 說：「 Obsidian 是 IDE，LLM 是工程師，Wiki 是程式碼庫。」
+  </div>
+
+  <div class="foot">
+    <span class="title">Plannotator × Obsidian</span>
+    <span>17 / 18</span>
+  </div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P9 · Case Study</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif;--accent-teal:#0d9488}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:90%;line-height:1.45;margin-bottom:2vh}
+
+.flow-container{display:flex;align-items:stretch;justify-content:space-between;gap:14px;margin:2.5vh 0 2vh;width:100%;flex:1}
+.flow-card{background:#ffffff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.06);padding:3.5vh 1.6vw;display:flex;flex-direction:column;flex:1;min-width:0}
+.card-badge{width:52px;height:52px;border-radius:50%;background:var(--accent-teal);color:#ffffff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin-bottom:2.2vh;flex-shrink:0}
+.card-title{font-family:var(--sans-zh);font-weight:700;font-size:clamp(22px,1.5vw,28px);color:#0f172a;line-height:1.35;margin-bottom:1.6vh}
+.card-desc{font-family:var(--sans-zh);font-size:clamp(16px,1.1vw,19px);color:#475569;line-height:1.65;flex:1}
+
+.flow-arrow{display:flex;align-items:center;justify-content:center;color:#64748b;font-size:24px;flex-shrink:0;padding:0 2px}
+
+.highlight-box{background:#edf2f7;border-radius:8px;padding:2vh 2vw;font-family:var(--sans-zh);font-size:max(17px,1.1vw);line-height:1.5;color:#1e293b}
+.highlight-box strong{font-weight:700;font-style:italic}
+
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2.2vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>CASE STUDY</span><span class="sep"></span></div></div>
+  <div class="kicker">示範案例</div>
+  <h1>那廢話不多說，我們先示範案例</h1>
+  <p class="subtitle">我們挑一個實際的情境，走一遍從「存入 Obsidian」到「提出問題」到「AI Plan」到「Plannotator 審查」到「AI 執行產出報告」的完整流程。</p>
+  
+  <div class="flow-container">
+    <div class="flow-card">
+      <div class="card-badge">1</div>
+      <div class="card-title">存入 Obsidian</div>
+      <div class="card-desc">YouTube、網頁、PDF、音檔、Word...... 任何電子檔，交給 AI 整理後存進 Obsidian。</div>
+    </div>
+    
+    <div class="flow-arrow">→</div>
+    
+    <div class="flow-card">
+      <div class="card-badge">2</div>
+      <div class="card-title">提出問題</div>
+      <div class="card-desc">有報告或問題時向 AI 提問，引導 AI 率先檢索 Obsidian 大腦資料庫。</div>
+    </div>
+    
+    <div class="flow-arrow">→</div>
+    
+    <div class="flow-card">
+      <div class="card-badge">3</div>
+      <div class="card-title">AI Plan</div>
+      <div class="card-desc">結合 Obsidian 大腦與 deep research 查網路，附上來源出處產出 Plan。</div>
+    </div>
+    
+    <div class="flow-arrow">→</div>
+    
+    <div class="flow-card">
+      <div class="card-badge">4</div>
+      <div class="card-title">Plannotator 審查</div>
+      <div class="card-desc">用 Plannotator 標註、溝通調整。通常 1-2 輪就結束；複雜問題可能較多輪，但仍比沒用工具前好。</div>
+    </div>
+    
+    <div class="flow-arrow">→</div>
+    
+    <div class="flow-card">
+      <div class="card-badge">5</div>
+      <div class="card-title">AI 執行產出報告</div>
+      <div class="card-desc">確認這份 Plan 就是我們要的之後，才請 AI 開始實際執行並產出最終報告。</div>
+    </div>
+  </div>
+  
+  <div class="highlight-box">
+    <strong>真實情境示範，帶你親眼見證知識迴流的端到端閉環流轉。</strong>
+  </div>
+  
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>5 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

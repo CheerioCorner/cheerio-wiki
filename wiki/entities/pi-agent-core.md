@@ -2,7 +2,7 @@
 title: pi-agent-core — 5 檔 / 1,500 行的 Agent Runtime
 type: entity
 created: 2026-07-11
-updated: 2026-08-06
+updated: 2026-08-13
 sources: 2
 tags: [pi, agent, runtime, zechner]
 collection: entities
@@ -91,6 +91,10 @@ Session 以 **tree**（非 list）儲存於 `~/.pi/agent/sessions/<cwd>/`：
 ## 不做的事(立場,精準條列)
 無 MCP / 無 sub-agents / 無 plan mode / 無權限檢查 / 無 maxSteps。
 → 對應 future concept `yolo-by-default` 與 [[wiki/entities/pi-mono]] 的「刻意不做」。
+
+### 下游擴充案例：Prime Agent
+
+[[wiki/entities/prime-agent|Prime Agent]] 建構在 Pi 之上，透過 RLM function 新增了 sub-agent 概念（獨立 agent session，非簡單 tool-call subagent），並用 Python runtime 取代傳統 tool calling。這可作為「Pi 的極簡立場 vs 下游擴充」的對比案例——Pi 核心本身不做 sub-agents，但下游專案可以在不修改核心的前提下擴充能力。
 
 ## 相關頁面
 - Entities:[[wiki/entities/pi-mono]]、[[wiki/entities/mario-zechner]]、[[wiki/entities/langgraph|LangGraph]]（持久化對比）

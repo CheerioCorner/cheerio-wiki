@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P2 · The Problem</title>
+<script src="../deck_stage.js"></script>
+<style>
+  :root {
+    --ink:#061428;--ink-rgb:10,31,61;
+    --paper:#f8f9fa;--paper-rgb:241,243,245;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --serif-en:"Playfair Display",Georgia,serif;
+    --serif-zh:"Noto Serif SC",serif;
+    --sans-zh:"Noto Sans SC",system-ui,sans-serif;
+    --accent:#0a7e3f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+
+  .slide{
+    width:1920px;height:1080px;
+    display:flex;flex-direction:column;
+    padding:5vh 6vw 8vh;
+    position:relative;background:var(--paper);
+  }
+
+  .chrome{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+  .chrome .left{display:flex;gap:2em;align-items:center}
+  .chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+
+  .kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+  h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+  .subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:70%;line-height:1.45;margin-bottom:2vh}
+
+  /* 主體：三欄平行佈局 */
+  .body{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1.5vw;flex:1;align-items:stretch;min-height:0}
+
+  /* === 情境對話卡 === */
+  .scenario{display:flex;align-items:stretch;justify-content:stretch}
+  .scenario-card{
+    width:100%;
+    background:#fff;
+    border:1px solid rgba(var(--ink-rgb),.1);
+    border-radius:8px;
+    box-shadow:0 8px 32px rgba(var(--ink-rgb),.1),0 2px 8px rgba(var(--ink-rgb),.06);
+    overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .card-bar{
+    display:flex;align-items:center;gap:.6vw;
+    padding:1vh 1.4vw;
+    background:rgba(var(--ink-rgb),.04);
+    border-bottom:1px solid rgba(var(--ink-rgb),.08);
+    font-family:var(--mono);font-size:16px;letter-spacing:.15em;text-transform:uppercase;opacity:.55;
+  }
+  .card-bar .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);opacity:.6}
+
+  .chat{padding:1.4vh 1.4vw;display:flex;flex-direction:column;gap:1.2vh;flex:1;justify-content:space-around}
+  .msg{display:flex;gap:.8vw;align-items:flex-start}
+  .msg-avatar{
+    flex-shrink:0;width:36px;height:36px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;
+  }
+  .msg-avatar.user{background:rgba(var(--ink-rgb),.08)}
+  .msg-avatar.ai{background:rgba(10,126,63,.1)}
+  .msg-bubble{
+    padding:1vh 1.2vw;border-radius:8px;
+    font-size:max(20px,.95vw);line-height:1.5;max-width:88%;
+  }
+  .msg-bubble.user{background:rgba(var(--ink-rgb),.05);color:var(--ink)}
+  .msg-bubble.ai{background:rgba(10,126,63,.06);color:var(--ink)}
+  .msg-bubble .name{font-weight:600;font-size:max(12px,.75vw);opacity:.55;margin-bottom:.2vh}
+  .highlight-mark{
+    background:linear-gradient(to top,rgba(255,220,50,.35) 40%,transparent 40%);
+    padding:0 2px;
+  }
+
+  .card-footer{
+    padding:1vh 1.4vw;
+    border-top:1px solid rgba(var(--ink-rgb),.06);
+    display:flex;align-items:center;gap:.6vw;
+    font-size:max(14px,1.1vw);opacity:.6;
+  }
+  .card-footer .tag{
+    padding:.3vh .7vw;border-radius:999px;
+    background:rgba(196,122,0,.1);color:#c47a00;
+    font-weight:600;font-size:max(12px,1.1vw);
+  }
+
+  /* === 痛點卡片 === */
+  .pain-cards{display:flex;flex-direction:column;gap:0;height:100%}
+
+  .pain-card{
+    padding:2.2vh 1.4vw;
+    border:1px solid rgba(var(--ink-rgb),.12);
+    border-radius:8px;
+    background:#fff;
+    box-shadow:0 4px 16px rgba(var(--ink-rgb),.03);
+    position:relative;
+    overflow:hidden;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:start;
+  }
+  .pain-card.c1{border-left:4px solid #1f6b5b}
+  .pain-card.c2{border-left:4px solid #2b4c6f}
+
+  .pain-main{display:flex;flex-direction:column;margin-bottom: 35px;}
+
+  .pain-header{
+    display:flex;align-items:center;gap:.8vw;
+    margin-bottom:1.6vh;
+  }
+  .pain-icon{
+    width:44px;height:44px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif-en);font-weight:700;font-size:20px;
+    flex-shrink:0;
+  }
+  .c1-icon{background:rgba(217,119,6,.12);color:#b45309}
+  .c2-icon{background:rgba(10,126,63,.12);color:var(--accent)}
+
+  .pain-card .label{
+    font-family:var(--mono);font-size:16px;letter-spacing:.2em;text-transform:uppercase;
+    opacity:.45;margin-bottom:.8vh;
+  }
+  .pain-card h3{
+    font-family:var(--serif-zh);font-weight:700;
+    font-size:max(23px,1.5vw);line-height:1.25;
+    color:var(--ink);
+  }
+  .pain-card .pain-desc{
+    font-family:var(--sans-zh);font-size:max(24px,.95vw);
+    opacity:.8;line-height:1.65;margin-bottom:1.2vh;flex:1;
+  }
+  .pain-card .pain-desc strong{
+    color:var(--ink);font-weight:600;
+    background:rgba(var(--ink-rgb),.05);padding:0 4px;border-radius:3px;
+  }
+
+  .pain-list{
+    list-style:none;
+    display:flex;flex-direction:column;gap:1vh;
+    padding-top:1.4vh;
+    border-top:1px dashed rgba(var(--ink-rgb),.15);
+  }
+  .pain-list li{
+    font-size:max(24px,.9vw);line-height:1.5;
+    opacity:.85;display:flex;align-items:flex-start;gap:.6vw;
+  }
+  .pain-list .bullet{flex-shrink:0;font-size:1.05em;line-height:1.4}
+  .pain-list strong{color:var(--ink);font-weight:600}
+
+  /* 底部重點橫條 */
+  .key-takeaway-banner{
+    width:100%;
+    background:rgba(10,126,63,.06);
+    border:1px solid rgba(10,126,63,.18);
+    border-left:5px solid var(--accent);
+    border-radius:6px;
+    padding:1.4vh 1.8vw;
+    margin-top:1.8vh;
+    display:flex;align-items:center;gap:1vw;
+  }
+  .key-takeaway-banner .icon{font-size:1.6rem;flex-shrink:0}
+  .key-takeaway-banner .text{
+    font-family:var(--serif-zh);font-weight:600;
+    font-size:max(24px,1vw);line-height:1.6;color:var(--ink);
+  }
+  .key-takeaway-banner .highlight-label{
+    font-family:var(--sans-zh);font-weight:700;
+    color:var(--accent);margin-right:.4vw;
+  }
+
+  .foot{
+    position:absolute;bottom:0;left:0;right:0;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    padding:2vh 6vw;
+    font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink);opacity:.4;
+  }
+  .foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+  <section>
+    <div class="slide">
+      <div class="chrome"><div class="left"><span>THE PROBLEM</span><span class="sep"></span></div></div>
+      <div class="kicker">個人經驗出發</div>
+      <h1>你有沒有遇過這些情況？</h1>
+      <p class="subtitle">這些是我個人在使用 AI 時遇到的困境，想跟大家確認：這些問題是不是也是你們的痛？</p>
+
+      <div class="body">
+        <!-- 欄 1：情境對話卡 -->
+        <div class="scenario">
+          <div class="scenario-card">
+            <div class="card-bar">
+              <span class="dot"></span>
+              <span>AI 對話紀錄 · 真實情境</span>
+            </div>
+            <div class="chat">
+              <div class="msg">
+                <div class="msg-avatar user">🧑‍💼</div>
+                <div class="msg-bubble user">
+                  <div class="name">我</div>
+                  幫我寫一份產品企劃書，要包含市場分析和執行計畫
+                </div>
+              </div>
+              <div class="msg">
+                <div class="msg-avatar ai">🤖</div>
+                <div class="msg-bubble ai">
+                  <div class="name">AI</div>
+                  好的，以下是企劃書草案：<br>
+                  一、市場概況<br>
+                  <span class="highlight-mark">根據最新研究，目標市場規模預計成長 23%...</span><br>
+                  二、執行計畫<br>
+                  Phase 1：需求調研（2 週）<br>
+                  Phase 2：原型開發（4 週）<br>
+                  <span style="opacity:.5;font-size:.85em">（全文 2000 字...）</span>
+                </div>
+              </div>
+              <div class="msg">
+                <div class="msg-avatar user">🧑‍💼</div>
+                <div class="msg-bubble user">
+                  <div class="name">我</div>
+                  這不是我要的 😕 市場分析太籠統，執行計畫也沒有考慮到我們的資源限制...
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="tag">痛點</span>
+              <span>一次講不清楚，來回修改耗費時間</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 欄 2：痛點卡片 01 -->
+        <div class="pain-card c1">
+          <div class="pain-main">
+            <div class="pain-header">
+              <div class="pain-icon c1-icon">!</div>
+              <div>
+                <div class="label">PAIN POINT 01</div>
+                <h3>溝通不順</h3>
+              </div>
+            </div>
+            <p class="pain-desc">有時候和 AI 討論東⻄，它出來的規劃有多處我不是很認同，或者我覺得還可以再調整。</p>
+            <p class="pain-desc">但往往<strong>很難⼀次性地全部表達</strong>，讓 AI ⼀次統整性地去思考。</p>
+          </div>
+          <ul class="pain-list">
+            <li><span class="bullet">⚡</span> <span><strong>表達瓶頸：</strong><br>難以精確傳達多處結構性修改意見</span></li>
+            <li><span class="bullet">🔄</span> <span><strong>修補泥沼：</strong><br>缺乏收斂與審查機制，來回修補耗時</span></li>
+          </ul>
+        </div>
+
+        <!-- 欄 3：痛點卡片 02 -->
+        <div class="pain-card c2">
+          <div class="pain-main">
+            <div class="pain-header">
+              <div class="pain-icon c2-icon">!</div>
+              <div>
+                <div class="label">PAIN POINT 02</div>
+                <h3>資訊分散</h3>
+              </div>
+            </div>
+            <p class="pain-desc">
+              過往常常讀到很多資料，它們之間都是有關聯的，但<strong>資料總是被散落各處</strong>。
+            </p>
+            <p class="pain-desc">這些資料似乎是跟上次看過的什麼東西有關? 有什麼辦法可以幫我<strong>把資料之間的關聯整理出來</strong>?</p>
+          </div>
+          <ul class="pain-list">
+            <li><span class="bullet">📦</span> <span><strong>脈絡斷層：</strong><br>關鍵對話細節散落，難以檢索與複用</span></li>
+            <li><span class="bullet">📉</span> <span><strong>難以累積：</strong><br>經驗未能結構化沉澱至知識庫</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 底部重點橫條 -->
+      <div class="key-takeaway-banner">
+        <span class="icon">💡</span>
+        <div class="text"> 
+          如果你也有同樣的困惱，那 <span class="highlight-label">Plannotator</span> & <span class="highlight-label">Obsidian</span> 或許能幫你?
+        </div>
+      </div>
+
+      <div class="foot">
+        <span class="title">Plannotator × Obsidian</span>
+        <span>2 / 18</span>
+      </div>
+    </div>
+  </section>
+</deck-stage>
+</body>
+</html>

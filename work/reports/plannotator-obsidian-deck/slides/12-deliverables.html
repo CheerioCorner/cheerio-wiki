@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P11 · Deliverables</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:70%;line-height:1.45;margin-bottom:2vh}
+.body-content{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.diagram-container{position:relative;width:100%;height:470px;margin-top:1vh}
+.svg-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.card-node{position:absolute;z-index:2;background:#ffffff;border-radius:10px;padding:2.2vh 1.8vw;display:flex;flex-direction:column;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.03)}
+.card-node.left-card{left:100px;top:165px;width:320px;height:140px;border:2px solid #d9822b}
+.card-node.left-card h3{font-family:var(--sans-zh);font-weight:700;font-size:max(22px,1.4vw);color:#d9822b;margin-bottom:.6vh}
+.card-node.left-card p{font-family:var(--sans-zh);font-size:max(16px,1.05vw);color:rgba(var(--ink-rgb),.6)}
+.center-card{position:absolute;z-index:2;left:685px;top:135px;width:280px;height:200px;background:#11233b;border-radius:10px;box-shadow:0 8px 24px rgba(17,35,59,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#ffffff;text-align:center}
+.center-card .wiki-title{font-family:var(--serif-zh);font-weight:700;font-size:max(30px,1.9vw);line-height:1.25}
+.right-cards-col{position:absolute;z-index:2;right:100px;top:10px;width:340px;height:450px;display:flex;flex-direction:column;justify-content:space-between}
+.card-node.right-card{position:relative;width:100%;height:130px;padding:2vh 1.6vw}
+.card-node.right-card.card-ppt{border:2px solid #0e8a75}
+.card-node.right-card.card-ppt h3{color:#0e8a75}
+.card-node.right-card.card-azure{border:2px solid #294867}
+.card-node.right-card.card-azure h3{color:#294867}
+.card-node.right-card.card-sharepoint{border:2px solid #294867}
+.card-node.right-card.card-sharepoint h3{color:#294867}
+.card-node.right-card h3{font-family:var(--sans-zh);font-weight:700;font-size:max(20px,1.25vw);margin-bottom:.5vh;line-height:1.25}
+.card-node.right-card p{font-family:var(--sans-zh);font-size:max(16px,1.02vw);color:rgba(var(--ink-rgb),.6)}
+.callout-bar{background:#eef2f7;border-radius:8px;padding:1.8vh 2vw;text-align:center;margin-top:1.5vh}
+.callout-bar p{font-family:var(--sans-zh);font-style:italic;font-weight:700;font-size:max(18px,1.15vw);color:#1e3a60;line-height:1.5;margin:0}
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2.5vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>FROM KNOWLEDGE TO DELIVERABLES</span><span class="sep"></span></div></div>
+  <div class="kicker">多元交付</div>
+  <h1>從同一份知識，輸出多種成果</h1>
+  <p class="subtitle">同一份結構化知識（Single Source of Truth），可以彈性轉譯成不同受眾需要的樣子。</p>
+  <div class="body-content">
+    <div class="diagram-container">
+      <svg class="svg-canvas" viewBox="0 0 1690 470">
+        <line x1="420" y1="235" x2="685" y2="235" stroke="#cbd5e1" stroke-width="2.5" />
+        <line x1="965" y1="235" x2="1250" y2="75" stroke="#cbd5e1" stroke-width="2.5" />
+        <line x1="965" y1="235" x2="1250" y2="235" stroke="#cbd5e1" stroke-width="2.5" />
+        <line x1="965" y1="235" x2="1250" y2="395" stroke="#cbd5e1" stroke-width="2.5" />
+      </svg>
+
+      <div class="card-node left-card">
+        <h3>資料來源</h3>
+        <p>PPT ／ Word ／ PDF</p>
+        <p>YouTube / Website</p>
+      </div>
+
+      <div class="center-card">
+        <div class="wiki-title">Obsidian</div>
+        <div class="wiki-title">Wiki</div>
+      </div>
+
+      <div class="right-cards-col">
+        <div class="card-node right-card card-ppt">
+          <h3>PPT ／簡報</h3>
+          <p>主管與分享會聽眾</p>
+        </div>
+        <div class="card-node right-card card-azure">
+          <h3>Azure DevOps<br>Server Wiki</h3>
+          <p>ITD 團隊</p>
+        </div>
+        <div class="card-node right-card card-sharepoint">
+          <h3>SharePoint ／ Dapps</h3>
+          <p>跨部門協作平台</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-bar">
+      <p>一句話重點: 一次撰寫，多處輸出——讓同一份 Wiki 資產彈性轉譯為簡報、文件與 SOP。</p>
+    </div>
+  </div>
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>12 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

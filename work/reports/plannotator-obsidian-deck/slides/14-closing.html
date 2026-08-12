@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P12 · Closing</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:70%;line-height:1.45;margin-bottom:1.5vh}
+.process-flow{display:flex;align-items:center;gap:.8vw;margin-top:3.5vh;margin-bottom:3.2vh;}
+.process-pill{flex: 1;background:rgba(var(--ink-rgb),.05);border-radius:999px;padding:.8vh 1.5vw;font-size:max(26px,1.05vw);font-weight:400;color:var(--ink);text-align:center}
+.process-arrow{color:rgba(var(--ink-rgb),.35);font-size:1.1rem;font-weight:700;flex: 0 0 auto;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2vw;margin-bottom:3vh}
+.card{background:rgba(var(--ink-rgb),.04);border-radius:2px;padding:4vh 2vw;display:flex;align-items:center;justify-content:center;text-align:center;min-height:200px}
+.card-teal{border-left:6px solid #0e7060}
+.card-blue{border-left:6px solid #1c4465}
+.card-navy{border-left:6px solid #061428}
+.card h3{font-family:var(--serif-zh);font-weight:700;font-size:max(26px,1.8vw);line-height:1.35;color:var(--ink)}
+.callout{padding:2vh 2.4vw;border-left:5px solid #0a7e3f;font-family:var(--sans-zh);font-size:max(20px,1.35vw);line-height:1.6;background:rgba(10,126,63,.06);border-radius:4px;margin-bottom:4vh}
+.callout strong{font-weight:700;color:#0a7e3f}
+.thank-you{font-family:var(--serif-zh);font-weight:700;font-size:max(32px,2.2vw);text-align:center;color:var(--ink)}
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2.5vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>CLOSING</span><span class="sep"></span></div></div>
+  <div class="kicker">結語</div>
+  <h1>這套流程能帶走什麼</h1>
+  <p class="subtitle">用熟了這套方法之後，它可以這樣延伸——不用一次到位，慢慢養成。</p>
+  <div class="process-flow">
+      <div class="process-pill">需求</div>
+      <div class="process-arrow">➔</div>
+      <div class="process-pill">規劃</div>
+      <div class="process-arrow">➔</div>
+      <div class="process-pill">審查</div>
+      <div class="process-arrow">➔</div>
+      <div class="process-pill">執行</div>
+      <div class="process-arrow">➔</div>
+      <div class="process-pill">知識沉澱</div>
+      <div class="process-arrow">➔</div>
+      <div class="process-pill">報告</div>
+      <div class="process-arrow">➔</div>
+      <div class="process-pill">組織傳承</div>
+    </div>
+  <div class="grid-3">
+    <div class="card card-teal">
+      <h3>規格先於程式碼</h3>
+    </div>
+    <div class="card card-blue">
+      <h3>知識先於工具</h3>
+    </div>
+    <div class="card card-navy">
+      <h3>流程先於自動化</h3>
+    </div>
+  </div>
+  <div class="callout"><strong>明天開始的一個行動：</strong> 下一次和 AI 討論前, 先問「你打算怎麼回答？」 ──讓計畫先於執行。</div>
+  <div class="thank-you">感謝聆聽！</div>
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>14 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

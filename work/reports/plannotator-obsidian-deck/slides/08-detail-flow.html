@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P5 · Core Mechanism — Detail Flow</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif;--accent:#0a7e3f;--stage1:#28a745;--stage2:#dc3545;--stage3:#0d6efd;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+
+/* ====== Chrome ====== */
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+
+/* ====== 標題區 ====== */
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:70%;line-height:1.45;margin-bottom:2vh}
+
+/* ====== 主體：三欄並排 ====== */
+.body{display:flex;align-items:stretch;justify-content:center;flex:1;position:relative;gap:2vw}
+
+/* ====== 階段卡片 ====== */
+.stage-card{
+  flex:1;
+  background:#fff;
+  border:1px solid rgba(var(--ink-rgb),.1);
+  border-radius:12px;
+  padding:2.5vh 1.8vw;
+  box-shadow:0 6px 24px rgba(var(--ink-rgb),.06);
+  display:flex;flex-direction:column;
+  gap:1.2vh;
+  z-index:2;
+}
+.stage-card:nth-child(2){border-top:5px solid var(--stage1)}
+.stage-card:nth-child(3){border-top:5px solid var(--stage2)}
+.stage-card:nth-child(4){border-top:5px solid var(--stage3)}
+
+.stage-title{
+  font-family:var(--mono);font-weight:700;font-size:max(16px,1.05vw);
+  text-align:center;margin-bottom:.6vh;opacity:.85;letter-spacing:.1em;
+}
+.stage-title span{
+  display:block;
+  font-family:var(--serif-zh);font-weight:700;
+  font-size:max(26px,1.7vw);color:var(--ink);opacity:1;
+  margin-top:.4vh;letter-spacing:0;
+}
+
+/* ====== Step Box ====== */
+.step-box{
+  border:1px solid rgba(var(--ink-rgb),.1);
+  padding:1.2vh 1.2vw;
+  border-radius:8px;
+  text-align:center;
+  background:#fdfdfd;
+  font-family:var(--sans-zh);
+  font-size:max(18px,1.15vw);
+  line-height:1.4;
+  position:relative;
+}
+.step-box.highlight{
+  font-weight:600;
+  background:rgba(13,110,253,.06);
+  border-color:rgba(13,110,253,.25);
+}
+.step-box .sub{
+  display:block;
+  font-size:max(13px,.85vw);
+  color:rgba(var(--ink-rgb),.45);
+  margin-top:.3vh;
+  font-weight:400;
+}
+.arrow-down{
+  text-align:center;
+  color:rgba(var(--ink-rgb),.25);
+  font-size:1.1rem;
+  line-height:1;
+}
+
+/* ====== 跨階段連接線 ====== */
+.connection-line{
+  position:absolute;
+  font-family:var(--sans-zh);
+  font-size:max(16px,1.05vw);
+  font-weight:600;
+  color:rgba(var(--ink-rgb),.55);
+  background:rgba(255,255,255,.92);
+  padding:.4vh .8vw;
+  border-radius:6px;
+  border:1px solid rgba(var(--ink-rgb),.08);
+  z-index:10;
+  pointer-events:none;
+  white-space:nowrap;
+}
+.connection-line .tag{
+  padding:.15vh .4vw;border-radius:999px;
+  font-size:max(13px,.85vw);font-weight:700;margin-right:.3vw;
+}
+.connection-line.query{top:40%;left:22%;transform:rotate(-8deg)}
+.connection-line.query .tag{background:rgba(220,53,69,.1);color:var(--stage2)}
+.connection-line.review{bottom:22%;right:32%;transform:rotate(5deg)}
+.connection-line.review .tag{background:rgba(13,110,253,.1);color:var(--stage3)}
+.connection-line.feedback{bottom:30%;left:32%;transform:rotate(8deg)}
+.connection-line.feedback .tag{background:rgba(40,167,69,.1);color:var(--stage1)}
+
+/* ====== 中心標語 ====== */
+.center-label{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  text-align:center;z-index:1;
+}
+.center-label .icon{font-size:2.8rem;opacity:.18}
+.center-label .text{font-family:var(--serif-zh);font-weight:600;font-size:max(22px,1.4vw);opacity:.2;margin-top:.4vh}
+
+/* ====== Footer ====== */
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>CORE MECHANISM · DETAIL</span><span class="sep"></span></div></div>
+  <div class="kicker">知識迴流 · 明細流程</div>
+  <h1>回顧實作流程</h1>
+  <p class="subtitle">每個階段的明細步驟，串成一個完整的知識迴流循環。</p>
+
+  <div class="body">
+    <!-- 中心 -->
+    <div class="center-label">
+      <div class="icon">♻️</div>
+      <div class="text">閉環迴流</div>
+    </div>
+
+    <!-- 階段一：餵養知識 -->
+    <div class="stage-card">
+      <div class="stage-title">📥 階段一<span>餵養知識</span></div>
+      <div class="step-box">📰<br>任何來源<span class="sub">PDF / YouTube / 網頁</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box">🤖<br>AI 整理<span class="sub">wiki ingest</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box highlight">📚 沉澱知識庫<span class="sub">wiki/</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box">🔍<br>Graph View<span class="sub">發現缺口</span></div>
+    </div>
+
+    <!-- 階段二：提問與產出 -->
+    <div class="stage-card">
+      <div class="stage-title">📤 階段二<span>提問與產出</span></div>
+      <div class="step-box">❓<br>提出問題</div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box highlight">🤖<br>AI + Wiki<span class="sub">+ Research</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box">📋<br>Plan<span class="sub">附來源</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box highlight">📐<br>Plannotator<span class="sub">審查</span></div>
+    </div>
+
+    <!-- 階段三：知識回流 -->
+    <div class="stage-card">
+      <div class="stage-title">🔄 階段三<span>知識回流</span></div>
+      <div class="step-box highlight">✅<br>核准執行<span class="sub">AI 開始執行</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box">📊<br>產生報告<span class="sub">產生指定報告</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box">📝<br>再次研究<span class="sub">基於報告結果</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="step-box highlight">📚<br>回寫知識庫<span class="sub">回流至 raw/ 或 wiki/</span></div>
+    </div>
+  </div>
+
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>8 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

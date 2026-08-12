@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P7 · Integration</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:70%;line-height:1.45;margin-bottom:2vh}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2.2vw;align-content:start;margin-top:1vh}
+.card-white-shadow{background:#ffffff;border:1px solid rgba(var(--ink-rgb),.1);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.03);padding:3.6vh 2vw;display:flex;flex-direction:column}
+.card-white-shadow h3{font-family:var(--sans-zh);font-weight:700;font-size:max(22px,1.4vw);margin-bottom:2.4vh;color:var(--ink)}
+
+.badge-row{display:flex;align-items:center;gap:.8vw;margin-bottom:2vh}
+.badge-pill-light{background:#e8f5e9;color:#0e8a75;border-radius:20px;padding:.5vh 1.2vw;font-weight:700;font-size:max(15px,1vw)}
+.badge-pill-solid{background:#0e8a75;color:#ffffff;border-radius:20px;padding:.5vh 1vw;font-weight:700;font-size:max(15px,1vw)}
+
+.form-list{display:flex;flex-direction:column;gap:1.2vh;margin-bottom:2vh}
+.form-item{display:flex;align-items:center;gap:1vw}
+.form-label{width:70px;flex-shrink:0;font-size:max(16px,1.05vw);color:rgba(var(--ink-rgb),.6);font-family:var(--sans-zh)}
+.code-input{flex:1;background:#f1f4f9;border:1px solid #e2e8f0;border-radius:6px;padding:.9vh 1.2vw;font-family:var(--mono);font-size:max(15px,.98vw);color:#2d3748}
+
+.form-section-title{font-family:var(--sans-zh);font-weight:700;font-size:max(16px,1.05vw);color:var(--ink);margin-bottom:.8vh}
+.code-block-gray{background:#f1f4f9;border:1px solid #e2e8f0;border-radius:6px;padding:1.4vh 1.2vw;font-family:var(--mono);font-size:max(15px,.95vw);line-height:1.6;color:#2d3748}
+
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:1.2vh;margin:1vh 0;flex:1;justify-content:center}
+.flow-step{width:88%;padding:1.5vh 1.2vw;border-radius:8px;text-align:center;font-weight:700;font-size:max(17px,1.15vw)}
+.flow-approve{background:#edf7f5;border:1.5px solid #0e8a75;color:#0e8a75}
+.flow-option{background:#ffffff;border:1.5px solid #1b2b4c;color:#1b2b4c}
+.flow-path{background:#11233b;color:#ffffff;font-family:var(--mono)}
+
+.flow-arrow{font-size:max(18px,1.2vw);color:rgba(var(--ink-rgb),.35);font-weight:bold;line-height:1}
+.flow-caption{font-family:var(--sans-zh);font-style:italic;font-size:max(15px,.98vw);color:rgba(var(--ink-rgb),.65);text-align:center;margin-top:1.5vh}
+
+.card-summary{grid-column:1/-1;background:#eef2f7;border-radius:8px;padding:1.4vh 1.8vw;margin-top:1.5vh}
+.summary-text{font-family:var(--sans-zh);font-size:max(22px,1.1vw);font-style:italic;font-weight:700;color:#1e3a60;margin:0;line-height:1.5}
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:1.5vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>INTEGRATION</span><span class="sep"></span></div></div>
+  <div class="kicker">無縫整合</div>
+  <h1>整合實踐：審查一次，沉澱永久</h1>
+  <p class="subtitle">Plannotator 內建 Obsidian Integration ，這是 Review Gate 與知識庫之間真正的橋樑。</p>
+
+  <div class="grid-2">
+    <div class="card-white-shadow">
+      <h3>Settings － Obsidian</h3>
+      <div class="badge-row">
+        <span class="badge-pill-light">Obsidian Integration</span>
+        <span class="badge-pill-solid">ON</span>
+      </div>
+      <div class="form-list">
+        <div class="form-item">
+          <span class="form-label">Vault</span>
+          <div class="code-input">C:\CheerSpace\90_Wiki</div>
+        </div>
+        <div class="form-item">
+          <span class="form-label">Folder</span>
+          <div class="code-input">raw/plannotator</div>
+        </div>
+      </div>
+      <div class="form-section-title">Frontmatter （自動產生）</div>
+      <div class="code-block-gray">
+        created: 2026-07-23T08:14:00Z<br>
+        source: plannotator<br>
+        tags: [plan, ...]
+      </div>
+    </div>
+
+    <div class="card-white-shadow">
+      <h3>實際操作流程</h3>
+      <div class="flow-container">
+        <div class="flow-step flow-approve">✓ Approve （核准計畫）</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step flow-option">Options → Save to Obsidian</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step flow-path">raw/plannotator/*.md</div>
+      </div>
+      <p class="flow-caption">帶著 frontmatter 直接進 vault ， 0 手動搬運。</p>
+    </div>
+
+    <div class="card-summary">
+      <p class="summary-text"><em><strong>一句話重點：審查一次，沉澱永久</strong>——無縫將純淨知識寫入第二大腦。兩套工具不用擺在一起，但串起來就是完整迴流。</em></p>
+    </div>
+  </div>
+
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>11 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

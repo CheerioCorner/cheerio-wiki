@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P5 · Obsidian</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:70%;line-height:1.45;margin-bottom:2vh}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;flex:1;align-content:stretch;align-items:stretch}
+.card{background:rgba(var(--ink-rgb),.03);border:1px solid rgba(var(--ink-rgb),.09);border-radius:10px;padding:2.8vh 2.2vw;display:flex;flex-direction:column;justify-content:space-between}
+.card h3{font-family:var(--serif-zh);font-weight:600;font-size:max(22px,1.45vw);margin-bottom:1.2vh;line-height:1.3;display:flex;align-items:center;gap:.4em}
+.card p,.card li{font-family:var(--sans-zh);font-size:max(15px,.95vw);opacity:.8;line-height:1.55}
+.card strong{color:var(--ink);opacity:1}
+
+/* 左卡片：資料流 */
+.flow-container{display:flex;flex-direction:column;margin:1.5vh 0 1vh;gap:.3vh}
+.flow-row{display:flex;align-items:center;gap:1.5vw}
+.flow-pill{width:220px;flex-shrink:0;padding:1.3vh 0;border-radius:999px;text-align:center;font-family:var(--mono);font-weight:700;font-size:max(24px,.95vw);border:none}
+.flow-pill.green{background:#c5dacc;color:#1b7042}
+.flow-pill.blue{background:#c9d1df;color:#1b2b4c}
+
+.flow-info{display:flex;flex-direction:column;gap:1.8vh}
+.flow-title{font-family:var(--sans-zh);font-size:max(20px,.9vw);font-weight:500;color:var(--ink);opacity:.85}
+.flow-sub{font-family:var(--sans-zh);font-size:max(18px,.82vw);color:var(--ink);opacity:.65}
+
+.flow-arrow{width:220px;display:flex;justify-content:center;font-size:max(24px,.95vw);color:#1b2b4c;opacity:.7;padding:.1vh 0;font-weight:bold}
+
+.flow-divider{width:100%;height:1px;background:rgba(var(--ink-rgb),.1);margin:2vh 0 1.8vh}
+.flow-statement{font-family:var(--sans-zh);font-style:italic;font-size:max(26px,.92vw);color:var(--ink);opacity:.85;line-height:1.55;margin-bottom:1.8vh}
+
+.skills-section{margin-bottom:auto;display:flex;flex-direction:column;gap:.8vh}
+.skill-header{font-family:var(--mono);font-size:max(24px,.7vw);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);opacity:.4;font-weight:600}
+.skill-item{display:flex;align-items:flex-start;gap:.6vw;padding:.8vh 0}
+.skill-name{font-family:var(--mono);font-weight:700;font-size:max(22px,.85vw);color:#1b7042;min-width:120px;flex-shrink:0}
+.skill-desc{font-size:max(24px,.82vw);opacity:.7;line-height:1.45}
+
+/* 右卡片：Graph View & Value Grid */
+.card-intro{margin-bottom:.8vh;opacity:.7;font-size:max(14px,.88vw);line-height:1.4}
+.graph-container{width:100%;height:200px;margin:.4vh 0 1.2vh;padding:1vh 0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.4);border-radius:8px;border:1px dashed rgba(var(--ink-rgb),.1)}
+.value-grid{display:grid;grid-template-columns:1fr 1fr;gap:1vh .8vw;margin-bottom:auto}
+.value-card{background:rgba(255,255,255,.65);border:1px solid rgba(var(--ink-rgb),.08);border-radius:8px;padding:1.3vh 1.1vw;display:flex;gap:.8vw;align-items:flex-start}
+.value-icon{font-size:max(18px,1.2vw);line-height:1;padding-top:2px;flex-shrink:0}
+.value-content h4{font-family:var(--sans-zh);font-weight:700;font-size:max(24px,.92vw);color:var(--ink);margin-bottom:.2vh}
+.value-content p{font-size:max(18px,.8vw);opacity:.72;line-height:1.4}
+
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>SECOND BRAIN</span><span class="sep"></span></div></div>
+  <div class="kicker">第二大腦</div>
+  <h1>Obsidian：第二大腦與 Knowledge Graph</h1>
+  <p class="subtitle">源自 Andrej Karpathy 的 LLM Wiki 想法，以及 Google 的 OKF （ Open Knowledge Framework ） 精神。</p>
+  <div class="grid-2">
+    <div class="card">
+      <h3>資料流</h3>
+      <div class="flow-container">
+        <div class="flow-row">
+          <div class="flow-pill green">raw/</div>
+          <div class="flow-info">
+            <div class="flow-title">原始資料，唯讀</div>
+            <div class="flow-sub">web / youtube / conversations</div>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-pill blue">wiki ingest</div>
+          <div class="flow-info">
+            <div class="flow-title">AI 整理、萃取、建立連結</div>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-pill green">wiki/</div>
+          <div class="flow-info">
+            <div class="flow-sub">concepts / entities / sources /</div>
+            <div class="flow-sub">decisions / discussions</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-divider"></div>
+
+      <p class="flow-statement">不需要向量資料庫：個人規模下， wiki + index 就夠用。 Markdown 是可長期保存、可被 AI 讀寫的知識格式。</p>
+
+      <div class="flow-divider"></div>
+
+      <div class="skills-section">
+        <div class="skill-header">核心 Skill</div>
+        <div class="skill-item">
+          <span class="skill-name">/wiki-ingest</span>
+          <span class="skill-desc">將 raw/ 資料自動攝取、轉換並歸檔到 wiki/</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">/wiki-query</span>
+          <span class="skill-desc">高精度關聯查詢，快速找到相關知識節點</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🔍 Graph View 的四個價值</h3>
+      <p class="card-intro">不是炫技的圖，而是系統性治理判斷工具：</p>
+      <div class="graph-container">
+        <svg viewBox="0 0 500 170" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+          <line x1="80" y1="100" x2="200" y2="115" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="125" y1="145" x2="200" y2="115" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="125" y1="145" x2="260" y2="155" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="135" y1="50" x2="200" y2="115" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="135" y1="50" x2="260" y2="30" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="260" y1="30" x2="380" y2="75" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="260" y1="30" x2="335" y2="135" stroke="rgba(6,20,40,0.12)" stroke-dasharray="3 3" stroke-width="1.2" />
+          <line x1="200" y1="115" x2="335" y2="135" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="200" y1="115" x2="260" y2="155" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="380" y1="75" x2="335" y2="135" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <line x1="335" y1="135" x2="430" y2="155" stroke="rgba(6,20,40,0.12)" stroke-width="1.5" />
+          <circle cx="80" cy="100" r="11" fill="#2a7a5d" />
+          <circle cx="135" cy="50" r="17" fill="#1a2b4c" />
+          <circle cx="125" cy="145" r="9" fill="#28536b" />
+          <circle cx="200" cy="115" r="14" fill="#28536b" />
+          <circle cx="260" cy="30" r="12" fill="#28536b" />
+          <circle cx="260" cy="155" r="9" fill="#28536b" />
+          <circle cx="335" cy="135" r="11" fill="#d96b27" />
+          <circle cx="380" cy="75" r="13" fill="#28536b" />
+          <circle cx="430" cy="155" r="8" fill="#e2e6ea" />
+        </svg>
+      </div>
+      <div class="skills-section" style="margin-bottom:1.5vh">
+        <div class="skill-header">品質控管 SKILL</div>
+        <div class="skill-item">
+          <span class="skill-name">/wiki-lint</span>
+          <span class="skill-desc">語意連結校驗，自動偵測斷裂連結與孤兒頁</span>
+        </div>
+      </div>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-icon">🔗</div>
+          <div class="value-content">
+            <h4>發現關聯</h4>
+            <p>節點間雙向連結，顯示跨領域概念如何互相支撐</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🕳️</div>
+          <div class="value-content">
+            <h4>知識缺口</h4>
+            <p>揭露論述中應該存在、卻缺少的關鍵連結</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📄</div>
+          <div class="value-content">
+            <h4>孤兒頁</h4>
+            <p>識別沒有任何關聯連結的獨立筆記</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <div class="value-content">
+            <h4>決策樞紐</h4>
+            <p>掌握連結數量最多、影響力最大的核心節點</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>9 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

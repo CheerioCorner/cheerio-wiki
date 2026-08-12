@@ -3,6 +3,21 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-13] ingest | Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent
+
+- 來源：YouTube 影片《I Replaced Pi and OpenCode With This》(Martí Blanes, 08:29)
+- Raw transcript：raw/youtube/i-replaced-pi-and-opencode-with-this.md (185 segments → 22 paragraphs)
+- 雙模型交叉驗證（Claude + Gemini）：Round 1 一致，直接採用
+- 新建頁面：
+  - wiki/sources/2026-08-13-prime-agent-youtube.md — 來源筆記
+  - wiki/entities/prime-agent.md — Prime Agent entity
+  - wiki/concepts/code-execution-as-tool-calling.md — Python Runtime 取代 Tool Calling 模式
+  - wiki/concepts/recursive-language-model.md — RLM subagent 概念
+- 更新頁面：
+  - wiki/entities/pi-agent-core.md — 補充 Prime Agent 作為下游擴充案例
+  - wiki/entities/hermes-agent.md — 補充 Continual Harness 比較
+  - wiki/topics/ai-agent.md — 新增 entities + concepts + sources
+
 ## [2026-08-12] decision | 知識系統架構 v3 修正：雙模型共識取代人類確認
 
 - 更新 wiki/decisions/knowledge-system-architecture-decision.md：新增第十一節，記錄 v2.0 → v3.0 的修正與實作

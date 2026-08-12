@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P4 · Core Mechanism — Overview</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root {
+  --ink: #061428;
+  --paper: #f8f9fa;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --serif-en: "Playfair Display", Georgia, serif;
+  --serif-zh: "Noto Serif SC", serif;
+  --sans-zh: "Noto Sans SC", system-ui, sans-serif;
+  --teal: #0e8a75;
+  --navy: #294867;
+  --dark-navy: #0f2237;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans-zh); background: var(--paper); color: var(--ink); overflow: hidden; }
+
+.slide {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+/* Header & Footer (matching other slides) */
+.slide {
+  display: flex;
+  flex-direction: column;
+  padding: 5vh 6vw 8vh;
+}
+
+.chrome {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.chrome .left {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+}
+.chrome .sep {
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+.kicker {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 1.2vh;
+  margin-top: 1.5vh;
+}
+
+h1 {
+  font-family: var(--serif-zh);
+  font-weight: 700;
+  font-size: clamp(38px, 3.8vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+  margin-bottom: 0.6vh;
+}
+
+.subtitle {
+  font-family: var(--sans-zh);
+  font-size: max(17px, 1.05vw);
+  opacity: 0.6;
+  max-width: 70%;
+  line-height: 1.5;
+  margin-bottom: 2vh;
+}
+
+/* Main body area */
+.body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+/* Cycle Diagram Container */
+.diagram-container {
+  position: relative;
+  width: 1400px;
+  height: 580px;
+}
+
+/* SVG Arrows Container */
+.svg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Circle Nodes & Labels */
+.node-group {
+  position: absolute;
+  z-index: 2;
+}
+
+.circle-node {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.circle-node.feed { background-color: var(--teal); }
+.circle-node.organize { background-color: var(--navy); }
+.circle-node.use { background-color: var(--navy); }
+.circle-node.settle { background-color: var(--dark-navy); }
+
+.circle-node .zh {
+  font-family: var(--sans-zh);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.circle-node .en {
+  font-family: var(--serif-en);
+  font-size: 16px;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+/* Note Labels */
+.note-label {
+  position: absolute;
+  font-family: var(--sans-zh);
+  font-style: italic;
+  font-size: 20px;
+  color: #6b7c93;
+  white-space: nowrap;
+}
+
+.refeed-label {
+  position: absolute;
+  font-family: var(--sans-zh);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--teal);
+  z-index: 3;
+  white-space: nowrap;
+}
+
+/* Bottom Highlight Bar */
+.bottom-bar {
+  margin-top: 1.5vh;
+  padding: 1.2vh 2vw;
+  background: rgba(10, 31, 61, 0.04);
+  border-radius: 3px;
+  border-left: 3px solid var(--teal);
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+}
+
+.bottom-bar .highlight-text {
+  font-family: var(--serif-zh);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--ink);
+}
+
+.bottom-bar .highlight-text strong {
+  font-weight: 900;
+  color: var(--teal);
+}
+
+/* Footer (matching other slides) */
+.foot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 2vh 6vw;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.5;
+}
+.foot .title {
+  font-family: var(--serif-zh);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  opacity: 0.7;
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <!-- Header -->
+  <div class="chrome"><div class="left"><span>CORE MECHANISM</span><span class="sep"></span></div></div>
+  <div class="kicker">知識迴流</div>
+  <h1>創造知識的閉環迴流</h1>
+  <p class="subtitle">我們希望可以不限資訊的來源，透過 AI 整理後沉澱到知識庫；當有問題時，再從知識庫出發，結合 AI 研究，產出成果。</p>
+
+  <!-- Body -->
+  <div class="body">
+    <div class="diagram-container">
+      <!-- SVG Arrows -->
+      <svg class="svg-canvas" viewBox="0 0 1400 580">
+        <defs>
+          <marker id="arrow-head" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0e8a75" />
+          </marker>
+        </defs>
+        <!-- Top Horizontal Arrow (Feed -> Organize) -->
+        <line x1="350" y1="150" x2="1038" y2="150" stroke="#0e8a75" stroke-width="3" marker-end="url(#arrow-head)" />
+
+        <!-- Right Vertical Arrow (Organize -> Use) -->
+        <line x1="1140" y1="245" x2="1140" y2="358" stroke="#0e8a75" stroke-width="3" marker-end="url(#arrow-head)" />
+
+        <!-- Bottom Horizontal Arrow (Use -> Settle) -->
+        <line x1="1045" y1="460" x2="362" y2="460" stroke="#0e8a75" stroke-width="3" marker-end="url(#arrow-head)" />
+
+        <!-- Left Vertical Arrow (Settle -> Feed) -->
+        <line x1="255" y1="365" x2="255" y2="252" stroke="#0e8a75" stroke-width="3" marker-end="url(#arrow-head)" />
+      </svg>
+
+      <!-- Node 1: 餵養 (Feed) - Top Left -->
+      <div class="note-label" style="top: 10px; left: 255px; transform: translateX(-50%);">不限來源 → AI 整理</div>
+      <div class="node-group" style="top: 55px; left: 160px;">
+        <div class="circle-node feed">
+          <div class="zh">餵養</div>
+          <div class="en">Feed</div>
+        </div>
+      </div>
+
+      <!-- Node 2: 整理 (Organize) - Top Right -->
+      <div class="note-label" style="top: 10px; left: 1140px; transform: translateX(-50%);">Obsidian Wiki → Graph View</div>
+      <div class="node-group" style="top: 55px; left: 1045px;">
+        <div class="circle-node organize">
+          <div class="zh">整理</div>
+          <div class="en">Organize</div>
+        </div>
+      </div>
+
+      <!-- Node 3: 使用 (Use) - Bottom Right -->
+      <div class="node-group" style="top: 365px; left: 1045px;">
+        <div class="circle-node use">
+          <div class="zh">使用</div>
+          <div class="en">Use</div>
+        </div>
+      </div>
+      <div class="note-label" style="top: 560px; left: 1140px; transform: translateX(-50%);">提問 → Wiki + Research → 產出 Plan</div>
+
+      <!-- Node 4: 沉澱 (Settle) - Bottom Left -->
+      <div class="node-group" style="top: 365px; left: 160px;">
+        <div class="circle-node settle">
+          <div class="zh">沉澱</div>
+          <div class="en">Settle</div>
+        </div>
+      </div>
+      <div class="note-label" style="top: 560px; left: 255px; transform: translateX(-50%);">Plannotator 審查 → 回寫知識庫</div>
+
+      <!-- Left Label: 再餵養 -->
+      <div class="refeed-label" style="top: 292px; left: 235px; transform: translateX(-100%);">再餵養</div>
+    </div>
+  </div><!-- end body -->
+
+  <!-- Bottom Highlight Bar -->
+  <div class="bottom-bar">
+    <div class="highlight-text"><strong>重點：</strong>這是一個閉環迴流，餵養 → 整理 → 使用 → 沉澱 → 再餵養，讓知識越用越聰明。</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="foot">
+    <span class="title">Plannotator × Obsidian</span>
+    <span>4 / 18</span>
+  </div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>

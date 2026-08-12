@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>P13 · Lessons Learned</title>
+<script src="../deck_stage.js"></script>
+<style>
+:root{--ink:#061428;--ink-rgb:10,31,61;--paper:#f8f9fa;--paper-rgb:241,243,245;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif-en:"Playfair Display",Georgia,serif;--serif-zh:"Noto Serif SC",serif;--sans-zh:"Noto Sans SC",system-ui,sans-serif;--accent:#0a7e3f;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans-zh);background:var(--paper);color:var(--ink);overflow:hidden}
+.slide{width:1920px;height:1080px;display:flex;flex-direction:column;padding:5vh 6vw 8vh;position:relative;background:var(--paper);overflow:hidden}
+.chrome{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.chrome .left{display:flex;gap:2em;align-items:center}
+.chrome .sep{width:32px;height:1px;background:currentColor;opacity:.4}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.25em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh;margin-top:1.5vh}
+h1{font-family:var(--serif-zh);font-weight:700;font-size:clamp(38px,3.8vw,56px);line-height:1.15;letter-spacing:-.005em;margin-bottom:.8vh}
+.subtitle{font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.65;max-width:70%;line-height:1.45;margin-bottom:2vh}
+
+/* 四步心路歷程 */
+.journey{display:flex;align-items:stretch;gap:.9vw;margin-top:2.4vh;margin-bottom:2.4vh;flex:1}
+.journey-step{flex:1;background:rgba(var(--ink-rgb),.04);border-top:6px solid var(--step-c);border-radius:8px;padding:3.2vh 1.7vw 2.6vh;display:flex;flex-direction:column;justify-content:flex-start;gap:1vh}
+.journey-step .num{font-family:var(--mono);font-size:15px;letter-spacing:.15em;color:var(--step-c);font-weight:600}
+.journey-step .label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.5}
+.journey-step h3{font-family:var(--serif-zh);font-weight:700;font-size:max(24px,1.55vw);line-height:1.35;color:var(--ink);margin-top:.4vh}
+.journey-step p{font-family:var(--sans-zh);font-size:max(16px,1.02vw);opacity:.62;line-height:1.55}
+.journey-arrow{display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:2.4vw;color:rgba(var(--ink-rgb),.28);font-size:1.5rem;font-weight:700}
+.step-1{--step-c:#3a4b5c}
+.step-2{--step-c:#c83b3b}
+.step-3{--step-c:#c86d3b}
+.step-4{--step-c:#0a7e3f}
+
+/* 附帶收穫小標籤 */
+.side-note{display:flex;align-items:center;gap:.8vw;font-family:var(--sans-zh);font-size:max(17px,1.05vw);opacity:.7;margin-bottom:2vh}
+.side-note .tag{flex-shrink:0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:rgba(var(--ink-rgb),.08);color:var(--ink);padding:.6vh .9vw;border-radius:999px;font-weight:600}
+
+/* 底部重點橫條 */
+.key-takeaway-banner{width:100%;background:rgba(10,126,63,.06);border:1px solid rgba(10,126,63,.18);border-left:5px solid var(--accent);border-radius:6px;padding:1.6vh 2vw;display:flex;align-items:center;gap:1vw}
+.key-takeaway-banner .icon{font-size:2rem;flex-shrink:0}
+.key-takeaway-banner .text{font-family:var(--serif-zh);font-weight:600;font-size:max(22px,1.15vw);line-height:1.5;color:var(--ink)}
+.key-takeaway-banner .highlight-label{font-family:var(--sans-zh);font-weight:700;color:var(--accent);margin-right:.4vw}
+
+.foot{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:2.5vh 6vw;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.5}
+.foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<deck-stage>
+<section>
+<div class="slide">
+  <div class="chrome"><div class="left"><span>LESSONS LEARNED</span><span class="sep"></span></div></div>
+  <div class="kicker">個人心得</div>
+  <h1>從不知道它是什麼，到想通「大腦要完全交給 AI」</h1>
+  <p class="subtitle">一段踩坑換來的方法論——細節我現場說。</p>
+
+  <div class="journey">
+    <div class="journey-step step-1">
+      <span class="num">01</span>
+      <span class="label">起點</span>
+      <h3>不知道它是什麼</h3>
+      <p>先套現成方法再說——LLM Wiki、Google OKF</p>
+    </div>
+    <div class="journey-arrow">➔</div>
+    <div class="journey-step step-2">
+      <span class="num">02</span>
+      <span class="label">踩坑</span>
+      <h3>關聯圖裡的孤島</h3>
+      <p>AI 覺得重要的，跟我覺得重要的不一樣</p>
+    </div>
+    <div class="journey-arrow">➔</div>
+    <div class="journey-step step-3">
+      <span class="num">03</span>
+      <span class="label">動搖</span>
+      <h3>一度懷疑「90 / 10」</h3>
+      <p>AI 管理 90%、人類管理 10%——這比例對嗎？</p>
+    </div>
+    <div class="journey-arrow">➔</div>
+    <div class="journey-step step-4">
+      <span class="num">04</span>
+      <span class="label">想通</span>
+      <h3>回到 LLM Wiki 的精神</h3>
+      <p>大腦，交給 AI 全權</p>
+    </div>
+  </div>
+
+  <div class="side-note"><span class="tag">附帶收穫</span> 順帶學會了怎麼切工作的 Context Boundary</div>
+
+  <div class="key-takeaway-banner">
+    <span class="icon">💡</span>
+    <div class="text"><span class="highlight-label">一句話重點：</span>想通之後，才有了 Ingest 圓桌共識機制、Lint 檢查機制，跟大腦 ↔ 花園的知識循環——讓知識幫助知識成長。</div>
+  </div>
+
+  <div class="foot"><span class="title">Plannotator × Obsidian</span><span>13 / 18</span></div>
+</div>
+</section>
+</deck-stage>
+</body>
+</html>
