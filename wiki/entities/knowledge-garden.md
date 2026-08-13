@@ -100,11 +100,11 @@ canonical: entities/knowledge-garden
 
 | 種子名稱 | Notion Link | Wiki 來源 | 視覺地圖 |
 |----------|-------------|-----------|----------|
-| PARA — Projects/Areas/Resources/Archives | [連結](https://app.notion.com/p/3b85979e-3a8c-81c4-be33-e21f1ada2702) | — | — |
-| Lint 規則集 — Lint Rulebook | [連結](https://app.notion.com/p/3b85979e-3a8c-81d2-bd75-ef7f0e38c93b) | — | — |
-| 語意關係 — Semantic Relations | [連結](https://app.notion.com/p/3b85979e-3a8c-8191-b990-cc400fbd5b43) | — | — |
-| MOC — Map of Content | [連結](https://app.notion.com/p/3b85979e-3a8c-8120-b1a5-eee144e3c020) | — | — |
-| Zettelkasten — 卡片盒筆記法 | [連結](https://app.notion.com/p/3b85979e-3a8c-81d9-881d-c3a93dc296c8) | — | — |
+| PARA — Projects/Areas/Resources/Archives | [連結](https://app.notion.com/p/3b85979e-3a8c-81c4-be33-e21f1ada2702) | [[wiki/concepts/para\|para]] | — |
+| Lint 規則集 — Lint Rulebook | [連結](https://app.notion.com/p/3b85979e-3a8c-81d2-bd75-ef7f0e38c93b) | [[wiki/concepts/lint-ruleset\|lint-ruleset]] | — |
+| 語意關係 — Semantic Relations | [連結](https://app.notion.com/p/3b85979e-3a8c-8191-b990-cc400fbd5b43) | [[wiki/concepts/semantic-relations\|semantic-relations]] | — |
+| MOC — Map of Content | [連結](https://app.notion.com/p/3b85979e-3a8c-8120-b1a5-eee144e3c020) | [[wiki/concepts/moc-map-of-content\|moc-map-of-content]] | — |
+| Zettelkasten — 卡片盒筆記法 | [連結](https://app.notion.com/p/3b85979e-3a8c-81d9-881d-c3a93dc296c8) | [[wiki/concepts/zettelkasten\|zettelkasten]] | — |
 | LOOP Engineering — 迴圈工程 | [連結](https://app.notion.com/p/3b75979e-3a8c-810c-ac3a-eeae0061b89e) | [[wiki/concepts/loop-vs-graph-engineering\|loop-vs-graph-engineering]] | — |
 | MCP — AI 工具通訊標準 | [連結](https://app.notion.com/p/3b75979e-3a8c-8184-9ea5-f7e4cbf594c3) | [[wiki/entities/mcp-model-context-protocol\|mcp-model-context-protocol]] | — |
 | Code Graph — 程式碼語意圖譜 | [連結](https://app.notion.com/p/3b75979e-3a8c-816d-9354-ed3d42e947bb) | [[wiki/concepts/code-graph\|code-graph]] | — |
