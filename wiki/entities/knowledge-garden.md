@@ -2,7 +2,7 @@
 title: knowledge-garden — Cheerio 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-13
+updated: 2026-08-14
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
