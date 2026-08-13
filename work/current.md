@@ -350,6 +350,11 @@
 
 ## Completed
 
+- [x] W-2026-08-051 Ingest：Prime Agent 官方發布 + AI郵報 ARC-AGI-3 分析 ✅ #knowledge #ai-agent
+  - completed: 2026-08-13
+  - result: 存入 2 篇 raw/web 文章全文（官方部落格 + AI郵報中文分析），發現既有 YouTube 版頁面誤植開發者名稱「Prime Intelligence」並已修正為「Prime Intellect」。雙模型交叉驗證（Claude+Gemini）Round 1 一致，auto_verified。新建 2 個 concept 頁面（continual-harness、arc-agi-3-benchmark）+ 2 個 source notes；大幅擴充 prime-agent entity（GitHub/License/ARC-AGI-3 三種成績口徑 95.5%/95.24%/30.16%/Factorio reward hacking）；重寫 recursive-language-model 核心定義為「context 當變數」。已 git push（commit bc63f7a）。
+  - refs: [[raw/web/2026-08-13-prime-agent-self-improving-rlm-agent|官方部落格 raw]]、[[raw/web/2026-08-13-prime-agent-arc-agi-3-opus-5-harness-aiposthub|AI郵報 raw]]、[[wiki/entities/prime-agent|prime-agent]]、[[wiki/concepts/continual-harness|Continual Harness]]、[[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]]
+
 - [x] W-2026-08-041 YouTube ingest：LangGraph in 10 Minutes ✅ #knowledge #ai-agent
   - completed: 2026-08-08
   - result: 抓 auto-generated English 字幕（347 segments → 40 paragraphs）。新增 wiki：source note + entity（langgraph）+ concept（agent-durability-patterns）。重點：Pregel model、reducers、checkpointing、delta channels（5.3GB→129MB）。建立 Pi vs LangGraph 三種持久化路徑比較，作為未來 agent 設計取捨參考。
