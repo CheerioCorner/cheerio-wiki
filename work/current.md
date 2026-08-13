@@ -5,6 +5,26 @@
 
 ## In progress
 
+- [ ] W-2026-08-052 圓桌會議：Claude Design vs GitHub Copilot 可行性分析 🆕 #ai-agent #tools
+  - next: 等 Cheer 回顧報告並回饋意見
+  - refs: [[.pi/round-table/20260813-183535/synthesis|圓桌會議紀要]]、[[wiki/entities/claude-design|Claude Design]]、[[wiki/concepts/design-md-format|design.md Format]]
+  - 狀態：待人類回顧
+  - 已完成：
+    - ✅ Round 1：Claude + Gemini + Copilot 三方開場發言
+    - ✅ Round 2：深入回應（token 成本、Beta 風險、代碼質量、混合方案摩擦）
+    - ✅ Round 3：收斂（響應式品質量化、決策樹、給 Cheer 建議）
+    - ✅ Synthesis 報告產出（結論、比較表、可行性評估、具體建議）
+    - ✅ 主控端回饋補記（2026-08-13，已查證 4 項修正）
+  - 核心結論：
+    - Claude Design 五階段流程經 2026/6 更新後可行性大幅提升（token 問題已修復）
+    - Copilot 無原生畫布但 IDE 整合與代碼品質更成熟
+    - Cheer 最佳路線：Direct Code Handoff（Claude Design 探索 → DesignSync 雙向同步 → Claude Code 實作 → Copilot 維護）
+  - 主控端回饋（2026-08-13，已查證）：
+    1. Token 消耗問題已於 2026/6/17 修復（VentureBeat 等多家報導確認），風險評估應往「更可行」調整
+    2. 「15-40% 修正率」「65-70 分」數字無官方來源，已降級為「與會者主觀估計」
+    3. Claude Code CLI 內建 DesignSync 工具（`/design-sync` skill），可雙向增量同步 claude.ai/design 專案，整合已落地
+    4. Opus 4.7 發布日修正為 4 月 16 日（非 17 日）
+
 - [x] W-2026-08-050 知識系統架構 v3 修正：雙模型共識取代人類確認 + 花園整合寫入 ✅ #knowledge #meta #notion
   - completed: 2026-08-12
   - refs: [[wiki/decisions/knowledge-system-architecture-decision|架構決策 v3]]、[[wiki/concepts/knowledge-system-architecture|架構概念]]、AGENTS.md
@@ -50,16 +70,17 @@
     - ✅ 同步 cheerio-skills repo：wiki-lint + wiki-ingest + README
   - 核心架構：三個操作（Ingest/Query/Lint）+ 一個機制（知識幫助知識）+ 一個回流（花園→大腦）
 
-- [ ] W-2026-08-047 知識系統健檢機制全面盤點 + AGENTS.md 整理 🆕 #knowledge #meta
-  - next: 加強花園巡檢 skill（量化標準 + 結構化輸出）、建立工作追蹤 lint、重建 cron 排程
+- [ ] W-2026-08-047 知識系統健檢機制全面盤點 + AGENTS.md 整理 #knowledge #meta
+  - next: 建立工作追蹤 lint、重建 cron 排程
   - 已完成：
     - ✅ 三大健檢機制盤點（大腦 wiki-lint / 花園 knowledge-garden / 工作 work-tracker）
     - ✅ AGENTS.md 與實際佈局比對（發現 raw/ 2 個 + work/ 5 個未記錄項目）
     - ✅ AGENTS.md 品質掃描（14 項問題：5 過時 + 6 冗餘 + 3 可選）
     - ✅ AGENTS.md 修復：§1 架構合併 + 補資料夾、§2.1 更新 skill 引用、§3.3 改引用 wiki-lint skill、§4.2 provenance 統一、§9 §10 去冗餘、日期更新
+    - ✅ 花園巡檢執行（2026-08-13）：17→22 顆種子、MCP 融合、5 新種子、5 專題連結
   - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki-lint skill]]、work-tracker SKILL.md
   - 待辦：
-    - ⏳ 花園巡檢加強（量化停滯標準、Relation 一致性、Sync Status、視覺地圖完整性）
+    - ⏳ 花園巡檢 skill 加強（量化停滯標準、Relation 一致性、Sync Status、視覺地圖完整性）
     - ⏳ 工作追蹤 lint（current.md 格式、refs 完整性、history 一致性）
     - ⏳ 重建 cron 排程（每週一 wiki lint + 每週三花園巡檢）
     - ⏳ §2.4 work/ 定義與 work-tracker SKILL.md 對齊
