@@ -70,8 +70,9 @@
     - ✅ 同步 cheerio-skills repo：wiki-lint + wiki-ingest + README
   - 核心架構：三個操作（Ingest/Query/Lint）+ 一個機制（知識幫助知識）+ 一個回流（花園→大腦）
 
-- [ ] W-2026-08-047 知識系統健檢機制全面盤點 + AGENTS.md 整理 #knowledge #meta
-  - next: 工作追蹤 lint、cron 排程重建
+- [x] W-2026-08-047 知識系統健檢機制全面盤點 + AGENTS.md 整理 ✅ #knowledge #meta
+  - completed: 2026-08-14
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/sources/2026-08-13-garden-guard-incident|事故報告]]、[[wiki-lint skill]]、work-tracker SKILL.md
   - 已完成：
     - ✅ 三大健檢機制盤點（大腦 wiki-lint / 花園 knowledge-garden / 工作 work-tracker）
     - ✅ AGENTS.md 與實際佈局比對（發現 raw/ 2 個 + work/ 5 個未記錄項目）
@@ -80,11 +81,11 @@
     - ✅ 花園巡檢執行（2026-08-13）：17→22 顆種子、MCP 融合、5 新種子、5 專題連結
     - ✅ 花園巡檢 skill 加強（2026-08-13）：§1 原子化寫入、§4 確定性抽驗、量化內容空洞標準、Properties/Content 不一致檢查
     - ✅ garden-guard.ts extension 建立（攔截型，3 個 gate）
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/sources/2026-08-13-garden-guard-incident|事故報告]]、[[wiki-lint skill]]、work-tracker SKILL.md
+    - ✅ 花園巡檢執行（2026-08-14）：20 顆種子全量抽驗、8 顆補 Sync Status、Tree-sitter/Agentic AI 補寫內容、5 顆知識管理種子建立 wiki 頁面
   - 待辦：
-    - ⏳ 工作追蹤 lint（current.md 格式、refs 完整性、history 一致性）
+    - ⏳ 為 5 顆知識管理種子補成長計畫（Notion 頁面內容）
+    - ⏳ 為 NPM Publishing 補視覺地圖
     - ⏳ 重建 cron 排程（每週一 wiki lint + 每週三花園巡檢）
-    - ⏳ §2.4 work/ 定義與 work-tracker SKILL.md 對齊
 
 - [x] W-2026-08-044 建立「圓桌會議」skill：多 AI 對談討論 ✅ #skills #ai-agent
   - completed: 2026-08-11
