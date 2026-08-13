@@ -2,7 +2,7 @@
 title: Agent Research
 topic: agent-research
 created: 2026-08-08
-updated: 2026-08-08
+updated: 2026-08-13
 ---
 
 # Agent Research
@@ -23,6 +23,8 @@ updated: 2026-08-08
 - [[wiki/concepts/context-cot|Context-CoT]] — 上下文思維鏈，解決 LLM 「作弊」問題
 - [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill]] — 技能優化元技能，SKILL.md 的文字空間優化
 - [[wiki/concepts/code-knowledge-graph|Code Knowledge Graph]] — tree-sitter AST + 圖論算法的代碼知識圖譜
+- [[wiki/concepts/continual-harness|Continual Harness]] — harness 狀態 CRUD 化、`/refine` 自我改進 pipeline、reward hacking 風險 🛠️
+- [[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]] — 互動式推理 benchmark，同模型換 harness 表現差距達 3 倍以上 🛠️
 
 ## Sources
 

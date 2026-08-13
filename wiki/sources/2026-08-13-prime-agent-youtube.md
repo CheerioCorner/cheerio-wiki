@@ -11,6 +11,8 @@ provenance_url: "https://www.youtube.com/watch?v=eQZQl_7-X40"
 ---
 
 > Martí Blanes 介紹 Prime Agent：建構於 Pi 之上，用 Python runtime 取代傳統 tool calling 的開源 coding agent。
+>
+> ⚠️ **修正（2026-08-13）**：影片內容誤植開發者為「Prime Intelligence」，正確為「**Prime Intellect**」（見官方部落格 [[wiki/sources/2026-08-13-prime-agent-official-blog|Prime Agent 官方部落格全文]]，內容也更完整，含 ARC-AGI-3 評測與 Continual Harness 風險說明）。
 
 ## 影片資訊
 
@@ -26,7 +28,7 @@ provenance_url: "https://www.youtube.com/watch?v=eQZQl_7-X40"
 
 ### 1. Prime Agent 是什麼
 - 完全開源，建構在 [[wiki/entities/pi-agent-core|pi-agent-core]] 之上
-- 開發者：Prime Intelligence
+- 開發者：Prime Intellect（影片原稱「Prime Intelligence」，已修正）
 - 作者原本使用 Pi 和 OpenCode，現在改用 Prime Agent
 
 ### 2. 架構差異：Python Runtime vs Tool Calling

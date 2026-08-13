@@ -29,10 +29,10 @@
 ## 概觀
 
 - **建立日期**：2026-07-11
-- **最後更新**：2026-08-13（ingest Prime Agent）
+- **最後更新**：2026-08-13（ingest Prime Agent 官方部落格 + AI郵報分析，修正 Prime Intelligence → Prime Intellect）
 - **範疇**：AI Agent 框架 / Coding Agent / Pi 生態 / 知識管理
-- **Source notes**：52（全部已補 provenance）
-- **Canonical collections**：29 concepts、45 entities、5 decisions、4 discussions
+- **Source notes**：56（全部已補 provenance）
+- **Canonical collections**：31 concepts、44 entities、5 decisions、4 discussions
 - **Project Bundles**：3（入口位於 root `projects/<project-id>/`）
 
 ---
@@ -78,7 +78,9 @@
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/npm-publishing-workflow|NPM Publishing Workflow]] — Package Publishing 流程
 - [[wiki/concepts/code-execution-as-tool-calling|Code Execution as Tool Calling]] — 模型寫 Python 腳本執行多操作取代逐次 tool call 🛠️
-- [[wiki/concepts/recursive-language-model|Recursive Language Model]] — 可在 Python 程式邏輯中觸發的獨立 agent session 🛠️
+- [[wiki/concepts/recursive-language-model|Recursive Language Model]] — 把 context 當變數、以函式呼叫觸發的獨立 agent session 🛠️
+- [[wiki/concepts/continual-harness|Continual Harness]] — harness 狀態 CRUD 化、`/refine` 自我改進 pipeline、reward hacking 風險 🛠️
+- [[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]] — 互動式推理 benchmark，同模型換 harness 表現差距達 3 倍以上 🛠️
 - [[wiki/concepts/okf-open-knowledge-format|OKF]] — Open Knowledge Format
 - [[wiki/concepts/pi-project-workspace-model|Pi Project Workspace Model]] — 專案工作區模型
 - [[wiki/concepts/redis|Redis]] — In-memory key-value 資料庫，快取、Session、即時排行 🛠️
@@ -107,7 +109,7 @@
 - [[wiki/entities/notionApi|notionApi]] — Notion MCP server
 - [[wiki/entities/omnigent|Omnigent]] — Databricks 開源 meta-harness
 - [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI AI Coding Agent
-- [[wiki/entities/prime-agent|prime-agent]] — 建構於 Pi 之上，用 Python runtime 取代傳統 tool calling 🛠️
+- [[wiki/entities/prime-agent|prime-agent]] — Prime Intellect 開源 self-improving coding harness，RLM + Continual Harness，ARC-AGI-3 95.5% 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard
 - [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]] — Pi 的 Cron Job 與排程系統
@@ -154,6 +156,8 @@
 - [[wiki/sources/2026-08-10-antigravity-cli-integration|Antigravity CLI 整合]] — Gemini CLI 整合方案
 - [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理]] — @pi-agents/loop 排程系統
 - [[wiki/sources/2026-08-13-prime-agent-youtube|Prime Agent YouTube 介紹]] — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent
+- [[wiki/sources/2026-08-13-prime-agent-official-blog|Prime Agent 官方部落格全文]] — RLM/Continual Harness 完整定義、ARC-AGI-3 與長文本評測
+- [[wiki/sources/2026-08-13-prime-agent-arc-agi-3-aiposthub|Prime Agent ARC-AGI-3 分析（AI郵報）]] — 拆解三種成績口徑、reward hacking 風險提醒
 - [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Pi GitHub Copilot Provider Setup]] — Copilot 整合設定
 
 ## Decisions & Discussions

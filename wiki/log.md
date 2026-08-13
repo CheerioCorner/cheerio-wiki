@@ -3,6 +3,33 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-13] ingest | Prime Agent 官方發布 + AI郵報 ARC-AGI-3 分析（修正 Prime Intelligence → Prime Intellect）
+
+- 來源 1：Prime Intellect 官方部落格《Prime Agent: A self-improving RLM agent》（2026-08-05）
+  - Raw：raw/web/2026-08-13-prime-agent-self-improving-rlm-agent.md
+- 來源 2：AI 郵報《Prime Agent 是什麼？ARC-AGI-3「95.5%」背後》（Philo，2026-08-06）
+  - Raw：raw/web/2026-08-13-prime-agent-arc-agi-3-opus-5-harness-aiposthub.md
+- 補充參考（非獨立 raw）：GitHub repo https://github.com/PrimeIntellect-ai/prime-agent
+- 雙模型交叉驗證（Claude + Gemini，各自獨立產出結構化提案）：Round 1 關鍵欄位（目標頁面、type、topics、是否推翻既有結論）一致，直接採用 → `auto_verified`
+  - 唯一差異：Claude 額外提議可選的獨立 `reward-hacking-in-agents.md` 頁面，但本身標註為可選、可併入 `continual-harness.md` 風險章節；Gemini 未提議獨立頁；採用併入方案，不視為分歧
+- **查詢既有知識**：發現今天稍早已從 YouTube 影片《I Replaced Pi and OpenCode With This》ingest 過一版簡略頁面，且誤植開發者為「Prime Intelligence」
+- **推翻/修正既有結論**：
+  - 開發者名稱錯誤：「Prime Intelligence」→「**Prime Intellect**」（`wiki/entities/prime-agent.md`、`wiki/sources/2026-08-13-prime-agent-youtube.md` 均修正，並加註修正說明）
+  - RLM 核心定義過於簡化：舊版僅寫「觸發 subagent」，官方原文核心定義是「把 context 當變數」，subagent fan-out 只是其中一種應用；`wiki/concepts/recursive-language-model.md` 重寫定義章節
+  - ARC-AGI-3 95.5% 需要限定語：新增三種成績口徑對照（95.5% 官方自測 / 95.24% ARC Prize 公開 scorecard / 30.16% Opus 5 標準 harness Verified），避免被當成「已驗證超越人類」
+- 新建頁面：
+  - wiki/sources/2026-08-13-prime-agent-official-blog.md — 官方部落格來源筆記
+  - wiki/sources/2026-08-13-prime-agent-arc-agi-3-aiposthub.md — AI郵報分析來源筆記
+  - wiki/concepts/continual-harness.md — harness CRUD 化 + `/refine` + reward hacking 風險（Factorio RCON 案例）
+  - wiki/concepts/arc-agi-3-benchmark.md — ARC-AGI-3 測試設計、RHAE 計分、三種成績口徑對照表
+- 更新頁面：
+  - wiki/entities/prime-agent.md — 大幅擴充：修正開發者名稱、補 GitHub/License/安裝指令、autonomous mode、ARC-AGI-3/長文本/EmulatorBench/Factorio 評測、風險提醒章節（sources: 1 → 3）
+  - wiki/concepts/recursive-language-model.md — 核心定義重寫（context-as-variable）、補充 persistent subagent、agent_message 通訊機制（sources: 1 → 2）
+  - wiki/sources/2026-08-13-prime-agent-youtube.md — 修正開發者名稱，加註連結到官方部落格來源
+  - wiki/topics/ai-agent.md — 更新 prime-agent 描述、新增 continual-harness、arc-agi-3-benchmark concepts、新增 2 筆 sources
+  - wiki/topics/agent-research.md — 新增 continual-harness、arc-agi-3-benchmark（跨 topic 🛠️）
+  - wiki/index.md — 全量重建 Concepts/Entities/Sources 相關條目與統計（31 concepts、44 entities、56 sources）
+
 ## [2026-08-13] ingest | Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent
 
 - 來源：YouTube 影片《I Replaced Pi and OpenCode With This》(Martí Blanes, 08:29)

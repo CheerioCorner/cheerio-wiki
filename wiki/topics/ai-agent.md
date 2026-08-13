@@ -22,7 +22,7 @@ updated: 2026-08-13
 - [[wiki/entities/qwenpaw|qwenpaw]] — AgentScope 本地 AI 助理，Agent OS 架構 + 安全沙箱
 - [[wiki/entities/langgraph|LangGraph]] — Graph-based agent runtime，Pregel model + checkpointing 🛠️
 - [[wiki/entities/omnigent|Omnigent]] — Databricks 開源 meta-harness
-- [[wiki/entities/prime-agent|prime-agent]] — 建構於 Pi 之上，用 Python runtime 取代傳統 tool calling 🛠️
+- [[wiki/entities/prime-agent|prime-agent]] — Prime Intellect 開源 self-improving coding harness，RLM + Continual Harness，ARC-AGI-3 95.5% 🛠️
 - [[wiki/entities/mario-zechner|Mario Zechner]] — Pi 作者
 - [[wiki/entities/pi-agent-core|pi-agent-core]] — Agent runtime（agentic loop、session tree、compaction、skills） 🛠️
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars） 🛠️
@@ -40,7 +40,9 @@ updated: 2026-08-13
 - [[wiki/concepts/late-conversion|Late Conversion]] — 延遲轉換模式
 - [[wiki/concepts/defect-metrics|Defect Metrics]] — 缺陷密度與逃脫率指標
 - [[wiki/concepts/code-execution-as-tool-calling|Code Execution as Tool Calling]] — 模型寫 Python 腳本執行多操作取代逐次 tool call 🛠️
-- [[wiki/concepts/recursive-language-model|Recursive Language Model]] — 可在 Python 程式邏輯中觸發的獨立 agent session 🛠️
+- [[wiki/concepts/recursive-language-model|Recursive Language Model]] — 把 context 當變數、以函式呼叫觸發的獨立 agent session 🛠️
+- [[wiki/concepts/continual-harness|Continual Harness]] — harness 狀態（prompt/skill/memory/subagent）CRUD 化，`/refine` 自我改進 pipeline 🛠️
+- [[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]] — 互動式推理 benchmark，RHAE 計分，同模型換 harness 差距達 3 倍以上 🛠️
 - [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜與驗證策略
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑（Pi vs LangGraph）
 - [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 保留文件結構的 RAG 方法，Agent 推導航而非 chunks 相似度搜尋
@@ -64,3 +66,5 @@ updated: 2026-08-13
 - [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob Stopped Reading AI-Generated Code]] — AI 程式碼驗證方法論（YouTube）
 - [[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Write Code You Will Never Read Again]] — 程式碼重要性光譜（YouTube）
 - [[wiki/sources/2026-08-13-prime-agent-youtube|Prime Agent YouTube 介紹]] — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent
+- [[wiki/sources/2026-08-13-prime-agent-official-blog|Prime Agent 官方部落格全文]] — RLM/Continual Harness 完整定義、ARC-AGI-3 與長文本評測
+- [[wiki/sources/2026-08-13-prime-agent-arc-agi-3-aiposthub|Prime Agent ARC-AGI-3 分析（AI郵報）]] — 拆解三種成績口徑、reward hacking 風險提醒
