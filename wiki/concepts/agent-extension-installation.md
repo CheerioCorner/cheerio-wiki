@@ -2,7 +2,7 @@
 title: Agent Extension 安裝位置與方式
 type: concept
 created: 2026-07-31
-updated: 2026-07-31
+updated: 2026-08-13
 sources: 1
 tags: [agent, extension, installation, pi, package-management]
 collection: concepts
