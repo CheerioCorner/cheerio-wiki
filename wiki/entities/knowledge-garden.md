@@ -2,7 +2,7 @@
 title: knowledge-garden — Cheerio 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-10
+updated: 2026-08-13
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -111,11 +111,11 @@ canonical: entities/knowledge-garden
 | LSP — 程式碼理解的基礎 | [連結](https://app.notion.com/p/3b75979e-3a8c-8117-8580-f33cc9a2e6fc) | [[wiki/entities/lsp\|lsp]] | — |
 | OpenCodeReview — AI 代碼審查 CLI 工具 | [連結](https://app.notion.com/p/3b55979e-3a8c-81c8-8283-f0e3eaf4f9d6) | [[wiki/entities/open-code-review\|open-code-review]] | 🗺️ [[wiki/visualizations/open-code-review.canvas\|視覺地圖]] |
 | Omnigent — Databricks 開源 meta-harness | [連結](https://app.notion.com/p/3b35979e3a8c819990edcf332d1fc175) | [[wiki/entities/omnigent\|omnigent]] | 🗺️ [[wiki/visualizations/omnigent.canvas\|視覺地圖]] |
-| Claude Code — Anthropic AI Coding Agent 🆕 | [連結](https://app.notion.com/p/3b85979e3a8c-81c4-be33-e21f1ada2702) | [[wiki/entities/claude-code\|claude-code]] | — |
-| GitHub Copilot — AI 程式碼輔助生態系 🆕 | [連結](https://app.notion.com/p/3b85979e3a8c-81d2-bd75-ef7f0e38c93b) | [[wiki/entities/github-copilot\|github-copilot]] | — |
-| LangGraph — Graph-based Agent Runtime 🆕 | [連結](https://app.notion.com/p/3b85979e3a8c-8191-b990-cc400fbd5b43) | [[wiki/entities/langgraph\|langgraph]] | — |
-| Tree-sitter — 高效能增量 Parser 🆕 | [連結](https://app.notion.com/p/3b85979e-3a8c-8120-b1a5-eee144e3c020) | [[wiki/entities/tree-sitter\|tree-sitter]] | — |
-| Agentic AI — 自主 AI 系統核心概念 🆕 | [連結](https://app.notion.com/p/3b85979e-3a8c-81d9-881d-c3a93dc296c8) | [[wiki/concepts/agentic-ai\|agentic-ai]] | — |
+| Claude Code — Anthropic AI Coding Agent 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81ce93fdfd8be0c7ab49) | [[wiki/entities/claude-code\|claude-code]] | — |
+| GitHub Copilot — AI 程式碼輔助生態系 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81baa661e06f1d8a1edc) | [[wiki/entities/github-copilot\|github-copilot]] | — |
+| LangGraph — Graph-based Agent Runtime 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81d187eee8b3c55cdd4b) | [[wiki/entities/langgraph\|langgraph]] | — |
+| Tree-sitter — 高效能增量 Parser 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81468edfd59f0b407ddf) | [[wiki/entities/tree-sitter\|tree-sitter]] | — |
+| Agentic AI — 自主 AI 系統核心概念 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81f2b665de005e942e92) | [[wiki/concepts/agentic-ai\|agentic-ai]] | — |
 
 ---
 
