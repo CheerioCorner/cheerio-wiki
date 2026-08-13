@@ -3,6 +3,18 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-13] incident | 花園巡檢空白種子事故全記錄 + garden-guard extension 建立
+
+- 事故：2026-08-13 花園巡檢新種 5 顆種子，Notion 頁面 body content 全空白（只有 Properties）
+- 根本原因：把「Properties 填完」誤認為「種子種好了」，不知道 Notion DB 記錄和頁面 body content 是兩次 API 呼叫
+- 圓桌會議（Claude+Gemini+Copilot）：共識「純文字規則不可靠，要分層」
+- 修復：SKILL.md §1 原子化寫入 + §4 確定性抽驗 + Phase 3 批量確認；建立 garden-guard.ts（攔截型 extension，3 個 gate）
+- 兩輪 bug 修正：frontmatter 剝離 + regex/括號計數不對稱
+- 新增：`wiki/sources/2026-08-13-garden-guard-incident.md`
+- 修正：`wiki/concepts/agent-extension-installation.md`（補上 extensions/ 路徑 + 三種載入方式比較 + Extension 類型分類）
+- 修正：`work/history/2026-08.md`（取代標記修正不準確的自我回報）
+- refs: [[wiki/sources/2026-08-13-garden-guard-incident]]
+
 ## [2026-08-13] ingest | How To Use Claude Design To Build Beautiful Sites (YouTube)
 
 - 來源：YouTube 影片（AI LABS），18:33，英文 auto-generated 字幕

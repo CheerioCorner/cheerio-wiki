@@ -112,7 +112,7 @@
 
 ---
 
-## Sources（來源筆記）— 57 頁
+## Sources（來源筆記）— 58 頁
 
 - [[wiki/sources/2026-02-10-pi-agent-core-design|下一代Agent架构——Pi Agent Core 设计逻辑深度解析]] — title: 下一代Agent架构——Pi Agent Core 设计逻辑深度解析
 - [[wiki/sources/2026-05-02-pi-mono-framework-tw|別再被複雜框架綁架:pi-mono 回歸直覺的 TypeScript AI Agent 開發框架]] — title: 別再被複雜框架綁架:pi-mono 回歸直覺的 TypeScript AI Agent 開發框架
@@ -164,6 +164,7 @@
 - [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理 — @pi-agents/loop 架構解析]] — title: "Pi Cron Job 實作原理 — @pi-agents/loop 架構解析" 🛠️
 - [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob Stopped Reading AI-Generated Code]] — title: "Uncle Bob Stopped Reading AI-Generated Code"
 - [[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Write Code You Will Never Read Again]] — title: "Write Code You Will Never Read Again"
+- [[wiki/sources/2026-08-13-garden-guard-incident|2026-08-13 花園巡檢事故與 garden-guard extension 建立全記錄]] — title: 2026-08-13 花園巡檢事故與 garden-guard extension 建立全記錄
 - [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]] — title: "How To Use Claude Design To Build Beautiful Sites"
 - [[wiki/sources/2026-08-13-prime-agent-arc-agi-3-aiposthub|Prime Agent 是什麼？ARC-AGI-3「95.5%」背後（AI郵報分析）]] — title: "Prime Agent 是什麼？ARC-AGI-3「95.5%」背後（AI郵報分析）"
 - [[wiki/sources/2026-08-13-prime-agent-official-blog|Prime Agent: A self-improving RLM agent（官方部落格）]] — title: "Prime Agent: A self-improving RLM agent（官方部落格）"
