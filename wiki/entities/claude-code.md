@@ -2,8 +2,8 @@
 title: Claude Code
 type: entity
 created: 2026-08-04
-updated: 2026-08-04
-sources: 1
+updated: 2026-08-13
+sources: 2
 tags: [claude-code, anthropic, mcp, ai-coding-agent]
 topics: [ai-development-tools]
 canonical: entities/claude-code
@@ -97,8 +97,28 @@ Agent 可直接讀取 OKF Markdown 理解專案知識。
 - [Claude Code 文件](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code)
 - [MCP 官方](https://modelcontextprotocol.io/)
 
+## Claude Design MCP Handoff（設計交付）
+
+Claude Code 可透過 MCP 接收 [[wiki/entities/claude-design|Claude Design]] 的設計輸出：
+
+1. **設計匯出**：在 Claude Design 中匯出，取得 MCP prompt
+2. **Metadata 讀取**：Claude Code 讀取設計 metadata、Design System、所有元素
+3. **應用建構**：將設計轉為真實前端程式碼
+4. **Deep Review**：驗證設計與 [[wiki/concepts/design-md-format|design.md]] 一致性、響應式適配
+5. **後端整合**：透過 MCP 連接 Supabase 等後端服務
+
+這條工作流讓設計與開發之間實現無縫銜接。
+
+## 來源
+
+- [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF+LSP+CodeGraph AI Agent 研究]]
+- [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]]
+- [Claude Code 文件](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code)
+- [MCP 官方](https://modelcontextprotocol.io/)
+
 ## 相關頁面
 
+- [[wiki/entities/claude-design|Claude Design]] — 設計交付的來源工具
 - [[wiki/entities/mcp-model-context-protocol|MCP]] — Claude Code 的核心 Protocol
 - [[wiki/entities/github-copilot|GitHub Copilot]] — 競品 AI Coding Agent
 - [[wiki/entities/pi-mono|Pi Agent]] — 競品 AI Coding Agent

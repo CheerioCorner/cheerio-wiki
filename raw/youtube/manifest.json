@@ -95,6 +95,18 @@
       "segments": 185,
       "paragraphs": 22,
       "language": "en"
+    },
+    {
+      "video_id": "bBlY5YOsKN8",
+      "title": "How To Use Claude Design To Build Beautiful Sites",
+      "author": "AI LABS",
+      "slug": "how-to-use-claude-design-to-build-beautiful-sites",
+      "file": "raw/youtube/how-to-use-claude-design-to-build-beautiful-sites.md",
+      "duration": "18:33",
+      "language": "en",
+      "auto_generated": true,
+      "source_api": "pytubefix",
+      "ingested": "2026-08-13"
     }
   ]
 }

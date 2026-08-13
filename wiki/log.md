@@ -3,6 +3,23 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-13] ingest | How To Use Claude Design To Build Beautiful Sites (YouTube)
+
+- 來源：YouTube 影片（AI LABS），18:33，英文 auto-generated 字幕
+- 字幕取得方式：pytubefix（youtube_transcript_api XML ParseError fallback）
+- 雙模型交叉驗證：Claude + Gemini Round 1 一致同意 claude-design entity + source note；分歧在 design.md 分類（concept vs entity）與是否開新 topic → Round 2 雙方均收斂為 concept + 沿用 ai-development-tools
+- 建立：
+  - `wiki/sources/2026-08-13-claude-design-youtube.md` — source note
+  - `wiki/entities/claude-design.md` — Claude Design entity（五階段工作流）
+  - `wiki/concepts/design-md-format.md` — design.md 格式規範概念
+- 更新：
+  - `wiki/entities/claude-code.md` — 新增 Claude Design MCP Handoff 章節
+  - `wiki/topics/ai-development-tools.md` — 新增 claude-design + design-md-format 連結
+  - `wiki/index.md` — 全量重建（concepts 32、entities 43、sources 57）
+- Git commit：待執行
+
+---
+
 ## [2026-08-13] ingest | Prime Agent 官方發布 + AI郵報 ARC-AGI-3 分析（修正 Prime Intelligence → Prime Intellect）
 
 - 來源 1：Prime Intellect 官方部落格《Prime Agent: A self-improving RLM agent》（2026-08-05）
