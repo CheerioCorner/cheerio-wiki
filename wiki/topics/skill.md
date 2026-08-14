@@ -30,12 +30,25 @@ updated: 2026-08-09
 
 ## Concepts
 
+- [[wiki/concepts/agent-skills|Agent Skills 根概念]] — Skill 系統定義、三層漸進式揭露、基礎/進階導航 🛠️
+- [[wiki/concepts/skill-authoring-best-practices|Skill 撰寫方法論]] — 撰寫高品質 Skill 的通用方法論
+- [[wiki/concepts/agent-skills-api-usage|Agent Skills API 使用方法]] — Messages API container 整合、版本管理、快取
+- [[wiki/concepts/agent-skills-enterprise-governance|Agent Skills 企業治理]] — 安全審查、生命週期、組織策略
+- [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — Claude Code / Copilot / Pi 三框架比較
+- [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 廣泛生態系比較 🛠️
 - [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 8 個 knowledge-garden 相關 skills 的全景圖 🛠️
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程（grill → spec → tickets → implement）
 - [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill]] — 技能優化元技能，SKILL.md 的文字空間優化
 
 ## Sources
 
+- [[wiki/sources/2026-08-14-agent-skills-overview|Agent Skills 概覽]] — Anthropic 官方定義
+- [[wiki/sources/2026-08-14-anthropics-skills-github-repo|anthropics/skills Repo]] — 官方 GitHub 倉庫
+- [[wiki/sources/2026-08-14-agent-skills-api-quickstart|API Quickstart]] — API 入門教學
+- [[wiki/sources/2026-08-14-agent-skills-api-guide|API 完整指南]] — API 完整技術文件
+- [[wiki/sources/2026-08-14-skill-writing-best-practices|撰寫最佳實踐]] — Skill 撰寫完整方法論
+- [[wiki/sources/2026-08-14-agent-skills-enterprise-deployment|企業級部署]] — 企業安全審查與治理
+- [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 第三方分析
 - [[wiki/sources/2026-07-11-mattpocock-skills|mattpocock/skills — 工程實踐 Skills 集合]] — repo 研究與完整清單
 - [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills — 完整 AI Coding 工作流程教學]] — 官方教學影片
 - [[wiki/sources/2026-08-02-morphir-dotnet-agents|Morphir .NET Agents]] — AGENTS.md + TDD 強制實踐

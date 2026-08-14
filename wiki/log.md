@@ -3,6 +3,40 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] ingest | Anthropic Agent Skills 系列 7 篇（雙模型交叉驗證 + 結構重構）
+
+- **來源**：raw/web/ 7 篇 Anthropic 官方 Agent Skills 文件 + 第三方比較文
+  - 2026-08-14-agent-skills.md（Overview）
+  - 2026-08-14-在api中開始使用agent-skills.md（Quickstart）
+  - 2026-08-14-skill-撰寫最佳實踐.md（Best Practices）
+  - 2026-08-14-企業級-skills.md（Enterprise）
+  - 2026-08-14-透過api使用agent-skills.md（API Guide）
+  - 2026-08-14-github-copilot-vs-claude-code-skills-ecosystem.md（Comparison）
+  - 2026-08-14-anthropicsskills-public-repository-for-agent.md（GitHub Repo）
+- **雙模型交叉驗證**：Claude + Gemini Round 1 一致（目標頁面、type、topics 關鍵欄位全部吻合），直接採用 → `auto_verified`
+  - Claude 提議 11 頁（7 source + 4 content），Gemini 提議 5 頁（0 source + 5 content）
+  - 整合策略：保留 Claude 的 1:1 source notes（§3.1 規則）+ 兩者的 content pages 合併
+  - 人類補充需求後調整為：根概念頁（基礎/進階分層）+ 複雜組合技比較頁
+- **人類補充需求**：
+  1. 內容結構分基礎/進階：基礎（定義+撰寫+API+企業）+ 進階（限制+複雜組合技比較）
+  2. 複雜組合技比較：Claude Code / GitHub Copilot / Pi Agent 三框架，標記待補充區域
+  3. 花園同步規則：Pi 產出內容需經 Gemini 審查後才能推進花園
+- **建立**：
+  - `wiki/concepts/agent-skills.md` — 根概念頁（基礎/進階導航、已知限制、跨框架比較骨架）
+  - `wiki/concepts/skills-complex-composition-comparison.md` — 複雜組合技比較（待補充標記）
+  - `wiki/concepts/skill-authoring-best-practices.md` — 撰寫方法論
+  - `wiki/concepts/agent-skills-api-usage.md` — API 使用方法
+  - `wiki/concepts/agent-skills-enterprise-governance.md` — 企業治理
+  - `wiki/entities/anthropic-agent-skills.md` — Anthropic 官方系統實體
+  - 7 個 source notes（1:1 對應 raw 來源）
+- **更新**：
+  - `wiki/topics/skill.md` — 新增 6 個 concepts + 7 個 sources
+  - `wiki/topics/ai-development-tools.md` — 新增 anthropic-agent-skills entity + 3 個 concepts
+  - `wiki/topics/agent-infrastructure.md` — 新增 agent-skills 根概念
+  - `wiki/index.md` — 全量重建（concepts 38→44、entities 46→47、sources 58→65）
+- **未建立新目錄**：comparison 類型掛在 concepts/ 下（vault 目前無 comparisons/ 目錄慣例）
+- refs: [[wiki/concepts/agent-skills|Agent Skills 根概念]]、[[wiki/entities/anthropic-agent-skills|Anthropic Agent Skills]]、7 個 source notes
+
 ## [2026-08-14] seed | Harness — LLM 的驅動層（概念根種子建立）
 
 - **新種子**：Notion 知識花園新增「Harness — LLM 的驅動層」（🌱 種子期，🔬 研究）

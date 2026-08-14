@@ -12,6 +12,10 @@
     - **P0（1–2 天）**：① DB write read-back——所有 Notion 寫入 skill 加反查步驟（0.5–1 天）② URL 存活驗證——page-content 寫入前 curl gate，含 retry + 軟/硬 404 區分（0.5 天）③ page-content 順序改「先查證再寫」+ 允許留白 `[待查證]`（1–2 天）
     - **P1（4–5 天）**：④ visualmap 寫入目標修正——Mermaid 寫入 DB 記錄頁 body，種子頁只放 relation + read-back（1 天）⑤ mmdc render 驗證 + 節點語法規則——Node ID 純英數、Label 加引號（1–2 天，需確認 mmdc 環境）⑥ headless 旗標 + 待審模式——`--mode headless`、`Status: 機器生成待審`、三道護欄（禁止寫入既有 Relation / Origin+run-id 可 rollback / default view 過濾）（2 天）
     - **P2（3–5 天）**：⑦ 共用驗證 harness——內部 SkillCompletionHook（效率層）+ 外部確定性腳本（保證層/promote gate）+ 共用驗證邏輯 + 結構化執行收據 JSON（3–5 天）
+    - **成本效益 / 成本控管**：
+      - Pi/Gemini 子代理回傳「精簡結構化結果」而非大表格——冗長回報會灌爆總指揮（Claude）context，是隱藏成本最大來源。可在 skill 內加「headless 回報請精簡」慣例。
+      - Gemini 評審只用在高風險事實查核（外部 URL、人名、授權、版本等），不是每批全套評審，以控管評審成本。
+      - 粗活全下放 Pi、判斷/裁決留給 Claude——角色分工越乾淨，重疊浪費越少。
   - 共識結論（Claude + Gemini + Copilot 圓桌會議）：
     - 四個驗證關卡：URL 存活 / Mermaid render / DB read-back / 事實來源綁定
     - Headless 策略：正式 DB + `Status: 機器生成待審` + 三道護欄（非隔離 DB）

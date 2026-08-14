@@ -28,12 +28,18 @@
 
 ---
 
-## Concepts（抽象知識）— 38 頁
+## Concepts（抽象知識）— 44 頁
 
 - [[wiki/concepts/ai-code-review.md|AI Code Review]] — 用 AI 自動化代碼審查，從「人工逐行檢查」進化到「AI 初審 + 人類終審」。
+- [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem.md|Copilot 與 Claude Code Skills 生態系比較]] — Copilot Extensions vs Claude Code 多層 Skills 的架構、規模、成本、策略比較 🛠️
 - [[wiki/concepts/ai-coding-workflow.md|AI Coding Workflow — 結構化 AI 編碼工作流程]] — 一套結構化的 AI 編碼工作流程，把模糊想法變成可追踪、可審查的程式碼變更。
 - [[wiki/concepts/arc-agi-3-benchmark.md|ARC-AGI-3 Benchmark]] — ARC-AGI-3——ARC Prize Foundation 於 2026 年推出的互動式推理 benchmark，測試 agent 在完全未知規則的模擬世界中探索、建立假設、修正錯誤與長期規劃的能力，用 **RHAE**（Relativ
 - [[wiki/concepts/atdp.md|ATDP — Agent Trajectory Data Protocol]] — Agent 軌跡數據協定，將 Agent 與環境互動的每一步結構化標準化，為自我進化奠定數據基礎。
+- [[wiki/concepts/agent-skills.md|Agent Skills — Skill 系統根概念]] — Skill 是什麼、怎麼寫、API 使用、企業應用、已知限制、跨框架比較。基礎/進階導航根頁 🛠️
+- [[wiki/concepts/skill-authoring-best-practices.md|Skill 撰寫方法論]] — 撰寫高品質 Agent Skill 的通用方法論：結構規範、評估迭代、反模式
+- [[wiki/concepts/agent-skills-api-usage.md|Agent Skills API 使用方法]] — Messages API container 整合、多輪對話、版本管理、提示快取
+- [[wiki/concepts/agent-skills-enterprise-governance.md|Agent Skills 企業治理]] — 安全審查 5 級風險、8 步檢查清單、生命週期管理
+- [[wiki/concepts/skills-complex-composition-comparison.md|Skill 複雜組合技比較]] — Claude Code / GitHub Copilot / Pi Agent 三框架組合機制比較
 - [[wiki/concepts/agent-durability-patterns.md|Agent Durability Patterns — 狀態持久化的三種路徑]] — Agent 需要「記住自己做到哪裡」的程度不同，對應三種持久化路徑。選錯路徑的代價：要么 crash 後重來，要么 complexity tax 太重。
 - [[wiki/concepts/agent-extension-installation.md|Agent Extension 安裝位置與方式]] — 不同的 Agent 框架有各自安裝 Extension 的方式和儲存位置。記錄這些差異有助於理解 Agent 的運作機制。
 - [[wiki/concepts/agentic-ai.md|Agentic AI]] — 具備自主性、能使用工具、跨步驟執行任務的 AI 系統。核心公式：**LLM + Tools + Loop**。
@@ -71,7 +77,7 @@
 
 ---
 
-## Entities（具體實體）— 46 頁
+## Entities（具體實體）— 47 頁
 
 - [[wiki/entities/area-l.md|AReaL — 開源 Agent 強化學習基礎設施]] — Ant Group 等機構發表的 AReaL2.0 系統，實現 Agent 自我進化的線上強化學習框架。
 - [[wiki/entities/axway-amplify-ai-gateway.md|Axway Amplify AI Gateway — 企業 AI 治理層]] — 企業級 AI 閘道，在前端應用程式、AI Agents 與企業後端 IT 生態系之間搭建安全、受控且靈活的橋樑。
@@ -102,6 +108,7 @@
 - [[wiki/entities/tree-sitter.md|Tree-sitter]] — 高效能 Parser Generator，支援毫秒級增量解析，是現代 Code Intelligence 的核心基礎設施。
 - [[wiki/entities/uncle-bob.md|Uncle Bob (Robert C. Martin) — Clean Code 作者、軟體工程資深實踐者]] — Uncle Bob（Robert C. Martin）是《Clean Code》和《Clean Architecture》作者，軟體工程界的標誌性人物，近期因「不再閱讀 AI 生成的程式碼」言論引發熱議。
 - [[wiki/entities/agentskills-io-standard.md|agentskills.io — AI Agent Skill 開放標準]] — 一個包含**指令、腳本、資源**的可移植工作流模塊。
+- [[wiki/entities/anthropic-agent-skills.md|Anthropic Agent Skills — 官方 Skill 系統]] — Anthropic 官方三層漸進式揭露 Skill 系統，四個預建 Skills、跨 API/Claude Code/claude.ai 🛠️
 - [[wiki/entities/guizang-ppt-skill.md|guizang-ppt-skill — AI Agent HTML PPT 技能]] — 歸藏（@op7418）開發的 AI agent 簡報技能，生成單文件 HTML 橫向翻頁 PPT、配圖和多平台封面，內建演講者模式。
 - [[wiki/entities/hermes-agent.md|hermes-agent — 開源 AI Agent 框架]] — Nous Research 開源的 AI Agent，具備 40+ 工具鏈、跨會話記憶與動態 Skill 庫生成機制。
 - [[wiki/entities/huashu-design.md|huashu-design — HTML 原生設計技能]] — 花叔（@alchaincyf）開發的 HTML 原生設計技能，一句話 prompt 生成高保真原型、幻燈片、動畫，含 20 設計哲學 + 5 維評審 + MP4 導出。MIT 開源。
@@ -122,7 +129,7 @@
 
 ---
 
-## Sources（來源筆記）— 58 頁
+## Sources（來源筆記）— 65 頁
 
 - [[wiki/sources/2026-07-11-plannotator-research.md|2026-07-11 Plannotator 研究]] — title: 2026-07-11 Plannotator 研究
 - [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks.md|2026-07-13-omnigent-meta-harness-databricks]] — Databricks 官方部落格文章，宣布開源 Omnigent — 一個位於現有 AI agents 之上的 meta-harness 層。
@@ -136,6 +143,13 @@
 - [[wiki/sources/2026-08-02-defect-escape-rate-guide.md|Defect Escape Rate（DER）測量指南]] — 來源：[Step-by-step guide on how to measure Defect Escape Rate](https://instatus.com/blog/der)
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme.md|Hermes Agent: GitHub README — 自我改進 AI Agent]] — 來源：[NousResearch/hermes-agent GitHub README](https://github.com/NousResearch/hermes-agent)
 - [[wiki/sources/2026-08-08-hermes-architecture-explained.md|Hermes Architecture EXPLAINED: Memory, Context & Gateways]] — 來源：[YouTube — Hermes Architecture EXPLAINED: Memory, Context & Gateways](https://youtu.be/n32qq7Kwzh0)
+- [[wiki/sources/2026-08-14-agent-skills-overview.md|Agent Skills — Anthropic 官方概覽]] — 三層揭露、預建 Skills、跨平台、安全與限制
+- [[wiki/sources/2026-08-14-anthropics-skills-github-repo.md|anthropics/skills — 官方 GitHub Repo]] — 四大類範例、source-available 授權、Plugin Marketplace
+- [[wiki/sources/2026-08-14-agent-skills-api-quickstart.md|在 API 中開始使用 Agent Skills — Quickstart]] — 10 分鐘 API 入門教學
+- [[wiki/sources/2026-08-14-agent-skills-api-guide.md|透過 API 使用 Agent Skills — 完整指南]] — Messages API、CRUD、版本管理、快取
+- [[wiki/sources/2026-08-14-skill-writing-best-practices.md|Skill 撰寫最佳實踐]] — 結構規範、命名慣例、評估迭代、反模式
+- [[wiki/sources/2026-08-14-agent-skills-enterprise-deployment.md|企業級 Agent Skills 部署指南]] — 風險評估、安全審查、生命週期管理
+- [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem.md|GitHub Copilot vs Claude Code — Skills 生態系比較]] — 第三方分析（aiskill.market）
 - [[wiki/sources/2026-08-13-claude-design-youtube.md|How To Use Claude Design To Build Beautiful Sites]] — AI LABS 教學影片，介紹 Claude Design 的五階段工作流程，從 design.md 到實際部署。
 - [[wiki/sources/2026-08-04-lsp-code-graph-research.md|LSP 與 Code Graph 技術深度研究]] — Gemini Deep Research 完成的 LSP（Language Server Protocol）與 Code Graph 技術研究報告，涵蓋架構、實作案例、AI 整合應用。
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes.md|LangGraph in 10 Minutes (Explained Clearly)]] — 來源：[YouTube — LangGraph in 10 Minutes (Explained Clearly)](https://www.youtube.com/watch?v=BwZbdCzmZJc)

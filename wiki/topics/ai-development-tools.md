@@ -11,6 +11,7 @@ updated: 2026-08-08
 
 ## Entities
 
+- [[wiki/entities/anthropic-agent-skills|Anthropic Agent Skills]] — Anthropic 官方 Skill 系統，三層漸進式揭露 🛠️
 - [[wiki/entities/claude-code|Claude Code]] — Anthropic AI Coding Agent，MCP Protocol 整合 🛠️
 - [[wiki/entities/claude-design|Claude Design]] — Anthropic AI 設計工具，五階段工作流 🛠️
 - [[wiki/entities/github-copilot|GitHub Copilot]] — GitHub AI 程式碼輔助工具生態系 🛠️
@@ -19,6 +20,9 @@ updated: 2026-08-08
 
 ## Concepts
 
+- [[wiki/concepts/agent-skills|Agent Skills 根概念]] — Skill 系統定義、三層揭露、基礎/進階導航 🛠️
+- [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — Claude Code / Copilot / Pi 三框架比較
+- [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 廣泛生態系比較
 - [[wiki/concepts/design-md-format|design.md Format]] — Google 品牌設計文件格式 🛠️
 - [[wiki/concepts/ai-code-review|AI Code Review]] — AI 自動化代碼審查綜整 🛠️
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程 🛠️
@@ -29,6 +33,7 @@ updated: 2026-08-08
 
 ## Sources
 
+- [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 第三方分析
 - [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]] — 五階段設計工作流教學 🛠️
 
 ## 相關 Topics

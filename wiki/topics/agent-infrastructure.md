@@ -19,6 +19,7 @@ updated: 2026-08-08
 
 ## Concepts
 
+- [[wiki/concepts/agent-skills|Agent Skills 根概念]] — Skill 系統定義、三層漸進式揭露、基礎/進階導航 🛠️
 - [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施 🛠️
 
 ## Sources
