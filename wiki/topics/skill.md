@@ -18,6 +18,8 @@ updated: 2026-08-09
 
 ## Entities
 
+- [[wiki/entities/anthropic-agent-skills|Anthropic Agent Skills]] — Anthropic 官方 Skill 系統，三層漸進式揭露 🛠️
+- [[wiki/entities/github-copilot-sdk|GitHub Copilot SDK]] — Copilot Custom Agents 平台，Sub-agent Orchestration + Fleet Mode + Hooks 🛠️
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — AI Coding Agent Skills 集合（162k stars）
 - [[wiki/entities/wiki-knowledge|wiki-knowledge]] — Obsidian 知識庫操作 Skill
 - [[wiki/entities/hermes-agent|hermes-agent]] — 自我改進 AI agent，learning loop + skills hub 🛠️
@@ -34,7 +36,12 @@ updated: 2026-08-09
 - [[wiki/concepts/skill-authoring-best-practices|Skill 撰寫方法論]] — 撰寫高品質 Skill 的通用方法論
 - [[wiki/concepts/agent-skills-api-usage|Agent Skills API 使用方法]] — Messages API container 整合、版本管理、快取
 - [[wiki/concepts/agent-skills-enterprise-governance|Agent Skills 企業治理]] — 安全審查、生命週期、組織策略
-- [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — Claude Code / Copilot / Pi 三框架比較
+- [[wiki/concepts/copilot-agent-loop|Copilot Agent Loop]] — 多輪 Tool-Use 循環 🛠️
+- [[wiki/concepts/copilot-custom-agents|Copilot Custom Agents]] — Sub-agent Orchestration + per-agent Skills 🛠️
+- [[wiki/concepts/copilot-fleet-mode|Copilot Fleet Mode]] — 並行 Sub-agent 編排 🛠️
+- [[wiki/concepts/copilot-hooks-system|Copilot Hooks 系統]] — 7+ Lifecycle Callback 🛠️
+- [[wiki/concepts/copilot-steering-queueing|Copilot Steering & Queueing]] — 訊息投遞模式 🛠️
+- [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — 三框架比較（已修正）
 - [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 廣泛生態系比較 🛠️
 - [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 8 個 knowledge-garden 相關 skills 的全景圖 🛠️
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程（grill → spec → tickets → implement）
@@ -48,7 +55,12 @@ updated: 2026-08-09
 - [[wiki/sources/2026-08-14-agent-skills-api-guide|API 完整指南]] — API 完整技術文件
 - [[wiki/sources/2026-08-14-skill-writing-best-practices|撰寫最佳實踐]] — Skill 撰寫完整方法論
 - [[wiki/sources/2026-08-14-agent-skills-enterprise-deployment|企業級部署]] — 企業安全審查與治理
-- [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 第三方分析
+- [[wiki/sources/2026-08-14-custom-skills|Custom Skills]] — Copilot SKILL.md 格式
+- [[wiki/sources/2026-08-14-custom-agents-and-sub-agent-orchestration|Custom Agents]] — Sub-agent Orchestration
+- [[wiki/sources/2026-08-14-fleet-mode|Fleet Mode]] — 並行 orchestration
+- [[wiki/sources/2026-08-14-working-with-hooks|Working with Hooks]] — 7+ lifecycle hooks
+- [[wiki/sources/2026-08-14-steering-and-queueing|Steering and Queueing]] — 訊息投遞模式
+- [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — ⚠️ 第三方分析（Copilot 資訊已修正）
 - [[wiki/sources/2026-07-11-mattpocock-skills|mattpocock/skills — 工程實踐 Skills 集合]] — repo 研究與完整清單
 - [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills — 完整 AI Coding 工作流程教學]] — 官方教學影片
 - [[wiki/sources/2026-08-02-morphir-dotnet-agents|Morphir .NET Agents]] — AGENTS.md + TDD 強制實踐

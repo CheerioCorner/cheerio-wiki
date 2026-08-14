@@ -28,7 +28,7 @@
 
 ---
 
-## Concepts（抽象知識）— 44 頁
+## Concepts（抽象知識）— 49 頁
 
 - [[wiki/concepts/ai-code-review.md|AI Code Review]] — 用 AI 自動化代碼審查，從「人工逐行檢查」進化到「AI 初審 + 人類終審」。
 - [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem.md|Copilot 與 Claude Code Skills 生態系比較]] — Copilot Extensions vs Claude Code 多層 Skills 的架構、規模、成本、策略比較 🛠️
@@ -39,7 +39,12 @@
 - [[wiki/concepts/skill-authoring-best-practices.md|Skill 撰寫方法論]] — 撰寫高品質 Agent Skill 的通用方法論：結構規範、評估迭代、反模式
 - [[wiki/concepts/agent-skills-api-usage.md|Agent Skills API 使用方法]] — Messages API container 整合、多輪對話、版本管理、提示快取
 - [[wiki/concepts/agent-skills-enterprise-governance.md|Agent Skills 企業治理]] — 安全審查 5 級風險、8 步檢查清單、生命週期管理
-- [[wiki/concepts/skills-complex-composition-comparison.md|Skill 複雜組合技比較]] — Claude Code / GitHub Copilot / Pi Agent 三框架組合機制比較
+- [[wiki/concepts/copilot-agent-loop.md|Copilot Agent Loop]] — 多輪 Tool-Use 循環 🛠️
+- [[wiki/concepts/copilot-custom-agents.md|Copilot Custom Agents]] — Sub-agent Orchestration + per-agent Skills 🛠️
+- [[wiki/concepts/copilot-fleet-mode.md|Copilot Fleet Mode]] — 並行 Sub-agent 編排（SQL todos） 🛠️
+- [[wiki/concepts/copilot-hooks-system.md|Copilot Hooks 系統]] — 7+ Lifecycle Callback 🛠️
+- [[wiki/concepts/copilot-steering-queueing.md|Copilot Steering & Queueing]] — 訊息投遞模式 🛠️
+- [[wiki/concepts/skills-complex-composition-comparison.md|Skill 複雜組合技比較]] — 三框架比較（已根據官方文件修正）
 - [[wiki/concepts/agent-durability-patterns.md|Agent Durability Patterns — 狀態持久化的三種路徑]] — Agent 需要「記住自己做到哪裡」的程度不同，對應三種持久化路徑。選錯路徑的代價：要么 crash 後重來，要么 complexity tax 太重。
 - [[wiki/concepts/agent-extension-installation.md|Agent Extension 安裝位置與方式]] — 不同的 Agent 框架有各自安裝 Extension 的方式和儲存位置。記錄這些差異有助於理解 Agent 的運作機制。
 - [[wiki/concepts/agentic-ai.md|Agentic AI]] — 具備自主性、能使用工具、跨步驟執行任務的 AI 系統。核心公式：**LLM + Tools + Loop**。
@@ -77,7 +82,7 @@
 
 ---
 
-## Entities（具體實體）— 47 頁
+## Entities（具體實體）— 48 頁
 
 - [[wiki/entities/area-l.md|AReaL — 開源 Agent 強化學習基礎設施]] — Ant Group 等機構發表的 AReaL2.0 系統，實現 Agent 自我進化的線上強化學習框架。
 - [[wiki/entities/axway-amplify-ai-gateway.md|Axway Amplify AI Gateway — 企業 AI 治理層]] — 企業級 AI 閘道，在前端應用程式、AI Agents 與企業後端 IT 生態系之間搭建安全、受控且靈活的橋樑。
@@ -109,6 +114,7 @@
 - [[wiki/entities/uncle-bob.md|Uncle Bob (Robert C. Martin) — Clean Code 作者、軟體工程資深實踐者]] — Uncle Bob（Robert C. Martin）是《Clean Code》和《Clean Architecture》作者，軟體工程界的標誌性人物，近期因「不再閱讀 AI 生成的程式碼」言論引發熱議。
 - [[wiki/entities/agentskills-io-standard.md|agentskills.io — AI Agent Skill 開放標準]] — 一個包含**指令、腳本、資源**的可移植工作流模塊。
 - [[wiki/entities/anthropic-agent-skills.md|Anthropic Agent Skills — 官方 Skill 系統]] — Anthropic 官方三層漸進式揭露 Skill 系統，四個預建 Skills、跨 API/Claude Code/claude.ai 🛠️
+- [[wiki/entities/github-copilot-sdk.md|GitHub Copilot SDK — Custom Agents 平台]] — Copilot SDK：Custom Agents + Sub-agent Orchestration + Fleet Mode + Hooks + MCP 🛠️
 - [[wiki/entities/guizang-ppt-skill.md|guizang-ppt-skill — AI Agent HTML PPT 技能]] — 歸藏（@op7418）開發的 AI agent 簡報技能，生成單文件 HTML 橫向翻頁 PPT、配圖和多平台封面，內建演講者模式。
 - [[wiki/entities/hermes-agent.md|hermes-agent — 開源 AI Agent 框架]] — Nous Research 開源的 AI Agent，具備 40+ 工具鏈、跨會話記憶與動態 Skill 庫生成機制。
 - [[wiki/entities/huashu-design.md|huashu-design — HTML 原生設計技能]] — 花叔（@alchaincyf）開發的 HTML 原生設計技能，一句話 prompt 生成高保真原型、幻燈片、動畫，含 20 設計哲學 + 5 維評審 + MP4 導出。MIT 開源。
@@ -129,7 +135,7 @@
 
 ---
 
-## Sources（來源筆記）— 65 頁
+## Sources（來源筆記）— 81 頁
 
 - [[wiki/sources/2026-07-11-plannotator-research.md|2026-07-11 Plannotator 研究]] — title: 2026-07-11 Plannotator 研究
 - [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks.md|2026-07-13-omnigent-meta-harness-databricks]] — Databricks 官方部落格文章，宣布開源 Omnigent — 一個位於現有 AI agents 之上的 meta-harness 層。

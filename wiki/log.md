@@ -3,6 +3,53 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] correction | GitHub Copilot SDK 官方文件修正（22 篇 ingest + 既有頁面修正）
+
+- **修正類型**：**修正既有內容**（非單純新增），根據 GitHub 官方文件（docs.github.com 22 篇）修正先前基於第三方文章的多處錯誤
+- **根本原因**：先前 ingest 依據 aiskill.market 第三方比較文（作者 Duke Harewood），該文對 GitHub Copilot 的描述多處與官方文件不符
+- **修正來源**：raw/web/ 22 篇 GitHub Copilot SDK 官方文件（Custom Skills、Agent Loop、Custom Agents、Fleet Mode、Hooks、Steering & Queueing、Setup guides 等）
+- **雙模型交叉驗證**：未執行（修正基於官方文件 vs 第三方文章的明確衝突，官方文件優先，不需仲裁）
+
+### 具體修正項目
+
+| 項目 | 第三方文章（舊） | 官方文件（新） | 影響頁面 |
+|------|----------------|---------------|----------|
+| Skill 格式 | Extensions（服務整合） | SKILL.md（與 Anthropic 格式兼容） | comparison, root concept |
+| 組合方式 | Extensions @mentions | `skillDirectories` + per-agent `skills` preload | comparison, root concept |
+| 巢狀/委派 | ⚠️ Workspace preview / ❌ 無 | Custom Agents + Sub-agent Orchestration + Fleet Mode | comparison, root concept |
+| 工具鏈整合 | Extensions（策劃） | MCP（per-agent）+ Custom Tools | comparison, root concept |
+| 鉤子/生命週期 | ❌ 無 | 7+ Hooks（完整 lifecycle） | comparison, root concept |
+| Context | 8K tokens | 依模型（GPT-5.4 等） | comparison |
+| 生態規模 | 20+（策劃） | 開放 SDK + 社群 Skills | comparison |
+| 設計定位 | 策劃 + 簡單性 | 程式化 agent 平台 + 深度自訂 | comparison |
+
+### 新建頁面
+
+- `wiki/entities/github-copilot-sdk.md` — GitHub Copilot SDK 實體頁（含完整能力一覽）
+- `wiki/concepts/copilot-agent-loop.md` — Agent Loop 概念
+- `wiki/concepts/copilot-custom-agents.md` — Custom Agents + Sub-agent Orchestration
+- `wiki/concepts/copilot-fleet-mode.md` — Fleet Mode 並行編排
+- `wiki/concepts/copilot-hooks-system.md` — 7+ Hooks 系統
+- `wiki/concepts/copilot-steering-queueing.md` — Steering & Queueing
+- 16 個 source notes（22 篇 raw 的 1:1 對應，6 個已含在概念頁 provenance）
+
+### 修正頁面
+
+- `wiki/concepts/skills-complex-composition-comparison.md` — **全面重寫** Copilot 欄位，新增「修正紀錄」章節
+- `wiki/concepts/agent-skills.md` — 根概念頁比較表格 + 進階導航說明修正
+
+### 更新頁面
+
+- `wiki/topics/skill.md` — 新增 copilot-sdk entity + 5 個 copilot concepts + 6 個 source notes
+- `wiki/topics/ai-development-tools.md` — 新增 copilot-sdk entity
+- `wiki/index.md` — Entities 47→48、Concepts 44→49、Sources 65→81
+
+### 重要教訓
+
+- ⚠️ **第三方比較文的 Copilot 資訊不可靠**：aiskill.market 文章將 Copilot 描述為「策劃 Extensions、無巢狀、無 hooks」，實際上官方 SDK 已有完整的 Custom Agents + Sub-agent Orchestration + Fleet Mode + 7+ Hooks
+- 📏 **修正原則**：官方文件優先於第三方部落格；修正時記錄「從什麼改為什麼」，不默默改掉
+- refs: [[wiki/entities/github-copilot-sdk|GitHub Copilot SDK]]、[[wiki/concepts/skills-complex-composition-comparison|Comparison（已修正）]]
+
 ## [2026-08-14] ingest | Anthropic Agent Skills 系列 7 篇（雙模型交叉驗證 + 結構重構）
 
 - **來源**：raw/web/ 7 篇 Anthropic 官方 Agent Skills 文件 + 第三方比較文

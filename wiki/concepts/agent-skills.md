@@ -181,15 +181,17 @@ tools:
 
 三大主流 Agent 框架（Claude Code、GitHub Copilot、Pi Agent）在處理複雜、組合技 Skill 時的機制與設計取捨各不相同：
 
-| 面向 | Claude Code | GitHub Copilot | Pi Agent |
-|------|------------|---------------|----------|
-| Skill 格式 | SKILL.md（漸進式揭露） | Extensions（服務整合） | SKILL.md（markup 注入） |
-| 組合方式 | 多 Skill 同時載入（≤8） | Extensions @mentions | Skills 逐一手動觸發 |
-| 巢狀/委派 | Subagents（獨立 context） | 無 | 無（刻意不做） |
-| 工具鏈整合 | MCP（開放標準） | Extensions（策劃） | Extension System |
-| 生態規模 | 34,000+（開放） | 20+（策劃） | 本地安裝 |
+| 面向 | Claude Code | GitHub Copilot SDK | Pi Agent |
+|------|------------|-------------------|----------|
+| Skill 格式 | SKILL.md（三層漸進式揭露） | SKILL.md（格式兼容，per-agent preload） | SKILL.md（markup 注入） |
+| 組合方式 | 多 Skill 同時載入（≤8/請求） | 多 Skill + per-agent eagerly preload | 逐一手動觸發 |
+| 巢狀/委派 | ✅ Subagents（獨立 context） | ✅ Custom Agents + Sub-agent Orchestration + Fleet Mode | ❌ 刻意不做 |
+| 工具鏈整合 | MCP（開放標準） | MCP（per-agent）+ Custom Tools | Extension System |
+| 鉤子/生命週期 | ✅ Hooks | ✅ 7+ Hooks（完整 lifecycle） | ✅ Extension Events |
+| 訊息控制 | ❌ | ✅ Steering + Queueing | ❌ |
+| 並行編排 | ⚠️ Subagents | ✅ Fleet Mode（SQL todos） | ❌ |
 
-> ⚠️ 本章節為骨架，部分資料待補充。見比較頁的「待補充」標記。
+> 📝 本章節已根據 GitHub 官方文件（22 篇）修正。先前基於第三方文章的多處錯誤描述已更正。詳見比較頁的「修正紀錄」。
 
 ## 跨平台標準：agentskills.io
 

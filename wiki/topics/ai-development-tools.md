@@ -12,6 +12,7 @@ updated: 2026-08-08
 ## Entities
 
 - [[wiki/entities/anthropic-agent-skills|Anthropic Agent Skills]] — Anthropic 官方 Skill 系統，三層漸進式揭露 🛠️
+- [[wiki/entities/github-copilot-sdk|GitHub Copilot SDK]] — Copilot Custom Agents 平台，Sub-agent Orchestration + Fleet Mode + Hooks 🛠️
 - [[wiki/entities/claude-code|Claude Code]] — Anthropic AI Coding Agent，MCP Protocol 整合 🛠️
 - [[wiki/entities/claude-design|Claude Design]] — Anthropic AI 設計工具，五階段工作流 🛠️
 - [[wiki/entities/github-copilot|GitHub Copilot]] — GitHub AI 程式碼輔助工具生態系 🛠️
