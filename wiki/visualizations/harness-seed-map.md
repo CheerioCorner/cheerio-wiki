@@ -15,10 +15,11 @@ notion_map_id: null
 ## 結構解讀
 
 - **底部 LLM** 是被驅動的對象，不是 harness 本身
-- **Coding Agent Harness** 是概念根（本頁面定義的層次）
-- **Meta-Harness** 有兩種同名異義：治理/組合型 vs 自動演化/優化型
+- **Coding Agent Harness** 是概念根（本頁面定義的層次），四個實例平行並列
+- **Meta-Harness** 有兩種同名異義：治理/組合型（管理真實 harness）vs 自動演化/優化型（作用於整個 harness 層）
 - **Multi-Agent Orchestration** 是多個 harness 協同工作的上層
-- 箭頭方向：`-->` 表示「.builds on / 是其基礎」
+- 箭頭：`-->` = builds on（下層支撐上層）；`-.->` = 作用於（非管理關係）
+- **EVO 虛線**：Stanford 自動演化型 meta-harness 是研究性地「改寫/優化 harness 程式碼」，不是管理特定產品，所以用虛線指向概念層
 
 ## Mermaid
 
@@ -52,13 +53,8 @@ graph TD
     TOP --> EVO
     GOV --> CC
     GOV --> CX
-    EVO --> CC
-    EVO --> PA
-    CC --> AL
-    CC --> TC
-    CC --> PM
-    CC --> CM
-    CC --> SM
+    EVO -.->|"優化 harness 程式碼"| CAH
+    CAH --> CORE
     AL --> LLM
     TC --> LLM
     PM --> LLM
