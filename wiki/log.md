@@ -3,6 +3,14 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] lint | raw 檔名 normalize：解決 Windows MAX_PATH checkout 失敗
+
+- **問題**：raw/ 檔名過長（最長 230 字元）+ 含空白/逗號/特殊字元，導致 Windows `git clone` checkout 失敗（filename too long / MAX_PATH）
+- **規則新增**：AGENTS.md §4.1 加入 raw 命名規範（`YYYY-MM-DD-<slug>`、白名單 slugify：只保留 a-z 0-9 CJK，其餘轉 `-`、收斂連續 `-`、總長 ≤80 字元、撞名加 `-2` `-3`）；§8.1/§8.2 補上 ingest normalize 引用
+- **執行**：normalize 全部 raw/ .md 檔案（含 .trash/），最長從 230→78 字元；同步修復 21 個 wiki 頁面的 provenance/wikilink 連結
+- **相關 commits**：dac6f06（初始 rename + wiki 連結）、cb94cc6（白名單 slugify 修正）、a928e9f（補齊殘留 wiki 斷連結）
+- **已知後續**：`.trash/` 冗餘 raw 檔清理屬另一個 lint 議題，不在本次範圍
+
 ## [2026-08-14] complete | 花園視覺地圖 Mermaid 全面驗證與修復（21/21 通過 mmdc render）
 
 - 用 mmdc 實跑驗證全部 21 張種子地圖語法，修好 1 張壞掉的（節點含空格/中文未加引號）
