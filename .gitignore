@@ -13,3 +13,4 @@ desktop.ini
 
 # GitHub token（如果有的話）
 github-token.json
+tmp/
