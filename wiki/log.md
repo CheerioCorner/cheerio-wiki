@@ -3,6 +3,13 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] complete | 🎯 花園 22 顆種子全部處理完畢
+
+- 第四批收尾（最後 8 顆「完整」種子）：NPM Publishing 補視覺地圖+來源 URL；Omnigent 來源 URL 空格修正；5 顆核心種子補 Wiki Path/最後更新；4 顆視覺地圖 ASCII→Mermaid
+- OpenCodeReview、Omnigent 維持 🌱（缺實際使用經驗）
+- 決策：🌿 成長期門檻 = 有實際使用經驗，光內容完整+視覺地圖不足以升級
+- 最終統計：22 種子（🌿6 / 🌱16）
+
 ## [2026-08-14] update | 技術類第三批 6 顆種子完成補強 + Gemini 證據型評審通過
 
 - 更新 6 個 wiki 頁面 updated 日期至 2026-08-14：agentic-ai、code-graph、loop-vs-graph-engineering、mcp-model-context-protocol、lsp、tree-sitter
