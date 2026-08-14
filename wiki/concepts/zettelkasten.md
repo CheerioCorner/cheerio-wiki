@@ -2,7 +2,7 @@
 title: Zettelkasten — 卡片盒筆記法
 type: concept
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-14
 sources: 1
 tags: [knowledge-mgmt, note-taking, linking]
 topics: [knowledge-mgmt]
@@ -12,7 +12,7 @@ provenance_raw: "raw/notion-ingest/2026-08-10-knowledge-management-seeds"
 
 # Zettelkasten — 卡片盒筆記法
 
-> 由德國社會學家 Niklas Luhmann 發明的知識管理方法。他用這個方法維護了 70 本書和 400 篇論文。
+> 由德國社會學家 Niklas Luhmann 實踐的知識管理方法，經 Sönke Ahrens《How to Take Smart Notes》系統化後廣泛流行。
 
 ## 核心概念
 
@@ -31,6 +31,13 @@ provenance_raw: "raw/notion-ingest/2026-08-10-knowledge-management-seeds"
 | 雙向連結 | `[[wikilink]]`：頁面之間互相連結 |
 | 索引頁 | `index.md` + `topics/`：作為入口導航 |
 | 卡片盒 | `wiki/`：整個 wiki 就是我們的卡片盒 |
+
+## 歷史與出處
+
+Zettelkasten 由德國社會學家 **Niklas Luhmann**（1927–1998）在其學術生涯中實踐並發展，他用這個方法維護了 70 本書和 400 篇論文。現代 Zettelkasten 的流行，主要歸功於 **Sönke Ahrens** 在 2017 年出版的《How to Take Smart Notes》一書，將 Luhmann 的方法論系統化並介紹給大眾。
+
+- **官方典藏**：[Niklas Luhmann Archive](https://niklas-luhmann-archiv.de/)（正確來源，非 luhmann.com）
+- **推薦入門**：Sönke Ahrens《How to Take Smart Notes》
 
 ## 設計哲學
 

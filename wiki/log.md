@@ -15,6 +15,15 @@
 - 修正：`work/history/2026-08.md`（取代標記修正不準確的自我回報）
 - refs: [[wiki/sources/2026-08-13-garden-guard-incident]]
 
+## [2026-08-14] update | 知識管理系列 5 顆種子完成：第二批半成品補強 + 評審通過
+
+- 更新頁面：
+  - wiki/concepts/zettelkasten.md — 新增「歷史與出處」段落（Luhmann 實踐→Ahrens 系統化），修正 luhmann.com→niklas-luhmann-archiv.de 官方典藏連結
+  - wiki/concepts/para.md、lint-ruleset.md、semantic-relations.md、moc-map-of-content.md — 已確認與 Notion 端同步，內容完整
+- 流程：派工→補視覺地圖+來源+內容→Cheer+Gemini 證據型評審（PARA 92 / Lint 88 / 語意關係 96 / MOC 94 / Zettelkasten 82→修正）→修訂
+- 修復結構性 Bug：視覺地圖 Mermaid 從種子頁底部搬進 DB 記錄頁，清除 8 顆種子的孤兒頁面
+- refs: [[wiki/concepts/zettelkasten|Zettelkasten]]、[[wiki/concepts/para|PARA]]、[[wiki/concepts/lint-ruleset|Lint 規則集]]、[[wiki/concepts/semantic-relations|語意關係]]、[[wiki/concepts/moc-map-of-content|MOC]]
+
 ## [2026-08-14] sync | 花園種子內容同步：LangGraph / GitHub Copilot / Claude Code
 
 - 來源：Notion 知識花園 3 顆種子頁面（經 Cheer + Gemini 評審後的版本）

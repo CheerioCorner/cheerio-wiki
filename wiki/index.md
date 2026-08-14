@@ -27,7 +27,7 @@
 
 ---
 
-## Concepts（抽象知識）— 32 頁
+## Concepts（抽象知識）— 37 頁
 
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns — 狀態持久化的三種路徑]] — title: "Agent Durability Patterns — 狀態持久化的三種路徑"
 - [[wiki/concepts/agent-extension-installation|Agent Extension 安裝位置與方式]] — title: Agent Extension 安裝位置與方式
@@ -51,16 +51,21 @@
 - [[wiki/concepts/knowledge-management|Knowledge Management]] — title: Knowledge Management
 - [[wiki/concepts/knowledge-system-architecture|知識系統架構]] — title: 知識系統架構
 - [[wiki/concepts/late-conversion|Late Conversion(最晚轉換)]] — title: Late Conversion(最晚轉換)
+- [[wiki/concepts/lint-ruleset|Lint 規則集]] — title: Lint 規則集
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering — AI Agent 兩種核心工作流模式]] — title: "Loop vs Graph Engineering — AI Agent 兩種核心工作流模式"
 - [[wiki/concepts/meta-harness|Meta-Harness]] — title: Meta-Harness
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy — 「減法大於加法」]] — title: Minimal Agent Philosophy — 「減法大於加法」
+- [[wiki/concepts/moc-map-of-content|MOC — Map of Content]] — title: MOC — Map of Content
 - [[wiki/concepts/npm-publishing-workflow|Package Publishing Workflow — 統一的發佈流程觀點]] — title: Package Publishing Workflow — 統一的發佈流程觀點
 - [[wiki/concepts/okf-open-knowledge-format|OKF (Open Knowledge Format) — 統一的知識表示格式]] — title: OKF (Open Knowledge Format) — 統一的知識表示格式
+- [[wiki/concepts/para|PARA — Projects/Areas/Resources/Archives]] — title: PARA — Projects/Areas/Resources/Archives
 - [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model — Pi 專案/工作區模型]] — title: pi-project-workspace-model — Pi 專案/工作區模型 🛠️
 - [[wiki/concepts/recursive-language-model|Recursive Language Model (RLM)]] — title: "Recursive Language Model (RLM)"
 - [[wiki/concepts/redis|Redis]] — title: Redis
 - [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill — 技能優化元技能]] — title: "SkillOpt Meta-skill — 技能優化元技能" 🛠️
+- [[wiki/concepts/semantic-relations|語意關係 — Semantic Relations]] — title: 語意關係 — Semantic Relations
 - [[wiki/concepts/vibe-coding|Vibe Coding — 自然語言驅動的程式碼生成]] — title: "Vibe Coding — 自然語言驅動的程式碼生成"
+- [[wiki/concepts/zettelkasten|Zettelkasten — 卡片盒筆記法]] — title: Zettelkasten — 卡片盒筆記法
 
 ---
 

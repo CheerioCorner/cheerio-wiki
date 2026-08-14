@@ -83,7 +83,7 @@
     - ✅ garden-guard.ts extension 建立（攔截型，3 個 gate）
     - ✅ 花園巡檢執行（2026-08-14）：20 顆種子全量抽驗、8 顆補 Sync Status、Tree-sitter/Agentic AI 補寫內容、5 顆知識管理種子建立 wiki 頁面
   - 待辦：
-    - ⏳ 為 5 顆知識管理種子補成長計畫（Notion 頁面內容）
+    - ✅ 為 5 顆知識管理種子補成長計畫（第二批：PARA / Lint / 語意關係 / MOC / Zettelkasten，Cheer+Gemini 證據型評審通過）
     - ⏳ 為 NPM Publishing 補視覺地圖
     - ⏳ 重建 cron 排程（每週一 wiki lint + 每週三花園巡檢）
     - ⏳ 「Agent 品質保證機制」種子草稿（`work/drafts/2026-08-13-garden-guard-seed-draft.md`，已完成研究+定稿，等發布前確認）種進 Notion，含新建同名研究專題 + 連結「知識管理系統」專題
