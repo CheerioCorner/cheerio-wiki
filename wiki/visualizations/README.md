@@ -17,6 +17,7 @@
 |------|--------|------|
 | [[wiki/visualizations/harness-seed-map|Harness 種子視覺地圖]] | ai-agent, meta-systems | Harness 概念根內部結構：核心定義、五大職責、三層分類與具體實例 |
 | [[wiki/visualizations/obsidian-seed-map|Obsidian 功能全景圖]] | ai-agent, knowledge-mgmt | 核心功能、插件、應用、AI Agent 整合、我們的實作 |
+| Agent Skills 研究專題視覺地圖 | skill | 研究專題中心結構：3 顆子種子 + 2 個灌溉來源 + mattpocock/skills 關聯 |
 
 ## Canvas 舊格式（保留）
 

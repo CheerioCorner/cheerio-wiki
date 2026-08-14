@@ -3,6 +3,17 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] visualmap | Agent Skills 研究專題視覺地圖建立
+
+- **新建**：Notion 視覺地圖 DB 記錄「Agent Skills 研究專題視覺地圖」（ID: `3bc5979e-3a8c-81e0-bb89-f9066f64f664`）
+- **類型**：專題地圖
+- **Relations**：🔬 研究專題 → Agent Skills、關聯種子 → 3 顆子概念種子
+- **反向 Relation**：研究專題頁「🗺️ 視覺地圖」欄位已連結
+- **mmdc 驗證**：通過（16KB SVG 生成）
+- **圖表結構**：研究專題中心 → 3 子種子（綠）+ 2 灌溉（橘）+ 1 關聯（綠）
+- **更新**：研究專題「下一步」欄位（移除「產生視覺地圖」）、visualizations/README.md 註冊
+- refs: [[wiki/entities/knowledge-garden|knowledge-garden manifest]]
+
 ## [2026-08-14] garden-sync | Agent Skills 花園同步（研究專題 + 3 顆種子）
 
 - **操作類型**：花園同步（Notion 寫入）
