@@ -2,7 +2,7 @@
 title: LSP (Language Server Protocol)
 type: entity
 created: 2026-08-04
-updated: 2026-08-04
+updated: 2026-08-14
 sources: 1
 tags: [lsp, protocol, code-intelligence, microsoft]
 topics: [agent-infrastructure, meta-systems]

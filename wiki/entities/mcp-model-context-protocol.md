@@ -2,7 +2,7 @@
 title: MCP (Model Context Protocol)
 type: entity
 created: 2026-08-04
-updated: 2026-08-04
+updated: 2026-08-14
 sources: 1
 tags: [mcp, model-context-protocol, anthropic, ai-agent, lsp-integration]
 topics: [agent-infrastructure, ai-agent]

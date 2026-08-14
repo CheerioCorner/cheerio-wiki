@@ -2,7 +2,7 @@
 title: Agentic AI
 type: concept
 created: 2026-08-10
-updated: 2026-08-10
+updated: 2026-08-14
 tags: [ai-agent, agentic, autonomy, tool-use, loop, memory]
 topics: [ai-agent]
 canonical: concepts/agentic-ai

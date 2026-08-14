@@ -3,6 +3,13 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] update | 技術類第三批 6 顆種子完成補強 + Gemini 證據型評審通過
+
+- 更新 6 個 wiki 頁面 updated 日期至 2026-08-14：agentic-ai、code-graph、loop-vs-graph-engineering、mcp-model-context-protocol、lsp、tree-sitter
+- Gemini 證據型評審修正：移除 3 個杜撰假連結（nicholasgasior/awesome-*）、修正 Tree-sitter 維護者姓名 Max Cantor→Max Brunsfeld、Code Graph 錯字修正
+- 流程改進：Pi 寫入來源 URL 前必須 HTTP 驗證回 200
+- refs: MCP 92 / LSP 95 / Tree-sitter 87 / Agentic AI 84 / Code Graph 83 / LOOP Engineering 76
+
 ## [2026-08-13] incident | 花園巡檢空白種子事故全記錄 + garden-guard extension 建立
 
 - 事故：2026-08-13 花園巡檢新種 5 顆種子，Notion 頁面 body content 全空白（只有 Properties）

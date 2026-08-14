@@ -2,7 +2,7 @@
 title: "Loop vs Graph Engineering — AI Agent 兩種核心工作流模式"
 type: concept
 created: 2026-08-03
-updated: 2026-08-21
+updated: 2026-08-14
 sources: 2
 tags: [ai-agent, loop-engineering, graph-engineering, system-design, workflow]
 collection: concepts

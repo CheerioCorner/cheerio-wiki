@@ -374,6 +374,11 @@
 
 ## Completed
 
+- [x] W-2026-08-053 花園技術類半成品補強（第三批：MCP / Agentic AI / LOOP Engineering / Code Graph / LSP / Tree-sitter）✅ #knowledge #notion
+  - completed: 2026-08-14
+  - result: 全部 6 顆技術類種子完成補強與 Gemini 證據型評審。全部補上視覺地圖（放進視覺地圖 DB 記錄頁、雙向 relation）；Tree-sitter 補完整正文並升 🌿 成長期。Gemini 證據型評審（實測 HTTP/GitHub API）抓到並修正多個問題：3 個杜撰的失效來源 URL（Agentic AI、LOOP、Code Graph 的 nicholasgasior/awesome-* 假連結）已換成經 HTTP 200 驗證的真實來源；Tree-sitter 維護者姓名 Max Cantor→Max Brunsfeld；Code Graph 錯字修正。評審分數：MCP 92 / LSP 95 / Tree-sitter 87 / Agentic AI 84 / Code Graph 83 / LOOP Engineering 76（已修訂）。流程改進：Pi 寫入任何來源 URL 前必須先 HTTP 驗證回 200，禁止編造。下一步：剩 8 顆原本標「完整」的種子做收尾（NPM Publishing 補視覺地圖、Omnigent 來源 URL 空格修正、部分 Wiki Path/最後更新 欄位補齊、OpenCodeReview/Omnigent 升級狀態評估）。
+  - refs: [[wiki/entities/mcp-model-context-protocol|MCP]]、[[wiki/concepts/agentic-ai|Agentic AI]]、[[wiki/concepts/loop-vs-graph-engineering|LOOP Engineering]]、[[wiki/concepts/code-graph|Code Graph]]、[[wiki/entities/lsp|LSP]]、[[wiki/entities/tree-sitter|Tree-sitter]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+
 - [x] W-2026-08-051 Ingest：Prime Agent 官方發布 + AI郵報 ARC-AGI-3 分析 ✅ #knowledge #ai-agent
   - completed: 2026-08-13
   - result: 存入 2 篇 raw/web 文章全文（官方部落格 + AI郵報中文分析），發現既有 YouTube 版頁面誤植開發者名稱「Prime Intelligence」並已修正為「Prime Intellect」。雙模型交叉驗證（Claude+Gemini）Round 1 一致，auto_verified。新建 2 個 concept 頁面（continual-harness、arc-agi-3-benchmark）+ 2 個 source notes；大幅擴充 prime-agent entity（GitHub/License/ARC-AGI-3 三種成績口徑 95.5%/95.24%/30.16%/Factorio reward hacking）；重寫 recursive-language-model 核心定義為「context 當變數」。已 git push（commit bc63f7a）。
