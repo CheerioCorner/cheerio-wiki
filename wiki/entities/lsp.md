@@ -72,7 +72,7 @@ Editor Client ←→ JSON-RPC 2.0 ←→ Language Server
 ## 來源
 
 - [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]]
-- [[raw/web/2026-08-04-microsoftlanguage-server-protocol Defines a common protocol for language servers|Microsoft LSP Specification]]
+- [[raw/.trash/2026-08-04-microsoftlanguage-server|Microsoft LSP Specification]]
 
 ## 相關頁面
 

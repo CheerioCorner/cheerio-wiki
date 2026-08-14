@@ -10,13 +10,13 @@ provenance:
   - kind: session
     path: gemini-deep-research-20260804
   - kind: raw
-    path: raw/web/2026-08-04-microsoftlanguage-server-protocol Defines a common protocol for language servers.md
+    path: raw/.trash/2026-08-04-microsoftlanguage-server.md
   - kind: raw
-    path: raw/web/2026-08-04-Introduction - Tree-sitter.md
+    path: raw/.trash/2026-08-04-Introduction - Tree-sitter.md
   - kind: raw
-    path: raw/web/2026-08-04-scip-codescip SCIP Code Intelligence Protocol.md
+    path: raw/.trash/2026-08-04-scip-codescip SCIP Code Intelligence Protocol.md
   - kind: raw
-    path: raw/web/2026-08-04-typescript-language-servertypescript-language-server Unofficial TypeScript & JavaScript Language Server.md
+    path: raw/.trash/2026-08-04-typescript-language-servertypescript-language.md
 ---
 
 # LSP 與 Code Graph 技術深度研究
@@ -92,10 +92,10 @@ provenance:
 
 ## 來源
 
-- [[raw/web/2026-08-04-microsoftlanguage-server-protocol Defines a common protocol for language servers|Microsoft LSP Specification]]
-- [[raw/web/2026-08-04-Introduction - Tree-sitter|Tree-sitter Documentation]]
-- [[raw/web/2026-08-04-scip-codescip SCIP Code Intelligence Protocol|SCIP Specification]]
-- [[raw/web/2026-08-04-typescript-language-servertypescript-language-server Unofficial TypeScript & JavaScript Language Server|TypeScript Language Server]]
+- [[raw/.trash/2026-08-04-microsoftlanguage-server|Microsoft LSP Specification]]
+- [[raw/.trash/2026-08-04-Introduction - Tree-sitter|Tree-sitter Documentation]]
+- [[raw/.trash/2026-08-04-scip-codescip SCIP Code Intelligence Protocol|SCIP Specification]]
+- [[raw/.trash/2026-08-04-typescript-language-servertypescript-language|TypeScript Language Server]]
 
 ## 相關頁面
 

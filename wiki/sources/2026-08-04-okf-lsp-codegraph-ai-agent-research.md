@@ -10,23 +10,23 @@ provenance:
   - kind: session
     path: gemini-deep-research-20260804-212138
   - kind: raw
-    path: raw/web/2026-08-04-colbymchenrycodegraph Pre-indexed code knowledge graph...md
+    path: raw/.trash/2026-08-04-colbymchenrycodegraph pre.md
   - kind: raw
     path: raw/web/2026-08-04-microsoftpyright Static Type Checker for Python.md
   - kind: raw
-    path: raw/web/2026-08-04-typescript-language-servertypescript-language-server...md
+    path: raw/.trash/2026-08-04-typescript-language-servertypescript-language.md
   - kind: raw
-    path: raw/web/2026-08-04-OmniSharpomnisharp-roslyn OmniSharp server...md
+    path: raw/.trash/2026-08-04-omnisharpomnisharp.md
   - kind: raw
-    path: raw/web/2026-08-04-vuejslanguage-tools ⚡ High-performance Vue language tooling...md
+    path: raw/.trash/2026-08-04-vuejslanguage-tools-high-performance-vue-language.md
   - kind: raw
-    path: raw/web/2026-08-04-angularvscode-ng-language-service Angular extension...md
+    path: raw/.trash/2026-08-04-angularvscode-ng-language.md
   - kind: raw
-    path: raw/web/2026-08-04-sveltejslanguage-tools The Svelte Language Server...md
+    path: raw/.trash/2026-08-04-sveltejslanguage.md
   - kind: raw
     path: raw/web/2026-08-04-What is the Model Context Protocol (MCP).md
   - kind: raw
-    path: raw/web/2026-08-04-tree-sittertree-sitter An incremental parsing system...md
+    path: raw/.trash/2026-08-04-tree-sittertree.md
 ---
 
 # OKF + LSP + Code Graph 在 AI Coding Agent 生態系的整合應用
@@ -186,15 +186,15 @@ dotnet tool install --global OmniSharp
 
 ## 來源
 
-- [[raw/web/2026-08-04-colbymchenrycodegraph Pre-indexed code knowledge graph...|codegraph GitHub]]
+- [[raw/.trash/2026-08-04-colbymchenrycodegraph pre|codegraph GitHub]]
 - [[raw/web/2026-08-04-microsoftpyright Static Type Checker for Python|Pyright GitHub]]
-- [[raw/web/2026-08-04-typescript-language-servertypescript-language-server...|typescript-language-server GitHub]]
-- [[raw/web/2026-08-04-OmniSharpomnisharp-roslyn OmniSharp server...|OmniSharp GitHub]]
-- [[raw/web/2026-08-04-vuejslanguage-tools ⚡ High-performance Vue language tooling...|Volar GitHub]]
-- [[raw/web/2026-08-04-angularvscode-ng-language-service Angular extension...|Angular LS GitHub]]
-- [[raw/web/2026-08-04-sveltejslanguage-tools The Svelte Language Server...|Svelte LS GitHub]]
+- [[raw/.trash/2026-08-04-typescript-language-servertypescript-language|typescript-language-server GitHub]]
+- [[raw/.trash/2026-08-04-omnisharpomnisharp|OmniSharp GitHub]]
+- [[raw/.trash/2026-08-04-vuejslanguage-tools-high-performance-vue-language|Volar GitHub]]
+- [[raw/.trash/2026-08-04-angularvscode-ng-language|Angular LS GitHub]]
+- [[raw/.trash/2026-08-04-sveltejslanguage|Svelte LS GitHub]]
 - [[raw/web/2026-08-04-What is the Model Context Protocol (MCP)|MCP 說明]]
-- [[raw/web/2026-08-04-tree-sittertree-sitter An incremental parsing system...|Tree-sitter GitHub]]
+- [[raw/.trash/2026-08-04-tree-sittertree|Tree-sitter GitHub]]
 
 ## 相關頁面
 

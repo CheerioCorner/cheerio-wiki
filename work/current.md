@@ -5,6 +5,19 @@
 
 ## In progress
 
+- [ ] W-2026-08-055 花園流程與 extension 優化（根因修正）🆕 #knowledge #skill #notion
+  - next: 確認 Pi 的 hook 能力（Stop hook 或替代方案）+ 確認 mmdc 環境可用性，然後依 P0→P1→P2 順序執行
+  - refs: [[.pi/round-table/20260814-095306/synthesis|圓桌會議紀要]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/visualmap|visualmap skill]]、[[wiki/entities/page-content|page-content skill]]
+  - 重點行動清單：
+    - **P0（1–2 天）**：① DB write read-back——所有 Notion 寫入 skill 加反查步驟（0.5–1 天）② URL 存活驗證——page-content 寫入前 curl gate，含 retry + 軟/硬 404 區分（0.5 天）③ page-content 順序改「先查證再寫」+ 允許留白 `[待查證]`（1–2 天）
+    - **P1（4–5 天）**：④ visualmap 寫入目標修正——Mermaid 寫入 DB 記錄頁 body，種子頁只放 relation + read-back（1 天）⑤ mmdc render 驗證 + 節點語法規則——Node ID 純英數、Label 加引號（1–2 天，需確認 mmdc 環境）⑥ headless 旗標 + 待審模式——`--mode headless`、`Status: 機器生成待審`、三道護欄（禁止寫入既有 Relation / Origin+run-id 可 rollback / default view 過濾）（2 天）
+    - **P2（3–5 天）**：⑦ 共用驗證 harness——內部 SkillCompletionHook（效率層）+ 外部確定性腳本（保證層/promote gate）+ 共用驗證邏輯 + 結構化執行收據 JSON（3–5 天）
+  - 共識結論（Claude + Gemini + Copilot 圓桌會議）：
+    - 四個驗證關卡：URL 存活 / Mermaid render / DB read-back / 事實來源綁定
+    - Headless 策略：正式 DB + `Status: 機器生成待審` + 三道護欄（非隔離 DB）
+    - 驗證機制：內外結合雙層架構（內部 hook = advisory / 外部腳本 = gate）
+    - 硬失敗 vs 軟失敗：URL 404 要區分真死 vs 暫時性，過度嚴格會誤殺
+
 - [ ] W-2026-08-052 圓桌會議：Claude Design vs GitHub Copilot 可行性分析 🆕 #ai-agent #tools
   - next: 等 Cheer 回顧報告並回饋意見
   - refs: [[.pi/round-table/20260813-183535/synthesis|圓桌會議紀要]]、[[wiki/entities/claude-design|Claude Design]]、[[wiki/concepts/design-md-format|design.md Format]]

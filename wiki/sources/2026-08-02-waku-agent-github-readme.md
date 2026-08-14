@@ -6,13 +6,13 @@ updated: 2026-08-02
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop.md
+    path: raw/web/2026-08-02-shenseanchenwaku.md
     url: https://github.com/ShenSeanChen/waku-agent
 tags: [github, ai-agent, local-first, memory-system]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-02-waku-agent-github-readme
-provenance_raw: "raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop.md"
+provenance_raw: "raw/web/2026-08-02-shenseanchenwaku.md"
 provenance_url: "https://github.com/ShenSeanChen/waku-agent"
 ---
 
@@ -86,7 +86,7 @@ Anthropic（default）、OpenAI、Gemini、DeepSeek、MiniMax、Kimi、GLM、Ope
 - **vs OpenClaw / Hermes**：相同架構，1/100th 代碼量
 
 ## 來源
-- [[../../raw/web/2026-08-02-ShenSeanChenwaku-agent Waku Waku! Waku agent is your personal AI agent, on your own laptop|Raw GitHub README]]
+- [[raw/web/2026-08-02-shenseanchenwaku|Raw GitHub README]]
 
 ## 相關頁面
 - [[wiki/entities/waku-agent|waku-agent]] — 專案 entity page

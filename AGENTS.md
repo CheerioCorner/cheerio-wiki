@@ -239,6 +239,22 @@ Obsidian/
 - Canonical content page 用穩定主題名（`pi-mono.md`、`meta-harness.md`）。
 - 來源筆記若是時間型研究／工作紀錄，使用日期+標題（`2026-07-11-podcast-name.md`）。穩定型來源可不加日期，但建立後不因規則改名。
 
+**raw/ 檔名規範（2026-08-10 新增）：**
+raw/ 下的檔案（含 `.trash/`）必須遵守以下命名規則，以避免 Windows MAX_PATH 限制導致 git clone 失敗：
+- **格式**：`YYYY-MM-DD-<slug>.md`
+- **日期前綴**：`YYYY-MM-DD-` 保持檔案現有日期（沿用原始日期，不使用今天日期）。
+- **slug 產生規則**：
+  1. 全部轉小寫。
+  2. 空白、逗號、句號、破折號（— / – / -）、底線、括號、CJK 標點、其他特殊字元一律轉成單一連字號 `-`。
+  3. 連續的 `-` 收斂成一個。
+  4. 去掉頭尾的 `-`。
+  5. CJK 中文字元保留（不轉拼音、不翻譯）。
+- **總長上限**：整個檔名（含 `YYYY-MM-DD-` 前綴與 `.md` 副檔名）不得超過 80 字元。超過時從 slug 尾端截斷，且必須沿 `-` 邊界斷（不要斷在半個單字中間）。
+- **撞名處理**：若截斷後與既有檔案撞名，尾端加 `-2`、`-3` 等區分。
+- **範例**：
+  - `2026-08-04-colbymchenrycodegraph Pre-indexed code knowledge graph, auto syncs on code changes, ... 100% local.md`（230字元）→ `2026-08-04-colbymchenrycodegraph-pre-indexed-code-knowledge-graph.md`（≤80）
+  - `2026-08-03-Redis Cluster Modes Enabled and Disabled - Database Caching Strategies Using Redis.md` → `2026-08-03-redis-cluster-modes-enabled-and-disabled.md`
+
 ### 4.2 Frontmatter（YAML，給 Obsidian Dataview 用）
 
 每個 canonical content page 開頭要有；`README.md`、`index.md`、`log.md` 與 topic 導航頁可作為結構性例外：
@@ -386,12 +402,13 @@ provenance_session: "description"  # 選填；對話 session 來源
   - **Format**：Markdown
   - **Destination**：資料夾路徑填 `raw/web/`（而不是 vault root 或 `Clippings/`）
   - **Filename 模板**：`{{date|date:"YYYY-MM-DD"}}-{{title}}`（避免空白、連字符、遵 §4.1）
+  - **重要**：Clipper 產生的原始檔名可能過長或含特殊字元，ingest 時必須由 agent normalize 成 §4.1 定義的 slug 規則（`YYYY-MM-DD-<slug>.md`，總長 ≤80 字元），確保跨平台相容性。
   - Template 不宣稱能指定圖片目錄；若 Clipper 實際設定可指定，使用 `raw/assets/`，否則由 ingest normalize 搬移並修正引用。
 
 ### 8.2 活動 SOP
 - 看到文章 → 點 Clipper icon → 確認 Format/Destination/Filename 沒被改變 → 送出。
 - 回到 agent 這邊說一聲「好了」並帶上 URL 或該文章檔名，agent 就能定位。
-- 如果檔案出現在 `Clippings/`、`Clippings2/` 之類其他位置 → agent 必須主動搬進 `raw/` 並重新命名為日期+標題格式。
+- 如果檔案出現在 `Clippings/`、`Clippings2/` 之類其他位置 → agent 必須主動搬進 `raw/` 並重新命名為日期+標題格式（遵循 §4.1 的 slug normalize 規則，確保檔名 ≤80 字元）。
 
 ### 8.3 網站限制提醒
 - 如果該文章的 HTML 會被 zse-ck / Cloudflare / JS-challenge 之類的身分驗證阻擋（例如 zhuanlan.zhihu.com），**直接 curl 抓不到**——瀏覽器點一點才能截取，需要走 Clipper 路徑，不可濫用。

@@ -6,12 +6,12 @@ updated: 2026-08-05
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-Navigating the Future of Software Development Understanding Vibe Coding and Its Implications.md
+    path: raw/web/2026-08-02.md
 tags: [vibe-coding, ai-coding, software-engineering, security, application-security]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-02-vibe-coding-implications
-provenance_raw: "raw/web/2026-08-02-Navigating the Future of Software Development Understanding Vibe Coding and Its Implications.md"
+provenance_raw: "raw/web/2026-08-02.md"
 provenance_url: https://www.blackduck.com/blog/vibe-coding-and-its-implications.html
 ---
 

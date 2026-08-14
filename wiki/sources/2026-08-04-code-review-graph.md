@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-04-別再讓 AI 讀整個專案了！code-review-graph 用知識圖譜幫你省下 8 倍 Token.md
+    path: raw/web/2026-08-04-別再讓-ai-讀整個專案了-code-review-graph.md
     url: https://repoinside.com/tirth8205/code-review-graph
-provenance_raw: "raw/web/2026-08-04-別再讓 AI 讀整個專案了！code-review-graph 用知識圖譜幫你省下 8 倍 Token.md"
+provenance_raw: "raw/web/2026-08-04-別再讓-ai-讀整個專案了-code-review-graph.md"
 provenance_url: https://repoinside.com/tirth8205/code-review-graph
 tags: [tree-sitter, code-graph, code-review, mcp, token-optimization]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-04-code-review-graph
 ---
 
 > 來源：[別再讓 AI 讀整個專案了！code-review-graph 用知識圖譜幫你省下 8 倍 Token](https://repoinside.com/tirth8205/code-review-graph)
-> 原始剪藏：[[raw/web/2026-08-04-別再讓 AI 讀整個專案了！code-review-graph 用知識圖譜幫你省下 8 倍 Token|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-04-別再讓-ai-讀整個專案了-code-review-graph|raw clip]]
 
 ## 一句話
 
