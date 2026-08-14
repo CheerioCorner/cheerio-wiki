@@ -3,6 +3,24 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] garden-sync | Agent Skills 花園同步（研究專題 + 3 顆種子）
+
+- **操作類型**：花園同步（Notion 寫入）
+- **前置流程**：
+  1. 花園調查：查詢現有 23 顆種子 + 5 個研究專題結構
+  2. 圓桌會議：Claude + Gemini 討論，Round 1 共識收斂
+  3. 雙重品質查核：Claude WebFetch 驗證 URL + Gemini 逐項核對技術數字
+  4. 人類審查通過
+- **新建**：
+  - 研究專題：「🔬 Agent Skills」（ID: `3bc5979e-3a8c-8121-924e-f99b09671383`）
+  - 種子 1：「🌱 Skill 撰寫與評估方法論」（ID: `3bc5979e-3a8c-8101-87fb-c38bbb498d6d`）
+  - 種子 2：「🌱 Agent Skills 企業治理」（ID: `3bc5979e-3a8c-814e-8035-d57c6eb691be`）
+  - 種子 3：「🌱 Agent Skills API 整合機制」（ID: `3bc5979e-3a8c-817a-a411-c872a7df10d4`）
+- ** Relations**：研究專題 ↔ 3 顆種子雙向關聯已建立
+- **交叉驗證**：以 ntn pages get 實際讀取 4 個頁面，確認存在且內容正確
+- **本地更新**：knowledge-garden.md manifest（種子 23→26、研究專題 5→6）
+- refs: [[wiki/entities/knowledge-garden|knowledge-garden manifest]]
+
 ## [2026-08-14] correction | GitHub Copilot SDK 官方文件修正（22 篇 ingest + 既有頁面修正）
 
 - **修正類型**：**修正既有內容**（非單純新增），根據 GitHub 官方文件（docs.github.com 22 篇）修正先前基於第三方文章的多處錯誤
