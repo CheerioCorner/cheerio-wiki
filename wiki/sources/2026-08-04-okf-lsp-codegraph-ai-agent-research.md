@@ -12,7 +12,7 @@ provenance:
   - kind: raw
     path: raw/.trash/2026-08-04-colbymchenrycodegraph pre.md
   - kind: raw
-    path: raw/web/2026-08-04-microsoftpyright Static Type Checker for Python.md
+    path: raw/web/2026-08-04-microsoftpyright-static-type-checker-for-python.md
   - kind: raw
     path: raw/.trash/2026-08-04-typescript-language-servertypescript-language.md
   - kind: raw
@@ -24,7 +24,7 @@ provenance:
   - kind: raw
     path: raw/.trash/2026-08-04-sveltejslanguage.md
   - kind: raw
-    path: raw/web/2026-08-04-What is the Model Context Protocol (MCP).md
+    path: raw/web/2026-08-04-what-is-the-model-context-protocol-mcp.md
   - kind: raw
     path: raw/.trash/2026-08-04-tree-sittertree.md
 ---
@@ -187,7 +187,7 @@ dotnet tool install --global OmniSharp
 ## 來源
 
 - [[raw/.trash/2026-08-04-colbymchenrycodegraph pre|codegraph GitHub]]
-- [[raw/web/2026-08-04-microsoftpyright Static Type Checker for Python|Pyright GitHub]]
+- [[raw/web/2026-08-04-microsoftpyright-static-type-checker-for-python|Pyright GitHub]]
 - [[raw/.trash/2026-08-04-typescript-language-servertypescript-language|typescript-language-server GitHub]]
 - [[raw/.trash/2026-08-04-omnisharpomnisharp|OmniSharp GitHub]]
 - [[raw/.trash/2026-08-04-vuejslanguage-tools-high-performance-vue-language|Volar GitHub]]

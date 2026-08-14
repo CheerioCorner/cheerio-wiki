@@ -1,0 +1,112 @@
+{
+  "source_kind": "youtube",
+  "fetched_at": "2026-08-08",
+  "videos": [
+    {
+      "slug": "tau-python-port-of-pi",
+      "title": "Tau: A Python Port of Pi - Coding Harness Deep Dive",
+      "youtube_id": "qo1QNxWcm28",
+      "url": "https://www.youtube.com/watch?v=qo1QNxWcm28",
+      "duration": "25:03",
+      "segments": 261,
+      "paragraphs": 76,
+      "language": "en"
+    },
+    {
+      "slug": "mattpocock-skills",
+      "title": "mattpocock/skills: A complete AI Coding workflow, end-to-end",
+      "youtube_id": "M6mYodf0dJM",
+      "url": "https://www.youtube.com/watch?v=M6mYodf0dJM",
+      "duration": "17:16",
+      "segments": 505,
+      "language": "en"
+    },
+    {
+      "slug": "pi-architecture-walkthrough",
+      "title": "Pi Architecture Walkthrough — Full Agent Core + Interactive Layer Explained",
+      "youtube_id": "gTeujlv8qK0",
+      "url": "https://www.youtube.com/watch?v=gTeujlv8qK0",
+      "duration": "~39:00",
+      "segments": 488,
+      "language": "en"
+    },
+    {
+      "slug": "hermes-architecture-explained",
+      "title": "Hermes Architecture EXPLAINED: Memory, Context & Gateways",
+      "youtube_id": "n32qq7Kwzh0",
+      "url": "https://youtu.be/n32qq7Kwzh0",
+      "duration": "40:25",
+      "segments": 501,
+      "language": "en"
+    },
+    {
+      "slug": "2026-08-02-waku-agent-code-walkthrough",
+      "title": "Waku Waku! Waku agent is your personal AI agent, on your own laptop, in code you can read in an afternoon — harness + loop + memory + eval",
+      "youtube_id": "rvRyBhILrls",
+      "url": "https://youtu.be/rvRyBhILrls",
+      "duration": "20:49",
+      "segments": 601,
+      "language": "en"
+    },
+    {
+      "slug": "loop-vs-graph-engineering",
+      "title": "Loop vs Graph Engineering — AI Agent Concepts Demystified",
+      "youtube_id": "IMLwvK08JVc",
+      "url": "https://youtu.be/IMLwvK08JVc",
+      "duration": "21:30",
+      "segments": 610,
+      "language": "en"
+    },
+    {
+      "slug": "uncle-bob-stopped-reading-ai-generated-code",
+      "title": "Uncle Bob Stopped Reading AI-Generated Code",
+      "youtube_id": "sClTAvkQDOU",
+      "url": "https://www.youtube.com/watch?v=sClTAvkQDOU",
+      "duration": "00:08:21",
+      "segments": 253,
+      "paragraphs": 25,
+      "language": "en"
+    },
+    {
+      "slug": "write-code-you-will-never-read-again",
+      "title": "Write Code You Will Never Read Again",
+      "youtube_id": "434cG4g5KLE",
+      "url": "https://youtu.be/434cG4g5KLE",
+      "duration": "00:24:13",
+      "segments": 741,
+      "paragraphs": 92,
+      "language": "en"
+    },
+    {
+      "slug": "chunkless-rag-docling",
+      "title": "What Is Chunkless RAG? How Docling & AI Agents Navigate Documents",
+      "youtube_id": "vRZNJWw78BQ",
+      "url": "https://www.youtube.com/watch?v=vRZNJWw78BQ",
+      "duration": "00:07:00",
+      "segments": 98,
+      "language": "en"
+    },
+    {
+      "slug": "i-replaced-pi-and-opencode-with-this",
+      "title": "I Replaced Pi and OpenCode With This",
+      "youtube_id": "eQZQl_7-X40",
+      "url": "https://www.youtube.com/watch?v=eQZQl_7-X40",
+      "duration": "08:29",
+      "segments": 185,
+      "paragraphs": 22,
+      "language": "en"
+    },
+    {
+      "video_id": "bBlY5YOsKN8",
+      "title": "How To Use Claude Design To Build Beautiful Sites",
+      "author": "AI LABS",
+      "slug": "how-to-use-claude-design-to-build-beautiful-sites",
+      "file": "raw/youtube/how-to-use-claude-design-to-build-beautiful-sites.md",
+      "duration": "18:33",
+      "language": "en",
+      "auto_generated": true,
+      "source_api": "pytubefix",
+      "ingested": "2026-08-13"
+    }
+  ]
+}

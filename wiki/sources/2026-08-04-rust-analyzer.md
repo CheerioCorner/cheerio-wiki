@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-04-Introduction - rust-analyzer.md
+    path: raw/web/2026-08-04-introduction-rust-analyzer.md
     url: https://rust-analyzer.github.io/book/
-provenance_raw: "raw/web/2026-08-04-Introduction - rust-analyzer.md"
+provenance_raw: "raw/web/2026-08-04-introduction-rust-analyzer.md"
 provenance_url: https://rust-analyzer.github.io/book/
 tags: [lsp, rust, language-server, code-analysis, ide]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-04-rust-analyzer
 ---
 
 > 來源：[rust-analyzer Introduction](https://rust-analyzer.github.io/book/)
-> 原始剪藏：[[raw/web/2026-08-04-Introduction - rust-analyzer.md|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-04-introduction-rust-analyzer|raw clip]]
 
 ## 一句話
 

@@ -100,7 +100,7 @@ MCP Server (LSP / DB / API)
 ## 來源
 
 - [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF+LSP+CodeGraph AI Agent 研究]]
-- [[raw/web/2026-08-04-What is the Model Context Protocol (MCP)|MCP 說明]]
+- [[raw/web/2026-08-04-what-is-the-model-context-protocol-mcp|MCP 說明]]
 - [MCP 官方文件](https://modelcontextprotocol.io/)
 
 ## 相關頁面
