@@ -69,17 +69,17 @@
 - [[wiki/entities/agentskills-io-standard|agentskills.io — AI Agent Skill 開放標準]] — title: agentskills.io — AI Agent Skill 開放標準 🛠️
 - [[wiki/entities/area-l|AReaL — 開源 Agent 強化學習基礎設施]] — title: "AReaL — 開源 Agent 強化學習基礎設施"
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway — 企業 AI 治理層]] — title: Axway Amplify AI Gateway — 企業 AI 治理層
-- [[wiki/entities/claude-code|Claude Code]] — title: Claude Code
+- [[wiki/entities/claude-code|Claude Code — Anthropic AI Coding Agent]] — title: Claude Code — Anthropic AI Coding Agent 🛠️
 - [[wiki/entities/claude-design|Claude Design]] — title: Claude Design
 - [[wiki/entities/docling|Docling — IBM 文件解析與結構化框架]] — title: "Docling — IBM 文件解析與結構化框架"
-- [[wiki/entities/github-copilot|GitHub Copilot]] — title: GitHub Copilot
+- [[wiki/entities/github-copilot|GitHub Copilot — AI 程式碼輔助生態系]] — title: GitHub Copilot — AI 程式碼輔助生態系 🛠️
 - [[wiki/entities/graphify|Graphify — 開源代碼知識圖譜工具]] — title: "Graphify — 開源代碼知識圖譜工具"
 - [[wiki/entities/guizang-ppt-skill|guizang-ppt-skill — AI Agent HTML PPT 技能]] — title: guizang-ppt-skill — AI Agent HTML PPT 技能
 - [[wiki/entities/hermes-agent|hermes-agent — 開源 AI Agent 框架]] — title: "hermes-agent — 開源 AI Agent 框架"
 - [[wiki/entities/huashu-design|huashu-design — HTML 原生設計技能]] — title: huashu-design — HTML 原生設計技能
 - [[wiki/entities/knowledge-garden-to-raw|knowledge-garden-to-raw — Notion → Raw 抓取 Skill]] — title: knowledge-garden-to-raw — Notion → Raw 抓取 Skill
 - [[wiki/entities/knowledge-garden|knowledge-garden — Cheerio 知識花園 Manifest]] — title: knowledge-garden — Cheerio 知識花園 Manifest
-- [[wiki/entities/langgraph|LangGraph — Production-Grade Agent Runtime with Graph-Based State Management]] — title: "LangGraph — Production-Grade Agent Runtime with Graph-Based State Manage
+- [[wiki/entities/langgraph|LangGraph — Graph-based Agent Runtime with Durability]] — title: "LangGraph — Graph-based Agent Runtime with Durability"
 - [[wiki/entities/learning-loop|learning-loop]] — title: learning-loop 🛠️
 - [[wiki/entities/lsp|LSP (Language Server Protocol)]] — title: LSP (Language Server Protocol) 🛠️
 - [[wiki/entities/mario-zechner|Mario Zechner]] — title: Mario Zechner

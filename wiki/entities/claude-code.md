@@ -1,51 +1,81 @@
 ---
-title: Claude Code
+title: "Claude Code — Anthropic AI Coding Agent"
 type: entity
 created: 2026-08-04
-updated: 2026-08-13
-sources: 2
-tags: [claude-code, anthropic, mcp, ai-coding-agent]
-topics: [ai-development-tools]
+updated: 2026-08-14
+sources: 3
+tags: [claude-code, anthropic, mcp, ai-coding-agent, hooks, subagents]
+topics: [ai-development-tools, ai-agent]
 canonical: entities/claude-code
 ---
 
-# Claude Code
+> Claude Code 是 Anthropic 推出的 agentic coding tool，以終端機為起點，擴展到 Desktop App、Web、IDE、GitHub（`@claude` tag）。核心建立在 MCP（Model Context Protocol）之上，能自主觀察 codebase → 推理 → 執行工具 → 評估結果 → 重複循環。
 
-> Anthropic 的 AI Coding Agent，基於 MCP Protocol 整合 LSP 與外部工具。
+## 核心機制
 
-## 核心特色
-
-### 1. MCP 整合
-- 原生支援 Model Context Protocol
-- 透過 MCP Server 整合 LSP、資料庫、API
-- 開放標準，高度可擴充
-
-### 2. Agentic Loop
+### 1. Agentic Loop（代理循環）
 ```
 Observe → Reason → Action → Evaluate → Loop
 ```
+每次收到指令後觀察 codebase（grep、read file、glob）、推理下一步、呼叫工具、評估結果、決定是否繼續。能處理多步驟複雜任務（重構整個模組、修復跨檔案 bug）。
 
-### 3. Tool Calling
-- `read` / `write` / `edit` — 檔案操作
-- `bash` — 命令執行
-- MCP Tools — LSP、Code Graph 等
+### 2. Extended Thinking（擴展思考）
+支援動態 thinking budget——根據任務複雜度自動調整思考預算，簡單任務少思考、複雜任務多思考。
+
+### 3. MCP 整合（Model Context Protocol）
+原生支援 MCP，透過 `.mcp.json` 或 `claude mcp add` 串接：
+- **LSP Server**：語法分析、類型檢查（Pyright、TypeScript Language Server）
+- **Database**：直接查詢資料庫
+- **Custom API**：任何 MCP server
+支援三種傳輸層：stdio（本地進程）、SSE（遠端 OAuth）、HTTP（REST）。
+
+### 4. Skills（技能系統）
+以 `SKILL.md` 檔案定義，包含 metadata、instructions、resources。支援 progressive disclosure（漸進式揭露）。概念與 Pi Agent 的 skill 系統一致。
+
+### 5. Subagents（子代理）
+可啟動 subagents 並行處理任務。例如 `/code-review` 同時啟動 4 個獨立 review agent：
+1. CLAUDE.md 合規性檢查
+2. CLAUDE.md 合規性檢查（第二視角）
+3. Bug 掃描
+4. Git 歷史分析
+
+每個 subagent 獨立產出結果，最後由主 agent 綜合評分（confidence scoring ≥ 80 才通過）。
+
+### 6. Hooks（鉤子系統）
+在生命週期事件中插入自動化邏輯：
+
+| 事件 | 時機 | 用途 |
+|------|------|------|
+| `PreToolUse` | 工具呼叫前 | 權限驗證、安全檢查 |
+| `PostToolUse` | 工具呼叫後 | 結果驗證、日誌記錄 |
+| `Stop` | agent 嘗試退出時 | 攔截退出、強制迭代（Ralph Loop） |
+| `SessionStart` | session 啟動時 | 注入上下文、載入設定 |
+| `UserPromptSubmit` | 使用者送出 prompt 前 | 預處理、格式化 |
+
+### 7. Context Compaction（上下文壓縮）
+對話過長時自動摘要化，釋放 context window 空間。
+
+### 8. Permission Prompting（權限提示）
+危險指令（刪除檔案、system 命令）暫停詢問使用者授權，確保人類保有最終控制權。
 
 ## 安裝與使用
 
 ```bash
-# 安裝 Claude Code CLI
-npm install -g @anthropic-ai/claude-code
+# 安裝（原生安裝器為主推，npm deprecated）
+curl -fsSL https://claude.ai/install.sh | sh
+# 或
+brew install anthropic/claude/claude-code
 
-# 啟動 Claude Code
+# 啟動
 claude
 
 # 設定 MCP Server
-claude mcp add lsp-python npx -y @modelcontextprotocol/server-lsp --command pyright-langserver --args --stdio
+claude mcp add lsp-python npx -y @modelcontextprotocol/server-lsp \
+  --command pyright-langserver --args --stdio
 ```
 
-## MCP 配置
+## MCP 配置範例
 
-### mcp_config.json
 ```json
 {
   "mcpServers": {
@@ -56,10 +86,6 @@ claude mcp add lsp-python npx -y @modelcontextprotocol/server-lsp --command pyri
     "lsp-typescript": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-lsp", "--command", "typescript-language-server", "--args", "--stdio"]
-    },
-    "okf-wiki": {
-      "command": "node",
-      "args": ["./scripts/okf-mcp-server.js", "--wiki-dir", "./.knowledge-wiki"]
     }
   }
 }
@@ -67,12 +93,12 @@ claude mcp add lsp-python npx -y @modelcontextprotocol/server-lsp --command pyri
 
 ## OKF 整合
 
-Claude Code 完全相容 OKF 格式：
+Claude Code 完全相容 OKF 格式——Agent 可直接讀取 OKF Markdown 理解專案知識：
 
 ```
 .knowledge-wiki/
-├── index.md              # 入口
-├── architecture.md       # 架構文件
+├── index.md
+├── architecture.md
 ├── modules/
 │   ├── auth.md
 │   └── database.md
@@ -80,22 +106,37 @@ Claude Code 完全相容 OKF 格式：
     └── 2026-08-04-orm-choice.md
 ```
 
-Agent 可直接讀取 OKF Markdown 理解專案知識。
+## Claude Code vs Pi Agent — 互補關係
 
-## 與其他 Agent 比較
+| 面向 | Claude Code | Pi Agent |
+|------|-------------|----------|
+| **定位** | Coding Agent（專注程式碼） | LifeOS Agent（跨域 orchestrator） |
+| **介面** | Terminal / Desktop App / Web / IDE / GitHub | TUI（Terminal UI） |
+| **Protocol** | MCP（開放標準） | Extension System |
+| **擴充方式** | Plugins（commands + agents + skills + hooks） | Skills + Extensions |
+| **LSP 整合** | MCP Server 原生支援 | Extension（如 Pi LSP Bridge） |
+| **Subagent** | 並行 multi-agent review | `pi-subagents` skill |
+| **呼叫方式** | 直接使用 | 透過 `chat-with-claude` skill CLI 呼叫 |
 
-| 特色 | Claude Code | Copilot | Codex CLI | Pi Agent |
-|---|---|---|---|---|
-| **Protocol** | MCP (開放) | Extensions SDK | API | Extension |
-| **LSP 整合** | MCP Server | 內建探針 | CLI 工具 | Extension |
-| **OKF 相容** | ✅ 原生 | ⚠️ 有限 | ⚠️ 有限 | ✅ Skill |
-| **擴充性** | 極高 | 中等 | 低 | 高 |
+**關鍵互補點：**
+- Claude Code 做**深度 coding**（重構、debug、測試），Pi 做**廣度 orchestration**（工作追蹤、知識管理、跨工具協作）
+- 我們透過 `chat-with-claude` skill 把 Claude Code 當作「coding subagent」來呼叫
+- MCP 是 Claude Code 核心優勢，Pi 的 extension system 在跨域整合上更靈活
 
-## 來源
+## 客觀事實
 
-- [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF+LSP+CodeGraph AI Agent 研究]]
-- [Claude Code 文件](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code)
-- [MCP 官方](https://modelcontextprotocol.io/)
+| 概念 | 發現 | 來源 |
+|------|------|------|
+| 維護者 | Anthropic | GitHub repo |
+| 驅動模型 | Claude 5 家族（Opus 5、Sonnet 5）、Haiku 4.5 | 2026-08 用戶裁定 |
+| 安裝方式 | 原生安裝器（curl / brew / winget）為主推；npm deprecated | GitHub README |
+| Plugin 系統 | commands + agents + skills + hooks + MCP | plugins/README.md |
+| 官方 Plugins | 14 個（code-review、feature-dev、hookify、security-guidance 等） | plugins/ 目錄 |
+| MCP 傳輸層 | stdio、SSE、HTTP | plugin-dev skill |
+| Hook 事件 | PreToolUse、PostToolUse、Stop、SubagentStop、SessionStart、SessionEnd、UserPromptSubmit、PreCompact、Notification | hookify README |
+| Extended Thinking | 動態 thinking budget | Anthropic docs |
+| Context Compaction | 自動摘要化長對話 | Anthropic docs |
+| 授權 | 商業授權（Anthropic Commercial ToS） | Anthropic ToS |
 
 ## Claude Design MCP Handoff（設計交付）
 
@@ -104,15 +145,14 @@ Claude Code 可透過 MCP 接收 [[wiki/entities/claude-design|Claude Design]] �
 1. **設計匯出**：在 Claude Design 中匯出，取得 MCP prompt
 2. **Metadata 讀取**：Claude Code 讀取設計 metadata、Design System、所有元素
 3. **應用建構**：將設計轉為真實前端程式碼
-4. **Deep Review**：驗證設計與 [[wiki/concepts/design-md-format|design.md]] 一致性、響應式適配
+4. **Deep Review**：驗證設計與 [[wiki/concepts/design-md-format|design.md]] 一致性
 5. **後端整合**：透過 MCP 連接 Supabase 等後端服務
-
-這條工作流讓設計與開發之間實現無縫銜接。
 
 ## 來源
 
 - [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF+LSP+CodeGraph AI Agent 研究]]
 - [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]]
+- Notion 種子：[[https://app.notion.com/p/3bb5979e3a8c81ce93fdfd8be0c7ab49|Claude Code — Anthropic AI Coding Agent]]
 - [Claude Code 文件](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code)
 - [MCP 官方](https://modelcontextprotocol.io/)
 
@@ -122,3 +162,4 @@ Claude Code 可透過 MCP 接收 [[wiki/entities/claude-design|Claude Design]] �
 - [[wiki/entities/mcp-model-context-protocol|MCP]] — Claude Code 的核心 Protocol
 - [[wiki/entities/github-copilot|GitHub Copilot]] — 競品 AI Coding Agent
 - [[wiki/entities/pi-mono|Pi Agent]] — 競品 AI Coding Agent
+- [[wiki/entities/langgraph|LangGraph]] — Agent Runtime 框架

@@ -15,6 +15,18 @@
 - 修正：`work/history/2026-08.md`（取代標記修正不準確的自我回報）
 - refs: [[wiki/sources/2026-08-13-garden-guard-incident]]
 
+## [2026-08-14] sync | 花園種子內容同步：LangGraph / GitHub Copilot / Claude Code
+
+- 來源：Notion 知識花園 3 顆種子頁面（經 Cheer + Gemini 評審後的版本）
+- 同步方向：Notion → 本機 wiki entities
+- 更新頁面：
+  - wiki/entities/langgraph.md — 大幅擴充：新增生态系工具（Studio/Platform/LangGraph.js）、完整比較表（vs Pi/AutoGen/CrewAI）、深度架構差異分析、客觀事實表（版本、Stars、授權）
+  - wiki/entities/github-copilot.md — 大幅擴充：11 個生态系組件完整剖析、定價方案、Copilot Memory、Third-party Coding Agents、與 Pi/Claude Code 差異比較表
+  - wiki/entities/claude-code.md — 大幅擴充：8 個核心機制（Agentic Loop/Extended Thinking/MCP/Skills/Subagents/Hooks/Context Compaction/Permission Prompting）、Hooks 完整事件表、客觀事實表、Claude Design MCP Handoff
+- 更新：wiki/index.md（三個 entity 標題與摘要更新）
+- 重點：三顆種子 Notion 版本均遠比本地 wiki 豐富，本次同步大幅擴充 wiki 知識品質
+- refs: [[wiki/entities/langgraph|langgraph]]、[[wiki/entities/github-copilot|github-copilot]]、[[wiki/entities/claude-code|claude-code]]
+
 ## [2026-08-13] ingest | How To Use Claude Design To Build Beautiful Sites (YouTube)
 
 - 來源：YouTube 影片（AI LABS），18:33，英文 auto-generated 字幕
