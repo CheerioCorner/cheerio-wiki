@@ -8,7 +8,7 @@ tags: [redis, caching, backend, session-management, rate-limiting]
 topics: [backend-systems]
 provenance:
   - kind: raw
-    path: raw/web/2026-08-09-Redis Design Patterns for Caching and Session Management.md
+    path: raw/web/2026-08-09-redis-design-patterns-for-caching-and-session-management.md
     url: https://medium.com/@artemkhrenov/key-value-store-patterns-redis-design-patterns-for-caching-and-session-management-418d91148701
 ---
 

@@ -6,7 +6,7 @@ updated: 2026-08-05
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-pipackagescoding-agent at main.md
+    path: raw/web/2026-08-02-pipackagescoding-agent-at-main.md
 tags: [pi, coding-agent, monorepo, containerization, supply-chain]
 collection: sources
 topics: [ai-agent]
@@ -102,7 +102,7 @@ npm run check                   # Lint + format + type check
 
 ## 來源
 
-- [[raw/web/2026-08-02-pipackagescoding-agent at main|Raw — GitHub README]]
+- [[raw/web/2026-08-02-pipackagescoding-agent-at-main|Raw — GitHub README]]
 
 ## 相關頁面
 

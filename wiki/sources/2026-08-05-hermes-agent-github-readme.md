@@ -6,7 +6,7 @@ updated: 2026-08-05
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-NousResearchhermes-agent The agent that grows with you.md
+    path: raw/web/2026-08-02-nousresearchhermes-agent-the-agent-that-grows-with-you.md
 tags: [hermes, ai-agent, python, self-improving, skills, memory, nous-research]
 collection: sources
 topics: [ai-agent, skill]
@@ -133,7 +133,7 @@ hermes claw migrate --dry-run    # 預覽
 
 ## 來源
 
-- [[raw/web/2026-08-02-NousResearchhermes-agent The agent that grows with you|Raw — GitHub README]]
+- [[raw/web/2026-08-02-nousresearchhermes-agent-the-agent-that-grows-with-you|Raw — GitHub README]]
 
 ## 相關頁面
 

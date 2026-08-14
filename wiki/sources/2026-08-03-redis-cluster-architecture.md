@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-03-Cluster Architecture.md
+    path: raw/web/2026-08-03-cluster-architecture.md
     url: https://redis.io/technology/redis-enterprise-cluster-architecture/
-provenance_raw: "raw/web/2026-08-03-Cluster Architecture.md"
+provenance_raw: "raw/web/2026-08-03-cluster-architecture.md"
 provenance_url: https://redis.io/technology/redis-enterprise-cluster-architecture/
 tags: [redis, cluster, sharding, high-availability, enterprise]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-03-redis-cluster-architecture
 ---
 
 > 來源：[Redis Enterprise Cluster Architecture](https://redis.io/technology/redis-enterprise-cluster-architecture/)
-> 原始剪藏：[[raw/web/2026-08-03-Cluster Architecture.md|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-03-cluster-architecture.md|raw clip]]
 
 ## 一句話
 

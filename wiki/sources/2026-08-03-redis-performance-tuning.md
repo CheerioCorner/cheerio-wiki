@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-03-Performance Tuning Best Practices.md
+    path: raw/web/2026-08-03-performance-tuning-best-practices.md
     url: https://redis.io/faq/doc/1mebipyp1e/performance-tuning-best-practices
-provenance_raw: "raw/web/2026-08-03-Performance Tuning Best Practices.md"
+provenance_raw: "raw/web/2026-08-03-performance-tuning-best-practices.md"
 provenance_url: https://redis.io/faq/doc/1mebipyp1e/performance-tuning-best-practices
 tags: [redis, performance, latency, optimization, troubleshooting]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-03-redis-performance-tuning
 ---
 
 > 來源：[Redis Performance Tuning Best Practices](https://redis.io/faq/doc/1mebipyp1e/performance-tuning-best-practices)
-> 原始剪藏：[[raw/web/2026-08-03-Performance Tuning Best Practices.md|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-03-performance-tuning-best-practices.md|raw clip]]
 
 ## 一句話
 

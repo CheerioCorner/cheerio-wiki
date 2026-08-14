@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-03-Sentinel client spec.md
+    path: raw/web/2026-08-03-sentinel-client-spec.md
     url: https://redis.io/docs/latest/develop/reference/sentinel-clients/
-provenance_raw: "raw/web/2026-08-03-Sentinel client spec.md"
+provenance_raw: "raw/web/2026-08-03-sentinel-client-spec.md"
 provenance_url: https://redis.io/docs/latest/develop/reference/sentinel-clients/
 tags: [redis, sentinel, failover, service-discovery, client]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-03-redis-sentinel-client-spec
 ---
 
 > 來源：[Redis Sentinel Client Spec](https://redis.io/docs/latest/develop/reference/sentinel-clients/)
-> 原始剪藏：[[raw/web/2026-08-03-Sentinel client spec.md|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-03-sentinel-client-spec.md|raw clip]]
 
 ## 一句話
 

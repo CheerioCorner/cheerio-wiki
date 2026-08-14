@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-03-Recommended security practices.md
+    path: raw/web/2026-08-03-recommended-security-practices.md
     url: https://redis.io/docs/latest/operate/rs/security/recommended-security-practices/
-provenance_raw: "raw/web/2026-08-03-Recommended security practices.md"
+provenance_raw: "raw/web/2026-08-03-recommended-security-practices.md"
 provenance_url: https://redis.io/docs/latest/operate/rs/security/recommended-security-practices/
 tags: [redis, security, tls, access-control, deployment]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-03-redis-security-practices
 ---
 
 > 來源：[Redis Recommended Security Practices](https://redis.io/docs/latest/operate/rs/security/recommended-security-practices/)
-> 原始剪藏：[[raw/web/2026-08-03-Recommended security practices.md|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-03-recommended-security-practices.md|raw clip]]
 
 ## 一句話
 

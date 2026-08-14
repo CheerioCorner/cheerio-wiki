@@ -6,13 +6,13 @@ updated: 2026-08-08
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant.md
+    path: raw/web/2026-08-02-agentscope-aiqwenpaw-your-personal-ai-assistant.md
     url: https://github.com/agentscope-ai/QwenPaw
 tags: [qwenpaw, ai-agent, agent-os, security, local-deploy, agentscope, github]
 collection: sources
 topics: [ai-agent]
 canonical: sources/2026-08-02-qwenpaw-github-readme
-provenance_raw: raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant.md
+provenance_raw: raw/web/2026-08-02-agentscope-aiqwenpaw-your-personal-ai-assistant.md
 provenance_url: https://github.com/agentscope-ai/QwenPaw
 provenance_url: https://github.com/agentscope-ai/QwenPaw
 ---
@@ -81,7 +81,7 @@ QwenPaw 是 AgentScope 的開源個人 AI 助理，支援本地/雲端部署、�
 
 ## 來源
 
-- [[../../raw/web/2026-08-02-agentscope-aiQwenPaw Your Personal AI Assistant|Raw GitHub README]]
+- [[../../raw/web/2026-08-02-agentscope-aiqwenpaw-your-personal-ai-assistant|Raw GitHub README]]
 
 ## 相關頁面
 

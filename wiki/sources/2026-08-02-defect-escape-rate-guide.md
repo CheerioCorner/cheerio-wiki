@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-Step-by-step guide on how to measure Defect Escape Rate.md
+    path: raw/web/2026-08-02-step-by-step-guide-on-how-to-measure-defect-escape-rate.md
     url: https://instatus.com/blog/der
-provenance_raw: "raw/web/2026-08-02-Step-by-step guide on how to measure Defect Escape Rate.md"
+provenance_raw: "raw/web/2026-08-02-step-by-step-guide-on-how-to-measure-defect-escape-rate.md"
 provenance_url: https://instatus.com/blog/der
 tags: [defect-metrics, der, quality-assurance, devops, testing]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-02-defect-escape-rate-guide
 ---
 
 > 來源：[Step-by-step guide on how to measure Defect Escape Rate](https://instatus.com/blog/der)
-> 原始剪藏：[[raw/web/2026-08-02-Step-by-step guide on how to measure Defect Escape Rate.md|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-02-step-by-step-guide-on-how-to-measure-defect-escape-rate.md|raw clip]]
 
 ## 一句話
 

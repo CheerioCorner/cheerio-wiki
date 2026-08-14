@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-03-Eviction policy.md
+    path: raw/web/2026-08-03-eviction-policy.md
     url: https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/
-provenance_raw: "raw/web/2026-08-03-Eviction policy.md"
+provenance_raw: "raw/web/2026-08-03-eviction-policy.md"
 provenance_url: https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/
 tags: [redis, eviction, memory, lru, lfu]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-03-redis-eviction-policy
 ---
 
 > 來源：[Redis Eviction Policy](https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/)
-> 原始剪藏：[[raw/web/2026-08-03-Eviction policy.md|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-03-eviction-policy.md|raw clip]]
 
 ## 一句話
 

@@ -193,7 +193,7 @@ dotnet tool install --global OmniSharp
 - [[raw/.trash/2026-08-04-vuejslanguage-tools-high-performance-vue-language|Volar GitHub]]
 - [[raw/.trash/2026-08-04-angularvscode-ng-language|Angular LS GitHub]]
 - [[raw/.trash/2026-08-04-sveltejslanguage|Svelte LS GitHub]]
-- [[raw/web/2026-08-04-What is the Model Context Protocol (MCP)|MCP 說明]]
+- [[raw/web/2026-08-04-what-is-the-model-context-protocol-mcp|MCP 說明]]
 - [[raw/.trash/2026-08-04-tree-sittertree|Tree-sitter GitHub]]
 
 ## 相關頁面

@@ -12,9 +12,9 @@ provenance:
   - kind: raw
     path: raw/.trash/2026-08-04-microsoftlanguage-server.md
   - kind: raw
-    path: raw/.trash/2026-08-04-Introduction - Tree-sitter.md
+    path: raw/.trash/2026-08-04-introduction-tree-sitter.md
   - kind: raw
-    path: raw/.trash/2026-08-04-scip-codescip SCIP Code Intelligence Protocol.md
+    path: raw/.trash/2026-08-04-scip-codescip-scip-code-intelligence-protocol-4.md
   - kind: raw
     path: raw/.trash/2026-08-04-typescript-language-servertypescript-language.md
 ---
@@ -93,8 +93,8 @@ provenance:
 ## 來源
 
 - [[raw/.trash/2026-08-04-microsoftlanguage-server|Microsoft LSP Specification]]
-- [[raw/.trash/2026-08-04-Introduction - Tree-sitter|Tree-sitter Documentation]]
-- [[raw/.trash/2026-08-04-scip-codescip SCIP Code Intelligence Protocol|SCIP Specification]]
+- [[raw/.trash/2026-08-04-introduction-tree-sitter|Tree-sitter Documentation]]
+- [[raw/.trash/2026-08-04-scip-codescip-scip-code-intelligence-protocol-4|SCIP Specification]]
 - [[raw/.trash/2026-08-04-typescript-language-servertypescript-language|TypeScript Language Server]]
 
 ## 相關頁面

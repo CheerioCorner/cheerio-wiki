@@ -97,7 +97,7 @@ AI 修改程式碼 → LSP Diagnostic → 語法/型別錯誤 → AI 自動修�
 ## 來源
 
 - [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]]
-- [[raw/.trash/2026-08-04-scip-codescip SCIP Code Intelligence Protocol|SCIP Specification]]
+- [[raw/.trash/2026-08-04-scip-codescip-scip-code-intelligence-protocol-4|SCIP Specification]]
 
 ## 相關頁面
 

@@ -80,7 +80,7 @@ captures = query.captures(tree.root_node)
 ## 來源
 
 - [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]]
-- [[raw/.trash/2026-08-04-Introduction - Tree-sitter|Tree-sitter Documentation]]
+- [[raw/.trash/2026-08-04-introduction-tree-sitter|Tree-sitter Documentation]]
 
 ## 相關頁面
 

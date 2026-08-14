@@ -6,7 +6,7 @@ updated: 2026-08-08
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-08-alchaincyfhuashu-design Huashu Design.md
+    path: raw/web/2026-08-08-alchaincyfhuashu-design-huashu-design.md
 tags: [skill, design, html, prototype, slides, animation, pptx, mp4, huashu]
 topics: [skill]
 canonical: sources/2026-08-08-huashu-design

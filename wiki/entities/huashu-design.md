@@ -7,7 +7,7 @@ sources: 1
 tags: [skill, design, html, prototype, slides, animation, pptx, mp4]
 topics: [skill]
 canonical: entities/huashu-design
-provenance_raw: "raw/web/2026-08-08-alchaincyfhuashu-design Huashu Design.md"
+provenance_raw: "raw/web/2026-08-08-alchaincyfhuashu-design-huashu-design.md"
 ---
 
 # huashu-design — HTML 原生設計技能
@@ -84,7 +84,7 @@ Claude Design 是**更好的圖形工具**，huashu-design 是**讓圖形工具�
 
 ## 來源
 
-- [[raw/web/2026-08-08-alchaincyfhuashu-design Huashu Design|Raw — GitHub README]]
+- [[raw/web/2026-08-08-alchaincyfhuashu-design-huashu-design|Raw — GitHub README]]
 
 ## 相關頁面
 

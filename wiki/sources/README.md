@@ -58,7 +58,7 @@ created: 2026-08-02
 updated: 2026-08-02
 sources: 2
 tags: [defect-metrics, quality]
-provenance_raw: "raw/web/[[../../raw/web/2026-08-02-Defect Density & Escape Rate Agile Metrics Guide 2026|2026-08-02-Defect Density & Escape Rate Agile Metrics Guide 2026]].md"
+provenance_raw: "raw/web/[[../../raw/web/2026-08-02-defect-density-escape-rate-agile-metrics-guide-2026|2026-08-02-defect-density-escape-rate-agile-metrics-guide-2026]].md"
 provenance_url: https://example.com/original-article
 ---
 ```

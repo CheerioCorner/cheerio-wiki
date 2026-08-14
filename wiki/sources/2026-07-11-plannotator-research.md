@@ -6,7 +6,7 @@ updated: 2026-07-30
 sources: 2
 provenance:
   - kind: raw
-    path: raw/web/2026-08-02-Save Plannotator Plans to Obsidian or Bear.md
+    path: raw/web/2026-08-02-save-plannotator-plans-to-obsidian-or-bear.md
 tags: [plannotator, research, custom-development, pi-extension]
 topics: [extension-dev]
 collection: sources

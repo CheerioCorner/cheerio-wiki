@@ -6,9 +6,9 @@ updated: 2026-08-10
 sources: 1
 provenance:
   - kind: raw
-    path: raw/web/2026-08-03-Memory optimization.md
+    path: raw/web/2026-08-03-memory-optimization.md
     url: https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/
-provenance_raw: "raw/web/2026-08-03-Memory optimization.md"
+provenance_raw: "raw/web/2026-08-03-memory-optimization.md"
 provenance_url: https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/
 tags: [redis, memory, optimization, hash, encoding]
 collection: sources
@@ -17,7 +17,7 @@ canonical: sources/2026-08-03-redis-memory-optimization
 ---
 
 > 來源：[Redis Memory Optimization](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/)
-> 原始剪藏：[[raw/web/2026-08-03-Memory optimization.md|raw clip]]
+> 原始剪藏：[[raw/web/2026-08-03-memory-optimization.md|raw clip]]
 
 ## 一句話
 
