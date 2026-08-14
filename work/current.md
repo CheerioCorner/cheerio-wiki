@@ -374,6 +374,17 @@
 
 ## Completed
 
+- [x] W-2026-08-054 花園視覺地圖 Mermaid 全面驗證與修復 ✅ #knowledge #notion
+  - completed: 2026-08-14
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、Notion 知識花園 Database、visualmap skill
+  - 已完成：
+    - ✅ 用 mermaid-cli（mmdc）實跑驗證全部 21 張種子地圖語法，修好 1 張壞掉的（節點含空格/中文未加引號導致 parse error），現 21/21 全部通過 render
+    - ✅ 依使用者要求，把 Omnigent（3 張）與 OpenCodeReview（3 張，benchmark 用 xychart-beta）的視覺地圖從 ASCII-art 轉為真正的 Mermaid，全部經 mmdc 驗證通過
+  - 決策/流程改進：
+    - 視覺地圖驗收標準新增「必須通過 mmdc render（英數 id + 引號標籤）」，不能只看有無內容
+    - 先前疑似「成長狀態被清空」是查詢方式誤判（`ntn pages get` 不顯示 select 屬性），實查 22 顆狀態都在（🌿8 / 🌱14），資料無遺失
+    - 後查花園狀態統一用 `ntn api data_sources query` 看 JSON，不用 `ntn pages get`
+
 - [x] W-2026-08-053 花園技術類半成品補強（第三批：MCP / Agentic AI / LOOP Engineering / Code Graph / LSP / Tree-sitter）✅ #knowledge #notion
   - completed: 2026-08-14
   - result: 全部 6 顆技術類種子完成補強與 Gemini 證據型評審。全部補上視覺地圖（放進視覺地圖 DB 記錄頁、雙向 relation）；Tree-sitter 補完整正文並升 🌿 成長期。Gemini 證據型評審（實測 HTTP/GitHub API）抓到並修正多個問題：3 個杜撰的失效來源 URL（Agentic AI、LOOP、Code Graph 的 nicholasgasior/awesome-* 假連結）已換成經 HTTP 200 驗證的真實來源；Tree-sitter 維護者姓名 Max Cantor→Max Brunsfeld；Code Graph 錯字修正。評審分數：MCP 92 / LSP 95 / Tree-sitter 87 / Agentic AI 84 / Code Graph 83 / LOOP Engineering 76（已修訂）。流程改進：Pi 寫入任何來源 URL 前必須先 HTTP 驗證回 200，禁止編造。

@@ -3,6 +3,14 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] complete | 花園視覺地圖 Mermaid 全面驗證與修復（21/21 通過 mmdc render）
+
+- 用 mmdc 實跑驗證全部 21 張種子地圖語法，修好 1 張壞掉的（節點含空格/中文未加引號）
+- Omnigent 3 張 + OpenCodeReview 3 張（xychart-beta）視覺地圖從 ASCII-art 轉為真正 Mermaid，全部通過 mmdc render
+- 流程改進：驗收標準新增「必須通過 mmdc render（英數 id + 引號標籤）」
+- 紓誤：先前疑似成長狀態被清空是查詢方式誤判（`ntn pages get` 不顯示 select 屬性），實查 22 顆都在（🌿8 / 🌱14）
+- refs: knowledge-garden entity、Notion 知識花園 Database
+
 ## [2026-08-14] complete | 🎯 花園 22 顆種子全部處理完畢
 
 - 第四批收尾（最後 8 顆「完整」種子）：NPM Publishing 補視覺地圖+來源 URL；Omnigent 來源 URL 空格修正；5 顆核心種子補 Wiki Path/最後更新；4 顆視覺地圖 ASCII→Mermaid
