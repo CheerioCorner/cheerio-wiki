@@ -18,6 +18,7 @@ updated: 2026-08-05
 
 ## Concepts
 
+- [[wiki/concepts/harness|Harness — LLM 的驅動層]] — 概念根，定義 harness 是什麼、三層分類、主流產品比較 🌱
 - [[wiki/concepts/meta-harness|Meta-Harness]]
 - [[wiki/concepts/code-graph|Code Graph]] — 跨檔案代碼語意圖譜 🛠️
 

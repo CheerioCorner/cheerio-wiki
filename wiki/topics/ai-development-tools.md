@@ -23,6 +23,10 @@ updated: 2026-08-08
 - [[wiki/concepts/ai-code-review|AI Code Review]] — AI 自動化代碼審查綜整 🛠️
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程 🛠️
 
+## Discussions
+
+- [[wiki/discussions/ai-frontend-handoff-methodology|把前端交給 AI 的有效方法論]] — 研究種子：前端 AI 交接方法論（H1–H8 可實測假設）
+
 ## Sources
 
 - [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]] — 五階段設計工作流教學 🛠️

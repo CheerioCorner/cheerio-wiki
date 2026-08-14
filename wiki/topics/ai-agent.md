@@ -32,6 +32,7 @@ updated: 2026-08-13
 
 ## Concepts
 
+- [[wiki/concepts/harness|Harness]] — LLM 的驅動層，定義 loop / 工具 / 權限 / context / 記憶 🌱
 - [[wiki/concepts/agentic-ai|Agentic AI]] — AI Agent 核心定義、四大支柱、設計模式 🛠️
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — AI Agent 兩種核心工作流模式
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
@@ -42,6 +43,7 @@ updated: 2026-08-13
 - [[wiki/concepts/code-execution-as-tool-calling|Code Execution as Tool Calling]] — 模型寫 Python 腳本執行多操作取代逐次 tool call 🛠️
 - [[wiki/concepts/recursive-language-model|Recursive Language Model]] — 把 context 當變數、以函式呼叫觸發的獨立 agent session 🛠️
 - [[wiki/concepts/continual-harness|Continual Harness]] — harness 狀態（prompt/skill/memory/subagent）CRUD 化，`/refine` 自我改進 pipeline 🛠️
+- [[wiki/concepts/harness|Harness — LLM 的驅動層]] — 概念根，定義 harness 是什麼、三層分類、主流產品比較 🌱
 - [[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]] — 互動式推理 benchmark，RHAE 計分，同模型換 harness 差距達 3 倍以上 🛠️
 - [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜與驗證策略
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑（Pi vs LangGraph）

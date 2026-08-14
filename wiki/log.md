@@ -3,6 +3,28 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-14] seed | Harness — LLM 的驅動層（概念根種子建立）
+
+- **新種子**：Notion 知識花園新增「Harness — LLM 的驅動層」（🌱 種子期，🔬 研究）
+  - Notion page：`3bc5979e-3a8c-81f9-8e54-eea5a2deeeea`
+  - 來源：arxiv 2603.28052（Stanford Meta-Harness 論文）
+  - 關聯：🧠 Meta-Harness 元鞍具研究專題
+- **Wiki 新建**：`wiki/concepts/harness.md`（概念根頁面）
+- **導航更新**：`wiki/topics/ai-agent.md`、`wiki/topics/meta-systems.md` 加入 harness 連結
+- **Manifest 更新**：`wiki/entities/knowledge-garden.md`（種子 16→17 顆，研究專題關聯更新）
+- **索引更新**：`wiki/index.md`（Concepts 37→38 頁）
+- **審查流程**：Cheer + Gemini 雙審（5 點事實修正）→ Pi 修正 → Notion 寫入 + Wiki 建立
+- **5 點修正**：(1) Claude Code subagent 非內建硬規範 (2) suggest/auto-edit/full-auto 歸 Codex CLI (3) Pi 消歧義為 earendil-works/pi (4) 一句話定義收斂為單一 LLM (5) meta-harness 拆治理/組合型 vs 自動演化/優化型
+- refs: Notion 種子、[[wiki/concepts/harness|harness concept]]、[[wiki/entities/omnigent|Omnigent]]、[[wiki/concepts/meta-harness|Meta-Harness]]
+
+## [2026-08-14] query | Claude Design 影片方法論深化 + 研究種子建立
+
+- **緣起**：人類檢視 pi 對 YouTube `bBlY5YOsKN8`（Claude Design 五階段）的 ingest 是否足夠。實讀逐字稿比對，確認 pi 未謊報但只抓 WHAT、漏大量 WHY（方法論原則）
+- **補強**：`wiki/sources/2026-08-13-claude-design-youtube.md` 新增「方法論原則（可遷移、可實測）」10 條（附逐字稿時間碼）+ 素材性質提醒（AI LABS 行銷型 n=1 來源）
+- **新建種子**：`wiki/discussions/ai-frontend-handoff-methodology.md`（type: discussion, status: draft）——研究問題「把前端交給 AI 怎麼交才有效」，含 H1–H8 可實測假設表
+- **導航**：更新 topics/ai-development-tools（新增 Discussions 區）、index.md Discussions 4→5
+- **待辦**：種子成熟後推進花園需先「圓桌會議 → Claude+Gemini 品質確認」才寫入（Notion 目前未授權）
+
 ## [2026-08-14] lint | raw 檔名 normalize：解決 Windows MAX_PATH checkout 失敗
 
 - **問題**：raw/ 檔名過長（最長 230 字元）+ 含空白/逗號/特殊字元，導致 Windows `git clone` checkout 失敗（filename too long / MAX_PATH）

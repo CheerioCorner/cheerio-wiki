@@ -28,7 +28,7 @@
 
 ---
 
-## Concepts（抽象知識）— 37 頁
+## Concepts（抽象知識）— 38 頁
 
 - [[wiki/concepts/ai-code-review.md|AI Code Review]] — 用 AI 自動化代碼審查，從「人工逐行檢查」進化到「AI 初審 + 人類終審」。
 - [[wiki/concepts/ai-coding-workflow.md|AI Coding Workflow — 結構化 AI 編碼工作流程]] — 一套結構化的 AI 編碼工作流程，把模糊想法變成可追踪、可審查的程式碼變更。
@@ -45,6 +45,7 @@
 - [[wiki/concepts/content-redesign.md|Content 設計 Redesign]] — 知識花園 Content 設計重構：從「套模板」到「針對性報告」。經 Copilot + Gemini 三輪討論確立。
 - [[wiki/concepts/context-cot.md|Context-CoT — 上下文思維鏈]] — 透過「三階煉獄」推理合成 pipeline，強制 LLM 嚴格錨定上下文進行推理，解決「作弊」問題。
 - [[wiki/concepts/continual-harness.md|Continual Harness]] — Continual Harness——把 agent harness 自身的狀態（prompt、skills、memory、sub-agents）抽象成 agent 可以 create/read/update/delete（CRUD）的物件
+- [[wiki/concepts/harness.md|Harness — LLM 的驅動層]] — 包住 LLM 的驅動層，定義 loop / 工具 / 權限 / context / 記憶，三層分類（coding agent → meta-harness → multi-agent orchestration）🌱
 - [[wiki/concepts/defect-metrics.md|Defect Metrics — 軟體品質測量]] — 兩個關鍵的軟體品質指標：Defect Density（缺陷密度）和 Escape Rate（逃脫率）。
 - [[wiki/concepts/html-slide-deck-workflow.md|HTML Slide Deck 製作工作流]] — 用 AI agent 製作高品質 HTML 簡報的完整工作流，整合 guizang-ppt-skill 和 huashu-design 兩套設計系統。
 - [[wiki/concepts/knowledge-management.md|Knowledge Management]] — 系統化地收集、組織、檢索、維護知識的方法論與工具鏈。
@@ -194,8 +195,9 @@
 
 ---
 
-## Discussions（討論中）— 4 頁
+## Discussions（討論中）— 5 頁
 
+- [[wiki/discussions/ai-frontend-handoff-methodology.md|把前端交給 AI 的有效方法論]] — 研究種子：把前端交給 AI 怎麼交才有效（含 H1–H8 可實測假設）🛠️
 - [[wiki/discussions/canonicalization-and-semantic-linking.md|Canonicalization and Semantic Linking]] — title: Canonicalization and Semantic Linking
 - [[wiki/discussions/topic-stub-cleanup.md|Existing Topic Stub Cleanup]] — title: Existing Topic Stub Cleanup
 - [[wiki/discussions/notion-integration-architecture.md|Notion Integration Architecture]] — title: Notion Integration Architecture
