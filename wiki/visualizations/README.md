@@ -13,9 +13,10 @@
 
 ## Mermaid 視覺地圖（新格式）
 
-| 地圖 | 關聯種子 | 說明 |
-|------|---------|------|
-| [[wiki/visualizations/obsidian-seed-map|Obsidian 功能全景圖]] | Obsidian 種子 | 核心功能、插件、應用、AI Agent 整合、我們的實作 |
+| 地圖 | Topics | 說明 |
+|------|--------|------|
+| [[wiki/visualizations/harness-seed-map|Harness 種子視覺地圖]] | ai-agent, meta-systems | Harness 概念根內部結構：核心定義、五大職責、三層分類與具體實例 |
+| [[wiki/visualizations/obsidian-seed-map|Obsidian 功能全景圖]] | ai-agent, knowledge-mgmt | 核心功能、插件、應用、AI Agent 整合、我們的實作 |
 
 ## Canvas 舊格式（保留）
 

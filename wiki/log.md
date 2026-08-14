@@ -17,6 +17,15 @@
 - **5 點修正**：(1) Claude Code subagent 非內建硬規範 (2) suggest/auto-edit/full-auto 歸 Codex CLI (3) Pi 消歧義為 earendil-works/pi (4) 一句話定義收斂為單一 LLM (5) meta-harness 拆治理/組合型 vs 自動演化/優化型
 - refs: Notion 種子、[[wiki/concepts/harness|harness concept]]、[[wiki/entities/omnigent|Omnigent]]、[[wiki/concepts/meta-harness|Meta-Harness]]
 
+## [2026-08-14] visualmap | Harness 種子視覺地圖建立
+
+- **新建**：`wiki/visualizations/harness-seed-map.md`（Mermaid 種子地圖）
+- **Notion**：視覺地圖 Database 註冊（種子地圖，關聯 Harness 種子）
+- **Notion**：種子頁「視覺地圖」欄位已連結
+- **更新**：`wiki/visualizations/README.md`（新增 Harness 視覺地圖條目）
+- **圖表結構**：三層分類（coding agent → meta-harness → multi-agent orchestration）+ 五大核心職責 + 四個具體實例（Claude Code / Codex CLI / Pi / Hermes）+ meta-harness 兩種同名異義（Governance: Omnigent / Evolution: Stanford）
+- refs: [[wiki/concepts/harness|harness concept]]、[[wiki/visualizations/harness-seed-map|視覺地圖]]
+
 ## [2026-08-14] query | Claude Design 影片方法論深化 + 研究種子建立
 
 - **緣起**：人類檢視 pi 對 YouTube `bBlY5YOsKN8`（Claude Design 五階段）的 ingest 是否足夠。實讀逐字稿比對，確認 pi 未謊報但只抓 WHAT、漏大量 WHY（方法論原則）
