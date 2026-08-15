@@ -96,7 +96,7 @@ canonical: entities/knowledge-garden
 | mattpocock/skills — 第一棵樹苗 | [連結](https://app.notion.com/p/3b35979e3a8c81b299d6e6689d78f20e) | [[wiki/entities/mattpocock-skills\|mattpocock-skills]] | 🗺️ [[wiki/visualizations/mattpocock-skills.canvas\|視覺地圖]] |
 | Pi Agent 架構研究 — 從 Runtime 到 Extension | [連結](https://app.notion.com/p/3b35979e3a8c8129ba33f558c588a06f) | [[wiki/entities/agent-extension-installation\|agent-extension-installation]] | 🗺️ [[wiki/visualizations/agent-extension-installation.canvas\|視覺地圖]] |
 
-### 🌱 種子期（20 顆）
+### 🌱 種子期（17 顆）
 
 | 種子名稱 | Notion Link | Wiki 來源 | 視覺地圖 |
 |----------|-------------|-----------|----------|
@@ -117,9 +117,10 @@ canonical: entities/knowledge-garden
 | Tree-sitter — 高效能增量 Parser 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81468edfd59f0b407ddf) | [[wiki/entities/tree-sitter\|tree-sitter]] | — |
 | Agentic AI — 自主 AI 系統核心概念 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81f2b665de005e942e92) | [[wiki/concepts/agentic-ai\|agentic-ai]] | — |
 | Harness — LLM 的驅動層 🆕 | [連結](https://app.notion.com/p/Harness-LLM-3bc5979e3a8c81f98e54eea5a2deeeea) | [[wiki/concepts/harness\|harness]] | — |
-| Skill 撰寫與評估方法論 🆕 | [連結](https://app.notion.com/p/Skill-3bc5979e3a8c810187fbc38bbb498d6d) | [[wiki/concepts/skill-authoring-best-practices\|skill-authoring-best-practices]] | — |
-| Agent Skills 企業治理 🆕 | [連結](https://app.notion.com/p/Agent-Skills-3bc5979e3a8c814e8035d57c6eb691be) | [[wiki/concepts/agent-skills-enterprise-governance\|agent-skills-enterprise-governance]] | — |
-| Agent Skills API 整合機制 🆕 | [連結](https://app.notion.com/p/Agent-Skills-API-3bc5979e3a8c817aa411c872a7df10d4) | [[wiki/concepts/agent-skills-api-usage\|agent-skills-api-usage]] | — |
+> ⚠️ 以下 3 顆已 trash（2026-08-15），內容併入 Claude Code 種子頁：
+> - Skill 撰寫與評估方法論 → 併入 Claude Code（撰寫規格章節）
+> - Agent Skills 企業治理 → 併入 Claude Code（企業治理章節）
+> - Agent Skills API 整合機制 → 併入 Claude Code（API 整合章節）
 
 ---
 
@@ -132,11 +133,12 @@ canonical: entities/knowledge-garden
 | 🧠 Meta-Harness 元鞍具 | 🔬 研究 | [[wiki/topics/meta-systems\|meta-systems]] | Omnigent, Pi Agent 架構研究, Harness |
 | 🔌 Extension 開發生態 | 🔬 研究 | [[wiki/topics/extension-dev\|extension-dev]] | NPM Publishing, OKF, Pi Agent 架構研究 |
 | 📚 知識管理系統 | 🔬 研究 | [[wiki/topics/knowledge-mgmt\|knowledge-mgmt]] | OKF, PARA, Lint 規則集, 語意關係, MOC, Zettelkasten |
-| 🔬 Agent Skills | 🔬 研究 | [[wiki/topics/skill\|skill]] | Skill 撰寫與評估方法論, Agent Skills 企業治理, Agent Skills API 整合機制, mattpocock/skills, GitHub Copilot, Claude Code |
+| 🔬 Agent Skills | 🔬 研究 | [[wiki/topics/skill\|skill]] | mattpocock/skills, GitHub Copilot, Claude Code |
 
 > ✅ 所有 Relation 已於 2026-08-10 更新完成
 > ✅ 新增種子「Harness — LLM 的驅動層」（2026-08-14）
-> ✅ 新增研究專題「🔬 Agent Skills」+ 3 顆子概念種子（2026-08-14） |
+> ✅ 新增研究專題「🔬 Agent Skills」+ 3 顆子概念種子（2026-08-14）
+> ⚠️ 3 顆子種子已 trash，內容併入 Claude Code 和 GitHub Copilot 種子頁（2026-08-15） |
 
 ---
 

@@ -12,6 +12,20 @@
 - **Cheer 自建 Agent 優先清單**：P0 設定分層 + Tool 中斷、P1 結構化輸出 + Pre-flight、P2 模板展開 + TUI 區域分離
 - refs: [[wiki/entities/pi-agent/changelog/v0.84.0|Pi Agent v0.84.0 Changelog]]
 
+## [2026-08-15] restructure | Agent Skills 花園重組（3 子種子併入框架種子頁）
+
+- **決策原因**：人類審查發現 3 顆子種子（撰寫方法論/企業治理/API 整合）內容全部來自 Anthropic 官方文件，被包裝成「跨平台通用方法論」卻脫離具體工具脈絡，讀起來抽象。決定廢除獨立子種子，把內容併回各框架自己的種子頁。
+- **操作**：
+  1. Claude Code 種子（`3bb5979e-3a8c-81ce-93fd-fd8be0c7ab49`）：新增「Skill 撰寫規格」「Skill 企業治理」「Skill API 整合」三大章節（含完整規則、表格、範例）
+  2. GitHub Copilot 種子（`3bb5979e-3a8c-81ba-a661-e06f1d8a1edc`）：Agent Skills 章節擴充為「撰寫規格與使用方式」（含檔案結構、frontmatter 規則、載入方式、與 Anthropic 格式差異）
+  3. 研究專題（`3bc5979e-3a8c-8121-924e-f99b09671383`）：引用改指向新位置（「詳見 🌱 Claude Code — Skill 撰寫規格」等）
+  4. 視覺地圖（`3bc5979e-3a8c-81e0-bb89-f9066f64f664`）：移除 3 個子種子節點
+  5. 3 顆舊種子 trash（`in_trash: true`，可還原）
+  6. 研究專題 🌳 知識花園 relation 清空
+- **引用修正範例**：「（詳見 🌱 Skill 撰寫與評估方法論）」→「（詳見 🌱 Claude Code — Skill 撰寫規格）」
+- **備註**：wiki 端維持獨立概念頁面（wiki 有自己的知識圖譜組織方式），花園端結構不同步。
+- refs: [[wiki/entities/knowledge-garden|knowledge-garden manifest]]
+
 ## [2026-08-15] update | Agent Skills 花園深度灌溉（3 頁面修正）
 
 - **修正類型**：深度灌溉（非單純新增），根據人類審查反饋修正 3 個頁面
