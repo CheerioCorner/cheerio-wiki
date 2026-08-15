@@ -12,10 +12,6 @@
     - **P0（1–2 天）**：① DB write read-back——所有 Notion 寫入 skill 加反查步驟（0.5–1 天）② URL 存活驗證——page-content 寫入前 curl gate，含 retry + 軟/硬 404 區分（0.5 天）③ page-content 順序改「先查證再寫」+ 允許留白 `[待查證]`（1–2 天）
     - **P1（4–5 天）**：④ visualmap 寫入目標修正——Mermaid 寫入 DB 記錄頁 body，種子頁只放 relation + read-back（1 天）⑤ mmdc render 驗證 + 節點語法規則——Node ID 純英數、Label 加引號（1–2 天，需確認 mmdc 環境）⑥ headless 旗標 + 待審模式——`--mode headless`、`Status: 機器生成待審`、三道護欄（禁止寫入既有 Relation / Origin+run-id 可 rollback / default view 過濾）（2 天）
     - **P2（3–5 天）**：⑦ 共用驗證 harness——內部 SkillCompletionHook（效率層）+ 外部確定性腳本（保證層/promote gate）+ 共用驗證邏輯 + 結構化執行收據 JSON（3–5 天）
-    - **成本效益 / 成本控管**：
-      - Pi/Gemini 子代理回傳「精簡結構化結果」而非大表格——冗長回報會灌爆總指揮（Claude）context，是隱藏成本最大來源。可在 skill 內加「headless 回報請精簡」慣例。
-      - Gemini 評審只用在高風險事實查核（外部 URL、人名、授權、版本等），不是每批全套評審，以控管評審成本。
-      - 粗活全下放 Pi、判斷/裁決留給 Claude——角色分工越乾淨，重疊浪費越少。
   - 共識結論（Claude + Gemini + Copilot 圓桌會議）：
     - 四個驗證關卡：URL 存活 / Mermaid render / DB read-back / 事實來源綁定
     - Headless 策略：正式 DB + `Status: 機器生成待審` + 三道護欄（非隔離 DB）
@@ -26,252 +22,10 @@
   - next: 等 Cheer 回顧報告並回饋意見
   - refs: [[.pi/round-table/20260813-183535/synthesis|圓桌會議紀要]]、[[wiki/entities/claude-design|Claude Design]]、[[wiki/concepts/design-md-format|design.md Format]]
   - 狀態：待人類回顧
-  - 已完成：
-    - ✅ Round 1：Claude + Gemini + Copilot 三方開場發言
-    - ✅ Round 2：深入回應（token 成本、Beta 風險、代碼質量、混合方案摩擦）
-    - ✅ Round 3：收斂（響應式品質量化、決策樹、給 Cheer 建議）
-    - ✅ Synthesis 報告產出（結論、比較表、可行性評估、具體建議）
-    - ✅ 主控端回饋補記（2026-08-13，已查證 4 項修正）
   - 核心結論：
     - Claude Design 五階段流程經 2026/6 更新後可行性大幅提升（token 問題已修復）
     - Copilot 無原生畫布但 IDE 整合與代碼品質更成熟
     - Cheer 最佳路線：Direct Code Handoff（Claude Design 探索 → DesignSync 雙向同步 → Claude Code 實作 → Copilot 維護）
-  - 主控端回饋（2026-08-13，已查證）：
-    1. Token 消耗問題已於 2026/6/17 修復（VentureBeat 等多家報導確認），風險評估應往「更可行」調整
-    2. 「15-40% 修正率」「65-70 分」數字無官方來源，已降級為「與會者主觀估計」
-    3. Claude Code CLI 內建 DesignSync 工具（`/design-sync` skill），可雙向增量同步 claude.ai/design 專案，整合已落地
-    4. Opus 4.7 發布日修正為 4 月 16 日（非 17 日）
-
-- [x] W-2026-08-050 知識系統架構 v3 修正：雙模型共識取代人類確認 + 花園整合寫入 ✅ #knowledge #meta #notion
-  - completed: 2026-08-12
-  - refs: [[wiki/decisions/knowledge-system-architecture-decision|架構決策 v3]]、[[wiki/concepts/knowledge-system-architecture|架構概念]]、AGENTS.md
-  - 已完成：
-    - ✅ 推翻 v2.0 的人類確認機制，改用雙模型交叉驗證（Pi 主持不投票，Claude+Gemini 預設參與者，分歧 Round 2 覆核，仍不一致才叫 Copilot 第三票，輪數上限 2 輪+第三票）
-    - ✅ 修改 AGENTS.md：§3.1 Ingest、§3.2 Query、§3.3 Lint、§3.5 Backfill、§5a 知識演化協定、§6 協作原則全面改寫
-    - ✅ Staging Buffer 語意從「等批准」改成「等共識」，TTL 逾時改自動晉升不清除
-    - ✅ decisions/discussions 語意調整為「共識已收斂／仍無法收斂」
-    - ✅ 修正 topics.md、topics/*.md、index.md 三處重複維護同一份清單的問題
-    - ✅ 修改 wiki-ingest、wiki-lint skill 同步雙模型交叉驗證與自動處理邏輯
-    - ✅ 知識花園 4 個 skill 全面調整：整合寫入取代累加（取代標記用刪除線）、Phase 0.5 多元觀點合成（round-table）、發布前確認、花園巡檢擴充、視覺地圖自動觸發、研究專題分裂量化標準
-    - ✅ 更新 wiki 決策文件與概念頁反映最終設計
-  - 待辦：
-    - ⏳ `~/.agents/skills` 目前沒有版本控制，本次 skill 異動只在本機，需要決定要不要建 git repo
-    - ⏳ 發現 `todos` skill 管理已刪除的 `todos/` 資料夾，與 work-tracker 的遷移聲明衝突，待確認是否刪除
-
-- [x] W-2026-08-049 Wiki 大整理：Redis + CodeReview + Agentic AI + Knowledge Management ✅ #knowledge #wiki
-  - completed: 2026-08-10
-  - refs: [[wiki/concepts/redis|Redis]]、[[wiki/concepts/ai-code-review|AI Code Review]]、[[wiki/concepts/agentic-ai|Agentic AI]]、[[wiki/concepts/knowledge-management|Knowledge Management]]
-  - 已完成：
-    - ✅ Wiki Lint 修復：斷裂連結、provenance 缺漏、孤立頁面、index 數據、交叉引用
-    - ✅ Redis 整理：9 個 source notes + concept page（快取、叢架、Eviction、記憶體、效能、安全、ACL、Sentinel、授權）
-    - ✅ Code Review 整理：concept + topic + 2 個 source notes（OCR、code-review-graph）
-    - ✅ Agentic AI：concept page（四大支柱、設計模式、框架比較）
-    - ✅ Knowledge Management：concept page + ai-related-seeds source
-    - ✅ 其他 ingest：Defect Escape Rate 指南、rust-analyzer LSP、Redis Licenses
-    - ✅ 修復 provenance 連結（qwenpaw、waku-agent）
-    - ✅ 刪除重複檔案（Cluster Architecture 1.md）
-  - 統計：新增 15 個 wiki 頁面，ingest 12 個 raw 檔案
-
-- [x] W-2026-08-048 知識系統架構改進：4 輪圓桌會議 + 花園更新 ✅ #knowledge #meta #notion
-  - completed: 2026-08-10
-  - refs: [[wiki/decisions/knowledge-system-architecture-decision|架構決策]]、[[wiki/concepts/knowledge-system-architecture|架構概念]]、Notion 知識花園
-  - 已完成：
-    - ✅ 4 輪圓桌會議（Pi + Gemini + Copilot）：確立「三個操作 + 一個機制 + 一個回流」架構
-    - ✅ 修改 AGENTS.md：新增知識演化協定、雙向連結規範、種子成熟標準
-    - ✅ 修改 wiki-lint skill：新增矛盾偵測、孤立頁面、半衰期、Source Fidelity
-    - ✅ 修改 wiki-ingest skill：新增查詢步驟、Backfill 流程、職責劃分
-    - ✅ 補強 index.md：完整列出所有 concepts、entities、sources
-    - ✅ 新增 wiki/concepts/knowledge-system-architecture.md
-    - ✅ 新增 wiki/decisions/knowledge-system-architecture-decision.md
-    - ✅ 更新 Notion 知識花園：研究專題 + 視覺地圖 + 5 個新種子
-    - ✅ 同步 cheerio-skills repo：wiki-lint + wiki-ingest + README
-  - 核心架構：三個操作（Ingest/Query/Lint）+ 一個機制（知識幫助知識）+ 一個回流（花園→大腦）
-
-- [x] W-2026-08-047 知識系統健檢機制全面盤點 + AGENTS.md 整理 ✅ #knowledge #meta
-  - completed: 2026-08-14
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/sources/2026-08-13-garden-guard-incident|事故報告]]、[[wiki-lint skill]]、work-tracker SKILL.md
-  - 已完成：
-    - ✅ 三大健檢機制盤點（大腦 wiki-lint / 花園 knowledge-garden / 工作 work-tracker）
-    - ✅ AGENTS.md 與實際佈局比對（發現 raw/ 2 個 + work/ 5 個未記錄項目）
-    - ✅ AGENTS.md 品質掃描（14 項問題：5 過時 + 6 冗餘 + 3 可選）
-    - ✅ AGENTS.md 修復：§1 架構合併 + 補資料夾、§2.1 更新 skill 引用、§3.3 改引用 wiki-lint skill、§4.2 provenance 統一、§9 §10 去冗餘、日期更新
-    - ✅ 花園巡檢執行（2026-08-13）：17→22 顆種子、MCP 融合、5 新種子、5 專題連結
-    - ✅ 花園巡檢 skill 加強（2026-08-13）：§1 原子化寫入、§4 確定性抽驗、量化內容空洞標準、Properties/Content 不一致檢查
-    - ✅ garden-guard.ts extension 建立（攔截型，3 個 gate）
-    - ✅ 花園巡檢執行（2026-08-14）：20 顆種子全量抽驗、8 顆補 Sync Status、Tree-sitter/Agentic AI 補寫內容、5 顆知識管理種子建立 wiki 頁面
-  - 待辦：
-    - ✅ 為 5 顆知識管理種子補成長計畫（第二批：PARA / Lint / 語意關係 / MOC / Zettelkasten，Cheer+Gemini 證據型評審通過）
-    - ⏳ 為 NPM Publishing 補視覺地圖
-    - ⏳ 重建 cron 排程（每週一 wiki lint + 每週三花園巡檢）
-    - ⏳ 「Agent 品質保證機制」種子草稿（`work/drafts/2026-08-13-garden-guard-seed-draft.md`，已完成研究+定稿，等發布前確認）種進 Notion，含新建同名研究專題 + 連結「知識管理系統」專題
-
-- [x] W-2026-08-044 建立「圓桌會議」skill：多 AI 對談討論 ✅ #skills #ai-agent
-  - completed: 2026-08-11
-  - 已完成：
-    - ✅ 設計文件 v2（subagent 參與者架構）
-    - ✅ 建立 SKILL.md（完整流程、prompt 模板、CLI 指令）
-    - ✅ 建立 ~/.agents/skills/round-table/
-    - ✅ 新增 Claude 為預設參與者（Claude + Gemini + Copilot）
-    - ✅ 建立 chat-with-claude skill（使用 Claude Code CLI）
-    - ✅ 新增量化共識偵測機制（newArguments、coverageRate、agreementRate、openDisputes）
-    - ✅ 新增主持人結論（每輪 round-N-summary.md）
-    - ✅ 新增論點追蹤表（arguments-tracker.md）
-    - ✅ 修復重複 Gemini prompt 模板
-    - ✅ 新增分歧點阻止結束條件
-    - ✅ 更新 wiki entity page（wiki/entities/round-table.md）
-  - refs: [[wiki/entities/round-table|round-table entity]]、[[wiki/topics/skill|Skill Topic]]、copilot skill、gy skill、pi-subagents
-  - 說明：Pi 主持（不參與），派出 subagent（使用者指定模型）+ Claude + Gemini + Copilot 共同討論
-  - 決策：
-    - Pi 只主持，不坐在桌上
-    - 使用者可指定 0-N 個 subagent 參與者，每個可指定 model
-    - 發言順序由 Pi 每輪動態決定（平衡發言、回應缺口、辯證張力）
-    - 兩處都存（.pi/round-table/ + work/history/）
-    - 結束條件：maxRounds + 量化共識偵測 + 無未解決分歧 + 人類介入
-    - 新增：每輪主持人結論 + 論點追蹤表 + 分歧點阻止結束
-    - Claude 成為圓桌會議預設參與者（2026-08-11 決策）
-
-- [x] W-2026-08-043 Content 設計 Redesign：四層骨架 + 主觀現實 + Roadmap ✅ #knowledge #skill
-  - refs: [[wiki/concepts/content-redesign|Content Redesign]]、Copilot+Gemini 三輪討論
-  - 已完成：
-    - ✅ Copilot + Gemini 三輪討論，確立四個共識
-    - ✅ 重寫 page-content skill（四層骨架+主觀現實+roadmap）
-    - ✅ 更新 visualmap skill（索引/註冊表設計）
-    - ✅ 更新架構頁
-  - 待辦（手動）：
-    - ✅ 手動在 Notion 視覺地圖 Database 加進階欄位（類型、關聯種子、關聯專題）
-    - ✅ 建立視覺地圖 ↔ 種子/專題的 Relation 綁定（Plannotator 已完成）
-
-- [x] W-2026-08-042 知識花園 Skill 架構重構：Schema + 模板 + 資料流 ✅ #knowledge #skill
-  - refs: [[wiki/concepts/knowledge-garden-skill-architecture|架構圖]]、Copilot+Gemini 三輪討論決策
-  - 已完成：
-    - ✅ Copilot + Gemini 三輪架構討論，確立6項最終決策
-    - ✅ 建立 knowledge-garden/schemas/seed_schema.yaml（跟著主 skill）
-    - ✅ 重構 knowledge-garden（移除模板、加引用）
-    - ✅ 重構 page-content（加品質關卡、mode 切換）
-    - ✅ 更新架構頁（含完整資料流圖）
-
-- [x] W-2026-08-038 Notion 整合設計全面重構：Schema + Skill + 回流 ✅ #knowledge #notion
-  - next: 為 7 筆種子撰寫完整知識卡片（用 knowledge-garden-page-content skill）
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/notionApi|notionApi]]、.pi/gemini-runs/notion-review/session-summary.md
-  - 已完成：
-    - ✅ Phase 1：Topic 重組（ai-agent 拆分為 5 個子 topic）+ Schema 對齊 + Manifest 重構
-    - ✅ Phase 2：Notion Relation 多對多修復（7 筆種子全部修復）
-    - ✅ Phase 3：建立 3 個新 Skill（notion-page-content、trigger、visualmap）
-    - ✅ Phase 4：Gemini 完整存取（gemini-notion-workflow skill）
-    - ✅ Phase 5：Notion→Wiki 回流機制（notion-wiki-feedback skill）
-  - 待辦（🔴 高優先）：
-    - ✅ 為 7 筆種子撰寫完整知識卡片
-    - ✅ 為 5 個專題撰寫完整研究報告
-    - ✅ 為 NPM Publishing 建立 wiki 頁面
-  - 待辦（🟡 中優先）：
-    - ⏳ 為 2-3 個種子建立視覺地圖
-    - ⏳ 測試回流機制
-    - ⏳ 更新所有 Sync Status
-  - 待辦（🟢 低優先）：
-    - ⏳ 建立 gemini-wiki-co-maintainer Skill
-    - ⏳ 設定 cron 定期觸發 Gemini 巡檢
-    - ⏳ 測試完整資料流閉環
-
-- [x] W-2026-08-039 Notion 頁面內容逐一手動調整 ✅ #knowledge #notion
-  - completed: 2026-08-09
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、W-2026-08-038
-  - 已完成：
-    - ✅ 7 筆種子頁面全部更新（OpenCodeReview、Plannotator、NPM Publishing、OKF、mattpocock/skills、Omnigent、Pi Agent）
-    - ✅ 補充大腦資料（從 wiki 提取完整資訊）
-    - ✅ 檢查 GitHub 更新（最新 stars、功能）
-    - ✅ 更新成長狀態（Plannotator、OKF、mattpocock/skills、Pi Agent 升級為 🌿 成長期）
-    - ✅ 建立 6 個視覺地圖
-  - 種子頁面清單：
-    - 種子：Plannotator, OpenCodeReview, Omnigent, OKF, mattpocock/skills, Pi Agent 架構研究, NPM Publishing
-    - 視覺地圖：6 個建立/更新
-  - 進行方式：人類在 Notion UI 直接編輯，或告訴 AI 要改什麼，AI 執行 ntn pages update
-
-- [x] W-2026-08-037 知識花園加強：Relation 關聯 + 視覺地圖 + 改名 ✅ #knowledge #notion
-  - completed: 2026-08-09
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、https://app.notion.com/p/5f2a0e0f-91de-466f-879e-9042c8a02169
-  - 已完成：
-    - ✅ 建立種子 ↔ 專題雙向 Relation 關聯（6 顆種子 + 5 個專題）
-    - ✅ 更新 Plannotator 視覺地圖頁面（完整 Skills 介紹、分類、安裝狀態）
-    - ✅ 修正視覺地圖頁面位置（從 CHEERIO CORNER 移到種子頁面子頁面）
-    - ✅ 改名 CHEERIO CORNER → Cheerio 知識花園
-    - ✅ 建立視覺地圖 Database（在 Cheerio 知識花園下）
-    - ✅ 加入 Plannotator 視覺地圖 entry
-    - ✅ 本地 manifest 同步 + git push
-    - ✅ 建立 6 個視覺地圖（OpenCodeReview、Plannotator、OKF、mattpocock/skills、Omnigent、Pi Agent）
-    - ✅ 所有種子頁面連結到視覺地圖
-  - 視覺地圖清單：
-    - OpenCodeReview：https://app.notion.com/p/OpenCodeReview-Agent-3b75979e3a8c81798bddfa2ab9971178
-    - Plannotator：https://app.notion.com/p/Plannotator-AI-Agent-3b55979e3a8c8146a69acc9b3ca2292d
-    - OKF：https://app.notion.com/p/OKF-AI-3b75979e3a8c8106b476d1e6e78ac394
-    - mattpocock/skills：https://app.notion.com/p/mattpocock-skills-AI-Coding-Skills-3b75979e3a8c81708c52e10d8c9e38c6
-    - Omnigent：https://app.notion.com/p/Omnigent-Meta-Harness-3b75979e3a8c81e3882cf369ac94f150
-    - Pi Agent：https://app.notion.com/p/Pi-Agent-Runtime-Extension-3b75979e3a8c81559c26f28d8db3788b
-
-- [ ] W-2026-08-030 安裝並測試 OpenCodeReview（OCR） ⏫ #ai-agent #code-review
-  - next: 安裝 OCR、設定 LLM provider、跑一次 `ocr review` 測試
-  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|Gemini 深度研究]]、https://github.com/alibaba/open-code-review
-  - 範疇：
-    - 安裝：`npm install -g @alibaba-group/open-code-review`
-    - 設定：`ocr config provider` + `ocr config model`
-    - 測試：在現有專案跑 `ocr review`，觀察輸出品質
-    - 比較：與 `code-review` skill 的結果做比較
-  - 2026-08-20 完成深度分析（README 整理）
-  - 2026-08-20 完成 Gemini 深度研究：阿里內部故事、社群討論、SonarQube 互補、私有模型適配、AI 趨勢洞察
-
-- [ ] W-2026-08-031 比較實驗：OCR vs code-review skill #ai-agent #code-review
-  - next: 找一個有 diff 的專案，分別用兩種工具審查，比較結果
-  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/entities/plannotator|Plannotator]]、~/.agents/skills/code-review/
-  - blockedBy: [W-2026-08-030]
-  - 範疇：
-    - 準備一個有實際變更的 Git repo
-    - 用 `ocr review` 審查，記錄輸出
-    - 用 `code-review` skill 審查，記錄輸出
-    - 比較：覆蓋率、準確性、Token 消耗、時間
-    - 結論：什麼場景用哪個工具
-
-- [ ] W-2026-08-032 整合 OCR 到 Code Review 工作流 #ai-agent #code-review
-  - next: 設計 OCR → code-review skill → Plannotator 的完整流程
-  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[work/designs/pi-agent-learning-system|學習系統]]
-  - blockedBy: [W-2026-08-031]
-  - 範疇：
-    - 設計工作流：OCR 初審 → skill 深度審查 → Plannotator 人類標註
-    - 建立 script 或 alias 方便執行
-    - 測試完整流程
-    - 記錄到 wiki
-
-- [ ] W-2026-08-029 建立 Pi Agent 更新學習系統 ⏫ #ai-agent #learning
-  - next: 完成 v0.84.0 更新學習任務（全螢幕模式、AGENTS.override.md、samplingParams）
-  - refs: [[work/designs/pi-agent-learning-system|學習系統設計]]、[[wiki/topics/pi-agent-learning/roadmap|學習路線圖]]、[[wiki/entities/pi-agent/changelog/v0.84.0|v0.84.0 分析]]、[[wiki/entities/ai-agent-core/chain-of-thought|Chain-of-thought]]、[[wiki/entities/ai-agent-core/token-budget|Token 預算]]
-  - 2026-08-20 建立學習系統：流程文件 + wiki 結構 + v0.84.0 分析 + 核心概念頁面（chain-of-thought、token-budget）
-  - 2026-08-20 完成 OpenCodeReview 深度分析 + Gemini 深度研究（9 個來源、7 個新洞察）
-
-- [ ] W-2026-08-017 研究 harness 架構，開發自己的 AGENT ⏫ #ai-agent
-  - 2026-08-10 新增 pi-loop-scheduler entity：Pi cron job 實作原理（@pi-agents/loop）
-  - 2026-08-06 ingest YouTube 5支 AI Agent 研究：Graphify + AReaL + Context-CoT + SkillOpt + MemGraph-RAG
-  - next: Pi containerization 方案（Gondolin/Docker/OpenShell）比較、Tau 三層架構分離細節、Hermes 學習迴圈機制
-  - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]、[[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]]
-  - 2026-08-06 完成 Pi Architecture Walkthrough ingest
-  - 2026-08-08 ingest waku-agent：四大支柱 readable blueprint
-  - 2026-08-03 ingest loop-vs-graph-engineering：Loop vs Graph 兩種工作流模式，更新 waku-agent 加入 graph engineering
-  - 2026-08-06 知識花園：建立研究專題 Database + 映射種子到專題
-  - 2026-08-10 ingest Chunkless RAG + Docling：IBM Technology 影片，Chunkless RAG 保留文件 tree structure 讓 Agent 推理導航
-
-- [ ] W-2026-08-010 建立 `pi-work-tracker` 並取代 `pi-todo-journal` ⏫ #extension
-  - next: 抽象 TaskStore / JournalStore adapters → 測試、CI 與 npm 發布 → 搬移必要程式
-  - refs: [[projects/pi-work-tracker/index|pi-work-tracker Project Bundle]]、[[projects/pi-todo-journal/index|pi-todo-journal Project Bundle]]、[[work/README|Work System]]
-
-- [ ] W-2026-08-025 研究 AI Agent 網路查詢能力：Extension 機制與 Search 架構 #ai-agent
-  - next: 調研主流 AI agent（Pi、Claude Code、Cursor、Copilot）的 web search / deep research extension 實作方式
-  - 範疇：
-    - Extension 機制：新裝 agent 如何加入查詢能力（MCP server？built-in tool？skill？）
-    - Search 適配性：什麼样的搜尋方式適合 AI consumption（structured results vs raw HTML）
-    - AI-fetch 與 AI-browser：是否需要專為 AI 設計的 fetcher（如 firecrawl、jina reader）或 browser（如 Playwright headless）
-    - Deep Research 模式：Gemini Deep Research、Perplexity 等深度研究的實作模式
-    - Private writer / output 機制：查詢結果如何回傳給 agent（inline context vs file output）
-    - 安全與隱私：web search 的 data retention、privacy implications
-  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]、W-2026-08-024（gemini-deep-research skill）
-
-
 
 ## 🔴 Phase 1：前置知識（建立 Agent 前必學）
 
@@ -281,13 +35,9 @@
 
 - [ ] W-2026-08-030 安裝並測試 OpenCodeReview（OCR） ⏫ #ai-agent #code-review
   - next: 安裝 OCR、設定 LLM provider、跑一次 `ocr review` 測試
-  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-020-opencode-review-deep-research|Gemini 深度研究]]
+  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|Gemini 深度研究]]
   - 預估時間：30 分鐘
   - 為什麼先做：安裝簡單，能立即體驗「確定性工程 × Agent」混合架構
-  - 步驟：
-    1. `npm install -g @alibaba-group/open-code-review`
-    2. `ocr config provider` + `ocr config model`
-    3. 在本專案跑 `ocr review`
 
 - [ ] W-2026-08-029 學習系統 + v0.84.0 學習任務 ⏫ #ai-agent #learning
   - next: 嘗試全螢幕模式、測試 AGENTS.override.md、玩 samplingParams
@@ -302,7 +52,6 @@
   - refs: [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/entities/tau|tau]]、[[wiki/concepts/meta-harness|meta-harness]]
   - 預估時間：多天（持續研究）
   - 為什麼重要：這是 Agent 的骨架，決定了整個架構設計
-  - 已完成：Pi Architecture Walkthrough、waku-agent、loop-vs-graph-engineering
 
 - [ ] W-2026-08-025 研究 AI Agent 網路查詢能力：Extension 機制與 Search 架構 #ai-agent
   - next: 調研 web search / deep research extension 實作方式
@@ -391,139 +140,122 @@
 
 ## Completed
 
+- [x] W-2026-08-055 round-table + chat-with-codex skill 建立 ✅ #skills #ai-agent
+  - completed: 2026-08-15
+  - refs: [[wiki/sources/2026-08-15-round-table-pi-agent-v084-learning|圓桌會議紀要]]
+  - 已完成：
+    - ✅ 建立 chat-with-codex skill（codex exec 整合）
+    - ✅ 更新 round-table skill 加入 Codex 為預設參與者
+    - ✅ 舉行圓桌會議：Pi Agent v0.84.x 更新中值得學習的設計模式（Claude + Copilot）
+    - ✅ 建立 wiki source note + 更新 index/log + work/history
+    - ✅ 同步 cheerio-skills repo
+
 - [x] W-2026-08-054 花園視覺地圖 Mermaid 全面驗證與修復 ✅ #knowledge #notion
   - completed: 2026-08-14
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、Notion 知識花園 Database、visualmap skill
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]
   - 已完成：
-    - ✅ 用 mermaid-cli（mmdc）實跑驗證全部 21 張種子地圖語法，修好 1 張壞掉的（節點含空格/中文未加引號導致 parse error），現 21/21 全部通過 render
-    - ✅ 依使用者要求，把 Omnigent（3 張）與 OpenCodeReview（3 張，benchmark 用 xychart-beta）的視覺地圖從 ASCII-art 轉為真正的 Mermaid，全部經 mmdc 驗證通過
-  - 決策/流程改進：
-    - 視覺地圖驗收標準新增「必須通過 mmdc render（英數 id + 引號標籤）」，不能只看有無內容
-    - 先前疑似「成長狀態被清空」是查詢方式誤判（`ntn pages get` 不顯示 select 屬性），實查 22 顆狀態都在（🌿8 / 🌱14），資料無遺失
-    - 後查花園狀態統一用 `ntn api data_sources query` 看 JSON，不用 `ntn pages get`
+    - ✅ 用 mmdc 實跑驗證全部 21 張種子地圖語法，修好 1 張壞掉的
+    - ✅ 把 Omnigent（3 張）與 OpenCodeReview（3 張）從 ASCII-art 轉為真正 Mermaid
 
-- [x] W-2026-08-053 花園技術類半成品補強（第三批：MCP / Agentic AI / LOOP Engineering / Code Graph / LSP / Tree-sitter）✅ #knowledge #notion
+- [x] W-2026-08-053 花園技術類半成品補強（第三批）✅ #knowledge #notion
   - completed: 2026-08-14
-  - result: 全部 6 顆技術類種子完成補強與 Gemini 證據型評審。全部補上視覺地圖（放進視覺地圖 DB 記錄頁、雙向 relation）；Tree-sitter 補完整正文並升 🌿 成長期。Gemini 證據型評審（實測 HTTP/GitHub API）抓到並修正多個問題：3 個杜撰的失效來源 URL（Agentic AI、LOOP、Code Graph 的 nicholasgasior/awesome-* 假連結）已換成經 HTTP 200 驗證的真實來源；Tree-sitter 維護者姓名 Max Cantor→Max Brunsfeld；Code Graph 錯字修正。評審分數：MCP 92 / LSP 95 / Tree-sitter 87 / Agentic AI 84 / Code Graph 83 / LOOP Engineering 76（已修訂）。流程改進：Pi 寫入任何來源 URL 前必須先 HTTP 驗證回 200，禁止編造。
-  - 第四批收尾（2026-08-14）：NPM Publishing 補視覺地圖+來源 URL(200)；Omnigent 來源 URL 前導空格修正(200)；5 顆核心種子補齊 Wiki Path/最後更新，其中 4 顆視覺地圖從 ASCII-art 轉為真正 Mermaid；OpenCodeReview、Omnigent 經評估維持🌱。決策：🌿成長期門檻是「有實際使用經驗」，光內容完整+視覺地圖不足以升級。
-  - 🎯 花園 22 顆種子全部處理完畢（2026-08-14）
-  - refs: [[wiki/entities/mcp-model-context-protocol|MCP]]、[[wiki/concepts/agentic-ai|Agentic AI]]、[[wiki/concepts/loop-vs-graph-engineering|LOOP Engineering]]、[[wiki/concepts/code-graph|Code Graph]]、[[wiki/entities/lsp|LSP]]、[[wiki/entities/tree-sitter|Tree-sitter]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
+  - 已完成：
+    - ✅ 全部 6 顆技術類種子完成補強與 Gemini 證據型評審
+    - ✅ 🎯 花園 22 顆種子全部處理完畢
 
 - [x] W-2026-08-051 Ingest：Prime Agent 官方發布 + AI郵報 ARC-AGI-3 分析 ✅ #knowledge #ai-agent
   - completed: 2026-08-13
-  - result: 存入 2 篇 raw/web 文章全文（官方部落格 + AI郵報中文分析），發現既有 YouTube 版頁面誤植開發者名稱「Prime Intelligence」並已修正為「Prime Intellect」。雙模型交叉驗證（Claude+Gemini）Round 1 一致，auto_verified。新建 2 個 concept 頁面（continual-harness、arc-agi-3-benchmark）+ 2 個 source notes；大幅擴充 prime-agent entity（GitHub/License/ARC-AGI-3 三種成績口徑 95.5%/95.24%/30.16%/Factorio reward hacking）；重寫 recursive-language-model 核心定義為「context 當變數」。已 git push（commit bc63f7a）。
-  - refs: [[raw/web/2026-08-13-prime-agent-self-improving-rlm-agent|官方部落格 raw]]、[[raw/web/2026-08-13-prime-agent-arc-agi-3-opus-5-harness-aiposthub|AI郵報 raw]]、[[wiki/entities/prime-agent|prime-agent]]、[[wiki/concepts/continual-harness|Continual Harness]]、[[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]]
+  - 已完成：
+    - ✅ 存入 2 篇 raw/web 文章全文
+    - ✅ 新建 2 個 concept 頁面 + 2 個 source notes
+    - ✅ 大幅擴充 prime-agent entity
+
+- [x] W-2026-08-050 知識系統架構 v3 修正：雙模型共識取代人類確認 ✅ #knowledge #meta #notion
+  - completed: 2026-08-12
+  - 已完成：
+    - ✅ 推翻 v2.0 的人類確認機制，改用雙模型交叉驗證
+    - ✅ 修改 AGENTS.md 全面改寫
+    - ✅ 知識花園 4 個 skill 全面調整
+
+- [x] W-2026-08-049 Wiki 大整理：Redis + CodeReview + Agentic AI + Knowledge Management ✅ #knowledge #wiki
+  - completed: 2026-08-10
+  - 已完成：
+    - ✅ 新增 15 個 wiki 頁面，ingest 12 個 raw 檔案
+
+- [x] W-2026-08-048 知識系統架構改進：4 輪圓桌會議 + 花園更新 ✅ #knowledge #meta #notion
+  - completed: 2026-08-10
+  - 已完成：
+    - ✅ 4 輪圓桌會議（Pi + Gemini + Copilot）確立架構
+    - ✅ 核心架構：三個操作 + 一個機制 + 一個回流
+
+- [x] W-2026-08-047 知識系統健檢機制全面盤點 + AGENTS.md 整理 ✅ #knowledge #meta
+  - completed: 2026-08-14
+  - 已完成：
+    - ✅ 三大健檢機制盤點
+    - ✅ AGENTS.md 品質掃描與修復
+    - ✅ garden-guard.ts extension 建立
+
+- [x] W-2026-08-044 建立「圓桌會議」skill ✅ #skills #ai-agent
+  - completed: 2026-08-11
+  - 已完成：
+    - ✅ 設計文件 v2 + 建立 SKILL.md
+    - ✅ 新增 Claude 為預設參與者
+    - ✅ 新增量化共識偵測機制
+
+- [x] W-2026-08-043 Content 設計 Redesign ✅ #knowledge #skill
+  - completed: 2026-08-10
+  - 已完成：
+    - ✅ 重寫 page-content skill（四層骨架+主觀現實+roadmap）
+
+- [x] W-2026-08-042 知識花園 Skill 架構重構 ✅ #knowledge #skill
+  - completed: 2026-08-10
+  - 已完成：
+    - ✅ 建立 seed_schema.yaml + 重構 skills
+
+- [x] W-2026-08-038 Notion 整合設計全面重構 ✅ #knowledge #notion
+  - completed: 2026-08-09
+  - 已完成：
+    - ✅ 5 個 Phase 全部完成
+
+- [x] W-2026-08-039 Notion 頁面內容逐一手動調整 ✅ #knowledge #notion
+  - completed: 2026-08-09
+  - 已完成：
+    - ✅ 7 筆種子頁面全部更新
+
+- [x] W-2026-08-037 知識花園加強：Relation 關聯 + 視覺地圖 + 改名 ✅ #knowledge #notion
+  - completed: 2026-08-09
+  - 已完成：
+    - ✅ 建立種子 ↔ 專題雙向 Relation 關聯
 
 - [x] W-2026-08-041 YouTube ingest：LangGraph in 10 Minutes ✅ #knowledge #ai-agent
   - completed: 2026-08-08
-  - result: 抓 auto-generated English 字幕（347 segments → 40 paragraphs）。新增 wiki：source note + entity（langgraph）+ concept（agent-durability-patterns）。重點：Pregel model、reducers、checkpointing、delta channels（5.3GB→129MB）。建立 Pi vs LangGraph 三種持久化路徑比較，作為未來 agent 設計取捨參考。
-  - refs: [[wiki/sources/2026-08-21-langgraph-in-10-minutes|source note]]、[[wiki/entities/langgraph|langgraph]]、[[wiki/concepts/agent-durability-patterns|agent-durability-patterns]]
+  - 已完成：
+    - ✅ 新增 wiki：source note + entity + concept
 
-- [x] W-2026-08-039 PDF 處理流程建立：markitdown + pymupdf + pdf-to-wiki skill ✅ #knowledge #tools
+- [x] W-2026-08-039 PDF 處理流程建立 ✅ #knowledge #tools
   - completed: 2026-08-08
-  - result: 建立完整 PDF → Markdown → wiki 流程。markitdown 取代 pdftotext（解決中文亂碼），pymupdf 提取圖片。新建 pdf-to-wiki skill 並推送到 cheerio-skills。處理安裝手冊 PDF（9 張截圖 + 完整中文 Markdown）。
-  - 新增 wiki：markitdown entity、plannotator-copilot-setup source
-  - 更新：plannotator entity（+Copilot CLI 整合）、AGENTS.md（PDF 處理方式）、wiki-knowledge skill
-  - refs: [[wiki/entities/markitdown|markitdown]]、[[wiki/sources/2026-07-23-plannotator-copilot-setup|source]]、cheerio-skills/pdf-to-wiki
+  - 已完成：
+    - ✅ 建立完整 PDF → Markdown → wiki 流程
 
-- [x] W-2026-08-040 cheerio-skills 同步：7 個新 skills + 2 個更新 ✅ #skills
+- [x] W-2026-08-040 cheerio-skills 同步 ✅ #skills
   - completed: 2026-08-08
-  - result: 同步本地 skills 到 cheerio-skills repo。新增 gemini-notion-workflow、knowledge-garden-trigger、knowledge-garden-visualmap、notion-page-content、notion-wiki-feedback、learning-loop、todos。更新 knowledge-garden、wiki-knowledge。
-  - refs: https://github.com/CheerioCorner/cheerio-skills
+  - 已完成：
+    - ✅ 同步 7 個新 skills + 2 個更新
 
 - [x] W-2026-08-036 Notion「任何當下 → AI相關」頁面 ingest ✅ #knowledge #notion
   - completed: 2026-08-07
-  - result: 讀取 Notion「任何當下 → AI相關」頁面（Skill、Copilot、Claude、AI Gateway）。新增 wiki 2 entities：agentskills-io-standard（Skill 開放標準）、axway-amplify-ai-gateway（企業 AI Gateway 治理）。使用 agy + Gemini 視覺分析 19 張 AI Gateway 截圖，提取完整企業 AI 治理教材。花園種子已備妥待寫入（raw/notion-ingest/2026-08-07-ai-related-seeds.md）
-  - refs: [[wiki/entities/agentskills-io-standard|agentskills-io-standard]]、[[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]]、[[raw/notion-ingest/2026-08-07-ai-related-seeds|待寫入花園種子]]
+  - 已完成：
+    - ✅ 新增 wiki 2 entities
 
 - [x] W-2026-08-034 YouTube ingest：Wow 頻道 5支 AI Agent 前沿研究 ✅ #knowledge #ai-agent
   - completed: 2026-08-06
-  - result: 5支影片無字幕，透過 yt-dlp + Gemini Deep Research 深度研究。新增 wiki：1 source note、5 entities（Graphify/AReaL/SkillOpt/MemGraph-RAG/hermes-agent）、4 concepts（Code KG/ATDP/Context-CoT/Meta-skill）。交叉分析：三大趨勢（自進化系統、確定性+機率融合、離線→線上）
-  - refs: [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research|Source Note]]、[[raw/research/2026-08-06-wow-youtube-5-ai-agent-topics|Raw Research]]
+  - 已完成：
+    - ✅ 新增 wiki：1 source note、5 entities、4 concepts
 
 - [x] W-2026-08-021 建立知識花園導覽 Database ✅ #knowledge #notion
-  - completed: 2026-08-19
-  - result: 建立 Database（12 欄位）+ 遷移 6 顆種子 + 建立 6 個新頁面 + 歸檔舊頁面 + 更新 SKILL.md + 補齊「給我的啟發？」欄位
-  - 2026-08-06 調整欄位：移除「一句話」，新增「視覺地圖頁面」
-  - 2026-08-06 重建 mattpocock/skills 視覺地圖頁面
-  - 2026-08-06 建立研究專題 Database（5 個專題：AI Agent 架構、Extension 開發、Meta-Harness、AI Coding Workflow、知識管理）
-  - 2026-08-06 映射 6 顆種子到專題
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[Design Spec](work/designs/knowledge-garden-navigator.md)
-
-- [x] W-2026-08-035 知識花園：建立研究專題 Database + 映射種子 ✅ #knowledge #notion
   - completed: 2026-08-06
-  - result: 建立研究專題 Database（10 欄位）+ 5 個初始專題 + 映射 6 顆種子到專題 + 更新 SKILL.md 和 manifest
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、[[work/current|Current Work]]
-
-- [x] W-2026-08-026 優化 Gemini Deep Search Prompt ✅ #ai-agent #skills
-  - completed: 2026-08-06
-  - result: 建立 3 個 prompt 模板（general/comparison/tutorial），加入 Source Quality Tiers（T1/T2/T3）、Claim Confidence 標記（VERIFIED/INFERRD/UNVERIFIED）、強制引用規則
-  - refs: W-2026-08-024（gemini-deep-research skill）、[[wiki/entities/hermes-agent|hermes-agent]]
-
-- [x] W-2026-08-027 設定 Antigravity CLI 環境 ✅ #ai-agent #extension
-  - completed: 2026-08-06
-  - result: agy v1.1.10 已安裝，設定 5 個 MCP server：notion-mcp-server、gmp-code-assist、chrome-devtools-mcp、context7、sequential-thinking
-  - refs: [[wiki/entities/pi-mono|pi-mono]]、W-2026-08-025（AI Agent 網路查詢能力研究）
-
-- [x] W-2026-08-020 盤點 wiki 內容，找出可轉化為花園種子的素材 ✅ #knowledge #notion
-  - completed: 2026-08-18
-  - result: 巡檢完成，wiki 35 個頁面中僅 6 個進花園（覆蓋率 30%）。建議優先種植：claude-code、copilot、codex、MCP、tau、ai-coding-workflow、vibe-coding 等高價值 entity/concept
-  - refs: [[wiki/index|Wiki Index]]、[[wiki/entities/knowledge-garden|knowledge-garden]]
-
-- [x] W-2026-08-019 研究 LSP（Language Server Protocol）與 Code Graph ✅ #ai-agent
-  - refs: [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 研究]]、[[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF+LSP+CodeGraph AI Agent 研究]]、[[wiki/entities/lsp|LSP]]、[[wiki/entities/tree-sitter|Tree-sitter]]、[[wiki/concepts/code-graph|Code Graph]]
-  - completed: 2026-08-04
-  - result: Gemini Deep Research 完成兩份深度研究報告；新增 wiki 頁面：2 source notes、6 entities、1 concept
-
-- [x] W-2026-08-011 Wiki Lint：批量補上 source note provenance ✅ #wiki
-  - completed: 2026-08-10
-  - result: 25 個 source notes 補上 provenance
-
-- [x] W-2026-08-014 新增 pi-loop-scheduler entity ✅ #ai-agent
-  - completed: 2026-08-10
-  - result: 記錄 @pi-agents/loop 架構、Idle gating、Anti-thundering-herd、Durable vs Session tasks
-
-- [x] W-2026-08-024 建立 `gemini-deep-research` skill ✅ #skills
-  - completed: 2026-08-06
-  - result: 完整 skill 結構，3 個 prompt 模板 + 引用驗證腳本 + README
-
-- [x] W-2026-08-004 建立 Notion ↔ Obsidian 雙向同步機制 ✅ #notion
-  - completed: 2026-08-06
-
-- [x] W-2026-08-016 測試 Notion 端到端流程 ✅ #notion
-  - completed: 2026-08-06
-
-- [x] W-2026-08-013 規劃 skill GitHub repos ✅ #skills
-  - completed: 2026-08-08
-
-- [x] W-2026-08-018 建立 skills-repo-manager skill ✅ #skills
-  - completed: 2026-08-08
-
-- [x] W-2026-08-015 建立 Notion → raw 抓取流程 ✅ #notion
-  - completed: 2026-08-05
-
-- [x] W-2026-08-006 研究 YouTube 字幕抓取方案 ✅ #knowledge
-  - completed: 2026-08-03
-
-- [x] W-2026-08-012 建立 `youtube-to-wiki` skill ✅ #knowledge
-  - completed: 2026-08-03
-
-- [x] W-2026-08-009 建立每週 wiki lint 與花園巡檢提醒 ✅ #meta
-  - completed: 2026-08-10
-  - result: 設定每週一 09:00 wiki lint（ID: 7b26bb64）、每週三 10:00 花園巡檢（ID: f9aa104e）
-
-- [x] W-2026-08-007 確認 canonical wiki 頁面與交叉引用一致 ✅ #wiki
-  - completed: 2026-08-09
-  - result: 解決 graph 超級節點問題，structural files 連結數減少 87%
-
-- [x] W-2026-08-005 測試 URL → raw/web → ingest 全流程 ✅ #knowledge
-  - completed: 2026-08-09
-
-- [x] W-2026-07-022 YouTube ingest mattpocock/skills ✅ #knowledge #wiki
-  - completed: 2026-07-22
-
-- [x] W-2026-08-001 釐清 Obsidian vault 架構 ✅ #knowledge
-  - completed: 2026-08-03
+  - 已完成：
+    - ✅ 建立 Database + 6 顆種子 + 5 個專題
 
 ## Work record contract
 
@@ -531,36 +263,3 @@
 - 完成、決策、重要討論與處理結果追加至 `work/history/YYYY-MM.md`。
 - 每個 history event 必須包含 `refs:`，至少指向 raw conversation、project 或 wiki 其中之一。
 - 沒有形成工作進展或可追溯結果的對話，不需要建立事件。
-
-- [x] W-2026-08-046 Obsidian 種子建立：AI Agent 時代的知識管理基礎設施 ✅ #knowledge #notion
-  - completed: 2026-08-09
-  - refs: [[wiki/entities/obsidian|Obsidian]]、[[wiki/visualizations/obsidian-seed-map|視覺地圖]]、Notion 種子 #3b75979e-3a8c81d8-b7aa-f1f4c88aa957
-  - 已完成：
-    - ✅ Gemini Deep Research 深度研究（8 個來源、6 個不同網域）
-    - ✅ 建立 Notion 種子（🌱 種子期）
-    - ✅ 建立視覺地圖（Mermaid code block 直接寫入 Notion）
-    - ✅ 建立 wiki 頁面：wiki/entities/obsidian.md
-    - ✅ 更新 knowledge-garden manifest
-    - ✅ 更新所有花園 Skill：視覺地圖改為直接寫入 Mermaid
-    - ✅ 同步 cheerio-skills repo
-  - 重點：疫情催生→150 萬用戶、LLM Wiki 範式、raw→wiki→Notion 資料流、OKF 90%+ 相容
-  - 關聯專題：AI Agent 架構研究、知識管理系統
-
-- [x] W-2026-08-045 知識花園種子全面更新 + 研究專題重構 ✅ #knowledge #notion
-  - completed: 2026-08-09
-  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、Notion 知識花園
-  - 已完成：
-    - ✅ 7 筆種子頁面全部更新（內容補充、成長狀態更新）
-    - ✅ 建立 4 個新種子（LSP、Code Graph、MCP、LOOP Engineering）
-    - ✅ 強化 knowledge-garden skill（批量更新、狀態評估、GitHub 檢查）
-    - ✅ 強化 knowledge-garden-visualmap skill（自動從 wiki 產生、模板系統）
-    - ✅ 更新 knowledge-garden-page-content skill（四層骨架模板）
-    - ✅ 5 個研究專題全部更新（豐富內容、關聯種子、建立視覺地圖）
-    - ✅ 建立 8 個視覺地圖
-    - ✅ 種子總數從 7 顆增加到 11 顆
-  - 種子更新：
-    - OpenCodeReview、Plannotator、NPM Publishing、OKF、mattpocock/skills、Omnigent、Pi Agent
-  - 新種子：
-    - LSP、Code Graph、MCP、LOOP Engineering
-  - 研究專題更新：
-    - 知識管理系統、AI 驅動的開發系統、Meta-Harness 元鞍具、Extension 開發生態、AI Agent 架構研究
