@@ -198,6 +198,7 @@
 - [[wiki/sources/2026-08-08-huashu-design.md|huashu-design — 花叔 HTML 原生設計技能 GitHub README]] — 來源：[alchaincyf/huashu-design GitHub README](https://github.com/alchaincyf/huashu-design)
 - [[wiki/sources/2026-07-22-mattpocock-skills-tutorial.md|mattpocock/skills — 完整 AI Coding 工作流程教學]] — 來源：[YouTube — mattpocock/skills: A complete AI Coding workflow, end-to-end](https://www.youtube.com/watch?v=M6mYodf0dJM)
 - [[wiki/sources/2026-07-11-mattpocock-skills.md|mattpocock/skills — 工程實踐 Skills 集合]] — 視覺化：[[wiki/visualizations/mattpocock-skills.canvas|mattpocock/skills Canvas]]
+- [[wiki/sources/2026-08-15-round-table-pi-agent-v084-learning.md|圓桌會議：Pi Agent v0.84.x 更新中值得學習的設計模式]] — Claude + Copilot 圓桌會議，拆解 Pi Agent v0.84.x 的 6 個設計模式（設定分層、Tool 中斷、結構化輸出等）。
 - [[wiki/sources/2026-08-02-morphir-dotnet-agents.md|morphir-dotnet AGENTS.md — AI Agent 貢獻指南]] — FINOS morphir-dotnet 專案的 AGENTS.md，展示企業級 .NET 專案如何組織 AI agent 指南。
 - [[wiki/sources/2026-08-04-rust-analyzer.md|rust-analyzer — Rust 語言的 LSP 實作]] — 來源：[rust-analyzer Introduction](https://rust-analyzer.github.io/book/)
 - [[wiki/sources/2026-02-10-pi-agent-core-design.md|下一代Agent架构——Pi Agent Core 设计逻辑深度解析]] — 這裡做為來源頁收存。目的是:反映從這篇文章推導出的主張、以及被這篇文章影響、我們接著在 wiki 內拆解的 entity / concept / comparison 頁。

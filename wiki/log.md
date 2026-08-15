@@ -3,6 +3,15 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-15] round-table | Pi Agent v0.84.x 更新中值得學習的設計模式
+
+- **操作類型**：圓桌會議 + Source Note 建立
+- **來源**：Claude (claude-sonnet-4) + Copilot (gh copilot) 圓桌會議
+- **新建**：wiki/sources/2026-08-15-round-table-pi-agent-v084-learning.md
+- **核心共識**：設定分層（AGENTS.override.md）、Tool 中斷機制、結構化輸出約束為 Top 3 學習主題
+- **Cheer 自建 Agent 優先清單**：P0 設定分層 + Tool 中斷、P1 結構化輸出 + Pre-flight、P2 模板展開 + TUI 區域分離
+- refs: [[wiki/entities/pi-agent/changelog/v0.84.0|Pi Agent v0.84.0 Changelog]]
+
 ## [2026-08-14] visualmap | Agent Skills 研究專題視覺地圖建立
 
 - **新建**：Notion 視覺地圖 DB 記錄「Agent Skills 研究專題視覺地圖」（ID: `3bc5979e-3a8c-81e0-bb89-f9066f64f664`）
