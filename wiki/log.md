@@ -12,6 +12,41 @@
 - **Cheer 自建 Agent 優先清單**：P0 設定分層 + Tool 中斷、P1 結構化輸出 + Pre-flight、P2 模板展開 + TUI 區域分離
 - refs: [[wiki/entities/pi-agent/changelog/v0.84.0|Pi Agent v0.84.0 Changelog]]
 
+## [2026-08-15] update | Agent Skills 花園深度灌溉（3 頁面修正）
+
+- **修正類型**：深度灌溉（非單純新增），根據人類審查反饋修正 3 個頁面
+- **修正來源**：人類實查 Notion 後指出「內容膚淺」，Claude 用 Notion 工具實查 7 個頁面確認具體問題
+
+### 修正頁面
+
+1. **GitHub Copilot 種子**（`3bb5979e-3a8c-81ba-a661-e06f1d8a1edc`）
+   - 新增「Copilot SDK：Custom Agents/Skills 系統」深度章節
+   - 具體寫入：`skillDirectories`/`disabledSkills`/per-agent `skills` preload、Custom Agents auto-delegation + isolated context、Fleet Mode SQL todos、7+ Hooks 完整清單、Steering vs Queueing
+   - 更新比較表：巢狀/委派從「⚠️/❌」改為「✅ 完整支援」
+   - 新增 SDK 客觀事實表
+   - 成長狀態維持 🌿（已到位）
+
+2. **研究專題「Agent Skills」**（`3bc5979e-3a8c-8121-924e-f99b09671383`）
+   - 新增「複合組合技：三框架的設計哲學差異」深度章節（~800 字）
+   - 具體寫出：Copilot Agent-based / Claude Code Hook-based / Pi Manual 三種組合哲學 + 為什麼這樣設計
+   - 所有具體事實陳述標明出自哪顆種子（「詳見 🌱 ...」格式）
+   - 內文引用格式已建立標準：之後所有研究專題比照辦理
+
+3. **視覺地圖**（`3bc5979e-3a8c-81e0-bb89-f9066f64f664`）
+   - 邊標籤從「子種子/灌溉/關聯」改為機制差異：「Agent-based Custom Agents + Fleet Mode」「Hook-based Lifecycle Hooks + Subagents」「Manual 組合 逐一觸發」
+   - 節點標籤加入組合哲學：Claude Code →「Hook-based 組合」、Copilot →「Agent-based 組合」
+   - mmdc 驗證通過（15KB SVG）
+
+### 引用種子出處的具體範例
+- 「SKILL.md 的三層漸進式揭露...如何運作？（詳見 🌱 Skill 撰寫與評估方法論）」
+- 「Copilot 的 7+ Hooks...提供了完整的 lifecycle 拦截能力...（詳見 🌱 GitHub Copilot）」
+- 「Pi 的設計哲學是極簡主義...（詳見 pi-agent-core、Minimal Agent Philosophy）」
+
+### Wiki 同步狀態
+- Wiki 端已有完整內容（22 篇 Copilot SDK 文件 + 7 篇 Anthropic 文件已 ingest）
+- Notion 花園現在追上 wiki 深度，不需反向更新 wiki
+- refs: [[wiki/entities/knowledge-garden|knowledge-garden manifest]]
+
 ## [2026-08-14] visualmap | Agent Skills 研究專題視覺地圖建立
 
 - **新建**：Notion 視覺地圖 DB 記錄「Agent Skills 研究專題視覺地圖」（ID: `3bc5979e-3a8c-81e0-bb89-f9066f64f664`）
