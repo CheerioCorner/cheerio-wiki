@@ -18,6 +18,12 @@ updated: 2026-08-08
 - [[wiki/entities/github-copilot|GitHub Copilot]] — GitHub AI 程式碼輔助工具生態系 🛠️
 - [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI AI Coding Agent，CLI 工具 🛠️
 - [[wiki/entities/open-code-review|OpenCodeReview]] — Alibaba 開源 AI 代碼審查 CLI 工具 🛠️
+- [[wiki/entities/hyperframes|hyperframes]] — HTML 轉影片的 Agent 工具（HeyGen）🛠️
+- [[wiki/entities/gsap|GSAP]] — 網頁動畫 Industry Standard（GreenSock）🛠️
+- [[wiki/entities/pixel2motion|pixel2motion]] — AI Logo 動畫 Skill 🛠️
+- [[wiki/entities/remotion|Remotion]] — 程式碼驅動的影片製作框架 🛠️
+- [[wiki/entities/video-shotcraft|video-shotcraft]] — AI 影片電影運鏡 Skill 🛠️
+- [[wiki/entities/story-to-handdrawn-video|story-to-handdrawn-video]] — 中文故事轉手繪動畫 Skill 🛠️
 
 ## Concepts
 
@@ -27,7 +33,7 @@ updated: 2026-08-08
 - [[wiki/concepts/design-md-format|design.md Format]] — Google 品牌設計文件格式 🛠️
 - [[wiki/concepts/ai-code-review|AI Code Review]] — AI 自動化代碼審查綜整 🛠️
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程 🛠️
-- [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]] — 7 種 AI 動畫／影片生成手法分類索引（⚠️ 低可信度字幕來源）
+- [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]] — 7 種 AI 動畫／影片生成手法分類索引 🛠️
 
 ## Discussions
 
@@ -37,7 +43,7 @@ updated: 2026-08-08
 
 - [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 第三方分析
 - [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]] — 五階段設計工作流教學 🛠️
-- [[wiki/sources/2026-08-17-7-ai-animation-skills|7 個用 AI 做動畫的 Skills]] — YouTube 短片：7 種 AI 動畫生成工具速覽（⚠️ Whisper 自動字幕，工具名稱待核實）
+- [[wiki/sources/2026-08-17-7-ai-animation-skills|7 個用 AI 做動畫的 Skills]] — YouTube 短片：7 種 AI 動畫生成工具速覽（已查證核實）
 
 ## 相關 Topics
 

@@ -83,7 +83,7 @@
 
 ---
 
-## Entities（具體實體）— 45 頁
+## Entities（具體實體）— 51 頁
 
 - [[wiki/entities/agentskills-io-standard.md|agentskills.io — AI Agent Skill 開放標準]] 🛠️
 - [[wiki/entities/anthropic-agent-skills.md|Anthropic Agent Skills — 官方 Skill 系統]] 🛠️
@@ -95,9 +95,11 @@
 - [[wiki/entities/github-copilot-sdk.md|GitHub Copilot SDK — Custom Agents 平台]] 🛠️
 - [[wiki/entities/github-copilot.md|GitHub Copilot — AI 程式碼輔助生態系]] 🛠️
 - [[wiki/entities/graphify.md|Graphify — 開源代碼知識圖譜工具]]
+- [[wiki/entities/gsap.md|GSAP — 網頁動畫Industry Standard]]
 - [[wiki/entities/guizang-ppt-skill.md|guizang-ppt-skill — AI Agent HTML PPT 技能]]
 - [[wiki/entities/hermes-agent.md|hermes-agent — 開源 AI Agent 框架]]
 - [[wiki/entities/huashu-design.md|huashu-design — HTML 原生設計技能]]
+- [[wiki/entities/hyperframes.md|hyperframes — HTML 轉影片的 Agent 工具]]
 - [[wiki/entities/knowledge-garden-to-raw.md|knowledge-garden-to-raw — Notion → Raw 抓取 Skill]]
 - [[wiki/entities/knowledge-garden.md|knowledge-garden — Cheerio 知識花園 Manifest]]
 - [[wiki/entities/langgraph.md|LangGraph — Graph-based Agent Runtime with Durability]]
@@ -119,15 +121,19 @@
 - [[wiki/entities/pi-loop-scheduler.md|pi-loop-scheduler — Pi 的 Cron Job 與排程系統]] 🛠️
 - [[wiki/entities/pi-mono.md|pi-mono — Agent Toolkit Monorepo]] 🛠️
 - [[wiki/entities/pi-web-access-zh-tw.md|pi-web-access-zh-tw — Web 存取擴充的繁體中文本地化版]] 🛠️
+- [[wiki/entities/pixel2motion.md|pixel2motion — AI Logo 動畫 Skill]]
 - [[wiki/entities/plannotator.md|Plannotator]]
 - [[wiki/entities/prime-agent.md|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]]
 - [[wiki/entities/qwenpaw.md|QwenPaw — Agent OS 架構的本地 AI 助理]]
+- [[wiki/entities/remotion.md|Remotion — 程式碼驅動的影片製作框架]]
 - [[wiki/entities/round-table.md|Round Table — 多 AI 圓桌會議]] 🛠️
 - [[wiki/entities/skillopt.md|SkillOpt — 微軟技能優化器]] 🛠️
+- [[wiki/entities/story-to-handdrawn-video.md|story-to-handdrawn-video — 中文故事轉手繪動畫 Skill]]
 - [[wiki/entities/tau.md|tau — Pi 的 Python 移植版]]
 - [[wiki/entities/theo-t3gg.md|Theo (t3gg) — 程式碼重要性光譜與驗證方法論倡導者]]
 - [[wiki/entities/tree-sitter.md|Tree-sitter]] 🛠️
 - [[wiki/entities/uncle-bob.md|Uncle Bob (Robert C. Martin) — Clean Code 作者、軟體工程資深實踐者]]
+- [[wiki/entities/video-shotcraft.md|video-shotcraft — AI 影片電影運鏡 Skill]]
 - [[wiki/entities/waku-agent.md|waku-agent — Local-first personal AI agent with harness + loop + memory + eval]]
 - [[wiki/entities/wiki-knowledge.md|wiki-knowledge — Obsidian 知識庫操作 Skill（已刪除）]] 🛠️
 
