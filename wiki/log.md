@@ -3,6 +3,12 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-17] ingest | AI Agent Memory Systems — 5 種記憶架構設計方式
+- 來源：YouTube (072eNztI06k) by Sean Chen
+- 動作：新建 source note + concept page + 更新 waku-agent entity + 更新 2 topic pages + index
+- 雙模型交叉驗證：Claude + Gemini 提案一致，直接採用
+- refs: raw/youtube/ai-agent-memory-systems, wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways
+
 ## [2026-08-17] visualmap | 3 顆種子視覺地圖結構性修復
 
 - **修復範圍**：Skill 設計方法論、Agent 擴充架構層級、E2E 測試種子

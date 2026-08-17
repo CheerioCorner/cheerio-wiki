@@ -2,8 +2,8 @@
 title: "waku-agent — Local-first personal AI agent with harness + loop + memory + eval"
 type: entity
 created: 2026-08-02
-updated: 2026-08-03
-sources: 3
+updated: 2026-08-17
+sources: 4
 tags: [ai-agent, local-first, memory-system, python, open-source]
 collection: entities
 topics: [ai-agent]
@@ -94,6 +94,8 @@ Waku Agent 不只有 loop，還支援 graph 工作流：
 
 > 詳見 [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] 概念頁。
 
+> 記憶存儲、檢索方法與維護策略的完整比較，詳見 [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|5 種記憶架構設計方式]]。
+
 ## 與 Pi 的關係
 
 - waku-agent 使用 [Pi](https://github.com/earendil-works/pi) 作為 sub-agent（`delegate_task` tool）
@@ -114,6 +116,7 @@ Waku Agent 不只有 loop，還支援 graph 工作流：
 - [[wiki/sources/2026-08-02-waku-agent-code-walkthrough|YouTube code walkthrough]]
 - [[wiki/sources/2026-08-02-waku-agent-github-readme|GitHub README]]
 - [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering — YouTube video]]
+- [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|AI Agent Memory Systems — 5 種記憶架構設計方式]] — 記憶存儲、檢索、維護的完整比較與實測
 
 ## 相關頁面
 - [[wiki/entities/hermes-agent|hermes-agent]] — 同類 local-first AI agent（自我改進 + learning loop）

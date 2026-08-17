@@ -48,6 +48,7 @@ updated: 2026-08-13
 - [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum]] — 程式碼重要性光譜與驗證策略
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑（Pi vs LangGraph）
 - [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 保留文件結構的 RAG 方法，Agent 推導航而非 chunks 相似度搜尋
+- [[wiki/concepts/ai-agent-memory-systems|AI Agent Memory Systems]] — 記憶架構三支柱與五種存儲方式實測比較
 
 ## Sources
 
@@ -65,6 +66,7 @@ updated: 2026-08-13
 - [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種 AI Agent 工作流模式
 - [[wiki/sources/2026-07-18-pi-resource-inventory|Pi Resource Inventory]] — Pi 資源盤點
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]] — LangGraph runtime 深度解析
+- [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|AI Agent Memory Systems — 5 種記憶架構設計方式]] — 記憶存儲、檢索、維護的完整比較與實測
 - [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob Stopped Reading AI-Generated Code]] — AI 程式碼驗證方法論（YouTube）
 - [[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Write Code You Will Never Read Again]] — 程式碼重要性光譜（YouTube）
 - [[wiki/sources/2026-08-13-prime-agent-youtube|Prime Agent YouTube 介紹]] — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent

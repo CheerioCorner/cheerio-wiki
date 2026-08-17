@@ -43,6 +43,7 @@
 - [[wiki/concepts/arc-agi-3-benchmark.md|ARC-AGI-3 Benchmark]]🏿
 - [[wiki/concepts/atdp.md|ATDP — Agent Trajectory Data Protocol]]
 - [[wiki/concepts/chunkless-rag.md|Chunkless RAG — 保留文件結構的檢索增強生成]]
+- [[wiki/concepts/ai-agent-memory-systems.md|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]]
 - [[wiki/concepts/code-execution-as-tool-calling.md|Code Execution as Tool Calling]]
 - [[wiki/concepts/code-graph.md|Code Graph]]🏿
 - [[wiki/concepts/code-importance-spectrum.md|Code Importance Spectrum — 程式碼重要性光譜]]
@@ -231,3 +232,4 @@
 - [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup.md|Pi Agent GitHub Copilot Provider 設定指南]]
 - [[wiki/sources/2026-08-20-opencode-review-deep-research.md|OpenCodeReview 深度研究（Gemini Research）]]
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes.md|LangGraph in 10 Minutes (Explained Clearly)]]
+- [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways.md|AI Agent Memory Systems — 5 種記憶架構設計方式]]
