@@ -30,11 +30,11 @@
   - 備註：同組任務 W-2026-08-056／W-2026-08-057／W-2026-08-058；技術設計再好，沒有對齊企業現有流程就無法真正導入
 
 - [ ] W-2026-08-055 花園流程與 extension 優化（根因修正） #knowledge #skill #notion
-  - next: ① Notion 種子 DB + 視覺地圖 DB 人工加 Run-ID/Origin/Verification-ID 欄位 → ② 真實 Notion page 端到端實測 → ③ Agent Skills 內容同步進花園（驗收測試）
+  - next: ⏸️ 卡在 ① — 兩個 DB 都沒有 Run-ID/Origin/Verification-ID，需 Cheer 手動在 Notion UI 新增。②③ 待 ① 完成後續做。
   - refs: [[.pi/round-table/20260814-095306/synthesis|2026-08-14 圓桌會議紀要]]、[[.pi/round-table/20260817-080831/synthesis|2026-08-17 P0 實作設計圓桌會議紀要]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/visualmap|visualmap skill]]、[[wiki/entities/page-content|page-content skill]]
   - **Phase 1（共用驗證腳本）✅ 完成**：`scripts/notion_verify.sh` + `scripts/url_gate.sh`，經 mock server 獨立測試通過
   - **Phase 2（接入 Notion 寫入 skill）✅ 完成（有已知限制）**：四支 knowledge-garden-* skill 都接上 read-back / URL gate，重構為共用參考檔 `references/write-back-safety.md`
-  - 已知限制：① Notion DB 還沒加 Run-ID/Origin/Verification-ID 三個 property（需人工在 Notion UI 操作）② 尚未用真實 Notion page 做端到端測試 ③ cheerio-skills 版控備份還沒同步
+  - 已知限制：① Notion DB 還沒加 Run-ID/Origin/Verification-ID 三個 property（2026-08-17 API 確認不存在，需 Cheer 手動在 Notion UI 新增）② 尚未用真實 Notion page 做端到端測試（依賴 ①）③ cheerio-skills 版控備份還沒同步
   - 共識結論（Gemini + Codex 圓桌會議 + Claude 覆核）：
     - 四個驗證關卡：URL 存活 / Mermaid render / DB read-back / 事實來源綁定
     - Headless 策略：正式 DB + `Status: 機器生成待審` + 三道護欄
