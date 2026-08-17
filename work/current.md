@@ -5,18 +5,54 @@
 
 ## In progress
 
-- [ ] W-2026-08-055 花園流程與 extension 優化（根因修正）🆕 #knowledge #skill #notion
-  - next: 確認 Pi 的 hook 能力（Stop hook 或替代方案）+ 確認 mmdc 環境可用性，然後依 P0→P1→P2 順序執行
-  - refs: [[.pi/round-table/20260814-095306/synthesis|圓桌會議紀要]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/visualmap|visualmap skill]]、[[wiki/entities/page-content|page-content skill]]
-  - 重點行動清單：
-    - **P0（1–2 天）**：① DB write read-back——所有 Notion 寫入 skill 加反查步驟（0.5–1 天）② URL 存活驗證——page-content 寫入前 curl gate，含 retry + 軟/硬 404 區分（0.5 天）③ page-content 順序改「先查證再寫」+ 允許留白 `[待查證]`（1–2 天）
-    - **P1（4–5 天）**：④ visualmap 寫入目標修正——Mermaid 寫入 DB 記錄頁 body，種子頁只放 relation + read-back（1 天）⑤ mmdc render 驗證 + 節點語法規則——Node ID 純英數、Label 加引號（1–2 天，需確認 mmdc 環境）⑥ headless 旗標 + 待審模式——`--mode headless`、`Status: 機器生成待審`、三道護欄（禁止寫入既有 Relation / Origin+run-id 可 rollback / default view 過濾）（2 天）
-    - **P2（3–5 天）**：⑦ 共用驗證 harness——內部 SkillCompletionHook（效率層）+ 外部確定性腳本（保證層/promote gate）+ 共用驗證邏輯 + 結構化執行收據 JSON（3–5 天）
-  - 共識結論（Claude + Gemini + Copilot 圓桌會議）：
+- [ ] W-2026-08-056 Skill 建置自動化研究 ①找現有方案 🆕 #ai-agent #skill #enterprise #skill-automation-design
+  - next: 派 general-purpose agent 調研企業界現成的 agentic pipeline / orchestration 方案，避免重造輪子
+  - refs: [[wiki/sources/2026-08-17-devops-skill-presentation|如何寫好一支SKILL簡報筆記]]、[[wiki/concepts/agent-skills-enterprise-governance|Agent Skills企業治理]]
+  - 無相依，可任何 session 切入
+  - 備註：同組任務 [[work/current#W-2026-08-057|W-2026-08-057]]／[[work/current#W-2026-08-058|W-2026-08-058]]／[[work/current#W-2026-08-059|W-2026-08-059]]；產出會餵給 ②③ 參考，但不阻塞它們
+
+- [ ] W-2026-08-057 Skill 建置自動化研究 ②共享驗證機制設計 🆕 #ai-agent #skill #enterprise #skill-automation-design
+  - next: 開 round-table（Claude+Gemini+Copilot）設計中間無人看管階段（分析/設計/開發/測試）的自動驗證機制，作為 (a)/(b) 兩種 checkpoint 拓撲的共同地基
+  - refs: [[wiki/sources/2026-08-17-devops-skill-presentation|如何寫好一支SKILL簡報筆記]]（P22 Write-back 安全門、P27 Skill 的限制）、[[wiki/concepts/agent-skills-enterprise-governance|Agent Skills企業治理]]（6 階段生命週期）、W-2026-08-055（花園流程「內部 hook=advisory + 外部腳本=gate」先例，可借鏡）
+  - 無相依，可任何 session 切入
+  - 備註：同組任務 W-2026-08-056／W-2026-08-058／W-2026-08-059；這是 (a)/(b) 兩種拓撲都要站上去的共同保障，沒有它就沒有「少人工介入」的安全網
+
+- [ ] W-2026-08-058 Skill 建置自動化研究 ③Checkpoint 拓撲比較 🆕 #ai-agent #skill #enterprise #skill-automation-design
+  - next: 站在②的驗證機制之上，完整寫出 (a) 兩道 checkpoint vs (b) 三道 checkpoint 的對比文件（優缺點、風險、適用情境），供主管決策參考
+  - refs: [[wiki/sources/2026-08-17-devops-skill-presentation|如何寫好一支SKILL簡報筆記]]（P26 Skill SDLC）
+  - blockedBy: [W-2026-08-057]
+  - 備註：同組任務 W-2026-08-056／W-2026-08-057／W-2026-08-059；這是要帶去跟主管報告拍板的核心產出
+
+- [ ] W-2026-08-059 Skill 建置自動化研究 ④企業導入路徑 🆕 #ai-agent #skill #enterprise #skill-automation-design
+  - next: 由 Cheer 主導（AI 打草稿），對齊 `wiki/concepts/agent-skills-enterprise-governance` 既有 6 階段治理框架與 CAB 變更管理慣例，規劃如何在長榮 IT 系統架構課落地
+  - refs: [[wiki/concepts/agent-skills-enterprise-governance|Agent Skills企業治理]]
+  - 無相依，可任何 session 切入
+  - 備註：同組任務 W-2026-08-056／W-2026-08-057／W-2026-08-058；技術設計再好，沒有對齊企業現有流程就無法真正導入
+
+- [ ] W-2026-08-055 花園流程與 extension 優化（根因修正） #knowledge #skill #notion
+  - next: ① Notion 種子 DB + 視覺地圖 DB 人工加 Run-ID/Origin/Verification-ID 欄位 → ② 真實 Notion page 端到端實測 → ③ Agent Skills 內容同步進花園（驗收測試）
+  - refs: [[.pi/round-table/20260814-095306/synthesis|2026-08-14 圓桌會議紀要]]、[[.pi/round-table/20260817-080831/synthesis|2026-08-17 P0 實作設計圓桌會議紀要]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/visualmap|visualmap skill]]、[[wiki/entities/page-content|page-content skill]]
+  - **Phase 1（共用驗證腳本）✅ 完成**：`scripts/notion_verify.sh` + `scripts/url_gate.sh`，經 mock server 獨立測試通過
+  - **Phase 2（接入 Notion 寫入 skill）✅ 完成（有已知限制）**：四支 knowledge-garden-* skill 都接上 read-back / URL gate，重構為共用參考檔 `references/write-back-safety.md`
+  - 已知限制：① Notion DB 還沒加 Run-ID/Origin/Verification-ID 三個 property（需人工在 Notion UI 操作）② 尚未用真實 Notion page 做端到端測試 ③ cheerio-skills 版控備份還沒同步
+  - 共識結論（Gemini + Codex 圓桌會議 + Claude 覆核）：
     - 四個驗證關卡：URL 存活 / Mermaid render / DB read-back / 事實來源綁定
-    - Headless 策略：正式 DB + `Status: 機器生成待審` + 三道護欄（非隔離 DB）
+    - Headless 策略：正式 DB + `Status: 機器生成待審` + 三道護欄
     - 驗證機制：內外結合雙層架構（內部 hook = advisory / 外部腳本 = gate）
     - 硬失敗 vs 軟失敗：URL 404 要區分真死 vs 暫時性，過度嚴格會誤殺
+
+- [ ] W-2026-08-060 DevOps Skill 簡報 ingest wiki（Agent Skills 專題擴充）✅ #knowledge #skill #notion
+  - next: 等 W-2026-08-055 Phase 2 正式可用後，拿這批內容當花園同步的正式驗收案例
+  - refs: [[wiki/sources/2026-08-17-devops-skill-presentation|DevOps Skill 簡報來源筆記]]、[[wiki/concepts/skill-design-methodology|Skill 設計方法論]]、[[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級]]、[[.pi/dual-review/20260817-deck-intest/comparison|雙模型交叉驗證比較]]
+  - 已完成：
+    - ✅ 讀完 31 頁 HTML 簡報全部內文
+    - ✅ 讀完既有 4 個 Agent Skills 專題頁面
+    - ✅ 雙模型交叉驗證（Claude + Gemini）產出併入提案
+    - ✅ 新增 2 顆概念種子：`skill-design-methodology.md`、`agent-extensibility-hierarchy.md`
+    - ✅ 更新 4 個既有頁面：agent-skills.md、skill-authoring-best-practices.md、agent-skills-enterprise-governance.md、skills-complex-composition-comparison.md
+    - ✅ 建立來源筆記 `wiki/sources/2026-08-17-devops-skill-presentation.md`
+    - ✅ git commit `a6cda92` 已推送
+  - 花園同步：故意延後，依賴 W-2026-08-055（一石二鳥：驗證硬化流程 + 完成同步）
 
 - [ ] W-2026-08-052 圓桌會議：Claude Design vs GitHub Copilot 可行性分析 🆕 #ai-agent #tools
   - next: 等 Cheer 回顧報告並回饋意見
