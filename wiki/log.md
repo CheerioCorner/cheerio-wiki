@@ -3,6 +3,18 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-17] round-table + ingest | Claude vs Gemini vs ChatGPT 前端全鏈路能力比較
+
+- **操作類型**：圓桌會議（3 輪）+ wiki ingest
+- **參與者**：Claude (Claude Code CLI)、Gemini (agy CLI)、ChatGPT (Codex CLI)
+- **核心結論**：三家各有結構性優勢，最佳工作流是「契約驅動的三核心分工」
+- **新增頁面**：
+  - wiki/sources/2026-08-17-frontend-ai-roundtable.md — 來源筆記
+  - wiki/concepts/contract-driven-development.md — 契約驅動開發
+  - wiki/concepts/context-decay.md — 脈絡衰減
+- **5 大共識**：契約驅動開發、脈絡衰減是最大風險、編排成本必須控制、rejected_alternatives 必要、不要單一模型跑全鏈路
+- **refs**: [[wiki/sources/2026-08-17-frontend-ai-roundtable|圓桌會議紀要]]
+
 ## [2026-08-17] ingest + dual-model | DevOps Skill 簡報併入 Agent Skills 專題
 
 - **操作類型**：本機簡報 ingest + 雙模型交叉驗證（Claude + Gemini）

@@ -34,7 +34,7 @@
   - refs: [[.pi/round-table/20260814-095306/synthesis|2026-08-14 圓桌會議紀要]]、[[.pi/round-table/20260817-080831/synthesis|2026-08-17 P0 實作設計圓桌會議紀要]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/visualmap|visualmap skill]]、[[wiki/entities/page-content|page-content skill]]
   - **Phase 1（共用驗證腳本）✅ 完成**：`scripts/notion_verify.sh` + `scripts/url_gate.sh`，經 mock server 獨立測試通過
   - **Phase 2（接入 Notion 寫入 skill）✅ 完成（有已知限制）**：四支 knowledge-garden-* skill 都接上 read-back / URL gate，重構為共用參考檔 `references/write-back-safety.md`
-  - 已知限制：① Notion DB 還沒加 Run-ID/Origin/Verification-ID 三個 property（2026-08-17 API 確認不存在，需 Cheer 手動在 Notion UI 新增）② 尚未用真實 Notion page 做端到端測試（依賴 ①）③ cheerio-skills 版控備份還沒同步
+  - 已知限制：① Notion DB 還沒加 Run-ID/Origin/Verification-ID 三個 property（2026-08-17 API 確認不存在，需 Cheer 手動在 Notion UI 新增）② 尚未用真實 Notion page 做端到端測試（依賴 ①）③ cheerio-skills 同步：knowledge-garden + page-content SKILL.md 已同步（commit 32c942d），其餘 skill 待後續同步
   - 共識結論（Gemini + Codex 圓桌會議 + Claude 覆核）：
     - 四個驗證關卡：URL 存活 / Mermaid render / DB read-back / 事實來源綁定
     - Headless 策略：正式 DB + `Status: 機器生成待審` + 三道護欄
@@ -54,14 +54,15 @@
     - ✅ git commit `a6cda92` 已推送
   - 花園同步：故意延後，依賴 W-2026-08-055（一石二鳥：驗證硬化流程 + 完成同步）
 
-- [ ] W-2026-08-052 圓桌會議：Claude Design vs GitHub Copilot 可行性分析 🆕 #ai-agent #tools
-  - next: 等 Cheer 回顧報告並回饋意見
-  - refs: [[.pi/round-table/20260813-183535/synthesis|圓桌會議紀要]]、[[wiki/entities/claude-design|Claude Design]]、[[wiki/concepts/design-md-format|design.md Format]]
-  - 狀態：待人類回顧
-  - 核心結論：
-    - Claude Design 五階段流程經 2026/6 更新後可行性大幅提升（token 問題已修復）
-    - Copilot 無原生畫布但 IDE 整合與代碼品質更成熟
-    - Cheer 最佳路線：Direct Code Handoff（Claude Design 探索 → DesignSync 雙向同步 → Claude Code 實作 → Copilot 維護）
+- [x] W-2026-08-052 圓桌會議：Claude vs Gemini vs ChatGPT 前端全鏈路能力比較 ✅ #ai-agent #tools
+  - completed: 2026-08-17
+  - refs: [[wiki/sources/2026-08-17-frontend-ai-roundtable|圓桌會議紀要]]、[[wiki/concepts/contract-driven-development|Contract-Driven Development]]、[[wiki/concepts/context-decay|Context Decay]]
+  - 已完成：
+    - ✅ 3 輪圓桌會議（Claude + Gemini + ChatGPT/Codex）
+    - ✅ 核心結論：契約驅動的三核心分工（Gemini 視覺 → Claude 架構 → Codex 交付）
+    - ✅ 5 大共識：契約驅動、脈絡衰減、編排成本、rejected_alternatives、不要單模型全包
+    - ✅ wiki 新增 1 source + 2 concepts
+    - ✅ 會議紀錄存入 .pi/round-table/20260817-211224/
 
 ## 🔴 Phase 1：前置知識（建立 Agent 前必學）
 

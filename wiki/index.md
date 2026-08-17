@@ -49,7 +49,9 @@
 - [[wiki/concepts/code-knowledge-graph.md|Code Knowledge Graph — 代碼知識圖譜]]
 - [[wiki/concepts/content-redesign.md|Content 設計 Redesign]]🏿
 - [[wiki/concepts/context-cot.md|Context-CoT — 上下文思維鏈]]
+- [[wiki/concepts/contract-driven-development.md|Contract-Driven Development — 契約驅動開發]]
 - [[wiki/concepts/continual-harness.md|Continual Harness]]🏿
+- [[wiki/concepts/context-decay.md|Context Decay — 脈絡衰減]]
 - [[wiki/concepts/copilot-agent-loop.md|Copilot Agent Loop — 多輪 Tool-Use 循環]]🏿
 - [[wiki/concepts/copilot-custom-agents.md|Copilot Custom Agents — Sub-agent Orchestration]]🏿
 - [[wiki/concepts/copilot-fleet-mode.md|Copilot Fleet Mode — 並行 Sub-agent 編排]]🏿
@@ -225,6 +227,7 @@
 - [[wiki/sources/2026-08-15-round-table-pi-agent-v084-learning.md|圓桌會議：Pi Agent v0.84.x 更新中值得學習的設計模式]]🏿
 - [[wiki/sources/2026-08-17-7-ai-animation-skills.md|7 個用 AI 做動畫的 Skills（Debug Tuboshu）]]
 - [[wiki/sources/2026-08-17-devops-skill-presentation.md|如何寫好一支 SKILL？· DevOps Board 系列（簡報來源筆記）]]🏿
+- [[wiki/sources/2026-08-17-frontend-ai-roundtable.md|圓桌會議：Claude vs Gemini vs ChatGPT — 前端全鏈路能力比較]]
 - [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup.md|Pi Agent GitHub Copilot Provider 設定指南]]
 - [[wiki/sources/2026-08-20-opencode-review-deep-research.md|OpenCodeReview 深度研究（Gemini Research）]]
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes.md|LangGraph in 10 Minutes (Explained Clearly)]]
