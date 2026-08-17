@@ -3,6 +3,21 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-17] ingest | 7 個用 AI 做動畫的 Skills（YouTube Shorts）
+
+- **操作類型**：YouTube ingest（Whisper 語音轉文字）
+- **來源**：YouTube Shorts — 7 個用 AI 做動畫的 Skills（Debug Tuboshu, 2026-08-16）
+- **字幕**：Whisper base model auto-generated（53 秒，31 segments）
+- **新建**：
+  - `raw/youtube/2026-08-17-7-ai-animation-skills.md` — raw transcript
+  - `wiki/sources/2026-08-17-7-ai-animation-skills.md` — source note（含可信度警語）
+  - `wiki/concepts/ai-animation-generation-approaches.md` — AI 動畫生成手法分類概念頁
+- **更新**：`wiki/topics/ai-development-tools.md` — 新增 source note + concept 導航連結
+- **重建**：`wiki/index.md` — 全量重建（50 concepts, 45 entities, 81 sources）
+- **雙模型交叉驗證**：Claude + Gemini 各自提案，關鍵分歧在於是否建 entity page（Gemini 建 Remotion，Claude 主張保守因字幕不可信），採用 Claude 保守方案
+- **⚠️ 注意**：工具名稱來自 Whisper 自動字幕，可能有語音辨識誤差，source note 標記 low-confidence-transcript
+- refs: [[wiki/sources/2026-08-17-7-ai-animation-skills|Source Note]], [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]]
+
 ## [2026-08-15] round-table | Pi Agent v0.84.x 更新中值得學習的設計模式
 
 - **操作類型**：圓桌會議 + Source Note 建立
