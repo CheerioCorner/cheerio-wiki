@@ -3,6 +3,18 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-17] visualmap | 3 顆種子視覺地圖結構性修復
+
+- **修復範圍**：Skill 設計方法論、Agent 擴充架構層級、E2E 測試種子
+- **問題**：3 顆種子的視覺地圖 Mermaid 誤放在孤兒子頁面，DB 記錄頁為空，種子頁 relation 未連結
+- **修復內容**：
+  - Skill 設計方法論：3 個 Mermaid（五步驟流程 / 一需求→多意圖 / 交辦包結構）搬入 DB 記錄頁 `3bf5979e-3a8c-81c6-95e9-d567c3a4ba66`，種子頁 relation 指向該記錄頁
+  - Agent 擴充架構層級：3 個 Mermaid（三層能力光譜 / 選擇決策樹 / 與既有頁面關係）搬入 DB 記錄頁 `3bf5979e-3a8c-81e0-a8f6-e59e3a30550f`，種子頁 relation 指向該記錄頁
+  - E2E 測試種子：種子頁本體錯置的 Skill Design Mermaid 刪除；DB 記錄頁維持空白（等 E2E 驗證完成後再補）
+  - 3 個孤兒子頁面 move to trash：`3bf5979e-3a8c-8145-bffb-c6146db99242`、`3bf5979e-3a8c-8183-be5c-eec52aa51e2d`、`3bf5979e-3a8c-81a9-aa83-dc26f1e086dc`
+- **mmdc 驗證**：6 個 Mermaid 全部通過 mermaid-cli render（SVG 8.5KB-14.4KB）
+- refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、W-2026-08-055
+
 ## [2026-08-17] round-table + ingest | Claude vs Gemini vs ChatGPT 前端全鏈路能力比較
 
 - **操作類型**：圓桌會議（3 輪）+ wiki ingest
