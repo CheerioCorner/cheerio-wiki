@@ -29,8 +29,9 @@
   - 無相依，可任何 session 切入
   - 備註：同組任務 W-2026-08-056／W-2026-08-057／W-2026-08-058；技術設計再好，沒有對齊企業現有流程就無法真正導入
 
-- [ ] W-2026-08-055 花園流程與 extension 優化（根因修正） #knowledge #skill #notion
-  - next: ⏸️ 卡在 ① — 兩個 DB 都沒有 Run-ID/Origin/Verification-ID，需 Cheer 手動在 Notion UI 新增。②③ 待 ① 完成後續做。
+- [x] W-2026-08-055 花園流程與 extension 優化（根因修正）✅ #knowledge #skill #notion
+  - completed: 2026-08-17
+  - next: ✅ 全部完成
   - **2026-08-17 視覺地圖結構性修復（3 顆種子）✅**：Skill 設計方法論 + Agent 擴充架構層級的 Mermaid 搬入 DB 記錄頁 + relation 修復；E2E 測試種子錯置 Mermaid 清除。詳見 work/history/2026-08.md。
   - refs: [[.pi/round-table/20260814-095306/synthesis|2026-08-14 圓桌會議紀要]]、[[.pi/round-table/20260817-080831/synthesis|2026-08-17 P0 實作設計圓桌會議紀要]]、[[wiki/entities/knowledge-garden|knowledge-garden]]、[[wiki/entities/visualmap|visualmap skill]]、[[wiki/entities/page-content|page-content skill]]
   - **Phase 1（共用驗證腳本）✅ 完成**：`scripts/notion_verify.sh` + `scripts/url_gate.sh`，經 mock server 獨立測試通過
