@@ -42,18 +42,28 @@
     - 驗證機制：內外結合雙層架構（內部 hook = advisory / 外部腳本 = gate）
     - 硬失敗 vs 軟失敗：URL 404 要區分真死 vs 暫時性，過度嚴格會誤殺
 
-- [ ] W-2026-08-060 DevOps Skill 簡報 ingest wiki（Agent Skills 專題擴充）✅ #knowledge #skill #notion
-  - next: 等 W-2026-08-055 Phase 2 正式可用後，拿這批內容當花園同步的正式驗收案例
-  - refs: [[wiki/sources/2026-08-17-devops-skill-presentation|DevOps Skill 簡報來源筆記]]、[[wiki/concepts/skill-design-methodology|Skill 設計方法論]]、[[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級]]、[[.pi/dual-review/20260817-deck-intest/comparison|雙模型交叉驗證比較]]
+(W-2026-08-060 已完成，見 Completed 區塊)
+
+- [x] W-2026-08-060 DevOps Skill 簡報 ingest wiki（Agent Skills 專題擴充）✅ #knowledge #skill #notion
+  - completed: 2026-08-17
+  - refs: [[wiki/sources/2026-08-17-devops-skill-presentation|DevOps Skill 簡報來源筆記]]、[[wiki/concepts/skill-design-methodology|Skill 設計方法論]]、[[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級]]
   - 已完成：
     - ✅ 讀完 31 頁 HTML 簡報全部內文
-    - ✅ 讀完既有 4 個 Agent Skills 專題頁面
-    - ✅ 雙模型交叉驗證（Claude + Gemini）產出併入提案
-    - ✅ 新增 2 顆概念種子：`skill-design-methodology.md`、`agent-extensibility-hierarchy.md`
-    - ✅ 更新 4 個既有頁面：agent-skills.md、skill-authoring-best-practices.md、agent-skills-enterprise-governance.md、skills-complex-composition-comparison.md
-    - ✅ 建立來源筆記 `wiki/sources/2026-08-17-devops-skill-presentation.md`
-    - ✅ git commit `a6cda92` 已推送
-  - 花園同步：故意延後，依賴 W-2026-08-055（一石二鳥：驗證硬化流程 + 完成同步）
+    - ✅ 雙模型交叉驗證（Claude + Gemini）
+    - ✅ 新增 2 顆概念種子 + 更新 4 個既有頁面
+    - ✅ 建立來源筆記 + git commit 推送
+  - 花園同步：依賴 W-2026-08-055
+
+- [x] W-2026-08-061 YouTube ingest + 圓桌會議：Claude Code Hooks 教學影片 ✅ #knowledge #ai-agent #hooks
+  - completed: 2026-08-17
+  - refs: [[wiki/sources/2026-08-18-claude-code-hooks-tutorial|Claude Code Hooks 教學來源筆記]]、[[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構]]、[[.pi/round-table/20260817-222740/synthesis|圓桌會議紀要]]
+  - 已完成：
+    - ✅ 抓字幕（zh-TW 手動字幕，568 segments → 26 paragraphs）
+    - ✅ 雙模型交叉驗證（Claude + Gemini 提案一致）
+    - ✅ 新建 source note + concept page
+    - ✅ 更新 claude-code entity、agent-extensibility-hierarchy concept、2 個 topic pages
+    - ✅ 2 輪圓桌會議（Claude + Codex + Gemini）
+    - ✅ 共識：確定性執行 vs 機率性自律、三層架構對個人/小團隊足夠、Prompt/Agent Handler 作為語意過濾器
 
 - [x] W-2026-08-052 圓桌會議：Claude vs Gemini vs ChatGPT 前端全鏈路能力比較 ✅ #ai-agent #tools
   - completed: 2026-08-17
