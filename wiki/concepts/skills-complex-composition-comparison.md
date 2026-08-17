@@ -2,8 +2,8 @@
 title: "Skill 複雜組合技比較 — Claude Code / GitHub Copilot / Pi Agent"
 type: comparison
 created: 2026-08-14
-updated: 2026-08-14
-sources: 25
+updated: 2026-08-17
+sources: 26
 tags: [skill, comparison, claude-code, github-copilot, pi-agent, composition, delegation, toolchain]
 topics: [skill, ai-development-tools, ai-agent]
 canonical: concepts/skills-complex-composition-comparison
@@ -250,6 +250,25 @@ customAgents: [{
 | 產生報告 | pdf Skill | Custom Agent（report tools） | 自訂 Skill + bash |
 | 發送通知 | MCP Email Server | onPostToolUse hook → Slack webhook | Extension |
 | 組合方式 | 單一請求多 Skill | Fleet Mode 並行 | 多次觸發 |
+
+## 應用層案例：Skill 鏈式協作（Chain Composition）
+
+> 2026-08-17 新增。上述比較的是**框架層**組合機制差異；本節補充**應用層**具體案例——單一領域內的 skill 鏈設計。
+
+**情境**：「這張 User Story 一直被退，幫我查清楚問題出在哪，然後更新它。」
+
+```
+work-query → wiki → analytics → work-maintainer
+   ↓           ↓         ↓            ↓
+先撈出這張    去讀該     比對相似      確認後回寫
+WIT 的現況、  Team 的    欄位與工時    欄位與工時
+歷程與退件    驗收準則   （過安全門）
+紀錄          與規範
+```
+
+**關鍵**：複雜系統不是一支 skill 就能處理——**切成小支，才有辦法照情境串起來用**。簡單問題用 skill，複雜問題用 skill 的協作。
+
+> 與框架層組合的差異：框架層決定了「怎麼編排多支 skill」（同時載入 / Subagent / Fleet Mode），應用層決定了「哪些 skill 應該串成一條鏈」。兩者是不同層次的問題。
 
 ## 來源
 

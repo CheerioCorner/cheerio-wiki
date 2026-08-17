@@ -2,8 +2,8 @@
 title: "Agent Skills 企業治理"
 type: concept
 created: 2026-08-14
-updated: 2026-08-14
-sources: 1
+updated: 2026-08-17
+sources: 2
 tags: [skill, enterprise, governance, security, lifecycle]
 topics: [skill]
 canonical: concepts/agent-skills-enterprise-governance
@@ -75,6 +75,25 @@ provenance:
 4. **部署**：Skills API 上傳 + 內部登錄
 5. **監控**：使用模式追蹤 + 定期重新評估
 6. **迭代或棄用**：新版本需完整評估套件通過
+
+### Skill SDLC（開發者視角）
+
+> 2026-08-17 新增。從開發者角度的完整 8 階段生命週期，與上述組織治理流程互補。
+
+| 階段 | 做什麼 | 對應工具/方法 |
+|------|--------|-------------|
+| 1. 需求 | 反問逼出真意圖 | grill-me |
+| 2. 分析 | 12 條意圖起手 | [[wiki/concepts/skill-design-methodology|Intention-First]] |
+| 3. 設計 | 流程圖即是規格 | Decision Tree |
+| 4. 開發 | 產出 skill 骨架 | skill-creator |
+| 5. 測試 | 真實環境真的跑 | plannotator UI |
+| 6. 部署 | 統一發佈的管道 | GitHub Enterprise |
+| 7. 版控 | 留下每次修改紀錄 | branch / PR / tag |
+| 8. 迭代 | 回到需求，重新開始 | memory feedback |
+
+**核心**：打造 Skill 的生命週期，跟打造軟體的生命週期，本質上沒有不同；差別只在最後產出的，從程式碼變成了 **skill 資產**。
+
+> 與 [[wiki/concepts/skill-authoring-best-practices#寫入安全模式write-back-safety-gate|Write-back Safety Gate]] 的關係：SDLC 的「測試」階段應包含寫入安全驗證（dry-run → 人類確認 → confirm → 讀回驗證）。
 
 ## 大規模組織策略
 

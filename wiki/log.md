@@ -3,6 +3,25 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-17] ingest + dual-model | DevOps Skill 簡報併入 Agent Skills 專題
+
+- **操作類型**：本機簡報 ingest + 雙模型交叉驗證（Claude + Gemini）
+- **來源**：Report/devops-skill-presentation/（Cheer 自製 31 頁 HTML 簡報，非外部 URL）
+- **雙模型共識**：
+  - 共識：#8 Write-back → best-practices、#10 SDLC → governance、#11 失敗模式 → agent-skills.md
+  - 分歧：新種子數量（Claude 1 個 vs Gemini 3 個）→ Pi 裁決 2 個
+  - 分歧：Meta-Skills Loop（獨立 vs 併入）→ Pi 裁決併入 agent-skills.md
+- **新增頁面**：
+  - wiki/concepts/skill-design-methodology.md — Skill 設計方法論（Intention-First + Event Storming + DDD + Domain Know-how + 決策樹）
+  - wiki/concepts/agent-extensibility-hierarchy.md — Agent 擴充架構層級（Skill/Hook/Extension 能力光譜）
+  - wiki/sources/2026-08-17-devops-skill-presentation.md — 來源筆記
+- **更新頁面**：
+  - wiki/concepts/agent-skills.md — +Meta-Skills Loop、+LLM 失敗模式、+Beyond Skill
+  - wiki/concepts/skill-authoring-best-practices.md — +Write-back 安全門（含 W-2026-08-055 跨場景共通模式註記）
+  - wiki/concepts/agent-skills-enterprise-governance.md — +Skill SDLC（8 階段）
+  - wiki/concepts/skills-complex-composition-comparison.md — +組合技鏈式案例
+- **索引重建**：wiki/index.md 全量重建（50 concepts, 54 entities, 84 sources）
+
 ## [2026-08-17] ingest + verify + dual-model | 7 個用 AI 做動畫的 Skills（YouTube Shorts）
 
 - **操作類型**：YouTube ingest + 雙模型交叉驗證（Pi + Gemini + Claude URL 驗證）

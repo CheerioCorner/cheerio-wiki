@@ -2,8 +2,8 @@
 title: "Agent Skills — Skill 系統根概念"
 type: concept
 created: 2026-08-14
-updated: 2026-08-14
-sources: 4
+updated: 2026-08-17
+sources: 5
 tags: [skill, progressive-disclosure, agent-extensibility, modular-capability]
 topics: [skill, ai-development-tools, agent-infrastructure]
 canonical: concepts/agent-skills
@@ -175,6 +175,19 @@ tools:
 | 無優先權機制 | 多 Skill 衝突時無內建仲裁 |
 | 沙箱隔離 | API Skills 無法存取外部系統 |
 
+### 認知層限制（LLM 推理失敗模式）
+
+> 2026-08-17 新增。與上述系統面限制互補——那些是「系統會怎麼壞」，這些是「LLM 推理會怎麼壞」。
+
+| 失敗模式 | 說明 | 對應閘門 |
+|---------|------|----------|
+| **選錯 Skill** | 13 支擺在那裡，AI 挑錯了那一支 | 好的 description（觸發詞寫準，AI 才叫得對人） |
+| **誤解意圖** | 話講得太短、太含糊，理解就偏了 | 安全門與確認點（關鍵動作卡一次人類） |
+| **自行判斷，跳過步驟** | 它覺得不是必要條件，就自己省略掉 | 真實環境測試（文件說可以不算數，跑過才算） |
+| **資訊不足，開始幻覺** | 查不到就自己編一個看起來合理的答案 | 必要時交給 Hook/Extension（用平台層強制流程，不靠 AI 自律） |
+
+**核心**：承認 LLM 的限制，不是讓 AI 不出錯，而是讓它出錯時人類接得住。
+
 ## 進階層：複雜 Skill 組合與跨框架比較
 
 > 詳見 [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]]
@@ -210,15 +223,45 @@ tools:
 - [[wiki/sources/2026-08-14-agent-skills-enterprise-deployment|企業級部署]]
 - [[wiki/sources/2026-08-14-anthropics-skills-github-repo|anthropics/skills Repo]]
 
+## 進階層：Meta-Skills 生態迴圈
+
+> 「做 Skill 的，也是 Skill」——用一組 meta-skills 來幫我做 skill，高品質 skill 不是一次寫對，而是一輪一輪被問清楚、找參考、生成、對齊、真跑、沉澱出來的。
+
+### Skills Help Skills 迴圈
+
+1. **grill-me**（反問人類）：讓 AI 反過來質詢，把模糊需求問清楚，逼出真正的意圖
+2. **find-skills**（找現成的）：先找當下可用的 skill 或外部參考，不重新發明輪子
+3. **skill-creator**（生第一版）：產生 skill 骨架與 description，把意圖快速變成初稿
+4. **plannotator UI**（視覺化對齊）：把規劃視覺化，拿來跟 AI 討論與對齊
+5. **feedback / memory**（沉澱經驗）：把真實決策、破例與踩雷跨 session 記住，下次不重犯
+
+↺ 修正後回到步驟 1，越跑越準
+
+> 📝 與 [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill]] 的差異：SkillOpt 是**文字級**自動修補 SKILL.md 本身；本節的 Meta-Skills Loop 是**多支 skill 協作**完成另一支 skill 的發現/建立/規劃/回饋（系統架構層）。
+
+## 進階層：Beyond Skill — 下一層抽象
+
+> 當 Skill 不足以控制流程，下一層是什麼？詳見 [[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級]]。
+
+| 層級 | 本質 | 驅動方式 | 適用場景 |
+|------|------|---------|----------|
+| **Skill** | 宣告式指導 | 被動（人類叫它） | 重複性任務、有明確流程 |
+| **Hook** | 事件驅動強制 | 主動（事件觸發） | 安全把關、合規審計 |
+| **Extension** | 平台能力延伸 | 常駐服務 | 跨系統整合、自訂工具 |
+
+**核心**：Skill 讓 AI 變懂；Hook 強制它照規則走；Extension 延伸到平台層。
+
 ## 相關頁面
 
 ### 基礎層導航
-- [[wiki/concepts/skill-authoring-best-practices|Skill 撰寫方法論]]
-- [[wiki/concepts/agent-skills-api-usage|Agent Skills API 使用方法]]
-- [[wiki/concepts/agent-skills-enterprise-governance|Agent Skills 企業治理]]
+- [[wiki/concepts/skill-design-methodology|Skill 設計方法論]] — 設計層：如何決定 skill 邊界 🆕
+- [[wiki/concepts/skill-authoring-best-practices|Skill 撰寫方法論]] — 實作層：怎麼寫好一支 skill
+- [[wiki/concepts/agent-skills-api-usage|Agent Skills API 使用方法]] — 整合層：API 如何使用
+- [[wiki/concepts/agent-skills-enterprise-governance|Agent Skills 企業治理]] — 治理層：安全審查與生命週期
 
 ### 進階層導航
-- [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]]
+- [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — 框架層組合機制
+- [[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級]] — 擴充層：Skill/Hook/Extension 🆕
 
 ### 實體導航
 - [[wiki/entities/anthropic-agent-skills|Anthropic Agent Skills]] — Anthropic 官方系統

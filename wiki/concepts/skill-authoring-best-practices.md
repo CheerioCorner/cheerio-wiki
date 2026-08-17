@@ -2,8 +2,8 @@
 title: "Skill 撰寫方法論"
 type: concept
 created: 2026-08-14
-updated: 2026-08-14
-sources: 1
+updated: 2026-08-17
+sources: 2
 tags: [skill, best-practices, authoring, evaluation, prompt-engineering]
 topics: [skill]
 canonical: concepts/skill-authoring-best-practices
@@ -92,6 +92,29 @@ Here is a sensible default format, but use your best judgment...
 ### 驗證循環
 
 執行驗證器 → 修復錯誤 → 重複。**品質關鍵任務必備**。
+
+### 寫入安全模式（Write-back Safety Gate）
+
+> 2026-08-17 新增。處理有副作用的寫入操作——比驗證循環更嚴格的安全機制。
+
+**四步安全門**：
+
+1. **`--dry-run` 先預覽**：先跑一次，不動任何資料
+2. **人類確認**：把預覽結果攤給人看、等點頭
+3. **`--confirm` 才寫入**：確認後才真正執行
+4. **讀回驗證**：寫完再讀一次，核對無誤
+
+**三級分類**：
+
+| 分類 | 準則 | 範例 |
+|------|------|------|
+| ✓ 要 | 明確的事實、明確的歸屬 | 「我的」升級案、指派給我的 WIT |
+| ! 小心 | 會動到別人的資料或正式設定 | 改到同事的工時 → 需要更高權限 |
+| ✕ 不要 | AI 推測、幻想、沒有證據的結論 | AI 自己猜出來的工時數字 |
+
+**核心規則：不可逆的事，人類永遠先看過一眼。這條規則沒有例外。**
+
+> 💡 **跨場景共通模式**：這套「寫入前預覽/護欄 + 寫入後讀回驗證，不信任寫入指令本身回報成功」的安全設計，在不同場景被獨立發明出來——例如 [[wiki/sources/2026-08-17-devops-skill-presentation|DevOps 簡報]] 的「回寫安全門」四步驟，以及 W-2026-08-055 的 `notion_verify.sh` DB read-back 三層驗證（寫入前 Relation snapshot 護欄 → 執行寫入 → 讀回三層驗證）。兩者核心精神一致：**不信任「寫入指令回報成功」，必須用讀回來驗證**。這可能是個值得抽成通用原則的設計模式。
 
 ## 評估與迭代
 
