@@ -26,9 +26,9 @@ AI 驅動的 Logo 動畫工具，將靜態的 Logo 圖片（raster）自動轉�
 
 ## 使用情境
 
-1. **品牌開場動畫**：Logo 動態揭幕影片，用於影片片頭或簡報開場
-2. **社群媒體素材**：將品牌 Logo 轉為動態 GIF 用於貼文
-3. **簡報動態元素**：讓簡報中的 Logo 有呼吸感的微動畫
+1. **企業品牌網站開場動畫**：官網首頁 Hero Section 的 Logo 動態揭幕效果，提升品牌質感第一印象
+2. **影音創作者動態片頭**：YouTube / 抖音頻道片頭 Logo 動畫，5 秒內建立品牌識別
+3. **互動式網頁向量圖示**：導覽列、CTA 按鈕的 Logo 微動畫，增加頁面活躍度與互動感
 
 ## 來源
 
@@ -38,3 +38,4 @@ AI 驅動的 Logo 動畫工具，將靜態的 Logo 圖片（raster）自動轉�
 
 - [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]]
 - [[wiki/entities/hyperframes|hyperframes]]（HTML 轉影片）
+- [[wiki/entities/gsap|gsap-skills]]（網頁動效技能包）

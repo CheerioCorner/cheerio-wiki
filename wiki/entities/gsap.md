@@ -1,34 +1,36 @@
 ---
-title: "GSAP — 網頁動畫Industry Standard"
+title: "gsap-skills — GSAP 官方 AI 技能包"
 type: entity
 created: 2026-08-17
 updated: 2026-08-17
 sources: 1
-tags: [animation, javascript, web-animation, motion-graphics]
+tags: [animation, ai-skill, web-animation, motion-graphics]
 topics: [ai-development-tools]
-provenance_url: "https://github.com/greensock/GSAP"
+provenance_url: "https://github.com/greensock/gsap-skills"
 ---
 
-# GSAP — 網頁動畫 Industry Standard
+# gsap-skills — GSAP 官方 AI 技能包
 
-> GreenSock Animation Platform，JavaScript 網頁動畫的業界標準 Library，高效能、跨瀏覽器。
+> GreenSock 官方推出的 AI 技能包，教 AI Coding Agent 如何正確使用 GSAP 動畫庫製作網頁動效。
 
 ## 基本資訊
 
-- **開發者**：GreenSock（https://github.com/greensock/GSAP / https://gsap.com）
-- **GitHub Stars**：27,769
-- **授權**：免費使用（部分進階插件需付費）
-- **一句話**：JavaScript 網頁動畫的業界標準，高效能專業級動效引擎
+- **開發者**：GreenSock（https://github.com/greensock/gsap-skills）
+- **GitHub Stars**：13,682
+- **建立日期**：2026-03-04
+- **基於**：[GSAP (GreenSock Animation Platform)](https://github.com/greensock/GSAP)（27,769 stars）
+- **授權**：開源
+- **一句話**：教 AI 寫出有質感的網頁動效——捲動視差、向量變形、微互動物理反饋
 
 ## 核心用途
 
-提供高效能、跨瀏覽器的 JavaScript 動畫引擎，支援 CSS、SVG、Canvas、通用物件的流暢動畫，是網頁動效開發的首選工具。
+GSAP 官方的 AI 技能包，讓 AI Coding Agent 能正確使用 GSAP 製作專業級網頁動畫。影片中提到「網頁上那種會浮、會彈有質感的動效,就是靠它教 AI 寫出來的」，精準描述了這個工具的角色：不是動畫庫本身，而是**教 AI 寫動畫的技能包**。
 
 ## 使用情境
 
-1. **網頁互動動效**：滾動觸發、懸浮彈跳、頁面轉場等高質感動畫
-2. **品牌官網**：打造有質感的品牌動態視覺體驗
-3. **數據視覺化動畫**：圖表、數據 Dashboard 的流暢動態呈現
+1. **品牌官網捲動視差自動化開發**：AI 根據設計稿自動生成 GSAP ScrollTrigger 捲動動畫，工程師只需微調參數
+2. **複雜向量圖標無縫變形動畫**：SVG path morphing 動效，圖標之間流暢過渡，用於產品功能展示或 loading 動畫
+3. **微互動物理反饋**：按鈕懸浮彈跳、卡片拖拽回彈、頁面轉場滑入等有「手感」的互動動效
 
 ## 來源
 
@@ -38,3 +40,4 @@ provenance_url: "https://github.com/greensock/GSAP"
 
 - [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]]
 - [[wiki/entities/remotion|Remotion]]（程式化影片工具）
+- [[wiki/entities/hyperframes|hyperframes]]（HTML 轉影片）

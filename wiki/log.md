@@ -3,31 +3,24 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
-## [2026-08-17] ingest + verify | 7 個用 AI 做動畫的 Skills（YouTube Shorts）
+## [2026-08-17] ingest + verify + dual-model | 7 個用 AI 做動畫的 Skills（YouTube Shorts）
 
-- **操作類型**：YouTube ingest + 工具查證
+- **操作類型**：YouTube ingest + 雙模型交叉驗證（Pi + Gemini + Claude URL 驗證）
 - **來源**：YouTube Shorts — 7 個用 AI 做動畫的 Skills（Debug Tuboshu, 2026-08-16）
 - **字幕**：Whisper base model auto-generated（53 秒，31 segments）
-- **查證結果**：7/7 工具全部核實（GitHub API 搜尋 + HTTP URL 驗證）
+- **查證結果**：7/7 工具全部核實（Pi GitHub API + Gemini 獨立 web search + Claude HTTP 驗證）
   1. HyperFriends → hyperframes（HeyGen, 41k stars）
-  2. G7 → GSAP（GreenSock, 27k stars）
+  2. G7 → gsap-skills（GreenSock AI 技能包, 13.6k stars）← 修正：從 GSAP 主庫改為 AI 技能包
   3. Pixel 2 模式 → pixel2motion（1.9k stars）
   4. Remotion → Remotion（56k stars）✅
   5. Video Shrugcraft → video-shotcraft（5.2k stars）
   6. Story2 Hand Zone → story-to-handdrawn-video（1.4k stars）
-  7. 手感動效 → breathing-dots-tutorial（130 stars, 教學專案）
-- **新建**：
-  - `raw/youtube/2026-08-17-7-ai-animation-skills.md` — raw transcript
-  - `wiki/sources/2026-08-17-7-ai-animation-skills.md` — source note（已更新查證結果）
-  - `wiki/concepts/ai-animation-generation-approaches.md` — AI 動畫生成手法分類概念頁（已更新核實工具）
-  - `wiki/entities/hyperframes.md` — HTML 轉影片工具
-  - `wiki/entities/gsap.md` — 網頁動畫 Library
-  - `wiki/entities/pixel2motion.md` — AI Logo 動畫 Skill
-  - `wiki/entities/remotion.md` — 程式碼驅動影片框架
-  - `wiki/entities/video-shotcraft.md` — 電影運鏡 Skill
-  - `wiki/entities/story-to-handdrawn-video.md` — 故事轉手繪動畫 Skill
-- **更新**：`wiki/topics/ai-development-tools.md` — 新增 6 個 entity + concept + source note 導航連結
-- **重建**：`wiki/index.md` — 全量重建（50 concepts, 51 entities, 81 sources）
+  7. 手感動效 → breathing-dots-tutorial（130 stars, 教學專案，非獨立工具）
+- **雙模型共識**：Pi 與 Gemini 結果高度一致（6 項同意，第 7 項一致判定為教學範例）
+- **已排除捏造連結**：Gemini 引用的 Codrops 文章（tympanus.net）經 Claude 實測 404，已排除
+- **新建**：6 個 entity pages（hyperframes, gsap, pixel2motion, remotion, video-shotcraft, story-to-handdrawn-video）
+- **更新**：source note（查證結果 + 雙模型說明）、concept page（7 個手法用途與情境）、topics 導航
+- **重建**：`wiki/index.md`（50 concepts, 51 entities, 81 sources）
 - refs: [[wiki/sources/2026-08-17-7-ai-animation-skills|Source Note]], [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]]
 
 ## [2026-08-15] round-table | Pi Agent v0.84.x 更新中值得學習的設計模式

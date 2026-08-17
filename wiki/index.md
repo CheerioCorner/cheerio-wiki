@@ -95,7 +95,7 @@
 - [[wiki/entities/github-copilot-sdk.md|GitHub Copilot SDK — Custom Agents 平台]] 🛠️
 - [[wiki/entities/github-copilot.md|GitHub Copilot — AI 程式碼輔助生態系]] 🛠️
 - [[wiki/entities/graphify.md|Graphify — 開源代碼知識圖譜工具]]
-- [[wiki/entities/gsap.md|GSAP — 網頁動畫Industry Standard]]
+- [[wiki/entities/gsap.md|gsap-skills — GSAP 官方 AI 技能包]]
 - [[wiki/entities/guizang-ppt-skill.md|guizang-ppt-skill — AI Agent HTML PPT 技能]]
 - [[wiki/entities/hermes-agent.md|hermes-agent — 開源 AI Agent 框架]]
 - [[wiki/entities/huashu-design.md|huashu-design — HTML 原生設計技能]]
