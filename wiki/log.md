@@ -3,6 +3,13 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-18] ingest | Claude Code 必學設定 Hooks，完整教學一次搞懂 (Gary Chen)
+- 來源：YouTube (rLNGSDYkK-w) by Gary Chen
+- 動作：新建 source note + concept page + 更新 claude-code entity + 更新 agent-extensibility-hierarchy + 更新 2 topic pages + index
+- 雙模型交叉驗證：Claude + Gemini 提案一致（關鍵欄位匹配），直接採用
+- 重點：三層架構 (Event/Matcher/Handler)、10 個核心 Event、5 種 Handler、Claude Code vs Codex 差異
+- refs: raw/youtube/rLNGSDYkK-w, wiki/sources/2026-08-18-claude-code-hooks-tutorial, wiki/concepts/claude-code-hooks-architecture
+
 ## [2026-08-17] ingest | AI Agent Memory Systems — 5 種記憶架構設計方式
 - 來源：YouTube (072eNztI06k) by Sean Chen
 - 動作：新建 source note + concept page + 更新 waku-agent entity + 更新 2 topic pages + index

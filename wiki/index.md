@@ -28,7 +28,7 @@
 
 ---
 
-## Concepts（抽象知識）— 50 頁
+## Concepts（抽象知識）— 51 頁
 
 - [[wiki/concepts/agent-durability-patterns.md|Agent Durability Patterns — 狀態持久化的三種路徑]]
 - [[wiki/concepts/agent-extensibility-hierarchy.md|Agent 擴充架構層級 — 從 Skill、Hook 到 Extension 的能力邊界]]🏿
@@ -43,6 +43,7 @@
 - [[wiki/concepts/arc-agi-3-benchmark.md|ARC-AGI-3 Benchmark]]🏿
 - [[wiki/concepts/atdp.md|ATDP — Agent Trajectory Data Protocol]]
 - [[wiki/concepts/chunkless-rag.md|Chunkless RAG — 保留文件結構的檢索增強生成]]
+- [[wiki/concepts/claude-code-hooks-architecture.md|Claude Code Hooks 架構 — Event / Matcher / Handler]]
 - [[wiki/concepts/ai-agent-memory-systems.md|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]]
 - [[wiki/concepts/code-execution-as-tool-calling.md|Code Execution as Tool Calling]]
 - [[wiki/concepts/code-graph.md|Code Graph]]🏿
@@ -145,7 +146,7 @@
 
 ---
 
-## Sources（來源筆記）— 84 頁
+## Sources（來源筆記）— 85 頁
 
 - [[wiki/sources/2026-02-10-pi-agent-core-design.md|下一代Agent架构——Pi Agent Core 设计逻辑深度解析]]
 - [[wiki/sources/2026-05-02-pi-mono-framework-tw.md|別再被複雜框架綁架:pi-mono 回歸直覺的 TypeScript AI Agent 開發框架]]
@@ -229,6 +230,7 @@
 - [[wiki/sources/2026-08-17-7-ai-animation-skills.md|7 個用 AI 做動畫的 Skills（Debug Tuboshu）]]
 - [[wiki/sources/2026-08-17-devops-skill-presentation.md|如何寫好一支 SKILL？· DevOps Board 系列（簡報來源筆記）]]🏿
 - [[wiki/sources/2026-08-17-frontend-ai-roundtable.md|圓桌會議：Claude vs Gemini vs ChatGPT — 前端全鏈路能力比較]]
+- [[wiki/sources/2026-08-18-claude-code-hooks-tutorial.md|Claude Code 必學設定 Hooks，完整教學一次搞懂 (Gary Chen)]]
 - [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup.md|Pi Agent GitHub Copilot Provider 設定指南]]
 - [[wiki/sources/2026-08-20-opencode-review-deep-research.md|OpenCodeReview 深度研究（Gemini Research）]]
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes.md|LangGraph in 10 Minutes (Explained Clearly)]]

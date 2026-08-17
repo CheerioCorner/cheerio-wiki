@@ -42,15 +42,13 @@ Observe → Reason → Action → Evaluate → Loop
 每個 subagent 獨立產出結果，最後由主 agent 綜合評分（confidence scoring ≥ 80 才通過）。
 
 ### 6. Hooks（鉤子系統）
-在生命週期事件中插入自動化邏輯：
+**Deterministic 的事件驅動自動化機制**——在 AI 忘記或跳過規則時，由軟體層強制執行檢查、防呆與品質把關。三層架構：Event（什麼時候啟動）→ Matcher（攔截哪個操作）→ Handler（做什麼動作）。
 
-| 事件 | 時機 | 用途 |
-|------|------|------|
-| `PreToolUse` | 工具呼叫前 | 權限驗證、安全檢查 |
-| `PostToolUse` | 工具呼叫後 | 結果驗證、日誌記錄 |
-| `Stop` | agent 嘗試退出時 | 攔截退出、強制迭代（Ralph Loop） |
-| `SessionStart` | session 啟動時 | 注入上下文、載入設定 |
-| `UserPromptSubmit` | 使用者送出 prompt 前 | 預處理、格式化 |
+10 個核心 Event（共 31 種）：`SessionStart`、`UserPromptSubmit`、`PreToolUse`（安全防呆）、`PostToolUse`（快速驗收）、`Stop`（深度檢查）、`Notification`、`SubagentStart`、`SubagentStop`、`PreCompact`。
+
+5 種 Handler：`command`、`http`、`mcp_tool`、`prompt`、`agent`。
+
+→ 詳見 [[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構]]
 
 ### 7. Context Compaction（上下文壓縮）
 對話過長時自動摘要化，釋放 context window 空間。

@@ -34,6 +34,7 @@ updated: 2026-08-08
 - [[wiki/concepts/ai-code-review|AI Code Review]] — AI 自動化代碼審查綜整 🛠️
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程 🛠️
 - [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]] — 7 種 AI 動畫／影片生成手法分類索引 🛠️
+- [[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構]] — Event/Matcher/Handler 三層架構、5 種 Handler、deterministic 強制執行 🛠️
 
 ## Discussions
 
@@ -44,6 +45,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 第三方分析
 - [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]] — 五階段設計工作流教學 🛠️
 - [[wiki/sources/2026-08-17-7-ai-animation-skills|7 個用 AI 做動畫的 Skills]] — YouTube 短片：7 種 AI 動畫生成工具速覽（已查證核實）
+- [[wiki/sources/2026-08-18-claude-code-hooks-tutorial|Claude Code Hooks 完整教學]] — Gary Chen YouTube：三層架構、10 個核心 Event、5 種 Handler、實作案例
 
 ## 相關 Topics
 

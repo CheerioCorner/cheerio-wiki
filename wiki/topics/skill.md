@@ -40,6 +40,7 @@ updated: 2026-08-09
 - [[wiki/concepts/copilot-custom-agents|Copilot Custom Agents]] — Sub-agent Orchestration + per-agent Skills 🛠️
 - [[wiki/concepts/copilot-fleet-mode|Copilot Fleet Mode]] — 並行 Sub-agent 編排 🛠️
 - [[wiki/concepts/copilot-hooks-system|Copilot Hooks 系統]] — 7+ Lifecycle Callback 🛠️
+- [[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構]] — Event/Matcher/Handler 三層架構、5 種 Handler 🛠️
 - [[wiki/concepts/copilot-steering-queueing|Copilot Steering & Queueing]] — 訊息投遞模式 🛠️
 - [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — 三框架比較（已修正）
 - [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 廣泛生態系比較 🛠️
@@ -59,6 +60,7 @@ updated: 2026-08-09
 - [[wiki/sources/2026-08-14-custom-agents-and-sub-agent-orchestration|Custom Agents]] — Sub-agent Orchestration
 - [[wiki/sources/2026-08-14-fleet-mode|Fleet Mode]] — 並行 orchestration
 - [[wiki/sources/2026-08-14-working-with-hooks|Working with Hooks]] — 7+ lifecycle hooks
+- [[wiki/sources/2026-08-18-claude-code-hooks-tutorial|Claude Code Hooks 完整教學]] — Gary Chen YouTube：三層架構、10 個核心 Event、5 種 Handler
 - [[wiki/sources/2026-08-14-steering-and-queueing|Steering and Queueing]] — 訊息投遞模式
 - [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — ⚠️ 第三方分析（Copilot 資訊已修正）
 - [[wiki/sources/2026-07-11-mattpocock-skills|mattpocock/skills — 工程實踐 Skills 集合]] — repo 研究與完整清單

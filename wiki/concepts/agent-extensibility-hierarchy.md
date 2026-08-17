@@ -46,6 +46,8 @@ Skill 讓 AI「變懂」，提供知識與流程。但要**強制**它照規則�
 
 **Pi Agent 的 Hook 實現**：Extension 系統的事件（`tool_call`、`agent_settled`、`session_shutdown` 等）
 
+**Claude Code 的 Hook 實現**：三層架構（Event/Matcher/Handler），31 種 Event、5 種 Handler，deterministic 強制執行 → [[wiki/concepts/claude-code-hooks-architecture|詳見 Claude Code Hooks 架構]]
+
 ### Layer 3：Extension / Agent（之後另一場）
 
 | 面向 | 說明 |
