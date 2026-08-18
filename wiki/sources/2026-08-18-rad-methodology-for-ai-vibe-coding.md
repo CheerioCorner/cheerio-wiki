@@ -67,7 +67,7 @@ James Martin 的方法論原本就有兩半：
 
 ## 來源
 
-- [[wiki/raw/youtube/2026-08-18-rad-methodology-for-ai-vibe-coding|Raw Transcript]] — YouTube 逐字稿（manual subtitle）
+- [[raw/youtube/2026-08-18-rad-methodology-for-ai-vibe-coding|Raw Transcript]] — YouTube 逐字稿（manual subtitle）
 - 原始影片：[RAD Methodology for AI Vibe Coding](https://www.youtube.com/watch?v=J0zbWsutyA8)
 
 ## 相關頁面
