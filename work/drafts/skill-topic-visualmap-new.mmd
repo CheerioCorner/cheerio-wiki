@@ -1,0 +1,31 @@
+graph TD
+    AS["🔬 Agent Skills<br/>研究專題"]
+
+    CC["🌿 Claude Code<br/>Hook-based 組合"]
+    CP["🌿 GitHub Copilot<br/>Agent-based 組合"]
+    PI["🌿 Pi Agent<br/>Manual 組合"]
+    MP["🌿 mattpocock/skills<br/>工程導向實作參考"]
+    DM["🌱 Skill 設計方法論<br/>Intention-First / Event Storming"]
+    EX["🌱 Agent 擴充架構層級<br/>Skill / Hook / Extension"]
+
+    AS ==>|"§7 Hook-based<br/>Subagents + Hooks"| CC
+    AS ==>|"§7 Agent-based<br/>Custom Agents + Fleet Mode"| CP
+    AS ==>|"§7 Manual 組合<br/>逐一觸發 + User-invoked"| PI
+    AS ==>|"§10.5 工程導向<br/>Skill 工作流範本"| MP
+    AS ==>|"§2 邊界上游<br/>先看意圖再切 Skill"| DM
+    AS ==>|"§4 能力邊界<br/>Skill / Hook / Extension"| EX
+
+    DM -.->|"設計方法決定<br/>Skill 邊界在哪"| EX
+    CC -.->|"MCP 互通"| CP
+    CC -.->|"Hook 對齊<br/>三層光譜 Layer 2"| EX
+    CP -.->|"Agent 對齊<br/>三層光譜 Layer 3"| EX
+    PI -.->|"三種組合哲學<br/>對照組"| CC
+    MP -.->|"§10.1 Meta-Skills Loop<br/>做 Skill 的也是 Skill"| AS
+
+    style AS fill:#1a1a2e,color:#fff,stroke:#e94560,stroke-width:3px
+    style CC fill:#0f3460,color:#fff,stroke:#16c79a
+    style CP fill:#0f3460,color:#fff,stroke:#16c79a
+    style PI fill:#0f3460,color:#fff,stroke:#16c79a
+    style MP fill:#0f3460,color:#fff,stroke:#16c79a
+    style DM fill:#533483,color:#fff,stroke:#f5a623
+    style EX fill:#533483,color:#fff,stroke:#f5a623

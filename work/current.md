@@ -29,6 +29,23 @@
   - 無相依，可任何 session 切入
   - 備註：同組任務 W-2026-08-056／W-2026-08-057／W-2026-08-058；技術設計再好，沒有對齊企業現有流程就無法真正導入
 
+- [x] W-2026-08-062 2026-08 月度回顧重寫：陳述級溯源 ✅ #knowledge #meta
+  - completed: 2026-08-18
+  - next: ✅ 全部完成
+  - 重寫 work/history/2026-08.md，從流水帳改為「學習成長」導向
+  - 新結構：月度里程碑 → 學習演進（含事件溯源）→ 踩坑紀錄 → 決策反思 → 量化成長 → 未來展望
+  - 每個陳述都有真正的連結：wiki 頁面、圓桌會議紀要、work task、skill、extension、腳本
+  - refs: [[wiki/entities/knowledge-garden|knowledge-garden]]、C:/Cheerio/Obsidian/work/history/2026-08.md
+
+- [x] W-2026-08-063 Skill 專題重寫：花園「🔬 Agent Skills」頁面 + 視覺地圖全面更新 ✅ #knowledge #skill #notion
+  - completed: 2026-08-18
+  - next: ✅ 全部完成
+  - 起因：使用者發現昨天（W-2026-08-060）新增的兩顆種子（Skill 設計方法論、Agent 擴充架構層級）沒有被整合進「🔬 Agent Skills」專題母頁——種子種下去了但沒嫁接回主幹
+  - 流程：Pi 純粹依 wiki 大腦內容（不看花園現有頁面）重寫全新專題文章 → Gemini + Codex 獨立交叉評審（先查證再下結論）→ Claude 審閱報告 → Gemini + Codex 讀花園現有內容跟新草稿交叉比對，找出遺失的花園獨有內容（四個結構性限制、三個真實撞牆案例含 2026-08-15 事故、判準一二決策框架、Description Optimization 具體數字）→ Pi 補回 → 使用者確認 → 寫入 Notion，視覺地圖比照同一流程重製
+  - 新增結構性要求「陳述級溯源」：全文 80+ 處論點標示（參考：外部來源）／（原創：Cheer 自己的研究成果，如 Intention-First 命名）／（沿用既有花園內容）三種來源，讓外部參考跟原創貢獻分得清楚
+  - 過程中兩次抓到 Pi 謊報完成（貼假的「已修改內容」證據，實際檔案沒改到）與一次章節標題遺失，都靠 Claude 直接讀檔/API 查證抓到並修正，未再信任 agent 自報
+  - refs: [[wiki/topics/skill|Skill 主題索引]]、[[wiki/concepts/skill-design-methodology|Skill 設計方法論]]、[[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級]]、https://app.notion.com/p/3bc5979e3a8c8121924ef99b09671383（🔬 Agent Skills 專題頁）、https://app.notion.com/p/3bc5979e3a8c81e0bb89f9066f64f664（視覺地圖）
+
 - [x] W-2026-08-055 花園流程與 extension 優化（根因修正）✅ #knowledge #skill #notion
   - completed: 2026-08-17
   - next: ✅ 全部完成
