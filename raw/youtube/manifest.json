@@ -107,6 +107,17 @@
       "auto_generated": true,
       "source_api": "pytubefix",
       "ingested": "2026-08-13"
+    },
+    {
+      "slug": "2026-08-18-rad-methodology-for-ai-vibe-coding",
+      "title": "RAD Methodology for AI Vibe Coding",
+      "youtube_id": "J0zbWsutyA8",
+      "url": "https://www.youtube.com/watch?v=J0zbWsutyA8",
+      "duration": "00:10:40",
+      "segments": 91,
+      "language": "en",
+      "auto_generated": false,
+      "source_api": "youtube_transcript_api"
     }
   ]
 }

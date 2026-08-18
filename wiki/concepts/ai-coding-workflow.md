@@ -39,6 +39,7 @@ canonical: concepts/ai-coding-workflow
 - 先有規格，再有實作
 - Code review 對照 spec 檢查完整性
 - 避免 agent「做完就忘了最初目標」
+- 詳見 [[wiki/concepts/spec-driven-development|Spec-Driven Development]] 概念頁
 
 ### 3. Sub-agent 審查
 - Code review 用獨立 sub-agent 執行
@@ -57,7 +58,10 @@ canonical: concepts/ai-coding-workflow
 |------|---------|-------------|---------|
 | **AI Coding Workflow** | 鬆耦合，可選 | Smart zone 感知 | 中大型功能開發 |
 | [[wiki/concepts/vibe-coding|Vibe Coding]] | 無 | 無 | 快速原型 |
+| [[wiki/concepts/rapid-application-development|RAD]] | 四階段迭代 | 無 | 快速原型（歷史先驅） |
 | **GSD/BMAD** | 強制全流程 | 固定 | 全專案管理 |
+
+> RAD（1991）是 AI coding workflow 的歷史先驅，兩者都強調「先建原型再定 spec」的思路。
 
 ## 實作要點
 
@@ -82,4 +86,6 @@ canonical: concepts/ai-coding-workflow
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — 實作此工作流程的 skills repo
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成，與本工作流程互補
+- [[wiki/concepts/rapid-application-development|RAD]] — 歷史先驅：1991 年的快速應用開發方法論
+- [[wiki/concepts/spec-driven-development|Spec-Driven Development]] — 規格驅動開發的核心機制
 - [[wiki/concepts/late-conversion|late-conversion]] — 型別策略

@@ -2,7 +2,7 @@
 title: AI Agent
 topic: ai-agent
 created: 2026-08-02
-updated: 2026-08-13
+updated: 2026-08-18
 ---
 
 # AI Agent
@@ -36,7 +36,9 @@ updated: 2026-08-13
 - [[wiki/concepts/agentic-ai|Agentic AI]] — AI Agent 核心定義、四大支柱、設計模式 🛠️
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — AI Agent 兩種核心工作流模式
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
-- [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成
+- [[wiki/concepts/vibe-coding|Vibe Coding]] — 自然語言驅動的程式碼生成 🛠️
+- [[wiki/concepts/rapid-application-development|RAD (Rapid Application Development)]] — 1991 年四階段快速應用開發方法論，現代 AI 開發的歷史先驅 🛠️
+- [[wiki/concepts/spec-driven-development|Spec-Driven Development]] — 規格驅動開發，補足 vibe coding 安全缺陷的關鍵機制 🛠️
 - [[wiki/concepts/meta-harness|Meta-Harness]] — 對 harness 本身的再抽象/最佳化層
 - [[wiki/concepts/late-conversion|Late Conversion]] — 延遲轉換模式
 - [[wiki/concepts/defect-metrics|Defect Metrics]] — 缺陷密度與逃脫率指標
@@ -72,3 +74,4 @@ updated: 2026-08-13
 - [[wiki/sources/2026-08-13-prime-agent-youtube|Prime Agent YouTube 介紹]] — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent
 - [[wiki/sources/2026-08-13-prime-agent-official-blog|Prime Agent 官方部落格全文]] — RLM/Continual Harness 完整定義、ARC-AGI-3 與長文本評測
 - [[wiki/sources/2026-08-13-prime-agent-arc-agi-3-aiposthub|Prime Agent ARC-AGI-3 分析（AI郵報）]] — 拆解三種成績口徑、reward hacking 風險提醒
+- [[wiki/sources/2026-08-18-rad-methodology-for-ai-vibe-coding|RAD Methodology for AI Vibe Coding]] — YouTube 影片：RAD 四階段與 AI 開發流程對應 🛠️

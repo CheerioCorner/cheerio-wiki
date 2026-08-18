@@ -2,7 +2,7 @@
 title: AI Development Tools
 topic: ai-development-tools
 created: 2026-08-08
-updated: 2026-08-08
+updated: 2026-08-18
 ---
 
 # AI Development Tools
@@ -24,6 +24,7 @@ updated: 2026-08-08
 - [[wiki/entities/remotion|Remotion]] — 程式碼驅動的影片製作框架 🛠️
 - [[wiki/entities/video-shotcraft|video-shotcraft]] — AI 影片電影運鏡 Skill 🛠️
 - [[wiki/entities/story-to-handdrawn-video|story-to-handdrawn-video]] — 中文故事轉手繪動畫 Skill 🛠️
+- [[wiki/entities/james-martin|James Martin]] — RAD 方法論提出者，1982《Application Development Without Programmers》、1991 RAD 正式化
 
 ## Concepts
 
@@ -35,6 +36,8 @@ updated: 2026-08-08
 - [[wiki/concepts/ai-coding-workflow|AI Coding Workflow]] — 結構化 AI 編碼工作流程 🛠️
 - [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]] — 7 種 AI 動畫／影片生成手法分類索引 🛠️
 - [[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構]] — Event/Matcher/Handler 三層架構、5 種 Handler、deterministic 強制執行 🛠️
+- [[wiki/concepts/rapid-application-development|RAD (Rapid Application Development)]] — 1991 年四階段快速應用開發方法論，現代 AI 開發的歷史先驅 🛠️
+- [[wiki/concepts/spec-driven-development|Spec-Driven Development]] — 規格驅動開發，補足 vibe coding 安全缺陷的關鍵機制 🛠️
 
 ## Discussions
 
@@ -56,3 +59,4 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-20-opencode-review-deep-research|OpenCodeReview Deep Research]] — 阿里內部故事、社群討論、互補分析
 - [[wiki/sources/2026-08-02-vibe-coding-implications|Vibe Coding Implications]] — Vibe Coding 對開發工具的影響分析
 - [[wiki/sources/2026-08-04-code-review-graph|code-review-graph]] — Tree-sitter 知識圖譜做 Code Review，省 8.2 倍 Token 🛠️
+- [[wiki/sources/2026-08-18-rad-methodology-for-ai-vibe-coding|RAD Methodology for AI Vibe Coding]] — YouTube 影片：RAD 四階段與 AI 開發流程對應 🛠️

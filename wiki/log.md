@@ -3,6 +3,25 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-18] ingest | RAD Methodology for AI Vibe Coding
+- 來源：YouTube (J0zbWsutyA8) — 10:40 影片
+- 動作：
+  - 新建 raw transcript: raw/youtube/2026-08-18-rad-methodology-for-ai-vibe-coding.md
+  - 新建 source note: wiki/sources/2026-08-18-rad-methodology-for-ai-vibe-coding.md
+  - 新建 concept: wiki/concepts/rapid-application-development.md (RAD 方法論)
+  - 新建 concept: wiki/concepts/spec-driven-development.md (SDD 規格驅動開發)
+  - 新建 entity: wiki/entities/james-martin.md
+  - 更新 wiki/concepts/vibe-coding.md (加 RAD/SDD 引用 + self-approval loophole 案例)
+  - 更新 wiki/concepts/ai-coding-workflow.md (加 RAD 歷史先驅引用)
+  - 更新 wiki/topics/ai-development-tools.md (加 3 個新頁面)
+  - 更新 wiki/topics/ai-agent.md (加 RAD/SDD 概念)
+  - 重建 wiki/index.md (56 concepts, 55 entities, 85 sources)
+- 雙模型交叉驗證：
+  - Round 1: Claude vs Gemini 有 3 個分歧（SDD 是否獨立頁、更新目標頁、topic 命名）
+  - Round 2: 收斂共識——建立 SDD 獨立頁、更新 vibe-coding.md、使用 ai-development-tools topic
+- 關鍵論點：RAD 四階段對應 AI 開發流程、45% AI 生成程式碼有安全問題、self-approval loophole 案例
+- refs: raw/youtube/2026-08-18-rad-methodology-for-ai-vibe-coding, wiki/sources/2026-08-18-rad-methodology-for-ai-vibe-coding, wiki/concepts/rapid-application-development, wiki/concepts/spec-driven-development, wiki/entities/james-martin
+
 ## [2026-08-18] ingest | Claude Code 必學設定 Hooks，完整教學一次搞懂 (Gary Chen)
 - 來源：YouTube (rLNGSDYkK-w) by Gary Chen
 - 動作：新建 source note + concept page + 更新 claude-code entity + 更新 agent-extensibility-hierarchy + 更新 2 topic pages + index
