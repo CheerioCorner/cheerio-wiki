@@ -1,7 +1,13 @@
 ---
+title: Contract-Driven Development（契約驅動開發）
 type: concept
-date: 2026-08-17
+created: 2026-08-17
+updated: 2026-08-17
+sources: 1
 tags: [ai-agent, frontend, workflow, design-system]
+topics: [ai-agent]
+collection: concepts
+canonical: concepts/contract-driven-development
 related: [wiki/sources/2026-08-17-frontend-ai-roundtable, wiki/concepts/context-decay]
 ---
 
@@ -15,7 +21,7 @@ related: [wiki/sources/2026-08-17-frontend-ai-roundtable, wiki/concepts/context-
 
 ## 為什麼需要
 
-1. **自然語言交接有衰減**：每次跨模型傳遞資訊，決策脈絡會逐漸遺失
+1. **自然語言交接有[[wiki/concepts/context-decay|衰減]]**：每次跨模型傳遞資訊，決策脈絡會逐漸遺失
 2. **被否決的方案會重複嘗試**：沒有記錄「為什麼不選其他方案」，下一棒會重新踩坑
 3. **缺乏可驗證的交付標準**：沒有一致的 acceptance criteria，品質參差不齊
 

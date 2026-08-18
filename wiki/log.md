@@ -1,3 +1,20 @@
+## [2026-08-19] lint | Wiki 大健檢：結構完整性 + Raw 層清理 + Topic 補建
+
+### 結構完整性
+- Frontmatter 檢查：216 頁全部通過（type/title/created 齊全）
+- Source note provenance：全部有 provenance_raw 或 provenance_url
+- 孤立頁面：1 筆（contract-driven-development.md）→ 已修正（context-decay.md 加 wikilink）
+- Canvas 註冊：3 個 canvas 全部在 visualizations/README.md 註冊
+- 缺失 topic：6 個（claude-code, hooks, coding-agent, okf, migration, project-architecture）→ 已建立
+
+### Raw 層清理
+- 已消化+冗餘 → raw/.trash/：5 筆（tau, vibe-coding, acl, licenses, readme）
+- 已消化+唯一 → 保留：4 筆（skill 撰寫, 企業級, api quickstart, api guide）
+- 未消化 Copilot SDK 批次：29 筆 raw 中 24 筆有 source notes，5 筆直接進 concepts/entities
+
+### 索引重建
+- wiki/index.md 全量重建（252 行）
+
 # Log
 
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。

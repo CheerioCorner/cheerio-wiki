@@ -1,7 +1,13 @@
 ---
+title: Context Decay（脈絡衰減）
 type: concept
-date: 2026-08-17
+created: 2026-08-17
+updated: 2026-08-17
+sources: 1
 tags: [ai-agent, frontend, workflow, risk]
+topics: [ai-agent]
+collection: concepts
+canonical: concepts/context-decay
 related: [wiki/sources/2026-08-17-frontend-ai-roundtable, wiki/concepts/contract-driven-development]
 ---
 
@@ -25,7 +31,7 @@ related: [wiki/sources/2026-08-17-frontend-ai-roundtable, wiki/concepts/contract
 
 ## 解方
 
-### 1. 契約驅動開發（Contract-Driven Development）
+### 1. [[wiki/concepts/contract-driven-development|契約驅動開發（Contract-Driven Development）]]
 用結構化契約記錄完整決策過程，不只是結果。
 
 ### 2. `rejected_alternatives` 機制
