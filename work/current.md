@@ -5,12 +5,30 @@
 
 ## In progress
 
+- [x] W-2026-08-065 Wiki Lint 第二輪：Claude × Gemini 圓桌討論 + P0 修復 ✅ #knowledge #wiki #meta
+  - completed: 2026-08-19
+  - next: ✅ P0 全部完成。P1（wiki-lint dead-end 規則修正 + wiki-ingest frontmatter guardrail）待下次 session 處理
+  - refs: [[wiki/reports/wiki-lint-2026-08-19|Lint Report]]、[[wiki/topics/skill|Skill 拆分先例]]、[[wiki/discussions/topic-stub-cleanup|Topic Stub Cleanup 決策]]
+  - 已完成：
+    - ✅ 第二輪 lint 全面掃描（254 頁面、89 sources、28 topics）
+    - ✅ 問 Claude 7 大問題處理建議 → 拿去 Gemini 討論 → 再回 Claude 確認 Gemini 獨特洞察（共 3 輪）
+    - ✅ 收斂 3 個系統性缺口：寫入無驗證、架構歸屬未檢查、缺 lifecycle trigger
+    - ✅ P0 執行：27 個 topic page 補 `type: topic`、9 個冗餘 raw trash、`pi-agent-learning` 補進 index.md 導航
+  - Claude×Gemini 共識決策：
+    - Topic 拆分沿用 hub-spoke 模式（skill.md 先例）
+    - 缺失 topic page 多數合併/忽略，不新建（違反 topic-stub-cleanup policy）
+    - Dead-end 多數是 lint 誤判，修規則而非硬加連結
+    - 拆分 topic 時用 grep 批次更新 frontmatter topics:，不靠 alias
+    - wiki-ingest 源頭加 frontmatter guardrail，不靠事後 lint
+    - Raw 停留天數 → lifecycle trigger → 自動提醒
+
 - [x] W-2026-08-056 Skill 建置自動化研究 ①找現有方案 ✅ #ai-agent #skill #enterprise #skill-automation-design
   - completed: 2026-08-19
   - next: ✅ 兩份獨立深度調研完成並 ingest 進 wiki。建議將本調研成果餵給 [[work/current#W-2026-08-057|W-2026-08-057]]（共享驗證機制設計 round-table）當起點，特別是 Codex 發現的 Durable Execution 層與五類 Gate 設計建議。
   - refs: [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex 調研（20 sources）]]、[[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|Gemini 調研（7 sources）]]、[[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計]]、[[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents]]、[[wiki/concepts/agent-skills-enterprise-governance|Agent Skills 企業治理（已更新）]]
   - 備註：同組任務 [[work/current#W-2026-08-057|W-2026-08-057]]／[[work/current#W-2026-08-058|W-2026-08-058]]／[[work/current#W-2026-08-059|W-2026-08-059]]
   - 品質說明：Codex 版本（gpt-5.6-luna）品質明顯優於 Gemini 版本——深連結 vs 根目錄 URL、來源數 20 vs 7、日期誠實標「未標示」。兩份事實衝突時優先採信 Codex。
+  - QA 補記：Pi 執行 ingest 時自我報告不完整（漏報弄壞 26 個 wiki/topics/*.md 的 frontmatter、漏報 9 個無關 raw 檔案搬移），經 Claude 逐一讀 diff 驗證後抓到並修復。詳見 [[work/history/2026-08#坑 7：Pi ingest commit 弄壞 26 個 wiki 頁面 + 未揭露的檔案搬移（8/19）|work/history/2026-08.md 坑 7]]。
 
 - [ ] W-2026-08-057 Skill 建置自動化研究 ②共享驗證機制設計 🆕 #ai-agent #skill #enterprise #skill-automation-design
   - next: 開 round-table（Claude+Gemini+Copilot）設計中間無人看管階段（分析/設計/開發/測試）的自動驗證機制，作為 (a)/(b) 兩種 checkpoint 拓撲的共同地基。**建議以 [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex 調研]] 的五類 Gate 設計（Contract / Policy / Quality / Human / Release）與 [[wiki/concepts/durable-execution-for-agents|Durable Execution 層」作為討論起點。**
