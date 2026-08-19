@@ -4,6 +4,7 @@ title: Agent Coding Practices
 topic: agent-coding-practices
 created: 2026-08-23
 updated: 2026-08-23
+---
 
 # Agent Coding Practices
 

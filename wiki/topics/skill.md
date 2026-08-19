@@ -4,6 +4,7 @@ title: Skill
 topic: skill
 created: 2026-07-22
 updated: 2026-08-23
+---
 
 # Skill
 

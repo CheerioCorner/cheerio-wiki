@@ -4,6 +4,7 @@ title: Agent Architecture
 topic: agent-architecture
 created: 2026-08-23
 updated: 2026-08-23
+---
 
 # Agent Architecture
 

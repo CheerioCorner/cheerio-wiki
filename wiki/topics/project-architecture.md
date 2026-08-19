@@ -4,6 +4,7 @@ title: Project Architecture
 topic: project-architecture
 created: 2026-08-19
 updated: 2026-08-19
+---
 
 # Project Architecture
 

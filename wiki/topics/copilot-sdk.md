@@ -4,6 +4,7 @@ title: Copilot SDK
 topic: copilot-sdk
 created: 2026-08-23
 updated: 2026-08-23
+---
 
 # Copilot SDK
 

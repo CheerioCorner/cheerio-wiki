@@ -4,6 +4,7 @@ title: Agent Research & Benchmarks
 topic: agent-research-benchmarks
 created: 2026-08-23
 updated: 2026-08-23
+---
 
 # Agent Research & Benchmarks
 

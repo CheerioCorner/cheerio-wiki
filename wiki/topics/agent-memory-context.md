@@ -4,6 +4,7 @@ title: Agent Memory & Context
 topic: agent-memory-context
 created: 2026-08-23
 updated: 2026-08-23
+---
 
 # Agent Memory & Context
 

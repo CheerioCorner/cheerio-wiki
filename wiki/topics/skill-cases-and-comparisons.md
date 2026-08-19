@@ -4,6 +4,7 @@ title: Skill Cases & Comparisons
 topic: skill-cases-and-comparisons
 created: 2026-08-23
 updated: 2026-08-23
+---
 
 # Skill Cases & Comparisons
 

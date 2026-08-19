@@ -25,6 +25,7 @@
 - [[wiki/topics/migration|Migration]]
 - [[wiki/topics/okf|OKF (Open Knowledge Format)]]
 - [[wiki/topics/pi-agent|Pi Agent]]
+- [[wiki/topics/pi-agent-learning/roadmap|Pi Agent Learning]] — 學習路線圖與進度追蹤
 - [[wiki/topics/project-architecture|Project Architecture]]
 - [[wiki/topics/skill|Skill]] — 總覽 hub（已拆分為 4 個子 topic）
   - [[wiki/topics/skill-system|Skill System]] — Skill 系統架構、方法論、API、治理
