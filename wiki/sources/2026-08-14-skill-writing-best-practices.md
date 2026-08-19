@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 1
 tags: [skill, anthropic, best-practices, authoring]
-topics: [skill]
+topics: [skill-system]
 provenance_raw: "raw/web/2026-08-14-skill-撰寫最佳實踐.md"
 ---
 

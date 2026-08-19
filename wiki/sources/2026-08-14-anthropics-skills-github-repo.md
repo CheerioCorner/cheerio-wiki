@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 1
 tags: [skill, anthropic, github, open-source]
-topics: [skill]
+topics: [skill-system]
 provenance_raw: "raw/web/2026-08-14-anthropicsskills-public-repository-for-agent.md"
 ---
 

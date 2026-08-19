@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 7
 tags: [github-copilot, hooks, lifecycle, permissions, auditing, error-handling]
-topics: [skill, ai-development-tools]
+topics: [copilot-sdk, ai-development-tools]
 canonical: concepts/copilot-hooks-system
 provenance:
   - kind: raw

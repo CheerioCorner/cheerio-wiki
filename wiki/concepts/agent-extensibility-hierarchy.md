@@ -5,7 +5,7 @@ created: 2026-08-17
 updated: 2026-08-17
 sources: 1
 tags: [agent-architecture, skill, hooks, extensions, extensibility, subagents]
-topics: [skill, ai-agent, agent-infrastructure]
+topics: [skill-system, ai-agent, agent-infrastructure]
 canonical: concepts/agent-extensibility-hierarchy
 provenance:
   - kind: local

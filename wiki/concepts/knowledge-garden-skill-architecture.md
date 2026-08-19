@@ -5,7 +5,7 @@ created: 2026-08-08
 updated: 2026-08-08
 sources: 1
 tags: [skill, knowledge-garden, notion, architecture]
-topics: [knowledge-mgmt, skill]
+topics: [knowledge-mgmt, skill-cases-and-comparisons]
 canonical: concepts/knowledge-garden-skill-architecture
 ---
 

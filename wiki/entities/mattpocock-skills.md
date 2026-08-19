@@ -6,7 +6,7 @@ updated: 2026-07-22
 sources: 2
 tags: [skills, ai-coding, matt-pocock, npm, github]
 collection: entities
-topics: [skill, ai-agent]
+topics: [skill-cases-and-comparisons, ai-agent]
 canonical: entities/mattpocock-skills
 ---
 

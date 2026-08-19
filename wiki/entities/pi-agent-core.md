@@ -6,7 +6,7 @@ updated: 2026-08-13
 sources: 2
 tags: [pi, agent, runtime, zechner]
 collection: entities
-topics: [ai-agent, extension-dev, skill]
+topics: [ai-agent, extension-dev, skill-cases-and-comparisons]
 canonical: entities/pi-agent-core
 ---
 

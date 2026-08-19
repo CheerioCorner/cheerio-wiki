@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 1
 tags: [github-copilot, hooks, prompt]
-topics: [skill]
+topics: [copilot-sdk]
 provenance_raw: "raw/web/2026-08-14-user-prompt-submitted-hook.md"
 ---
 

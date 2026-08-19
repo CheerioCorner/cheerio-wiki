@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 2
 tags: [skill, anthropic, api, container, versioning, prompt-caching]
-topics: [skill]
+topics: [skill-system]
 canonical: concepts/agent-skills-api-usage
 provenance:
   - kind: raw

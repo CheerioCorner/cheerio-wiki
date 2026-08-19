@@ -5,7 +5,7 @@ created: 2026-08-08
 updated: 2026-08-08
 sources: 3
 tags: [presentation, slides, html, design-system, skill]
-topics: [skill]
+topics: [skill-presentation-design]
 canonical: concepts/html-slide-deck-workflow
 provenance_raw: "raw/web/2026-08-08-plannotator-obsidian-presentation-proposal.md"
 ---

@@ -8,7 +8,7 @@ provenance:
   - kind: raw
     path: raw/web/2026-08-08-guizang-ppt-skill.md
 tags: [skill, ppt, html, slides, design, presentation, guizang]
-topics: [skill]
+topics: [skill-presentation-design]
 canonical: sources/2026-08-08-guizang-ppt-skill
 ---
 

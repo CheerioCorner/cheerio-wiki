@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 1
 tags: [skill, comparison, github-copilot, claude-code, developer-tools]
-topics: [skill, ai-development-tools]
+topics: [copilot-sdk, skill-system]
 provenance_raw: "raw/web/2026-08-14-github-copilot-vs-claude-code-skills-ecosystem.md"
 ---
 

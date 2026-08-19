@@ -12,7 +12,7 @@ tags:
   - engineering-practices
   - coding-agent
   - matt-pocock
-topics: [skill]
+topics: [skill-cases-and-comparisons]
 upstream: https://github.com/mattpocock/skills
 last_checked: 2026-07-11
 collection: sources

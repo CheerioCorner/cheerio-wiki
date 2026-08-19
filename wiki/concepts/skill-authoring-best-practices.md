@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-17
 sources: 2
 tags: [skill, best-practices, authoring, evaluation, prompt-engineering]
-topics: [skill]
+topics: [skill-system]
 canonical: concepts/skill-authoring-best-practices
 provenance:
   - kind: raw

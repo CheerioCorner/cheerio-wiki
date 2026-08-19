@@ -5,7 +5,7 @@ created: 2026-08-08
 updated: 2026-08-08
 sources: 1
 tags: [skill, design, html, prototype, slides, animation, pptx, mp4]
-topics: [skill]
+topics: [skill-presentation-design]
 canonical: entities/huashu-design
 provenance_raw: "raw/web/2026-08-08-alchaincyfhuashu-design-huashu-design.md"
 ---

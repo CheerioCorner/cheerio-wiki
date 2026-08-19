@@ -8,7 +8,7 @@ provenance:
   - kind: raw
     path: raw/web/2026-08-08-alchaincyfhuashu-design-huashu-design.md
 tags: [skill, design, html, prototype, slides, animation, pptx, mp4, huashu]
-topics: [skill]
+topics: [skill-presentation-design]
 canonical: sources/2026-08-08-huashu-design
 ---
 

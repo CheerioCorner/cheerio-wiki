@@ -5,7 +5,7 @@ created: 2026-08-17
 updated: 2026-08-17
 sources: 1
 tags: [skill, design-methodology, devops, presentation, eva-air]
-topics: [skill, ai-development-tools]
+topics: [skill-system, skill-presentation-design, ai-development-tools]
 canonical: sources/2026-08-17-devops-skill-presentation
 provenance:
   - kind: local

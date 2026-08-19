@@ -19,7 +19,11 @@
 - [[wiki/topics/okf|OKF (Open Knowledge Format)]]
 - [[wiki/topics/pi-agent|Pi Agent]]
 - [[wiki/topics/project-architecture|Project Architecture]]
-- [[wiki/topics/skill|Skill]]
+- [[wiki/topics/skill|Skill]] — 總覽 hub（已拆分為 4 個子 topic）
+  - [[wiki/topics/skill-system|Skill System]] — Skill 系統架構、方法論、API、治理
+  - [[wiki/topics/copilot-sdk|Copilot SDK]] — GitHub Copilot SDK 技術文件
+  - [[wiki/topics/skill-presentation-design|Skill Presentation & Design]] — 簡報/前端設計類 Skill
+  - [[wiki/topics/skill-cases-and-comparisons|Skill Cases & Comparisons]] — 案例、比較文、生態系
 
 ---
 

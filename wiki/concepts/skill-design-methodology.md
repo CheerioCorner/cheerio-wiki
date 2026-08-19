@@ -5,7 +5,7 @@ created: 2026-08-17
 updated: 2026-08-17
 sources: 1
 tags: [skill, design-methodology, intention-first, event-storming, ddd, bounded-context, decision-tree, domain-knowhow]
-topics: [skill, ai-development-tools]
+topics: [skill-system, ai-development-tools]
 canonical: concepts/skill-design-methodology
 provenance:
   - kind: local

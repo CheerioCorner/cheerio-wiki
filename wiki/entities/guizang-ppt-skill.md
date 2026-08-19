@@ -5,7 +5,7 @@ created: 2026-08-08
 updated: 2026-08-08
 sources: 1
 tags: [skill, ppt, html, slides, design, presentation]
-topics: [skill]
+topics: [skill-presentation-design]
 canonical: entities/guizang-ppt-skill
 provenance_raw: "raw/web/2026-08-08-guizang-ppt-skill.md"
 ---

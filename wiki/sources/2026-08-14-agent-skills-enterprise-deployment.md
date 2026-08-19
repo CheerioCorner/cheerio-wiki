@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 1
 tags: [skill, anthropic, enterprise, governance, security]
-topics: [skill]
+topics: [skill-system]
 provenance_raw: "raw/web/2026-08-14-企業級-skills.md"
 ---
 

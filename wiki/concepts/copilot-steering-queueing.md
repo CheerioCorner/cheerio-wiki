@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 1
 tags: [github-copilot, steering, queueing, interaction-pattern]
-topics: [skill, ai-development-tools]
+topics: [copilot-sdk, ai-development-tools]
 canonical: concepts/copilot-steering-queueing
 provenance:
   - kind: raw

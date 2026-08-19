@@ -1,3 +1,18 @@
+## [2026-08-23] topic-refactor | Skill topic 拆分為 4 個子 topic
+
+- 動作：將原 `skill` topic（60 頁）拆分為 4 個子 topic，解決單一 topic 過於龐大的問題
+- 新建 topic 頁：
+  - `wiki/topics/skill-system.md`（15 頁）— Skill 系統架構、方法論、API、治理
+  - `wiki/topics/copilot-sdk.md`（22 頁）— GitHub Copilot SDK 技術文件
+  - `wiki/topics/skill-presentation-design.md`（5 頁）— 簡報/前端設計類 Skill
+  - `wiki/topics/skill-cases-and-comparisons.md`（9 頁）— 案例、比較文、生態系
+- 改造 `wiki/topics/skill.md` 為總覽 hub，列出 4 個子 topic 連結
+- 更新 60 頁 frontmatter：`topics: [skill]` → 對應子 topic tag
+- 橫跨多個子 topic 的頁面（3 頁）：`skills-complex-composition-comparison`、`github-copilot-vs-claude-code-skills-ecosystem`、`copilot-vs-claude-code-skills-ecosystem`
+- 更新 `wiki/index.md` Topics 區塊
+
+---
+
 ## [2026-08-19] lint | Wiki 大健檢：結構完整性 + Raw 層清理 + Topic 補建
 
 ### 結構完整性

@@ -9,7 +9,7 @@ provenance:
     path: raw/web/2026-08-02-nousresearchhermes-agent-the-agent-that-grows-with-you.md
 tags: [hermes, ai-agent, python, self-improving, skills, memory, nous-research]
 collection: sources
-topics: [ai-agent, skill]
+topics: [ai-agent, skill-cases-and-comparisons]
 canonical: sources/2026-08-05-hermes-agent-github-readme
 provenance_url: https://github.com/NousResearch/hermes-agent
 ---

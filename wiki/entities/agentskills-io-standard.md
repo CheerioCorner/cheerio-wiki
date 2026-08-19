@@ -5,7 +5,7 @@ created: 2026-08-07
 updated: 2026-08-07
 sources: 1
 tags: [ai-agent, skill, standard, cross-platform]
-topics: [agent-infrastructure, skill]
+topics: [agent-infrastructure, skill-system]
 canonical: entities/agentskills-io-standard
 provenance:
   - kind: external

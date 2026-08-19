@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 2
 tags: [skill, anthropic, agent-skills, progressive-disclosure]
-topics: [skill, ai-development-tools]
+topics: [skill-system, ai-development-tools]
 canonical: entities/anthropic-agent-skills
 provenance:
   - kind: raw

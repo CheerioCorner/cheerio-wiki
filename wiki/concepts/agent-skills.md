@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-17
 sources: 5
 tags: [skill, progressive-disclosure, agent-extensibility, modular-capability]
-topics: [skill, ai-development-tools, agent-infrastructure]
+topics: [skill-system, ai-development-tools, agent-infrastructure]
 canonical: concepts/agent-skills
 provenance:
   - kind: raw

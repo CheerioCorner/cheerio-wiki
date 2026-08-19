@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-17
 sources: 2
 tags: [skill, enterprise, governance, security, lifecycle]
-topics: [skill]
+topics: [skill-system]
 canonical: concepts/agent-skills-enterprise-governance
 provenance:
   - kind: raw

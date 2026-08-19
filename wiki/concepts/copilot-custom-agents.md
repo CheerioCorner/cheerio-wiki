@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 2
 tags: [github-copilot, custom-agents, sub-agent, orchestration, skills, mcp]
-topics: [skill, ai-development-tools]
+topics: [copilot-sdk, ai-development-tools]
 canonical: concepts/copilot-custom-agents
 provenance:
   - kind: raw

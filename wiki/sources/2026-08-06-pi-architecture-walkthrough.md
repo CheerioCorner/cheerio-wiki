@@ -9,7 +9,7 @@ provenance:
     path: raw/youtube/pi-architecture-walkthrough.md
 tags: [pi, architecture, agent-core, sessions, tools, extensions, skills, compaction, tui]
 collection: sources
-topics: [ai-agent, extension-dev, skill]
+topics: [ai-agent, extension-dev, skill-cases-and-comparisons]
 canonical: sources/2026-08-06-pi-architecture-walkthrough
 provenance_raw: "raw/youtube/pi-architecture-walkthrough.md"
 provenance_url: https://www.youtube.com/watch?v=gTeujlv8qK0

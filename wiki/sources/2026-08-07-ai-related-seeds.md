@@ -10,7 +10,7 @@ provenance:
 provenance_raw: "raw/notion-ingest/2026-08-07-ai-related-seeds.md"
 tags: [notion, seeds, agentskills, ai-gateway, knowledge-garden]
 collection: sources
-topics: [knowledge-mgmt, skill, agent-infrastructure]
+topics: [knowledge-mgmt, skill-cases-and-comparisons, agent-infrastructure]
 canonical: sources/2026-08-07-ai-related-seeds
 ---
 

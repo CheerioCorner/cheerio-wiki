@@ -5,7 +5,7 @@ created: 2026-08-20
 updated: 2026-08-20
 sources: 0
 tags: [skill, multi-agent, discussion, consensus]
-topics: [skill, ai-agent]
+topics: [skill-cases-and-comparisons, ai-agent]
 canonical: entities/round-table
 provenance:
   - kind: project
