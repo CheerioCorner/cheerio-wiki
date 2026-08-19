@@ -6,7 +6,7 @@ updated: 2026-08-18
 sources: 2
 tags: [vibe-coding, ai-coding, software-engineering, security, application-security]
 collection: concepts
-topics: [ai-agent, ai-development-tools]
+topics: [agent-coding-practices, ai-development-tools]
 canonical: concepts/vibe-coding
 ---
 

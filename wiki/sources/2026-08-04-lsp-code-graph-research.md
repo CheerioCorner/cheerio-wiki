@@ -5,7 +5,7 @@ created: 2026-08-04
 updated: 2026-08-04
 sources: 5
 tags: [lsp, code-graph, tree-sitter, ai-agent, code-intelligence]
-topics: [meta-systems, ai-agent]
+topics: [meta-systems, agent-runtime-implementations]
 provenance:
   - kind: session
     path: gemini-deep-research-20260804

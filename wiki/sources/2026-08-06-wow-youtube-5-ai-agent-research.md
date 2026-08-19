@@ -6,7 +6,7 @@ updated: 2026-08-06
 sources: 5
 tags: [ai-agent, knowledge-graph, rag, skill, reinforcement-learning]
 collection: sources
-topics: [ai-agent, skill-cases-and-comparisons]
+topics: [agent-research-benchmarks, skill-cases-and-comparisons]
 canonical: sources/2026-08-06-wow-youtube-5-ai-agent-research
 provenance:
   - kind: raw

@@ -5,7 +5,7 @@ created: 2026-08-13
 updated: 2026-08-13
 sources: 1
 tags: [agent, python, runtime, tool-calling, subagent]
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 provenance_raw: "raw/youtube/i-replaced-pi-and-opencode-with-this.md"
 provenance_url: "https://www.youtube.com/watch?v=eQZQl_7-X40"
 ---

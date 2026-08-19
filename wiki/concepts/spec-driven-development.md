@@ -5,7 +5,7 @@ created: 2026-08-18
 updated: 2026-08-18
 sources: 1
 tags: [spec-driven-development, sdd, software-engineering, code-quality, security, ai-coding]
-topics: [ai-development-tools, ai-agent]
+topics: [ai-development-tools, agent-coding-practices]
 canonical: concepts/spec-driven-development
 ---
 

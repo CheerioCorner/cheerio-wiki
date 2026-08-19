@@ -6,7 +6,7 @@ updated: 2026-08-10
 sources: 1
 tags: [theo, t3gg, youtuber, software-engineering, ai-coding]
 collection: entities
-topics: [ai-agent]
+topics: [agent-coding-practices]
 canonical: entities/theo-t3gg
 ---
 

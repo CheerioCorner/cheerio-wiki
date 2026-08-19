@@ -5,7 +5,7 @@ created: 2026-08-13
 updated: 2026-08-13
 sources: 2
 tags: [agent, subagent, multi-agent, orchestration, context-management]
-topics: [ai-agent]
+topics: [agent-architecture]
 canonical: concepts/recursive-language-model
 ---
 

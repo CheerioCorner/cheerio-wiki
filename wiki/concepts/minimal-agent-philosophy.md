@@ -6,7 +6,7 @@ updated: 2026-07-11
 sources: 2
 tags: [concept, pi, philosophy]
 collection: concepts
-topics: [ai-agent]
+topics: [agent-architecture]
 canonical: concepts/minimal-agent-philosophy
 ---
 

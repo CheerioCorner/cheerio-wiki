@@ -7,7 +7,7 @@ updated: 2026-08-15
 participants: [claude-sonnet-4, copilot]
 rounds: 1
 tags: [round-table, pi-agent, learning, architecture, design-patterns]
-topics: [pi-agent, ai-agent, extension-dev]
+topics: [pi-agent, pi-agent-ecosystem, extension-dev]
 provenance: [[wiki/entities/pi-agent/changelog/v0.84.0|Pi Agent v0.84.0 Changelog]]
 ---
 

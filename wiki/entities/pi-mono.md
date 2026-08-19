@@ -6,7 +6,7 @@ updated: 2026-08-19
 sources: 5
 tags: [pi, coding-agent, monorepo]
 collection: entities
-topics: [ai-agent, extension-dev]
+topics: [pi-agent-ecosystem, extension-dev]
 canonical: entities/pi-mono
 ---
 

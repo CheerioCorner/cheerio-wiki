@@ -10,7 +10,7 @@ provenance:
     url: https://github.com/agentscope-ai/QwenPaw
 tags: [qwenpaw, ai-agent, agent-os, security, local-deploy, agentscope, github]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-02-qwenpaw-github-readme
 provenance_raw: raw/web/2026-08-02-agentscope-aiqwenpaw-your-personal-ai-assistant.md
 provenance_url: https://github.com/agentscope-ai/QwenPaw

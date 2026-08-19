@@ -6,7 +6,7 @@ updated: 2026-08-21
 sources: 2
 tags: [ai-agent, durability, checkpointing, state-persistence, design-tradeoff]
 collection: concepts
-topics: [ai-agent]
+topics: [agent-architecture]
 canonical: concepts/agent-durability-patterns
 ---
 

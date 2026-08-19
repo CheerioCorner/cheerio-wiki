@@ -5,7 +5,7 @@ created: 2026-08-06
 updated: 2026-08-06
 sources: 0
 tags: [chain-of-thought, cot, reasoning, inference, llm]
-topics: [ai-agent]
+topics: [agent-architecture]
 canonical: entities/ai-agent-core/chain-of-thought
 ---
 

@@ -5,7 +5,7 @@ created: 2026-08-17
 updated: 2026-08-17
 sources: 1
 tags: [memory-system, rag, vector-store, graph-rag, waku-agent, hermes-agent, mem0, zep, langmem]
-topics: [ai-agent, knowledge-mgmt]
+topics: [agent-memory-context, knowledge-mgmt]
 canonical: sources/2026-08-17-ai-agent-memory-systems-5-ways
 provenance:
   - kind: raw

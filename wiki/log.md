@@ -1,3 +1,20 @@
+## [2026-08-23] topic-refactor | AI Agent topic 拆分為 6 個子 topic
+
+- 動作：將原 `ai-agent` topic（80 頁）拆分為 6 個子 topic，解決單一 topic 過於龐大的問題
+- 新建 topic 頁：
+  - `wiki/topics/agent-architecture.md`（12 頁）— Agent 核心設計概念與架構模式
+  - `wiki/topics/agent-memory-context.md`（7 頁）— 記憶架構、context 管理、文件理解
+  - `wiki/topics/agent-runtime-implementations.md`（26 頁）— 具體命名的 agent 框架、工具與平台
+  - `wiki/topics/pi-agent-ecosystem.md`（12 頁）— Pi 生態系專屬內容
+  - `wiki/topics/agent-coding-practices.md`（13 頁）— AI 輔助寫程式的方法論與實務
+  - `wiki/topics/agent-research-benchmarks.md`（7 頁）— 前沿研究與 benchmark
+- 改造 `wiki/topics/ai-agent.md` 為總覽 hub，列出 6 個子 topic 連結
+- 更新 77 頁 frontmatter：`topics: [ai-agent]` → 對應子 topic tag（保留其他既有 topic tag 不動）
+- 3 頁保留 `ai-agent` 不動（待確認分類）：`entities/learning-loop.md`、`entities/obsidian.md`、`entities/round-table.md`
+- 更新 `wiki/index.md` Topics 區塊
+
+---
+
 ## [2026-08-23] topic-refactor | Skill topic 拆分為 4 個子 topic
 
 - 動作：將原 `skill` topic（60 頁）拆分為 4 個子 topic，解決單一 topic 過於龐大的問題

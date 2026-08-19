@@ -6,7 +6,7 @@ updated: 2026-08-10
 sources: 1
 tags: [rag, document-understanding, ai-agent, ibm, docling]
 collection: sources
-topics: [ai-agent]
+topics: [agent-memory-context]
 canonical: sources/2026-08-10-chunkless-rag-docling
 provenance:
   - kind: raw

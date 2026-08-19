@@ -5,7 +5,7 @@ created: 2026-08-13
 updated: 2026-08-13
 sources: 1
 tags: [agent, harness, rlm, continual-harness, benchmark]
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 provenance_raw: "raw/web/2026-08-13-prime-agent-self-improving-rlm-agent.md"
 provenance_url: "https://www.primeintellect.ai/blog/prime-agent"
 ---

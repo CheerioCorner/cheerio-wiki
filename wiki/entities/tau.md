@@ -6,7 +6,7 @@ updated: 2026-08-05
 sources: 2
 tags: [pi, tau, python, coding-harness, textual]
 collection: entities
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: entities/tau
 ---
 

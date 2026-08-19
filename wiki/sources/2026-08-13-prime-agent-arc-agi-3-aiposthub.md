@@ -5,7 +5,7 @@ created: 2026-08-13
 updated: 2026-08-13
 sources: 1
 tags: [agent, harness, benchmark, security-risk, analysis]
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 provenance_raw: "raw/web/2026-08-13-prime-agent-arc-agi-3-opus-5-harness-aiposthub.md"
 provenance_url: "https://www.aiposthub.com/prime-agent-arc-agi-3-opus-5-harness/"
 ---

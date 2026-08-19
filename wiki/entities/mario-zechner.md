@@ -6,7 +6,7 @@ updated: 2026-07-11
 sources: 2
 tags: [pi, author, zechner]
 collection: entities
-topics: [ai-agent]
+topics: [pi-agent-ecosystem]
 canonical: entities/mario-zechner
 ---
 

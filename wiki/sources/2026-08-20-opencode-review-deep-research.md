@@ -4,7 +4,7 @@ type: source
 created: 2026-08-20
 agent: gemini
 model: gemini-2.5-pro
-topic: "ai-agent"
+topic: "agent-research-benchmarks"
 subtopics:
   - "code-review"
   - "alibaba"

@@ -6,7 +6,7 @@ updated: 2026-08-10
 sources: 1
 tags: [ai-coding, code-generation, verification, software-engineering, uncle-bob]
 collection: sources
-topics: [ai-agent]
+topics: [agent-coding-practices]
 canonical: sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code
 provenance_raw: "raw/youtube/uncle-bob-stopped-reading-ai-generated-code.md"
 provenance_url: "https://www.youtube.com/watch?v=sClTAvkQDOU"

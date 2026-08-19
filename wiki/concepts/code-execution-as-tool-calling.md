@@ -5,7 +5,7 @@ created: 2026-08-13
 updated: 2026-08-13
 sources: 1
 tags: [agent, python, runtime, execution]
-topics: [ai-agent]
+topics: [agent-architecture]
 canonical: concepts/code-execution-as-tool-calling
 ---
 

@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 22
 tags: [github-copilot, sdk, custom-agents, hooks, fleet-mode, mcp, agent-loop]
-topics: [copilot-sdk, ai-development-tools, ai-agent]
+topics: [copilot-sdk, ai-development-tools, agent-runtime-implementations]
 canonical: entities/github-copilot-sdk
 provenance:
   - kind: raw

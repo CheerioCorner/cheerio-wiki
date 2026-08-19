@@ -5,7 +5,7 @@ created: 2026-08-04
 updated: 2026-08-14
 sources: 2
 tags: [github-copilot, ai-coding, extensions-sdk, copilot-workspace, agent-skills]
-topics: [ai-development-tools, ai-agent]
+topics: [ai-development-tools, agent-runtime-implementations]
 canonical: entities/github-copilot
 ---
 

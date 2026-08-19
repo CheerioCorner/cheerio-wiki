@@ -5,7 +5,7 @@ created: 2026-08-04
 updated: 2026-08-14
 sources: 1
 tags: [mcp, model-context-protocol, anthropic, ai-agent, lsp-integration]
-topics: [agent-infrastructure, ai-agent]
+topics: [agent-infrastructure, agent-runtime-implementations]
 canonical: entities/mcp-model-context-protocol
 ---
 

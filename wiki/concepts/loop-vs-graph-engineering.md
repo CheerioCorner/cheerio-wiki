@@ -6,7 +6,7 @@ updated: 2026-08-14
 sources: 2
 tags: [ai-agent, loop-engineering, graph-engineering, system-design, workflow]
 collection: concepts
-topics: [ai-agent]
+topics: [agent-architecture]
 canonical: concepts/loop-vs-graph-engineering
 ---
 

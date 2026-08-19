@@ -5,7 +5,7 @@ created: 2026-08-18
 updated: 2026-08-18
 sources: 1
 tags: [rad, vibe-coding, agentic-ai, spec-driven-development, software-engineering]
-topics: [ai-development-tools, ai-agent]
+topics: [ai-development-tools, agent-coding-practices]
 canonical: sources/2026-08-18-rad-methodology-for-ai-vibe-coding
 provenance_raw: "raw/youtube/2026-08-18-rad-methodology-for-ai-vibe-coding.md"
 provenance_url: https://www.youtube.com/watch?v=J0zbWsutyA8

@@ -6,7 +6,7 @@ updated: 2026-08-17
 sources: 4
 tags: [ai-agent, local-first, memory-system, python, open-source]
 collection: entities
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: entities/waku-agent
 ---
 

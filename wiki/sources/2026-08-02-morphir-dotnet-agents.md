@@ -9,7 +9,7 @@ provenance:
     path: raw/web/2026-08-02-morphir-dotnetagents-md-at-main.md
 tags: [morphir, dotnet, agents-md, ai-coding-agent, tdd, finos, enterprise]
 collection: sources
-topics: [ai-agent, skill-cases-and-comparisons]
+topics: [agent-runtime-implementations, skill-cases-and-comparisons]
 canonical: sources/2026-08-02-morphir-dotnet-agents
 provenance_raw: "raw/web/2026-08-02-morphir-dotnetagents-md-at-main.md"
 provenance_url: https://github.com/finos/morphir-dotnet

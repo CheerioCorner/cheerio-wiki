@@ -8,7 +8,7 @@ provenance:
   - kind: session
     path: raw/conversations/2026-08-10-pi-cron-job-explained.md
 tags: [pi, cron, scheduler, extension, loop]
-topics: [ai-agent, extension-dev]
+topics: [pi-agent-ecosystem, extension-dev]
 collection: sources
 ---
 

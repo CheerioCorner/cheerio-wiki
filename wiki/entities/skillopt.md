@@ -6,7 +6,7 @@ updated: 2026-08-06
 sources: 1
 tags: [skill, self-evolving, prompt-engineering]
 collection: entities
-topics: [agent-research, ai-agent]
+topics: [agent-research, agent-runtime-implementations]
 canonical: entities/skillopt
 ---
 

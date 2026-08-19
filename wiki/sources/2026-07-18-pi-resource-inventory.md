@@ -8,7 +8,7 @@ provenance:
   - kind: raw
     path: raw/conversations/2026-07-18-pi-resource-inventory.md
 tags: [pi, inventory, configuration, packages, skills, mcp, wiki]
-topics: [ai-agent, knowledge-mgmt]
+topics: [pi-agent-ecosystem, knowledge-mgmt]
 collection: sources
 provenance_session: "Pi resource inventory session on 2026-07-18"
 ---

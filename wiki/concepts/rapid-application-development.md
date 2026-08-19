@@ -5,7 +5,7 @@ created: 2026-08-18
 updated: 2026-08-18
 sources: 1
 tags: [rad, rapid-application-development, software-engineering, iterative-development, prototyping]
-topics: [ai-development-tools, ai-agent]
+topics: [ai-development-tools, agent-coding-practices]
 canonical: concepts/rapid-application-development
 ---
 

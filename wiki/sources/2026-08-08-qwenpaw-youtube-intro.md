@@ -9,7 +9,7 @@ provenance:
     path: raw/youtube/qwenpaw-personal-ai-assistant.md
 tags: [qwenpaw, ai-agent, agent-os, security, local-deploy, youtube]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-08-qwenpaw-youtube-intro
 provenance_raw: raw/youtube/qwenpaw-personal-ai-assistant.md
 provenance_url: https://youtu.be/QE6FVnNcd3Y

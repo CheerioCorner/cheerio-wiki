@@ -6,7 +6,7 @@ updated: 2026-08-10
 sources: 1
 tags: [uncle-bob, robert-c-martin, clean-code, software-engineering, methodology]
 collection: entities
-topics: [ai-agent]
+topics: [agent-coding-practices]
 canonical: entities/uncle-bob
 ---
 

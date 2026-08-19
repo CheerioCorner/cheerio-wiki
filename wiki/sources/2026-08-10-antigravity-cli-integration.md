@@ -5,7 +5,7 @@ created: 2026-08-10
 updated: 2026-08-10
 sources: 1
 tags: [antigravity, gemini, cli, multi-agent, integration]
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-10-antigravity-cli-integration
 provenance:
   - kind: raw

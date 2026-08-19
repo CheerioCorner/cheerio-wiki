@@ -5,7 +5,7 @@ created: 2026-08-13
 updated: 2026-08-13
 sources: 2
 tags: [agent, harness, self-improvement, crud, reward-hacking]
-topics: [ai-agent, agent-research]
+topics: [agent-architecture, agent-research]
 canonical: concepts/continual-harness
 ---
 

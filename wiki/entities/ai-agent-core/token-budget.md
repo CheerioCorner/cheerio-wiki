@@ -5,7 +5,7 @@ created: 2026-08-06
 updated: 2026-08-06
 sources: 0
 tags: [token, budget, context-window, llm, resource-management]
-topics: [ai-agent]
+topics: [agent-memory-context]
 canonical: entities/ai-agent-core/token-budget
 ---
 

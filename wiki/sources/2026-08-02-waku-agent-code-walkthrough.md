@@ -9,7 +9,7 @@ provenance:
     path: raw/youtube/2026-08-02-waku-agent-code-walkthrough.md
 tags: [youtube, ai-agent, local-first, memory-system]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-02-waku-agent-code-walkthrough
 provenance_raw: "raw/youtube/2026-08-02-waku-agent-code-walkthrough.md"
 provenance_url: "https://youtu.be/rvRyBhILrls"

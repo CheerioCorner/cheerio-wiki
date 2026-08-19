@@ -9,7 +9,7 @@ provenance:
     path: raw/youtube/hermes-architecture-explained.md
 tags: [hermes, ai-agent, architecture, memory, context, gateway]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-08-hermes-architecture-explained
 provenance_raw: "raw/youtube/hermes-architecture-explained.md"
 provenance_url: https://youtu.be/n32qq7Kwzh0

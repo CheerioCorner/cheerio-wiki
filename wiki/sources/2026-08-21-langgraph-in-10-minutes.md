@@ -6,7 +6,7 @@ updated: 2026-08-21
 sources: 1
 tags: [langgraph, ai-agent, graph-engineering, state-management, durability, checkpointing]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-21-langgraph-in-10-minutes
 provenance:
   - kind: raw

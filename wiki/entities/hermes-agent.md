@@ -6,7 +6,7 @@ updated: 2026-08-13
 sources: 2
 tags: [agent, self-evolving, tool-use]
 collection: entities
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: entities/hermes-agent
 ---
 

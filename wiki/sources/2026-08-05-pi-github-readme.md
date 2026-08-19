@@ -9,7 +9,7 @@ provenance:
     path: raw/web/2026-08-02-pipackagescoding-agent-at-main.md
 tags: [pi, coding-agent, monorepo, containerization, supply-chain]
 collection: sources
-topics: [ai-agent]
+topics: [pi-agent-ecosystem]
 canonical: sources/2026-08-05-pi-github-readme
 provenance_url: https://github.com/earendil-works/pi
 ---

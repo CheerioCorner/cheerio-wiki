@@ -5,7 +5,13 @@
 ## Topics
 - [[wiki/topics/agent-infrastructure|Agent Infrastructure]]
 - [[wiki/topics/agent-research|Agent Research]]
-- [[wiki/topics/ai-agent|AI Agent]]
+- [[wiki/topics/ai-agent|AI Agent]] — 總覽 hub（已拆分為 6 個子 topic）
+  - [[wiki/topics/agent-architecture|Agent Architecture]] — Agent 核心設計概念與架構模式
+  - [[wiki/topics/agent-memory-context|Agent Memory & Context]] — 記憶架構、context 管理、文件理解
+  - [[wiki/topics/agent-runtime-implementations|Agent Runtime Implementations]] — 具體命名的 agent 框架、工具與平台
+  - [[wiki/topics/pi-agent-ecosystem|Pi Agent Ecosystem]] — Pi 生態系專屬內容
+  - [[wiki/topics/agent-coding-practices|Agent Coding Practices]] — AI 輔助寫程式的方法論與實務
+  - [[wiki/topics/agent-research-benchmarks|Agent Research & Benchmarks]] — 前沿研究與 benchmark
 - [[wiki/topics/ai-development-tools|AI Development Tools]]
 - [[wiki/topics/backend-systems|Backend Systems]]
 - [[wiki/topics/claude-code|Claude Code]]

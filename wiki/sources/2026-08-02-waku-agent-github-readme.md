@@ -10,7 +10,7 @@ provenance:
     url: https://github.com/ShenSeanChen/waku-agent
 tags: [github, ai-agent, local-first, memory-system]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-02-waku-agent-github-readme
 provenance_raw: "raw/web/2026-08-02-shenseanchenwaku.md"
 provenance_url: "https://github.com/ShenSeanChen/waku-agent"

@@ -13,7 +13,7 @@ tags:
   - coding-agent
   - zechner
   - source-zh
-topics: [ai-agent]
+topics: [pi-agent-ecosystem]
 collection: sources
 provenance_raw: obsidian://open?vault=Obsidian&file=raw%2Fweb%2F2026-02-10-pi-agent-core-design
 provenance_url: https://zhuanlan.zhihu.com/p/2004665077618458930

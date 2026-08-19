@@ -9,7 +9,7 @@ provenance:
     path: raw/web/2026-08-02-huggingfacetau A Python port of Pi's minimalist coding agent.md
 tags: [pi, tau, python, coding-harness, textual, huggingface]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-05-tau-github-readme
 provenance_url: https://github.com/huggingface/tau
 ---

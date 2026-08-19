@@ -5,7 +5,7 @@ created: 2026-08-17
 updated: 2026-08-17
 sources: 1
 tags: [ai-agent, frontend, workflow, risk]
-topics: [ai-agent]
+topics: [agent-memory-context]
 collection: concepts
 canonical: concepts/context-decay
 related: [wiki/sources/2026-08-17-frontend-ai-roundtable, wiki/concepts/contract-driven-development]

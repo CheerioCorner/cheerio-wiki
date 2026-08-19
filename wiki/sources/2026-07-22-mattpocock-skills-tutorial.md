@@ -9,7 +9,7 @@ provenance:
     path: raw/youtube/mattpocock-skills.md
 tags: [skills, ai-coding, workflow, matt-pocock, tutorial]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-07-22-mattpocock-skills-tutorial
 provenance_raw: "raw/youtube/mattpocock-skills.md"
 provenance_url: https://www.youtube.com/watch?v=M6mYodf0dJM

@@ -5,7 +5,7 @@ created: 2026-08-17
 updated: 2026-08-17
 sources: 1
 tags: [memory-system, rag, vector-store, graph-rag]
-topics: [ai-agent, knowledge-mgmt]
+topics: [agent-memory-context, knowledge-mgmt]
 canonical: concepts/ai-agent-memory-systems
 ---
 

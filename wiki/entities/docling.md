@@ -6,7 +6,7 @@ updated: 2026-08-10
 sources: 1
 tags: [document-understanding, ibm, parsing, ocr, rag]
 collection: entities
-topics: [ai-agent]
+topics: [agent-memory-context]
 canonical: entities/docling
 ---
 

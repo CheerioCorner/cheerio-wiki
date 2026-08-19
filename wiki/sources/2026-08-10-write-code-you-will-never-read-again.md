@@ -6,7 +6,7 @@ updated: 2026-08-10
 sources: 1
 tags: [ai-coding, code-generation, verification, software-engineering, code-importance]
 collection: sources
-topics: [ai-agent]
+topics: [agent-coding-practices]
 canonical: sources/2026-08-10-write-code-you-will-never-read-again
 provenance_raw: "raw/youtube/write-code-you-will-never-read-again.md"
 provenance_url: "https://youtu.be/434cG4g5KLE"

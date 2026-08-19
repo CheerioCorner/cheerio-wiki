@@ -6,7 +6,7 @@ updated: 2026-07-11
 sources: 1
 tags: [concept, agent, pi, typescript]
 collection: concepts
-topics: [ai-agent]
+topics: [agent-architecture]
 canonical: concepts/late-conversion
 ---
 

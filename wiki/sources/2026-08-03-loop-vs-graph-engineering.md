@@ -6,7 +6,7 @@ updated: 2026-08-03
 sources: 1
 tags: [ai-agent, loop-engineering, graph-engineering, system-design, waku-agent]
 collection: sources
-topics: [ai-agent]
+topics: [agent-architecture]
 provenance:
   - kind: youtube
     path: raw/youtube/loop-vs-graph-engineering.md

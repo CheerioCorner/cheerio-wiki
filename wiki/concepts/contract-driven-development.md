@@ -5,7 +5,7 @@ created: 2026-08-17
 updated: 2026-08-17
 sources: 1
 tags: [ai-agent, frontend, workflow, design-system]
-topics: [ai-agent]
+topics: [agent-coding-practices]
 collection: concepts
 canonical: concepts/contract-driven-development
 related: [wiki/sources/2026-08-17-frontend-ai-roundtable, wiki/concepts/context-decay]

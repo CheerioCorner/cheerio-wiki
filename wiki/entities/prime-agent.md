@@ -5,7 +5,7 @@ created: 2026-08-13
 updated: 2026-08-13
 sources: 3
 tags: [agent, python, runtime, open-source, coding-harness]
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: entities/prime-agent
 ---
 

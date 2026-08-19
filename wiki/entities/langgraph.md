@@ -6,7 +6,7 @@ updated: 2026-08-14
 sources: 2
 tags: [langgraph, ai-agent, graph-engineering, state-management, durability, checkpointing, langchain]
 collection: entities
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: entities/langgraph
 ---
 

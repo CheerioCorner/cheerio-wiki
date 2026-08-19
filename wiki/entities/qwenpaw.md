@@ -6,7 +6,7 @@ updated: 2026-08-08
 sources: 2
 tags: [qwenpaw, ai-agent, agent-os, security, local-deploy, agentscope]
 collection: entities
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: entities/qwenpaw
 provenance_url: https://github.com/agentscope-ai/QwenPaw
 ---

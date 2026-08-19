@@ -5,7 +5,7 @@ created: 2026-08-04
 updated: 2026-08-14
 sources: 3
 tags: [claude-code, anthropic, mcp, ai-coding-agent, hooks, subagents]
-topics: [ai-development-tools, ai-agent]
+topics: [ai-development-tools, agent-runtime-implementations]
 canonical: entities/claude-code
 ---
 

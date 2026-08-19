@@ -6,7 +6,7 @@ updated: 2026-08-10
 sources: 1
 tags: [rag, document-understanding, ai-agent, retrieval, structure]
 collection: concepts
-topics: [ai-agent]
+topics: [agent-memory-context]
 canonical: concepts/chunkless-rag
 ---
 

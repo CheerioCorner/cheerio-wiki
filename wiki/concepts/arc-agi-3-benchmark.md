@@ -5,7 +5,7 @@ created: 2026-08-13
 updated: 2026-08-13
 sources: 2
 tags: [benchmark, evaluation, agi, reasoning]
-topics: [ai-agent, agent-research]
+topics: [agent-research-benchmarks, agent-research]
 canonical: concepts/arc-agi-3-benchmark
 ---
 

@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-17
 sources: 26
 tags: [skill, comparison, claude-code, github-copilot, pi-agent, composition, delegation, toolchain]
-topics: [copilot-sdk, skill-system, ai-development-tools, ai-agent]
+topics: [copilot-sdk, skill-system, ai-development-tools, agent-runtime-implementations]
 canonical: concepts/skills-complex-composition-comparison
 provenance:
   - kind: raw

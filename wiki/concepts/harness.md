@@ -5,7 +5,7 @@ created: 2026-08-14
 updated: 2026-08-14
 sources: 1
 tags: [harness, agent, agentic-loop, tool-calling, context-management, orchestration]
-topics: [ai-agent, meta-systems]
+topics: [agent-architecture, meta-systems]
 canonical: concepts/harness
 notion: "https://app.notion.com/p/Harness-LLM-3bc5979e3a8c81f98e54eea5a2deeeea"
 ---

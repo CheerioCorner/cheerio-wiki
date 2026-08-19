@@ -9,7 +9,7 @@ provenance:
     path: .pi/round-table/20260817-211224/synthesis.md
 source_type: round-table
 tags: [ai-agent, frontend, claude, gemini, chatgpt, codex, design-workflow]
-topics: [ai-agent, ai-development-tools]
+topics: [agent-coding-practices, ai-development-tools]
 collection: sources
 canonical: sources/2026-08-17-frontend-ai-roundtable
 related: [wiki/concepts/contract-driven-development, wiki/concepts/context-decay, wiki/entities/claude-design, wiki/entities/gemini, wiki/entities/chatgpt]

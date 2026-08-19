@@ -5,7 +5,7 @@ created: 2026-08-04
 updated: 2026-08-04
 sources: 15
 tags: [okf, lsp, code-graph, ai-agent, copilot, claude, codex, mcp, tree-sitter, pyright]
-topics: [meta-systems, ai-agent]
+topics: [meta-systems, agent-runtime-implementations]
 provenance:
   - kind: session
     path: gemini-deep-research-20260804-212138

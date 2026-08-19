@@ -6,7 +6,7 @@ updated: 2026-08-10
 sources: 2
 tags: [code-importance, verification, software-engineering, ai-coding]
 collection: concepts
-topics: [ai-agent]
+topics: [agent-coding-practices]
 canonical: concepts/code-importance-spectrum
 ---
 

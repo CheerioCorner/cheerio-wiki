@@ -9,7 +9,7 @@ provenance:
     path: raw/youtube/tau-python-port-of-pi.md
 tags: [pi, tau, python, coding-harness, textual]
 collection: sources
-topics: [ai-agent]
+topics: [agent-runtime-implementations]
 canonical: sources/2026-08-03-tau-python-port-of-pi
 provenance_raw: "raw/youtube/tau-python-port-of-pi.md"
 provenance_url: https://www.youtube.com/watch?v=qo1QNxWcm28
