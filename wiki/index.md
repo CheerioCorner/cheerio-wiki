@@ -105,7 +105,7 @@ Tools & Commands]] — 用 **Markdown + YAML frontmatter** 來表示知識，讓
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway — 企業 AI 治理層]] — 企業級 AI 閘道，在前端應用程式、AI Agents 與企業後端 IT 生態系之間搭建安全、受控且靈活的橋樑。
 - [[wiki/entities/claude-code|Claude Code — Anthropic AI Coding Agent]] — Claude Code 是 Anthropic 推出的 agentic coding tool，以終端機為起點，擴展到 Desktop App、Web、IDE、GitHub（`@claude` tag）。核心建立在 MCP（Model Context Protocol）之上，能自主觀察 codebase → 推理 → 執行工具 → 評估結果 → 重複循環。
 - [[wiki/entities/claude-design|Claude Design]] — Anthropic 的 AI 設計工具，讓使用者透過簡單 prompt 建立 Wireframe、Prototype 與動畫，並可透過 MCP 匯出到 Claude Code 實作。
-- [[wiki/entities/docling|Docling — IBM 文件解析與結構化框架]] — Docling 是 IBM 開源的文件解析框架，把 PDF 等非結構化文件轉換成結構化的 tree document，支援 Chunkless RAG。
+- [[wiki/entities/docling|Docling — IBM 文件解析與結構化框架]] — IBM Research Zurich 開發的文件解析框架（65k+ stars），支援 30+ 格式 → 結構化 DoclingDocument tree，整合 LangChain/LlamaIndex/Haystack/MCP。
 - [[wiki/entities/github-copilot-sdk|GitHub Copilot SDK — Custom Agents 平台]] — GitHub Copilot SDK 是 Copilot 的**程式化代理平台**，提供 Custom Agents、Sub-agent Orchestration、Custom Skills、Fleet Mode、Hooks、MCP 整合等完整 agent 能力。**⚠️ 此頁面基於 GitHub 官方文件（docs.github.com），修正了先前基於第三方文章的多處錯誤描述。**
 - [[wiki/entities/github-copilot|GitHub Copilot — AI 程式碼輔助生態系]] — GitHub Copilot 是 GitHub（Microsoft 旗下）推出的 AI 程式碼輔助產品線，從 IDE 補全演化為完整 Agent 生態系：Extensions SDK、Agent Skills、Cloud Agent、Code Review、MCP 整合。
 - [[wiki/entities/graphify|Graphify — 開源代碼知識圖譜工具]] — 接近 10 萬 Star 的 GitHub 開源項目，將代碼庫轉換為知識圖譜，大幅提升 AI Coding Agent 的理解能力。

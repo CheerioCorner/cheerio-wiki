@@ -17,7 +17,7 @@ updated: 2026-08-23
 
 ## Entities
 
-- [[wiki/entities/docling|Docling — IBM 文件解析與結構化框架]] — 把 PDF 轉成結構化 tree document，支援 Chunkless RAG
+- [[wiki/entities/docling|Docling — IBM 文件解析與結構化框架]] — IBM Research Zurich 開發的文件解析框架，65k+ stars，支援 30+ 格式 → 結構化 DoclingDocument tree，整合 LangChain/LlamaIndex/Haystack/MCP
 - [[wiki/entities/ai-agent-core/token-budget|Token 預算]] — 模型資源分配與限制
 
 ## Sources

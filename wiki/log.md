@@ -1,3 +1,16 @@
+
+## [2026-08-19] ingest | Docling — IBM 文件解析與結構化框架（GitHub README + Documentation 深入研究）
+
+- 動作：建立 raw 來源筆記，大幅更新 `wiki/entities/docling` 頁面（基於 GitHub README、官方文件、技術報告 arXiv:2408.09869）
+- 建立：`raw/web/2026-08-19-docling-github-readme.md`
+- 更新：`wiki/entities/docling.md`（從 1 sources 擴充為 3 sources，補充完整功能列表、架構圖、DoclingDocument 格式說明、使用範例、LF AI & Data Foundation 背景）
+- 更新：`wiki/topics/agent-memory-context.md`（Docling 描述更新）
+- 更新：`wiki/index.md`（Docling 條目描述更新）
+- 補充重點：65k+ stars、30+ 格式支援、MCP Server、API Server、VLM 整合、影片/Email/XBRL/EPUB 等新格式
+- 雙模型交叉驗證：跳過（已有既有頁面且為單一來源更新，無分類分歧風險）
+
+---
+
 ## [2026-08-23] topic-refactor | AI Agent topic 拆分為 6 個子 topic
 
 - 動作：將原 `ai-agent` topic（80 頁）拆分為 6 個子 topic，解決單一 topic 過於龐大的問題
