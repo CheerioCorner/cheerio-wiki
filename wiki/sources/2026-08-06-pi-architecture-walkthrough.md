@@ -27,30 +27,30 @@ Pi 的架構從 agent core 到 interactive layer 的完整 walkthrough，涵蓋 
 
 Pi 的核心是一個 agentic loop，每次對話都經過三個步驟：
 
-1. **Context Initialization**（上下文初始化）`[1:51]`
-   - 載入 system prompt（~20 行，極簡）`[2:11]`
-   - 追加 `AGENTS.md`（home + cwd）`[2:43]`
-   - 追加 skills descriptions（markup 格式）`[3:16]`
-   - 追加 tools descriptions `[3:26]`
-   - 追加 message history（或 compaction summary）+ current message `[3:32]`
+1. **Context Initialization**（上下文初始化）`[01:51]`
+   - 載入 system prompt（~20 行，極簡）`[02:11]`
+   - 追加 `AGENTS.md`（home + cwd）`[02:43]`
+   - 追加 skills descriptions（markup 格式）`[03:16]`
+   - 追加 tools descriptions `[03:26]`
+   - 追加 message history（或 compaction summary）+ current message `[03:32]`
 
-2. **Context Transformation**（上下文轉換）`[4:10]`
-   - 檢查是否需要 compaction `[4:17]`
-   - 若需要，用 LLM 摘要 history，替換為 summary `[4:29]`
+2. **Context Transformation**（上下文轉換）`[04:10]`
+   - 檢查是否需要 compaction `[04:17]`
+   - 若需要，用 LLM 摘要 history，替換為 summary `[04:29]`
 
-3. **LLM Call + Tool Loop** `[4:48]`
-   - 呼叫 LLM（OpenAI / Anthropic / Kimi / Minimax 等）`[4:53]`
-   - LLM 可回傳 tool call → 工具執行 → 回傳結果 → LLM 決定是否再呼叫 `[5:07]`
-   - 可達數百次 tool call（複雜任務）或僅幾次（搜尋）`[5:26]`
-   - LLM 決定不再 tool call 時，回覆最終回應 `[5:37]`
+3. **LLM Call + Tool Loop** `[04:48]`
+   - 呼叫 LLM（OpenAI / Anthropic / Kimi / Minimax 等）`[04:53]`
+   - LLM 可回傳 tool call → 工具執行 → 回傳結果 → LLM 決定是否再呼叫 `[05:07]`
+   - 可達數百次 tool call（複雜任務）或僅幾次（搜尋）`[05:26]`
+   - LLM 決定不再 tool call 時，回覆最終回應 `[05:37]`
 
-> 關鍵：agentic loop 完全從零撰寫，不依賴 OpenAI Agents SDK 等現成庫 `[6:04]`。
+> 關鍵：agentic loop 完全從零撰寫，不依賴 OpenAI Agents SDK 等現成庫 `[06:04]`。
 
 ### 二、Sessions & Memory
 
-**儲存位置**：`~/.pi/agent/sessions/<working-directory>/` `[7:23]`
+**儲存位置**：`~/.pi/agent/sessions/<working-directory>/` `[07:23]`
 
-**格式**：JSONL（每行一個 JSON 物件），包含 role、message、ID、parent ID、timestamp `[8:12]`
+**格式**：JSONL（每行一個 JSON 物件），包含 role、message、ID、parent ID、timestamp `[08:12]`
 
 **Tree Structure**（非 List）：
 - 每個 message 有 `id` 與 `parent` 欄位 `[10:13]`
