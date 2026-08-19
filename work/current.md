@@ -5,6 +5,22 @@
 
 ## In progress
 
+- [x] W-2026-08-066 想法與原始來源建立雙向關聯（raw/conversations ↔ raw/youtube・raw/web）✅ #knowledge #wiki #meta #ingest-pipeline
+  - completed: 2026-08-20
+  - next: ✅ 全部完成。Claude 於下個 session 讀 diff 做最終品質審查
+  - refs: [[AGENTS.md]]、[[raw/conversations/readme|raw/conversations 說明]]、[[raw/youtube/readme|raw/youtube 說明]]、[[raw/README|raw contract]]、[[work/synthesis/2026-08-20-thought-source-linkage-review|Gemini 覆核報告]]、[[raw/conversations/2026-08-20-langgraph-thoughts|驗收想法檔]]
+  - 背景：Cheer 看 YouTube 影片／文章時常有當下想法，這正是他想存下這篇資料的原因，但現行 ingest 只吃來源本身（字幕、網頁全文），想法沒有被一起留存，事後回頭看只剩「這篇在講什麼」，看不到「我當時為什麼覺得重要」
+  - 任務規格（Cheer 2026-08-20 拍板）：
+    1. YouTube 逐字稿維持原路徑不變：`raw/youtube/`
+    2. 影片本體不下載備份，只保留 URL；`raw/youtube` 現有 metadata（URL、抓取時間）已足夠，不需新增欄位
+    3. Cheer 當下的想法存入 `raw/conversations/`，沿用既有 `source_kind: conversation` 慣例，原文不整理
+    4. **核心新增**：存入的當下，`raw/conversations/` 的想法檔案要與觸發它的原始資料（`raw/youtube/xxx.md`、`raw/web/xxx.md`、或其他 raw channel）建立雙向關聯——具體實作方式（frontmatter 加 `related_raw:` 欄位、或用 `[[wikilink]]` 互相引用、或兩者皆用）由 Pi 提案、Gemini 覆核後定案，寫進 `AGENTS.md` §4.2 frontmatter 規範
+    5. `wiki-ingest` 系列 skill 要能讀到這層關聯：ingest 時若某筆 raw 有關聯的想法檔案，對應的 `wiki/sources/` 筆記要新增「Cheer 的想法」小節並連回原始想法檔；想法本身若夠獨立成新概念／新問題，另開 `wiki/concepts/` 或 `wiki/discussions/` 頁面，雙向連結回來源筆記
+    6. `wiki-lint` 要新增健檢規則：偵測 `raw/conversations/` 想法檔與其宣稱關聯的 `raw/youtube`／`raw/web` 來源之間的雙向連結是否存在、是否互指一致；缺失或斷鏈要能被 lint report 抓出來
+    7. `wiki-query` 查詢來源相關內容時，若該來源有關聯的想法檔案，要能一併呈現「Cheer 當時的想法」，不能只回來源本身內容
+  - 驗收重點：Pi 完成後要能舉一個實例（一部影片 + 一則想法 + ingest 後的 wiki/sources 頁面）證明關聯真的從 raw 一路追溯到 wiki，不是只改了文件說明沒改流程
+  - 無相依，可任何 session 切入
+
 - [x] W-2026-08-065 Wiki Lint 第二輪：Claude × Gemini 圓桌討論 + P0 修復 ✅ #knowledge #wiki #meta
   - completed: 2026-08-19
   - next: ✅ P0 全部完成。P1（wiki-lint dead-end 規則修正 + wiki-ingest frontmatter guardrail）待下次 session 處理

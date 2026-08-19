@@ -11,7 +11,7 @@
 > 本檔案規範 LLM agent 如何維護這個知識庫。
 > 維護者：Cheerio
 > 建立日期：2026-07-11
-> 最後更新：2026-08-18
+> 最後更新：2026-08-20
 
 ## ⚠️ 鐵律
 
@@ -77,6 +77,7 @@ Obsidian/
 | Notion 頁面 | 花園種子要深入研究 | `knowledge-garden-to-raw` skill 抓取存入 `raw/notion-ingest/` |
 | 深度研究 | Gemini Deep Research 輸出 | `chat-with-gemini-research` skill 存入 `raw/research/` |
 | 原始文字 | 你直接貼的一段文字 | agent 存入適當的 raw source channel |
+| 當下想法 | 看影片／文章時的即時感想 | agent 存入 `raw/conversations/`（`source_kind: thought`），frontmatter 帶 `related_raw:` 連結觸發來源 |
 
 **關鍵：未經整理的原始資料。**
 
@@ -272,8 +273,21 @@ canonical: entities/name    # 可選，canonical path
 provenance_raw: "raw/example.md"   # source 類型必填；指向 raw 檔案
 provenance_url: https://...         # source 類型必填；指向外部 URL
 provenance_session: "description"  # 選填；對話 session 來源
+related_raw: "raw/youtube/slug.md"   # 選填；想法檔（source_kind: thought）指向觸發來源，
+                                    # 可為字串（單一來源）或陣列（多來源）
+                                    # 單一來源：related_raw: "raw/youtube/slug.md"
+                                    # 多來源：
+                                    # related_raw:
+                                    #   - "raw/youtube/slug.md"
+                                    #   - "raw/web/article.md"
 ---
 ```
+
+**想法檔雙向關聯規範（source_kind: thought）：** `raw/conversations/` 中 `source_kind: thought` 的想法檔案必須同時使用兩種方式連結觸發來源：
+1. **frontmatter `related_raw:`** — 機器可讀，lint 可直接解析驗證。值為 raw 相對路徑（字串或陣列）。
+2. **正文 `[[wikilink]]`** — 人類可讀，在 Obsidian Graph View 視覺化。例如 `[[raw/youtube/video-slug|影片標題]]`。
+
+反向連結（來源 → 想法）不修改來源檔（raw/ 唯讀），改由 wiki-lint 透過 grep `related_raw:` 掃描實現。
 
 **Source note provenance 強制規則：** `wiki/sources/` 下的每個頁面**必須**有 `provenance_raw` 或 `provenance_url` frontmatter（至少一筆）。YouTube 來源的 raw transcript 也應記錄在 `provenance_raw` 中（例如 `provenance_raw: "raw/youtube/video-slug.md"`）。
 

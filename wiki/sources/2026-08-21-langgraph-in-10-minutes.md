@@ -82,6 +82,16 @@ LangGraph 的真正價值不在 graph API（20 行 Python 就能寫完），而�
 ## 來源
 - [[raw/youtube/langgraph-in-10-minutes|Raw transcript — YouTube BwZbdCzmZJc]]
 
+## Cheer 的想法
+
+> 以下是 Cheer 看完這部影片時的當下想法，保留原始措辭不整理。
+
+LangGraph 的 state machine 概念跟我们目前在做的 agent harness 很像——都是用 graph 來描述 agent 的執行流程，差別在於 LangGraph 是 Python library，而 Pi 是 TypeScript harness。值得深入比較兩者的 state management 方式。
+
+特別是影片提到的 checkpoint / persistence 機制，跟 W-2026-08-057 在研究的 durable execution 概念直接相關。可以考慮把這部影片的重點整理進 wiki，作為 agent architecture 的參考資料。
+
+— 來源：[[raw/conversations/2026-08-20-langgraph-thoughts|LangGraph 影片觀後想法]]
+
 ## 相關頁面
 - [[wiki/entities/langgraph|LangGraph]] — 框架 entity
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種工作流模式比較
