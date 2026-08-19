@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Claude Code
 topic: claude-code
 created: 2026-08-19
 updated: 2026-08-19
----
 
 # Claude Code
 

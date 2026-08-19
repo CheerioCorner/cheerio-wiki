@@ -1,4 +1,22 @@
 
+## [2026-08-19] ingest | 企業界 Agentic Pipeline / Orchestration 解決方案調研（Gemini + Codex 雙版本）
+
+- 動作：從 `raw/research/` 兩份深度調研報告 ingest 進 wiki，建立 source notes、concept pages，更新既有 enterprise-governance 頁面
+- 建立：
+  - `wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini.md` — Gemini 7 個 Tier 1 來源
+  - `wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex.md` — Codex 20 個 Tier 1 來源（主要來源）
+  - `wiki/concepts/agentic-pipeline-checkpoint-design.md` — Agentic Pipeline Checkpoint 多層把關架構
+  - `wiki/concepts/durable-execution-for-agents.md` — Durable Execution 層（Temporal / Azure Durable Functions），Codex 額外發現的重要補充
+- 更新：
+  - `wiki/concepts/agent-skills-enterprise-governance.md`（新增「Agentic Pipeline 整合」章節：五階段流程、Self-Repair Loop、Durable Execution 層、架構組合建議、漸進式授權）
+  - `wiki/topics/agent-architecture.md`（加入 2 個新 concept + 2 個新 source）
+  - `wiki/topics/skill-system.md`（加入 1 個新 concept + 2 個新 source）
+  - `wiki/index.md`（全量重建）
+- 品質決策：Codex 版本品質明顯優於 Gemini（深連結 vs 根目錄 URL、來源數 20 vs 7、日期誠實標「未標示」），兩份事實衝突時優先採信 Codex
+- 關鍵補充：Durable Execution 層是 Gemini 完全沒提到的知識缺口，已建立獨立 concept 頁面
+- 來源：`raw/research/2026-08-19-agentic-pipeline-orchestration-gemini.md`、`raw/research/2026-08-19-agentic-pipeline-orchestration-codex.md`
+- Work item：W-2026-08-056
+
 ## [2026-08-19] ingest | Docling — IBM 文件解析與結構化框架（GitHub README + Documentation 深入研究）
 
 - 動作：建立 raw 來源筆記，大幅更新 `wiki/entities/docling` 頁面（基於 GitHub README、官方文件、技術報告 arXiv:2408.09869）

@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Agent Architecture
 topic: agent-architecture
 created: 2026-08-23
 updated: 2026-08-23
----
 
 # Agent Architecture
 
@@ -21,6 +21,8 @@ updated: 2026-08-23
 - [[wiki/concepts/late-conversion|Late Conversion]] — 延遲轉換模式
 - [[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級 — 從 Skill、Hook 到 Extension 的能力邊界]] — 三層能力光譜
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — 狀態持久化的三種路徑（Pi vs LangGraph）
+- [[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents]] — Agent 框架之外的可靠性層（Temporal / Azure Durable Functions）🛠️
+- [[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計]] — 從 Agent 產出到正式發布的多層把關 🛠️
 
 ## Entities
 
@@ -29,6 +31,8 @@ updated: 2026-08-23
 ## Sources
 
 - [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering — AI Agent Concepts Demystified]] — 兩種 AI Agent 工作流模式
+- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Agentic Pipeline 調研（Codex）]] — 20 個 Tier 1 來源，Durable Execution + 五類 Gate
+- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|Agentic Pipeline 調研（Gemini）]] — 7 個 Tier 1 來源，雙層驗證機制
 
 ## 相關 Topics
 

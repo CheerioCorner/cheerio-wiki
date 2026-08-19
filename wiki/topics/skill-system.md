@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Skill System
 topic: skill-system
 created: 2026-08-23
 updated: 2026-08-23
----
 
 # Skill System
 
@@ -24,6 +24,7 @@ updated: 2026-08-23
 - [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill — 技能優化元技能]] — LLM 驅動的 SKILL.md 文字級修復 🛠️
 - [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — Claude Code / Copilot / Pi 三框架比較
 - [[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級 — 從 Skill、Hook 到 Extension 的能力邊界]] — 三層能力光譜
+- [[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計]] — 從 Agent 產出到正式發布的多層把關 🛠️
 
 ## Sources
 
@@ -33,6 +34,8 @@ updated: 2026-08-23
 - [[wiki/sources/2026-08-14-agent-skills-api-guide|透過 API 使用 Agent Skills — 完整指南]] — 完整技術指南
 - [[wiki/sources/2026-08-14-skill-writing-best-practices|Skill 撰寫最佳實踐]] — 撰寫完整方法論
 - [[wiki/sources/2026-08-14-agent-skills-enterprise-deployment|企業級 Agent Skills 部署指南]] — 企業安全審查與治理
+- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Agentic Pipeline 調研（Codex）]] — 20 個 Tier 1 來源，Skill 建置自動化架構
+- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|Agentic Pipeline 調研（Gemini）]] — 7 個 Tier 1 來源，Skill 建置自動化架構
 
 ## 相關 Topics
 

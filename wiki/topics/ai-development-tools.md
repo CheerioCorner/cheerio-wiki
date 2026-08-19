@@ -1,9 +1,9 @@
 ---
+type: topic
 title: AI Development Tools
 topic: ai-development-tools
 created: 2026-08-08
 updated: 2026-08-18
----
 
 # AI Development Tools
 

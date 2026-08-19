@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Pi Agent Ecosystem
 topic: pi-agent-ecosystem
 created: 2026-08-23
 updated: 2026-08-23
----
 
 # Pi Agent Ecosystem
 

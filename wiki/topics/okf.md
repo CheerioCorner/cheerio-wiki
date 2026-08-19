@@ -1,9 +1,9 @@
 ---
+type: topic
 title: OKF (Open Knowledge Format)
 topic: okf
 created: 2026-08-19
 updated: 2026-08-19
----
 
 # OKF (Open Knowledge Format)
 

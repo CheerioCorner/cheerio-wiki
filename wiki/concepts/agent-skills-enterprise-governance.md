@@ -2,10 +2,10 @@
 title: "Agent Skills 企業治理"
 type: concept
 created: 2026-08-14
-updated: 2026-08-17
-sources: 2
+updated: 2026-08-19
+sources: 4
 tags: [skill, enterprise, governance, security, lifecycle]
-topics: [skill-system]
+topics: [skill-system, agent-architecture]
 canonical: concepts/agent-skills-enterprise-governance
 provenance:
   - kind: raw
@@ -135,9 +135,52 @@ provenance:
 - **完整性驗證**：校驗和 + 簽署提交
 - **跨介面**：Git 為唯一真實來源，各介面分別同步
 
+## Agentic Pipeline 整合（2026-08-19 新增）
+
+> 基於 [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|Gemini]] 與 [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex]] 兩份深度調研的整合發現。完整架構詳見 [[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計]] 與 [[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents]]。
+
+### 核心原則
+
+**Agent 只能產生可審核的 artifact（proposal），真正的 write operation 必須穿過 deterministic policy 與既有 CI/CD gate。** 不允許 Agent 直接寫入正式 Skill Registry。
+
+### Skill 建置自動化的五階段流程
+
+| 階段 | Agent 工作 | 自動化驗證 | 人工 checkpoint |
+|------|-----------|-----------|----------------|
+| 分析 | 讀需求、盤點工具、辨識風險 | JSON Schema + 敏感資料掃描 | 高風險需求審核 |
+| 設計 | 產生 Skill contract、I/O 格式 | Schema validation + policy lint | 架構與安全設計核准 |
+| 開發 | 產生 SKILL.md、scripts、測試 | Static analysis + sandbox 執行 | Pull Request review |
+| 測試 | 產生測試案例、執行 golden tests | Deterministic tests + LLM judge | 測試報告與發布核准 |
+| 發布 | 建立版本、更新 registry | Package validation + 簽章 | 正式環境發布核准 |
+
+### 與傳統 SDLC 的差異
+
+傳統 SDLC 的驗證是**確定性判斷**（exit code 0）；Agentic Pipeline 的 Checkpoint 包含**語意與品質判斷**（LLM Judge）。失敗處理也不同：Agentic 有 Reflexion Loop（自我反思修復），傳統 CI/CD 失敗即停止。
+
+### 測試失敗的自動修復（Self-Repair Loop）
+
+Agent 生成的 Skill 程式碼自動丟入 CI 跑測試，若失敗則 traceback 自動作為 prompt 回傳給 Agent 進行修正，直到 pass 或達到最大重試上限（建議 3-5 次），超過才 escalate 給人工。
+
+### Durable Execution 層
+
+Agent framework 本身不擅長「等待數小時的人工核准」或「crash 後恢復」，需要 [[wiki/concepts/durable-execution-for-agents|Durable Execution 平台]]（Temporal / Azure Durable Functions）處理：跨數小時到數天的審核等待、crash 恢復、重試、以及已執行副作用的補償動作（rollback）。
+
+### 建議的架構組合
+
+- **Agent orchestration**：LangGraph / CrewAI Flows（推理與路由）
+- **Durable execution**：Temporal / Azure Durable Functions（等待、恢復、重試）
+- **CI/CD gate**：GitHub Actions / Azure Pipelines（測試、安全掃描、發布）
+- **Enterprise portal**：Backstage MCP（Golden Path 規範、模板化）
+
+### 漸進式授權
+
+初期 100% Approval Gate → 當 Agent 精準度達閾值後關閉前中段審核 → 僅保留最終部署前及風險 API 呼叫的 Approval Gate。低風險 Skill 自動通過，高風險 Skill 指定 reviewer。
+
 ## 來源
 
 - [[wiki/sources/2026-08-14-agent-skills-enterprise-deployment|企業級部署指南]] — Anthropic 官方企業文件
+- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex 調研]] — 20 個 Tier 1 來源，Agentic Pipeline 深度調研
+- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|Gemini 調研]] — 7 個 Tier 1 來源，同主題交叉比對
 
 ## 相關頁面
 
@@ -145,3 +188,6 @@ provenance:
 - [[wiki/entities/anthropic-agent-skills|Anthropic Agent Skills]] — Skill 系統本體
 - [[wiki/concepts/skill-authoring-best-practices|Skill 撰寫方法論]]
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層
+- [[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計]] — 完整 Checkpoint 架構
+- [[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents]] — 長時間執行可靠性層
+- [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns]] — Agent 內部持久化路徑

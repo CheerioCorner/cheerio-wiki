@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Skill Presentation & Design
 topic: skill-presentation-design
 created: 2026-08-23
 updated: 2026-08-23
----
 
 # Skill Presentation & Design
 

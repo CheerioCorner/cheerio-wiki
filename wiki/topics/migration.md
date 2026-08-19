@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Migration
 topic: migration
 created: 2026-08-19
 updated: 2026-08-19
----
 
 # Migration
 

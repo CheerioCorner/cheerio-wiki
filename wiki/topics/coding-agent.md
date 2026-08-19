@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Coding Agent
 topic: coding-agent
 created: 2026-08-19
 updated: 2026-08-19
----
 
 # Coding Agent
 

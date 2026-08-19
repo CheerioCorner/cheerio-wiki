@@ -5,15 +5,16 @@
 
 ## In progress
 
-- [ ] W-2026-08-056 Skill 建置自動化研究 ①找現有方案 🆕 #ai-agent #skill #enterprise #skill-automation-design
-  - next: 派 general-purpose agent 調研企業界現成的 agentic pipeline / orchestration 方案，避免重造輪子
-  - refs: [[wiki/sources/2026-08-17-devops-skill-presentation|如何寫好一支SKILL簡報筆記]]、[[wiki/concepts/agent-skills-enterprise-governance|Agent Skills企業治理]]
-  - 無相依，可任何 session 切入
-  - 備註：同組任務 [[work/current#W-2026-08-057|W-2026-08-057]]／[[work/current#W-2026-08-058|W-2026-08-058]]／[[work/current#W-2026-08-059|W-2026-08-059]]；產出會餵給 ②③ 參考，但不阻塞它們
+- [x] W-2026-08-056 Skill 建置自動化研究 ①找現有方案 ✅ #ai-agent #skill #enterprise #skill-automation-design
+  - completed: 2026-08-19
+  - next: ✅ 兩份獨立深度調研完成並 ingest 進 wiki。建議將本調研成果餵給 [[work/current#W-2026-08-057|W-2026-08-057]]（共享驗證機制設計 round-table）當起點，特別是 Codex 發現的 Durable Execution 層與五類 Gate 設計建議。
+  - refs: [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex 調研（20 sources）]]、[[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|Gemini 調研（7 sources）]]、[[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計]]、[[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents]]、[[wiki/concepts/agent-skills-enterprise-governance|Agent Skills 企業治理（已更新）]]
+  - 備註：同組任務 [[work/current#W-2026-08-057|W-2026-08-057]]／[[work/current#W-2026-08-058|W-2026-08-058]]／[[work/current#W-2026-08-059|W-2026-08-059]]
+  - 品質說明：Codex 版本（gpt-5.6-luna）品質明顯優於 Gemini 版本——深連結 vs 根目錄 URL、來源數 20 vs 7、日期誠實標「未標示」。兩份事實衝突時優先採信 Codex。
 
 - [ ] W-2026-08-057 Skill 建置自動化研究 ②共享驗證機制設計 🆕 #ai-agent #skill #enterprise #skill-automation-design
-  - next: 開 round-table（Claude+Gemini+Copilot）設計中間無人看管階段（分析/設計/開發/測試）的自動驗證機制，作為 (a)/(b) 兩種 checkpoint 拓撲的共同地基
-  - refs: [[wiki/sources/2026-08-17-devops-skill-presentation|如何寫好一支SKILL簡報筆記]]（P22 Write-back 安全門、P27 Skill 的限制）、[[wiki/concepts/agent-skills-enterprise-governance|Agent Skills企業治理]]（6 階段生命週期）、W-2026-08-055（花園流程「內部 hook=advisory + 外部腳本=gate」先例，可借鏡）
+  - next: 開 round-table（Claude+Gemini+Copilot）設計中間無人看管階段（分析/設計/開發/測試）的自動驗證機制，作為 (a)/(b) 兩種 checkpoint 拓撲的共同地基。**建議以 [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex 調研]] 的五類 Gate 設計（Contract / Policy / Quality / Human / Release）與 [[wiki/concepts/durable-execution-for-agents|Durable Execution 層」作為討論起點。**
+  - refs: [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex 調研（W-2026-08-056 產出）]]、[[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計]]、[[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents]]、[[wiki/sources/2026-08-17-devops-skill-presentation|如何寫好一支SKILL簡報筆記]]（P22 Write-back 安全門、P27 Skill 的限制）、[[wiki/concepts/agent-skills-enterprise-governance|Agent Skills企業治理]]（6 階段生命週期 + Agentic Pipeline 整合）、W-2026-08-055（花園流程「內部 hook=advisory + 外部腳本=gate」先例，可借鏡）
   - 無相依，可任何 session 切入
   - 備註：同組任務 W-2026-08-056／W-2026-08-058／W-2026-08-059；這是 (a)/(b) 兩種拓撲都要站上去的共同保障，沒有它就沒有「少人工介入」的安全網
 
@@ -28,6 +29,12 @@
   - refs: [[wiki/concepts/agent-skills-enterprise-governance|Agent Skills企業治理]]
   - 無相依，可任何 session 切入
   - 備註：同組任務 W-2026-08-056／W-2026-08-057／W-2026-08-058；技術設計再好，沒有對齊企業現有流程就無法真正導入
+
+- [ ] W-2026-08-064 Prime Agent Docker 化評估與實作 🆕 #ai-agent #docker #prime-agent #enterprise
+  - next: ① 撰寫 Dockerfile + docker-compose.yml（基於 python:3.11-slim，掛載 workspace volume + API key env）② 在 Windows Docker Desktop（WSL2 backend）實跑測試 ③ 驗證三個面向：session 持久化（JSONL volume 掛載）、IPython kernel 狀態（/refine harness state）、daemon 模式相容性 ④ 撰寫安全建議文件（對齊社群 PR #1126 的 best practice：非 root、cap-drop、network 控制）⑤ 評估是否適合導入長榮 IT 作為 enterprise coding agent sandbox 方案
+  - refs: [[wiki/entities/prime-agent|Prime Agent]]、[[wiki/entities/pi-mono|pi-mono]]、https://github.com/PrimeIntellect-ai/prime-agent/issues/1103（Containerized / K8s deployment support）、https://github.com/PrimeIntellect-ai/prime-agent/pull/1126（security/sandboxing guidance）
+  - 無相依，可任何 session 切入
+  - 備註：Prime Agent 2026-08-05 才發布，官方無 Dockerfile，但技術上無阻礙；社群已在討論 K8s 部署方案；此任務可作為 W-2026-08-056~059 Skill 建置自動化研究的「執行環境」參考
 
 - [x] W-2026-08-062 2026-08 月度回顧重寫：陳述級溯源 ✅ #knowledge #meta
   - completed: 2026-08-18

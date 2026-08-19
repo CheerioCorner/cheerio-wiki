@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Agent Research
 topic: agent-research
 created: 2026-08-08
 updated: 2026-08-13
----
 
 # Agent Research
 

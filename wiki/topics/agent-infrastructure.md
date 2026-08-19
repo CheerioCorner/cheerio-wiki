@@ -1,9 +1,9 @@
 ---
+type: topic
 title: Agent Infrastructure
 topic: agent-infrastructure
 created: 2026-08-08
 updated: 2026-08-08
----
 
 # Agent Infrastructure
 
