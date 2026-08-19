@@ -17,33 +17,33 @@ provenance_url: https://www.youtube.com/watch?v=J0zbWsutyA8
 
 ## 重點摘要
 
-- **RAD（Rapid Application Development）**：1991 年 James Martin 提出的軟體開發方法論，強調速度、迭代開發與使用者反饋
-- **核心假設**：使用者在看到東西之前不知道自己要什麼
-- **四階段模型**：Requirements Planning → User Design → Construction → Cut Over
-- **現代對應**：RAD 的四階段完美映射到 AI vibe coding 開發流程
-- **關鍵警示**：45% 的 AI 生成程式碼存在安全問題，需要 spec-driven development 驗證
+- **RAD（Rapid Application Development）**：1991 年 James Martin 提出的軟體開發方法論，強調速度、迭代開發與使用者反饋 `[00:00:14]`
+- **核心假設**：使用者在看到東西之前不知道自己要什麼 `[00:01:40]`
+- **四階段模型**：Requirements Planning → User Design → Construction → Cut Over `[00:01:04]`
+- **現代對應**：RAD 的四階段完美映射到 AI vibe coding 開發流程 `[00:04:13]`
+- **關鍵警示**：45% 的 AI 生成程式碼存在安全問題，需要 spec-driven development 驗證 `[00:07:48]`
 
 ## RAD 四階段與 AI 開發流程對應
 
 | RAD 階段 | 傳統定義 | AI 時代對應 |
 |----------|---------|------------|
-| **Requirements Planning** | 輕量級規劃：定義問題、使用者、功能、限制 | **Prompt**（提示詞）成為需求文件 |
-| **User Design** | 快速建立可點擊原型，使用者反饋 | AI 根據 prompt 快速生成可運作原型，使用者反饋後 AI 重新生成 |
-| **Construction** | 實際功能建構，短週期迭代 | AI 持續產出 data schema、workflow logic、email notifications |
-| **Cut Over** | 部署到 production，資料遷移、使用者培訓 | 需要 spec-driven development 驗證安全性與邏輯 |
+| **Requirements Planning** | 輕量級規劃：定義問題、使用者、功能、限制 `[00:01:08]` | **Prompt**（提示詞）成為需求文件 `[00:05:17]` |
+| **User Design** | 快速建立可點擊原型，使用者反饋 `[00:01:59]` | AI 根據 prompt 快速生成可運作原型，使用者反饋後 AI 重新生成 `[00:05:21]` |
+| **Construction** | 實際功能建構，短週期迭代 `[00:02:35]` | AI 持續產出 data schema、workflow logic、email notifications `[00:06:20]` |
+| **Cut Over** | 部署到 production，資料遷移、使用者培訓 `[00:02:35]` | 需要 spec-driven development 驗證安全性與邏輯 `[00:09:00]` |
 
 ## 歷史脈絡
 
-- **1982 年**：James Martin 出版《Application Development Without Programmers》
-- **1991 年**：正式形式化 RAD 方法論
-- **為何沒流行**：當時的 code generators（CASE 工具）功能不夠強，無法建構複雜應用
-- **復甦原因**：AI agents 讓 prototyping 變得超快，RAD 的四階段方法論因此重新可行
+- **1982 年**：James Martin 出版《Application Development Without Programmers》`[00:00:00]`
+- **1991 年**：正式形式化 RAD 方法論 `[00:00:14]`
+- **為何沒流行**：當時的 code generators（CASE 工具）功能不夠強，無法建構複雜應用 `[00:03:39]`
+- **復甦原因**：AI agents 讓 prototyping 變得超快，RAD 的四階段方法論因此重新可行 `[00:03:58]`
 
 ## 關鍵論點
 
 ### Prototype 是 Keeper，但進 Production 的是 Spec
 
-> "Yes, the prototype is still a keeper. But what actually goes into production is everything the prototype taught us which is captured in that spec."
+> "Yes, the prototype is still a keeper. But what actually goes into production is everything the prototype taught us which is captured in that spec." `[00:09:49]`
 
 - Prototype 是探索需求的學習工具
 - 進 production 的是 prototype 教會我們的東西（captured in spec）
@@ -51,19 +51,19 @@ provenance_url: https://www.youtube.com/watch?v=J0zbWsutyA8
 
 ### Self-Approval Loophole 案例
 
-影片用費用審核 App 舉例：
-- 沒有人的 prompt 說過「員工不能審核自己的費用」
-- AI 很可能沒寫「需要第二人簽核」的規則
-- 結果：我可以提交 $900 費用然後自己審核通過
-- 這類問題在 AI 生成程式碼中很常見（45% 有安全問題）
+影片用費用審核 App 舉例 `[00:04:33]`：
+- 沒有人的 prompt 說過「員工不能審核自己的費用」`[00:07:22]`
+- AI 很可能沒寫「需要第二人簽核」的規則 `[00:07:32]`
+- 結果：我可以提交 $900 費用然後自己審核通過 `[00:07:32]`
+- 這類問題在 AI 生成程式碼中很常見（45% 有安全問題）`[00:07:48]`
 
 ### RAD 的雙半結構
 
-James Martin 的方法論原本就有兩半：
-1. **精確描述（Spec）**：系統需要做什麼
-2. **程式碼生成（Code Gen）**：根據 spec 生成可運作的程式碼
+James Martin 的方法論原本就有兩半 `[00:08:26]`：
+1. **精確描述（Spec）**：系統需要做什麼 `[00:08:30]`
+2. **程式碼生成（Code Gen）**：根據 spec 生成可運作的程式碼 `[00:08:30]`
 
-現代 AI agents 補上了 code gen 半邊，但 spec 半邊需要由 spec-driven development 來補足。
+現代 AI agents 補上了 code gen 半邊，但 spec 半邊需要由 spec-driven development 來補足 `[00:09:00]`。
 
 ## 來源
 
