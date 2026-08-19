@@ -28,13 +28,13 @@ Matt Pocock 示範 `mattpocock/skills` 的主要工作流程：從安裝設定�
 
 ```bash
 npx skills@latest add mattpocock/skills
-```
+``` `[00:58]`
 
-- 需要 Node.js（npx 來自 Node.js）
-- 安裝後執行 `/setup-matt-pocock-skills` 進行初始化
-- 選擇 issue tracker（GitHub / Local Markdown / Jira / Linear 等）
-- 選擇安裝範圍（project vs global）— 團隊用 project，個人用 global
-- 選擇 symlink（推薦）vs copy
+- 需要 Node.js（npx 來自 Node.js）`[01:05]`
+- 安裝後執行 `/setup-matt-pocock-skills` 進行初始化 `[04:37]`
+- 選擇 issue tracker（GitHub / Local Markdown / Jira / Linear 等）`[04:51]`
+- 選擇安裝範圍（project vs global）— 團隊用 project，個人用 global `[02:50]`
+- 選擇 symlink（推薦）vs copy `[03:17]`
 
 ### 主要工作流程（Main Flow）
 
@@ -45,7 +45,7 @@ grill with docs → to spec → to tickets → implement → code review
 #### 1. Grill with Docs（訪談階段）
 - 深度追問，把模糊想法變成清晰計畫
 - 自動探索 codebase，建立領域模型（context.md + ADR）
-- 通常 6-20 個問題，直到達成「shared understanding」
+- 通常 6-20 個問題，直到達成「shared understanding」`[09:42]`
 - 不需要用 plan mode，auto mode 即可
 
 #### 2. To Spec（規格化）
@@ -64,21 +64,21 @@ grill with docs → to spec → to tickets → implement → code review
 - 內建 type check、build、verification
 
 #### 5. Code Review（審查）
-- 雙軸審查：Spec compliance + Coding standards
-- 用 sub-agent 做 review（避免 self-review 偏見）
-- 自動 commit 到當前 branch
+- 雙軸審查：Spec compliance + Coding standards `[15:12]`
+- 用 sub-agent 做 review（避免 self-review 偏見）`[15:46]`
+- 自動 commit 到當前 branch `[16:20]`
 
 ### Context Window 管理
 
-- **Smart zone**：~140k tokens 以內
-- 超過 140k 會出現 attention degradation、hallucination
+- **Smart zone**：~140k tokens 以內 `[10:33]`
+- 超過 140k 會出現 attention degradation、hallucination `[10:42]`
 - 建議：每張 ticket 清除一次 context
 - 大型工作 → 拆成多個 session，用 spec + tickets 衔接
 
 ### Ask Matt（教學 skill）
 
-- 內建的教學路由器
-- 啟動後會推薦該用哪個 skill
+- 內建的教學路由器 `[07:02]`
+- 啟動後會推薦該用哪個 skill `[07:25]`
 - 可以當作互動式教學使用
 
 ### Issue Tracker 整合
@@ -89,7 +89,7 @@ grill with docs → to spec → to tickets → implement → code review
 
 ### 關鍵差異化
 
-- **User-invoked** 為主：skill 不會自動滲透 context，佔用極少 token（660 tokens）
+- **User-invoked** 為主：skill 不會自動滲透 context，佔用極少 token（660 tokens）`[04:28]`
 - **模型無關**：支援 Claude Code、Codex、Cursor 等多種 agent
 - **可組合**：skill 之間可自由搭配，不強制流程
 

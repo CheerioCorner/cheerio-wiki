@@ -28,33 +28,33 @@ Sean Chen 完整走讀 waku-agent 程式碼，展示 harness、loop、memory、e
 
 ### 四大支柱
 影片以 waku-agent 為實例，完整展示 AI agent 系統的四大支柱：
-1. **Harness** — 系統架構：Gateway → Memory → Loop → Tools → Reply → Ops
-2. **Loop** — 約 95 行 plain Python 的 agentic loop（reason → act → observe）
-3. **Memory** — 三層記憶：Semantic（durable facts）、Episodic（dated events）、Procedural（skills）
-4. **Eval / LLM-Ops** — Deterministic tests + LLM-as-judge，tracing，release gate
+1. **Harness** — 系統架構：Gateway → Memory → Loop → Tools → Reply → Ops `[00:09]`
+2. **Loop** — 約 95 行 plain Python 的 agentic loop（reason → act → observe）`[16:37]`
+3. **Memory** — 三層記憶：Semantic（durable facts）、Episodic（dated events）、Procedural（skills）`[02:26]`
+4. **Eval / LLM-Ops** — Deterministic tests + LLM-as-judge，tracing，release gate `[03:13]`
 
 ### Demo 亮點
-- **World Cup 多工具迴圈**：search_web × N → create_event × N，8 次迭代，一次完成
-- **Retrieval gate**：cheap model 先判斷「這回合需不需要記憶？」，skip vs retrieve
-- **Semantic memory**：存取朋友資訊（Sergey、Raj、Vincent）、社交帳號
-- **Procedural memory（Skills）**：schedule-meeting skill，可即時修改並立即生效
-- **Voice mode**：wake word "waku waku"，Whisper 扫描 → 大模型接管 → 語音回覆
-- **Telegram gateway**：手機發訊息，筆電跑 turn，long-polling
+- **World Cup 多工具迴圈**：search_web × N → create_event × N，8 次迭代，一次完成 `[00:35]`
+- **Retrieval gate**：cheap model 先判斷「這回合需不需要記憶？」，skip vs retrieve `[02:18]`
+- **Semantic memory**：存取朋友資訊（Sergey、Raj、Vincent）、社交帳號 `[02:30]`
+- **Procedural memory（Skills）**：schedule-meeting skill，可即時修改並立即生效 `[10:19]`
+- **Voice mode**：wake word "waku waku"，Whisper 掃描 → 大模型接管 → 語音回覆 `[14:36]`
+- **Telegram gateway**：手機發訊息，筆電跑 turn，long-polling `[03:50]`
 
 ### 程式碼走讀
-- `waku/loop/agent.py` — ~95 行主迴圈，max_iterations=10
-- `waku/memory/` — semantic/episodic/procedural 三層，consolidation 定期 digest
-- `waku/memory/retrieval_gate.py` — 決定是否 retrieve
-- `evals/deterministic/` vs `evals/judge/` — 兩套 eval 分離
-- `waku/ops/tracing.py` — 每 turn append `.waku/traces/<date>.jsonl`
-- `.waku/state.db` — SQLite + FTS5，一個檔案存所有記憶
-- `SOUL.md` — 本地 system prompt，可即時修改
+- `waku/loop/agent.py` — ~95 行主迴圈，max_iterations=10 `[16:37]`
+- `waku/memory/` — semantic/episodic/procedural 三層，consolidation 定期 digest `[16:55]`
+- `waku/memory/retrieval_gate.py` — 決定是否 retrieve `[02:18]`
+- `evals/deterministic/` vs `evals/judge/` — 兩套 eval 分離 `[08:52]`
+- `waku/ops/tracing.py` — 每 turn append `.waku/traces/<date>.jsonl` `[07:57]`
+- `.waku/state.db` — SQLite + FTS5，一個檔案存所有記憶 `[06:16]`
+- `SOUL.md` — 本地 system prompt，可即時修改 `[06:38]`
 
 ### 關鍵設計
-- **Local-first**：所有資料在 `.waku/state.db`，無雲端依賴
-- **BYOK**：Anthropic / OpenAI / Gemini / DeepSeek 等，一個 adapter handle 所有 provider
-- **Gateway 多通道**：CLI、Telegram、Voice、Dashboard 共用同一個 agent brain
-- **Memory is the hero**：semantic + episodic + procedural，consolidation 自動 digest
+- **Local-first**：所有資料在 `.waku/state.db`，無雲端依賴 `[04:30]`
+- **BYOK**：Anthropic / OpenAI / Gemini / DeepSeek 等，一個 adapter handle 所有 provider `[01:16]`
+- **Gateway 多通道**：CLI、Telegram、Voice、Dashboard 共用同一個 agent brain `[14:27]`
+- **Memory is the hero**：semantic + episodic + procedural，consolidation 自動 digest `[17:04]`
 
 ## 來源
 - [[raw/youtube/2026-08-02-waku-agent-code-walkthrough|Raw transcript — YouTube rvRyBhILrls]]
