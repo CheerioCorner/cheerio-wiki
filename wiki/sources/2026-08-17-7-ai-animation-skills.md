@@ -34,9 +34,9 @@ provenance_url: "https://www.youtube.com/shorts/8k4WhKuA3OA"
 
 ## 查證結果：7 個工具逐項核實
 
-### 1. HyperFriends（黑卷開發） → ✅ 核實：hyperframes（HeyGen）
+### 1. HyperFriends（黑卷開發） → ✅ 核實：hyperframes（HeyGen）`[00:04]`
 
-- **逐字稿原文**：「你只要寫網頁,它就把你變成影片」
+- **逐字稿原文**：「你只要寫網頁,它就把你變成影片」`[00:06]`
 - **實際工具名**：hyperframes
 - **開發者**：HeyGen（https://github.com/heygen-com/hyperframes）
 - **GitHub Stars**：41,244
@@ -46,9 +46,9 @@ provenance_url: "https://www.youtube.com/shorts/8k4WhKuA3OA"
   - 個人化年度數據回顧短影音：用戶數據填入 HTML 模板，自動渲染成個人化回顧影片
   - AI Coding Agent 自動化原型影片演示：Agent 開發完功能後，自動把功能頁面渲染成 demo 影片
 
-### 2. G7 → ✅ 核實：gsap-skills（GreenSock AI 技能包）
+### 2. G7 → ✅ 核實：gsap-skills（GreenSock AI 技能包）`[00:11]`
 
-- **逐字稿原文**：「網頁上那種會浮、會彈有質感的動效,就是靠它教 AI 寫出來的」
+- **逐字稿原文**：「網頁上那種會浮、會彈有質感的動效,就是靠它教 AI 寫出來的」`[00:14]`
 - **實際工具名**：gsap-skills（基於 GSAP 動畫庫打造的 AI 技能包）
 - **開發者**：GreenSock（https://github.com/greensock/gsap-skills）
 - **GitHub Stars**：13,682（GSAP 主庫 27,769 stars）
@@ -59,9 +59,9 @@ provenance_url: "https://www.youtube.com/shorts/8k4WhKuA3OA"
   - 複雜向量圖標無縫變形動畫：SVG path morphing 動效，圖標之間流暢過渡
   - 微互動物理反饋：按鈕懸浮彈跳、卡片拖拽回彈、頁面轉場滑入等有「手感」的互動動效
 
-### 3. Pixel 2 模式 → ✅ 核實：pixel2motion
+### 3. Pixel 2 模式 → ✅ 核實：pixel2motion `[00:16]`
 
-- **逐字稿原文**：「你丟一張Logo 圖給它,它就會自動變成一段會動的開場」
+- **逐字稿原文**：「你丟一張Logo 圖給它,它就會自動變成一段會動的開場」`[00:18]`
 - **實際工具名**：pixel2motion
 - **開發者**：nolangz（https://github.com/nolangz/pixel2motion）
 - **GitHub Stars**：1,962
@@ -71,9 +71,9 @@ provenance_url: "https://www.youtube.com/shorts/8k4WhKuA3OA"
   - 影音創作者動態片頭：YouTube / 抖音頻道片頭 Logo 動畫
   - 互動式網頁向量圖示：導覽列、CTA 按鈕的 Logo 微動畫
 
-### 4. Remotion → ✅ 核實：Remotion
+### 4. Remotion → ✅ 核實：Remotion `[00:22]`
 
-- **逐字稿原文**：「它是用寫程式的方式做影片,最適合做數字、圖表這種動畫」
+- **逐字稿原文**：「它是用寫程式的方式做影片,最適合做數字、圖表這種動畫」`[00:23]`
 - **實際工具名**：Remotion
 - **開發者**：Remotion Dev（https://github.com/remotion-dev/remotion / https://remotion.dev）
 - **GitHub Stars**：56,520
@@ -83,9 +83,9 @@ provenance_url: "https://www.youtube.com/shorts/8k4WhKuA3OA"
   - 個人化里程碑影片（Spotify Wrapped 風格）：根據用戶年度數據自動批次渲染個人化回顧影片
   - 社群賽事即時排行動畫：比賽進行中，即時將分數/排名數據渲染為動態排行動畫
 
-### 5. Video Shrugcraft → ✅ 核實：video-shotcraft
+### 5. Video Shrugcraft → ✅ 核實：video-shotcraft `[00:30]`
 
-- **逐字稿原文**：「它準備了一百多種現成的電影鏡頭,你把網站畫面丟進去」
+- **逐字稿原文**：「它準備了一百多種現成的電影鏡頭,你把網站畫面丟進去」`[00:31]`
 - **實際工具名**：video-shotcraft
 - **開發者**：Vincentwei1021（https://github.com/Vincentwei1021/video-shotcraft）
 - **GitHub Stars**：5,245
@@ -95,9 +95,9 @@ provenance_url: "https://www.youtube.com/shorts/8k4WhKuA3OA"
   - 電商商品詳情頁動態展示：商品頁自動截取 + 套用滑軌/推拉/環繞鏡頭
   - 新創募資 Demo 快速原型：Product Hunt / YC Demo Day 前，快速把原型網站轉為有電影感的 demo 影片
 
-### 6. Story2 Hand Zone → ✅ 核實：story-to-handdrawn-video
+### 6. Story2 Hand Zone → ✅ 核實：story-to-handdrawn-video `[00:38]`
 
-- **逐字稿原文**：「打一段中文故事,它變成首會日記動畫」
+- **逐字稿原文**：「打一段中文故事,它變成首會日記動畫」`[00:39]`
 - **實際工具名**：story-to-handdrawn-video
 - **開發者**：gnipbao（https://github.com/gnipbao/story-to-handdrawn-video）
 - **GitHub Stars**：1,399
@@ -107,9 +107,9 @@ provenance_url: "https://www.youtube.com/shorts/8k4WhKuA3OA"
   - 兒童有聲繪本動態化：將童話故事文字自動產生手繪風格動畫影片
   - 品牌起源故事行銷：將品牌創辦故事轉為溫暖手繪風動畫
 
-### 7. 手感動效 → ⚠️ 部分核實：breathing-dots-tutorial（教學專案，非獨立工具）
+### 7. 手感動效 → ⚠️ 部分核實：breathing-dots-tutorial（教學專案，非獨立工具）`[00:43]`
 
-- **逐字稿原文**：「它交的是手感,畫面上這片會呼吸,有節奏的點證」
+- **逐字稿原文**：「它交的是手感,畫面上這片會呼吸,有節奏的點證」`[00:45]`
 - **找到的相關專案**：breathing-dots-tutorial（https://github.com/mattrossman/breathing-dots-tutorial）
 - **GitHub Stars**：130
 - **說明**：⚠️ 這是教學專案（非獨立工具），展示如何用 React Three Fiber 製作呼吸感點陣動畫。影片中提到的「手感」指的是這類有機質感的視覺效果，通常由 GSAP 或 Three.js 等底層動畫引擎實現。
