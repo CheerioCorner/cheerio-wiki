@@ -1,13 +1,17 @@
 ---
 title: "Session Hooks"
 type: source
+status: merged
+superseded_by: "[[wiki/sources/2026-08-14-session-lifecycle-hooks|Session Lifecycle Hooks]]"
 created: 2026-08-14
-updated: 2026-08-14
+updated: 2026-08-19
 sources: 1
 tags: [github-copilot, hooks]
 topics: [skill]
 provenance_raw: "raw/web/2026-08-14-session-hooks.md"
 ---
+
+> ⚠️ 此頁內容已併入 [[wiki/sources/2026-08-14-session-lifecycle-hooks|Session Lifecycle Hooks]]，僅供歷史參照。
 
 # Session Hooks
 

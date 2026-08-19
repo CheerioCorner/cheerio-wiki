@@ -9,19 +9,19 @@ topics: [skill, ai-development-tools]
 canonical: concepts/copilot-hooks-system
 provenance:
   - kind: raw
-    path: "raw/web/2026-08-14-working-with-hooks.md"
+    path: "raw/.trash/2026-08-14-working-with-hooks.md"
   - kind: raw
-    path: "raw/web/2026-08-14-session-hooks.md"
+    path: "raw/.trash/2026-08-14-session-hooks.md"
   - kind: raw
-    path: "raw/web/2026-08-14-pre-tool-use-hook.md"
+    path: "raw/.trash/2026-08-14-pre-tool-use-hook.md"
   - kind: raw
-    path: "raw/web/2026-08-14-post-tool-use-hook.md"
+    path: "raw/.trash/2026-08-14-post-tool-use-hook.md"
   - kind: raw
-    path: "raw/web/2026-08-14-error-handling-hook.md"
+    path: "raw/.trash/2026-08-14-error-handling-hook.md"
   - kind: raw
     path: "raw/web/2026-08-14-session-lifecycle-hooks.md"
   - kind: raw
-    path: "raw/web/2026-08-14-user-prompt-submitted-hook.md"
+    path: "raw/.trash/2026-08-14-user-prompt-submitted-hook.md"
 ---
 
 # Copilot Hooks 系統 — Lifecycle Callback
@@ -102,7 +102,7 @@ onSessionStart: async (input) => {
 ## 來源
 
 - [[wiki/sources/2026-08-14-working-with-hooks|Working with Hooks]]
-- [[wiki/sources/2026-08-14-session-hooks|Session Hooks]]
+- [[wiki/sources/2026-08-14-session-lifecycle-hooks|Session Lifecycle Hooks (含 Session Hooks 概覽)]]
 - [[wiki/sources/2026-08-14-pre-tool-use-hook|Pre-tool Use Hook]]
 - [[wiki/sources/2026-08-14-post-tool-use-hook|Post-tool Use Hook]]
 - [[wiki/sources/2026-08-14-error-handling-hook|Error Handling Hook]]
