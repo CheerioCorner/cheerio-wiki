@@ -1,4 +1,35 @@
 
+## [2026-08-20] ingest | 9 篇 Web Raw — OpenWiki/OKF 補充 + Coinbase AI 策略 + Shlok Khemani 記憶系統（批次 ingest）
+
+- 動作：9 篇 raw web articles → 雙模型交叉驗證（Claude + Gemini Round 1 一致）→ 建立 wiki 頁面
+- 來源（9 篇 raw web）：
+  1. `raw/web/2026-08-20-langchain-openwiki-github-repo.md` — GitHub README（15.4k stars）
+  2. `raw/web/2026-08-20-openwiki-0-2-brings-okf-to-codebase-docs.md` — LangChain 官方部落格 OKF 0.2
+  3. `raw/web/2026-08-20-docs-langchain-openwiki-overview.md` — 官方文件 overview
+  4. `raw/web/2026-08-20-know-2nth-ai-openwiki-and-okf.md` — 第三方 OKF 說明
+  5. `raw/web/2026-08-20-shlok-khemani-chatgpt-and-claude-memory.md` — ⚠️ ChatGPT/Claude 記憶系統（非 Stefania Druga）
+  6. `raw/web/2026-08-20-how-coinbase-cut-its-ai-spend-by-50.md` — 付費牆版
+  7. `raw/web/2026-08-20-antaoalmada-openwiki-and-okf-agent-wikis.md` — 第三方部落格
+  8. `raw/web/2026-08-20-thenewstack-multi-model-ai-infrastructure.md` — Coinbase 1,200 agents 報導
+  9. `raw/web/2026-08-20-coinbase-ceo-5-strategies-ai-spend.md` — Yahoo Finance 5 策略
+- 建立（3 個新 entity/concept + 9 個 source notes）：
+  - `wiki/entities/coinbase-ai-engineering.md` — Coinbase 多模型基礎設施與成本工程
+  - `wiki/concepts/multi-model-cost-routing.md` — 多模型路由設計原則
+  - `wiki/concepts/consumer-ai-memory-personalization.md` — 消費級 AI 記憶設計（ChatGPT/Claude running profile）
+  - 9 個 `wiki/sources/2026-08-20-*.md` source notes（每篇 raw 一頁）
+- 更新：
+  - `wiki/entities/langchain-openwiki.md`（補充 GitHub stats、connectors、CI 整合、AGENTS.md 注入機制）
+  - `wiki/concepts/okf-open-knowledge-format.md`（新增 OKF 時間軸、vs Agent Skills vs MCP 比較、重要限制）
+  - `wiki/concepts/ai-agent-memory-systems.md`（新增 consumer-ai-memory 交叉連結）
+  - `wiki/concepts/context-rot.md`（新增 Coinbase context lean 策略作為解方）
+  - `wiki/topics/okf.md`（新增 5 個 source 連結）
+  - `wiki/topics/agent-memory-context.md`（新增 consumer-ai-memory + Shlok Khemani source）
+  - `wiki/topics/agent-runtime-implementations.md`（新增 OpenWiki entity + Coinbase entity + multi-model-cost-routing + 8 個 sources）
+  - `wiki/index.md`（全量重建，232 頁）
+- 雙模型交叉驗證：Round 1 關鍵欄位全部一致（OpenWiki→更新既有頁、Shlok→獨立 concept 不併入 memory、Coinbase→新 entity+concept），無分歧
+- ⚠️ Shlok Khemani 那篇與 Stefania Druga 無關，已明確劃界（不同領域：消費級個人化 vs agent harness 記憶）
+- ⚠️ OKF 官方文件間存在 v0.1/v0.2 版本標示不一致，已在 source note 中如實記錄
+
 ## [2026-08-20] ingest | 2 支 YouTube 影片 — LangChain OpenWiki + Sakana AI Memory Harnesses（批次 ingest）
 
 - 動作：`wiki-ingest-youtube` skill 抓字幕 → raw transcripts → 雙模型交叉驗證 → 建立 wiki 頁面

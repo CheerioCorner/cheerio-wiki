@@ -1,7 +1,7 @@
 # Wiki Index
 
 > 自動全量重建，last rebuilt: 2026-08-20
-> 本次新增：context-rot、recall-policy-ladder (concepts)；langchain-openwiki (entity)；2 個 YouTube ingest source notes；OKF / memory-systems / context-decay 更新
+> 本次新增：coinbase-ai-engineering、langchain-openwiki 更新 (entities)；multi-model-cost-routing、consumer-ai-memory-personalization (concepts)；9 個 web source notes；OKF / memory-systems / context-rot 更新
 
 ## Topics
 - [[wiki/topics/agent-infrastructure|Agent Infrastructure]]
@@ -38,235 +38,246 @@
 ## Collections
 
 ### concepts
-- [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns — 狀態持久化的三種路徑]] — Agent 需要「記住自己做到哪裡」的程度不同，對應三種持久化路徑。選錯路徑的代價：要么 crash 後重來，要么 complexity tax 太重。
-- [[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級 — 從 Skill、Hook 到 Extension 的能力邊界]] — 當 Skill 不足以控制流程，下一層是什麼？系統化比較 Skill / Hook / Extension 的能力光譜與適用場景。**屬於 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 的擴充層。**
-- [[wiki/concepts/agent-extension-installation|Agent Extension 安裝位置與方式]] — 不同的 Agent 框架有各自安裝 Extension 的方式和儲存位置。記錄這些差異有助於理解 Agent 的運作機制。
-- [[wiki/concepts/agent-skills-api-usage|Agent Skills API 使用方法]] — 透過 Claude Messages API 呼叫與管理 Agent Skills 的技術機制：container 參數、多輪對話、版本管理與快取。**屬於 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 的基礎層。**
-- [[wiki/concepts/agent-skills-enterprise-governance|Agent Skills 企業治理]] — 企業大規模導入 Agent Skills 的安全審查、部署評估、生命週期管理與組織策略。含 Agentic Pipeline 整合（2026-08-19 新增）。**屬於 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 的基礎層。** 🛠️
-- [[wiki/concepts/agent-skills|Agent Skills — Skill 系統根概念]] — Skill 是**可重複使用、基於檔案系統的模組化能力單元**，為 AI Agent 提供特定領域的專業知識，將通用代理轉變為專家。
-- [[wiki/concepts/agentic-ai|Agentic AI]] — 具備自主性、能使用工具、跨步驟執行任務的 AI 系統。核心公式：**LLM + Tools + Loop**。
-- [[wiki/concepts/ai-agent-memory-systems|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]] — AI agent 記憶架構的設計框架：三支柱分析 × 五種存儲方式 × 四種檢索方法 × 六種維護策略。
-- [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]] — 
-- [[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計 — 從 Agent 產出到正式發布的多層把關]] — Agentic Pipeline 的 Checkpoint 與傳統 CI/CD 的根本差異：不只是 build pass/fail，還必須驗證 Agent 的推理意圖、工具呼叫與語意品質。🛠️
-- [[wiki/concepts/ai-code-review|AI Code Review]] — 用 AI 自動化代碼審查，從「人工逐行檢查」進化到「AI 初審 + 人類終審」。
-- [[wiki/concepts/ai-coding-workflow|AI Coding Workflow — 結構化 AI 編碼工作流程]] — 一套結構化的 AI 編碼工作流程，把模糊想法變成可追踪、可審查的程式碼變更。
-- [[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]] — ARC-AGI-3——ARC Prize Foundation 於 2026 年推出的互動式推理 benchmark，測試 agent 在完全未知規則的模擬世界中探索、建立假設、修正錯誤與長期規劃的能力，用 **RHAE**（Relative Human Action Efficiency）評分。[[wiki/entities/prime-agent|Prime Agent]] 用它作為主要評測案例，也是「harness 差異可以讓同一個模型表現差 3 倍以上」的核心例證。
-- [[wiki/concepts/atdp|ATDP — Agent Trajectory Data Protocol]] — Agent 軌跡數據協定，將 Agent 與環境互動的每一步結構化標準化，為自我進化奠定數據基礎。
-- [[wiki/concepts/chunkless-rag|Chunkless RAG — 保留文件結構的檢索增強生成]] — Chunkless RAG 是一種保留文件 tree structure 的 RAG 方法，讓 AI Agent 透過推理導航文件，而非切成 chunks 做相似度搜尋。
-- [[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構 — Event / Matcher / Handler]] — Claude Code Hooks 是一套 **deterministic 的事件驅動自動化機制**——在 AI 忘記或跳過規則時，由軟體層強制執行檢查、防呆與品質把關。三層架構：Event 決定時機、Matcher 篩選操作、Handler 決定動作。
-- [[wiki/concepts/code-execution-as-tool-calling|Code Execution as Tool Calling]] — 「模型寫 Python 腳本執行多操作」取代「一次一個 tool call」的模式——單一腳本可等同 50 次 tool call，加速執行並透過程式內過濾節省 context window。
-- [[wiki/concepts/code-graph|Code Graph]] — 跨檔案、跨模組的代碼語意圖譜，結合 AST、控制流圖、資料流圖與全域符號表，是現代 Code Intelligence 與 AI RAG 的核心基礎。
-- [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum — 程式碼重要性光譜]] — 一個用來判斷應該閱讀多少程式碼的框架：從不重要的 slop 到人命關天的關鍵系統，不同層級需要不同的驗證策略。
-- [[wiki/concepts/code-knowledge-graph|Code Knowledge Graph — 代碼知識圖譜]] — 結合 tree-sitter AST 解析與圖論算法，將代碼庫轉換為結構化知識圖譜，讓 AI Agent 精確理解代碼架構。
-- [[wiki/concepts/content-redesign|Content 設計 Redesign]] — 知識花園 Content 設計重構：從「套模板」到「針對性報告」。經 Copilot + Gemini 三輪討論確立。
-- [[wiki/concepts/context-cot|Context-CoT — 上下文思維鏈]] — 透過「三階煉獄」推理合成 pipeline，強制 LLM 嚴格錨定上下文進行推理，解決「作弊」問題。
-- [[wiki/concepts/context-decay|Context Decay（脈絡衰減）]] — 決策脈絡在跨模型交接時逐漸遺失的問題，是多 AI 協作流程中比模型能力差異更大的風險。
-- [[wiki/concepts/context-rot|Context Rot（脈絡惡化）]] — 單一 agent 在長時間單一 session 內，因 context 累積導致模型自相矛盾、重複工作、偏離原問題的現象。與 Context Decay 觸發條件不同但後果類似。🛠️
-- [[wiki/concepts/continual-harness|Continual Harness]] — Continual Harness——把 agent harness 自身的狀態（prompt、skills、memory、sub-agents）抽象成 agent 可以 create/read/update/delete（CRUD）的物件，讓 harness 能根據自己的執行軌跡持續調整，而不是設計時就寫死。[[wiki/entities/prime-agent|Prime Agent]] 的兩大核心抽象之一（另一個是 [[wiki/concepts/recursive-language-model|RLM]]）。
-- [[wiki/concepts/contract-driven-development|Contract-Driven Development（契約驅動開發）]] — 用結構化契約作為 AI 模型間交接的唯一真相來源，取代自然語言聊天的不確定性。
-- [[wiki/concepts/copilot-agent-loop|Copilot Agent Loop — 多輪 Tool-Use 循環]] — Copilot CLI 的核心 orchestrator：從 prompt 到 session.idle 的完整 agentic tool-use loop。
-- [[wiki/concepts/copilot-custom-agents|Copilot Custom Agents — Sub-agent Orchestration]] — 定義具有 scoped tools/prompts 的輕量級 agent，runtime 自動委派為 sub-agent，在隔離 context 中執行。
-- [[wiki/concepts/copilot-fleet-mode|Copilot Fleet Mode — 並行 Sub-agent 編排]] — Fleet mode 是 Copilot 的**並行 orchestration pattern**，將工作拆分為獨立 units，分配給多個 sub-agent 並行執行，以 SQL todos 為共享協調狀態。
-- [[wiki/concepts/copilot-hooks-system|Copilot Hooks 系統 — Lifecycle Callback]] — Hooks 讓你在 Copilot session 的每個階段插入自訂邏輯：從 session 啟動、使用者 prompt、工具呼叫到 session 結束。
-- [[wiki/concepts/copilot-steering-queueing|Copilot Steering & Queueing — 訊息投遞模式]] — 當 session 正在處理時，兩種訊息投遞模式：steering（即時轉向）和 queueing（排隊等待）。
-- [[wiki/concepts/defect-metrics|Defect Metrics — 軟體品質測量]] — 兩個關鍵的軟體品質指標：Defect Density（缺陷密度）和 Escape Rate（逃脫率）。
-- [[wiki/concepts/design-md-format|design.md Format]] — Google 定義的品牌設計文件格式，讓 AI coding agent 在產生設計前先讀懂品牌規範，確保所有輸出 on-brand。
-- [[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents — Agent 框架之外的可靠性層]] — Agent framework 擅長推理與路由，但不擅長「等待數小時的人工核准」或「crash 後恢復」。Durable Execution 平台（Temporal / Azure Durable Functions）填補這段空白。🛠️
-- [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem|Copilot 與 Claude Code Skills 生態系比較]] — GitHub Copilot Extensions 與 Claude Code 多層 Skills 系統在架構、規模、體驗與策略上的全面比較。
-- [[wiki/concepts/harness|Harness — LLM 的驅動層]] — **成長階段：** 🌱 種子期
-- [[wiki/concepts/html-slide-deck-workflow|HTML Slide Deck 製作工作流]] — 用 AI agent 製作高品質 HTML 簡報的完整工作流，整合 guizang-ppt-skill 和 huashu-design 兩套設計系統。
-- [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 知識花園相關 skills 的架構全景圖，描述 11 個 skill 的職責、資料流和關聯。
-- [[wiki/concepts/knowledge-management|Knowledge Management]] — 系統化地收集、組織、檢索、維護知識的方法論與工具鏈。
-- [[wiki/concepts/knowledge-system-architecture|知識系統架構]] — 經過 4 輪圓桌會議（Pi + Gemini + Copilot）討論確定，並於 2026-08-12 修正為雙模型共識機制（取代人類確認）的知識管理系統架構。詳見 [[wiki/decisions/knowledge-system-architecture-decision|決策文件]] 第十一節。
-- [[wiki/concepts/late-conversion|Late Conversion(最晚轉換)]] — 一種型別設計策略:**整個內部邏輯都以「應用層 AgentMessage」運作,只在邊界(打 LLM 前一刻)才濾成 LLM 能懂的 `Message[]`**。換句話說:保留訊息的「應用程式語義」直到最後一刻再翻譯。
-- [[wiki/concepts/lint-ruleset|Lint 規則集]] — 定義「什麼是好的知識」的標準，用來自動化檢查知識庫的品質。
-- [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering — AI Agent 兩種核心工作流模式]] — Loop 與 Graph 是 AI Agent 系統中兩種互補的工作流模式：Loop 讓 agent 自主迭代探索，Graph 用預定義流程平行執行。兩者共存而非替代。
-- [[wiki/concepts/meta-harness|Meta-Harness]] — Meta-Harness 是「對 harness 本身的再抽象/最佳化層」——有兩個獨立但共享核心隱喻的主流定義。
-- [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy — 「減法大於加法」]] — 兩篇來源、兩個視角,**落到同一個結論**:agent 框架的價值不取決於堆了多少功能,而取決於它**拒絕排除了多少東西**。
-- [[wiki/concepts/moc-map-of-content|MOC — Map of Content]] — 一種導航頁面，用來連結相關的筆記。它不是筆記本身，而是一張「地圖」。
-- [[wiki/concepts/npm-publishing-workflow|Package Publishing Workflow — 統一的發佈流程觀點]] — **核心觀點：** 不管叫什麼名字（Package、Extension、Marketplace），發佈到市場的流程本質上是一樣的。差異只在平台、市場和來源不同。
-- [[wiki/concepts/okf-open-knowledge-format|OKF (Open Knowledge Format) — 統一的知識表示格式
-open_annotate              # 標題
-系統架構
-Tools & Commands]] — 用 **Markdown + YAML frontmatter** 來表示知識，讓 **人類和 AI 都能讀**。
-- [[wiki/concepts/para|PARA — Projects/Areas/Resources/Archives]] — Tiago Forte 在《Building a Second Brain》中提出的信息組織系統，把所有信息分成四類。
-- [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model — Pi 專案/工作區模型]] — Pi 的「專案」概念**不強制綁定單一實體路徑**。專案 = **設定作用域**（`.pi/` 目錄存在的位置），而非工作目錄本身。這使得「一個實體路徑對應多個專案人格」成為可能。
-- [[wiki/concepts/rapid-application-development|Rapid Application Development (RAD)]] — 1991 年 James Martin 提出的軟體開發方法論，強調速度、迭代開發與使用者反饋，核心假設是「使用者在看到東西之前不知道自己要什麼」。
-- [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder — 記憶檢索策略的效果階梯]] — 四階記憶檢索策略（no recall → vector RAG → decision-ledger → oracle）在長時任務中的實測效果排名。核心發現：好的 recall policy 不只更準，還更省 token。🛠️
-- [[wiki/concepts/recursive-language-model|Recursive Language Model (RLM)]] — RLM（Recursive Language Model）——把 **context 當變數**、把 subagent delegation 當成 persistent REPL 內函式呼叫的架構，讓模型能寫「以自己的 context 為操作對象的程式」，用於長 session 的 context 管理與平行委派。
-- [[wiki/concepts/redis|Redis]] — In-memory key-value 資料庫，μs 級延遲，適合快取、Session、即時排行、Rate Limiting。
-- [[wiki/concepts/semantic-relations|語意關係 — Semantic Relations]] — 定義頁面之間「怎麼連結」的方式——不只是「這兩個頁面有關」，而是「A 支持 B」或「A 矛盾 B」。
-- [[wiki/concepts/skill-authoring-best-practices|Skill 撰寫方法論]] — 撰寫高品質 Agent Skill 的通用方法論：從結構規範到評估迭代，不限於特定平台。**屬於 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 的基礎層。**
-- [[wiki/concepts/skill-design-methodology|Skill 設計方法論 — 從人類意圖到 Skill 邊界]] — 在「怎麼寫好一支 skill」之前，先回答「這支 skill 的邊界在哪裡」。結合 Intention-First、Event Storming、DDD 與決策樹的頂層設計方法論。**屬於 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 的設計層，填補既有專題「如何決定 skill 邊界」的空白。**
-- [[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill — 技能優化元技能]] — 關於「如何編寫與重構技能規範」的高階指導法則，控制 LLM 以受控預算進行 SKILL.md 的文字級修復。
-- [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較 — Claude Code / GitHub Copilot / Pi Agent]] — 三大主流 Agent 框架在處理複雜、組合技 Skill 時的機制與設計取捨：如何組合呼叫、巢狀/委派機制、工具鏈整合。
-- [[wiki/concepts/spec-driven-development|Spec-Driven Development (SDD)]] — 以精確規格（Spec）作為單一事實來源，引導程式碼生成並驗證結果的方法論。在 AI 時代，是補足 vibe coding 安全缺陷的關鍵機制。
-- [[wiki/concepts/vibe-coding|Vibe Coding — 自然語言驅動的程式碼生成]] — 用自然語言和 AI 工具生成和優化程式碼的開發方式，降低門檻但引入新的安全挑戰。
-- [[wiki/concepts/zettelkasten|Zettelkasten — 卡片盒筆記法]] — 由德國社會學家 Niklas Luhmann 實踐的知識管理方法，經 Sönke Ahrens《How to Take Smart Notes》系統化後廣泛流行。
+- [[wiki/concepts/agent-durability-patterns.md|Agent Durability Patterns — 狀態持久化的三種路徑]] — Agent 跑到一半 crash 了，怎麼辦？
+- [[wiki/concepts/agent-extensibility-hierarchy.md|Agent 擴充架構層級 — 從 Skill、Hook 到 Extension 的能力邊界]] — Skill 讓 AI「變懂」，提供知識與流程。但要**強制**它照規則走，需要另一層東西。三層各有擅場，不能互相取代。
+- [[wiki/concepts/agent-extension-installation.md|Agent Extension 安裝位置與方式]] — Pi 支援兩種主要的安裝來源，它們的儲存位置不同：
+- [[wiki/concepts/agent-skills-api-usage.md|Agent Skills API 使用方法]] — Skills 透過 Messages API 的 `container` 參數指定，在程式碼執行容器中運行：
+- [[wiki/concepts/agent-skills-enterprise-governance.md|Agent Skills 企業治理]] — 在核准部署前，根據風險指標評估每個 Skill：
+- [[wiki/concepts/agent-skills.md|Agent Skills — Skill 系統根概念]] — Skill = **指令 + 中繼資料 + 可選資源**（腳本、範本、參考文件），封裝成一個目錄。與一次性 prompt 不同，Skill 會按需載入，建立一次、自動使用。
+- [[wiki/concepts/agentic-ai.md|Agentic AI]] — ```
+- [[wiki/concepts/agentic-pipeline-checkpoint-design.md|Agentic Pipeline Checkpoint 設計 — 從 Agent 產出到正式發布的多層把關]] — **讓 Agent 只能產生可審核的 artifact（proposal），真正的 write operation 必須穿過 deterministic policy 與既有 CI/CD gate。**
+- [[wiki/concepts/ai-agent-memory-systems.md|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]] — 任何 LLM 呼叫都不會長期攜帶記憶權重。ChatGPT 和 Claude Code 之所以能記住對話，是因為它們在底層構建了記憶系統。記憶是 AI agent harness 最有價值的資產。
+- [[wiki/concepts/ai-animation-generation-approaches.md|AI 動畫生成手法分類]] — 從一支 53 秒 YouTube 短片整理出的 7 種 AI 動畫／影片生成手法分類，已逐一查證核實真實工具名稱與用途。
+- [[wiki/concepts/ai-code-review.md|AI Code Review]] — - 傳統 Code Review - AI Code Review -
+- [[wiki/concepts/ai-coding-workflow.md|AI Coding Workflow — 結構化 AI 編碼工作流程]] — ```
+- [[wiki/concepts/arc-agi-3-benchmark.md|ARC-AGI-3 Benchmark]] — - 完整 ARC-AGI-3 有 **135 個**人類設計的抽象環境
+- [[wiki/concepts/atdp.md|ATDP — Agent Trajectory Data Protocol]] — - **Prompt**：輸入提示
+- [[wiki/concepts/chunkless-rag.md|Chunkless RAG — 保留文件結構的檢索增強生成]] — **傳統 RAG**：把文件 flatten → 向量化 → 相似度搜尋 → 拿到碎片
+- [[wiki/concepts/claude-code-hooks-architecture.md|Claude Code Hooks 架構 — Event / Matcher / Handler]] — CLAUDE.md 是「提醒紙條」，Hook 是「自動門」。差別在於 **deterministic vs 依賴 AI 自律**。當某個動作在特定時機「絕對必須執行」且「一點都不想承擔被 AI 忘記的風險」時，就適合做成 Hook。
+- [[wiki/concepts/code-execution-as-tool-calling.md|Code Execution as Tool Calling]] — 傳統 AI Agent 使用 tool calling：模型拿到工具列表，逐次呼叫工具，每次結果回傳 context。Code Execution 模式則是給模型一個 Python runtime，讓模型撰寫腳本一次性執行多個操作。
+- [[wiki/concepts/code-graph.md|Code Graph]] — **問題**：單檔 AST 無法滿足深度代碼理解需求
+- [[wiki/concepts/code-importance-spectrum.md|Code Importance Spectrum — 程式碼重要性光譜]] — **Code Importance Spectrum** 是一個框架，用來分類程式碼的重要性，並據此決定閱讀和驗證的策略。
+- [[wiki/concepts/code-knowledge-graph.md|Code Knowledge Graph — 代碼知識圖譜]] — - **AST（抽象語法樹）**：代碼的結構化表示
+- [[wiki/concepts/consumer-ai-memory-personalization.md|Consumer AI Memory Personalization — 消費級 AI 產品的記憶設計]] — 本頁探討的是 **消費級 AI 產品的使用者個人化記憶**，與以下頁面是**不同領域**：
+- [[wiki/concepts/content-redesign.md|Content 設計 Redesign]] — 1. **只有種子** — 研究專題和視覺地圖的 content 是附帶的
+- [[wiki/concepts/context-cot.md|Context-CoT — 上下文思維鏈]] — LLM 在面對新知識時，表面按 Context 推理，實則偷偷調用預訓練記憶答題（Supervisor Signal Leakage）。
+- [[wiki/concepts/context-decay.md|Context Decay（脈絡衰減）]] — 在多 AI 模型協作的開發流程中，當資訊從一個模型傳遞到另一個模型時，「為什麼做這個決策」的脈絡會逐漸遺失，只留下「做了什麼決策」的結果。這導致：
+- [[wiki/concepts/context-rot.md|Context Rot（脈絡惡化）— 長任務中的記憶腐化]] — Context Rot 是 Stefania Druga（Sakana AI）在研究長時間運行 research agent 時提出的概念 `[01:29]`。指在 long-horizon tasks 中，隨著 context 不斷累積，
+- [[wiki/concepts/continual-harness.md|Continual Harness]] — 傳統 harness 的 sub-agent、prompt、skill、memory 是設計時（design time）就手動寫死、執行期間不再改變的靜態物件。Continual Harness 把這些狀態形式化為 **H = (ρ, G,
+- [[wiki/concepts/contract-driven-development.md|Contract-Driven Development（契約驅動開發）]] — 在多 AI 模型協作的前端開發流程中，用一份版本化的結構化文件（如 `design-contract.yaml`）記錄產品需求、設計決策、技術約束與驗收標準，作為每次模型交接的唯一真相來源。
+- [[wiki/concepts/copilot-agent-loop.md|Copilot Agent Loop — 多輪 Tool-Use 循環]] — SDK 是傳輸層（JSON-RPC），CLI 是 orchestrator。當呼叫 `session.send({ prompt })` 時，CLI 進入 loop：
+- [[wiki/concepts/copilot-custom-agents.md|Copilot Custom Agents — Sub-agent Orchestration]] — 每個 agent 有：
+- [[wiki/concepts/copilot-fleet-mode.md|Copilot Fleet Mode — 並行 Sub-agent 編排]] — **適合**：多檔案重構、批次 review、並行研究、文件刷新、migration tasks
+- [[wiki/concepts/copilot-hooks-system.md|Copilot Hooks 系統 — Lifecycle Callback]] — - Hook - 觸發時機 - 可做什麼 -
+- [[wiki/concepts/copilot-steering-queueing.md|Copilot Steering & Queueing — 訊息投遞模式]] — - 模式 - 行為 - 適用場景 -
+- [[wiki/concepts/defect-metrics.md|Defect Metrics — 軟體品質測量]] — 衡量每單位程式碼的缺陷數量，識別需要改善的區域。
+- [[wiki/concepts/design-md-format.md|design.md Format]] — design.md 是一份結構化的品牌設計文件，包含：
+- [[wiki/concepts/durable-execution-for-agents.md|Durable Execution for Agents — Agent 框架之外的可靠性層]] — Agent 跑到一半 crash 了，或是需要等架構師花 4 小時審核一份設計文件——這兩種場景都需要「跨時間的可靠性保證」，但這不是 Agent framework 的本職。
+- [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem.md|Copilot 與 Claude Code Skills 生態系比較]] — - 面向 - GitHub Copilot - Claude Code -
+- [[wiki/concepts/harness.md|Harness — LLM 的驅動層]] — **Harness 是包住單一 LLM、負責「驅動它做實事」的外殼/包裝層**——包括 agentic loop（讓模型能循環思考）、工具調度（讓模型能動手做）、權限控管（決定模型能做什麼）、context 管理（控制模型看到什麼）、ses
+- [[wiki/concepts/html-slide-deck-workflow.md|HTML Slide Deck 製作工作流]] — 從內容企劃到高品質 HTML slide deck，整合兩套設計系統 + 雙 AI 審閱的工作流。
+- [[wiki/concepts/knowledge-garden-skill-architecture.md|知識花園 Skill 架構]] — ```
+- [[wiki/concepts/knowledge-management.md|Knowledge Management]] — ```
+- [[wiki/concepts/knowledge-system-architecture.md|知識系統架構]] — 三個操作（Ingest / Query / Lint）+ 一個機制（知識幫助知識）+ 一個回流（花園 → 大腦）。
+- [[wiki/concepts/late-conversion.md|Late Conversion(最晚轉換)]] — LLM 的 `Message` 類型只涵蓋「user / assistant / tool result」三種角色;但真實應用存在大量 **「不需要給 LLM 看的訊息」**:
+- [[wiki/concepts/lint-ruleset.md|Lint 規則集]] — Lint 是**保護網**——防止壞知識進入 wiki。它不需要人工檢查所有頁面，而是用自動化規則掃描。
+- [[wiki/concepts/loop-vs-graph-engineering.md|Loop vs Graph Engineering — AI Agent 兩種核心工作流模式]] — Agent 自主決定下一步行動，反覆呼叫工具直到目標達成。
+- [[wiki/concepts/meta-harness.md|Meta-Harness]] — ```
+- [[wiki/concepts/minimal-agent-philosophy.md|Minimal Agent Philosophy — 「減法大於加法」]] — - 「An autonomous agent is just an LLM + tools + a loop.」— 直接引用 Zechner
+- [[wiki/concepts/moc-map-of-content.md|MOC — Map of Content]] — - 特性 - 說明 -
+- [[wiki/concepts/multi-model-cost-routing.md|Multi-Model Cost Routing — 多模型基礎設施的成本工程]] — Frontier models 在日常工程工作的能力趨近、open-weight alternatives 大幅改善、價格差距持續擴大——這使得跨模型路由比綁定單一 vendor 更合理。
+- [[wiki/concepts/npm-publishing-workflow.md|Package Publishing Workflow — 統一的發佈流程觀點]] — ```
+- [[wiki/concepts/okf-open-knowledge-format.md|OKF (Open Knowledge Format) — 統一的知識表示格式]] — **OKF** 是 Google 開發的一個開放標準，用於表示知識。它的核心理念是：
+- [[wiki/concepts/para.md|PARA — Projects/Areas/Resources/Archives]] — PARA 是一個**行動導向**的資訊分類框架：
+- [[wiki/concepts/pi-project-workspace-model.md|pi-project-workspace-model — Pi 專案/工作區模型]] — - 層面 - 行為 -
+- [[wiki/concepts/rapid-application-development.md|Rapid Application Development (RAD)]] — **RAD（Rapid Application Development）**是一種軟體開發方法論，偏好：
+- [[wiki/concepts/recall-policy-ladder.md|Recall Policy Ladder — 記憶檢索策略的效果階梯]] — Recall Policy Ladder 是 Stefania Druga（Sakana AI）在實驗長時間運行 research agent 時提出的記憶檢索策略分類框架。它按「策略在長時任務下的效果排名」組織，與 [[wiki/conc
+- [[wiki/concepts/recursive-language-model.md|Recursive Language Model (RLM)]] — ⚠️ 舊版定義只寫「觸發 subagent」，遺漏了更根本的一層：RLM 的核心是**把 context 當成變數**。[[wiki/entities/prime-agent-Prime Agent]] 讓模型使用一個 persistent
+- [[wiki/concepts/redis.md|Redis]] — - 因素 - 說明 -
+- [[wiki/concepts/semantic-relations.md|語意關係 — Semantic Relations]] — - 關係 - 意義 - 使用場景 -
+- [[wiki/concepts/skill-authoring-best-practices.md|Skill 撰寫方法論]] — Context window 是公共資源。預設假設：**Claude 已經非常聰明**，只添加它尚未擁有的上下文。
+- [[wiki/concepts/skill-design-methodology.md|Skill 設計方法論 — 從人類意圖到 Skill 邊界]] — 既有 Agent Skills 專題假設「skill 邊界已經確定」，分別談怎麼寫（best practices）、怎麼用（API）、怎麼管（governance）。本方法論填補的是**更上游**的空白——邊界怎麼決定。
+- [[wiki/concepts/skillopt-meta-skill.md|SkillOpt Meta-skill — 技能優化元技能]] — - **文字學習率預算（Textual LR Budget）**：限制每次修改幅度
+- [[wiki/concepts/skills-complex-composition-comparison.md|Skill 複雜組合技比較 — Claude Code / GitHub Copilot / Pi Agent]] — - 項目 - 第三方文章（舊） - 官方文件（新） - 修正原因 -
+- [[wiki/concepts/spec-driven-development.md|Spec-Driven Development (SDD)]] — **Spec-Driven Development（SDD，規格驅動開發）**是一種開發方法論，核心原則：
+- [[wiki/concepts/vibe-coding.md|Vibe Coding — 自然語言驅動的程式碼生成]] — **Vibe coding** 是一種開發方式，使用者用自然語言描述意圖，AI 工具生成程式碼。它標誌著程式碼創建方式的根本轉變，讓想法以前所未有的速度從 prototype 到 production。
+- [[wiki/concepts/zettelkasten.md|Zettelkasten — 卡片盒筆記法]] — - 概念 - 定義 - 實踐方式 -
 
 ### entities
-- [[wiki/entities/agentskills-io-standard|agentskills.io — AI Agent Skill 開放標準]] — 一個包含**指令、腳本、資源**的可移植工作流模塊。
-- [[wiki/entities/anthropic-agent-skills|Anthropic Agent Skills — 官方 Skill 系統]] — Anthropic 官方定義的檔案系統驅動 Skill 系統，透過三層漸進式揭露讓 Claude 按需載入專業知識。**這是 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 在 Claude 生態系上的具體實作。**
-- [[wiki/entities/area-l|AReaL — 開源 Agent 強化學習基礎設施]] — Ant Group 等機構發表的 AReaL2.0 系統，實現 Agent 自我進化的線上強化學習框架。
-- [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway — 企業 AI 治理層]] — 企業級 AI 閘道，在前端應用程式、AI Agents 與企業後端 IT 生態系之間搭建安全、受控且靈活的橋樑。
-- [[wiki/entities/claude-code|Claude Code — Anthropic AI Coding Agent]] — Claude Code 是 Anthropic 推出的 agentic coding tool，以終端機為起點，擴展到 Desktop App、Web、IDE、GitHub（`@claude` tag）。核心建立在 MCP（Model Context Protocol）之上，能自主觀察 codebase → 推理 → 執行工具 → 評估結果 → 重複循環。
-- [[wiki/entities/claude-design|Claude Design]] — Anthropic 的 AI 設計工具，讓使用者透過簡單 prompt 建立 Wireframe、Prototype 與動畫，並可透過 MCP 匯出到 Claude Code 實作。
-- [[wiki/entities/docling|Docling — IBM 文件解析與結構化框架]] — IBM Research Zurich 開發的文件解析框架（65k+ stars），支援 30+ 格式 → 結構化 DoclingDocument tree，整合 LangChain/LlamaIndex/Haystack/MCP。
-- [[wiki/entities/github-copilot-sdk|GitHub Copilot SDK — Custom Agents 平台]] — GitHub Copilot SDK 是 Copilot 的**程式化代理平台**，提供 Custom Agents、Sub-agent Orchestration、Custom Skills、Fleet Mode、Hooks、MCP 整合等完整 agent 能力。**⚠️ 此頁面基於 GitHub 官方文件（docs.github.com），修正了先前基於第三方文章的多處錯誤描述。**
-- [[wiki/entities/github-copilot|GitHub Copilot — AI 程式碼輔助生態系]] — GitHub Copilot 是 GitHub（Microsoft 旗下）推出的 AI 程式碼輔助產品線，從 IDE 補全演化為完整 Agent 生態系：Extensions SDK、Agent Skills、Cloud Agent、Code Review、MCP 整合。
-- [[wiki/entities/graphify|Graphify — 開源代碼知識圖譜工具]] — 接近 10 萬 Star 的 GitHub 開源項目，將代碼庫轉換為知識圖譜，大幅提升 AI Coding Agent 的理解能力。
-- [[wiki/entities/gsap|gsap-skills — GSAP 官方 AI 技能包]] — GreenSock 官方推出的 AI 技能包，教 AI Coding Agent 如何正確使用 GSAP 動畫庫製作網頁動效。
-- [[wiki/entities/guizang-ppt-skill|guizang-ppt-skill — AI Agent HTML PPT 技能]] — 歸藏（@op7418）開發的 AI agent 簡報技能，生成單文件 HTML 橫向翻頁 PPT、配圖和多平台封面，內建演講者模式。
-- [[wiki/entities/hermes-agent|hermes-agent — 開源 AI Agent 框架]] — Nous Research 開源的 AI Agent，具備 40+ 工具鏈、跨會話記憶與動態 Skill 庫生成機制。
-- [[wiki/entities/huashu-design|huashu-design — HTML 原生設計技能]] — 花叔（@alchaincyf）開發的 HTML 原生設計技能，一句話 prompt 生成高保真原型、幻燈片、動畫，含 20 設計哲學 + 5 維評審 + MP4 導出。MIT 開源。
-- [[wiki/entities/hyperframes|hyperframes — HTML 轉影片的 Agent 工具]] — 由 HeyGen 開發的開源工具，讓 AI Agent 透過撰寫 HTML 網頁來自動渲染成影片。
-- [[wiki/entities/james-martin|James Martin]] — 資訊科技領域作家與先驅，1982 年出版《Application Development Without Programmers》，1991 年形式化提出 RAD（Rapid Application Development）方法論。
-- [[wiki/entities/knowledge-garden-to-raw|knowledge-garden-to-raw — Notion → Raw 抓取 Skill]] — 從 Notion 知識花園抓取頁面內容，建立 raw 來源檔案，準備進行 wiki ingest。
-- [[wiki/entities/knowledge-garden|knowledge-garden — Cheerio 知識花園 Manifest]] — **Notion 知識花園**的架構藍圖與離線快取。
-- [[wiki/entities/langchain-openwiki|OpenWiki（LangChain）— Agent 專用 Repo Wiki CLI]] — LangChain 團隊開發的開源 CLI 工具，自動產生和維護 repo wiki，專為 AI agent 消費設計，採用 Google OKF v0.2 格式。🛠️
-- [[wiki/entities/langgraph|LangGraph — Graph-based Agent Runtime with Durability]] — LangGraph 是 LangChain 團隊開發的低階 agent orchestration 框架，核心價值在 durability（checkpointing / human-in-the-loop / time travel），而非 graph API 本身。建立在 Google Pregel 論文（2010）模型上。
-- [[wiki/entities/learning-loop|learning-loop]] — 自動學習優化系統，建立完整的學習迴圈：做 → 記 → 學 → 優化 → 做。
-- [[wiki/entities/lsp|LSP (Language Server Protocol)]] — 微軟提出的語言伺服器協定，將程式語言語意分析從編輯器中解耦，實現 $M \times N \rightarrow M + N$ 的架構革新。
-- [[wiki/entities/mario-zechner|Mario Zechner]] — 維護 `badlogic/pi-mono` 整套 monorepo 的作者。他的立場:**「自主 agent 就是 LLM + tools + 一個迴圈」**。
-- [[wiki/entities/markitdown|MarkItDown]] — Microsoft 出品的「萬能格式 → Markdown」轉換器，專為 LLM 和文字分析流程設計。
-- [[wiki/entities/mattpocock-skills|mattpocock/skills — AI Coding Agent Skills 集合]] — Matt Pocock 維護的 AI coding agent skills 集合，162k+ stars，7.5M+ downloads。
-- [[wiki/entities/mcp-model-context-protocol|MCP (Model Context Protocol)]] — Anthropic 推出的開放標準，將 LSP、Code Graph 等服務封裝為 AI Agent 可呼叫的 Tools。
-- [[wiki/entities/memgraph-rag|MemGraph-RAG — 記憶圖譜多智能體檢索增強生成]] — KDD 2026 頂會論文，透過三層全局記憶架構與三大 AI 神探多智能體協作，實現 0.061 秒極速檢索。
-- [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS 開發的 .NET binding for Morphir ecosystem，提供 IR（intermediate representation）和 tooling。
-- [[wiki/entities/notionApi|notionApi — Notion MCP 伺服器]] — **MCP 伺服器**：`notionApi`，在 `~/.pi/agent/mcp.json` 設定，提供 Notion API 存取能力。
-- [[wiki/entities/obsidian|Obsidian — AI Agent 時代的知識管理基礎設施]] — 從疫情催生的個人專案，成長為 150 萬活躍用戶的 AI Agent 最佳知識儲存庫。
-- [[wiki/entities/omnigent|Omnigent]] — Databricks 開源的 meta-harness，位於現有 AI agents 之上，提供組合（Combine）、控制（Control）、協作（Share）三大能力。
-- [[wiki/entities/open-code-review|OpenCodeReview]] — 阿里巴巴開源的 AI 代碼審查 CLI 工具，19.3k stars，確定性工程 × Agent 混合架構。
-- [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI 的 AI Coding Agent，從 Code Completion 演化為命令列 Agent 工具。
-- [[wiki/entities/pi-agent-core|pi-agent-core — 5 檔 / 1,500 行的 Agent Runtime]] — pi-mono monorepo 內的 `packages/agent/`,全文為 agent runtime。**整個 runtime 由 5 個檔、約 1,500 行 TypeScript 構成**(以 [[[../../raw/web/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]]] 解析為準)。
-- [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard — Real-time Web Dashboard for Pi Sessions]] — BlackBeltTechnology 開發的 Pi coding-agent 即時 Web Dashboard。一個瀏覽器 tab 管理多個 pi session——**與 TUI 並存，不取代它**。
-- [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler — Pi 的 Cron Job 與排程系統]] — `@pi-agents/loop` — Pi 的排程 extension，提供 cron job、動態自節奏、idle gating 等功能。非 core runtime 內建，而是透過 extension 機制載入。
-- [[wiki/entities/pi-mono|pi-mono — Agent Toolkit Monorepo]] — [`earendil-works/pi`](https://github.com/earendil-works/pi)（前身 `badlogic/pi-mono`）是 Mario Zechner 維護的 TypeScript agent toolkit monorepo。核心定位：**「你的 agent 平台」**——不是單一既定體驗,而是一組可組合的 runtime、模型抽象層、UI。License：MIT。
-- [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw — Web 存取擴充的繁體中文本地化版]] — **你維護的 `pi-web-access` 繁體中文本地化套件**，已安裝到 Pi 全域（`pi install file:../../../Cheerio/pi-web-access-zh-tw`）。
-- [[wiki/entities/pixel2motion|pixel2motion — AI Logo 動畫 Skill]] — AI Logo 動畫 Skill，將靜態 Logo 圖片自動轉為流暢的 SVG 動畫、HTML 動態展示、GIF/影片預覽。
-- [[wiki/entities/plannotator|Plannotator]] — AI coding agent 的視覺化審閱工具，在瀏覽器中標注 plan、code review、HTML artifact。
-- [[wiki/entities/prime-agent|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]] — Prime Intellect 於 2026-08-05 發布的開源 self-improving coding harness，建構在 [[wiki/entities/pi-agent-core|pi-agent-core]] 之上，核心差異是給模型持久 IPython runtime 而非傳統 tool list，並用 [[wiki/concepts/continual-harness|Continual Harness]] 讓 agent 自己改寫自己的 harness 狀態。
-- [[wiki/entities/qwenpaw|QwenPaw — Agent OS 架構的本地 AI 助理]] — AgentScope 團隊開發的開源個人 AI 助理，以 Agent OS 架構為核心，強調本地部署、安全沙箱與多通道整合。
-- [[wiki/entities/remotion|Remotion — 程式碼驅動的影片製作框架]] — 用 React 程式碼製作影片的開源框架，資料驅動的程式化影片生成。
-- [[wiki/entities/round-table|Round Table — 多 AI 圓桌會議]] — Pi 主持的多 AI 討論機制。Pi 不參與討論，派出 subagent 搭配 Claude、Gemini、Copilot 進行序列討論。
-- [[wiki/entities/skillopt|SkillOpt — 微軟技能優化器]] — 微軟提出的 SkillOpt 框架，將 SKILL.md 視為可訓練的外部參數，不修改閉源模型權重實現 Agent 自我進化。
-- [[wiki/entities/story-to-handdrawn-video|story-to-handdrawn-video — 中文故事轉手繪動畫 Skill]] — Agent Skill，將中文故事文字或圖片序列轉為手繪日記風格動畫（無聲 MP4）。
-- [[wiki/entities/tau|tau — Pi 的 Python 移植版]] — Tau 是 Pi 的 **Python port**，由 [Hugging Face](https://huggingface.co) 開發並開源（MIT license）。架構與 Pi 完全相同，差異只在 TUI 層使用 Textual 框架。
-- [[wiki/entities/theo-t3gg|Theo (t3gg) — 程式碼重要性光譜與驗證方法論倡導者]] — Theo（t3gg）是科技 YouTube 頻道主，以務實的軟體工程觀點聞名，近期提出「程式碼重要性光譜」和「用 cheap code 驗證 important code」的方法論。
-- [[wiki/entities/tree-sitter|Tree-sitter]] — 高效能 Parser Generator，支援毫秒級增量解析，是現代 Code Intelligence 的核心基礎設施。
-- [[wiki/entities/uncle-bob|Uncle Bob (Robert C. Martin) — Clean Code 作者、軟體工程資深實踐者]] — Uncle Bob（Robert C. Martin）是《Clean Code》和《Clean Architecture》作者，軟體工程界的標誌性人物，近期因「不再閱讀 AI 生成的程式碼」言論引發熱議。
-- [[wiki/entities/video-shotcraft|video-shotcraft — AI 影片電影運鏡 Skill]] — AI 影片 Skill，內建 152 種電影運鏡模板，把網站畫面轉為有電影感的產品廣告片。
-- [[wiki/entities/waku-agent|waku-agent — Local-first personal AI agent with harness + loop + memory + eval]] — Waku agent 是一個 local-first 個人 AI 助理，以 readable code 展示 agent 系統的四大支柱：harness、loop、memory、eval/LLM-Ops。
-- [[wiki/entities/wiki-knowledge|wiki-knowledge — Obsidian 知識庫操作 Skill（已刪除）
-頁面標題]] — ⚠️ **已刪除**（2026-08-08）。原始的三大流程已拆成三個獨立 skill，dispatcher 功能不再需要。
+- [[wiki/entities/agentskills-io-standard.md|agentskills.io — AI Agent Skill 開放標準]] — Skill 是遵循 [agentskills.io](https://agentskills.io/) 開放標準的模組化工作流單元。不僅適用於單一 IDE，還可跨多個 AI 工具使用。
+- [[wiki/entities/anthropic-agent-skills.md|Anthropic Agent Skills — 官方 Skill 系統]] — Skills 以目錄形式存在於 Claude 的虛擬機器中，三層載入確保只有相關內容佔用 context window：
+- [[wiki/entities/area-l.md|AReaL — 開源 Agent 強化學習基礎設施]] — - 屬性 - 值 -
+- [[wiki/entities/axway-amplify-ai-gateway.md|Axway Amplify AI Gateway — 企業 AI 治理層]] — AI Gateway 是 Client Apps 與 AI Resources 之間的**治理層 (Governance Layer)**，提供 GUI 圖形化配置介面，解決企業 AI 蔓延（AI Sprawl）與影子 AI（Shadow 
+- [[wiki/entities/claude-code.md|Claude Code — Anthropic AI Coding Agent]] — ```
+- [[wiki/entities/claude-design.md|Claude Design]] — Claude Design 是一個基於 Claude 模型的設計工具，提供直覺式介面，讓非技術人員也能透過 prompt 建立高品質設計。可用於網站、投影片、文件與動畫。
+- [[wiki/entities/coinbase-ai-engineering.md|Coinbase AI Engineering — 多模型基礎設施與成本工程實踐]] — - 欄位 - 值 -
+- [[wiki/entities/docling.md|Docling — IBM 文件解析與結構化框架]] — - 欄位 - 值 -
+- [[wiki/entities/github-copilot-sdk.md|GitHub Copilot SDK — Custom Agents 平台]] — ```
+- [[wiki/entities/github-copilot.md|GitHub Copilot — AI 程式碼輔助生態系]] — 最基礎的功能。支援 VS Code、JetBrains、Visual Studio、Xcode、Eclipse 等。2025 年新增 **Next Edit Suggestions**（NES），能預測下一步要編輯的位置，從「被動補全」進化
+- [[wiki/entities/graphify.md|Graphify — 開源代碼知識圖譜工具]] — - 屬性 - 值 -
+- [[wiki/entities/gsap.md|gsap-skills — GSAP 官方 AI 技能包]] — - **開發者**：GreenSock（https://github.com/greensock/gsap-skills）
+- [[wiki/entities/guizang-ppt-skill.md|guizang-ppt-skill — AI Agent HTML PPT 技能]] — 在 Claude Code / Codex 等 agent 環境中，用一句話 prompt 生成高品質 HTML 橫向翻頁簡報，支援兩套視覺系統、配圖生成和完整演講者工具。
+- [[wiki/entities/hermes-agent.md|hermes-agent — 開源 AI Agent 框架]] — - 屬性 - 值 -
+- [[wiki/entities/huashu-design.md|huashu-design — HTML 原生設計技能]] — 在 Claude Code / Codex / Cursor 等 agent 中，打一句話拿回一份能交付的設計——App 原型、演講簡報、時間軸動畫、資訊圖、設計方向顧問。
+- [[wiki/entities/hyperframes.md|hyperframes — HTML 轉影片的 Agent 工具]] — - **開發者**：HeyGen（https://github.com/heygen-com/hyperframes）
+- [[wiki/entities/james-martin.md|James Martin]] — - 欄位 - 內容 -
+- [[wiki/entities/knowledge-garden-to-raw.md|knowledge-garden-to-raw — Notion → Raw 抓取 Skill]] — - 項目 - 值 -
+- [[wiki/entities/knowledge-garden.md|knowledge-garden — Cheerio 知識花園 Manifest]] — - 項目 - 值 -
+- [[wiki/entities/langchain-openwiki.md|OpenWiki（LangChain）— Agent 專用 Repo Wiki CLI]] — - 欄位 - 值 -
+- [[wiki/entities/langgraph.md|LangGraph — Graph-based Agent Runtime with Durability]] — - 項目 - 內容 -
+- [[wiki/entities/learning-loop.md|learning-loop]] — Learning Loop 是一個 skill，讓 Pi 在任務完成後自動提取學到的東西、定期分析工作模式找出瓶頸、追蹤 skill 使用效果並建議改進。
+- [[wiki/entities/lsp.md|LSP (Language Server Protocol)]] — **問題**：傳統 IDE 整合需要為 M 個編輯器 × N 種語言撰寫 M×N 個套件
+- [[wiki/entities/mario-zechner.md|Mario Zechner]] — - GitHub:`badlogic/pi-mono`
+- [[wiki/entities/markitdown.md|MarkItDown]] — MarkItDown 把 PDF、Word、Excel、PPT、圖片、音訊、HTML 等各種格式轉成 Markdown，讓 LLM 能直接讀懂。
+- [[wiki/entities/mattpocock-skills.md|mattpocock/skills — AI Coding Agent Skills 集合]] — - 屬性 - 值 -
+- [[wiki/entities/mcp-model-context-protocol.md|MCP (Model Context Protocol)]] — **問題**：AI Agent 需要存取外部工具（LSP、資料庫、API），但各工具介面不統一
+- [[wiki/entities/memgraph-rag.md|MemGraph-RAG — 記憶圖譜多智能體檢索增強生成]] — - 屬性 - 值 -
+- [[wiki/entities/morphir-dotnet.md|morphir-dotnet]] — morphir-dotnet 是 Morphir 生態系的 .NET 綁定，提供 domain model、IR codecs、CLI tooling 和 AI agent 貢獻指南。
+- [[wiki/entities/notionApi.md|notionApi — Notion MCP 伺服器]] — ```json
+- [[wiki/entities/obsidian.md|Obsidian — AI Agent 時代的知識管理基礎設施]] — Obsidian 從 2020 年疫情期間的個人專案，成長為 150 萬活躍用戶的 AI Agent 最佳知識儲存庫；我們結合 OKF 的 raw → wiki → Notion 資料流，正是 Andrej Karpathy 提出的「LLM
+- [[wiki/entities/omnigent.md|Omnigent]] — Omnigent 是一個 **meta-harness（元鞍具）** 層，運行在你已經在使用的 AI agents（Claude Code、Codex、Pi 或自訂 agents）之上，讓它們成為一個更豐富系統中的可互換零件。
+- [[wiki/entities/open-code-review.md|OpenCodeReview]] — OCR 是一個 AI 驅動的代碼審查工具，讀取 Git diff，透過帶 tool-use 能力的 Agent 將變更檔案送給 LLM，生成行級精度的結構化審查意見。
+- [[wiki/entities/openai-codex.md|OpenAI Codex]] — ```
+- [[wiki/entities/pi-agent-core.md|pi-agent-core — 5 檔 / 1,500 行的 Agent Runtime]] — - [[wiki/sources/2026-02-10-pi-agent-core-design]] — 主要來源(語言物理位元 + 行號層次的解析)
+- [[wiki/entities/pi-agent-dashboard.md|pi-agent-dashboard — Real-time Web Dashboard for Pi Sessions]] — - 多 session 同時監控 + 即時 chat mirroring
+- [[wiki/entities/pi-loop-scheduler.md|pi-loop-scheduler — Pi 的 Cron Job 與排程系統]] — ```
+- [[wiki/entities/pi-mono.md|pi-mono — Agent Toolkit Monorepo]] — - Package - 角色 - 備註 -
+- [[wiki/entities/pi-web-access-zh-tw.md|pi-web-access-zh-tw — Web 存取擴充的繁體中文本地化版]] — - **版本**: `0.13.0-zh-tw.1`
+- [[wiki/entities/pixel2motion.md|pixel2motion — AI Logo 動畫 Skill]] — - **開發者**：nolangz（https://github.com/nolangz/pixel2motion）
+- [[wiki/entities/plannotator.md|Plannotator]] — Plannotator 是將 AI agent 的提案（plan、code diff、HTML）以瀏覽器 UI 呈現，讓人類可以在瀏覽器中標注、審閱、發送 feedback 給 agent。
+- [[wiki/entities/prime-agent.md|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]] — - 屬性 - 值 -
+- [[wiki/entities/qwenpaw.md|QwenPaw — Agent OS 架構的本地 AI 助理]] — - 欄位 - 值 -
+- [[wiki/entities/remotion.md|Remotion — 程式碼驅動的影片製作框架]] — - **開發者**：Remotion Dev（https://github.com/remotion-dev/remotion / https://remotion.dev）
+- [[wiki/entities/round-table.md|Round Table — 多 AI 圓桌會議]] — ```
+- [[wiki/entities/skillopt.md|SkillOpt — 微軟技能優化器]] — - 屬性 - 值 -
+- [[wiki/entities/story-to-handdrawn-video.md|story-to-handdrawn-video — 中文故事轉手繪動畫 Skill]] — - **開發者**：gnipbao（https://github.com/gnipbao/story-to-handdrawn-video）
+- [[wiki/entities/tau.md|tau — Pi 的 Python 移植版]] — - 項目 - 內容 -
+- [[wiki/entities/theo-t3gg.md|Theo (t3gg) — 程式碼重要性光譜與驗證方法論倡導者]] — - 項目 - 內容 -
+- [[wiki/entities/tree-sitter.md|Tree-sitter]] — - **Generalized LR**：支援處理語法模糊性（Ambiguity）
+- [[wiki/entities/uncle-bob.md|Uncle Bob (Robert C. Martin) — Clean Code 作者、軟體工程資深實踐者]] — - 項目 - 內容 -
+- [[wiki/entities/video-shotcraft.md|video-shotcraft — AI 影片電影運鏡 Skill]] — - **開發者**：Vincentwei1021（https://github.com/Vincentwei1021/video-shotcraft）
+- [[wiki/entities/waku-agent.md|waku-agent — Local-first personal AI agent with harness + loop + memory + eval]] — - 欄位 - 值 -
+- [[wiki/entities/wiki-knowledge.md|wiki-knowledge — Obsidian 知識庫操作 Skill（已刪除）]] — 人類說出以下任一詞彙即自動載入：
+- [[wiki/entities/ai-agent-core/chain-of-thought.md|Chain-of-thought (CoT)]] — 模型在回答問題前，先把推理過程寫出來，然後基於這個過程給出最終答案。
+- [[wiki/entities/ai-agent-core/token-budget.md|Token 預算]] — 每個模型每次回覆能處理的 token 數量有上限，你需要決定多少用於輸入、多少用於思考、多少用於輸出。
+- [[wiki/entities/pi-agent/changelog/v0.84.0.md|Pi Agent v0.84.0 更新分析]] — - 功能 - 一句話解釋 - 對我的價值 - 可學到什麼 -
 
 ### sources
-- [[wiki/sources/2026-02-10-pi-agent-core-design|下一代Agent架构——Pi Agent Core 设计逻辑深度解析]] — 這裡做為來源頁收存。目的是:反映從這篇文章推導出的主張、以及被這篇文章影響、我們接著在 wiki 內拆解的 entity / concept / comparison 頁。
-- [[wiki/sources/2026-05-02-pi-mono-framework-tw|別再被複雜框架綁架:pi-mono 回歸直覺的 TypeScript AI Agent 開發框架]] — 與 [[wiki/sources/2026-02-10-pi-agent-core-design]] 為姊妹篇:**同一個專題的兩個視角**——A 篇解剖 `packages/agent/src/` 五支檔,B 篇俯瞰整個 monorepo。互不矛盾。
-- [[wiki/sources/2026-07-11-mattpocock-skills|mattpocock/skills — 工程實踐 Skills 集合]] — 視覺化：[[wiki/visualizations/mattpocock-skills.canvas|mattpocock/skills Canvas]]
-- [[wiki/sources/2026-07-11-plannotator-research|2026-07-11 Plannotator 研究]] — 
-- [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks|Omnigent: Databricks 開源 Meta-Harness]] — Databricks 官方部落格文章，宣布開源 Omnigent — 一個位於現有 AI agents 之上的 meta-harness 層。
-- [[wiki/sources/2026-07-18-pi-resource-inventory|2026-07-18 Pi 資源完整盤點]] — 來源：人類在 Pi 互動模式下要求「檢視我們現在擁有的所有資源」，Agent 掃描專案目錄、Pi 設定目錄、Obsidian 知識庫，彙整而成。
-- [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills — 完整 AI Coding 工作流程教學]] — 來源：[YouTube — mattpocock/skills: A complete AI Coding workflow, end-to-end](https://www.youtube.com/watch?v=M6mYodf0dJM)
-- [[wiki/sources/2026-07-23-plannotator-copilot-setup|Plannotator IT 安裝手冊：GitHub Copilot CLI 整合]] — 來源：PDF 安裝手冊（2026-07-23），描述 Plannotator 與 GitHub Copilot CLI 在 Windows 上的整合安裝流程。
-- [[wiki/sources/2026-07-31-npm-publishing-setup|2026-07-31 Package Publishing 首次實作]] — 今天完成了第一個 Package 的發佈流程設定。雖然這次是用 NPM，但學到的流程適用於所有市場。
-- [[wiki/sources/2026-08-01-okf-extension-development|2026-08-01 OKF Extension 開發實作]] — 
-- [[wiki/sources/2026-08-01-okf-knowledge-catalog|OKF Knowledge Catalog — Google Cloud 參考實作]] — Google Cloud 開發的 OKF 參考實作，包含 reference agent 和視覺化工具。
-- [[wiki/sources/2026-08-02-defect-density-escape-rate|Defect Density & Escape Rate — Agile 品質指標指南]] — 兩篇關於軟體品質指標的文章彙整：Defect Density（缺陷密度）和 Escape Rate（逃脫率）。
-- [[wiki/sources/2026-08-02-defect-escape-rate-guide|Defect Escape Rate（DER）測量指南]] — 來源：[Step-by-step guide on how to measure Defect Escape Rate](https://instatus.com/blog/der)
-- [[wiki/sources/2026-08-02-morphir-dotnet-agents|morphir-dotnet AGENTS.md — AI Agent 貢獻指南]] — FINOS morphir-dotnet 專案的 AGENTS.md，展示企業級 .NET 專案如何組織 AI agent 指南。
-- [[wiki/sources/2026-08-02-qwenpaw-github-readme|QwenPaw: GitHub README — 完整功能與安裝指南]] — 來源：[agentscope-ai/QwenPaw GitHub README](https://github.com/agentscope-ai/QwenPaw)
-- [[wiki/sources/2026-08-02-vibe-coding-implications|Vibe Coding 的未來與影響]] — Blackduck 部落格文章，探討 vibe coding（用自然語言和 AI 工具生成程式碼）的風險與最佳實踐。
-- [[wiki/sources/2026-08-02-waku-agent-code-walkthrough|Waku Waku! Waku agent — code walkthrough]] — 來源：[YouTube — Waku Waku! Waku agent is your personal AI agent](https://youtu.be/rvRyBhILrls)
-- [[wiki/sources/2026-08-02-waku-agent-github-readme|Waku agent: GitHub README]] — 來源：[GitHub — ShenSeanChen/waku-agent](https://github.com/ShenSeanChen/waku-agent)
-- [[wiki/sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF 架構優化完整工作紀錄]] — 本頁是本輪 Wiki × OKF 架構優化的完整 canonical work record。它記錄決策、實作、驗證、Git commits、保留邊界與未來工作；不是 package source code、PLAN 或 raw conversation 的替代品。
-- [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering — AI Agent Concepts Demystified]] — 來源：[YouTube — Loop vs Graph Engineering — AI Agent Concepts Demystified](https://youtu.be/IMLwvK08JVc)
-- [[wiki/sources/2026-08-03-redis-acl|Redis ACL（Access Control List）完整指南]] — 來源：[Redis ACL](https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/)
-- [[wiki/sources/2026-08-03-redis-cluster-architecture|Redis Enterprise Cluster Architecture]] — 來源：[Redis Enterprise Cluster Architecture](https://redis.io/technology/redis-enterprise-cluster-architecture/)
-- [[wiki/sources/2026-08-03-redis-eviction-policy|Redis Eviction Policy 完整指南]] — 來源：[Redis Eviction Policy](https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/)
-- [[wiki/sources/2026-08-03-redis-licenses|Redis 授權指南 — 企業導入必讀]] — 來源：[Redis Licenses](https://redis.io/legal/licenses/)
-- [[wiki/sources/2026-08-03-redis-memory-optimization|Redis Memory Optimization 策略]] — 來源：[Redis Memory Optimization](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/)
-- [[wiki/sources/2026-08-03-redis-performance-tuning|Redis Performance Tuning 最佳實踐]] — 來源：[Redis Performance Tuning Best Practices](https://redis.io/faq/doc/1mebipyp1e/performance-tuning-best-practices)
-- [[wiki/sources/2026-08-03-redis-security-practices|Redis Security Best Practices]] — 來源：[Redis Recommended Security Practices](https://redis.io/docs/latest/operate/rs/security/recommended-security-practices/)
-- [[wiki/sources/2026-08-03-redis-sentinel-client-spec|Redis Sentinel Client Spec — 客戶端整合規範]] — 來源：[Redis Sentinel Client Spec](https://redis.io/docs/latest/develop/reference/sentinel-clients/)
-- [[wiki/sources/2026-08-03-tau-python-port-of-pi|Tau: A Python Port of Pi — Coding Harness Deep Dive]] — 來源：[YouTube — Tau: A Python Port of Pi](https://www.youtube.com/watch?v=qo1QNxWcm28)（25:03）
-- [[wiki/sources/2026-08-04-code-review-graph|code-review-graph：用知識圖譜幫 AI Code Review 省下 8 倍 Token]] — 來源：[別再讓 AI 讀整個專案了！code-review-graph 用知識圖譜幫你省下 8 倍 Token](https://repoinside.com/tirth8205/code-review-graph)
-- [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]] — Gemini Deep Research 完成的 LSP（Language Server Protocol）與 Code Graph 技術研究報告，涵蓋架構、實作案例、AI 整合應用。
-- [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF + LSP + Code Graph 在 AI Coding Agent 生態系的整合應用]] — Gemini Deep Research 完成的三位一體程式碼智慧架構研究，涵蓋 OKF、LSP、Code Graph 在主流 AI Coding Agent 的整合應用。
-- [[wiki/sources/2026-08-04-rust-analyzer|rust-analyzer — Rust 語言的 LSP 實作]] — 來源：[rust-analyzer Introduction](https://rust-analyzer.github.io/book/)
-- [[wiki/sources/2026-08-05-hermes-agent-github-readme|Hermes Agent: GitHub README — 自我改進 AI Agent]] — 來源：[NousResearch/hermes-agent GitHub README](https://github.com/NousResearch/hermes-agent)
-- [[wiki/sources/2026-08-05-pi-github-readme|Pi GitHub README — Agent Harness 總覽]] — 來源：[earendil-works/pi GitHub README](https://github.com/earendil-works/pi)
-- [[wiki/sources/2026-08-05-tau-github-readme|Tau: GitHub README]] — 來源：[huggingface/tau GitHub README](https://github.com/huggingface/tau)
-- [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough — Full Agent Core + Interactive Layer Explained]] — 來源：[YouTube — Pi Architecture Walkthrough — Full Agent Core + Interactive Layer Explained](https://www.youtube.com/watch?v=gTeujlv8qK0)
-- [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research|Wow 頻道 5 支 AI Agent 前沿研究影片]] — 來源：[Wow YouTube 頻道](https://www.youtube.com/@wow.insight) 5 支前沿 AI Agent 研究影片
-- [[wiki/sources/2026-08-07-ai-related-seeds|Notion AI 相關種子 — agentskills.io + Axway AI Gateway]] — 來源：Notion「任何當下 → AI相關」頁面
-- [[wiki/sources/2026-08-08-guizang-ppt-skill|guizang-ppt-skill — 歸藏 HTML PPT 技能 GitHub README]] — 來源：[op7418/guizang-ppt-skill GitHub README](https://github.com/op7418/guizang-ppt-skill)
-- [[wiki/sources/2026-08-08-hermes-architecture-explained|Hermes Architecture EXPLAINED: Memory, Context & Gateways]] — 來源：[YouTube — Hermes Architecture EXPLAINED: Memory, Context & Gateways](https://youtu.be/n32qq7Kwzh0)
-- [[wiki/sources/2026-08-08-huashu-design|huashu-design — 花叔 HTML 原生設計技能 GitHub README]] — 來源：[alchaincyf/huashu-design GitHub README](https://github.com/alchaincyf/huashu-design)
-- [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|Plannotator × Obsidian — 知識迴流系統報告簡報企劃]] — 來源：Pi 整理的簡報企劃文件，經過 Gemini + Copilot 雙重審閱
-- [[wiki/sources/2026-08-08-qwenpaw-youtube-intro|QwenPaw: Your Personal AI Assistant — YouTube 介紹影片]] — 來源：[YouTube — QwenPaw: Your Personal AI Assistant](https://youtu.be/QE6FVnNcd3Y)
-- [[wiki/sources/2026-08-09-redis-caching-patterns|Redis Design Patterns for Caching and Session Management]] — 來源：Artem Khrienov (2026-03-05) — Medium 26 分鐘長文，涵蓋 Redis 數據結構、緩存模式、Session 管理、Rate Limiting 與最佳實踐。
-- [[wiki/sources/2026-08-10-antigravity-cli-integration|Antigravity CLI 整合 Session]] — 2026-08-10 的實作 session，整合 Antigravity CLI 取代已停用的 Gemini CLI 免費層。
-- [[wiki/sources/2026-08-10-chunkless-rag-docling|What Is Chunkless RAG? How Docling & AI Agents Navigate Documents]] — 來源：[YouTube — What Is Chunkless RAG? How Docling & AI Agents Navigate Documents](https://www.youtube.com/watch?v=vRZNJWw78BQ)
-- [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理 — @pi-agents/loop 架構解析]] — 從 `@pi-agents/loop` extension 的原始碼與文件，解析 Pi 的 cron job 系統如何實作。
-- [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code|Uncle Bob Stopped Reading AI-Generated Code]] — 來源：[YouTube — Uncle Bob Stopped Reading AI-Generated Code](https://www.youtube.com/watch?v=sClTAvkQDOU)
-- [[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Write Code You Will Never Read Again]] — 來源：[YouTube — Write Code You Will Never Read Again](https://youtu.be/434cG4g5KLE)
-- [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]] — AI LABS 教學影片，介紹 Claude Design 的五階段工作流程，從 design.md 到實際部署。
-- [[wiki/sources/2026-08-13-garden-guard-incident|2026-08-13 花園巡檢事故與 garden-guard extension 建立全記錄]] — 類型：內部事故報告 + 修復全過程記錄
-- [[wiki/sources/2026-08-13-prime-agent-arc-agi-3-aiposthub|Prime Agent 是什麼？ARC-AGI-3「95.5%」背後（AI郵報分析）]] — AI 郵報（作者 Philo）針對 [[wiki/entities/prime-agent|Prime Agent]] 發布的獨立中文分析文，2026-08-06 刊出。核心貢獻是拆解 ARC-AGI-3「95.5%」宣稱背後的三種成績口徑，並提醒 `/refine` 自我改進機制的 reward hacking 風險。
-- [[wiki/sources/2026-08-13-prime-agent-official-blog|Prime Agent: A self-improving RLM agent（官方部落格）]] — Prime Intellect 官方部落格原文，2026-08-05 發布，宣布開源 self-improving coding harness [[wiki/entities/prime-agent|Prime Agent]]，作者 Seth Karten、Alex L. Zhang、Kevin Thomas、Sebastian Müller 與 Prime Intellect Team。
-- [[wiki/sources/2026-08-13-prime-agent-youtube|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]] — Martí Blanes 介紹 Prime Agent：建構於 Pi 之上，用 Python runtime 取代傳統 tool calling 的開源 coding agent。
-- [[wiki/sources/2026-08-14-agent-skills-api-guide|透過 API 使用 Agent Skills — 完整指南]] — Source: [透過 API 使用 Agent Skills](https://platform.claude.com/docs/zh-TW/build-with-claude/skills-guide)
-- [[wiki/sources/2026-08-14-agent-skills-api-quickstart|在 API 中開始使用 Agent Skills — Quickstart]] — Source: [在 API 中開始使用 Agent Skills](https://platform.claude.com/docs/zh-TW/agents-and-tools/agent-skills/quickstart)
-- [[wiki/sources/2026-08-14-agent-skills-enterprise-deployment|企業級 Agent Skills 部署指南]] — Source: [企業級 Skills](https://platform.claude.com/docs/zh-TW/agents-and-tools/agent-skills/enterprise)
-- [[wiki/sources/2026-08-14-agent-skills-overview|Agent Skills — Anthropic 官方概覽]] — Source: [Agent Skills](https://platform.claude.com/docs/zh-TW/agents-and-tools/agent-skills/overview)
-- [[wiki/sources/2026-08-14-anthropics-skills-github-repo|anthropics/skills — 官方 GitHub Repo]] — Source: [anthropics/skills](https://github.com/anthropics/skills)
-- [[wiki/sources/2026-08-14-azure-managed-identity-with-byok|Azure Managed Identity with BYOK]] — Source: [Azure Managed Identity with BYOK](https://docs.github.com/en/copilot/how-tos/copilot-sdk/guides/azure-managed-identity)
-- [[wiki/sources/2026-08-14-backend-services-setup|Backend Services Setup]] — Source: [Backend Services Setup](https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started/backend-services)
-- [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|GitHub Copilot vs Claude Code — Skills 生態系比較]] — Source: [GitHub Copilot vs Claude Code: Skills Ecosystem Comparison](https://aiskill.market/blog/github-copilot-vs-claude-code)
-- [[wiki/sources/2026-08-14-default-setup-bundled-cli|Default Setup (Bundled CLI)]] — Source: [Default Setup (Bundled CLI)](https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started/default-setup)
-- [[wiki/sources/2026-08-14-error-handling-hook|Error Handling Hook]] — Source: [Error Handling Hook](https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/error-handling)
-- [[wiki/sources/2026-08-14-github-oauth-setup|GitHub OAuth Setup]] — Source: [GitHub OAuth Setup](https://docs.github.com/en/copilot/how-tos/copilot-sdk/guides/github-oauth)
-- [[wiki/sources/2026-08-14-local-cli-setup|Local CLI Setup]] — Source: [Local CLI Setup](https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started/local-cli)
-- [[wiki/sources/2026-08-14-microsoft-agent-framework-integration|Microsoft Agent Framework Integration]] — Source: [Microsoft Agent Framework Integration](https://docs.github.com/en/copilot/how-tos/copilot-sdk/guides/microsoft-agent-framework)
-- [[wiki/sources/2026-08-14-multi-tenancy-and-server-deployments|Multi-tenancy and Server Deployments]] — Source: [Multi-tenancy and Server Deployments](https://docs.github.com/en/copilot/how-tos/copilot-sdk/guides/multi-tenancy)
-- [[wiki/sources/2026-08-14-opentelemetry-instrumentation-for-copilot-sdk|OpenTelemetry for Copilot SDK]] — Source: [OpenTelemetry for Copilot SDK](https://docs.github.com/en/copilot/how-tos/copilot-sdk/guides/opentelemetry)
-- [[wiki/sources/2026-08-14-post-tool-use-hook|Post-tool Use Hook]] — Source: [Post-tool Use Hook](https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/post-tool-use)
-- [[wiki/sources/2026-08-14-pre-tool-use-hook|Pre-tool Use Hook]] — Source: [Pre-tool Use Hook](https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/pre-tool-use)
-- [[wiki/sources/2026-08-14-multi-tenancy-and-server-deployments|Multi-tenancy and Server Deployments (含 Scaling)]] — Source: [Multi-tenancy](https://docs.github.com/en/copilot/how-tos/copilot-sdk/guides/multi-tenancy) + [Scaling](https://docs.github.com/en/copilot/how-tos/copilot-sdk/guides/scaling)
-- [[wiki/sources/2026-08-14-session-lifecycle-hooks|Session Lifecycle Hooks (含 Session Hooks 概覽)]] — Source: [Session Lifecycle](https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/session-lifecycle) + [Hooks Overview](https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/hooks-overview)
-- [[wiki/sources/2026-08-14-session-lifecycle-hooks|Session Lifecycle Hooks]] — Source: [Session Lifecycle Hooks](https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/session-lifecycle)
-- [[wiki/sources/2026-08-14-setup-guides|Setup Guides]] — Source: [Setup Guides](https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started)
-- [[wiki/sources/2026-08-14-skill-writing-best-practices|Skill 撰寫最佳實踐]] — Source: [Skill 撰寫最佳實踐](https://platform.claude.com/docs/zh-TW/agents-and-tools/agent-skills/best-practices)
-- [[wiki/sources/2026-08-14-user-prompt-submitted-hook|User Prompt Submitted Hook]] — Source: [User Prompt Submitted Hook](https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/user-prompt-submitted)
-- [[wiki/sources/2026-08-15-round-table-pi-agent-v084-learning|圓桌會議：Pi Agent v0.84.x 更新中值得學習的設計模式]] — 日期：2026-08-15 | 參與者：Claude（深度分析）、Copilot（實作面）| 主持人：Pi
-- [[wiki/sources/2026-08-17-7-ai-animation-skills|7 個用 AI 做動畫的 Skills（Debug Tuboshu）]] — 來源：[YouTube Shorts — 7 個用 AI 做動畫的 Skills](https://www.youtube.com/shorts/8k4WhKuA3OA)
-- [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|AI Agent Memory Systems — 5 種記憶架構設計方式]] — 來源：[YouTube](https://www.youtube.com/watch?v=072eNztI06k) | 作者：Sean Chen ([@ShenSeanChen](https://github.com/ShenSeanChen)) | 頻道：Sean's AI Stories | 時長：30:26
-- [[wiki/sources/2026-08-17-devops-skill-presentation|如何寫好一支 SKILL？· DevOps Board 系列（簡報來源筆記）]] — Cheer 自製 31 頁簡報，以 Azure DevOps Board 系列 13 支 skill 為案例，講解複雜系統的 Skill 設計方法論。2026-08 系統架構課分享會用。
-- [[wiki/sources/2026-08-17-frontend-ai-roundtable|圓桌會議紀要：Claude vs Gemini vs ChatGPT — 前端全鏈路能力比較]] — 2026-08-17 圓桌會議，參與者：Claude、Gemini、ChatGPT (Codex)，3 輪討論。
-- [[wiki/sources/2026-08-18-claude-code-hooks-tutorial|Claude Code 必學設定 Hooks，完整教學一次搞懂 (Gary Chen)]] — 影片講者：Gary Chen | 時長：19:56 | 語言：zh-TW | 來源：YouTube
-- [[wiki/sources/2026-08-18-rad-methodology-for-ai-vibe-coding|RAD Methodology for AI Vibe Coding]] — YouTube 影片（10:40），探討 1991 年 James Martin 提出的 RAD 方法論如何對應現代 AI 代理與 vibe coding 開發流程。
-- [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Pi Agent GitHub Copilot Provider 設定指南]] — 整理自 Pi Agent 官方文件與 GitHub Issues，供 W-2026-08-028 參考使用。
-- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Agentic Pipeline 調研（Codex）]] — 20 個 Tier 1 來源的深度調研，涵蓋 Agent orchestration + Durable execution + CI/CD gate 三層架構，五類 Gate 設計建議。
-- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|Agentic Pipeline 調研（Gemini）]] — 7 個 Tier 1 來源的同主題調研，雙層驗證機制首提（品質較低，來源為根目錄 URL）。
-- [[wiki/sources/2026-08-20-langchain-openwiki-cli|LangChain OpenWiki CLI — 給 AI Agent 讀的自動化 Repo Wiki]] — YouTube 影片（16:44），LangChain 團隊介紹 OpenWiki CLI，採用 OKF v0.2，DeepSWE benchmark 顯示 token 消耗顯著下降。
-- [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|Memory Harnesses for Long-Running Research Agents]] — YouTube 影片（12:45），Sakana AI Stefania Druga 講長任務 agent 記憶系統：write-manage-read 迴圈、recall policy ladder、decision-ledger。
-- [[wiki/sources/2026-08-20-opencode-review-deep-research|OpenCodeReview 深度研究（Gemini Research）]] — Gemini 2.5-pro 執行的深度研究，涵蓋技術架構、社群爆紅原因、競爭對手比較、實際使用場景。
-- [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes (Explained Clearly)]] — 來源：[YouTube — LangGraph in 10 Minutes (Explained Clearly)](https://www.youtube.com/watch?v=BwZbdCzmZJc)
+- [[wiki/sources/2026-02-10-pi-agent-core-design.md|下一代Agent架构——Pi Agent Core 设计逻辑深度解析]] — 一篇知乎文章,對 `badlogic/pi-mono/packages/agent`(又稱 **Pi Agent Core**)做程式碼級解剖。發布於 2026-02-10,作者署為「王鹏LLM」,286 人贊同。
+- [[wiki/sources/2026-05-02-pi-mono-framework-tw.md|別再被複雜框架綁架:pi-mono 回歸直覺的 TypeScript AI Agent 開發框架]] — 一篇 ai-chain.tw 的繁體中文長文,從**整個 monorepo**與**代理人生態**角度切入,評析 `badlogic/pi-mono`。發布於 2026-05-02,作者署為「AI-Chain」團隊。
+- [[wiki/sources/2026-07-11-mattpocock-skills.md|mattpocock/skills — 工程實踐 Skills 集合]] — Matt Pocock（Total TypeScript 作者）維護的 coding agent skills 集合。核心理念：用工程方法做 real engineering，不是 vibe coding。
+- [[wiki/sources/2026-07-11-plannotator-research.md|2026-07-11 Plannotator 研究]] — 人類詢問 backnotprop/plannotator 的功能與自定義開發可行性。
+- [[wiki/sources/2026-07-13-omnigent-meta-harness-databricks.md|2026-07-13-omnigent-meta-harness-databricks]] — 
+- [[wiki/sources/2026-07-18-pi-resource-inventory.md|2026-07-18 Pi 資源完整盤點]] — 本筆記記錄 2026-07-18 當下 Pi 環境的完整資源清單，包含：
+- [[wiki/sources/2026-07-22-mattpocock-skills-tutorial.md|mattpocock/skills — 完整 AI Coding 工作流程教學]] — Matt Pocock 示範 `mattpocock/skills` 的主要工作流程：從安裝設定到 grill with docs → spec → tickets → implement → code review 的完整端到端流程。
+- [[wiki/sources/2026-07-23-plannotator-copilot-setup.md|Plannotator IT 安裝手冊：GitHub Copilot CLI 整合]] — 這份安裝手冊教你如何在 Windows 上把 Plannotator 裝起來，並與 GitHub Copilot CLI 整合，讓 Copilot 的 plan mode 能在瀏覽器中標注審閱。
+- [[wiki/sources/2026-07-31-npm-publishing-setup.md|2026-07-31 Package Publishing 首次實作]] — - 我們已經開發了 pi-plannotator-auto extension
+- [[wiki/sources/2026-08-01-okf-extension-development.md|2026-08-01 OKF Extension 開發實作]] — 1. 將 pi-plannotator-auto 的 docs/ 轉換為 OKF 格式
+- [[wiki/sources/2026-08-01-okf-knowledge-catalog.md|OKF Knowledge Catalog — Google Cloud 參考實作]] — - **定位：** OKF v0.2 規範的 proof-of-concept producer 和 consumer
+- [[wiki/sources/2026-08-02-defect-density-escape-rate.md|2026-08-02-defect-density-escape-rate]] — 
+- [[wiki/sources/2026-08-02-defect-escape-rate-guide.md|Defect Escape Rate（DER）測量指南]] — Defect Escape Rate（DER）= 逃到生產環境的缺陷 / 總缺陷數，是衡量 QA 效能的關鍵指標。
+- [[wiki/sources/2026-08-02-morphir-dotnet-agents.md|morphir-dotnet AGENTS.md — AI Agent 貢獻指南]] — - **定位：** .NET binding for Morphir ecosystem，提供 IR（intermediate representation）和 tooling
+- [[wiki/sources/2026-08-02-qwenpaw-github-readme.md|QwenPaw: GitHub README — 完整功能與安裝指南]] — QwenPaw 是 AgentScope 的開源個人 AI 助理，支援本地/雲端部署、多通道聊天、安全沙箱、Coding Mode、Skills/Plugin 擴充。
+- [[wiki/sources/2026-08-02-vibe-coding-implications.md|Vibe Coding 的未來與影響]] — - **定義：** Vibe coding = 用自然語言和 AI 工具生成和優化程式碼
+- [[wiki/sources/2026-08-02-waku-agent-code-walkthrough.md|Waku Waku! Waku agent — code walkthrough]] — Sean Chen 完整走讀 waku-agent 程式碼，展示 harness、loop、memory、eval 四大支柱的實作。
+- [[wiki/sources/2026-08-02-waku-agent-github-readme.md|Waku agent: GitHub README]] — Waku agent 是一個 local-first 個人 AI 助理，以 readable code 展示 harness + loop + memory + eval 四大 agent 支柱。
+- [[wiki/sources/2026-08-02-wiki-okf-migration-complete.md|2026-08-02-wiki-okf-migration-complete]] — 
+- [[wiki/sources/2026-08-03-loop-vs-graph-engineering.md|Loop vs Graph Engineering — AI Agent Concepts Demystified]] — Sean Chen 解釋 AI Agent 工程的演進階梯（Prompt → Context → Skills → Loop → Graph），並用 Waku Agent 展示 loop 與 graph 的實際差異與共存關係。
+- [[wiki/sources/2026-08-03-redis-acl.md|Redis ACL（Access Control List）完整指南]] — Redis ACL（Redis 6+）控制每個連線能執行哪些命令、存取哪些 key，實現最小權限原則。
+- [[wiki/sources/2026-08-03-redis-cluster-architecture.md|Redis Enterprise Cluster Architecture]] — Redis Enterprise 叢架支援水平擴展（Sharding）、高可用性（HA 99.999%）、多租戶隔離，採用 Shared-nothing 對稱架構。
+- [[wiki/sources/2026-08-03-redis-eviction-policy.md|Redis Eviction Policy 完整指南]] — Eviction Policy 決定 Redis 記憶體滿時如何淘汰舊資料，預設為 `volatile-lru`（只淘汰有 TTL 的 least recently used keys）。
+- [[wiki/sources/2026-08-03-redis-licenses.md|Redis 授權指南 — 企業導入必讀]] — Redis 8+ 採用三選一授權（RSALv2 / SSPLv1 / AGPLv3），企業需根據使用場景選擇合適的授權。
+- [[wiki/sources/2026-08-03-redis-memory-optimization.md|Redis Memory Optimization 策略]] — Redis 對小型聚合資料型別使用特殊編碼（listpack/intset），可節省 **5-10 倍**記憶體；用 Hash 取代多個獨立 key 可再省 6 倍。
+- [[wiki/sources/2026-08-03-redis-performance-tuning.md|Redis Performance Tuning 最佳實踐]] — Redis 效能調校核心：避免 Big/Hot Key、用 `UNLINK` 取代 `DEL`、啟用連線池與 Pipelining、確保無 Swap。
+- [[wiki/sources/2026-08-03-redis-security-practices.md|Redis Security Best Practices]] — Redis 安全三大層面：部署安全（網路隔離、anti-virus 排除）、叢集安全（存取控制、LDAP、HTTPS）、資料庫安全（強密碼、TLS、備份）。
+- [[wiki/sources/2026-08-03-redis-sentinel-client-spec.md|Redis Sentinel Client Spec — 客戶端整合規範]] — Redis Sentinel 客戶端需實作服務發現（自動找到 master）和自動 failover 處理，確保 master 地址變更時客戶端能自動重新連接。
+- [[wiki/sources/2026-08-03-tau-python-port-of-pi.md|Tau: A Python Port of Pi — Coding Harness Deep Dive]] — Tau 是 Pi 的 Python 移植版，架構完全相同，差異只在 TUI 層使用 Textual 框架而非 TypeScript 從零打造。
+- [[wiki/sources/2026-08-04-code-review-graph.md|code-review-graph：用知識圖譜幫 AI Code Review 省下 8 倍 Token]] — code-review-graph 用 Tree-sitter 建構程式碼知識圖譜，透過爆炸半徑分析精準定位變更影響範圍，讓 AI Code Review 只讀取必要上下文，平均省下 8.2 倍 Token。
+- [[wiki/sources/2026-08-04-lsp-code-graph-research.md|LSP 與 Code Graph 技術深度研究]] — **核心問題解決**：傳統 $M \times N$ 複雜度（M 個編輯器 × N 種語言）→ LSP 標準化後降至 $M + N$
+- [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research.md|OKF + LSP + Code Graph 在 AI Coding Agent 生態系的整合應用]] — ```
+- [[wiki/sources/2026-08-04-rust-analyzer.md|rust-analyzer — Rust 語言的 LSP 實作]] — rust-analyzer 是 Rust 語言的 Language Server Protocol（LSP）實作，提供 go-to-definition、find-references、refactoring 等 IDE 功能，是高效能 L
+- [[wiki/sources/2026-08-05-hermes-agent-github-readme.md|Hermes Agent: GitHub README — 自我改進 AI Agent]] — Nous Research 的自我改進 AI agent，有內建學習迴圈、多平台 gateway、7 種 terminal backend，可部署在 $5 VPS 到 GPU cluster。
+- [[wiki/sources/2026-08-05-pi-github-readme.md|Pi GitHub README — Agent Harness 總覽]] — Pi 的官方 GitHub README，記載四個子 package 架構、containerization 方案、supply-chain security 策略與 session publishing 機制。
+- [[wiki/sources/2026-08-05-tau-github-readme.md|Tau: GitHub README]] — Tau 是由 Hugging Face 開發的 Pi Python port，三層架構分離可攜大腦與前端，可作為 library 使用。
+- [[wiki/sources/2026-08-06-pi-architecture-walkthrough.md|Pi Architecture Walkthrough — Full Agent Core + Interactive Layer Explained]] — Pi 的架構從 agent core 到 interactive layer 的完整 walkthrough，涵蓋 agentic loop、session tree、tools、extensions、system prompt、compa
+- [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research.md|Wow 頻道 5 支 AI Agent 前沿研究影片]] — 從知識圖譜、自我進化、上下文學習、技能優化到記憶圖譜檢索，全面探索 AI Agent 的前沿研究方向。
+- [[wiki/sources/2026-08-07-ai-related-seeds.md|Notion AI 相關種子 — agentskills.io + Axway AI Gateway]] — 從 Notion 知識花園 ingest 的兩顆 AI 相關種子：agentskills.io（Skill 開放標準）和 Axway AI Gateway（企業 AI 治理層）。
+- [[wiki/sources/2026-08-08-guizang-ppt-skill.md|guizang-ppt-skill — 歸藏 HTML PPT 技能 GitHub README]] — 歸藏（@op7418）開發的 AI agent 簡報技能，用單文件 HTML 生成橫向翻頁 PPT，內建電子雜誌（Style A）和瑞士國際主義（Style B）雙視覺系統。
+- [[wiki/sources/2026-08-08-hermes-architecture-explained.md|Hermes Architecture EXPLAINED: Memory, Context & Gateways]] — Hermes agent 的完整架構深度解析：agent loop、context 構建、context compression、gateway 多平台網關、三層記憶系統、cron 排程。
+- [[wiki/sources/2026-08-08-huashu-design.md|huashu-design — 花叔 HTML 原生設計技能 GitHub README]] — 花叔（@alchaincyf）開發的 HTML 原生設計技能，一句話 prompt 生成高保真原型、幻燈片、動畫，含 20 設計哲學 + 5 維評審 + MP4 導出，MIT 開源。
+- [[wiki/sources/2026-08-08-plannotator-obsidian-presentation.md|Plannotator × Obsidian — 知識迴流系統報告簡報企劃]] — 系統架構課分享會簡報企劃，14 頁 HTML slide deck，主題是用 Plannotator + Obsidian 建立知識迴流系統。
+- [[wiki/sources/2026-08-08-qwenpaw-youtube-intro.md|QwenPaw: Your Personal AI Assistant — YouTube 介紹影片]] — QwenPaw 是 AgentScope 開發的本地 AI 助理，以 Agent OS 架構 + 安全沙箱為核心，GitHub 近三萬星 `[01:01]`。
+- [[wiki/sources/2026-08-09-redis-caching-patterns.md|Redis Design Patterns for Caching and Session Management]] — - 資料全在 RAM，操作是 μs 級（比 DB ms 級快 100-1000 倍）
+- [[wiki/sources/2026-08-10-antigravity-cli-integration.md|Antigravity CLI 整合 Session]] — - Gemini CLI 免費層已在 2026/6/18 停止服務
+- [[wiki/sources/2026-08-10-chunkless-rag-docling.md|What Is Chunkless RAG? How Docling & AI Agents Navigate Documents]] — Chunkless RAG 保留文件的樹狀結構，讓 AI Agent 透過推理導航文件，而非把文件切成 chunks 做相似度搜尋。
+- [[wiki/sources/2026-08-10-pi-cron-job-explained.md|Pi Cron Job 實作原理 — @pi-agents/loop 架構解析]] — - **Extension-based**：非 core runtime 內建，而是獨立 extension
+- [[wiki/sources/2026-08-10-uncle-bob-stopped-reading-ai-generated-code.md|Uncle Bob Stopped Reading AI-Generated Code]] — Uncle Bob（Clean Code 作者）宣布不再閱讀 AI 生成的程式碼，改用極端約束（測試、QA、mutation testing）來驗證品質，引發軟體工程界對「工程師角色轉變」的熱議。
+- [[wiki/sources/2026-08-10-write-code-you-will-never-read-again.md|Write Code You Will Never Read Again]] — Theo 論證「如果你的程式碼重要到每一行都要閱讀，那你應該生成更多 cheap code 來驗證它」，提出四層程式碼重要性光譜和驗證漏斗概念。
+- [[wiki/sources/2026-08-13-claude-design-youtube.md|How To Use Claude Design To Build Beautiful Sites]] — - **來源**：YouTube（AI LABS 頻道）
+- [[wiki/sources/2026-08-13-garden-guard-incident.md|2026-08-13 花園巡檢事故與 garden-guard extension 建立全記錄]] — 2026-08-13 執行「每週花園巡檢」時，Pi 新種了 5 顆種子（Claude Code、GitHub Copilot、LangGraph、Tree-sitter、Agentic AI），Notion 頁面 body content 
+- [[wiki/sources/2026-08-13-prime-agent-arc-agi-3-aiposthub.md|Prime Agent 是什麼？ARC-AGI-3「95.5%」背後（AI郵報分析）]] — - 屬性 - 值 -
+- [[wiki/sources/2026-08-13-prime-agent-official-blog.md|Prime Agent: A self-improving RLM agent（官方部落格）]] — - 屬性 - 值 -
+- [[wiki/sources/2026-08-13-prime-agent-youtube.md|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]] — - 屬性 - 值 -
+- [[wiki/sources/2026-08-14-agent-skills-api-guide.md|透過 API 使用 Agent Skills — 完整指南]] — Claude API 使用 Agent Skills 的完整技術指南，涵蓋 Messages API 整合、自訂 Skills 管理、版本控制與最佳實踐。
+- [[wiki/sources/2026-08-14-agent-skills-api-quickstart.md|在 API 中開始使用 Agent Skills — Quickstart]] — 10 分鐘快速入門教學，展示如何透過 Claude API 使用 Agent Skills 建立 PowerPoint 簡報。
+- [[wiki/sources/2026-08-14-agent-skills-enterprise-deployment.md|企業級 Agent Skills 部署指南]] — 企業大規模部署 Agent Skills 的治理、安全審查、評估與組織管理指南。
+- [[wiki/sources/2026-08-14-agent-skills-overview.md|Agent Skills — Anthropic 官方概覽]] — Anthropic 官方 Agent Skills 定義文件，完整說明 Skills 的架構、運作方式與使用範圍。
+- [[wiki/sources/2026-08-14-anthropics-skills-github-repo.md|anthropics/skills — 官方 GitHub Repo]] — Anthropic 官方公開的 Agent Skills 倉庫，展示 Claude Skills 系統的可能性與實作模式。
+- [[wiki/sources/2026-08-14-azure-managed-identity-with-byok.md|Azure Managed Identity with BYOK]] — Azure Managed Identity + BYOK 認證設定。
+- [[wiki/sources/2026-08-14-backend-services-setup.md|Backend Services Setup]] — server-side 部署，CLI 作為 headless server。
+- [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem.md|GitHub Copilot vs Claude Code — Skills 生態系比較]] — GitHub Copilot 與 Claude Code 在可擴展性生態系上的全面比較，涵蓋架構、規模、體驗、成本與策略定位。
+- [[wiki/sources/2026-08-14-default-setup-bundled-cli.md|Default Setup (Bundled CLI)]] — Node.js/.NET SDK 內含 bundled CLI。
+- [[wiki/sources/2026-08-14-error-handling-hook.md|Error Handling Hook]] — The onErrorOccurred hook，自訂錯誤處理、重試邏輯、警報。
+- [[wiki/sources/2026-08-14-github-oauth-setup.md|GitHub OAuth Setup]] — GitHub OAuth 認證設定。
+- [[wiki/sources/2026-08-14-local-cli-setup.md|Local CLI Setup]] — 使用特定 CLI binary 的進階設定。
+- [[wiki/sources/2026-08-14-microsoft-agent-framework-integration.md|Microsoft Agent Framework Integration]] — Copilot SDK 作為 MAF 的 agent provider，與 Azure OpenAI、Anthropic 等整合。
+- [[wiki/sources/2026-08-14-multi-tenancy-and-server-deployments.md|Multi-tenancy and Server Deployments]] — 多租戶 server 模式，per-session 隔離。
+- [[wiki/sources/2026-08-14-opentelemetry-instrumentation-for-copilot-sdk.md|OpenTelemetry for Copilot SDK]] — Copilot SDK 的 OpenTelemetry 追蹤設定。
+- [[wiki/sources/2026-08-14-post-tool-use-hook.md|Post-tool Use Hook]] — onPostToolUse：工具執行後的成功/失敗處理。
+- [[wiki/sources/2026-08-14-pre-tool-use-hook.md|Pre-tool Use Hook]] — onPreToolUse：工具執行前的允許/拒絕/修改。
+- [[wiki/sources/2026-08-14-scaling-and-multi-tenancy.md|Scaling and Multi-tenancy]] — 多使用者部署、並行 sessions、水平擴展。
+- [[wiki/sources/2026-08-14-session-hooks.md|Session Hooks]] — Hooks 概覽：所有可用 hooks 的總覽與註冊方式。
+- [[wiki/sources/2026-08-14-session-lifecycle-hooks.md|Session Lifecycle Hooks]] — onSessionStart/onSessionEnd：session 生命週期 hook。
+- [[wiki/sources/2026-08-14-setup-guides.md|Setup Guides]] — Copilot SDK 設定指南總覽。
+- [[wiki/sources/2026-08-14-skill-writing-best-practices.md|Skill 撰寫最佳實踐]] — 撰寫高品質 Agent Skill 的完整方法論，涵蓋結構規範、內容指引、常見模式、評估迭代與反模式。
+- [[wiki/sources/2026-08-14-user-prompt-submitted-hook.md|User Prompt Submitted Hook]] — onUserPromptSubmitted：使用者訊息的前處理。
+- [[wiki/sources/2026-08-15-round-table-pi-agent-v084-learning.md|圓桌會議：Pi Agent v0.84.x 更新中值得學習的設計模式]] — Pi Agent v0.84.0 → v0.84.2 更新中，有什麼值得 Cheer 學習的設計模式、實作技巧、或架構決策？
+- [[wiki/sources/2026-08-17-7-ai-animation-skills.md|7 個用 AI 做動畫的 Skills（Debug Tuboshu）]] — 53 秒短片快速列出 7 種可用於 AI 動畫／影片生成的工具或手法，涵蓋文字轉影片、網頁動效、Logo 動畫、程式化動畫、電影運鏡、故事動畫與手感動效。
+- [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways.md|AI Agent Memory Systems — 5 種記憶架構設計方式]] — Sean 提出一套理解 AI agent 記憶系統的分析框架，三個核心問題：
+- [[wiki/sources/2026-08-17-devops-skill-presentation.md|如何寫好一支 SKILL？· DevOps Board 系列（簡報來源筆記）]] — - 幕 - 頁數 - 主題 -
+- [[wiki/sources/2026-08-17-frontend-ai-roundtable.md|圓桌會議紀要：Claude vs Gemini vs ChatGPT — 前端全鏈路能力比較]] — 三家都無法單獨完美勝任「從自然語言到完整前端產品」的全鏈路，但各有不可替代的結構性優勢。
+- [[wiki/sources/2026-08-18-claude-code-hooks-tutorial.md|Claude Code 必學設定 Hooks，完整教學一次搞懂 (Gary Chen)]] — Claude Code Hooks 是一套 **deterministic 的事件驅動自動化機制**，在 AI 忘記或跳過規則時，由軟體層強制執行檢查、防呆與品質把關。
+- [[wiki/sources/2026-08-18-rad-methodology-for-ai-vibe-coding.md|RAD Methodology for AI Vibe Coding]] — - **RAD（Rapid Application Development）**：1991 年 James Martin 提出的軟體開發方法論，強調速度、迭代開發與使用者反饋 `[00:14]`
+- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex.md|企業界 Agentic Pipeline / Orchestration 解決方案調研（Codex）]] — **目前業界尚未出現能直接涵蓋「分析→設計→開發→測試→Skill 發布」的標準產品。** 成熟做法是組合三層：
+- [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini.md|企業界 Agentic Pipeline / Orchestration 解決方案調研（Gemini）]] — 本報告的 7 個來源 URL 皆為產品官方**根目錄／文檔首頁**（非深連結至特定文章），且各條「日期」欄位精確到日、但頁面本身通常不會標示這類日期——**這些日期未經獨立驗證，可能是模型推論或臆測產生**，不應引用為事實。來源列表詳見下方
+- [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup.md|2026-08-19-pi-agent-github-copilot-provider-setup]] — 
+- [[wiki/sources/2026-08-20-antaoalmada-openwiki-and-okf-agent-wikis.md|OpenWiki and OKF: Agent-Readable Code Wikis — Antão Almada]] — AGENTS.md 被注入每個 session 的 context window，每一行都是固定 token 稅。Bloated AGENTS.md = 每個 session 都多花 token，不管任務是否需要那些知識 `https://
+- [[wiki/sources/2026-08-20-coinbase-ceo-5-strategies-ai-spend.md|Coinbase CEO outlined 5 strategies to keep AI spend low]] — 1. **更好的預設 LLM** — 實驗用 Chinese LLMs（GLM 5.2, Kimi 2.7）作為預設，透過 LLM gateway 路由 `https://finance.yahoo.com/technology/ai/ar
+- [[wiki/sources/2026-08-20-docs-langchain-openwiki-overview.md|OpenWiki Official Docs — Overview]] — OpenWiki is an open source CLI that writes and maintains a Markdown wiki about your codebase or personal knowledge. The 
+- [[wiki/sources/2026-08-20-how-coinbase-cut-its-ai-spend-by-50.md|How Coinbase cut its AI spend by 50% with 5 smart strategies]] — Coinbase cut its AI bill in half while token usage went up. Costs went down, consumption went up, and that combination i
+- [[wiki/sources/2026-08-20-know-2nth-ai-openwiki-and-okf.md|OpenWiki & OKF — know.2nth.ai Explainer]] — - **2026-06-12**: Google Cloud 發布 OKF v0.1
+- [[wiki/sources/2026-08-20-langchain-openwiki-cli.md|LangChain OpenWiki CLI — 給 AI Agent 讀的自動化 Repo Wiki]] — LangChain CEO Harrison 問「AI 領域的下一件大事是什麼？」，講者回答是「general purpose memory」`[01:02]`。OpenWiki 從 code-based docs 切入，目標是建立一個通用
+- [[wiki/sources/2026-08-20-langchain-openwiki-github-repo.md|OpenWiki GitHub Repository — 15.4k Stars, MIT License]] — - **Stars**: 15.4k `https://github.com/langchain-ai/openwiki`
+- [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents.md|Memory Harnesses for Long-Running Research Agents（Stefania Druga, Sakana AI）]] — Stefania Druga，Sakana AI 東京研究科學家 `[00:12]`。曾是 AI engineering 社群成員，現居東京。
+- [[wiki/sources/2026-08-20-opencode-review-deep-research.md|OpenCodeReview 深度研究（Gemini Research）]] — 阿里巴巴於 2026 年 5 月開源的 AI 代碼審查工具 OpenCodeReview (OCR)，短時間內突破 19.3k Stars。核心突破在於「確定性工程 × LLM Agent」混合架構，Token 消耗僅為通用 Agent 的
+- [[wiki/sources/2026-08-20-openwiki-0-2-brings-okf-to-codebase-docs.md|OpenWiki 0.2 brings OKF to codebase documentation]] — OpenWiki 0.2 採用 OKF（Open Knowledge Format），讓大型 wiki 的結構化 discovery、update、search、review 變得更容易 `https://www.langchain.com
+- [[wiki/sources/2026-08-20-shlok-khemani-chatgpt-and-claude-memory.md|Lessons from Studying Every Memory System — Shlok Khemani]] — Shlok Khemani，獨立研究員，花一年 reverse-engineering ChatGPT、Claude、Gemini、Poke 的記憶系統。
+- [[wiki/sources/2026-08-20-thenewstack-multi-model-ai-infrastructure.md|Coinbase runs 1,200 agents and just slashed its AI bill in half]] — Coinbase 現有約 **1,200 個全職 AI agents**（用 40-60hr/週工時正規化計算）`https://thenewstack.io/multi-model-ai-infrastructure/`。
+- [[wiki/sources/2026-08-21-langgraph-in-10-minutes.md|LangGraph in 10 Minutes (Explained Clearly)]] — LangGraph 的真正價值不在 graph API（20 行 Python 就能寫完），而在 runtime：checkpointing、human-in-the-loop、time travel 與 delta channels，這些
 
 ### decisions
-- [[wiki/decisions/knowledge-system-architecture-decision|知識系統架構改進決策]] — 版本：v2.0
-- [[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]] — 
-- [[wiki/decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]] — 
-- [[wiki/decisions/raw-conversation-promotion-workflow|Raw Conversation Promotion Workflow]] — 
-- [[wiki/decisions/shared-wiki-collection-model|Shared Wiki Collection Model]] — 
+- [[wiki/decisions/knowledge-system-architecture-decision.md|知識系統架構改進決策]] — 「任何認為對的事情都有可能會改變，有更好的方式可以做到，但我們想要的目標是不變的。」
+- [[wiki/decisions/package-knowledge-boundary.md|Package Knowledge Boundary]] — `pi-todo-journal` package source still owns session state, explicit tasks, Journal, checkpoints, and user-provided refer
+- [[wiki/decisions/project-okf-bundle-boundary.md|Project OKF Bundle Boundary]] — Obsidian root `projects/<project-id>/` is the Project OKF Bundle location. It stores project knowledge that must survive
+- [[wiki/decisions/raw-conversation-promotion-workflow.md|Raw Conversation Promotion Workflow]] — Annotator feedback and session handoffs are captured as immutable raw conversations first. They are later promoted into 
+- [[wiki/decisions/shared-wiki-collection-model.md|Shared Wiki Collection Model]] — The shared Wiki uses five content collections:
 
 ### discussions
-- [[wiki/discussions/ai-frontend-handoff-methodology|把前端交給 AI 的有效方法論（研究種子）]] — 研究問題：**在開發前端時，怎麼把工作交給 AI 才「有效」？** 尤其著眼於企業推動——一套可複製、可驗證、能守住品牌與品質的前端 AI 協作方法論。這是一顆研究種子（尚未定案），第一份素材是 [[wiki/sources/2026-08-13-claude-design-youtube|Claude Design 五階段工作流影片]]，但目標不綁單一工具。
-- [[wiki/discussions/canonicalization-and-semantic-linking|Canonicalization and Semantic Linking]] — 
-- [[wiki/discussions/notion-integration-architecture|Notion Integration Architecture]] — 
-- [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]] — 
-- [[wiki/discussions/wiki-youtube-pipeline-timing|YouTube-to-Wiki Pipeline Timing]] — 
+- [[wiki/discussions/ai-frontend-handoff-methodology.md|把前端交給 AI 的有效方法論（研究種子）]] — - 前端是「客戶第一眼」的門面，AI 生成又最容易落入 **AI-slop（千篇一律的通用外觀）**——企業要的是品牌差異化，這正是痛點。
+- [[wiki/discussions/canonicalization-and-semantic-linking.md|Canonicalization and Semantic Linking]] — Use an AI-first approach with lint guardrails:
+- [[wiki/discussions/notion-integration-architecture.md|Notion Integration Architecture]] — - 系統 - 用途 - 主要使用者 -
+- [[wiki/discussions/topic-stub-cleanup.md|Existing Topic Stub Cleanup]] — The former `wiki/topics/<domain>/<page>.md` compatibility stubs have been removed after canonical links were updated. `w
+- [[wiki/discussions/wiki-youtube-pipeline-timing.md|YouTube-to-Wiki Pipeline Timing]] — Do not build the YouTube pipeline yet. First stabilize the collection model, linking contract, lint rules, and migration
 
 ---
 

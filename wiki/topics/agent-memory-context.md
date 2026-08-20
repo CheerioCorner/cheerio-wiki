@@ -14,6 +14,7 @@ updated: 2026-08-23
 
 - [[wiki/concepts/ai-agent-memory-systems|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]] — 三支柱分析 × 五種存儲 × 四種檢索 × 六種維護策略
 - [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder — 記憶檢索策略的效果階梯]] — 四階檢索策略在長時任務中的實測效果排名 🛠️
+- [[wiki/concepts/consumer-ai-memory-personalization|Consumer AI Memory Personalization]] — 消費級 AI 產品的記憶設計（ChatGPT/Claude running profile，與 agent harness 記憶不同領域）🛠️
 - [[wiki/concepts/context-decay|Context Decay（脈絡衰減）]] — 跨模型交接時 context 資訊逐漸失真的現象與對策
 - [[wiki/concepts/context-rot|Context Rot（脈絡惡化）]] — 長任務中的記憶腐化（與 Context Decay 互補）🛠️
 - [[wiki/concepts/chunkless-rag|Chunkless RAG — 保留文件結構的檢索增強生成]] — 保留文件 tree structure 的 RAG 方法
@@ -27,6 +28,7 @@ updated: 2026-08-23
 
 - [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|AI Agent Memory Systems — 5 種記憶架構設計方式]] — 記憶存儲、檢索、維護的完整比較與實測
 - [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|Memory Harnesses for Long-Running Research Agents]] — Sakana AI 實驗：write-manage-read 迴圈、recall policy ladder 🛠️
+- [[wiki/sources/2026-08-20-shlok-khemani-chatgpt-and-claude-memory|Shlok Khemani — ChatGPT/Claude 記憶系統分析]] — 消費級產品個人化記憶（不同領域）🛠️
 - [[wiki/sources/2026-08-10-chunkless-rag-docling|What Is Chunkless RAG? How Docling & AI Agents Navigate Documents]] — IBM Docling 如何讓 AI Agent 保留文件結構做 Chunkless RAG
 
 ## 相關 Topics

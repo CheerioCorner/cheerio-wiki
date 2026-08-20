@@ -20,9 +20,12 @@ provenance_raw: "raw/youtube/2026-08-20-langchain-openwiki-cli-for-code-wikis.md
 | 開發者 | LangChain |
 | 授權 | MIT |
 | 安裝 | `npm install openwiki` |
-| 命令 | `openwiki init` / `openwiki update` |
-| LLM 支援 | 10-15 個 provider |
+| Stars | 15.4k ⭐ / 1.1k forks |
+| 命令 | `openwiki --init` / `openwiki --update` |
+| LLM 支援 | 12 個 providers（OpenAI, Anthropic, Gemini, Bedrock, OpenRouter, GitHub Copilot 等）|
 | 格式標準 | Google OKF v0.2 |
+| 驅動 | Deep Agents |
+| Tracing | LangSmith |
 
 ## 文件結構
 
@@ -66,8 +69,24 @@ wiki/
 - **實際**：人類也想讀 → 加入 diagrams（序列圖、狀態圖、流程圖）`[10:42]`
 - **Agent 導向 vs 人類導向**的文件設計差異是重要的實務教訓
 
+## Connectors
+
+Custom MCP、Notion、Slack、Gmail、X、Web Search、Hacker News、local git repositories。
+
+## CI 整合
+
+三種 CI 平台：GitHub Actions、GitLab CI、Bitbucket Pipelines。
+
+## AGENTS.md 注入機制
+
+只改寫 `<!-- OPENWIKI:START -->…<!-- OPENWIKI:END -->` 區塊，現有內容不受影響。`INSTRUCTIONS.md` 是使用者撰寫的 brief，永不被覆寫。
+
 ## 相關頁面
 
-- [[wiki/sources/2026-08-20-langchain-openwiki-cli|來源筆記]] — 完整逐字稿分析
+- [[wiki/sources/2026-08-20-langchain-openwiki-cli|YouTube 來源筆記]]
+- [[wiki/sources/2026-08-20-langchain-openwiki-github-repo|GitHub README 來源筆記]]
+- [[wiki/sources/2026-08-20-openwiki-0-2-brings-okf-to-codebase-docs|官方部落格 0.2 來源筆記]]
+- [[wiki/sources/2026-08-20-docs-langchain-openwiki-overview|官方文件 來源筆記]]
+- [[wiki/sources/2026-08-20-antaoalmada-openwiki-and-okf-agent-wikis|Antão Almada 來源筆記]]
 - [[wiki/concepts/okf-open-knowledge-format|OKF]] — OpenWiki 採用的知識格式標準
 - [[wiki/topics/okf|OKF Topic]] — OKF 導航頁

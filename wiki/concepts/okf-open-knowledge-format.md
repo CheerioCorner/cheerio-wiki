@@ -412,6 +412,23 @@ OpenWiki 的重要教訓：原設計者假設「只有 agent 會讀」，結果�
 
 ---
 
+## OKF 時間軸
+
+- **2026-06-12**: Google Cloud 發布 OKF v0.1
+- **2026-07-16**: LangChain OpenWiki 0.2 採用 OKF
+- ⚠️ 官方文件間存在版本標示不一致（docs 站寫 v0.1，GitHub README 和部落格寫 v0.2）
+
+## OKF vs Agent Skills vs MCP
+
+三層能力的互補關係（來源：know.2nth.ai）：
+- **OKF**: 知識表示（knowledge representation）
+- **Agent Skills**: 能力定義（capability definition）
+- **MCP**: 工具存取（tool access）
+
+## 重要限制
+
+OKF **不保證**文件與程式碼同步——純結構規範，無 staleness 保證。
+
 ## 我們的應用
 
 在 pi-plannotator-auto 中，我們：
@@ -433,7 +450,10 @@ OpenWiki 的重要教訓：原設計者假設「只有 agent 會讀」，結果�
 ## 相關資源
 
 - [[wiki/sources/2026-08-01-okf-knowledge-catalog]] — Google Cloud 參考實作（reference agent + visualizer）
-- [[wiki/sources/2026-08-20-langchain-openwiki-cli|LangChain OpenWiki CLI]] — 外部大規模落地案例
+- [[wiki/sources/2026-08-20-langchain-openwiki-cli|LangChain OpenWiki CLI]] — YouTube 影片 source note
+- [[wiki/sources/2026-08-20-openwiki-0-2-brings-okf-to-codebase-docs|官方部落格 0.2]] — OKF 採用 announcement
+- [[wiki/sources/2026-08-20-know-2nth-ai-openwiki-and-okf|know.2nth.ai 說明]] — 詳細規範解析
+- [[wiki/sources/2026-08-20-antaoalmada-openwiki-and-okf-agent-wikis|Antão Almada 部落格]] — 實作 walkthrough
 - [OKF 官方文件](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)
 - [OKF v0.2 規範](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
 - [Pi-plannotator-auto OKF 實作](https://github.com/CheerioCorner/pi-plannotator-auto/tree/master/docs)

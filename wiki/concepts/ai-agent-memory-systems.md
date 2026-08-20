@@ -96,6 +96,7 @@ How to maintain it?  →  維護策略（add / delete / override / retire / attr
 
 - [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder]] — 四階檢索策略效果排名（與本頁「按技術類型分類」互補）🛠️
 - [[wiki/concepts/context-rot|Context Rot]] — 長任務脈絡惡化 🛠️
+- [[wiki/concepts/consumer-ai-memory-personalization|Consumer AI Memory]] — 消費級產品個人化記憶（不同領域：使用者個人化 vs agent harness 記憶，字面都叫 memory 但場景不同）
 - [[wiki/concepts/harness|Harness]] — Agent harness 根概念
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種工作流
 - [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 另一種 RAG 方法

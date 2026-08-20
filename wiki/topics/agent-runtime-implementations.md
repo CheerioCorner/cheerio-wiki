@@ -24,10 +24,13 @@ updated: 2026-08-23
 - [[wiki/entities/tau|tau — Pi 的 Python 移植版]] — Hugging Face 的 Pi Python port 🛠️
 - [[wiki/entities/mattpocock-skills|mattpocock/skills — AI Coding Agent Skills 集合]] — 162k+ stars，7.5M+ downloads 🛠️
 - [[wiki/entities/skillopt|SkillOpt — 微軟技能優化器]] — 將 SKILL.md 視為可訓練的外部參數 🛠️
+- [[wiki/entities/langchain-openwiki|OpenWiki（LangChain）]] — Agent 專用 Repo Wiki CLI，OKF v0.2 🛠️
+- [[wiki/entities/coinbase-ai-engineering|Coinbase AI Engineering]] — 多模型基礎設施與成本工程實踐 🛠️
 
 ## Concepts
 
 - [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — Claude Code / Copilot / Pi 三框架比較
+- [[wiki/concepts/multi-model-cost-routing|Multi-Model Cost Routing]] — 多模型基礎設施的成本工程 🛠️
 
 ## Sources
 
@@ -46,6 +49,14 @@ updated: 2026-08-23
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes]] — LangGraph runtime 深度解析
 - [[wiki/sources/2026-08-10-antigravity-cli-integration|Antigravity CLI 整合]] — Gemini CLI 整合方案
 - [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF + LSP + CodeGraph AI Agent 研究]] — 三者整合分析
+- [[wiki/sources/2026-08-20-langchain-openwiki-cli|LangChain OpenWiki CLI — YouTube 影片]] 🛠️
+- [[wiki/sources/2026-08-20-langchain-openwiki-github-repo|OpenWiki GitHub README]] 🛠️
+- [[wiki/sources/2026-08-20-openwiki-0-2-brings-okf-to-codebase-docs|OpenWiki 0.2 官方部落格]] 🛠️
+- [[wiki/sources/2026-08-20-docs-langchain-openwiki-overview|OpenWiki 官方文件 Overview]] 🛠️
+- [[wiki/sources/2026-08-20-antaoalmada-openwiki-and-okf-agent-wikis|OpenWiki & OKF — Antão Almada]] 🛠️
+- [[wiki/sources/2026-08-20-thenewstack-multi-model-ai-infrastructure|Coinbase 1,200 agents — The New Stack]] 🛠️
+- [[wiki/sources/2026-08-20-coinbase-ceo-5-strategies-ai-spend|Coinbase CEO 5 策略 — Yahoo Finance]] 🛠️
+- [[wiki/sources/2026-08-20-how-coinbase-cut-its-ai-spend-by-50|Coinbase cut AI spend 50% — 付費牆版]] 🛠️
 - [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]] — AI Code Assistant 核心基礎
 - [[wiki/sources/2026-08-02-morphir-dotnet-agents|Morphir .NET Agents]] — FINOS .NET binding
 

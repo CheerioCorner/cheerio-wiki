@@ -43,6 +43,7 @@ Meta 的趨勢預測 `[01:02]`：
 
 - [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder]] — 四階記憶檢索策略
 - Decision-ledger — 記錄每步決策，動態排序檢索
+- **Keep context lean** — Coinbase CEO Armstrong 的策略：切換任務時開新 sessions，不要讓 context 累積（[[wiki/entities/coinbase-ai-engineering|Coinbase AI Engineering]]）
 - 本地模型 + sovereign AI — 控制整個 pipeline `[11:20]`
 
 ## 相關頁面
