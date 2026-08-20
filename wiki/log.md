@@ -1,4 +1,14 @@
 
+## [2026-08-21] research | NPU 在 AI 基礎設施架構中的角色（延伸自 GPU/vLLM/K8s 影片的開放問題）
+
+- 動作：Gemini(`agy` CLI)深度研究 → Claude 逐條查證引用 → 修正後寫入既有 discussion 頁面
+- 更新：`wiki/discussions/npu-role-in-ai-infrastructure.md`（狀態由 🔴 開放問題 → 🟢 已完成初步研究），並在 `wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes.md` 補上回連連結
+- ⚠️ **品管發現**：Gemini 原始研究報告 9 個引用中有 4 個編造/錯誤（Google 搜尋網址冒充官方文件、arXiv 編號指向完全不相關的論文、TPU 文件網址 404、Medium 文章查無此文）。Claude 用 WebFetch/WebSearch 逐條開啟查證，全部替換為實際存在的來源才寫入，並在頁面內附上查證過程與教訓
+- 🔴 **待改進**：`chat-with-gemini-research` skill 的 Step 4「驗證引用完整性」目前只檢查格式（有沒有 [REF-N]、有沒有 URL），沒有實際開啟每個 URL 確認可訪問——建議之後把這一步改成強制執行
+- refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 在 AI 基礎設施架構中的角色]]
+
+---
+
 ## [2026-08-21] ingest | Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes（YouTube ingest）
 
 - 動作：YouTube 影片 → youtube_transcript_api 抓取英文自動字幕 → 合併 1376 segments 為 219 paragraphs → 建立 raw transcript → 建立 wiki 頁面

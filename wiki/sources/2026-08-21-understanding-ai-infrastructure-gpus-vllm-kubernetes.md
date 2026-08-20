@@ -148,7 +148,7 @@ GPU 有數千個小型核心，同時執行數學運算 `[09:36]`。以 Nvidia T
 
 最後講到介紹了 LLM-D 作為 Kubernetes 上的智慧路由器，如何有效率的分配負載並管理整個伺服器集群。這個部分我覺得對於企業來說是非常重要的資訊。因為我們確實有考量是不是要引進 Local LLM，究竟是要自己採購硬體設備（像 H200 或 B200 之類的輝達硬體設備）作為 AI model 的伺服器，或者是我們要租賃雲端的 GPU 伺服器。我覺得這也包括我們要做一些 Kubernetes 或是 Container 的規劃，在這上面都蠻有幫助的。
 
-**🔍 開放問題（待深化）：** 影片中並沒有提到 NPU（Neural Processing Unit）。那 NPU 在整個 AI 基礎設施架構中扮演什麼角色？它是什麼樣的運作，跟為什麼說它更適合 AI 時代？為什麼現在除了 CPU、GPU 之外，還需要 NPU？
+**🔍 開放問題（已研究，見 [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 在 AI 基礎設施架構中的角色]]）：** 影片中並沒有提到 NPU（Neural Processing Unit）。那 NPU 在整個 AI 基礎設施架構中扮演什麼角色？它是什麼樣的運作，跟為什麼說它更適合 AI 時代？為什麼現在除了 CPU、GPU 之外，還需要 NPU？
 
 ---
 
