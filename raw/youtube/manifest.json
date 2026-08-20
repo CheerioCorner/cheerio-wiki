@@ -97,6 +97,17 @@
       "language": "en"
     },
     {
+      "slug": "2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes",
+      "title": "Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes",
+      "youtube_id": "hBzUokVYQkI",
+      "url": "https://www.youtube.com/watch?v=hBzUokVYQkI",
+      "duration": "00:51:00",
+      "segments": 219,
+      "language": "en",
+      "auto_generated": true,
+      "source_api": "youtube_transcript_api"
+    },
+    {
       "video_id": "bBlY5YOsKN8",
       "title": "How To Use Claude Design To Build Beautiful Sites",
       "author": "AI LABS",

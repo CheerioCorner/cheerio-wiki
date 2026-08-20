@@ -1,7 +1,7 @@
 # Wiki Index
 
-> 自動全量重建，last rebuilt: 2026-08-20
-> 本次新增：coinbase-ai-engineering、langchain-openwiki 更新 (entities)；multi-model-cost-routing、consumer-ai-memory-personalization (concepts)；9 個 web source notes；OKF / memory-systems / context-rot 更新
+> 自動全量重建，last rebuilt: 2026-08-21
+> 本次新增：understanding-ai-infrastructure (YouTube ingest)；gpu-architecture-for-ai-inference、llm-serving-architecture、model-sharding (concepts)；vllm、llm-d (entities)；npu-role-in-ai-infrastructure (discussion)
 
 ## Topics
 - [[wiki/topics/agent-infrastructure|Agent Infrastructure]]
@@ -73,17 +73,20 @@
 - [[wiki/concepts/defect-metrics.md|Defect Metrics — 軟體品質測量]] — 衡量每單位程式碼的缺陷數量，識別需要改善的區域。
 - [[wiki/concepts/design-md-format.md|design.md Format]] — design.md 是一份結構化的品牌設計文件，包含：
 - [[wiki/concepts/durable-execution-for-agents.md|Durable Execution for Agents — Agent 框架之外的可靠性層]] — Agent 跑到一半 crash 了，或是需要等架構師花 4 小時審核一份設計文件——這兩種場景都需要「跨時間的可靠性保證」，但這不是 Agent framework 的本職。
+- [[wiki/concepts/gpu-architecture-for-ai-inference.md|GPU Architecture for AI Inference — 為什麼 AI 需要 GPU 而不是 CPU]] — AI 推理的核心瓶頸是記憶體頻寬，不是算力。GPU 的大量平行核心 + 高頻寬 VRAM 完美匹配模型推理特性。
 - [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem.md|Copilot 與 Claude Code Skills 生態系比較]] — - 面向 - GitHub Copilot - Claude Code -
 - [[wiki/concepts/harness.md|Harness — LLM 的驅動層]] — **Harness 是包住單一 LLM、負責「驅動它做實事」的外殼/包裝層**——包括 agentic loop（讓模型能循環思考）、工具調度（讓模型能動手做）、權限控管（決定模型能做什麼）、context 管理（控制模型看到什麼）、ses
 - [[wiki/concepts/html-slide-deck-workflow.md|HTML Slide Deck 製作工作流]] — 從內容企劃到高品質 HTML slide deck，整合兩套設計系統 + 雙 AI 審閱的工作流。
 - [[wiki/concepts/knowledge-garden-skill-architecture.md|知識花園 Skill 架構]] — ```
 - [[wiki/concepts/knowledge-management.md|Knowledge Management]] — ```
 - [[wiki/concepts/knowledge-system-architecture.md|知識系統架構]] — 三個操作（Ingest / Query / Lint）+ 一個機制（知識幫助知識）+ 一個回流（花園 → 大腦）。
+- [[wiki/concepts/llm-serving-architecture.md|LLM Serving Architecture — 從 Token 到 KV Cache 的完整推理流程]] — LLM 推理分為 Prefill（計算密集）與 Decode（記憶體頻寬密集）兩個階段。核心優化依賴 KV Cache、Prefix Caching 與 Batching。
 - [[wiki/concepts/late-conversion.md|Late Conversion(最晚轉換)]] — LLM 的 `Message` 類型只涵蓋「user / assistant / tool result」三種角色;但真實應用存在大量 **「不需要給 LLM 看的訊息」**:
 - [[wiki/concepts/lint-ruleset.md|Lint 規則集]] — Lint 是**保護網**——防止壞知識進入 wiki。它不需要人工檢查所有頁面，而是用自動化規則掃描。
 - [[wiki/concepts/loop-vs-graph-engineering.md|Loop vs Graph Engineering — AI Agent 兩種核心工作流模式]] — Agent 自主決定下一步行動，反覆呼叫工具直到目標達成。
 - [[wiki/concepts/meta-harness.md|Meta-Harness]] — ```
 - [[wiki/concepts/minimal-agent-philosophy.md|Minimal Agent Philosophy — 「減法大於加法」]] — - 「An autonomous agent is just an LLM + tools + a loop.」— 直接引用 Zechner
+- [[wiki/concepts/model-sharding.md|Model Sharding — 多 GPU 切分巨型模型的兩種策略]] — Tensor Parallelism（層內切分）適合同機器 NVLink，Pipeline Parallelism（按層切分）適合跨機器。
 - [[wiki/concepts/moc-map-of-content.md|MOC — Map of Content]] — - 特性 - 說明 -
 - [[wiki/concepts/multi-model-cost-routing.md|Multi-Model Cost Routing — 多模型基礎設施的成本工程]] — Frontier models 在日常工程工作的能力趨近、open-weight alternatives 大幅改善、價格差距持續擴大——這使得跨模型路由比綁定單一 vendor 更合理。
 - [[wiki/concepts/npm-publishing-workflow.md|Package Publishing Workflow — 統一的發佈流程觀點]] — ```
@@ -118,6 +121,7 @@
 - [[wiki/entities/gsap.md|gsap-skills — GSAP 官方 AI 技能包]] — - **開發者**：GreenSock（https://github.com/greensock/gsap-skills）
 - [[wiki/entities/guizang-ppt-skill.md|guizang-ppt-skill — AI Agent HTML PPT 技能]] — 在 Claude Code / Codex 等 agent 環境中，用一句話 prompt 生成高品質 HTML 橫向翻頁簡報，支援兩套視覺系統、配圖生成和完整演講者工具。
 - [[wiki/entities/hermes-agent.md|hermes-agent — 開源 AI Agent 框架]] — - 屬性 - 值 -
+- [[wiki/entities/llm-d.md|LLM-D — Kubernetes 上的 AI 推理智慧路由器]] — Red Hat/Google/IBM/Nvidia 共同開發，Cache-aware + Load-aware routing，Prefill/Decode 分離，運行在 K8s 上。
 - [[wiki/entities/huashu-design.md|huashu-design — HTML 原生設計技能]] — 在 Claude Code / Codex / Cursor 等 agent 中，打一句話拿回一份能交付的設計——App 原型、演講簡報、時間軸動畫、資訊圖、設計方向顧問。
 - [[wiki/entities/hyperframes.md|hyperframes — HTML 轉影片的 Agent 工具]] — - **開發者**：HeyGen（https://github.com/heygen-com/hyperframes）
 - [[wiki/entities/james-martin.md|James Martin]] — - 欄位 - 內容 -
@@ -152,6 +156,7 @@
 - [[wiki/entities/skillopt.md|SkillOpt — 微軟技能優化器]] — - 屬性 - 值 -
 - [[wiki/entities/story-to-handdrawn-video.md|story-to-handdrawn-video — 中文故事轉手繪動畫 Skill]] — - **開發者**：gnipbao（https://github.com/gnipbao/story-to-handdrawn-video）
 - [[wiki/entities/tau.md|tau — Pi 的 Python 移植版]] — - 項目 - 內容 -
+- [[wiki/entities/vllm.md|vLLM — 高吞吐量 LLM 推理引擎]] — 建在 PyTorch 之上的模型伺服器，OpenAI API 相容，支援 Batching 與自動 Sharding。
 - [[wiki/entities/theo-t3gg.md|Theo (t3gg) — 程式碼重要性光譜與驗證方法論倡導者]] — - 項目 - 內容 -
 - [[wiki/entities/tree-sitter.md|Tree-sitter]] — - **Generalized LR**：支援處理語法模糊性（Ambiguity）
 - [[wiki/entities/uncle-bob.md|Uncle Bob (Robert C. Martin) — Clean Code 作者、軟體工程資深實踐者]] — - 項目 - 內容 -
@@ -264,6 +269,7 @@
 - [[wiki/sources/2026-08-20-shlok-khemani-chatgpt-and-claude-memory.md|Lessons from Studying Every Memory System — Shlok Khemani]] — Shlok Khemani，獨立研究員，花一年 reverse-engineering ChatGPT、Claude、Gemini、Poke 的記憶系統。
 - [[wiki/sources/2026-08-20-thenewstack-multi-model-ai-infrastructure.md|Coinbase runs 1,200 agents and just slashed its AI bill in half]] — Coinbase 現有約 **1,200 個全職 AI agents**（用 40-60hr/週工時正規化計算）`https://thenewstack.io/multi-model-ai-infrastructure/`。
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes.md|LangGraph in 10 Minutes (Explained Clearly)]] — LangGraph 的真正價值不在 graph API（20 行 Python 就能寫完），而在 runtime：checkpointing、human-in-the-loop、time travel 與 delta channels，這些
+- [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes.md|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]] — Mumshad Mannambeth 講解 AI 基礎設施：GPU vs CPU、vLLM、Prefill/Decode、KV Cache、Sharding、LLM-D。含 Cheer 心得與 NPU 開放問題。
 
 ### decisions
 - [[wiki/decisions/knowledge-system-architecture-decision.md|知識系統架構改進決策]] — 「任何認為對的事情都有可能會改變，有更好的方式可以做到，但我們想要的目標是不變的。」
@@ -274,6 +280,7 @@
 
 ### discussions
 - [[wiki/discussions/ai-frontend-handoff-methodology.md|把前端交給 AI 的有效方法論（研究種子）]] — - 前端是「客戶第一眼」的門面，AI 生成又最容易落入 **AI-slop（千篇一律的通用外觀）**——企業要的是品牌差異化，這正是痛點。
+- [[wiki/discussions/npu-role-in-ai-infrastructure.md|NPU 在 AI 基礎設施架構中的角色（待深化）]] — 🔴 開放問題：NPU vs GPU 在 AI 推理中的定位，Cheer 提出的延伸研究方向。
 - [[wiki/discussions/canonicalization-and-semantic-linking.md|Canonicalization and Semantic Linking]] — Use an AI-first approach with lint guardrails:
 - [[wiki/discussions/notion-integration-architecture.md|Notion Integration Architecture]] — - 系統 - 用途 - 主要使用者 -
 - [[wiki/discussions/topic-stub-cleanup.md|Existing Topic Stub Cleanup]] — The former `wiki/topics/<domain>/<page>.md` compatibility stubs have been removed after canonical links were updated. `w

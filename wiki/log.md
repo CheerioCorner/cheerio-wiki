@@ -1,4 +1,22 @@
 
+## [2026-08-21] ingest | Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes（YouTube ingest）
+
+- 動作：YouTube 影片 → youtube_transcript_api 抓取英文自動字幕 → 合併 1376 segments 為 219 paragraphs → 建立 raw transcript → 建立 wiki 頁面
+- 來源：`raw/youtube/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes.md`（00:51:00, en, auto-generated）
+- 建立：
+  - `wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes.md` — Source note（含 Cheer 完整心得與 NPU 開放問題）
+  - `wiki/concepts/gpu-architecture-for-ai-inference.md` — GPU vs CPU 架構差異、三個關鍵指標、VRAM 瓶頸
+  - `wiki/concepts/llm-serving-architecture.md` — Prefill/Decode 兩階段、KV Cache、Prefix Caching、Batching
+  - `wiki/concepts/model-sharding.md` — Tensor Parallelism vs Pipeline Parallelism
+  - `wiki/entities/vllm.md` — vLLM 模型伺服器
+  - `wiki/entities/llm-d.md` — LLM-D Kubernetes 智慧路由器
+  - `wiki/discussions/npu-role-in-ai-infrastructure.md` — 🔴 開放問題：NPU 在 AI 基礎設施中的角色
+- 更新：`wiki/topics/backend-systems.md`、`wiki/topics/agent-infrastructure.md`、`wiki/index.md`
+- 備註：Cheer 的使用者心得已完整納入 source note 的「Cheer 的想法」小節，NPU 問題另建 discussion 頁面
+- ⚠️ 跳過雙模型交叉驗證：使用者明確指定 workflow 且內容為基礎教學類（非爭議性結論），直接建立頁面
+
+---
+
 ## [2026-08-20] ingest | 9 篇 Web Raw — OpenWiki/OKF 補充 + Coinbase AI 策略 + Shlok Khemani 記憶系統（批次 ingest）
 
 - 動作：9 篇 raw web articles → 雙模型交叉驗證（Claude + Gemini Round 1 一致）→ 建立 wiki 頁面

@@ -13,6 +13,18 @@ updated: 2026-08-10
 ## Concepts
 
 - [[wiki/concepts/redis|Redis]] — In-memory key-value 資料庫，μs 級延遲 🛠️
+- [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] — 為什麼 AI 需要 GPU 而不是 CPU 🛠️
+- [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] — 從 Token 到 KV Cache 的完整推理流程 🛠️
+- [[wiki/concepts/model-sharding|Model Sharding]] — 多 GPU 切分巨型模型的兩種策略 🛠️
+
+## Entities
+
+- [[wiki/entities/vllm|vLLM]] — 高吞吐量 LLM 推理引擎 🛠️
+- [[wiki/entities/llm-d|LLM-D]] — Kubernetes 上的 AI 推理智慧路由器 🛠️
+
+## Sources — AI Infrastructure
+
+- [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]] — Mumshad Mannambeth 的 AI 基礎設施完整課程
 
 ## Sources — Redis
 
