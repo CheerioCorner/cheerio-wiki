@@ -389,6 +389,29 @@ OKF 依賴 git，多人同時編輯會有衝突。
 
 ---
 
+## 實際案例：LangChain OpenWiki CLI
+
+LangChain 團隊的 OpenWiki 是 OKF 的第一個外部大規模落地案例：
+
+- **CLI 工具**：`npm install openwiki` → `openwiki init` → 自動產生 repo wiki
+- **採用 OKF v0.2**：每個 markdown 檔案加上 YAML frontmatter（type, title, description, resource, tags, timestamp）
+- **自動維護**：GitHub Actions daily cron，檢查 git history，有變更才跑 agent，自動開 PR
+- **Eval 結果**：DeepSWE benchmark 20 個任務，接入後成功數從 7-8→9-10，token 消耗顯著下降
+
+### Agent 導向 vs 人類導向的文件設計
+
+OpenWiki 的重要教訓：原設計者假設「只有 agent 會讀」，結果人類也想讀 `[10:13]`。這導致了設計差異：
+
+| Agent 導向 | 人類導向 |
+|-----------|----------|
+| Self-contained fragments | 敘事流暢 |
+| 精確 headings（過濾/搜尋用）| 截圖、影片 |
+| Context window 優化 | 圖表（序列圖、狀態圖）|
+
+實作中加入 diagrams 有助於人機協同 `[10:42]`。來源：[[wiki/sources/2026-08-20-langchain-openwiki-cli|LangChain OpenWiki 來源筆記]]
+
+---
+
 ## 我們的應用
 
 在 pi-plannotator-auto 中，我們：
@@ -410,6 +433,7 @@ OKF 依賴 git，多人同時編輯會有衝突。
 ## 相關資源
 
 - [[wiki/sources/2026-08-01-okf-knowledge-catalog]] — Google Cloud 參考實作（reference agent + visualizer）
+- [[wiki/sources/2026-08-20-langchain-openwiki-cli|LangChain OpenWiki CLI]] — 外部大規模落地案例
 - [OKF 官方文件](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)
 - [OKF v0.2 規範](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
 - [Pi-plannotator-auto OKF 實作](https://github.com/CheerioCorner/pi-plannotator-auto/tree/master/docs)

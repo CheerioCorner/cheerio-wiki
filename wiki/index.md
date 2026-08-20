@@ -1,7 +1,7 @@
 # Wiki Index
 
-> 自動全量重建，last rebuilt: 2026-08-19
-> 本次新增：agentic-pipeline-checkpoint-design、durable-execution-for-agents (concepts)；2 個 agentic pipeline 調研 source notes；enterprise-governance 更新
+> 自動全量重建，last rebuilt: 2026-08-20
+> 本次新增：context-rot、recall-policy-ladder (concepts)；langchain-openwiki (entity)；2 個 YouTube ingest source notes；OKF / memory-systems / context-decay 更新
 
 ## Topics
 - [[wiki/topics/agent-infrastructure|Agent Infrastructure]]
@@ -61,6 +61,7 @@
 - [[wiki/concepts/content-redesign|Content 設計 Redesign]] — 知識花園 Content 設計重構：從「套模板」到「針對性報告」。經 Copilot + Gemini 三輪討論確立。
 - [[wiki/concepts/context-cot|Context-CoT — 上下文思維鏈]] — 透過「三階煉獄」推理合成 pipeline，強制 LLM 嚴格錨定上下文進行推理，解決「作弊」問題。
 - [[wiki/concepts/context-decay|Context Decay（脈絡衰減）]] — 決策脈絡在跨模型交接時逐漸遺失的問題，是多 AI 協作流程中比模型能力差異更大的風險。
+- [[wiki/concepts/context-rot|Context Rot（脈絡惡化）]] — 單一 agent 在長時間單一 session 內，因 context 累積導致模型自相矛盾、重複工作、偏離原問題的現象。與 Context Decay 觸發條件不同但後果類似。🛠️
 - [[wiki/concepts/continual-harness|Continual Harness]] — Continual Harness——把 agent harness 自身的狀態（prompt、skills、memory、sub-agents）抽象成 agent 可以 create/read/update/delete（CRUD）的物件，讓 harness 能根據自己的執行軌跡持續調整，而不是設計時就寫死。[[wiki/entities/prime-agent|Prime Agent]] 的兩大核心抽象之一（另一個是 [[wiki/concepts/recursive-language-model|RLM]]）。
 - [[wiki/concepts/contract-driven-development|Contract-Driven Development（契約驅動開發）]] — 用結構化契約作為 AI 模型間交接的唯一真相來源，取代自然語言聊天的不確定性。
 - [[wiki/concepts/copilot-agent-loop|Copilot Agent Loop — 多輪 Tool-Use 循環]] — Copilot CLI 的核心 orchestrator：從 prompt 到 session.idle 的完整 agentic tool-use loop。
@@ -91,6 +92,7 @@ Tools & Commands]] — 用 **Markdown + YAML frontmatter** 來表示知識，讓
 - [[wiki/concepts/para|PARA — Projects/Areas/Resources/Archives]] — Tiago Forte 在《Building a Second Brain》中提出的信息組織系統，把所有信息分成四類。
 - [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model — Pi 專案/工作區模型]] — Pi 的「專案」概念**不強制綁定單一實體路徑**。專案 = **設定作用域**（`.pi/` 目錄存在的位置），而非工作目錄本身。這使得「一個實體路徑對應多個專案人格」成為可能。
 - [[wiki/concepts/rapid-application-development|Rapid Application Development (RAD)]] — 1991 年 James Martin 提出的軟體開發方法論，強調速度、迭代開發與使用者反饋，核心假設是「使用者在看到東西之前不知道自己要什麼」。
+- [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder — 記憶檢索策略的效果階梯]] — 四階記憶檢索策略（no recall → vector RAG → decision-ledger → oracle）在長時任務中的實測效果排名。核心發現：好的 recall policy 不只更準，還更省 token。🛠️
 - [[wiki/concepts/recursive-language-model|Recursive Language Model (RLM)]] — RLM（Recursive Language Model）——把 **context 當變數**、把 subagent delegation 當成 persistent REPL 內函式呼叫的架構，讓模型能寫「以自己的 context 為操作對象的程式」，用於長 session 的 context 管理與平行委派。
 - [[wiki/concepts/redis|Redis]] — In-memory key-value 資料庫，μs 級延遲，適合快取、Session、即時排行、Rate Limiting。
 - [[wiki/concepts/semantic-relations|語意關係 — Semantic Relations]] — 定義頁面之間「怎麼連結」的方式——不只是「這兩個頁面有關」，而是「A 支持 B」或「A 矛盾 B」。
@@ -121,6 +123,7 @@ Tools & Commands]] — 用 **Markdown + YAML frontmatter** 來表示知識，讓
 - [[wiki/entities/james-martin|James Martin]] — 資訊科技領域作家與先驅，1982 年出版《Application Development Without Programmers》，1991 年形式化提出 RAD（Rapid Application Development）方法論。
 - [[wiki/entities/knowledge-garden-to-raw|knowledge-garden-to-raw — Notion → Raw 抓取 Skill]] — 從 Notion 知識花園抓取頁面內容，建立 raw 來源檔案，準備進行 wiki ingest。
 - [[wiki/entities/knowledge-garden|knowledge-garden — Cheerio 知識花園 Manifest]] — **Notion 知識花園**的架構藍圖與離線快取。
+- [[wiki/entities/langchain-openwiki|OpenWiki（LangChain）— Agent 專用 Repo Wiki CLI]] — LangChain 團隊開發的開源 CLI 工具，自動產生和維護 repo wiki，專為 AI agent 消費設計，採用 Google OKF v0.2 格式。🛠️
 - [[wiki/entities/langgraph|LangGraph — Graph-based Agent Runtime with Durability]] — LangGraph 是 LangChain 團隊開發的低階 agent orchestration 框架，核心價值在 durability（checkpointing / human-in-the-loop / time travel），而非 graph API 本身。建立在 Google Pregel 論文（2010）模型上。
 - [[wiki/entities/learning-loop|learning-loop]] — 自動學習優化系統，建立完整的學習迴圈：做 → 記 → 學 → 優化 → 做。
 - [[wiki/entities/lsp|LSP (Language Server Protocol)]] — 微軟提出的語言伺服器協定，將程式語言語意分析從編輯器中解耦，實現 $M \times N \rightarrow M + N$ 的架構革新。
@@ -246,6 +249,8 @@ Tools & Commands]] — 用 **Markdown + YAML frontmatter** 來表示知識，讓
 - [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Pi Agent GitHub Copilot Provider 設定指南]] — 整理自 Pi Agent 官方文件與 GitHub Issues，供 W-2026-08-028 參考使用。
 - [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Agentic Pipeline 調研（Codex）]] — 20 個 Tier 1 來源的深度調研，涵蓋 Agent orchestration + Durable execution + CI/CD gate 三層架構，五類 Gate 設計建議。
 - [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|Agentic Pipeline 調研（Gemini）]] — 7 個 Tier 1 來源的同主題調研，雙層驗證機制首提（品質較低，來源為根目錄 URL）。
+- [[wiki/sources/2026-08-20-langchain-openwiki-cli|LangChain OpenWiki CLI — 給 AI Agent 讀的自動化 Repo Wiki]] — YouTube 影片（16:44），LangChain 團隊介紹 OpenWiki CLI，採用 OKF v0.2，DeepSWE benchmark 顯示 token 消耗顯著下降。
+- [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|Memory Harnesses for Long-Running Research Agents]] — YouTube 影片（12:45），Sakana AI Stefania Druga 講長任務 agent 記憶系統：write-manage-read 迴圈、recall policy ladder、decision-ledger。
 - [[wiki/sources/2026-08-20-opencode-review-deep-research|OpenCodeReview 深度研究（Gemini Research）]] — Gemini 2.5-pro 執行的深度研究，涵蓋技術架構、社群爆紅原因、競爭對手比較、實際使用場景。
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes (Explained Clearly)]] — 來源：[YouTube — LangGraph in 10 Minutes (Explained Clearly)](https://www.youtube.com/watch?v=BwZbdCzmZJc)
 

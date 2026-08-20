@@ -119,5 +119,21 @@
       "auto_generated": false,
       "source_api": "youtube_transcript_api"
     }
-  ]
+  ],
+  "langchain-openwiki-cli-for-code-wikis": {
+    "video_id": "XNX-1h2K-9U",
+    "title": "LangChain OpenWiki: CLI for Code Wikis (v0.2 with OKF)",
+    "url": "https://www.youtube.com/watch?v=XNX-1h2K-9U",
+    "raw_path": "raw/youtube/2026-08-20-langchain-openwiki-cli-for-code-wikis.md",
+    "created": "2026-08-20",
+    "segments": 420
+  },
+  "sakana-ai-memory-harnesses-for-long-running-research-agents": {
+    "video_id": "R3-anFK1YM8",
+    "title": "Memory Harnesses for Long-Running Research Agents",
+    "url": "https://www.youtube.com/watch?v=R3-anFK1YM8",
+    "raw_path": "raw/youtube/2026-08-20-sakana-ai-memory-harnesses-for-long-running-research-agents.md",
+    "created": "2026-08-20",
+    "segments": 310
+  }
 }

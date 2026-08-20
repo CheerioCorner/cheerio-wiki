@@ -89,13 +89,18 @@ How to maintain it?  →  維護策略（add / delete / override / retire / attr
 3. **Retrieval gate 是可選的**：先判斷「需不需要 retrieve」
 4. **不必追求最複雜**：選擇適合自己場景的組合
 5. **記憶是最重要的資產**：好好保存、準備、照顧
+6. **⚠️ Context 邊界法則**（2026-08-20 新增）：Task 能完整塞進 context window 時，啟用記憶系統**只加成本不加效果**（token + latency）。只有 task 超出 context 邊界時，適當的 ranked recall policy 才能顯著提升準確率並節省 token。——來源：[[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|Stefania Druga 實驗]]
+7. **Bad memory is expensive**：壞的記憶策略花更多 token，還可能把 agent 帶偏。好的 recall policy 不只更準，還更省。——來源：同上
 
 ## 相關頁面
 
+- [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder]] — 四階檢索策略效果排名（與本頁「按技術類型分類」互補）🛠️
+- [[wiki/concepts/context-rot|Context Rot]] — 長任務脈絡惡化 🛠️
 - [[wiki/concepts/harness|Harness]] — Agent harness 根概念
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種工作流
 - [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 另一種 RAG 方法
 - [[wiki/concepts/context-decay|Context Decay]] — 脈絡衰減問題
 - [[wiki/entities/waku-agent|waku-agent]] — 實作此框架的代表 harness
 - [[wiki/entities/hermes-agent|hermes-agent]] — 同類 local-first agent
-- [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|來源筆記]]
+- [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|來源筆記 — 5 種記憶架構]]
+- [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|來源筆記 — Memory Harnesses]]

@@ -8,7 +8,7 @@ tags: [ai-agent, frontend, workflow, risk]
 topics: [agent-memory-context]
 collection: concepts
 canonical: concepts/context-decay
-related: [wiki/sources/2026-08-17-frontend-ai-roundtable, wiki/concepts/contract-driven-development]
+related: [wiki/sources/2026-08-17-frontend-ai-roundtable, wiki/concepts/contract-driven-development, wiki/concepts/context-rot]
 ---
 
 # Context Decay（脈絡衰減）
@@ -51,3 +51,17 @@ Gemini 的百萬級上下文可以一次載入所有資訊，減少交接次數�
 - 契約版本數 vs 最終交付品質的相關性
 - `rejected_alternatives` 區塊的使用率
 - 跨模型交接次數 vs 決策保留率
+
+---
+
+## 相關但不同的概念：Context Rot
+
+⚠️ **Context Rot（脈絡惡化）** 與本頁的 Context Decay 觸發條件不同：
+
+| | Context Decay | Context Rot |
+|--|--------------|-------------|
+| 觸發 | 跨模型交接 | 單一 agent 長時任務 |
+| 成因 | 中介格式無法承載決策過程 | Context 累積超出模型處理能力 |
+| 解方 | 契約驅動、rejected_alternatives | [[wiki/concepts/recall-policy-ladder\|Recall Policy Ladder]] |
+
+兩者後果類似（脈絡失真），但需要不同的解方。詳見 [[wiki/concepts/context-rot|Context Rot 頁面]]。

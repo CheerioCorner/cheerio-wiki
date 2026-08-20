@@ -1,4 +1,31 @@
 
+## [2026-08-20] ingest | 2 支 YouTube 影片 — LangChain OpenWiki + Sakana AI Memory Harnesses（批次 ingest）
+
+- 動作：`wiki-ingest-youtube` skill 抓字幕 → raw transcripts → 雙模型交叉驗證 → 建立 wiki 頁面
+- 來源：
+  1. `raw/youtube/2026-08-20-langchain-openwiki-cli-for-code-wikis.md`（XNX-1h2K-9U, 16:44, 420 segments, 手動英文字幕）
+  2. `raw/youtube/2026-08-20-sakana-ai-memory-harnesses-for-long-running-research-agents.md`（R3-anFK1YM8, 12:45, 310 segments, 自動生成英文字幕）
+- 建立：
+  - `wiki/sources/2026-08-20-langchain-openwiki-cli.md` — LangChain OpenWiki CLI source note（陳述級溯源）
+  - `wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents.md` — Sakana AI Memory Harnesses source note（陳述級溯源）
+  - `wiki/entities/langchain-openwiki.md` — OpenWiki 工具 entity 頁
+  - `wiki/concepts/recall-policy-ladder.md` — Recall Policy Ladder（四階檢索策略效果排名）
+  - `wiki/concepts/context-rot.md` — Context Rot（長任務脈絡惡化，與 Context Decay 互補）
+- 更新：
+  - `wiki/concepts/okf-open-knowledge-format.md`（新增 LangChain OpenWiki 案例 + Agent 導向 vs 人類導向文件設計差異）
+  - `wiki/concepts/ai-agent-memory-systems.md`（新增 context 邊界法則 + bad memory is expensive + recall-policy-ladder 連結）
+  - `wiki/concepts/context-decay.md`（新增 Context Rot 互補概念比較表）
+  - `wiki/topics/okf.md`（新增 OpenWiki entity + source 連結）
+  - `wiki/topics/agent-memory-context.md`（新增 recall-policy-ladder + context-rot + memory-harnesses source 連結）
+  - `wiki/index.md`（全量重建）
+- 雙模型交叉驗證：
+  - Round 1：Claude + Gemini 對兩支影片各自提案，關鍵欄位（目標頁面、type、topics、是否推翻既有結論）比對
+  - Video 1：✅ 一致（都建議建 OpenWiki 頁 + 更新 OKF 頁，不推翻既有結論）
+  - Video 2：⚠️ 分歧在 Context Rot 處理方式——Claude 建議新建獨立頁，Gemini 建議擴寫 context-decay.md
+  - 裁決：採用 Claude 方案（新建 context-rot.md），理由：context-decay.md 定義限定在「跨模型交接」，現有解方（契約驅動、rejected_alternatives）不適用於單一 agent 長時任務，擴寫定義但解方沒跟上會造成頁面內部不一致
+  - Gemini 遺漏的 source note 補上
+- 未推翻任何既有結論，所有更新為補充性質
+
 ## [2026-08-19] ingest | 企業界 Agentic Pipeline / Orchestration 解決方案調研（Gemini + Codex 雙版本）
 
 - 動作：從 `raw/research/` 兩份深度調研報告 ingest 進 wiki，建立 source notes、concept pages，更新既有 enterprise-governance 頁面

@@ -18,6 +18,11 @@ updated: 2026-08-19
 
 - [[wiki/sources/2026-08-01-okf-knowledge-catalog|OKF Knowledge Catalog]] — Google Cloud 參考實作
 - [[wiki/sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF 架構優化]] — 完整 migration 工作紀錄
+- [[wiki/sources/2026-08-20-langchain-openwiki-cli|LangChain OpenWiki CLI]] — 外部大規模落地案例（OKF v0.2）
+
+## Entities
+
+- [[wiki/entities/langchain-openwiki|OpenWiki（LangChain）]] — Agent 專用 Repo Wiki CLI 🛠️
 
 ## Decisions
 
