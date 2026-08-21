@@ -14,18 +14,14 @@
     - ✅ 更新 index / log / topics 導航
     - ✅ git commit + push（3eec926），Claude 核對檔案存在與 git 同步確認無誤
     - ✅ agy-bridge 品管失敗後，Claude 改為人工核對 GPU 規格表（A100/H100/H200/B200 TFLOPS/VRAM/Bandwidth），數字與公開規格相符
-  - 備註：agy-bridge 連續 4 次 CANCELED 見 [[work/current#W-2026-08-068|W-2026-08-068]]；NPU 研究見 [[work/current#W-2026-08-069|W-2026-08-069]]
+  - 備註：agy-bridge 連續 4 次 CANCELED 見 [[work/current#W-2026-08-068|W-2026-08-068]]；NPU 研究見 [[work/current#W-2026-08-069|W-2026-08-069]]；引用驗證流程問題見 [[work/current#W-2026-08-070|W-2026-08-070]]
 
 - [ ] W-2026-08-069 NPU 角色深度研究（Gemini research）🔄 #knowledge #ai-agent #research
   - next: 等 Gemini chat-with-gemini-research 完成後，將研究結果回填進 [[wiki/discussions/npu-role-in-ai-infrastructure]]，補充引用來源
   - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]、[[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]
   - 起因：Cheer 看完影片後提出開放問題「NPU 在 AI 基礎設施架構中扮演什麼角色、為什麼 AI 時代需要 NPU」，已標記在 discussion 頁，正在派 Gemini 做深度研究（有引用來源要求）
 
-- [ ] W-2026-08-068 agy-bridge 異常追蹤：讀檔後被 CANCELED 🔴 #tools #bug
-  - next: 排查 agy-bridge 為何在讀完一個檔案後被系統取消（status: CANCELED, exit_code 0, 無逾時），嘗試重現並找出根因；可能需要檢查 agy CLI 的 session 管理或 tool timeout 設定
-  - refs: [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]（觸發本次品管的 ingest）
-  - 狀態：Blocked — 工具本身的問題，已回報但尚未解決。連續 4 次（含開新對話）都在讀完一個檔案後被系統取消，完全吐不出結果
-  - 影響：這次 ingest 改為 Claude 人工核對 GPU 規格，但長期若 agy 不穩定，Gemini 品管流程會受阻
+
 
 - [x] W-2026-08-066 想法與原始來源建立雙向關聯（raw/conversations ↔ raw/youtube・raw/web）✅ #knowledge #wiki #meta #ingest-pipeline
   - completed: 2026-08-20
@@ -263,6 +259,25 @@
   - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
   - 預估時間：2 小時
   - 為什麼可以等：企業級管理，個人建造不需要
+
+## Blocked
+
+- [ ] W-2026-08-070 chat-with-gemini-research 引用驗證流程修復 🔴 #skill #tools #bug
+  - next: 修改 `C:\Users\User\.claude\skills\chat-with-gemini-research\SKILL.md` 的 Step 4「解析與後處理」，新增強制 URL 查證步驟（詳見建議修法）；需由呼叫端（Claude 或獨立 agent）用 WebFetch/WebSearch 實際查證，不能信任 Gemini 自己的驗證聲明
+  - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]（commit 3910322，Claude 手動查證修正後的報告）、[[work/current#W-2026-08-069|W-2026-08-069]]（觸發本次問題的 NPU 深度研究）、[[work/current#W-2026-08-068|W-2026-08-068]]（agy-bridge 當機問題，不同問題）
+  - 狀態：Blocked — 等 Cheer 指派其他 AI 修復此 skill
+  - 根因：Step 4 只做格式檢查（[REF-N] 是否有對應來源），無實際 URL 查證。Gemini 會編造「看起來真實」的網址（Google 搜尋查詢字串當文檔、錯誤 arXiv 編號、404 文件、虛構 Medium 文章）
+  - 建議修法：
+    1. Step 4 新增強制步驟：對每個 [REF-N] 的 URL 實際發送請求（WebFetch 或等效工具）確認可訪問，且回傳內容與被引用陳述相符
+    2. 查證失敗的引用：替換成查證過的真實來源，或降級標記為 [UNVERIFIED] 並移出正式引用列表
+    3. 查證不能交給 Gemini 自己做——Gemini 宣稱「已驗證」正是問題所在，需要由呼叫端用真正工具去查
+  - 影響範圍：任何使用 chat-with-gemini-research skill 產出的報告都可能有虛構引用，目前 skill 無法保證引用品質
+
+- [ ] W-2026-08-068 agy-bridge 異常追蹤：讀檔後被 CANCELED 🔴 #tools #bug
+  - next: 排查 agy-bridge 為何在讀完一個檔案後被系統取消（status: CANCELED, exit_code 0, 無逾時），嘗試重現並找出根因；可能需要檢查 agy CLI 的 session 管理或 tool timeout 設定
+  - refs: [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]（觸發本次品管的 ingest）、[[work/current#W-2026-08-070|W-2026-08-070]]（引用驗證流程問題，不同問題）
+  - 狀態：Blocked — 工具本身的問題，已回報但尚未解決。連續 4 次（含開新對話）都在讀完一個檔案後被系統取消，完全吐不出結果
+  - 影響：這次 ingest 改為 Claude 人工核對 GPU 規格，但長期若 agy 不穩定，Gemini 品管流程會受阻
 
 ## Backlog
 
