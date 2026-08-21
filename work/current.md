@@ -300,6 +300,12 @@
     - ✅ Claude 逐項查證：讀檔 → node --check → 5 次 agy.exe 實測全 SUCCESS
     - ✅ Codex 第一次因 Claude cwd 設錯導致 sandbox 擋寫入、誠實回報失敗；修正後第二次順利完成（非 Codex 過錯）
     - ⚠️ MCP server 長駐進程需重啟才載入新版；本 repo 非 git repo 無需 commit
+  - **後續修復（8/21 同日，commit + push 到 cheerio-mcp-bridges）**：
+    - 背景：四個 MCP bridge（agy/pi/codex/copilot）的 `*_BRIDGE_CWD` 環境變數都有寫死的個人路徑 fallback（例如 `process.env.AGY_BRIDGE_CWD || "C:/Cheerio"`，`pi.mjs` 甚至是過時的 `"C:/Cheerio/pi"`）；`*_BRIDGE_ENTRY` 也有同樣問題。同事用不同 Windows 使用者名稱的電腦時，寫死路徑完全不對且不會報錯——會悄悄跑錯目錄。
+    - ✅ commit `410156e`：`lib/run.mjs` 新增共用 `requireEnv(name)` helper，沒設環境變數就拋出清楚錯誤訊息（講明要去 `.mcp.json` 設定）。四個 bridge 的 `*_CWD` 全部改用 helper，拿掉寫死個人路徑 fallback
+    - ✅ commit `5b74fa8`：`*_ENTRY` 同樣改用 requireEnv（原考慮退回 PATH 自動偵測，但 `pi` 是 `node <路徑>` 方式呼叫、`copilot` 預設 `.cmd` 在 `shell:false` 下無法裸指令解析，與其每個工具各寫一套偵測邏輯，乾脆一律要求明確設定、沒設就報錯）
+    - ✅ 5 個修改過的檔案全部過 `node --check` 語法檢查；沒設環境變數會拋出清楚錯誤、設了正常運作；每次改完都重新用真實 agy.exe 跑 3 次讀檔驗證全 SUCCESS，確認沒把先前修好的 CANCELED/ERROR 改回去
+    - 影響：`.mcp.json` 已有正確設定，本次修改對現行運作無影響（no-op），純防呆——以後複製設定給同事或漏設變數時會立刻在 MCP 連線狀態看到明確錯誤
 
 - [x] W-2026-08-055 round-table + chat-with-codex skill 建立 ✅ #skills #ai-agent
   - completed: 2026-08-15
