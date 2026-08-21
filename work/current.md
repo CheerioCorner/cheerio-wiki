@@ -5,6 +5,23 @@
 
 ## In progress
 
+- [ ] W-2026-08-072 AI 模型/Host 可用性登記表 🆕 #tools #ai-agent #mcp
+  - next: 明天直接開始實作。先觀察各家 CLI 的真實限流錯誤訊息格式，再開發 `lib/availability.mjs` 共用模組 + 四個 bridge 的前置檢查邏輯
+  - refs: [[work/current#W-2026-08-068|W-2026-08-068]]（agy-bridge 問題觸發本設計）
+  - 起因：2026-08-21 處理 agy-bridge CANCELED 問題時，Cheer 聯想到更通用的問題——AI 模型/服務都有 Token 額度或限流上限，當某個 model/host 額度用盡時，我們應該記錄「什麼時候解封」，讓之後呼叫這些工具的 AI（Claude、Pi 等）可以提前知道「現在這個不能用」，不用白白浪費呼叫
+  - **設計定案（8/21 Cheer 討論拍板，直接照做）**：
+    - **共用登記表**：`Claude/mcp-bridges/state/availability.json`，JSON 格式記錄每個 model/host 的封鎖狀態（blocked_until / reason / confidence / recorded_by / recorded_at）
+    - **三種記錄來源**（由 `confidence` 欄位區分）：
+      - `exact`：supplier 錯誤訊息有明確解封時間（retry-after header、rate limit reset）。照時間走，時間到自動解封
+      - `estimated`：限流但沒給明確時間。預設封鎖 1 小時；1 小時後允許探針重試一次——成功就 `clearBlocked`，失敗就延長再封 1 小時（成本低，每小時最多浪費一次真實請求）
+      - `human-reported`：人類主動告知（查面板知道確切時間）。完全不做探針，當權威資訊封鎖到底。不需額外工具——使用者跟任何 AI 口頭講「某 model 被鎖到幾點」，AI 手動編輯 JSON 寫入
+    - **實作範圍**（四個 bridge 都要改：agy / pi / codex / copilot）：
+      1. `lib/availability.mjs` 共用模組：`checkAvailability(name)` / `recordBlocked(name, opts)` / `clearBlocked(name)`
+      2. 四個 bridge 的工具呼叫 CLI **之前**先 `checkAvailability()`：封鎖中→回傳清楚錯誤（不 spawn CLI）；`estimated` 已過 1 小時→允許探針
+      3. 四個 bridge 呼叫 CLI **之後**偵測限流訊號（429、quota exceeded、rate limit 等）→ `recordBlocked()`（有明確時間用 `exact`，沒有用 `estimated`）
+    - **待確認細節**（明天實作時觀察）：各家 CLI 實際限流錯誤訊息格式、`estimated` 預設 1 小時是否合理（先用固定值，看實際情況調整）
+  - **明天接續實作，不需重新設計**
+
 - [x] W-2026-08-067 YouTube ingest：Understanding AI Infrastructure — GPUs, vLLM, K8s ✅ #knowledge #ai-agent #youtube
   - completed: 2026-08-21
   - next: ✅ 已完成並 push（commit 3eec926）。NPU 討論頁後續由 W-2026-08-069 接續。
