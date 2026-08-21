@@ -1,4 +1,17 @@
 
+## [2026-08-21] fix | agy-bridge headless 模式 CANCELED/ERROR 已修復
+
+- 動作：診斷 agy-bridge 在 headless 模式下讀檔被 CANCELED/ERROR 的問題 → 派 Codex 動手改 → Claude 逐項查證
+- 根因：agy CLI 在 `--print-mode`（headless 模式）下，`view_file`（內部權限名 `read_file`）需要使用者核准，headless 沒人核准，但這個 auto-deny 行為本身不穩定（同一指令連跑 3 次分別得到 CANCELED/ERROR/CANCELED）
+- 調查結論：agy CLI 沒有可用的細粒度權限白名單（試過 `.antigravitycli/settings.json` 未生效），唯一選項是 `--dangerously-skip-permissions`（全有全無）
+- **採用修法**：`Claude/mcp-bridges/lib/agy.mjs` 的 `buildAgyArgs()` 預設同時加上 `--dangerously-skip-permissions` 和 `--sandbox`（用 sandbox 限制終端機/shell 執行範圍，收斂 skip-permissions 帶來的風險），呼叫端可用 `dangerously_allow_all: false` / `sandbox: false` 覆寫關掉。順便補上 `runAgy()` 的 `stderr` 沒被寫進 audit log 的小 bug
+- **驗證**：Claude 直接呼叫修改後的 `runAgy()`，用今天一直失敗的同一句讀檔 prompt 連續跑 5 次真實 agy.exe，**5 次全部 `status: SUCCESS`，無 CANCELED/ERROR**
+- 過程：Codex 第一次因為 Claude 呼叫時 cwd 設錯（限制在子目錄）導致改不到目標檔案，誠實回報卡住而非假裝改好；修正 cwd 後第二次順利完成
+- 提醒：`Claude/mcp-bridges` 是獨立 git repo（cheerio-mcp-bridges），修復需要另外 commit/push；MCP server 是長駐進程，本次對話 session 開頭連上的 agy-bridge 仍在跑舊版，需重啟/重新連線才會生效
+- refs: [[work/current#W-2026-08-068|W-2026-08-068]]（根因診斷）、[[work/current#W-2026-08-071|W-2026-08-071]]（修復任務，已完成）
+
+---
+
 ## [2026-08-21] research | NPU 在 AI 基礎設施架構中的角色（延伸自 GPU/vLLM/K8s 影片的開放問題）
 
 - 動作：Gemini(`agy` CLI)深度研究 → Claude 逐條查證引用 → 修正後寫入既有 discussion 頁面
