@@ -92,12 +92,48 @@ How to maintain it?  →  維護策略（add / delete / override / retire / attr
 6. **⚠️ Context 邊界法則**（2026-08-20 新增）：Task 能完整塞進 context window 時，啟用記憶系統**只加成本不加效果**（token + latency）。只有 task 超出 context 邊界時，適當的 ranked recall policy 才能顯著提升準確率並節省 token。——來源：[[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|Stefania Druga 實驗]]
 7. **Bad memory is expensive**：壞的記憶策略花更多 token，還可能把 agent 帶偏。好的 recall policy 不只更準，還更省。——來源：同上
 
+## Mem0 架構深入解析（2026-08-22 新增）
+
+> 來源：[[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory|Alejandro AO 影片]] + [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems|Sean's AI Stories 影片]]
+
+### 三個 Store
+
+1. **Main Memory（向量資料庫）**：儲存記憶本體 + metadata（hash、lemmatized version、歸因等）
+2. **Entity Store（向量資料庫）**：從 Main Memory 萃取實體（places, people, proper names），每個 entity 連結到一個或多個 main memories
+3. **SQLite**：記錄變更歷史 + 保留最近 10 條訊息（用於 coreference resolution）
+
+### Entity Boost 公式
+
+```
+boost = similarity × W_entity × w_memory
+w_memory = 1 / (1 + 0.001 × (n_linked - 1)²)
+```
+
+- 連結數越少的 entity，boost 越高
+- 例如：Montmartre（2 個連結）的 boost > Paris（10 個連結）
+- 目的：讓「具體且稀有」的記憶獲得更高權重
+
+### Retrieval Pipeline 三階段 Re-ranking
+
+1. **Vector search**：取得初始候選池（top K × 4 或最少 60 條）
+2. **Keyword matching**：BM25 計算詞彙重疊度
+3. **Entity boost**：根據 entity 連結數給予額外分數
+
+最終分數 = (vector score + keyword score + entity boost) / 2.5
+
+### Coreference Resolution
+
+- 代名詞（it, he）需要最近 10 條訊息來解析指代
+- 這就是為什麼 SQLite 要保留最近訊息
+
 ## 相關頁面
 
 - [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder]] — 四階檢索策略效果排名（與本頁「按技術類型分類」互補）🛠️
 - [[wiki/concepts/context-rot|Context Rot]] — 長任務脈絡惡化 🛠️
 - [[wiki/concepts/consumer-ai-memory-personalization|Consumer AI Memory]] — 消費級產品個人化記憶（不同領域：使用者個人化 vs agent harness 記憶，字面都叫 memory 但場景不同）
 - [[wiki/concepts/harness|Harness]] — Agent harness 根概念
+- [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems|AI Agent Memory Systems — 5 種記憶架構設計方式（Sean's AI Stories）]]
+- [[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory|AI Agent 長期記憶架構 — 以 Mem0 為例（Alejandro AO）]]
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — 兩種工作流
 - [[wiki/concepts/chunkless-rag|Chunkless RAG]] — 另一種 RAG 方法
 - [[wiki/concepts/context-decay|Context Decay]] — 脈絡衰減問題

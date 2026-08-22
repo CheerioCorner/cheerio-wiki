@@ -135,6 +135,7 @@
 - [[wiki/entities/markitdown.md|MarkItDown]] — MarkItDown 把 PDF、Word、Excel、PPT、圖片、音訊、HTML 等各種格式轉成 Markdown，讓 LLM 能直接讀懂。
 - [[wiki/entities/mattpocock-skills.md|mattpocock/skills — AI Coding Agent Skills 集合]] — - 屬性 - 值 -
 - [[wiki/entities/mcp-model-context-protocol.md|MCP (Model Context Protocol)]] — **問題**：AI Agent 需要存取外部工具（LSP、資料庫、API），但各工具介面不統一
+- [[wiki/entities/mem0.md|Mem0 — AI Agent 長期記憶框架]] — 開源記憶框架，行記憶 + 圖記憶，LLM extraction + 三階段 re-ranking 🛠️
 - [[wiki/entities/memgraph-rag.md|MemGraph-RAG — 記憶圖譜多智能體檢索增強生成]] — - 屬性 - 值 -
 - [[wiki/entities/morphir-dotnet.md|morphir-dotnet]] — morphir-dotnet 是 Morphir 生態系的 .NET 綁定，提供 domain model、IR codecs、CLI tooling 和 AI agent 貢獻指南。
 - [[wiki/entities/notionApi.md|notionApi — Notion MCP 伺服器]] — ```json
@@ -197,6 +198,8 @@
 - [[wiki/sources/2026-08-03-redis-security-practices.md|Redis Security Best Practices]] — Redis 安全三大層面：部署安全（網路隔離、anti-virus 排除）、叢集安全（存取控制、LDAP、HTTPS）、資料庫安全（強密碼、TLS、備份）。
 - [[wiki/sources/2026-08-03-redis-sentinel-client-spec.md|Redis Sentinel Client Spec — 客戶端整合規範]] — Redis Sentinel 客戶端需實作服務發現（自動找到 master）和自動 failover 處理，確保 master 地址變更時客戶端能自動重新連接。
 - [[wiki/sources/2026-08-03-tau-python-port-of-pi.md|Tau: A Python Port of Pi — Coding Harness Deep Dive]] — Tau 是 Pi 的 Python 移植版，架構完全相同，差異只在 TUI 層使用 Textual 框架而非 TypeScript 從零打造。
+- [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems.md|AI Agent Memory Systems — 5 種記憶架構設計方式（Sean's AI Stories）]] — 三支柱分析 × 五種存儲 × 四種檢索 × 六種維護，含實測比較
+- [[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory.md|AI Agent 長期記憶架構 — 以 Mem0 為例（Alejandro AO）]] — Mem0 架構深入解析：entity memory、entity boost 公式、retrieval pipeline 🛠️
 - [[wiki/sources/2026-08-04-code-review-graph.md|code-review-graph：用知識圖譜幫 AI Code Review 省下 8 倍 Token]] — code-review-graph 用 Tree-sitter 建構程式碼知識圖譜，透過爆炸半徑分析精準定位變更影響範圍，讓 AI Code Review 只讀取必要上下文，平均省下 8.2 倍 Token。
 - [[wiki/sources/2026-08-04-lsp-code-graph-research.md|LSP 與 Code Graph 技術深度研究]] — **核心問題解決**：傳統 $M \times N$ 複雜度（M 個編輯器 × N 種語言）→ LSP 標準化後降至 $M + N$
 - [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research.md|OKF + LSP + Code Graph 在 AI Coding Agent 生態系的整合應用]] — ```

@@ -131,6 +131,30 @@
       "source_api": "youtube_transcript_api"
     }
   ],
+  "sean-ai-stories-ai-agent-memory-systems": {
+    "slug": "sean-ai-stories-ai-agent-memory-systems",
+    "title": "AI Agent Memory Systems - 5 ways to architect memory",
+    "video_id": "072eNztI06k",
+    "url": "https://www.youtube.com/watch?v=072eNztI06k",
+    "duration": "30:26",
+    "segments": 122,
+    "language": "en-US",
+    "auto_generated": false,
+    "source_api": "youtube_transcript_api",
+    "created": "2026-08-22"
+  },
+  "alejandro-ao-mem0-long-term-memory": {
+    "slug": "alejandro-ao-mem0-long-term-memory",
+    "title": "AI Agent Long-Term Memory Architecture with Mem0",
+    "video_id": "aYfZN8t6AQs",
+    "url": "https://www.youtube.com/watch?v=aYfZN8t6AQs",
+    "duration": "13:08",
+    "segments": 246,
+    "language": "en",
+    "auto_generated": false,
+    "source_api": "youtube_transcript_api",
+    "created": "2026-08-22"
+  },
   "langchain-openwiki-cli-for-code-wikis": {
     "video_id": "XNX-1h2K-9U",
     "title": "LangChain OpenWiki: CLI for Code Wikis (v0.2 with OKF)",

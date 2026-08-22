@@ -1,4 +1,21 @@
 
+## [2026-08-22] ingest | AI Agent Memory Systems — 5 種記憶架構設計方式 + AI Agent 長期記憶架構 — 以 Mem0 為例（YouTube ingest）
+
+- 動作：兩支 YouTube 影片 → youtube_transcript_api 抓取英文字幕 → 合併 segments → 建立 raw transcript → 建立 wiki 頁面
+- 來源 1：`raw/youtube/sean-ai-stories-ai-agent-memory-systems.md`（30:26, en-US, 122 paragraphs, 手動字幕）
+- 來源 2：`raw/youtube/alejandro-ao-mem0-long-term-memory.md`（28:32, en, 246 paragraphs, 手動字幕）
+- 建立：
+  - `wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems.md` — Source note（含 Cheer 使用者觀點）
+  - `wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory.md` — Source note（含 Cheer 使用者觀點）
+  - `wiki/entities/mem0.md` — Entity page（Mem0 架構完整解析）
+- 更新：
+  - `wiki/concepts/ai-agent-memory-systems.md` — 補充 Mem0 架構深入解析章節
+  - `wiki/topics/agent-memory-context.md` — 加入新 sources 與 entities
+  - `wiki/index.md` — 計數更新 + 新頁面連結
+- refs: [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems|Sean's AI Stories]]、[[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory|Alejandro AO]]
+
+---
+
 ## [2026-08-21] fix | agy-bridge headless 模式 CANCELED/ERROR 已修復
 
 - 動作：診斷 agy-bridge 在 headless 模式下讀檔被 CANCELED/ERROR 的問題 → 派 Codex 動手改 → Claude 逐項查證
