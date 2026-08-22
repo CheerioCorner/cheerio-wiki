@@ -125,3 +125,4 @@ Waku Agent 不只有 loop，還支援 graph 工作流：
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 簡約 agent 設計哲學
 - [[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] — 結構化 AI 編碼工作流程
 - [[wiki/concepts/loop-vs-graph-engineering|loop-vs-graph-engineering]] — Loop 與 Graph 兩種工作流模式
+- [[wiki/concepts/portable-graph-agent-pattern|portable-graph-agent-pattern]] — Graph pattern 下放到輕量專家 Agent 的可攜式設計，可對照 waku graph.py 精簡版

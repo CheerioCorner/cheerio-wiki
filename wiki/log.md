@@ -1,4 +1,27 @@
 
+## [2026-08-22] ingest | Portable Graph Agent Pattern — 延伸想法 backfill（雙模型共識）
+
+- 動作：Cheer 觀看 Loop vs Graph Engineering 影片後的原創延伸想法，走 §3.5 Backfill 流程
+- 原始想法：`raw/conversations/2026-08-22-loop-graph-engineering-thoughts.md`（`source_kind: thought`）
+- 查重：grep 掃描 wiki/ 無「可攜式領域專家小 agent」相關既有頁面 → 確認是新內容
+- 雙模型共識判斷：
+  - **Pi（主持人）Round 1 提案**：併入既有 `loop-vs-graph-engineering.md` 加新章節
+  - **Gemini Round 1 提案**：獨立成新 concept 頁面 `portable-graph-agent-pattern.md`
+  - **Round 1 關鍵欄位比對**：目標頁面 ❌、type ✅、topics ❌ → 進入 Round 2
+  - **Round 2 覆核**：Pi 重新評估後同意 Gemini 論點（外部來源摘要 vs 原創設計 pattern 來源性質不同，獨立頁面更利於原子化連結）→ **收斂，採用 Gemini 方案**
+  - **結論**：`auto_verified`，新建 `wiki/concepts/portable-graph-agent-pattern.md`
+  - **分歧**：Round 1 有分歧（併入 vs 獨立），Round 2 收斂，無需第三票仲裁
+- 建立：
+  - `wiki/concepts/portable-graph-agent-pattern.md` — 新 concept 頁面（可攜式 Graph 專家 Agent 模式）
+- 更新：
+  - `wiki/concepts/loop-vs-graph-engineering.md` — 新增「延伸應用」章節，連結到新頁
+  - `wiki/entities/waku-agent.md` — 相關頁面補回連
+  - `wiki/topics/agent-architecture.md` — Concepts 列表加入新頁
+  - `wiki/index.md` — 全量重建，新增條目
+- refs: [[raw/conversations/2026-08-22-loop-graph-engineering-thoughts|觀後想法]]、[[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]]
+
+---
+
 ## [2026-08-22] ingest | AI Agent Memory Systems — 5 種記憶架構設計方式 + AI Agent 長期記憶架構 — 以 Mem0 為例（YouTube ingest）
 
 - 動作：兩支 YouTube 影片 → youtube_transcript_api 抓取英文字幕 → 合併 segments → 建立 raw transcript → 建立 wiki 頁面

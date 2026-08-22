@@ -1,7 +1,7 @@
 # Wiki Index
 
-> 自動全量重建，last rebuilt: 2026-08-21
-> 本次新增：understanding-ai-infrastructure (YouTube ingest)；gpu-architecture-for-ai-inference、llm-serving-architecture、model-sharding (concepts)；vllm、llm-d (entities)；npu-role-in-ai-infrastructure (discussion)
+> 自動全量重建，last rebuilt: 2026-08-22
+> 本次新增：portable-graph-agent-pattern (concept — 延伸想法 backfill)
 
 ## Topics
 - [[wiki/topics/agent-infrastructure|Agent Infrastructure]]
@@ -93,6 +93,7 @@
 - [[wiki/concepts/okf-open-knowledge-format.md|OKF (Open Knowledge Format) — 統一的知識表示格式]] — **OKF** 是 Google 開發的一個開放標準，用於表示知識。它的核心理念是：
 - [[wiki/concepts/para.md|PARA — Projects/Areas/Resources/Archives]] — PARA 是一個**行動導向**的資訊分類框架：
 - [[wiki/concepts/pi-project-workspace-model.md|pi-project-workspace-model — Pi 專案/工作區模型]] — - 層面 - 行為 -
+- [[wiki/concepts/portable-graph-agent-pattern.md|Portable Graph Agent Pattern — 可攜式 Graph 專家 Agent 模式]] — 將 Graph Engineering pattern 從 harness 層級下放到輕量領域專家小 agent，打造可攜式專家單元
 - [[wiki/concepts/rapid-application-development.md|Rapid Application Development (RAD)]] — **RAD（Rapid Application Development）**是一種軟體開發方法論，偏好：
 - [[wiki/concepts/recall-policy-ladder.md|Recall Policy Ladder — 記憶檢索策略的效果階梯]] — Recall Policy Ladder 是 Stefania Druga（Sakana AI）在實驗長時間運行 research agent 時提出的記憶檢索策略分類框架。它按「策略在長時任務下的效果排名」組織，與 [[wiki/conc
 - [[wiki/concepts/recursive-language-model.md|Recursive Language Model (RLM)]] — ⚠️ 舊版定義只寫「觸發 subagent」，遺漏了更根本的一層：RLM 的核心是**把 context 當成變數**。[[wiki/entities/prime-agent-Prime Agent]] 讓模型使用一個 persistent

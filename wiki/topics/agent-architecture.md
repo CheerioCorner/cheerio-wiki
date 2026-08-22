@@ -16,6 +16,7 @@ updated: 2026-08-23
 - [[wiki/concepts/continual-harness|Continual Harness]] — harness 狀態 CRUD 化、`/refine` 自我改進 pipeline 🛠️
 - [[wiki/concepts/agentic-ai|Agentic AI]] — AI Agent 核心定義、四大支柱、設計模式 🛠️
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — AI Agent 兩種核心工作流模式
+- [[wiki/concepts/portable-graph-agent-pattern|Portable Graph Agent Pattern]] — Graph pattern 下放到輕量專家 Agent 的可攜式設計
 - [[wiki/concepts/minimal-agent-philosophy|Minimal Agent Philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/recursive-language-model|Recursive Language Model]] — 把 context 當變數、以函式呼叫觸發的獨立 agent session 🛠️
 - [[wiki/concepts/code-execution-as-tool-calling|Code Execution as Tool Calling]] — 模型寫 Python 腳本執行多操作取代逐次 tool call 🛠️

@@ -110,6 +110,10 @@ Graph 是這個階梯的最新階段，結合了：
 - [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering — YouTube video]]
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes — YouTube]]（補充 LangGraph runtime 細節：Pregel model、reducers、delta channels）
 
+## 延伸應用
+
+- [[wiki/concepts/portable-graph-agent-pattern|Portable Graph Agent Pattern]] — 把 Graph pattern 從 harness 層級下放到輕量領域專家小 agent，打造可攜式專家單元
+
 ## 相關頁面
 - [[wiki/entities/waku-agent|waku-agent]] — 展示 loop + graph 的實際框架
 - [[wiki/entities/langgraph|LangGraph]] — Graph-based agent runtime，Pregel model 實作
