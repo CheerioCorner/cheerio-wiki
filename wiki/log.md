@@ -222,6 +222,21 @@
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
 
+## [2026-08-22] ingest | Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價（已查證版）
+- 來源：`raw/research/2026-08-22-mem0-deep-research-verified.md`（Gemini 深度研究經 Claude WebFetch 逐一查證修正）
+- 動作：
+  - 新建 source note: wiki/sources/2026-08-22-mem0-deep-research-comparison.md（四角度：系統比較 / 生產限制 / Decision-Ledger 適用性 / 授權定價）
+  - 新建 discussion: wiki/discussions/mem0-vs-decision-ledger-for-w074.md（Mem0 vs Decision-Ledger 對 W-074 架構的適用性）
+  - 更新 wiki/entities/mem0.md：新增 Graph Memory 移除說明、比較表格、定價、Decision-Ledger 適用性、新來源連結
+  - 更新 wiki/topics/agent-memory-context.md：新增 source + discussion 連結
+  - 更新 wiki/index.md：新增 source + discussion 條目
+- 關鍵事實：
+  - Graph Memory 已從開源版移除（官方文件明確寫明，[VERIFIED]）
+  - 定價：Hobby Free / Starter $19 / Pro $249 / Enterprise Custom（無 Growth 方案）
+  - 角度二（生產限制）完全缺乏可信來源，標記為知識缺口
+  - Mem0 適合 Semantic Memory，不適合直接取代 Procedural Memory（兩者應疊加）
+- refs: [[wiki/sources/2026-08-22-mem0-deep-research-comparison]]、[[wiki/discussions/mem0-vs-decision-ledger-for-w074]]、[[wiki/entities/mem0]]
+
 ## [2026-08-18] ingest | RAD Methodology for AI Vibe Coding
 - 來源：YouTube (J0zbWsutyA8) — 10:40 影片
 - 動作：

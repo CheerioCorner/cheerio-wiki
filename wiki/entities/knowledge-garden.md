@@ -2,7 +2,7 @@
 title: knowledge-garden — Cheerio 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-14
+updated: 2026-08-22
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -117,6 +117,10 @@ canonical: entities/knowledge-garden
 | Tree-sitter — 高效能增量 Parser 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81468edfd59f0b407ddf) | [[wiki/entities/tree-sitter\|tree-sitter]] | — |
 | Agentic AI — 自主 AI 系統核心概念 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81f2b665de005e942e92) | [[wiki/concepts/agentic-ai\|agentic-ai]] | — |
 | Harness — LLM 的驅動層 🆕 | [連結](https://app.notion.com/p/Harness-LLM-3bc5979e3a8c81f98e54eea5a2deeeea) | [[wiki/concepts/harness\|harness]] | — |
+| AI Agent 記憶架構設計框架 🆕 | [連結](https://app.notion.com/p/AI-Agent-3c45979e3a8c812b8709ce8053ed942a) | [[wiki/concepts/ai-agent-memory-systems\|ai-agent-memory-systems]] | — |
+| Mem0 — AI Agent 長期記憶工具剖析 🆕 | [連結](https://app.notion.com/p/Mem0-AI-Agent-3c45979e3a8c815fbacad32e9ef0622b) | [[wiki/entities/mem0\|mem0]] | — |
+| Entity Boost — 從工具技巧到可遷移架構原則 🆕 | [連結](https://app.notion.com/p/Entity-Boost-3c45979e3a8c8173b44df8324c552a1b) | [[wiki/concepts/ai-agent-memory-systems\|ai-agent-memory-systems]] | — |
+| Recall Policy — 排序品質決定記憶系統的成敗 🆕 | [連結](https://app.notion.com/p/Recall-Policy-3c45979e3a8c81d9a3b3e9dc5ff54644) | [[wiki/concepts/recall-policy-ladder\|recall-policy-ladder]] | — |
 > ⚠️ 以下 3 顆已 trash（2026-08-15），內容併入 Claude Code 種子頁：
 > - Skill 撰寫與評估方法論 → 併入 Claude Code（撰寫規格章節）
 > - Agent Skills 企業治理 → 併入 Claude Code（企業治理章節）
@@ -128,7 +132,7 @@ canonical: entities/knowledge-garden
 
 | 專題 | 狀態 | Wiki Topic | 相關種子 |
 |------|------|------------|----------|
-| 🤖 AI Agent 架構研究 | 🔬 研究 | [[wiki/topics/ai-agent\|ai-agent]] | Plannotator, Omnigent, mattpocock/skills, OpenCodeReview, MCP, LSP, Code Graph, LangGraph, Tree-sitter, Agentic AI, Obsidian, Harness |
+| 🤖 AI Agent 架構研究 | 🔬 研究 | [[wiki/topics/ai-agent\|ai-agent]] | Plannotator, Omnigent, mattpocock/skills, OpenCodeReview, MCP, LSP, Code Graph, LangGraph, Tree-sitter, Agentic AI, Obsidian, Harness, AI Agent 記憶架構設計框架, Mem0, Entity Boost, Recall Policy |
 | 🛠️ AI 驅動的開發系統 | 🔬 研究 | [[wiki/topics/ai-development-tools\|ai-development-tools]] | Claude Code, GitHub Copilot, NPM Publishing, MCP, LSP, Code Graph, LOOP Engineering, Obsidian |
 | 🧠 Meta-Harness 元鞍具 | 🔬 研究 | [[wiki/topics/meta-systems\|meta-systems]] | Omnigent, Pi Agent 架構研究, Harness |
 | 🔌 Extension 開發生態 | 🔬 研究 | [[wiki/topics/extension-dev\|extension-dev]] | NPM Publishing, OKF, Pi Agent 架構研究 |
@@ -138,6 +142,7 @@ canonical: entities/knowledge-garden
 > ✅ 所有 Relation 已於 2026-08-10 更新完成
 > ✅ 新增種子「Harness — LLM 的驅動層」（2026-08-14）
 > ✅ 新增研究專題「🔬 Agent Skills」+ 3 顆子概念種子（2026-08-14）
+✅ 新增 4 顆 AI Agent 記憶架構種子（2026-08-22 圓桌會議）：記憶架構設計框架、Mem0 工具剖析、Entity Boost、Recall Policy
 > ⚠️ 3 顆子種子已 trash，內容併入 Claude Code 和 GitHub Copilot 種子頁（2026-08-15） |
 
 ---

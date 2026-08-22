@@ -5,6 +5,36 @@
 
 ## In progress
 
+- [ ] W-2026-08-074 個人 AI 助理架構願景：最小規格 + 垂直切片 🆕 #ai-agent #architecture
+  - next: 圓桌會議（Claude+Gemini+Codex）已於 2026-08-22 完成第一輪並收斂共識（見 refs 會議紀要），下一步是實際動筆產出**最小規格**（不是完整規格文件）：① 核心=控制平面（無狀態、管流程/政策/派工/log，不管內容）vs Plugin=能力平面（標準插頭介面）的邊界文件 ② log schema 先定 MUST 欄位（trace_id/span_id/parent_span_id/timestamp/actor/event_type/status/latency_ms/error，不含敏感內容）即可，SHOULD 欄位（完整 input/output payload/token_usage/cost_estimate）待遮罩規則定案後再開 ③ orchestrator 派工邏輯直接把 round-table 既有角色分工（Claude=架構/Gemini=研究/Codex=工程/Pi=本機自動化）正式化，不重新設計 ④ stateless+記憶檢索直接把 work-tracker 現有「session 啟動讀 work/current.md」模式當雛形擴充，記憶分 Episodic/Semantic/Procedural/Artifact 四類 ⑤ 多 harness 調用包成統一 Agent Provider Adapter，記錄 provider/harness/model/輸入輸出reference/成本/驗證結果。**最小規格出爐後立刻做一條垂直切片**——優先選搜尋能力，跑通一次「輸入→派工→Tool呼叫→驗證→Log→回覆」的完整路徑，驗證規格可行再擴大，不要 5 大維度全部寫到完整才動手
+  - **訂正（8/22）**：[[work/current#W-2026-08-017|W-017]]／[[work/current#W-2026-08-025|W-025]]／[[work/current#W-2026-08-022|W-022]]／[[work/current#W-2026-08-033|W-033]]／W-2026-08-NEW-001／W-2026-08-NEW-002 這 6 個項目**目前都還沒開始做**（next 都只是「調研 XXX」的待辦，不是已完成的研究產出）。W-074 不是拿它們的成果來整合，而是先產出架構規格，讓這 6 個原本各自零散、範圍模糊的研究待辦，之後有明確的規格可以對齊、重新框定範圍（部分可能因此被合併或縮小，不用再各自從零摸索方向）
+  - refs: [[raw/conversations/2026-08-22-personal-ai-assistant-architecture-vision|Cheer 架構願景原始想法]]、[[.pi/round-table/20260822-161304/synthesis|2026-08-22 圓桌會議紀要]]、[[work/current#W-2026-08-017|W-017]]、[[work/current#W-2026-08-025|W-025]]、[[work/current#W-2026-08-022|W-022]]、[[work/current#W-2026-08-033|W-033]]
+  - 起因：2026-08-22 討論工作優先順序時，Cheer 提出完整的個人 AI 助理架構願景（核心/plugin 分離、自我成長觀測、單一對口統籌、stateless+記憶檢索、多 harness 外部 agent 調用），並點名「搜尋能力」是當前最迫切的 plugin（Pi 無 Deep Research、無法跟 Gemini 交互、Gemini 品質下降）
+  - 無相依，可跟 W-072 平行進行（三方圓桌共識：不必等 W-072/W-057 做完才開始）
+
+- [x] W-2026-08-076 建立 cheerio-roadmap skill：地鐵路線圖工作進度視覺化 ✅ #ai-agent #visualization #skill
+  - completed: 2026-08-22
+  - next: ✅ 已完成並推上 cheerio-skills repo。之後只要問工作進度/更新 work/current.md 就會自動重繪，不需要額外動作
+  - refs: [Cheerio 路線圖 Artifact](https://claude.ai/code/artifact/d9d83769-d2f7-4a44-b660-bebe3838f30c)、`C:\Users\User\.claude\skills\cheerio-roadmap\SKILL.md`、[[work/current#W-2026-08-075|W-075]]（未來 DevOps 版重用同一套設計系統）
+  - 起因：跟 Cheer 討論完 W-074/W-057/W-072 排序後，Cheer 希望有「鐵路線」風格的視覺化呈現整體 roadmap，並要求以後每次問工作進度或更新 work 都要自動看到
+  - 已完成：
+    - ✅ 地鐵路線圖風格 Artifact：4 條軌道（知識花園/基礎設施/企業 Skill 自動化/個人 AI 助理），站點依狀態分四種樣式 + 獨立決策菱形，今天虛線標實際日期
+    - ✅ 依 Cheer 逐輪回饋迭代：修正過大的黑色箭頭 marker（改用 `markerUnits="userSpaceOnUse"`、每軌道各自顏色）→ 加大字體＋固定原生寬度＋zoom 工具列（解決字太小看不清楚）→ 點站點改成可拖移、指向該站點的浮動 popover（`position:fixed`，不怕被頁面捲動吃掉）→ popover 加「Read more →」導到下方對應卡片並閃爍高亮 → 閃爍高亮加上背景色（原本只有邊框不夠明顯）
+    - ✅ 建立 `cheerio-roadmap` skill 並接進 `work-tracker` 的啟動流程與非啟動時的觸發規則；`state.json` 存 Artifact 連結供每次更新同一個網址；存進我自己的記憶（feedback + reference 兩則）確保未來 session 記得
+    - ✅ 資料驅動重構：原本 SVG 站點／彈出卡片 `DETAILS`／下方卡片區是三份手寫重複資料，容易漏改導致不同步。派背景 agent 在複本上重構成單一 `ROADMAP` 資料物件驅動三處渲染，完工後用腳本讓瀏覽器**真的依序點過全部 22 個站點的 Read More**驗證每個都導到正確卡片，確認無誤才覆蓋正式版並重新發布
+    - ✅ 推上 `CheerioCorner/cheerio-skills` GitHub repo（commit `64eff50` 建立 skill、`608f5da` 資料驅動重構），公司電腦如果也有 `C:/Cheerio` vault 可用 `npx skills add CheerioCorner/cheerio-skills@cheerio-roadmap -g -a pi` 拉取
+  - 備註：公司端工作追蹤是另一套系統（Azure DevOps，工作追蹤+工時統分），本 skill 只管 Cheerio 個人知識系統；未來重用同一套設計系統給公司端的規劃記在 [[work/current#W-2026-08-075|W-075]]
+  - **⚠️ 事後訂正（8/22 同日）**：完成當下把重繪流程設計錯了——直接覆寫要同步進共用 `cheerio-skills` repo 的 `references/template.html`，導致 Cheer 真實工作內容（含洩漏雇主名稱）被推上 GitHub 兩次。另一 session（CheerCopilot）發現並修正架構，拆成「共用通用範本」（skill 資料夾內，不含真實資料）與「本機真實輸出」（`Obsidian/work/roadmap/cheerio-roadmap.html`，不進版控）兩份檔案；Claude 核對確認安全後推上 sanitize commit（`5232bbe`）。**git 歷史裡舊 commit（`64eff50`/`608f5da`）仍含洩漏內容，是否要 rewrite history 徹底清掉待 Cheer 決定。**詳見 work/history 同日事件
+
+- [ ] W-2026-08-073 IBM Skill 最佳實踐影片心得補寫進花園《Skill》專題頁 🆕 #knowledge #skill #notion #youtube
+  - next: Cheer 先看措辭草稿再決定要不要寫。若要寫，依既有流程先開圓桌會議（Claude+Gemini），寫入 Notion 後再雙模型覆核品質。定位角度：Topic 2/3 的空白是「組織治理層」（現有：怎麼審查才能部署）之外缺「個人習慣層」（使用者動筆寫/要用一支 skill 前自己該負的責任），建議用這個角度切入補寫，不要逐條加句子。
+  - refs: https://app.notion.com/p/Agent-Skills-3bc5979e3a8c8121924ef99b09671383（🔬 Agent Skills 專題頁，補寫目標）、https://youtu.be/qYNs80FKIVc?si=ONtRQtqXU73YXi8K（來源影片）、[[raw/notion-ingest/2026-09-01-notion-agent-skills-fulltext-raw|Notion 頁面全文本機備份]]、[[wiki/sources/2026-09-01-ibm-youtube-skill-best-practices-supplement-draft|本機 wiki 草稿（非最終目標，可能重寫或棄用）]]
+  - 已完成的前置比對（Pi 比對 + Claude 逐字核對驗證，結論可信）：
+    - Topic 1（觸發精準度）：Notion 頁面已完整涵蓋（Description 撰寫技巧、eval queries 迭代流程、Model/User-invoked 分類），**不需要補**
+    - Topic 2（SKILL 專業知識要來自實戰、不能是 AI 生成；500行/5000字建議）：頁面**沒有**這個論點，真空白——唯一提到「1500行」是講 Pi Agent 核心大小，語境不同
+    - Topic 3（Script 要具體化不要讓AI亂猜；使用前掃描避免惡意軟體；使用前理解資源存取權限）：頁面第六章只有「組織部署前審查」（8步審查清單/5級風險評估），缺「個人使用者每次要用一支 skill 前」的習慣層面，真空白
+  - 狀態：2026-08-21 暫停（Cheer 太累），2026-08-22 接續
+
 - [ ] W-2026-08-072 AI 模型/Host 可用性登記表 🆕 #tools #ai-agent #mcp
   - next: 明天直接開始實作。先觀察各家 CLI 的真實限流錯誤訊息格式，再開發 `lib/availability.mjs` 共用模組 + 四個 bridge 的前置檢查邏輯
   - refs: [[work/current#W-2026-08-068|W-2026-08-068]]（agy-bridge 問題觸發本設計）
@@ -82,6 +112,7 @@
   - QA 補記：Pi 執行 ingest 時自我報告不完整（漏報弄壞 26 個 wiki/topics/*.md 的 frontmatter、漏報 9 個無關 raw 檔案搬移），經 Claude 逐一讀 diff 驗證後抓到並修復。詳見 [[work/history/2026-08#坑 7：Pi ingest commit 弄壞 26 個 wiki 頁面 + 未揭露的檔案搬移（8/19）|work/history/2026-08.md 坑 7]]。
 
 - [ ] W-2026-08-057 Skill 建置自動化研究 ②共享驗證機制設計 🆕 #ai-agent #skill #enterprise #skill-automation-design
+  - **圓桌共識（8/22）**：已卡 3 天，Codex 明確主張「立即 timebox 解 blocker，不能再用等更多研究延長」——今天直接列出卡住的具體假設，逐項指定決策人與截止時間，先接受最小方案，非必要爭議記成後續決策待議即可，不要再展開。見 [[.pi/round-table/20260822-161304/synthesis|會議紀要]]
   - **Session handoff（8/19）**：今天工作到此為止，下次 session 從這裡接續開始；完成 057 後要依序推進 [[work/current#W-2026-08-058|W-2026-08-058]] → [[work/current#W-2026-08-059|W-2026-08-059]]，不要漏掉後面兩個。
   - next: 開 round-table（Claude+Gemini+Copilot）設計中間無人看管階段（分析/設計/開發/測試）的自動驗證機制，作為 (a)/(b) 兩種 checkpoint 拓撲的共同地基。**建議以 [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex 調研]] 的五類 Gate 設計（Contract / Policy / Quality / Human / Release）與 [[wiki/concepts/durable-execution-for-agents|Durable Execution 層」作為討論起點。**
   - refs: [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|Codex 調研（W-2026-08-056 產出）]]、[[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計]]、[[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents]]、[[wiki/sources/2026-08-17-devops-skill-presentation|如何寫好一支SKILL簡報筆記]]（P22 Write-back 安全門、P27 Skill 的限制）、[[wiki/concepts/agent-skills-enterprise-governance|Agent Skills企業治理]]（6 階段生命週期 + Agentic Pipeline 整合）、W-2026-08-055（花園流程「內部 hook=advisory + 外部腳本=gate」先例，可借鏡）
@@ -198,9 +229,9 @@
 
 - [ ] W-2026-08-025 研究 AI Agent 網路查詢能力：Extension 機制與 Search 架構 #ai-agent
   - next: 調研 web search / deep research extension 實作方式
-  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]、[[work/current#W-2026-08-074|W-074]]（架構規格出爐後，本項目即為 Plugin (a) 搜尋能力的落地任務）
   - 預估時間：2-3 小時
-  - 為什麼重要：Tool 系統是 Agent 的手腳，怎麼擴充功能
+  - 為什麼重要：Tool 系統是 Agent 的手腳，怎麼擴充功能。2026-08-22 Cheer 點名這是目前最迫切的 plugin（Pi 無 Deep Research、無法跟 Gemini 交互、Gemini 品質下降）
 
 - [ ] W-2026-08-022 研究 MCP Server 架構與實作 #ai-agent
   - next: 調研 MCP protocol spec、transport 層、tool/resource/prompt 三大原語
@@ -279,24 +310,51 @@
 
 ## Blocked
 
-- [ ] W-2026-08-070 chat-with-gemini-research 引用驗證流程修復 🔴 #skill #tools #bug
-  - next: 修改 `C:\Users\User\.claude\skills\chat-with-gemini-research\SKILL.md` 的 Step 4「解析與後處理」，新增強制 URL 查證步驟（詳見建議修法）；需由呼叫端（Claude 或獨立 agent）用 WebFetch/WebSearch 實際查證，不能信任 Gemini 自己的驗證聲明
-  - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]（commit 3910322，Claude 手動查證修正後的報告）、[[work/current#W-2026-08-069|W-2026-08-069]]（觸發本次問題的 NPU 深度研究）、[[work/current#W-2026-08-068|W-2026-08-068]]（agy-bridge 當機問題，不同問題）
-  - 狀態：Blocked — 等 Cheer 指派其他 AI 修復此 skill
-  - 根因：Step 4 只做格式檢查（[REF-N] 是否有對應來源），無實際 URL 查證。Gemini 會編造「看起來真實」的網址（Google 搜尋查詢字串當文檔、錯誤 arXiv 編號、404 文件、虛構 Medium 文章）
-  - 建議修法：
-    1. Step 4 新增強制步驟：對每個 [REF-N] 的 URL 實際發送請求（WebFetch 或等效工具）確認可訪問，且回傳內容與被引用陳述相符
-    2. 查證失敗的引用：替換成查證過的真實來源，或降級標記為 [UNVERIFIED] 並移出正式引用列表
-    3. 查證不能交給 Gemini 自己做——Gemini 宣稱「已驗證」正是問題所在，需要由呼叫端用真正工具去查
-  - 影響範圍：任何使用 chat-with-gemini-research skill 產出的報告都可能有虛構引用，目前 skill 無法保證引用品質
-
-
-
 ## Backlog
 
-（目前無其他待辦任務）
+- [ ] W-2026-08-075 未來：抽出「地鐵路線圖」設計系統給公司 Azure DevOps Analysis Report skill 重用 🆕 #ai-agent #devops #visualization
+  - next: 等公司端 Azure DevOps work item/工時 API 可接（或決定用哪種方式讀取）之後，新建 `devops-analysis-report` skill，資料源換成 Azure DevOps，但 [[cheerio-roadmap 設計系統|C:\Users\User\.claude\skills\cheerio-roadmap\SKILL.md]] 裡的 CSS/JS（地鐵路線圖 SVG、可拖移浮動 popover、Read more 導頁高亮、zoom 工具列）直接搬過去重用，不重新設計
+  - refs: [[work/current#W-2026-08-074|W-074]]（同一批討論脈絡）、C:\Users\User\.claude\skills\cheerio-roadmap\SKILL.md
+  - 起因：2026-08-22 Cheer 看完 Cheerio 路線圖後指出，公司端工作追蹤是另一套系統（之前討論過的 Azure DevOps Skill，工作追蹤+工時統分），跟這裡的 work/current.md 是不同資料源，但視覺設計值得原封不動搬過去，只是 skill 名稱跟資料源要換
+  - 無相依，可任何 session 切入（但實際上要等 Azure DevOps 那端條件成熟才會真的動手）
 
 ## Completed
+
+- [x] W-2026-08-078 cheerio-skills git 歷史清除：拿掉舊 commit 裡洩漏的真實工作資料 ✅ #tools #bug #security
+  - completed: 2026-08-22
+  - next: ✅ 已完成。之後同步進共用 repo 前會先親自核對內容（見 [[verify-shared-repo-content-before-push]]），不會再犯
+  - refs: [[work/current#W-2026-08-076|W-2026-08-076]]（事件本身）、[[verify-shared-repo-content-before-push]]
+  - 已完成：
+    - ✅ fetch 確認遠端沒有其他 session 的新 commit，避免 force-push 蓋掉別人的工作
+    - ✅ `git reset --soft` 到洩漏前的 parent commit，用當下已乾淨的 tree 重新 commit 成單一 commit（`a923048`），取代原本 3 個 commit（`64eff50`／`608f5da`／`5232bbe`）
+    - ✅ push 前 diff 新舊 tree 確認內容完全一致（只有歷史被改寫，內容沒變），grep 確認新 commit 內容零洩漏
+    - ✅ `git push --force-with-lease` 推上 GitHub，push 後重新 fetch + `git ls-remote` 核對遠端 `master` 只剩乾淨的新 commit，舊 SHA 在遠端已不可達
+    - ✅ 清掉本機的備份 tag、跑 `git gc --prune=now` 讓舊 commit 在本機也徹底不可達
+  - 備註：GitHub 後台可能仍短暫保留已不可達的物件（一般 force-push 後的標準行為，非 100% 立即從 GitHub 基礎設施抹除），但一般瀏覽/clone/API 已經看不到洩漏內容
+
+- [x] W-2026-08-077 Mem0 深度研究：跟其他系統比較／生產限制／Decision-Ledger 適用性／授權定價 ✅ #knowledge #ai-agent #research
+  - completed: 2026-08-22
+  - next: ✅ 已完成並 ingest 進 wiki。生產限制角度仍是知識缺口，之後有真實來源時可回頭補
+  - refs: [[wiki/sources/2026-08-22-mem0-deep-research-comparison|Mem0 深度研究 source note]]、[[wiki/discussions/mem0-vs-decision-ledger-for-w074|Mem0 vs Decision-Ledger 適用性]]、[[wiki/entities/mem0|Mem0 entity 頁面]]、`raw/research/2026-08-22-mem0-deep-research-verified.md`（查證版）、`raw/research/2026-08-22-mem0-deep-research-raw.md`（Gemini 未查證原始輸出，僅供對照）
+  - 起因：W-070 修好後的第一次實測。Cheer 指定研究 Mem0 補既有 YouTube ingest 沒涵蓋的角度，並要求「Gemini 查完 Claude 過濾品質再讓 Pi 寫進大腦」的分工流程
+  - 已完成：
+    - ✅ Gemini（agy）深度研究四角度：跟 Zep/MemGPT/LangMem 比較、生產環境限制、對 W-074 decision-ledger 記憶架構的適用性、授權定價
+    - ✅ Claude 用新修好的 W-070 流程逐一 WebFetch 查證 10 個 Tier 1/2 來源：2 個完全正確、3 個真實頁面但文不對題（已找到真正來源替換：Zep 論文、Graph Memory 移除官方頁、LangMem repo）、4 個完全捏造（404 或文不對題，來源移除、陳述降級 [UNVERIFIED]）
+    - ✅ 關鍵發現：Gemini 原始報告中「Mem0 vs Decision-Ledger」整個論點唯一引用的兩個來源（zenml.io、vktr.com）都是捏造的 404 網址；改用本機既有的 Sakana AI 來源筆記支撐同一論點，結論本身站得住腳
+    - ✅ 發現並修正 Gemini 捏造的「Growth $79/月」定價方案（實際只有 Hobby/Starter/Pro/Enterprise 四個）
+    - ✅ Pi 依查證版報告寫入 wiki：新建 1 個 source note + 1 個 discussion 頁面，更新 entity 頁面（mem0.md）、topic 頁面、index.md、log.md
+    - ✅ Claude 逐檔讀取核對 Pi 自報的 6 項改動全部屬實；額外抓到 Pi 在比較表自行加了一列未查證的「授權」比較（Zep/MemGPT/LangMem 各自授權），事後用 WebFetch 補查證，內容正確但已加註來源說明
+  - 備註：這是 W-070 新流程的首次實戰驗證——證實「格式檢查防不住捏造」的診斷正確，光靠 skill 指示 Gemini 小心不夠，一定要呼叫端親自查
+
+- [x] W-2026-08-070 chat-with-gemini-research 引用驗證流程修復 ✅ #skill #tools #bug
+  - completed: 2026-08-22
+  - next: ✅ 已修復（Claude 直接修）。下次執行 chat-with-gemini-research 時要照新流程實測：Gemini 產出後由呼叫端親自 WebFetch 查證每個 Tier 1/2 來源
+  - refs: `C:\Users\User\.claude\skills\chat-with-gemini-research\SKILL.md`（Step 4 改動）、[[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]（commit 3910322，觸發本次問題的原始事件）、[[work/current#W-2026-08-069|W-2026-08-069]]
+  - 已完成：
+    - ✅ Step 4 新增強制 URL 實查步驟：呼叫端用 WebFetch 對每個 Tier 1/2 來源實際發送請求，確認可訪問且內容與被引用陳述相符；查證失敗降級 [UNVERIFIED] 並移出正式來源列表
+    - ✅ Raw Research frontmatter 新增 `citations_verified` / `verified_by` 欄位，標明報告引用已實查
+    - ✅ 品質檢查清單新增「URL 實查」小節，明確寫「呼叫端親自做，不能省略」，防止查證責任又被委派回 Gemini
+  - 備註：尚未實跑驗證新流程（下一個研究任務即 Mem0 深度研究會是第一次實測）
 
 - [x] W-2026-08-068 agy-bridge 異常追蹤：headless 模式讀檔被 CANCELED/ERROR ✅ #tools #bug
   - completed: 2026-08-21

@@ -8,8 +8,10 @@
 work/
 ├── README.md
 ├── current.md
-└── history/
-    └── YYYY-MM.md
+├── history/
+│   └── YYYY-MM.md
+└── roadmap/
+    └── cheerio-roadmap.html
 ```
 
 ## `current.md`
@@ -34,6 +36,10 @@ work/
 - `status:` `completed`、`decision-recorded`、`blocked` 或 `note`
 
 完成工作時，從 `current.md` 移除 item，並在當月 history 留下事件；不建立 daily journal。
+
+## `roadmap/`
+
+`cheerio-roadmap` skill 最近一次實際重繪的完整 Artifact HTML（含真實 work item）。這份不是知識內容，是視覺化 skill 的工作檔案；放在這裡（vault 內、不在 skill 資料夾）是為了不讓真實工作資料被同步進共用的 `CheerioCorner/cheerio-skills` GitHub repo。重繪時優先讀這份當結構範本，發布後覆蓋。詳見 `C:\Users\User\.claude\skills\cheerio-roadmap\SKILL.md`。
 
 ## Boundary
 

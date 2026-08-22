@@ -1,7 +1,7 @@
 # Wiki Index
 
 > 自動全量重建，last rebuilt: 2026-08-22
-> 本次新增：portable-graph-agent-pattern (concept — 延伸想法 backfill)
+> 本次新增：mem0-deep-research-comparison (source)、mem0-vs-decision-ledger-for-w074 (discussion)
 
 ## Topics
 - [[wiki/topics/agent-infrastructure|Agent Infrastructure]]
@@ -201,6 +201,7 @@
 - [[wiki/sources/2026-08-03-tau-python-port-of-pi.md|Tau: A Python Port of Pi — Coding Harness Deep Dive]] — Tau 是 Pi 的 Python 移植版，架構完全相同，差異只在 TUI 層使用 Textual 框架而非 TypeScript 從零打造。
 - [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems.md|AI Agent Memory Systems — 5 種記憶架構設計方式（Sean's AI Stories）]] — 三支柱分析 × 五種存儲 × 四種檢索 × 六種維護，含實測比較
 - [[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory.md|AI Agent 長期記憶架構 — 以 Mem0 為例（Alejandro AO）]] — Mem0 架構深入解析：entity memory、entity boost 公式、retrieval pipeline 🛠️
+- [[wiki/sources/2026-08-22-mem0-deep-research-comparison.md|Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價]] — 四角度深度研究（已查證版）：系統比較 / 生產限制 / Decision-Ledger 適用性 / 授權定價 🛠️
 - [[wiki/sources/2026-08-04-code-review-graph.md|code-review-graph：用知識圖譜幫 AI Code Review 省下 8 倍 Token]] — code-review-graph 用 Tree-sitter 建構程式碼知識圖譜，透過爆炸半徑分析精準定位變更影響範圍，讓 AI Code Review 只讀取必要上下文，平均省下 8.2 倍 Token。
 - [[wiki/sources/2026-08-04-lsp-code-graph-research.md|LSP 與 Code Graph 技術深度研究]] — **核心問題解決**：傳統 $M \times N$ 複雜度（M 個編輯器 × N 種語言）→ LSP 標準化後降至 $M + N$
 - [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research.md|OKF + LSP + Code Graph 在 AI Coding Agent 生態系的整合應用]] — ```
@@ -289,6 +290,7 @@
 - [[wiki/discussions/notion-integration-architecture.md|Notion Integration Architecture]] — - 系統 - 用途 - 主要使用者 -
 - [[wiki/discussions/topic-stub-cleanup.md|Existing Topic Stub Cleanup]] — The former `wiki/topics/<domain>/<page>.md` compatibility stubs have been removed after canonical links were updated. `w
 - [[wiki/discussions/wiki-youtube-pipeline-timing.md|YouTube-to-Wiki Pipeline Timing]] — Do not build the YouTube pipeline yet. First stabilize the collection model, linking contract, lint rules, and migration
+- [[wiki/discussions/mem0-vs-decision-ledger-for-w074.md|Mem0 vs Decision-Ledger 對 W-074 架構的適用性]] — Mem0 向量式設計適合 Semantic Memory，不適合直接取代 Procedural Memory，兩者應疊加使用
 
 ---
 

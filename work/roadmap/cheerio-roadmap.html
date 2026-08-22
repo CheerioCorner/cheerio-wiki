@@ -1,0 +1,1266 @@
+<title>Cheerio 路線圖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef1f0;
+    --surface: #ffffff;
+    --surface-2: #e3e8e6;
+    --border: #c9d1cd;
+    --ink: #1b2321;
+    --muted: #5c6663;
+    --line-garden: #2f8f5b;
+    --line-infra: #c97a1f;
+    --line-enterprise: #2f6fbf;
+    --line-assistant: #8a3fae;
+    --accent-today: #c13b3b;
+    --star: #a9822a;
+    --shadow: 0 1px 2px rgba(20, 30, 25, 0.06), 0 8px 24px rgba(20, 30, 25, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151a;
+      --surface: #1a1e24;
+      --surface-2: #20252c;
+      --border: #323944;
+      --ink: #e7e9e4;
+      --muted: #9298a1;
+      --line-garden: #5fbd83;
+      --line-infra: #e2a04e;
+      --line-enterprise: #6ea3e6;
+      --line-assistant: #c07ee0;
+      --accent-today: #e2555a;
+      --star: #e8c766;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151a;
+    --surface: #1a1e24;
+    --surface-2: #20252c;
+    --border: #323944;
+    --ink: #e7e9e4;
+    --muted: #9298a1;
+    --line-garden: #5fbd83;
+    --line-infra: #e2a04e;
+    --line-enterprise: #6ea3e6;
+    --line-assistant: #c07ee0;
+    --accent-today: #e2555a;
+    --star: #e8c766;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans TC", "IBM Plex Mono", system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  header.page {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+  .subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 62ch;
+  }
+
+  /* ---- diagram card ---- */
+  .map-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 20px 20px 8px;
+  }
+  .zoom-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+  }
+  .zoom-toolbar button {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    font-weight: 600;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .zoom-toolbar button:hover { border-color: var(--line-assistant); }
+  .zoom-toolbar button.reset { width: auto; padding: 0 12px; font-size: 12px; }
+  #zoom-level { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); min-width: 42px; text-align: center; }
+  .zoom-hint { font-size: 12px; color: var(--muted); margin-left: auto; }
+  .zoom-scroll {
+    overflow: auto;
+    border-radius: 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+  .zoom-scroll svg {
+    display: block;
+    width: 1360px;
+    max-width: none;
+    height: auto;
+  }
+  figure { margin: 0; }
+  figcaption {
+    padding: 12px 4px 4px;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
+  }
+
+  svg text { font-family: "Noto Sans TC", sans-serif; fill: currentColor; }
+  .mono { font-family: "IBM Plex Mono", monospace; }
+  .line-path { fill: none; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+  .line-path.dashed { stroke-dasharray: 2 10; stroke-linecap: round; }
+  .today-line { stroke: var(--accent-today); stroke-width: 2.5; stroke-dasharray: 7 7; }
+  .station { stroke-width: 3.5; }
+  .st-ready { stroke: var(--accent-today); }
+  .st-wait { fill: var(--surface); stroke-width: 3.5; }
+  .st-dim { fill: var(--surface); stroke-width: 2.5; opacity: 0.6; }
+  .st-done { opacity: 0.5; }
+  .gate { fill: var(--surface); stroke-width: 3.5; }
+  .decision { fill: var(--surface); stroke: var(--accent-today); stroke-width: 2.5; stroke-dasharray: 3 3; }
+  .lbl { font-size: 16px; font-weight: 500; }
+  .lbl-id { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 700; }
+  .lbl-sub { font-size: 14px; fill: var(--muted); }
+  .lbl-tag { font-size: 13px; font-weight: 700; }
+  .line-title { font-size: 19px; font-weight: 700; }
+  .hit { fill: transparent; cursor: pointer; }
+  .node { cursor: pointer; }
+  .node:focus { outline: none; }
+  .node:hover .station, .node:hover .gate, .node:hover .decision { filter: brightness(1.2); }
+  .node:hover .lbl-id { fill: var(--accent-today); }
+  .node.selected .lbl-id { fill: var(--accent-today); }
+  .node.selected .station, .node.selected .gate { stroke: var(--accent-today) !important; stroke-width: 4.5; }
+  .node:focus-visible .station, .node:focus-visible .gate { stroke: var(--accent-today) !important; stroke-dasharray: 2 2; }
+
+  /* ---- floating node popover ---- */
+  .node-popover {
+    position: fixed;
+    z-index: 1000;
+    width: 300px;
+    max-width: calc(100vw - 24px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 14px 40px rgba(10, 14, 12, 0.28), 0 3px 10px rgba(10, 14, 12, 0.16);
+    display: none;
+    overflow: visible;
+  }
+  .node-popover.open { display: block; }
+  .node-popover .arrow-tail { position: absolute; top: 50%; width: 0; height: 0; pointer-events: none; }
+  .node-popover .arrow-tail::before,
+  .node-popover .arrow-tail::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+  /* popover sits to the RIGHT of the node: tail points left, lives on the popover's left edge */
+  .node-popover.side-right .arrow-tail { left: 0; }
+  .node-popover.side-right .arrow-tail::before {
+    left: -10px; top: -9px;
+    border-top: 9px solid transparent; border-bottom: 9px solid transparent;
+    border-right: 10px solid var(--border);
+  }
+  .node-popover.side-right .arrow-tail::after {
+    left: -9px; top: -8px;
+    border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+    border-right: 9px solid var(--surface);
+  }
+  /* popover sits to the LEFT of the node: tail points right, lives on the popover's right edge */
+  .node-popover.side-left .arrow-tail { right: 0; }
+  .node-popover.side-left .arrow-tail::before {
+    right: -10px; top: -9px;
+    border-top: 9px solid transparent; border-bottom: 9px solid transparent;
+    border-left: 10px solid var(--border);
+  }
+  .node-popover.side-left .arrow-tail::after {
+    right: -9px; top: -8px;
+    border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+    border-left: 9px solid var(--surface);
+  }
+  .node-popover.dragged .arrow-tail { display: none; }
+  .node-popover .drag-handle {
+    cursor: grab;
+    padding: 10px 8px 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background: var(--surface-2);
+  }
+  .node-popover .drag-handle:active { cursor: grabbing; }
+  .node-popover .drag-dots { color: var(--muted); font-size: 12px; letter-spacing: 1px; }
+  .node-popover .name { font-weight: 700; font-size: 15px; flex: 1; }
+  .node-popover .close-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 6px;
+  }
+  .node-popover .close-btn:hover { color: var(--ink); background: var(--border); }
+  .node-popover .body { padding: 10px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .node-popover ul { margin: 0; padding-left: 18px; font-size: 13.5px; }
+  .node-popover li { margin: 3px 0; }
+  .node-popover .read-more {
+    align-self: flex-start;
+    margin-top: 2px;
+    border: none;
+    background: none;
+    color: var(--line-assistant);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 2px 0;
+  }
+  .node-popover .read-more:hover { text-decoration: underline; }
+  .node-popover .read-more:empty { display: none; }
+
+  @keyframes card-flash {
+    0%, 40% {
+      box-shadow: 0 0 0 3px var(--accent-today), var(--shadow);
+      background: color-mix(in srgb, var(--accent-today) 14%, var(--surface));
+    }
+    100% {
+      box-shadow: var(--shadow);
+      background: var(--surface);
+    }
+  }
+  .card.flash { animation: card-flash 1.6s ease-out; }
+
+  /* ---- legend ---- */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+    padding: 16px 20px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 13px;
+  }
+  .legend-group { display: flex; align-items: center; gap: 8px; }
+  .legend-group b { font-weight: 700; }
+  .swatch { width: 22px; height: 4px; border-radius: 2px; display: inline-block; }
+  .glyph { width: 14px; height: 14px; border-radius: 50%; display: inline-block; flex: none; }
+  .glyph.ready { background: var(--accent-today); }
+  .glyph.wait { background: var(--surface); border: 2.5px solid var(--ink); opacity: .8; }
+  .glyph.dim { background: var(--surface); border: 2px solid var(--muted); opacity: .5; }
+  .glyph.done { background: var(--muted); opacity: .5; }
+  .glyph.decision { background: var(--surface); border: 2px dashed var(--accent-today); border-radius: 3px; transform: rotate(45deg); }
+
+  /* ---- track sections ---- */
+  .track {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .track-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .track-head .dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+  .track-head h2 { margin: 0; font-size: 19px; font-weight: 700; }
+  .track-head span.note { color: var(--muted); font-size: 13px; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left-width: 4px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: var(--shadow);
+  }
+  .card .head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .card .id { font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .card .name { font-weight: 700; font-size: 15px; }
+  .pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .pill.today { background: color-mix(in srgb, var(--accent-today) 18%, transparent); color: var(--accent-today); }
+  .pill.wait { background: color-mix(in srgb, var(--muted) 22%, transparent); color: var(--ink); }
+  .pill.dim { background: color-mix(in srgb, var(--muted) 14%, transparent); color: var(--muted); }
+  .pill.done { background: color-mix(in srgb, var(--muted) 14%, transparent); color: var(--muted); }
+  .card ul { margin: 0; padding-left: 18px; font-size: 13px; }
+  .card li { margin: 3px 0; }
+  .card .foot { font-size: 12px; color: var(--muted); }
+
+  footer.page {
+    font-size: 12.5px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 28px 14px 60px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="page">
+    <span class="eyebrow">2026-08-22 · Claude + Gemini + Codex 圓桌共識</span>
+    <h1>Cheerio 路線圖</h1>
+    <p class="subtitle">目前手上四條工作軌道，哪些今天可以平行起跑、哪些互相依賴、哪些只是在等一句話。垂直虛線標的是「今天」。</p>
+  </header>
+
+  <div class="map-card">
+    <div class="zoom-toolbar">
+      <button type="button" data-zoom="out" aria-label="縮小">－</button>
+      <span id="zoom-level" class="mono">100%</span>
+      <button type="button" data-zoom="in" aria-label="放大">＋</button>
+      <button type="button" class="reset" data-zoom="reset">重置</button>
+      <span class="zoom-hint">拖曳／捲動可平移；點站點看詳情</span>
+    </div>
+    <figure>
+      <div class="zoom-scroll">
+      <svg id="map-svg" viewBox="0 0 1360 760" role="img" aria-label="四條工作軌道的路線圖：知識花園線、基礎設施線、企業 Skill 自動化線、個人 AI 助理線。個人 AI 助理線的 W-074 最小規格站之後分兩路，一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。一條紅色虛線標出 2026-08-22 可以同時起跑的三個站：W-072、W-057、W-074。每個站點可點擊查看詳情。">
+      </svg>
+      </div>
+      <figcaption>四條工作軌道：知識花園線在等 Cheer／Gemini；基礎設施線今天讓 W-072 直接動手；企業 Skill 自動化線今天解開卡 3 天的 W-057；個人 AI 助理線是今天新開的主線，W-074 最小規格站之後分兩路——一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。W-070 是浮動的獨立小決策，不屬於任何一條軌道。</figcaption>
+    </figure>
+  </div>
+
+  <div id="node-popover" class="node-popover" role="dialog" aria-label="站點詳情">
+    <span class="arrow-tail"></span>
+    <div class="drag-handle" id="popover-drag">
+      <span class="drag-dots">⠿</span>
+      <span class="name" id="popover-name"></span>
+      <span class="pill" id="popover-pill"></span>
+      <button type="button" class="close-btn" id="popover-close" aria-label="關閉詳情">✕</button>
+    </div>
+    <div class="body">
+      <ul id="popover-list"></ul>
+      <button type="button" id="popover-readmore" class="read-more">Read more →</button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-group"><span class="glyph ready"></span> 今天可直接動手</div>
+    <div class="legend-group"><span class="glyph wait"></span> 進行中，等外部或等 Cheer</div>
+    <div class="legend-group"><span class="glyph dim"></span> 排後面 / 有空再做</div>
+    <div class="legend-group"><span class="glyph done"></span> 已完成</div>
+    <div class="legend-group"><span class="glyph decision"></span> 獨立小決策（不算 track）</div>
+    <div class="legend-group"><b>⭐</b> Cheer 點名最優先</div>
+  </div>
+
+  <div id="cards-root"></div>
+
+  <footer class="page">
+    共識來源：<span class="mono">.pi/round-table/20260822-161304/synthesis.md</span>（Claude + Gemini + Codex，1 輪收斂，無實質分歧）。工作項目詳情見 <span class="mono">Obsidian/work/current.md</span>。
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  /* =========================================================================
+   * ROADMAP — single source of truth.
+   * Each station carries BOTH its SVG rendering data (position/shape/labels)
+   * AND its popover content (title/status/pill/bullets/card target).
+   * This structurally guarantees every SVG node has a matching popover entry,
+   * since they're the same object — there's nothing left to drift out of sync.
+   *
+   * Card section content (below, in cardSections) stays separately authored:
+   * in the original hand-written template the card prose and the popover
+   * prose are already worded differently station-by-station (cards are
+   * longer/more detailed), so unifying them here would mean silently
+   * rewording one of the two — which the refactor is not supposed to do.
+   * cardSections instead cross-references station ids only for shared
+   * metadata (the track color), keeping its own literal bullet/foot text.
+   * ========================================================================= */
+  var ROADMAP = {
+    today: {
+      x: 300, y1: 55, y2: 735,
+      label: "📍 2026-08-22 同時起跑", labelY: 36,
+      sub: "W-072・W-057・W-074", subY: 750
+    },
+
+    tracks: [
+      {
+        id: "garden", title: "🌱 知識花園", titleX: 20, titleY: 86,
+        color: "var(--line-garden)",
+        connectors: [
+          { d: "M40,120 L140,120", dashed: true },
+          { d: "M140,120 L340,120" },
+          { d: "M340,120 L560,120" },
+          { d: "M560,120 L760,120", dashed: true, markerEnd: true }
+        ],
+        notes: [
+          { x: 44, y: 106, anchor: "start", text: "既有進行中" },
+          { x: 700, y: 106, text: "→ 持續匯入花園" }
+        ],
+        stations: [
+          {
+            id: "w077", x: 140, y: 120, hitR: 18, shape: "done", r: 8,
+            labels: [{ cls: "lbl-sub", x: 140, y: 102, text: "W-077 ✓" }],
+            aria: "W-077 已完成，查看詳情",
+            popover: {
+              title: "W-077 · Mem0 深度研究", status: "已完成", pill: "done", card: "card-w077",
+              bullets: [
+                "W-070 修好後第一次實測：10 個引用裡 4 個捏造、3 個文不對題，全部抓到並修正",
+                "Pi 寫入 wiki：新 source note + discussion 頁 + 更新 entity 頁"
+              ]
+            }
+          },
+          {
+            id: "w073", x: 340, y: 120, hitR: 24, shape: "wait", r: 11,
+            labels: [
+              { cls: "lbl-id", x: 340, y: 152, text: "W-073", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 340, y: 169, text: "等 Cheer 看稿" }
+            ],
+            aria: "W-073 IBM Skill 心得補寫，查看詳情",
+            popover: {
+              title: "W-073 · IBM Skill 心得補寫", status: "等 Cheer 看稿", pill: "wait", card: "card-w073",
+              bullets: [
+                "Cheer 先看措辭草稿再決定要不要寫",
+                "切入角度：補「個人習慣層」，既有內容是組織治理層",
+                "要寫的話：先開圓桌會議（Claude+Gemini）→ 寫入 Notion → 雙模型覆核"
+              ]
+            }
+          },
+          {
+            id: "w069", x: 560, y: 120, hitR: 24, shape: "wait", r: 11,
+            labels: [
+              { cls: "lbl-id", x: 560, y: 152, text: "W-069", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 560, y: 169, text: "等 Gemini 研究" }
+            ],
+            aria: "W-069 NPU 角色深度研究，查看詳情",
+            popover: {
+              title: "W-069 · NPU 角色深度研究", status: "等 Gemini", pill: "wait", card: "card-w069",
+              bullets: ["Gemini deep research 跑完後回填進 NPU 角色討論頁"]
+            }
+          }
+        ]
+      },
+
+      {
+        id: "infra", title: "🛠️ 基礎設施", titleX: 20, titleY: 212,
+        color: "var(--line-infra)",
+        connectors: [
+          { d: "M140,250 L300,250" },
+          { d: "M300,250 L460,250", dashed: true, markerEnd: true },
+          { d: "M300,250 L350,300 L520,300", dashed: true }
+        ],
+        notes: [
+          { x: 475, y: 240, text: "→ 持續維運" }
+        ],
+        stations: [
+          {
+            id: "w076", x: 140, y: 250, hitR: 18, shape: "done", r: 8,
+            labels: [{ cls: "lbl-sub", x: 140, y: 232, text: "W-076 ✓" }],
+            aria: "W-076 已完成，查看詳情",
+            popover: {
+              title: "W-076 · cheerio-roadmap skill 建立", status: "已完成", pill: "done", card: "card-w076",
+              bullets: [
+                "地鐵路線圖風格工作進度視覺化，資料驅動架構（單一 ROADMAP 物件）",
+                "已推上 cheerio-skills repo，之後問進度會自動重繪同一個連結"
+              ]
+            }
+          },
+          {
+            id: "w072", x: 300, y: 250, hitR: 26, shape: "ready", r: 13,
+            labels: [
+              { cls: "lbl-id", x: 300, y: 228, text: "W-072", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 300, y: 282, text: "可用性登記表・今天實作" }
+            ],
+            aria: "W-072 AI 模型可用性登記表，查看詳情",
+            popover: {
+              title: "W-072 · AI 模型/Host 可用性登記表", status: "今天", pill: "today", card: "card-w072",
+              bullets: [
+                "觀察各家 CLI 真實限流錯誤訊息格式",
+                "開發 lib/availability.mjs：checkAvailability / recordBlocked / clearBlocked",
+                "三種 confidence：exact／estimated（1 小時後探針重試）／human-reported",
+                "四個 bridge（agy/pi/codex/copilot）呼叫前後都要接上"
+              ]
+            }
+          },
+          {
+            id: "w064", x: 520, y: 300, hitR: 22, shape: "dim", r: 10,
+            labels: [
+              { cls: "lbl-id", x: 520, y: 328, text: "W-064", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 520, y: 344, text: "Docker 化・有空再做" }
+            ],
+            aria: "W-064 Prime Agent Docker 化，查看詳情",
+            popover: {
+              title: "W-064 · Prime Agent Docker 化評估", status: "有空再做", pill: "dim", card: "card-w064",
+              bullets: ["無相依，可作為企業 Skill 自動化的執行環境參考"]
+            }
+          },
+          {
+            /* floating decision diamond — sits inside the infra <g> (data-line="infra")
+               but is not connected to the infra line by any connector path */
+            id: "w070", x: 452, y: 162, hitR: 18, shape: "done", r: 8,
+            labels: [
+              { cls: "lbl-sub", x: 452, y: 144, text: "W-070 ✓" }
+            ],
+            aria: "W-070 已完成，查看詳情",
+            popover: {
+              title: "W-070 · Gemini 研究引用驗證修復", status: "已完成", pill: "done", card: "card-w070",
+              bullets: [
+                "Claude 直接修：Step 4 新增強制 URL 實查，呼叫端親自 WebFetch，不再信任 Gemini 自報",
+                "當天實測（W-077 Mem0 研究）就抓到 10 個引用裡 4 個完全捏造、3 個文不對題"
+              ]
+            }
+          }
+        ]
+      },
+
+      {
+        id: "enterprise", title: "🏢 企業 Skill 自動化", titleX: 20, titleY: 342,
+        color: "var(--line-enterprise)",
+        connectors: [
+          { d: "M140,380 L300,380" },
+          { d: "M300,380 L520,380" },
+          { d: "M520,380 L680,380" },
+          { d: "M680,380 L820,380", dashed: true, markerEnd: true }
+        ],
+        notes: [
+          { x: 750, y: 368, text: "→ 交主管拍板" }
+        ],
+        stations: [
+          {
+            id: "w056", x: 140, y: 380, hitR: 18, shape: "done", r: 8,
+            labels: [{ cls: "lbl-sub", x: 140, y: 362, text: "W-056 ✓" }],
+            aria: "W-056 已完成，查看詳情",
+            popover: {
+              title: "W-056 · Skill 建置自動化①找現有方案", status: "已完成", pill: "done", card: "card-w057",
+              bullets: ["Codex／Gemini 兩份獨立調研已 ingest 進 wiki"]
+            }
+          },
+          {
+            id: "w057", x: 300, y: 380, hitR: 26, shape: "ready", r: 13,
+            labels: [
+              { cls: "lbl-id", x: 300, y: 358, text: "W-057", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 300, y: 412, text: "共享驗證機制・⏱ 立即 timebox" }
+            ],
+            aria: "W-057 共享驗證機制設計，查看詳情",
+            popover: {
+              title: "W-057 · 共享驗證機制設計", status: "今天・立即 timebox", pill: "today", card: "card-w057",
+              bullets: [
+                "已卡 3 天，不能再等更多研究延長",
+                "開 round-table 討論分析/設計/開發/測試階段的自動驗證機制",
+                "起點：Codex 五類 Gate 設計＋Durable Execution 層＋W-055 花園先例",
+                "今天列出卡住的具體假設 → 指定決策人與截止時間 → 先接受最小方案"
+              ]
+            }
+          },
+          {
+            id: "w058", x: 520, y: 380, hitR: 22, shape: "dim", r: 10,
+            labels: [
+              { cls: "lbl-id", x: 520, y: 358, text: "W-058", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 520, y: 412, text: "blocked by 057" }
+            ],
+            aria: "W-058 Checkpoint 拓撲比較，查看詳情",
+            popover: {
+              title: "W-058 · Checkpoint 拓撲比較", status: "blocked by 057", pill: "dim", card: "card-w058",
+              bullets: ["(a) 兩道 vs (b) 三道 checkpoint 完整對比，供主管決策"]
+            }
+          },
+          {
+            id: "w059", x: 680, y: 380, hitR: 22, shape: "wait", r: 10,
+            labels: [
+              { cls: "lbl-id", x: 680, y: 358, text: "W-059", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 680, y: 412, text: "Cheer 主導" }
+            ],
+            aria: "W-059 企業導入路徑，查看詳情",
+            popover: {
+              title: "W-059 · 企業導入路徑", status: "Cheer 主導", pill: "wait", card: "card-w059",
+              bullets: [
+                "對齊既有 6 階段治理框架與 CAB 變更管理慣例",
+                "規劃長榮 IT 落地方式"
+              ]
+            }
+          }
+        ]
+      },
+
+      {
+        id: "assistant", title: "🤖 個人 AI 助理", titleX: 20, titleY: 510,
+        color: "var(--line-assistant)",
+        connectors: [
+          { d: "M300,540 L520,540" },
+          { d: "M520,540 L680,540" },
+          { d: "M680,540 L740,480 L980,480" },
+          { d: "M680,540 L980,540" },
+          { d: "M680,540 L740,600 L980,600" },
+          { d: "M980,480 L1040,540 L1100,540" },
+          { d: "M980,540 L1100,540" },
+          { d: "M980,600 L1040,540 L1100,540" },
+          { d: "M1100,540 L1220,540", dashed: true, markerEnd: true },
+          { d: "M300,540 L350,590 L350,670 L1120,670", dashed: true, opacity: 0.55 }
+        ],
+        notes: [
+          { x: 350, y: 720, anchor: "start", opacity: 0.85, text: "待 W-074 完成後重新框定範圍（Phase 1 backlog，目前都還沒開始）" }
+        ],
+        stations: [
+          {
+            id: "w074", x: 300, y: 540, hitR: 27, shape: "ready", r: 14,
+            labels: [
+              { cls: "lbl-id", x: 300, y: 516, text: "W-074", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 300, y: 570, text: "最小規格・今天" }
+            ],
+            aria: "W-074 個人 AI 助理最小規格，查看詳情",
+            popover: {
+              title: "W-074 · 個人 AI 助理最小規格", status: "今天", pill: "today", card: "card-w074",
+              bullets: [
+                "核心＝控制平面（無狀態），Plugin＝能力平面（標準插頭介面）",
+                "log schema 先定 MUST 欄位，SHOULD（完整 payload）待遮罩規則定案",
+                "orchestrator 派工沿用 round-table 既有角色分工",
+                "記憶檢索沿用 work-tracker 現有「session 啟動讀 current.md」模式"
+              ]
+            }
+          },
+          {
+            id: "vslice", x: 520, y: 540, hitR: 22, shape: "wait", r: 10,
+            labels: [
+              { cls: "lbl-sub", x: 520, y: 516, text: "垂直切片" },
+              { cls: "lbl-sub", x: 520, y: 570, text: "（搜尋優先）" }
+            ],
+            aria: "垂直切片，查看詳情",
+            popover: {
+              title: "垂直切片（搜尋優先）", status: "緊接 074 之後", pill: "wait", card: "card-vslice",
+              bullets: [
+                "用搜尋能力跑通「輸入→派工→Tool呼叫→驗證→Log→回覆」全流程",
+                "驗證規格可行，再擴大到完整 plugin",
+                "Codex 提出，三方無異議採納"
+              ]
+            }
+          },
+          {
+            id: "gate", x: 680, y: 540, hitR: 24, shape: "gate",
+            labels: [{ cls: "lbl-sub", x: 680, y: 516, text: "驗證通過？" }],
+            aria: "驗證通過關卡，查看詳情",
+            popover: {
+              title: "驗證通過？", status: "決策關卡", pill: "wait", card: "card-vslice",
+              bullets: [
+                "垂直切片跑通、規格驗證可行才往下展開三個 plugin",
+                "沒通過就回頭修規格，不勉強硬上"
+              ]
+            }
+          },
+          {
+            id: "plugina", x: 980, y: 480, hitR: 22, shape: "wait", r: 10,
+            labels: [{ cls: "lbl-sub", x: 980, y: 458, text: "Plugin(a) 搜尋 ⭐" }],
+            aria: "Plugin a 搜尋能力，最優先，查看詳情",
+            popover: {
+              title: "Plugin (a) 搜尋能力 ⭐", status: "待垂直切片驗證後展開", pill: "dim", card: "card-w074",
+              bullets: [
+                "Cheer 點名最急：Pi 無 Deep Research、無法跟 Gemini 交互、Gemini 品質下降",
+                "對應 W-025，之後直接落地於此"
+              ]
+            }
+          },
+          {
+            id: "pluginb", x: 980, y: 540, hitR: 22, shape: "dim", r: 10,
+            labels: [{ cls: "lbl-sub", x: 980, y: 518, text: "Plugin(b) 記憶＋知識庫" }],
+            aria: "Plugin b 記憶與知識庫，查看詳情",
+            popover: {
+              title: "Plugin (b) 記憶＋知識庫", status: "待垂直切片驗證後展開", pill: "dim", card: "card-w074",
+              bullets: [
+                "長期記憶＋專屬知識庫，AI 不能只有記憶沒有知識",
+                "可能延伸現有 wiki+index 或另建 Vector DB（三方未深入辯論，留待設計時再議）"
+              ]
+            }
+          },
+          {
+            id: "pluginc", x: 980, y: 600, hitR: 22, shape: "dim", r: 10,
+            labels: [{ cls: "lbl-sub", x: 980, y: 626, text: "Plugin(c) 其他外接" }],
+            aria: "Plugin c 其他外接能力，查看詳情",
+            popover: {
+              title: "Plugin (c) 其他外接能力", status: "待垂直切片驗證後展開", pill: "dim", card: "card-w074",
+              bullets: ["同樣以 plugin 方式擴充，介面沿用 W-074 的標準插頭規格"]
+            }
+          },
+          {
+            id: "v1", x: 1160, y: 540, hitR: 20, shape: "none",
+            labels: [{ cls: "lbl-sub", x: 1160, y: 518, text: "→ 助理 v1" }],
+            aria: "個人 AI 助理 v1 目標，查看詳情",
+            popover: {
+              title: "個人 AI 助理 v1", status: "目標", pill: "wait", card: "card-w074",
+              bullets: ["核心 + 搜尋/記憶/其他外接 plugin 全部接上、觀測 log 跑起來的第一個可用版本"]
+            }
+          },
+
+          /* 6 backlog stations (opacity 0.6 each, matching the original's opacity-0.6 group wrapper) */
+          {
+            id: "w017", x: 470, y: 670, hitR: 18, shape: "dot", r: 7, opacity: 0.6,
+            labels: [{ cls: "lbl-sub", x: 470, y: 694, text: "017" }],
+            aria: "W-017 harness 架構研究，查看詳情",
+            popover: {
+              title: "W-017 · 研究 harness 架構", status: "待 074 後裁切", pill: "dim", card: "card-backlog6",
+              bullets: ["還沒開始做，等 W-074 最小規格出爐後重新框定範圍"]
+            }
+          },
+          {
+            id: "w025", x: 600, y: 670, hitR: 18, shape: "dot", r: 7, opacity: 0.6,
+            labels: [{ cls: "lbl-sub", x: 600, y: 694, text: "025⭐" }],
+            aria: "W-025 搜尋 Extension 研究，最優先，查看詳情",
+            popover: {
+              title: "W-025 · 搜尋 Extension 研究 ⭐", status: "待 074 後裁切 → 對應 Plugin(a)", pill: "dim", card: "card-backlog6",
+              bullets: ["Cheer 點名最急的 plugin，規格出爐後直接是 Plugin(a) 的落地任務"]
+            }
+          },
+          {
+            id: "w022", x: 730, y: 670, hitR: 18, shape: "dot", r: 7, opacity: 0.6,
+            labels: [{ cls: "lbl-sub", x: 730, y: 694, text: "022" }],
+            aria: "W-022 MCP Server 研究，查看詳情",
+            popover: {
+              title: "W-022 · 研究 MCP Server 架構", status: "待 074 後裁切", pill: "dim", card: "card-backlog6",
+              bullets: ["還沒開始做，等重新框定範圍"]
+            }
+          },
+          {
+            id: "w033", x: 860, y: 670, hitR: 18, shape: "dot", r: 7, opacity: 0.6,
+            labels: [{ cls: "lbl-sub", x: 860, y: 694, text: "033" }],
+            aria: "W-033 Hook 機制研究，查看詳情",
+            popover: {
+              title: "W-033 · 研究 Hook 機制", status: "待 074 後裁切", pill: "dim", card: "card-backlog6",
+              bullets: ["還沒開始做，等重新框定範圍"]
+            }
+          },
+          {
+            id: "new1", x: 990, y: 670, hitR: 18, shape: "dot", r: 7, opacity: 0.6,
+            labels: [{ cls: "lbl-sub", x: 990, y: 694, text: "NEW-1" }],
+            aria: "NEW-001 Session 管理研究，查看詳情",
+            popover: {
+              title: "NEW-001 · 研究 Session 管理", status: "待 074 後裁切", pill: "dim", card: "card-backlog6",
+              bullets: ["還沒開始做，等重新框定範圍"]
+            }
+          },
+          {
+            id: "new2", x: 1120, y: 670, hitR: 18, shape: "dot", r: 7, opacity: 0.6,
+            labels: [{ cls: "lbl-sub", x: 1120, y: 694, text: "NEW-2" }],
+            aria: "NEW-002 Context 管理研究，查看詳情",
+            popover: {
+              title: "NEW-002 · 研究 Context 管理", status: "待 074 後裁切", pill: "dim", card: "card-backlog6",
+              bullets: ["還沒開始做，等重新框定範圍"]
+            }
+          }
+        ]
+      }
+    ],
+
+    /* Card sections below the diagram. Each card cross-references a station id
+       only for id/name/track color reuse convenience where useful — the bullet
+       and foot text is authored here because it genuinely differs in wording
+       from the matching popover bullets in the original template (the card
+       prose is longer-form; see comment above ROADMAP). */
+    cardSections: [
+      {
+        trackId: "assistant", title: "🤖 個人 AI 助理架構願景",
+        note: "2026-08-22 圓桌會議（Claude + Gemini + Codex）共識",
+        cards: [
+          {
+            id: "card-w074", idText: "W-2026-08-074", pill: "today", pillText: "今天",
+            name: "最小規格：核心 vs Plugin 邊界",
+            bullets: [
+              "核心＝控制平面（無狀態、管流程/政策/派工/log，不管內容）",
+              "Plugin＝能力平面，介面像「標準插頭」，不能自行決定助理身份或記憶策略",
+              "observability log 先定 MUST 欄位（trace_id/span_id/actor/event_type/status），SHOULD 欄位（完整 payload/token 用量）要等遮罩規則定案才開",
+              "orchestrator 派工直接沿用 round-table 既有角色分工，記憶檢索沿用 work-tracker 現有「session 啟動讀 current.md」模式，不重新發明"
+            ],
+            foot: "產出後 → 立刻做垂直切片，不要 5 大維度全寫完才動手"
+          },
+          {
+            id: "card-vslice", idText: "垂直切片", pill: "wait", pillText: "緊接 074 之後",
+            name: "用搜尋能力跑通一次全流程",
+            bullets: [
+              "優先選搜尋（Cheer 點名最急：Pi 無 Deep Research、無法跟 Gemini 交互）",
+              "跑通「輸入 → 派工 → Tool 呼叫 → 驗證 → Log → 回覆」完整路徑",
+              "驗證規格可行，再擴大到完整搜尋 plugin、記憶 plugin"
+            ],
+            foot: "Codex 提出，Gemini／Claude 無異議採納"
+          },
+          {
+            id: "card-backlog6", idText: "六個 Phase 1 研究", pill: "dim", pillText: "待重新框定",
+            name: "W-017／025／022／033／NEW-001／NEW-002",
+            bullets: [
+              "目前全部都還沒開始（不是已完成研究，8/22 已訂正先前的誤述）",
+              "W-074 最小規格出爐後才裁切範圍，部分可能合併或縮小",
+              "W-025（搜尋研究）之後直接對應 Plugin(a)"
+            ]
+          }
+        ]
+      },
+      {
+        trackId: "enterprise", title: "🏢 企業 Skill 自動化研究",
+        note: "W-056 已完成 → 057 → 058 → 059",
+        cards: [
+          {
+            id: "card-w057", idText: "W-2026-08-057", pill: "today", pillText: "今天・立即 timebox",
+            name: "共享驗證機制設計",
+            bullets: [
+              "已卡 3 天，Codex 主張不能再等更多研究延長",
+              "開 round-table（Claude+Gemini+Copilot），討論「分析/設計/開發/測試」階段的自動驗證機制",
+              "起點素材：Codex 五類 Gate 設計（Contract/Policy/Quality/Human/Release）＋ Durable Execution 層 ＋ W-055 花園流程先例",
+              "今天做法：列出卡住的具體假設 → 逐項指定決策人與截止時間 → 先接受最小方案"
+            ]
+          },
+          {
+            id: "card-w058", idText: "W-2026-08-058", pill: "dim", pillText: "blocked by 057",
+            name: "Checkpoint 拓撲比較",
+            bullets: ["(a) 兩道 checkpoint vs (b) 三道 checkpoint 完整對比文件，供主管決策"]
+          },
+          {
+            id: "card-w059", idText: "W-2026-08-059", pill: "wait", pillText: "Cheer 主導",
+            name: "企業導入路徑",
+            bullets: ["對齊既有 6 階段治理框架與 CAB 變更管理慣例，規劃長榮 IT 落地方式"]
+          }
+        ]
+      },
+      {
+        trackId: "infra", title: "🛠️ 基礎設施",
+        cards: [
+          {
+            id: "card-w076", idText: "W-2026-08-076", pill: "done", pillText: "已完成",
+            name: "cheerio-roadmap skill 建立",
+            bullets: [
+              "地鐵路線圖風格工作進度視覺化，4 條軌道＋獨立決策菱形",
+              "資料驅動重構：單一 ROADMAP 物件驅動 SVG／彈出卡片／下方卡片三處渲染",
+              "已推上 cheerio-skills repo，之後問進度或更新 work/current.md 都會自動重繪同一個 Artifact 連結"
+            ]
+          },
+          {
+            id: "card-w072", idText: "W-2026-08-072", pill: "today", pillText: "今天",
+            name: "AI 模型 / Host 可用性登記表",
+            bullets: [
+              "觀察各家 CLI 真實限流錯誤訊息格式",
+              "開發 <code>lib/availability.mjs</code>：checkAvailability / recordBlocked / clearBlocked",
+              "三種 confidence：exact（照時間解封）／estimated（預設封1小時，之後探針重試）／human-reported（人講的，完全信任）",
+              "四個 bridge（agy/pi/codex/copilot）呼叫 CLI 前後都要接上"
+            ]
+          },
+          {
+            id: "card-w070", idText: "W-2026-08-070", pill: "done", pillText: "已完成",
+            name: "chat-with-gemini-research 引用驗證修復",
+            bullets: [
+              "Step 4 新增強制 URL 實查：呼叫端用 WebFetch 對每個 Tier 1/2 來源實際發送請求，不再只做格式檢查",
+              "查證失敗的引用：能換真來源就換，換不到就降級 [UNVERIFIED] 並移出正式來源列表",
+              "frontmatter 新增 citations_verified / verified_by 欄位"
+            ],
+            foot: "當天用 W-077 Mem0 研究實測，證實這套流程真的攔得住捏造引用"
+          },
+          {
+            id: "card-w064", idText: "W-2026-08-064", pill: "dim", pillText: "有空再做",
+            name: "Prime Agent Docker 化評估",
+            bullets: ["無相依，可作為 W-056~059 的執行環境參考，不急"]
+          }
+        ]
+      },
+      {
+        trackId: "garden", title: "🌱 知識花園",
+        note: "1 顆剛完成，2 顆在等別人",
+        cards: [
+          {
+            id: "card-w077", idText: "W-2026-08-077", pill: "done", pillText: "已完成",
+            name: "Mem0 深度研究（比較／限制／Decision-Ledger 適用性／授權定價）",
+            bullets: [
+              "Gemini 深度研究四角度，補既有 YouTube ingest 沒涵蓋的部分",
+              "Claude 用剛修好的 W-070 流程逐一 WebFetch 查證：10 個 Tier 1/2 來源中 2 個正確、3 個文不對題已換真來源、4 個完全捏造已降級移除",
+              "Decision-Ledger 論點原引用是兩個假網址，改用本機既有 Sakana AI 來源後論點站得住腳",
+              "Pi 寫入 wiki 後 Claude 逐檔核對，額外抓到 Pi 自行加的一列未查證授權比較，事後補查證確認無誤"
+            ],
+            foot: "生產環境限制角度仍是知識缺口，缺可信來源"
+          },
+          {
+            id: "card-w073", idText: "W-2026-08-073", pill: "wait", pillText: "等 Cheer 看稿",
+            name: "IBM Skill 心得補寫進《Skill》專題頁",
+            bullets: [
+              "Cheer 先看措辭草稿再決定要不要寫",
+              "切入角度：既有內容是「組織治理層」，補「個人習慣層」（用 skill 前自己該負的責任）",
+              "要寫的話：先開圓桌會議（Claude+Gemini）→ 寫入 Notion → 雙模型覆核"
+            ]
+          },
+          {
+            id: "card-w069", idText: "W-2026-08-069", pill: "wait", pillText: "等 Gemini",
+            name: "NPU 角色深度研究",
+            bullets: ["Gemini deep research 跑完後回填進 NPU 角色討論頁"]
+          }
+        ]
+      }
+    ]
+  };
+
+  /* =========================================================================
+   * Render: SVG (defs + today marker + per-track connectors/notes/stations)
+   * ========================================================================= */
+  function escAttr(s) { return String(s); }
+
+  function shapeMarkup(st) {
+    var x = st.x, y = st.y;
+    switch (st.shape) {
+      case "ready":
+        return '<circle cx="' + x + '" cy="' + y + '" r="' + st.r + '" class="station st-ready" fill="CURRENT_TRACK_COLOR" />';
+      case "wait":
+        return '<circle cx="' + x + '" cy="' + y + '" r="' + st.r + '" class="station st-wait" stroke="currentColor" />';
+      case "dim":
+        return '<circle cx="' + x + '" cy="' + y + '" r="' + st.r + '" class="station st-dim" stroke="currentColor" />';
+      case "done":
+        return '<circle cx="' + x + '" cy="' + y + '" r="' + st.r + '" class="station st-done" fill="currentColor" />';
+      case "gate":
+        return '<rect x="' + (x - 10) + '" y="' + (y - 10) + '" width="20" height="20" transform="rotate(45 ' + x + ' ' + y + ')" class="gate" stroke="currentColor" />';
+      case "decision":
+        return '<rect x="' + (x - 10) + '" y="' + (y - 10) + '" width="20" height="20" transform="rotate(45 ' + x + ' ' + y + ')" class="decision" />';
+      case "dot":
+        return '<circle cx="' + x + '" cy="' + y + '" r="' + st.r + '" fill="currentColor" />';
+      case "none":
+      default:
+        return "";
+    }
+  }
+
+  function labelsMarkup(labels) {
+    return (labels || []).map(function (l) {
+      var fillAttr = l.fill ? ' fill="' + l.fill + '"' : "";
+      return '<text x="' + l.x + '" y="' + l.y + '" text-anchor="' + (l.anchor || "middle") + '" class="' + l.cls + '"' + fillAttr + '>' + l.text + '</text>';
+    }).join("");
+  }
+
+  function nodeMarkup(st, trackId, trackColor) {
+    var opacityAttr = st.opacity != null ? ' opacity="' + st.opacity + '"' : "";
+    var shape = shapeMarkup(st).replace("CURRENT_TRACK_COLOR", trackColor);
+    return '<g class="node" data-key="' + st.id + '" data-line="' + trackId + '" tabindex="0" role="button" aria-label="' + escAttr(st.aria) + '"' + opacityAttr + '>' +
+      '<circle cx="' + st.x + '" cy="' + st.y + '" r="' + st.hitR + '" class="hit" />' +
+      shape +
+      labelsMarkup(st.labels) +
+      '</g>';
+  }
+
+  function connectorMarkup(c, trackId) {
+    var dashCls = c.dashed ? " dashed" : "";
+    var markerAttr = c.markerEnd ? ' marker-end="url(#arrow-' + trackId + ')"' : "";
+    var opacityAttr = c.opacity != null ? ' opacity="' + c.opacity + '"' : "";
+    return '<path d="' + c.d + '" class="line-path' + dashCls + '" stroke="currentColor"' + markerAttr + opacityAttr + ' />';
+  }
+
+  function noteMarkup(n) {
+    var opacityAttr = n.opacity != null ? ' opacity="' + n.opacity + '"' : "";
+    return '<text x="' + n.x + '" y="' + n.y + '" text-anchor="' + (n.anchor || "middle") + '" class="lbl-sub"' + opacityAttr + '>' + n.text + '</text>';
+  }
+
+  function trackMarkup(track) {
+    var connectors = track.connectors.map(function (c) { return connectorMarkup(c, track.id); }).join("\n");
+    var notes = (track.notes || []).map(noteMarkup).join("\n");
+    var nodes = track.stations.map(function (st) { return nodeMarkup(st, track.id, track.color); }).join("\n");
+    return '<g color="' + track.color + '">\n' + connectors + '\n' + notes + '\n' + nodes + '\n</g>\n' +
+      '<text x="' + track.titleX + '" y="' + track.titleY + '" text-anchor="start" class="line-title" fill="' + track.color + '">' + track.title + '</text>';
+  }
+
+  function defsMarkup(tracks) {
+    var markers = tracks.map(function (t) {
+      return '<marker id="arrow-' + t.id + '" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">' +
+        '<path d="M0,1 L9,5 L0,9 z" fill="' + t.color + '" /></marker>';
+    }).join("\n");
+    return "<defs>\n" + markers + "\n</defs>";
+  }
+
+  function todayMarkup(t) {
+    return '<line x1="' + t.x + '" y1="' + t.y1 + '" x2="' + t.x + '" y2="' + t.y2 + '" class="today-line" />\n' +
+      '<text x="' + t.x + '" y="' + t.labelY + '" text-anchor="middle" class="lbl-tag" fill="var(--accent-today)">' + t.label + '</text>\n' +
+      '<text x="' + t.x + '" y="' + t.subY + '" text-anchor="middle" class="lbl-sub">' + t.sub + '</text>';
+  }
+
+  function renderSVG(roadmap) {
+    var svg = document.getElementById("map-svg");
+    var html = defsMarkup(roadmap.tracks) + "\n" +
+      todayMarkup(roadmap.today) + "\n" +
+      roadmap.tracks.map(trackMarkup).join("\n");
+    svg.innerHTML = html;
+  }
+
+  /* =========================================================================
+   * Render: DETAILS lookup for the popover — built straight from station data
+   * ========================================================================= */
+  function buildDetails(roadmap) {
+    var details = {};
+    roadmap.tracks.forEach(function (track) {
+      track.stations.forEach(function (st) {
+        details[st.id] = {
+          title: st.popover.title,
+          status: st.popover.status,
+          pill: st.popover.pill,
+          line: track.id,
+          card: st.popover.card,
+          bullets: st.popover.bullets
+        };
+      });
+    });
+    return details;
+  }
+
+  function buildLineColor(roadmap) {
+    var map = {};
+    roadmap.tracks.forEach(function (t) { map[t.id] = t.color; });
+    return map;
+  }
+
+  /* =========================================================================
+   * Render: card sections below the diagram
+   * ========================================================================= */
+  function cardMarkup(card, sectionColor) {
+    var color = card.color || sectionColor;
+    var pillHtml = card.pill ? '<span class="pill ' + card.pill + '">' + card.pillText + '</span>' : "";
+    var footHtml = card.foot ? '<div class="foot">' + card.foot + '</div>' : "";
+    return '<div class="card" id="' + card.id + '" style="border-left-color:' + color + '">' +
+      '<div class="head"><span class="id">' + card.idText + '</span>' + pillHtml + '</div>' +
+      '<div class="name">' + card.name + '</div>' +
+      '<ul>' + card.bullets.map(function (b) { return "<li>" + b + "</li>"; }).join("") + '</ul>' +
+      footHtml +
+      '</div>';
+  }
+
+  function sectionMarkup(section, lineColor) {
+    var color = lineColor[section.trackId];
+    var noteHtml = section.note ? '<span class="note">' + section.note + '</span>' : "";
+    var cardsHtml = section.cards.map(function (c) { return cardMarkup(c, color); }).join("\n");
+    return '<section class="track">' +
+      '<div class="track-head">' +
+      '<span class="dot" style="background:' + color + '"></span>' +
+      '<h2>' + section.title + '</h2>' +
+      noteHtml +
+      '</div>' +
+      '<div class="cards">' + cardsHtml + '</div>' +
+      '</section>';
+  }
+
+  function renderCards(roadmap, lineColor) {
+    var root = document.getElementById("cards-root");
+    root.innerHTML = roadmap.cardSections.map(function (s) { return sectionMarkup(s, lineColor); }).join("\n");
+  }
+
+  /* =========================================================================
+   * Run the renders, then wire up interaction (unchanged from the
+   * hand-authored version — it only ever depended on DETAILS/LINE_COLOR
+   * and on .node / .card elements existing in the DOM, which they now do
+   * because renderSVG/renderCards just built them).
+   * ========================================================================= */
+  renderSVG(ROADMAP);
+  renderCards(ROADMAP, buildLineColor(ROADMAP));
+  var DETAILS = buildDetails(ROADMAP);
+  var LINE_COLOR = buildLineColor(ROADMAP);
+
+  var popover = document.getElementById("node-popover");
+  var popName = document.getElementById("popover-name");
+  var popPill = document.getElementById("popover-pill");
+  var popList = document.getElementById("popover-list");
+  var popDrag = document.getElementById("popover-drag");
+  var popClose = document.getElementById("popover-close");
+  var popReadMore = document.getElementById("popover-readmore");
+  var selected = null;
+  var MARGIN = 12;
+
+  function goToCard(cardId) {
+    var target = document.getElementById(cardId);
+    if (!target) return;
+    closeDetail();
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    target.classList.remove("flash");
+    // restart the animation even if it's already flashing from a previous click
+    void target.offsetWidth;
+    target.classList.add("flash");
+    target.addEventListener("animationend", function handler() {
+      target.classList.remove("flash");
+      target.removeEventListener("animationend", handler);
+    });
+  }
+
+  function positionPopover(anchorRect) {
+    popover.classList.remove("dragged", "side-left", "side-right");
+    popover.style.left = "";
+    popover.style.top = "";
+    // measure with it already open+placed off-screen-safe, since width is fixed (300px) via CSS
+    var w = popover.offsetWidth || 300;
+    var h = popover.offsetHeight || 160;
+    var anchorX = anchorRect.left + anchorRect.width / 2;
+    var anchorY = anchorRect.top + anchorRect.height / 2;
+
+    var side = "right";
+    var left = anchorX + 20;
+    if (left + w + MARGIN > window.innerWidth) {
+      side = "left";
+      left = anchorX - 20 - w;
+      if (left < MARGIN) { left = MARGIN; side = "right"; } // not enough room either side: pin left edge, keep tail hidden-ish
+    }
+
+    var top = anchorY - h / 2;
+    if (top < MARGIN) top = MARGIN;
+    if (top + h + MARGIN > window.innerHeight) top = window.innerHeight - h - MARGIN;
+    if (top < MARGIN) top = MARGIN; // popover taller than viewport: pin to top
+
+    popover.classList.add(side === "right" ? "side-right" : "side-left");
+    popover.style.left = Math.round(left) + "px";
+    popover.style.top = Math.round(top) + "px";
+
+    // point the tail at the node's actual vertical position, clamped inside the popover
+    var tail = popover.querySelector(".arrow-tail");
+    var tailY = anchorY - top;
+    tailY = Math.max(16, Math.min(h - 16, tailY));
+    tail.style.top = Math.round(tailY) + "px";
+  }
+
+  function showDetail(key, node) {
+    var d = DETAILS[key];
+    if (!d) return;
+    if (selected) selected.classList.remove("selected");
+    selected = node;
+    node.classList.add("selected");
+
+    popName.textContent = d.title;
+    popPill.textContent = d.status;
+    popPill.className = "pill " + d.pill;
+    popover.style.borderLeft = "4px solid " + LINE_COLOR[d.line];
+    popList.innerHTML = d.bullets.map(function (b) { return "<li>" + b + "</li>"; }).join("");
+    popReadMore.onclick = d.card ? function () { goToCard(d.card); } : null;
+    popReadMore.style.display = d.card ? "" : "none";
+
+    popover.classList.add("open");
+
+    var hit = node.querySelector(".hit") || node;
+    positionPopover(hit.getBoundingClientRect());
+
+    document.addEventListener("mousedown", handleOutsideClick, true);
+    document.addEventListener("keydown", handleEscape, true);
+  }
+
+  function closeDetail() {
+    if (selected) selected.classList.remove("selected");
+    selected = null;
+    popover.classList.remove("open", "dragged", "side-left", "side-right");
+    document.removeEventListener("mousedown", handleOutsideClick, true);
+    document.removeEventListener("keydown", handleEscape, true);
+  }
+
+  function handleOutsideClick(e) {
+    if (popover.contains(e.target) || e.target.closest(".node")) return;
+    closeDetail();
+  }
+  function handleEscape(e) {
+    if (e.key === "Escape") closeDetail();
+  }
+
+  popClose.addEventListener("click", closeDetail);
+
+  /* ---- drag the popover around ---- */
+  var dragState = null;
+  popDrag.addEventListener("pointerdown", function (e) {
+    if (e.target === popClose) return;
+    var rect = popover.getBoundingClientRect();
+    dragState = { startX: e.clientX, startY: e.clientY, origLeft: rect.left, origTop: rect.top };
+    popDrag.setPointerCapture(e.pointerId);
+    popover.classList.add("dragged");
+  });
+  popDrag.addEventListener("pointermove", function (e) {
+    if (!dragState) return;
+    var dx = e.clientX - dragState.startX;
+    var dy = e.clientY - dragState.startY;
+    popover.style.left = Math.round(dragState.origLeft + dx) + "px";
+    popover.style.top = Math.round(dragState.origTop + dy) + "px";
+  });
+  function endDrag(e) {
+    if (!dragState) return;
+    dragState = null;
+    try { popDrag.releasePointerCapture(e.pointerId); } catch (err) {}
+  }
+  popDrag.addEventListener("pointerup", endDrag);
+  popDrag.addEventListener("pointercancel", endDrag);
+
+  var svg = document.getElementById("map-svg");
+  svg.addEventListener("click", function (e) {
+    var g = e.target.closest(".node");
+    if (!g) return;
+    showDetail(g.getAttribute("data-key"), g);
+  });
+  svg.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var g = e.target.closest(".node");
+    if (!g) return;
+    e.preventDefault();
+    showDetail(g.getAttribute("data-key"), g);
+  });
+
+  /* ---- zoom controls ---- */
+  var svgEl = document.getElementById("map-svg");
+  var zoomLevel = document.getElementById("zoom-level");
+  var scale = 1;
+  var BASE_WIDTH = 1360;
+
+  function setScale(next) {
+    scale = Math.min(2.5, Math.max(0.6, next));
+    svgEl.style.width = Math.round(BASE_WIDTH * scale) + "px";
+    zoomLevel.textContent = Math.round(scale * 100) + "%";
+  }
+
+  document.querySelectorAll(".zoom-toolbar button").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var action = btn.getAttribute("data-zoom");
+      if (action === "in") setScale(scale + 0.2);
+      else if (action === "out") setScale(scale - 0.2);
+      else setScale(1);
+    });
+  });
+})();
+</script>

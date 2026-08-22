@@ -3,7 +3,7 @@ title: "Mem0 — AI Agent 長期記憶框架"
 type: entity
 created: 2026-08-22
 updated: 2026-08-22
-sources: 2
+sources: 3
 tags: [memory, ai-agent, vector-store, entity-memory]
 topics: [ai-agent, agent-memory-context]
 canonical: entities/mem0
@@ -100,7 +100,40 @@ LLM extraction 的 context 組裝 `[10:42]`：
 
 - 開源：https://github.com/mem0ai/mem0
 - 文件：https://docs.mem0.ai/
-- 付費版：Pro 版支援圖記憶功能
+- 授權：Apache-2.0（允許商業使用、修改、私有部署）
+- 付費版：Hobby Free / Starter $19 / Pro $249 / Enterprise Custom（⚠️ 沒有 Growth 方案）
+
+## ⚠️ Graph Memory 已從開源版移除
+
+官方文件明確寫「Graph memory is removed from the open-source SDK... graph memory is a Mem0 Platform feature」。`enable_graph` 設定與 `graph_store` 區塊都已失效，Neo4j / Memgraph / Kuzu 等外部圖資料庫驅動全部移除。需要圖記憶功能必須遷移到 Mem0 Platform（託管版）。
+
+> 來源：[Mem0 官方文件 — Graph Memory Overview](https://docs.mem0.ai/open-source/graph_memory/overview)（2026-08-22 WebFetch 確認）
+
+## 跟其他記憶系統比較
+
+| 維度 | Mem0 | Zep (Graphiti) | MemGPT (Letta) | LangMem |
+|---|---|---|---|---|
+| 核心哲學 | 使用者導向事實提煉 | 時序知識圖譜 | 操作系統級記憶分頁 | 框架原生記憶組件 |
+| 時間有效性 | 弱（依賴覆蓋，非原生時序邊） | 強（原生時序邊 + 有效時間標籤） | 中（Agent 主動更新） | 弱（需手動編寫邏輯） |
+| 控制主導權 | 系統自動化 Ingestion Pipeline | 系統自動化 Graph Ingestion | Agent 自主調用 tool 分頁 | 開發者編寫 LangGraph node |
+| 最佳情境 | Chatbot 個人化、跨對話用戶偏好 | 企業級動態實體關係追蹤 | 超長對話／自主演進 Agent | 已深度綁定 LangChain/LangGraph 生態 |
+| 授權 | Apache-2.0 | Apache-2.0 | Apache-2.0 | MIT |
+
+> 授權欄位為 Pi 整理時補充，非查證版報告原有內容；Claude 已於 2026-08-22 用 WebFetch 逐一確認 getzep/graphiti、letta-ai/letta、langchain-ai/langmem 三個 repo 的授權標示無誤。
+
+**取捨要點**：
+- Mem0 開箱即用、框架無關，適合跨框架共用記憶服務
+- Zep 核心差異化在原生時序邊——能精確處理「使用者資訊隨時間改變」
+- MemGPT 讓 LLM 自己決定何時寫入/抹除記憶（更高自主性、更高 reasoning 負擔）
+- LangMem 綁死 LangChain/LangGraph 生態，但零額外架構成本
+
+> 詳見 [[wiki/sources/2026-08-22-mem0-deep-research-comparison|Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價]]
+
+## Mem0 vs Decision-Ledger 適用性
+
+Mem0 向量式設計適合 **Semantic Memory**（語意/事實偏好），**不適合直接取代** Procedural Memory 或決策軌跡記錄。兩者應疊加使用：Mem0 管語意記憶，獨立的 decision-ledger 結構管程序記憶與決策軌跡。
+
+> 詳見 [[wiki/discussions/mem0-vs-decision-ledger-for-w074|Mem0 vs Decision-Ledger 對 W-074 架構的適用性]]
 
 ## 來源
 
@@ -111,6 +144,8 @@ LLM extraction 的 context 組裝 `[10:42]`：
 
 ## 相關頁面
 
+- [[wiki/sources/2026-08-22-mem0-deep-research-comparison|Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價]]
+- [[wiki/discussions/mem0-vs-decision-ledger-for-w074|Mem0 vs Decision-Ledger 對 W-074 架構的適用性]]
 - [[wiki/concepts/ai-agent-memory-systems|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]]
 - [[wiki/entities/memgraph-rag|MemGraph-RAG — 記憶圖譜多智能體檢索增強生成]]
 - [[wiki/concepts/harness|Harness — LLM 的驅動層]]

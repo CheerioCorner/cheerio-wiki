@@ -22,6 +22,10 @@ updated: 2026-08-23
 ## Entities
 
 - [[wiki/entities/mem0|Mem0 — AI Agent 長期記憶框架]] — 開源記憶框架，行記憶 + 圖記憶，LLM extraction + 三階段 re-ranking 🛠️
+
+## Discussions
+
+- [[wiki/discussions/mem0-vs-decision-ledger-for-w074|Mem0 vs Decision-Ledger 對 W-074 架構的適用性]] — Mem0 適合 Semantic Memory，不適合直接取代 Procedural Memory，兩者應疊加使用
 - [[wiki/entities/docling|Docling — IBM 文件解析與結構化框架]] — IBM Research Zurich 開發的文件解析框架，65k+ stars，支援 30+ 格式 → 結構化 DoclingDocument tree，整合 LangChain/LlamaIndex/Haystack/MCP
 - [[wiki/entities/ai-agent-core/token-budget|Token 預算]] — 模型資源分配與限制
 
@@ -32,6 +36,7 @@ updated: 2026-08-23
 - [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|AI Agent Memory Systems — 5 種記憶架構設計方式]] — 記憶存儲、檢索、維護的完整比較與實測（舊版）
 - [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|Memory Harnesses for Long-Running Research Agents]] — Sakana AI 實驗：write-manage-read 迴圈、recall policy ladder 🛠️
 - [[wiki/sources/2026-08-20-shlok-khemani-chatgpt-and-claude-memory|Shlok Khemani — ChatGPT/Claude 記憶系統分析]] — 消費級產品個人化記憶（不同領域）🛠️
+- [[wiki/sources/2026-08-22-mem0-deep-research-comparison|Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價]] — 四角度深度研究（已查證版）：系統比較 / 生產限制 / Decision-Ledger 適用性 / 授權定價 🛠️
 - [[wiki/sources/2026-08-10-chunkless-rag-docling|What Is Chunkless RAG? How Docling & AI Agents Navigate Documents]] — IBM Docling 如何讓 AI Agent 保留文件結構做 Chunkless RAG
 
 ## 相關 Topics

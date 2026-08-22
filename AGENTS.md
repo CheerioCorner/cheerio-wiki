@@ -52,7 +52,8 @@ Obsidian/
 │   ├── history/YYYY-MM.md  # 按月分片的完成／決策／活動事件
 │   ├── designs/            # 設計文件（需求分析、架構規劃）
 │   ├── learning/           # 月度學習紀錄
-│   └── synthesis/          # 綜合分析報告
+│   ├── synthesis/          # 綜合分析報告
+│   └── roadmap/            # cheerio-roadmap skill 最近一次真實輸出（不隨 skill 同步進共用 repo）
 └── AGENTS.md               # 本檔，工作守則
 ```
 
@@ -60,7 +61,7 @@ Obsidian/
 - `raw/` = 原始資料。永遠只讀；依來源通道分為 `web/`、`youtube/`、`conversations/`、`notion-ingest/`、`research/`，附件集中於 `assets/`。
 - `projects/<project-id>/` = Project OKF Bundle；不取代 package repository 或原始碼。
 - `wiki/` = canonical knowledge graph。`topics.md` 是 `topics/` 的總目錄（只放連結，不重複列頁面）；`topics/*.md` 才是各 topic 的完整頁面清單；`index.md` 的 Topics 分區只連到 `topics/*.md`，不重複列出每一頁——三處只有一處是真正的全量清單，避免重複維護造成漂移。`visualizations/` 每張地圖須在 `README.md` 註冊並標示 topics。
-- `work/` = 唯一的工作狀態系統。`current.md` 管理目前工作，`history/` 保存事件，`designs/` `learning/` `synthesis/` 保存輔助文件。舊工作目錄已完成遷移，不得重新建立。
+- `work/` = 唯一的工作狀態系統。`current.md` 管理目前工作，`history/` 保存事件，`designs/` `learning/` `synthesis/` 保存輔助文件，`roadmap/` 保存 cheerio-roadmap skill 的視覺化輸出（不是知識內容，不隨 skill 同步進 GitHub）。舊工作目錄已完成遷移，不得重新建立。
 - `AGENTS.md` = 治理入口，由人類與 LLM 共同演化。
 
 ---
