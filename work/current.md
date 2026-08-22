@@ -235,9 +235,10 @@
 
 - [ ] W-2026-08-022 研究 MCP Server 架構與實作 #ai-agent
   - next: 調研 MCP protocol spec、transport 層、tool/resource/prompt 三大原語
-  - refs: [[wiki/entities/pi-mono|pi-mono]]
+  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[work/current#W-2026-08-079|W-079]]（42 篇官方文件已剪藏進 raw/web，待 ingest 進 wiki 才有素材可讀）
   - 預估時間：2-3 小時
   - 為什麼重要：MCP 是 Tool 系統的標準協定
+  - 備註：素材已到位（見 W-079），之後研究不用再自己找來源，直接讀 ingest 完的 wiki 頁面即可
 
 - [ ] W-2026-08-033 研究 Hook 機制：不同 IDE / Harness 的實作比較 #ai-agent
   - next: 調研 Claude Code、Cursor、Windsurf、Pi Agent 的 hook 系統
@@ -311,6 +312,12 @@
 ## Blocked
 
 ## Backlog
+
+- [ ] W-2026-08-079 Pi 整理 raw/web MCP 官方文件剪藏進 wiki 🆕 #knowledge #ai-agent #mcp
+  - next: 指派 Pi 依 `wiki-ingest` 既有流程，把 `raw/web/2026-08-22-*.md`（42 篇，modelcontextprotocol.io 官方文件，涵蓋 Authorization／MCP Registry／Build a Server／Build a Client／Versioning／Extensions 等主題）整理進 wiki：建 source note、視情況拆 concept/entity 頁面、更新 index/log/topics
+  - refs: [[work/current#W-2026-08-022|W-022]]（研究 MCP Server 架構，這批文件正是它的素材）、`raw/web/2026-08-22-*.md`（42 篇原始剪藏）
+  - 起因：2026-08-22 同步 wiki 時發現有 session 已經把一整批 MCP 官方文件剪藏進 raw/web，但還沒 ingest 進 wiki；Cheer 指出這正好對應既有的 W-022 backlog 研究項目，兩邊不用分開處理
+  - 無相依，可任何 session 切入（適合指派給 Pi）
 
 - [ ] W-2026-08-075 未來：抽出「地鐵路線圖」設計系統給公司 Azure DevOps Analysis Report skill 重用 🆕 #ai-agent #devops #visualization
   - next: 等公司端 Azure DevOps work item/工時 API 可接（或決定用哪種方式讀取）之後，新建 `devops-analysis-report` skill，資料源換成 Azure DevOps，但 [[cheerio-roadmap 設計系統|C:\Users\User\.claude\skills\cheerio-roadmap\SKILL.md]] 裡的 CSS/JS（地鐵路線圖 SVG、可拖移浮動 popover、Read more 導頁高亮、zoom 工具列）直接搬過去重用，不重新設計
