@@ -14,6 +14,8 @@
     --line-infra: #c97a1f;
     --line-enterprise: #2f6fbf;
     --line-assistant: #8a3fae;
+    --line-ado: #0e7c86;
+    --line-harness: #a83e6c;
     --accent-today: #c13b3b;
     --star: #a9822a;
     --shadow: 0 1px 2px rgba(20, 30, 25, 0.06), 0 8px 24px rgba(20, 30, 25, 0.06);
@@ -30,6 +32,8 @@
       --line-infra: #e2a04e;
       --line-enterprise: #6ea3e6;
       --line-assistant: #c07ee0;
+      --line-ado: #4fd0da;
+      --line-harness: #e07fb0;
       --accent-today: #e2555a;
       --star: #e8c766;
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.35);
@@ -46,6 +50,8 @@
     --line-infra: #e2a04e;
     --line-enterprise: #6ea3e6;
     --line-assistant: #c07ee0;
+    --line-ado: #4fd0da;
+    --line-harness: #e07fb0;
     --accent-today: #e2555a;
     --star: #e8c766;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.35);
@@ -131,7 +137,7 @@
   }
   .zoom-scroll svg {
     display: block;
-    width: 1360px;
+    width: 1820px;
     max-width: none;
     height: auto;
   }
@@ -293,6 +299,34 @@
   .glyph.done { background: var(--muted); opacity: .5; }
   .glyph.decision { background: var(--surface); border: 2px dashed var(--accent-today); border-radius: 3px; transform: rotate(45deg); }
 
+  /* ---- back-to-top floating button ---- */
+  .back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px 10px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .back-to-top:hover { border-color: var(--line-assistant); color: var(--line-assistant); }
+  .back-to-top .arrow { font-size: 15px; }
+  @media (max-width: 640px) {
+    .back-to-top { right: 16px; bottom: 16px; padding: 10px 12px; font-size: 0; gap: 0; }
+    .back-to-top .arrow { font-size: 16px; }
+  }
+
   /* ---- track sections ---- */
   .track {
     display: flex;
@@ -362,9 +396,9 @@
 <div class="wrap">
 
   <header class="page">
-    <span class="eyebrow">2026-08-22 · Claude + Gemini + Codex 圓桌共識</span>
+    <span class="eyebrow">2026-08-22 · 兩場圓桌會議共識（架構願景 + ADO 領域專家 Agent）</span>
     <h1>Cheerio 路線圖</h1>
-    <p class="subtitle">目前手上四條工作軌道，哪些今天可以平行起跑、哪些互相依賴、哪些只是在等一句話。垂直虛線標的是「今天」。</p>
+    <p class="subtitle">目前手上六條工作軌道，哪些今天可以平行起跑、哪些互相依賴、哪些只是在等一句話。垂直虛線標的是「今天」。</p>
   </header>
 
   <div class="map-card">
@@ -377,10 +411,10 @@
     </div>
     <figure>
       <div class="zoom-scroll">
-      <svg id="map-svg" viewBox="0 0 1360 760" role="img" aria-label="四條工作軌道的路線圖：知識花園線、基礎設施線、企業 Skill 自動化線、個人 AI 助理線。個人 AI 助理線的 W-074 最小規格站之後分兩路，一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。一條紅色虛線標出 2026-08-22 可以同時起跑的三個站：W-072、W-057、W-074。每個站點可點擊查看詳情。">
+      <svg id="map-svg" viewBox="0 0 1820 1180" role="img" aria-label="六條工作軌道的路線圖：知識花園線、基礎設施線、企業 Skill 自動化線、個人 AI 助理線、ADO 領域專家 Agent 線、自建 Agent 學習線。個人 AI 助理線的 W-074 最小規格站之後分兩路，一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。第五條 ADO 領域專家 Agent 線是同日第二場圓桌會議加碼開的，Cheer 兩輪事後訂正後改成「先驗證連通性、再設計 Tool、再驗證 Agent 架構，最後才決定 Plugin 定位與開發 Publish View」的順序；Block 1 的 ADO／SharePoint／Outlook 三項連通性驗證各自有獨立 work ID 且可並行，因此畫成三條分支後再匯合，不擠在同一個節點。第六條自建 Agent 學習線把原本埋在 Phase 1-4 backlog 裡、完全沒露臉的研究待辦（含 3 項 MCP 相關研究）集中呈現。一條紅色虛線標出 2026-08-23 可以同時起跑的站：W-057、W-074、W-080、W-029、W-030。每個站點可點擊查看詳情。">
       </svg>
       </div>
-      <figcaption>四條工作軌道：知識花園線在等 Cheer／Gemini；基礎設施線今天讓 W-072 直接動手；企業 Skill 自動化線今天解開卡 3 天的 W-057；個人 AI 助理線是今天新開的主線，W-074 最小規格站之後分兩路——一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。W-070 是浮動的獨立小決策，不屬於任何一條軌道。</figcaption>
+      <figcaption>六條工作軌道：知識花園線的 W-073 已完成並經 Cheer 確認（wiki＋Notion 花園頁雙寫，過程中發現的可用性登記表誤鎖 bug 已獨立拆成 W-086）；W-082（8/23 排到 W-069 之前）初評已完成，等 Cheer 看摘要決定；W-069 等 Gemini 深度研究背景跑完。基礎設施線已全數完成（W-083／W-076／W-072／W-070），僅剩 W-064（Docker 化，有空再做）與新拆出的 W-086（可用性登記表誤鎖 bug，backlog）；企業 Skill 自動化線今天解開卡 3 天的 W-057；個人 AI 助理線是今天新開的主線，W-074 最小規格站之後分兩路——一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍；ADO 領域專家 Agent 線今天先評估 OCR 能否輔助開發，再開始 ADO／SharePoint／Outlook 三條並行支線各自的溝通可行性驗證（各有獨立 work ID，不擠在同一節點），三線全過才匯合去設計 Tool 介面、驗證 Agent 架構、最後才決定 Plugin 定位與開發 Publish View；自建 Agent 學習線是原本埋在 work/current.md Phase 1-4 backlog 裡完全沒上圖的研究待辦，今天可直接動手的是學習系統與 OCR 安裝，MCP 相關研究單獨集中成一站（含 Server 架構、Registry 企業管理、官方文件 ingest 三項）。W-070 是浮動的獨立小決策，不屬於任何一條軌道。</figcaption>
     </figure>
   </div>
 
@@ -410,10 +444,14 @@
   <div id="cards-root"></div>
 
   <footer class="page">
-    共識來源：<span class="mono">.pi/round-table/20260822-161304/synthesis.md</span>（Claude + Gemini + Codex，1 輪收斂，無實質分歧）。工作項目詳情見 <span class="mono">Obsidian/work/current.md</span>。
+    共識來源：<span class="mono">.pi/round-table/20260822-161304/synthesis.md</span>（架構願景，Claude+Gemini+Codex，1 輪收斂）、<span class="mono">.pi/round-table/20260822-214627/synthesis.md</span>（ADO 領域專家 Agent，2 輪收斂，Cheer 事後訂正 Tech Stack／輸出分層／PoC 範圍）。工作項目詳情見 <span class="mono">Obsidian/work/current.md</span>。
   </footer>
 
 </div>
+
+<button type="button" id="back-to-top" class="back-to-top" aria-label="回到路線圖頂端">
+  <span class="arrow">⬆</span><span class="txt">回到路線圖</span>
+</button>
 
 <script>
 (function () {
@@ -434,9 +472,9 @@
    * ========================================================================= */
   var ROADMAP = {
     today: {
-      x: 300, y1: 55, y2: 735,
-      label: "📍 2026-08-22 同時起跑", labelY: 36,
-      sub: "W-072・W-057・W-074", subY: 750
+      x: 300, y1: 55, y2: 1080,
+      label: "📍 2026-08-23 同時起跑", labelY: 36,
+      sub: "W-057・W-074・W-080・W-029・W-030", subY: 1100
     },
 
     tracks: [
@@ -447,11 +485,12 @@
           { d: "M40,120 L140,120", dashed: true },
           { d: "M140,120 L340,120" },
           { d: "M340,120 L560,120" },
-          { d: "M560,120 L760,120", dashed: true, markerEnd: true }
+          { d: "M560,120 L680,120" },
+          { d: "M680,120 L880,120", dashed: true, markerEnd: true }
         ],
         notes: [
           { x: 44, y: 106, anchor: "start", text: "既有進行中" },
-          { x: 700, y: 106, text: "→ 持續匯入花園" }
+          { x: 820, y: 106, text: "→ 持續匯入花園" }
         ],
         stations: [
           {
@@ -467,31 +506,48 @@
             }
           },
           {
-            id: "w073", x: 340, y: 120, hitR: 24, shape: "wait", r: 11,
-            labels: [
-              { cls: "lbl-id", x: 340, y: 152, text: "W-073", fill: "var(--ink)" },
-              { cls: "lbl-sub", x: 340, y: 169, text: "等 Cheer 看稿" }
-            ],
-            aria: "W-073 IBM Skill 心得補寫，查看詳情",
+            id: "w073", x: 340, y: 120, hitR: 18, shape: "done", r: 8,
+            labels: [{ cls: "lbl-sub", x: 340, y: 102, text: "W-073 ✓" }],
+            aria: "W-073 已完成，查看詳情",
             popover: {
-              title: "W-073 · IBM Skill 心得補寫", status: "等 Cheer 看稿", pill: "wait", card: "card-w073",
+              title: "W-073 · IBM Skill 心得補寫", status: "已完成", pill: "done", card: "card-w073",
               bullets: [
-                "Cheer 先看措辭草稿再決定要不要寫",
-                "切入角度：補「個人習慣層」，既有內容是組織治理層",
-                "要寫的話：先開圓桌會議（Claude+Gemini）→ 寫入 Notion → 雙模型覆核"
+                "wiki 概念頁＋Notion 花園頁皆補入 5 項重點，Cheer 審閱後確認無問題",
+                "過程波折：Pi 派工兩度被可用性登記表誤鎖（bug 已拆成獨立項目 W-086）；Notion 寫入曾破壞 UTF-8 編碼、產生重複內容，最終改用 Notion API 直接 PATCH block 才成功",
+                "Claude 不採信 Pi 自報，獨立重新 fetch 頁面核對：無亂碼、內容各僅出現一次、既有內容未受影響"
               ]
             }
           },
           {
-            id: "w069", x: 560, y: 120, hitR: 24, shape: "wait", r: 11,
+            id: "w082", x: 560, y: 120, hitR: 24, shape: "wait", r: 11,
             labels: [
-              { cls: "lbl-id", x: 560, y: 152, text: "W-069", fill: "var(--ink)" },
-              { cls: "lbl-sub", x: 560, y: 169, text: "等 Gemini 研究" }
+              { cls: "lbl-id", x: 560, y: 152, text: "W-082", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 560, y: 169, text: "設計完成・等 Cheer 拍板" }
+            ],
+            aria: "W-082 Research Collection Service 設計，查看詳情",
+            popover: {
+              title: "W-082 · NotebookLM 深度研究重新設計為跨 Agent Research Collection Service", status: "設計已完成・等 Cheer 拍板才實作", pill: "wait", card: "card-w082",
+              bullets: [
+                "範圍大轉向：不是整理 12 支舊 skill，是全新設計——只留「先問清楚要查什麼」+「執行/篩選/匯入」兩個能力精神，合併成跨 Agent（Claude/Gemini/Codex/Copilot/未來自建 Agent）共用的 MCP server，NotebookLM 是第一個 provider",
+                "Claude+Codex 討論 → Pi 起草設計 → Gemini 覆核，已跑完三步；Gemini 抓到 4 個真問題，3 個技術性的已修好，1 個判斷性的（要不要做查詢優化器）留給 Cheer",
+                "12 支舊 skill 完全沒動，等 Cheer 過目設計文件、拍板剩餘決策點，才會讓 Pi 開始實作"
+              ]
+            }
+          },
+          {
+            id: "w069", x: 680, y: 120, hitR: 24, shape: "wait", r: 11,
+            labels: [
+              { cls: "lbl-id", x: 680, y: 152, text: "W-069", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 680, y: 169, text: "等 Gemini・第二順位" }
             ],
             aria: "W-069 NPU 角色深度研究，查看詳情",
             popover: {
-              title: "W-069 · NPU 角色深度研究", status: "等 Gemini", pill: "wait", card: "card-w069",
-              bullets: ["Gemini deep research 跑完後回填進 NPU 角色討論頁"]
+              title: "W-069 · NPU 角色深度研究", status: "等 Gemini（8/23 改列第二順位）", pill: "wait", card: "card-w069",
+              bullets: [
+                "8/23 Cheer 判斷 W-082 更具價值，本項目改列第二順位",
+                "Gemini deep research 仍在背景跑，不受影響，只是回填/跟進動作往後排",
+                "跑完後回填進 NPU 角色討論頁"
+              ]
             }
           }
         ]
@@ -501,14 +557,29 @@
         id: "infra", title: "🛠️ 基礎設施", titleX: 20, titleY: 212,
         color: "var(--line-infra)",
         connectors: [
+          { d: "M40,250 L140,250", dashed: true },
           { d: "M140,250 L300,250" },
           { d: "M300,250 L460,250", dashed: true, markerEnd: true },
-          { d: "M300,250 L350,300 L520,300", dashed: true }
+          { d: "M300,250 L350,300 L520,300", dashed: true },
+          { d: "M520,300 L680,300", dashed: true, markerEnd: true }
         ],
         notes: [
+          { x: 44, y: 236, anchor: "start", text: "既有進行中" },
           { x: 475, y: 240, text: "→ 持續維運" }
         ],
         stations: [
+          {
+            id: "w083", x: 40, y: 250, hitR: 18, shape: "done", r: 8,
+            labels: [{ cls: "lbl-sub", x: 40, y: 232, text: "W-083 ✓" }],
+            aria: "W-083 已完成，查看詳情",
+            popover: {
+              title: "W-083 · workspace 資料夾整併", status: "已完成", pill: "done", card: "card-w083",
+              bullets: [
+                "Claude/mcp-bridges、Projects/ 下 3 個 repo 全部併入 CheerioCorner/（git remote 確認皆屬 CheerioCorner org）",
+                "同步更新 .mcp.json 的 4 個 bridge 路徑，否則下次 MCP 重連會失效"
+              ]
+            }
+          },
           {
             id: "w076", x: 140, y: 250, hitR: 18, shape: "done", r: 8,
             labels: [{ cls: "lbl-sub", x: 140, y: 232, text: "W-076 ✓" }],
@@ -517,24 +588,23 @@
               title: "W-076 · cheerio-roadmap skill 建立", status: "已完成", pill: "done", card: "card-w076",
               bullets: [
                 "地鐵路線圖風格工作進度視覺化，資料驅動架構（單一 ROADMAP 物件）",
-                "已推上 cheerio-skills repo，之後問進度會自動重繪同一個連結"
+                "已推上 cheerio-skills repo，之後問進度會自動重繪同一個連結",
+                "W-084（8/23）：新增右下角「回到路線圖」浮動按鈕，並確認 Artifact 原生留言功能可作為 feedback 管道"
               ]
             }
           },
           {
-            id: "w072", x: 300, y: 250, hitR: 26, shape: "ready", r: 13,
+            id: "w072", x: 300, y: 250, hitR: 18, shape: "done", r: 8,
             labels: [
-              { cls: "lbl-id", x: 300, y: 228, text: "W-072", fill: "var(--ink)" },
-              { cls: "lbl-sub", x: 300, y: 282, text: "可用性登記表・今天實作" }
+              { cls: "lbl-sub", x: 300, y: 232, text: "W-072 ✓" }
             ],
-            aria: "W-072 AI 模型可用性登記表，查看詳情",
+            aria: "W-072 已完成，查看詳情",
             popover: {
-              title: "W-072 · AI 模型/Host 可用性登記表", status: "今天", pill: "today", card: "card-w072",
+              title: "W-072 · AI 模型/Host 可用性登記表", status: "已完成", pill: "done", card: "card-w072",
               bullets: [
-                "觀察各家 CLI 真實限流錯誤訊息格式",
-                "開發 lib/availability.mjs：checkAvailability / recordBlocked / clearBlocked",
-                "三種 confidence：exact／estimated（1 小時後探針重試）／human-reported",
-                "四個 bridge（agy/pi/codex/copilot）呼叫前後都要接上"
+                "lib/availability.mjs：checkAvailability / recordBlocked / clearBlocked，三種 confidence（exact/estimated/human-reported）",
+                "四個 bridge（agy/pi/codex/copilot）呼叫前後都已接上，npm test 94/94 全過",
+                "Pi 驗收＋Gemini 監督時抓到 mcp-config.example.json 洩漏真實機器路徑（既有問題，一併修掉）與 2 個文件缺口，補完後 commit cf2dc64"
               ]
             }
           },
@@ -548,6 +618,22 @@
             popover: {
               title: "W-064 · Prime Agent Docker 化評估", status: "有空再做", pill: "dim", card: "card-w064",
               bullets: ["無相依，可作為企業 Skill 自動化的執行環境參考"]
+            }
+          },
+          {
+            id: "w086", x: 680, y: 300, hitR: 22, shape: "dim", r: 10,
+            labels: [
+              { cls: "lbl-id", x: 680, y: 328, text: "W-086", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 680, y: 344, text: "誤鎖 bug・backlog" }
+            ],
+            aria: "W-086 可用性登記表誤鎖 bug，查看詳情",
+            popover: {
+              title: "W-086 · 可用性登記表誤鎖 bug", status: "Backlog", pill: "dim", card: "card-w086",
+              bullets: [
+                "W-073 執行中連續踩到兩次、W-082 又再踩兩次（pi:default + agy:default 都中過）：commit 後舊 untracked-file 封鎖沒清除、把正常工具輸出誤判為不可用訊號",
+                "檢視 lib/availability.mjs 的 recordBlocked 判斷邏輯，修這兩個誤判來源",
+                "不影響 W-073 本身結果，Pi 最終仍完成寫入且經 Claude 獨立驗證通過"
+              ]
             }
           },
           {
@@ -804,6 +890,235 @@
             }
           }
         ]
+      },
+
+      {
+        id: "ado", title: "🎯 ADO 領域專家 Agent", titleX: 20, titleY: 852,
+        color: "var(--line-ado)",
+        connectors: [
+          { d: "M80,890 L250,890", dashed: true },
+          { d: "M250,890 L310,830 L360,830" },
+          { d: "M250,890 L360,890" },
+          { d: "M250,890 L310,950 L360,950" },
+          { d: "M440,830 L500,890 L560,890" },
+          { d: "M440,890 L560,890" },
+          { d: "M440,950 L500,890 L560,890" },
+          { d: "M640,890 L740,890" },
+          { d: "M820,890 L900,890" },
+          { d: "M980,890 L1060,890" },
+          { d: "M1140,890 L1220,890" },
+          { d: "M1300,890 L1380,890", dashed: true },
+          { d: "M1460,890 L1540,890", dashed: true, markerEnd: true }
+        ],
+        notes: [
+          { x: 44, y: 876, anchor: "start", text: "OCR 評估" },
+          { x: 1620, y: 878, anchor: "start", text: "→ 助理 v1 的第二垂直切片" }
+        ],
+        stations: [
+          {
+            id: "wado000", x: 40, y: 890, hitR: 18, shape: "wait", r: 8,
+            labels: [{ cls: "lbl-sub", x: 40, y: 872, text: "000" }],
+            aria: "W-ADO-000 評估 OCR，查看詳情",
+            popover: {
+              title: "W-ADO-000 · 評估 OCR", status: "開工前先做", pill: "wait", card: "card-w080",
+              bullets: [
+                "評估 Alibaba OpenCodeReview 能否用於本次 C#/.NET 開發的程式碼審查",
+                "呼應既有 W-030/W-031/W-032，現在拉到 ADO Agent 開工前先做"
+              ]
+            }
+          },
+          {
+            id: "ado-001", x: 400, y: 830, hitR: 24, shape: "ready", r: 12,
+            labels: [{ cls: "lbl-sub", x: 400, y: 800, text: "001・ADO" }],
+            aria: "W-ADO-001 ADO 溝通可行性驗證，查看詳情",
+            popover: {
+              title: "W-ADO-001 · ADO 溝通可行性驗證", status: "今天・Cheer 主導，阻斷性", pill: "today", card: "card-w080",
+              bullets: [
+                "驗證 ADO API 打得通、能申請到憑證，不用先做完整權限規劃",
+                "跟 002/003 平行驗證，三者都過才進入 Block 1 全過的下一步"
+              ]
+            }
+          },
+          {
+            id: "ado-002", x: 400, y: 890, hitR: 24, shape: "ready", r: 12,
+            labels: [{ cls: "lbl-sub", x: 400, y: 860, text: "002・SharePoint" }],
+            aria: "W-ADO-002 M365 SharePoint 溝通可行性驗證，查看詳情",
+            popover: {
+              title: "W-ADO-002 · M365 SharePoint 溝通可行性驗證", status: "今天，跟 001/003 平行", pill: "today", card: "card-w080",
+              bullets: ["驗證 SharePoint API 連通性，同樣只需先確認打得通、憑證申請得到，不用先做完整權限規劃"]
+            }
+          },
+          {
+            id: "ado-003", x: 400, y: 950, hitR: 24, shape: "ready", r: 12,
+            labels: [{ cls: "lbl-sub", x: 400, y: 978, text: "003・Outlook" }],
+            aria: "W-ADO-003 M365 Outlook 溝通可行性驗證，查看詳情",
+            popover: {
+              title: "W-ADO-003 · M365 Outlook 溝通可行性驗證", status: "今天，跟 001/002 平行", pill: "today", card: "card-w080",
+              bullets: ["驗證 Outlook API 連通性，同樣只需先確認打得通、憑證申請得到，不用先做完整權限規劃"]
+            }
+          },
+          {
+            id: "ado-gate1", x: 600, y: 890, hitR: 24, shape: "gate",
+            labels: [{ cls: "lbl-sub", x: 600, y: 860, text: "Block 1 全過？" }],
+            aria: "Block 1 全過決策關卡，查看詳情",
+            popover: {
+              title: "Block 1 · 三線全過？", status: "決策關卡", pill: "wait", card: "card-w080",
+              bullets: [
+                "W-ADO-001~003（ADO／SharePoint／Outlook）三者都驗證過才進入 Block 2",
+                "沒過就先解決連通性/憑證問題，不勉強往下走"
+              ]
+            }
+          },
+          {
+            id: "ado-tool", x: 780, y: 890, hitR: 22, shape: "wait", r: 10,
+            labels: [{ cls: "lbl-sub", x: 780, y: 866, text: "設計 Tool 介面" }],
+            aria: "ADO 設計標準 Tool 介面，查看詳情",
+            popover: {
+              title: "W-ADO-004 · 設計標準 Tool 介面", status: "Block 1 全過才開始", pill: "wait", card: "card-w080",
+              bullets: [
+                "把驗證過的 ADO/SharePoint/Outlook 包裝成標準 Tool，讓主 Agent 可直接調用",
+                "含 Tier 1+2 UI Schema + Evidence Schema + Memory Schema"
+              ]
+            }
+          },
+          {
+            id: "ado-call", x: 940, y: 890, hitR: 22, shape: "wait", r: 10,
+            labels: [{ cls: "lbl-sub", x: 940, y: 866, text: "Agent 可被調用" }],
+            aria: "確認 Agent 可被主 Agent 調用，查看詳情",
+            popover: {
+              title: "W-ADO-005 · Agent 可被調用", status: "Block 2 第一步", pill: "wait", card: "card-w080-2",
+              bullets: ["確認領域專家 Agent 本身可以被主 Agent（Claude／GitHub Copilot／未來 Cheerio）調用"]
+            }
+          },
+          {
+            id: "ado-feedback", x: 1100, y: 890, hitR: 22, shape: "wait", r: 10,
+            labels: [{ cls: "lbl-sub", x: 1100, y: 866, text: "ADO 呼叫+回饋" }],
+            aria: "驗證 ADO Tool 呼叫與回饋，查看詳情",
+            popover: {
+              title: "W-ADO-006 · ADO 呼叫+回饋主 Agent", status: "Block 2", pill: "wait", card: "card-w080-2",
+              bullets: ["確認 Agent 能正確用 Tool 呼叫 ADO，並把結果正確反饋給主 Agent（Tier 1 Agent Response 落地，C#/.NET 10）"]
+            }
+          },
+          {
+            id: "ado-m365comm", x: 1260, y: 890, hitR: 22, shape: "dim", r: 10,
+            labels: [{ cls: "lbl-sub", x: 1260, y: 866, text: "SharePoint+Outlook 驗證" }],
+            aria: "驗證 SharePoint 與 Outlook 溝通，查看詳情",
+            popover: {
+              title: "W-ADO-007 · SharePoint+Outlook 溝通驗證", status: "Block 2 最後一步", pill: "dim", card: "card-w080-2",
+              bullets: ["同樣驗證 Agent 跟 SharePoint、Outlook 溝通正常，Block 2 全過才進入決策點"]
+            }
+          },
+          {
+            id: "ado-decide", x: 1420, y: 890, hitR: 22, shape: "gate",
+            labels: [{ cls: "lbl-sub", x: 1420, y: 866, text: "Plugin 定位+Publish View" }],
+            aria: "決策：M365 Plugin 定位與 Publish View，查看詳情",
+            popover: {
+              title: "W-ADO-008~009 · 決策點", status: "Block 2 全過才決定", pill: "dim", card: "card-w080-3",
+              bullets: [
+                "決定 M365 設計成外掛 Plugin，還是從一開始就內建在領域專家 Agent 架構裡",
+                "開發 Tier 2 Publish View（React/SPFx，SharePoint 案子進度＋人力占比視圖）+ Form List 同步"
+              ]
+            }
+          },
+          {
+            id: "ado-deepen", x: 1580, y: 890, hitR: 22, shape: "dim", r: 10,
+            labels: [{ cls: "lbl-sub", x: 1580, y: 866, text: "疊加寫入+Gate+Memory" }],
+            aria: "疊加寫入操作、三 gate 驗收與 Memory，查看詳情",
+            popover: {
+              title: "W-ADO-010~012 · 深化階段", status: "最後一哩", pill: "dim", card: "card-w080-3",
+              bullets: [
+                "疊加 ADO 寫入操作：Collection Process/Project Settings 複製、Work Item 新增/異動",
+                "三 gate 驗收（資料正確／證據可追溯／寫入經 Tool Policy 授權+可追溯）",
+                "Memory 落地：decision-ledger schema"
+              ]
+            }
+          }
+        ]
+      },
+
+      {
+        id: "harness", title: "🧠 自建 Agent 學習線", titleX: 20, titleY: 1022,
+        color: "var(--line-harness)",
+        connectors: [
+          { d: "M340,1060 L440,1060" },
+          { d: "M520,1060 L620,1060" },
+          { d: "M700,1060 L800,1060" },
+          { d: "M880,1060 L980,1060", dashed: true, markerEnd: true }
+        ],
+        notes: [
+          { x: 1060, y: 1048, anchor: "start", opacity: 0.85, text: "→ 待 W-074 規格出爐後裁切範圍" }
+        ],
+        stations: [
+          {
+            id: "harness-now", x: 300, y: 1060, hitR: 27, shape: "ready", r: 14,
+            labels: [
+              { cls: "lbl-id", x: 300, y: 1036, text: "W-029/030", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 300, y: 1090, text: "立即可做・今天" }
+            ],
+            aria: "學習系統與 OCR 安裝，立即可做，查看詳情",
+            popover: {
+              title: "🔥 立即可做：學習系統 + OCR 安裝", status: "今天", pill: "today", card: "card-harness-now",
+              bullets: [
+                "W-029 學習系統：嘗試全螢幕模式、測試 AGENTS.override.md、玩 samplingParams（約1小時）",
+                "W-030 安裝測試 OCR（約30分鐘，同時也是 W-080 的 W-ADO-000）"
+              ]
+            }
+          },
+          {
+            id: "harness-mcp", x: 480, y: 1060, hitR: 24, shape: "wait", r: 11,
+            labels: [
+              { cls: "lbl-id", x: 480, y: 1036, text: "MCP", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 480, y: 1090, text: "研究・3 項" }
+            ],
+            aria: "MCP 相關研究 3 項，查看詳情",
+            popover: {
+              title: "🔌 MCP 相關研究（3 項）", status: "獨立可切入", pill: "wait", card: "card-harness-mcp",
+              bullets: [
+                "W-022 研究 MCP Server 架構與實作（protocol spec/transport 層/tool-resource-prompt 三大原語）",
+                "W-023 研究 MCP Registry 與企業級管理（server 發現/註冊/版本管控）",
+                "W-079 Pi 整理 42 篇 MCP 官方文件剪藏進 wiki（W-022 的研究素材，已剪藏待 ingest）"
+              ]
+            }
+          },
+          {
+            id: "harness-research", x: 660, y: 1060, hitR: 22, shape: "dim", r: 10,
+            labels: [{ cls: "lbl-sub", x: 660, y: 1036, text: "其他前置研究・5 項" }],
+            aria: "其他 Phase 1 前置研究 5 項，查看詳情",
+            popover: {
+              title: "📚 其他 Phase 1 前置研究", status: "待 W-074 後裁切", pill: "dim", card: "card-harness-research",
+              bullets: [
+                "W-017 研究 harness 架構（Agent 骨架，決定整體架構設計）",
+                "W-025 研究 AI Agent 網路查詢能力 ⭐（Cheer 點名最急，對應 W-074 Plugin(a)）",
+                "W-033 研究 Hook 機制、NEW-001 研究 Session 管理、NEW-002 研究 Context 管理"
+              ]
+            }
+          },
+          {
+            id: "harness-impl", x: 840, y: 1060, hitR: 22, shape: "dim", r: 10,
+            labels: [{ cls: "lbl-sub", x: 840, y: 1036, text: "實作經驗・3 項" }],
+            aria: "Phase 2 實作經驗 3 項，查看詳情",
+            popover: {
+              title: "🧪 Phase 2 實作經驗", status: "待 Phase 1 完成", pill: "dim", card: "card-harness-impl",
+              bullets: [
+                "W-031 比較實驗：OCR vs code-review skill（blocked by W-030）",
+                "W-032 整合 OCR 到 Code Review 工作流（blocked by W-031）",
+                "W-010 建立 pi-work-tracker extension"
+              ]
+            }
+          },
+          {
+            id: "harness-tools", x: 1020, y: 1060, hitR: 22, shape: "dim", r: 10,
+            labels: [{ cls: "lbl-sub", x: 1020, y: 1036, text: "工具整合・2 項" }],
+            aria: "Phase 3 工具整合 2 項，查看詳情",
+            popover: {
+              title: "🔧 Phase 3 工具整合", status: "有空再做", pill: "dim", card: "card-harness-tools",
+              bullets: [
+                "W-028 設定 Pi Agent 用 GitHub Copilot 訂閱",
+                "W-008 grill-me 改配合 W-080 ADO Agent 開發時直接測試用"
+              ]
+            }
+          }
+        ]
       }
     ],
 
@@ -850,6 +1165,42 @@
         ]
       },
       {
+        trackId: "ado", title: "🎯 ADO 領域專家 Agent PoC",
+        note: "2026-08-22 第二場圓桌 + Cheer 兩輪事後訂正",
+        cards: [
+          {
+            id: "card-w080", idText: "W-2026-08-080", pill: "today", pillText: "今天",
+            name: "開工前評估 OCR → Block 1 溝通可行性驗證",
+            bullets: [
+              "圓桌共識未變：不等 Cheerio 本體完成、定位 W-074 第二垂直切片、LLM 不直接輸出任意 HTML",
+              "Cheer 訂正 Tech Stack：C#/.NET 10 做 Agent Backend + 企業整合（ADO 是 Microsoft 產品、公司主力工具是 GitHub Copilot），TypeScript/React 只留給 SPFx 渲染路徑（框架限制無法迴避）",
+              "輸出分兩層：Tier 1「Agent Response」比照 MCP content block 回文字/HTML 給主 Agent Host；Tier 2「SharePoint Publish View」給人類主管看，兩條路徑不共用 Renderer",
+              "二次訂正：開工前先做 W-ADO-000（評估 Alibaba OpenCodeReview 能否用於本次 C#/.NET 開發的程式碼審查，呼應既有 W-030/031/032）",
+              "Block 1：ADO／M365 SharePoint／M365 Outlook 三者的 API 連通性各自獨立驗證（W-ADO-001~003），先確認打得通、憑證申請得到，不用先做完整權限規劃"
+            ]
+          },
+          {
+            id: "card-w080-2", idText: "W-ADO-004~007", pill: "wait", pillText: "Block 1 全過才開始",
+            name: "設計 Tool 介面 → Block 2 Agent 架構驗證",
+            bullets: [
+              "Block 1 三者都 OK 才把它們包裝成標準 Tool 介面（W-ADO-004），含 Tier 1+2 UI Schema + Evidence Schema + Memory Schema，讓主 Agent 可直接調用",
+              "Block 2 依序驗證：① Agent 本身可以被主 Agent（Claude／GitHub Copilot／未來 Cheerio）調用 ② 能正確用 Tool 呼叫 ADO 並把結果正確反饋給主 Agent ③ 同樣驗證跟 SharePoint、Outlook 溝通正常",
+              "這是比原本 Phase 1-4 更保守的順序——先確保「連得上、叫得動、回得來」，避免在 Tool Contract／Agent 邏輯投入心力後才發現 API 權限根本要不到"
+            ]
+          },
+          {
+            id: "card-w080-3", idText: "W-ADO-008~012", pill: "dim", pillText: "Block 2 全過才展開",
+            name: "決策點（Plugin 定位＋Publish View）→ 深化階段",
+            bullets: [
+              "Block 2 全過才回來決定：M365 要設計成外掛 Plugin，還是從一開始就內建在領域專家 Agent 架構裡；同時開發 Tier 2 Publish View（React/SPFx，SharePoint 案子進度＋人力占比視圖）+ Form List 同步",
+              "深化階段：疊加 ADO 寫入操作（Collection Process/Project Settings 複製、Work Item 新增/異動）、三 gate 驗收（資料正確／證據可追溯／寫入經 Tool Policy 授權+可追溯）、Memory 落地（decision-ledger schema，不上向量 RAG）",
+              "新增能力：Graph Engineering（角色/職責/依賴圖）、Loop Engineering（觀察→分析→執行→驗證迭代迴圈）",
+              "PoC 仍不做：完整 RAG/長期記憶、多 Agent swarm、任意 HTML"
+            ]
+          }
+        ]
+      },
+      {
         trackId: "enterprise", title: "🏢 企業 Skill 自動化研究",
         note: "W-056 已完成 → 057 → 058 → 059",
         cards: [
@@ -879,22 +1230,36 @@
         trackId: "infra", title: "🛠️ 基礎設施",
         cards: [
           {
+            id: "card-w083", idText: "W-2026-08-083", pill: "done", pillText: "已完成",
+            name: "workspace 資料夾整併：Claude/Projects 併入 CheerioCorner",
+            bullets: [
+              "動手前先逐一核對 6 個資料夾的 git remote，確認 Claude/mcp-bridges 與 Projects/ 下 3 個 repo 都屬 CheerioCorner org 才搬",
+              "pi-todo-journal 一開始被鎖住（疑似防毒軟體剛掃描）用 mv 搬不動，改用 robocopy /MOVE 才搬完 1720 個目錄／20698 個檔案，無缺漏",
+              "同步更新 .mcp.json 的 4 個 bridge 路徑（目前實際生效的設定），以及 mcp-bridges 自己的 README／範例設定",
+              "sync work 時額外抓到 work/current.md、work/history、wiki/log.md 裡殘留的舊路徑引用，一併修正"
+            ],
+            foot: "已啟動的 4 個 pi/agy-bridge process 用的是搬移前的舊路徑，不受影響；下次 MCP 重連才會讀到新路徑"
+          },
+          {
             id: "card-w076", idText: "W-2026-08-076", pill: "done", pillText: "已完成",
             name: "cheerio-roadmap skill 建立",
             bullets: [
               "地鐵路線圖風格工作進度視覺化，4 條軌道＋獨立決策菱形",
               "資料驅動重構：單一 ROADMAP 物件驅動 SVG／彈出卡片／下方卡片三處渲染",
-              "已推上 cheerio-skills repo，之後問進度或更新 work/current.md 都會自動重繪同一個 Artifact 連結"
+              "已推上 cheerio-skills repo，之後問進度或更新 work/current.md 都會自動重繪同一個 Artifact 連結",
+              "W-084（8/23）：右下角新增常駐「回到路線圖」按鈕，捲到最底部也能一鍵跳回 SVG 診斷圖；同步進 skill 通用範本並推上共用 repo",
+              "W-084 附帶評估：確認 Artifact 原生留言功能可作為對特定 work item 內容給 feedback 的管道，Cheer 在頁面留言＋@claude 啟用即可，不需額外開發"
             ]
           },
           {
-            id: "card-w072", idText: "W-2026-08-072", pill: "today", pillText: "今天",
+            id: "card-w072", idText: "W-2026-08-072", pill: "done", pillText: "已完成",
             name: "AI 模型 / Host 可用性登記表",
             bullets: [
-              "觀察各家 CLI 真實限流錯誤訊息格式",
-              "開發 <code>lib/availability.mjs</code>：checkAvailability / recordBlocked / clearBlocked",
-              "三種 confidence：exact（照時間解封）／estimated（預設封1小時，之後探針重試）／human-reported（人講的，完全信任）",
-              "四個 bridge（agy/pi/codex/copilot）呼叫 CLI 前後都要接上"
+              "<code>lib/availability.mjs</code>：checkAvailability / recordBlocked / clearBlocked，三種 confidence（exact 照時間解封／estimated 預設封 1 小時後探針重試／human-reported 人講的完全信任）",
+              "四個 bridge（agy/pi/codex/copilot）呼叫 CLI 前後都已接上，npm test 94/94 全過",
+              "Claude 派 Pi 驗收、Gemini 監督查核：Pi 抓到 mcp-config.example.json 洩漏真實 Windows 使用者路徑，Gemini 同一項誤判放行——Claude 自己核對確認 Pi 才是對的，且查出這是既有問題（早於本次改動、已 push GitHub），一併換成佔位符",
+              "另補 2 個文件缺口：主 README 補可用性登記表說明、rate-limit.mjs 補註解說明 pattern 尚未逐一驗證過四個 CLI 的真實輸出",
+              "commit cf2dc64（本機，尚未 push）"
             ]
           },
           {
@@ -911,12 +1276,23 @@
             id: "card-w064", idText: "W-2026-08-064", pill: "dim", pillText: "有空再做",
             name: "Prime Agent Docker 化評估",
             bullets: ["無相依，可作為 W-056~059 的執行環境參考，不急"]
+          },
+          {
+            id: "card-w086", idText: "W-2026-08-086", pill: "dim", pillText: "Backlog",
+            name: "修 AI 模型可用性登記表的誤鎖 bug",
+            bullets: [
+              "W-073 執行中連續踩到兩次：commit（cf2dc64）完成後鎖住理由仍是舊的「10 個未提交檔案」狀態，靠手動 clearBlocked() 才解除",
+              "第二次鎖住理由變成一段正常的 read 工具輸出內容（agent-skills.md frontmatter），被誤判為不可用訊號（confidence: estimated）",
+              "W-082 設計討論階段又踩到第三、四次：pi:default 跟 agy:default 各被誤鎖一次，確認不是只有 read 工具會觸發，任何工具輸出都可能被誤抓",
+              "檢視 CheerioCorner/mcp-bridges/lib/availability.mjs 的 recordBlocked 判斷邏輯，修兩個誤判來源：① commit 後沒有一致性檢查清除舊封鎖 ② 把正常工具輸出誤判成錯誤訊號"
+            ],
+            foot: "不影響 W-073 本身結果——Pi 最終仍完成寫入，且經 Claude 獨立讀回驗證通過"
           }
         ]
       },
       {
         trackId: "garden", title: "🌱 知識花園",
-        note: "1 顆剛完成，2 顆在等別人",
+        note: "2 顆已完成，W-082 等 Cheer 看摘要、W-069 等 Gemini 背景研究",
         cards: [
           {
             id: "card-w077", idText: "W-2026-08-077", pill: "done", pillText: "已完成",
@@ -930,18 +1306,91 @@
             foot: "生產環境限制角度仍是知識缺口，缺可信來源"
           },
           {
-            id: "card-w073", idText: "W-2026-08-073", pill: "wait", pillText: "等 Cheer 看稿",
+            id: "card-w073", idText: "W-2026-08-073", pill: "done", pillText: "已完成",
             name: "IBM Skill 心得補寫進《Skill》專題頁",
             bullets: [
-              "Cheer 先看措辭草稿再決定要不要寫",
-              "切入角度：既有內容是「組織治理層」，補「個人習慣層」（用 skill 前自己該負的責任）",
-              "要寫的話：先開圓桌會議（Claude+Gemini）→ 寫入 Notion → 雙模型覆核"
+              "依定稿 5 段寫入 wiki `skill-authoring-best-practices`（觸發精準度、避免 LLM 代寫、5,000 tokens 建議、安全使用守則、gotchas）",
+              "Notion 花園頁面重新對位插入點：3 段併入既有章節（3.1/3.2/3.3），安全使用守則新增獨立小節「6.1-2」，跟既有 6.1 組織審查框架對照而非重複",
+              "執行波折：Pi 派工連續 2 次被可用性登記表誤鎖（已拆成獨立 bug W-086）；Notion 寫入先後遇到命令列長度限制、PowerShell 管道破壞 UTF-8 編碼、重複內容三個坑，最終改用 Notion API 直接 PATCH block 才成功",
+              "Claude 不採信 Pi 自報，獨立重新 fetch 頁面核對：4 段插入各僅出現 1 次、無亂碼、65 個既有標題完整保留",
+              "Cheer 親自檢視 Notion 頁面成品，確認沒有問題"
+            ],
+            foot: "跳過原計畫的 Notion 版本正式圓桌覆核，Cheer 同意以「Claude 自行核對＋獨立讀回驗證」替代"
+          },
+          {
+            id: "card-w082", idText: "W-2026-08-082", pill: "wait", pillText: "設計完成・等 Cheer 拍板",
+            name: "NotebookLM 深度研究重新設計為跨 Agent Research Collection Service",
+            bullets: [
+              "範圍大轉向（8/23 Cheer 看完 12 支舊 skill 初評後拍板）：不是整理重組，是全新設計。只留「先問清楚要查什麼、設計好 prompt」+「執行查詢→篩選來源→逐一匯入」兩個能力的精神，合併成一個跨 Agent（Claude/Gemini/Codex/Copilot/未來自建 Agent）共用的 MCP server，NotebookLM 是第一個 provider adapter，不綁在單一 agent 的 skill 資料夾",
+              "12 支舊 skill 只是參考（Cheer 原話：讓 Claude 更清楚過去驗證過的做法，不是要照抄），其餘 10 支不保留",
+              "Claude 直接用 codex CLI 跟 Codex 討論兩輪收斂共識（原規劃走 Pi 主持但 pi:default 當時被限流）→ Pi 起草 1100+ 行具體實作設計（目錄結構/9個MCP tool/ResearchJob與Event schema/SQLite table/provider adapter/4個harness註冊方式）→ Gemini 逐項讀檔查證覆核",
+              "Gemini 抓到 4 個真問題：3 個技術性的（SQLite 不支援 SELECT FOR UPDATE、狀態機缺匯入重試路徑、外鍵/索引缺口）Claude 已直接修好；1 個判斷性的（「先問清楚」這個核心能力目前完全沒實作，全丟給 Agent 自己處理）留給 Cheer 定奪",
+              "log event schema 直接沿用 W-074 個人 AI 助理架構已定案的 9 個 MUST 欄位，可能就是 W-074 最急迫的 Plugin(a) 搜尋能力的具體落地",
+              "12 支舊 skill 完全沒動，仍在原本位置"
+            ],
+            foot: "Cheer 過目設計文件＋拍板剩餘決策點後，才讓 Pi 開始實作"
+          },
+          {
+            id: "card-w069", idText: "W-2026-08-069", pill: "wait", pillText: "等 Gemini・第二順位",
+            name: "NPU 角色深度研究",
+            bullets: [
+              "8/23 Cheer 判斷 W-082 更具價值，本項目改列第二順位",
+              "Gemini deep research 仍在背景跑，不受影響，只是回填/跟進動作往後排",
+              "跑完後回填進 NPU 角色討論頁"
+            ]
+          }
+        ]
+      },
+      {
+        trackId: "harness", title: "🧠 自建 Agent 學習線",
+        note: "原本埋在 work/current.md Phase 1-4 backlog，8/22 抽出來單獨畫成一條軌道",
+        cards: [
+          {
+            id: "card-harness-now", idText: "W-2026-08-029 / 030", pill: "today", pillText: "今天",
+            name: "🔥 立即可做：學習系統 + OCR 安裝",
+            bullets: [
+              "W-029 學習系統：嘗試全螢幕模式、測試 AGENTS.override.md、玩 samplingParams",
+              "W-030 安裝並測試 OpenCodeReview（OCR），約 30 分鐘，安裝簡單能立即體驗「確定性工程 × Agent」混合架構",
+              "W-030 同時是 W-080 的 W-ADO-000（開工前先評估 OCR 能否用於 ADO Agent 開發的程式碼審查）"
             ]
           },
           {
-            id: "card-w069", idText: "W-2026-08-069", pill: "wait", pillText: "等 Gemini",
-            name: "NPU 角色深度研究",
-            bullets: ["Gemini deep research 跑完後回填進 NPU 角色討論頁"]
+            id: "card-harness-mcp", idText: "3 項研究", pill: "wait", pillText: "獨立可切入",
+            name: "🔌 MCP 相關研究",
+            bullets: [
+              "W-022 研究 MCP Server 架構與實作：protocol spec、transport 層、tool/resource/prompt 三大原語",
+              "W-023 研究 MCP Registry 與企業級管理：server 發現與註冊機制、版本管控",
+              "W-079 Pi 整理 raw/web 的 42 篇 MCP 官方文件剪藏進 wiki——這是 W-022 的研究素材，已經剪藏好只是還沒 ingest"
+            ],
+            foot: "之前只在個人 AI 助理線上當一個很小的灰點，容易被忽略，這次獨立出來"
+          },
+          {
+            id: "card-harness-research", idText: "5 項研究", pill: "dim", pillText: "待 W-074 後裁切",
+            name: "📚 其他 Phase 1 前置研究",
+            bullets: [
+              "W-017 研究 harness 架構，開發自己的 AGENT——決定整體架構設計的骨架",
+              "W-025 研究 AI Agent 網路查詢能力 ⭐——Cheer 點名最急，之後直接對應 W-074 Plugin(a)",
+              "W-033 研究 Hook 機制：不同 IDE / Harness 的實作比較",
+              "NEW-001 研究 Session 管理：對話如何持久化與壓縮",
+              "NEW-002 研究 Context 管理：長對話如何處理"
+            ]
+          },
+          {
+            id: "card-harness-impl", idText: "3 項", pill: "dim", pillText: "待 Phase 1 完成",
+            name: "🧪 Phase 2 實作經驗",
+            bullets: [
+              "W-031 比較實驗：OCR vs code-review skill（blocked by W-030）",
+              "W-032 整合 OCR 到 Code Review 工作流（blocked by W-031）",
+              "W-010 建立 pi-work-tracker 並取代 pi-todo-journal"
+            ]
+          },
+          {
+            id: "card-harness-tools", idText: "2 項", pill: "dim", pillText: "有空再做",
+            name: "🔧 Phase 3 工具整合",
+            bullets: [
+              "W-028 設定 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider",
+              "W-008 用 grill-me 改配合 W-080 ADO Agent 開發時直接測試用"
+            ]
           }
         ]
       }
@@ -1249,7 +1698,7 @@
   var svgEl = document.getElementById("map-svg");
   var zoomLevel = document.getElementById("zoom-level");
   var scale = 1;
-  var BASE_WIDTH = 1360;
+  var BASE_WIDTH = 1820;
 
   function setScale(next) {
     scale = Math.min(2.5, Math.max(0.6, next));
@@ -1265,5 +1714,13 @@
       else setScale(1);
     });
   });
+
+  /* ---- back-to-top button ---- */
+  var backToTop = document.getElementById("back-to-top");
+  var mapCard = document.querySelector(".map-card");
+  backToTop.addEventListener("click", function () {
+    (mapCard || document.body).scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 })();
 </script>
+

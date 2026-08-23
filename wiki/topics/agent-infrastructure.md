@@ -13,6 +13,9 @@ updated: 2026-08-08
 ## Entities
 
 - [[wiki/entities/mcp-model-context-protocol|MCP]] — Model Context Protocol，AI Agent 工具整合標準 🛠️
+- [[wiki/entities/mcp-authorization|MCP Authorization]] — OAuth 2.1 授權框架 🛠️
+- [[wiki/entities/mcp-registry|MCP Registry]] — 官方伺服器註冊表 🛠️
+- [[wiki/entities/mcp-extensions|MCP Extensions]] — 擴充機制與支援矩陣 🛠️
 - [[wiki/entities/lsp|LSP]] — Language Server Protocol，語言伺服器標準
 - [[wiki/entities/tree-sitter|Tree-sitter]] — 增量解析器，程式碼結構分析
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層，MCP + Guardrails + Agent 管理 🛠️
@@ -22,6 +25,9 @@ updated: 2026-08-08
 
 ## Concepts
 
+- [[wiki/concepts/mcp-servers|MCP Servers]] — 伺服器端建置與除錯 🛠️
+- [[wiki/concepts/mcp-clients|MCP Clients]] — 客戶端建置與 elicitation 🛠️
+- [[wiki/concepts/mcp-protocol-versioning|MCP Protocol Versioning]] — 版本控制與功能生命週期 🛠️
 - [[wiki/concepts/agent-skills|Agent Skills 根概念]] — Skill 系統定義、三層漸進式揭露、基礎/進階導航 🛠️
 - [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施 🛠️
 - [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] — 為什麼 AI 需要 GPU 而不是 CPU 🛠️
@@ -34,6 +40,8 @@ updated: 2026-08-08
 
 ## Sources
 
+- [[wiki/sources/mcp-official-docs-42|MCP 官方文件彙整（42 篇）]] — MCP 協定完整規範 🛠️
+- [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs & Tooling]] — 官方 SDK 與開發工具 🛠️
 - [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]] — AI Code Assistant 核心基礎 🛠️
 - [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF + LSP + CodeGraph AI Agent 研究]] — 三者整合分析
 - [[wiki/sources/2026-08-04-code-review-graph|code-review-graph]] — Tree-sitter 知識圖譜做 Code Review，省 8.2 倍 Token 🛠️

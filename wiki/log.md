@@ -44,10 +44,10 @@
 - 動作：診斷 agy-bridge 在 headless 模式下讀檔被 CANCELED/ERROR 的問題 → 派 Codex 動手改 → Claude 逐項查證
 - 根因：agy CLI 在 `--print-mode`（headless 模式）下，`view_file`（內部權限名 `read_file`）需要使用者核准，headless 沒人核准，但這個 auto-deny 行為本身不穩定（同一指令連跑 3 次分別得到 CANCELED/ERROR/CANCELED）
 - 調查結論：agy CLI 沒有可用的細粒度權限白名單（試過 `.antigravitycli/settings.json` 未生效），唯一選項是 `--dangerously-skip-permissions`（全有全無）
-- **採用修法**：`Claude/mcp-bridges/lib/agy.mjs` 的 `buildAgyArgs()` 預設同時加上 `--dangerously-skip-permissions` 和 `--sandbox`（用 sandbox 限制終端機/shell 執行範圍，收斂 skip-permissions 帶來的風險），呼叫端可用 `dangerously_allow_all: false` / `sandbox: false` 覆寫關掉。順便補上 `runAgy()` 的 `stderr` 沒被寫進 audit log 的小 bug
+- **採用修法**：`CheerioCorner/mcp-bridges/lib/agy.mjs` 的 `buildAgyArgs()` 預設同時加上 `--dangerously-skip-permissions` 和 `--sandbox`（用 sandbox 限制終端機/shell 執行範圍，收斂 skip-permissions 帶來的風險），呼叫端可用 `dangerously_allow_all: false` / `sandbox: false` 覆寫關掉。順便補上 `runAgy()` 的 `stderr` 沒被寫進 audit log 的小 bug
 - **驗證**：Claude 直接呼叫修改後的 `runAgy()`，用今天一直失敗的同一句讀檔 prompt 連續跑 5 次真實 agy.exe，**5 次全部 `status: SUCCESS`，無 CANCELED/ERROR**
 - 過程：Codex 第一次因為 Claude 呼叫時 cwd 設錯（限制在子目錄）導致改不到目標檔案，誠實回報卡住而非假裝改好；修正 cwd 後第二次順利完成
-- 提醒：`Claude/mcp-bridges` 是獨立 git repo（cheerio-mcp-bridges），修復需要另外 commit/push；MCP server 是長駐進程，本次對話 session 開頭連上的 agy-bridge 仍在跑舊版，需重啟/重新連線才會生效
+- 提醒：`CheerioCorner/mcp-bridges` 是獨立 git repo（cheerio-mcp-bridges），修復需要另外 commit/push；MCP server 是長駐進程，本次對話 session 開頭連上的 agy-bridge 仍在跑舊版，需重啟/重新連線才會生效
 - refs: [[work/current#W-2026-08-068|W-2026-08-068]]（根因診斷）、[[work/current#W-2026-08-071|W-2026-08-071]]（修復任務，已完成）
 
 ---
@@ -1079,3 +1079,38 @@
 - 更新 visualizations/README.md：新增 Mermaid 視覺地圖區塊
 - 重點：不再轉換為 SVG/PNG，直接在 Notion 寫入 Mermaid code block
 - refs: knowledge-garden-visualmap skill、AGENTS.md
+
+## [2026-08-23] ingest | MCP 官方文件 42 篇 batch ingest + 新舊規範比較
+
+- 動作：批次 ingest `raw/web/2026-08-22-*.md`（42 篇 modelcontextprotocol.io 官方文件，protocol version `2026-07-28`）
+- 任務 ID：W-2026-08-079
+- **雙模型交叉驗證**（§3.1）：
+  - **Round 1**：Pi 主持，Claude（chat-with-claude）與 Gemini（chat-with-gemini）各自對 42 篇文件提出 wiki 結構提案
+  - **關鍵欄位比對**：目標頁面 ✅、type ✅、topics ✅、是否推翻既有結論 ✅ → 共識成立
+  - **整合決策**：SDKs → source type；Server/Client 各自獨立頁；Registry governance 合併進 registry；Auth extensions 合併進 authorization
+  - **結論**：`auto_verified`，無需 Round 2
+- **建立**：
+  - `wiki/entities/mcp-authorization.md` — OAuth 2.1 授權框架（6 篇 raw）
+  - `wiki/entities/mcp-registry.md` — 官方伺服器註冊表（9 篇 raw）
+  - `wiki/entities/mcp-extensions.md` — 擴充機制（2 篇 raw）
+  - `wiki/entities/mcp-tasks.md` — 長任務擴充（1 篇 raw）
+  - `wiki/entities/mcp-apps.md` — 互動式應用程式（2 篇 raw）
+  - `wiki/concepts/mcp-servers.md` — 伺服器端開發（4 篇 raw）
+  - `wiki/concepts/mcp-clients.md` — 客戶端開發（3 篇 raw）
+  - `wiki/concepts/mcp-client-types.md` — 客戶端類型與連線（5 篇 raw）
+  - `wiki/concepts/mcp-protocol-versioning.md` — 版本控制（2 篇 raw）
+  - `wiki/concepts/mcp-agent-skills-integration.md` — MCP + Agent Skills 整合（1 篇 raw）
+  - `wiki/sources/mcp-sdks-and-tooling.md` — SDKs & Tooling（4 篇 raw）
+  - `wiki/sources/mcp-official-docs-42.md` — 全部 42 篇分類索引
+  - `wiki/topics/mcp-ecosystem.md` — MCP 生態系 topic 導航頁
+- **更新**：
+  - `wiki/entities/mcp-model-context-protocol.md` — **全面重寫**：新增架構概述、6 原語（3 server + 1 active client + 2 deprecated）、OAuth/Registry/Extensions/Tasks/Apps/Versioning 章節、⚠️ 舊版規範演進比較表
+  - `wiki/topics/agent-infrastructure.md` — 加入 MCP Authorization、Registry、Extensions、Servers、Clients、Versioning
+  - `wiki/topics/extension-dev.md` — 加入 MCP Extensions、Tasks、Apps、Agent Skills integration
+  - `wiki/topics/agent-runtime-implementations.md` — 加入 MCP Apps、Tasks、Client Types
+  - `wiki/topics/ai-development-tools.md` — 加入 MCP SDKs、Servers
+  - `wiki/topics.md` — 加入 mcp-ecosystem topic
+  - `wiki/index.md` — 全量重建
+- **新舊規範比較**：位於 `wiki/entities/mcp-model-context-protocol.md` §「⚠️ 舊版頁面規範演進比較」，涵蓋 6 項過期論述的逐項比對
+- refs: [[wiki/sources/mcp-official-docs-42|MCP 官方文件彙整]]、[[wiki/entities/mcp-model-context-protocol|MCP 主頁]]
+- 完成時間：2026-08-23 17:20 (CST)

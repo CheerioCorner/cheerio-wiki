@@ -16,7 +16,9 @@ updated: 2026-08-23
 - [[wiki/entities/github-copilot|GitHub Copilot — AI 程式碼輔助生態系]] — 從 IDE 補全演化為完整 Agent 生態系 🛠️
 - [[wiki/entities/github-copilot-sdk|GitHub Copilot SDK — Custom Agents 平台]] — Custom Agents SDK，hooks / fleet-mode / MCP 🛠️
 - [[wiki/entities/langgraph|LangGraph — Graph-based Agent Runtime]] — LangChain 的低階 agent orchestration 框架 🛠️
-- [[wiki/entities/mcp-model-context-protocol|MCP (Model Context Protocol)]] — Anthropic 開放標準，封裝 LSP / Code Graph 為 Tools 🛠️
+- [[wiki/entities/mcp-model-context-protocol|MCP (Model Context Protocol)]] — AI 應用程式與外部系統的連接標準 🛠️
+- [[wiki/entities/mcp-apps|MCP Apps]] — 互動式 HTML UI in chat 🛠️
+- [[wiki/entities/mcp-tasks|MCP Tasks]] — 長任務擴充機制 🛠️
 - [[wiki/entities/hermes-agent|hermes-agent — 開源 AI Agent 框架]] — Nous Research 的 40+ 工具鏈、跨會話記憶 agent 🛠️
 - [[wiki/entities/waku-agent|waku-agent — Local-first personal AI agent]] — 展示 agent 四大支柱：harness / loop / memory / eval
 - [[wiki/entities/qwenpaw|QwenPaw — Agent OS 架構的本地 AI 助理]] — AgentScope 的本地部署 + 安全沙箱
@@ -29,6 +31,7 @@ updated: 2026-08-23
 
 ## Concepts
 
+- [[wiki/concepts/mcp-client-types|MCP Client Types]] — CLI/TUI/Web 客戶端、本地/遠端連線 🛠️
 - [[wiki/concepts/skills-complex-composition-comparison|Skill 複雜組合技比較]] — Claude Code / Copilot / Pi 三框架比較
 - [[wiki/concepts/multi-model-cost-routing|Multi-Model Cost Routing]] — 多模型基礎設施的成本工程 🛠️
 

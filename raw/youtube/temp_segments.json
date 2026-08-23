@@ -1,1 +1,987 @@
-[{"text": "Back in 1982, a computer scientist named James Martin published a book with a title that might sound oddly familiar.", "start": 0.23, "duration": 9.08}, {"text": "Application Development Without Programmers.", "start": 9.97, "duration": 3.64}, {"text": "Martin formalized that idea in 1991 into a software development methodology called Rapid Application Development or RAD.", "start": 14.19, "duration": 12.459}, {"text": "Well, application development...", "start": 26.65, "duration": 2.46}, {"text": "Without programmers is something that's very much happening today with agentic AI.", "start": 29.82, "duration": 4.999}, {"text": "And it turns out the RAD methodology from back in the day", "start": 34.96, "duration": 4.588}, {"text": "can teach us a thing or two about the best way to code with AI agents today.", "start": 39.548, "duration": 5.432}, {"text": "But first let's define RAD as it was all those years ago.", "start": 45.36, "duration": 4.58}, {"text": "So RAD's a software development methodology that favors speed and iterative development and user feedback.", "start": 50.04, "duration": 6.8}, {"text": "Over the waterfall approach that basically everybody was using at the time, which includes a lot of detailed upfront planning.", "start": 57.22, "duration": 7.06}, {"text": "Now, RAD runs in four phases.", "start": 64.385, "duration": 2.994}, {"text": "Phase number one is requirements planning, which in RAD is pretty lightweight.", "start": 68.162, "duration": 8.197}, {"text": "Requirements planning basically means you define some things,", "start": 77.12, "duration": 2.999}, {"text": "like you define the problem that you're gonna solve and the users that this application is going to affect.", "start": 80.119, "duration": 8.12}, {"text": "We'd also want to add in whatever features that we want to include and", "start": 88.56, "duration": 5.492}, {"text": "also any constraints that we need to be concerned about.", "start": 94.052, "duration": 3.308}, {"text": "But that's about it.", "start": 97.5, "duration": 2.38}, {"text": "And that's because RAD's founding assumption is that users don't really", "start": 100.38, "duration": 5.677}, {"text": "know what they want until they can see something and react to it.", "start": 106.057, "duration": 6.182}, {"text": "So let's phase one.", "start": 112.4, "duration": 1.0}, {"text": "Phase two of RAD is user design.", "start": 113.75, "duration": 4.959}, {"text": "So a team quickly builds a clickable prototype.", "start": 119.07, "duration": 5.119}, {"text": "This is something that users can actually use.", "start": 124.33, "duration": 4.459}, {"text": "And they put this in front of real life users with the idea being that any", "start": 129.47, "duration": 4.51}, {"text": "bad assumptions are gonna get caught early while they're still relatively cheap to fix.", "start": 133.98, "duration": 5.689}, {"text": "And in RAD, that prototype...", "start": 139.67, "duration": 2.94}, {"text": "Is very much a keeper.", "start": 143.23, "duration": 2.779}, {"text": "We're gonna keep this guy around.", "start": 146.41, "duration": 2.52}, {"text": "The team keeps building on it until it grows to become the actual product itself.", "start": 149.09, "duration": 5.72}, {"text": "Then phase number three, that's", "start": 155.83, "duration": 3.059}, {"text": "Construction where the actual application functionality gets built", "start": 159.01, "duration": 3.469}, {"text": "and that happens in short cycles with testing and feedback happening", "start": 162.479, "duration": 4.719}, {"text": "continuously rather than waiting until the end and then in phase four that's cut over,", "start": 167.198, "duration": 6.186}, {"text": "which means deployment to production, migration of data and training the users how to use this new system.", "start": 173.384, "duration": 7.625}, {"text": "Now Martin's book talked about small teams delivering working systems in time boxes", "start": 181.91, "duration": 5.72}, {"text": "of roughly 90 days, which at the time was extremely fast in an era where a", "start": 188.09, "duration": 7.749}, {"text": "sort of typical corporate software project probably ran for years.", "start": 195.839, "duration": 4.431}, {"text": "So right here it describes a methodology with fast delivery where", "start": 200.834, "duration": 4.115}, {"text": "users get to influence the design while it's still cheap enough to make changes to it.", "start": 204.949, "duration": 5.444}, {"text": "Sounds pretty good right, and yet if I'd asked a developer a decade ago what methodology their team", "start": 211.89, "duration": 5.1}, {"text": "followed probably wouldn't have been RAD.", "start": 217.01, "duration": 2.57}, {"text": "RAD didn't really stick around because the code generators at the time,", "start": 219.96, "duration": 3.89}, {"text": "the computer-aided software engineering tools of RAD's era couldn't really build very sophisticated applications,", "start": 223.85, "duration": 7.48}, {"text": "but building a working application from plain language is, well, now very much possible.", "start": 231.33, "duration": 7.049}, {"text": "Today, I can describe an app to an agentic AI coding tool and watch a version appear in minutes.", "start": 238.48, "duration": 6.92}, {"text": "I am talking, of course", "start": 245.7, "duration": 1.76}, {"text": "about good old vibe coding.", "start": 248.06, "duration": 3.4}, {"text": "So prototyping, the thing that RAD built its entire methodology around,", "start": 253.18, "duration": 4.297}, {"text": "has become super fast and that I think is why RAD's old four-phase methodology maps so well onto AI development.", "start": 257.477, "duration": 8.462}, {"text": "So let me show you what I mean with a really exciting example that vibe coders the world over just can't stop making.", "start": 266.14, "duration": 7.759}, {"text": "That is, of course, an expense approval app.", "start": 273.9, "duration": 3.68}, {"text": "Oh yes, why pay for a real one when you can vibe code one yourself?", "start": 277.88, "duration": 4.86}, {"text": "So how does the first rad stage of requirements planning actually come in here?", "start": 283.18, "duration": 6.259}, {"text": "Well basically it is a prompt that somebody writes and sends that", "start": 289.82, "duration": 5.701}, {"text": "prompt to an AI agent in order to actually build the application.", "start": 295.521, "duration": 6.878}, {"text": "So maybe somebody on the finance team in this case describes the problem in plain language.", "start": 302.5, "duration": 4.459}, {"text": "That's the prompt.", "start": 307.0, "duration": 1.0}, {"text": "Like who the users are, and what the approval rules are,", "start": 308.04, "duration": 3.659}, {"text": "which is you'll notice exactly the lightweight planning that RAD calls for in this phase.", "start": 311.699, "duration": 5.673}, {"text": "The prompt has effectively become the requirements document.", "start": 317.372, "duration": 4.375}, {"text": "Now for user design we take this AI agent which we have prompted", "start": 321.747, "duration": 6.365}, {"text": "and what does the AI agent do well it generates a actual working application,", "start": 328.112, "duration": 7.142}, {"text": "so it has generated a prototype for what we asked for directly in response to that user's prompt.", "start": 335.254, "duration": 7.926}, {"text": "Now users can take a look at this prototype and click through it and maybe submit some feedback.", "start": 344.22, "duration": 6.979}, {"text": "So maybe they complain that the approval screen is a bit confusing", "start": 351.52, "duration": 4.44}, {"text": "and that purple background looks too much like AI slop.", "start": 355.96, "duration": 3.299}, {"text": "Well that feedback goes back to the AI agent.", "start": 359.94, "duration": 3.979}, {"text": "At which point the agent regenerates the prototype, the user clicks through again,", "start": 364.24, "duration": 3.915}, {"text": "and the agent keeps on generating and refining working code.", "start": 368.155, "duration": 4.065}, {"text": "And speaking of working code, the next RAD phase is construction.", "start": 373.12, "duration": 4.12}, {"text": "Well, the agent is already doing that.", "start": 378.02, "duration": 2.1}, {"text": "It's generating a bunch of stuff like data schema, workflow logic, maybe wiring up some email notifications.", "start": 380.3, "duration": 7.099}, {"text": "And then for phase four, cut over.", "start": 387.74, "duration": 2.32}, {"text": "This is all about getting the thing into production.", "start": 390.32, "duration": 2.6}, {"text": "So the finance team demos the prototype and hey, turns out everybody loves it.", "start": 393.04, "duration": 4.94}, {"text": "Then I suppose inevitably someone senior asks the obvious question.", "start": 398.48, "duration": 4.66}, {"text": "They say, hey, this works great.", "start": 403.2, "duration": 1.56}, {"text": "So when can the whole company have it?", "start": 405.36, "duration": 1.279}, {"text": "And in classic RAD, we know the answer.", "start": 407.0, "duration": 2.299}, {"text": "The prototype is the keeper and it eventually becomes the product.", "start": 409.38, "duration": 4.599}, {"text": "Well, that time has arrived.", "start": 414.48, "duration": 1.52}, {"text": "So Cutover should just be a matter of deploying this prototype", "start": 416.9, "duration": 3.08}, {"text": "into production, right?", "start": 420.79, "duration": 2.479}, {"text": "Well, we've got to ask the question here, is it really a good idea to do that when AI has written all of the code?", "start": 425.23, "duration": 7.5}, {"text": "Let's take a look at that next.", "start": 433.75, "duration": 1.179}, {"text": "So should the finance team just deploy the expense approval prototype?", "start": 436.03, "duration": 3.7}, {"text": "Well, maybe not so fast.", "start": 439.99, "duration": 1.639}, {"text": "If we take a closer look at what the agent built, it might turn out that", "start": 442.11, "duration": 5.194}, {"text": "nobody's prompt ever said that, let's say, an employee can't their own expenses.", "start": 447.304, "duration": 4.405}, {"text": "So it's more than possible that the agent never wrote a rule requiring second sign-off,", "start": 452.4, "duration": 5.619}, {"text": "which would mean I could file a $900 expense and then approve it myself.", "start": 458.019, "duration": 5.841}, {"text": "Delightful.", "start": 464.16, "duration": 1.0}, {"text": "And this kind of thing is actually pretty common.", "start": 465.38, "duration": 2.419}, {"text": "Studies of AI-generated code have found something like 45% of", "start": 468.0, "duration": 5.372}, {"text": "samples carry some type of security issue or security weakness in them.", "start": 473.372, "duration": 7.407}, {"text": "So...", "start": 480.78, "duration": 1.0}, {"text": "So what's the fix to this?", "start": 481.81, "duration": 1.36}, {"text": "Well, those code generators of RAD's era had no chat window.", "start": 483.41, "duration": 5.079}, {"text": "An analyst fed the generator a spec of really what they wanted.", "start": 488.85, "duration": 5.279}, {"text": "Maybe the data model, the business rules.", "start": 494.57, "duration": 1.98}, {"text": "And then the code generation tool would take that spec and it would then generate some basic code out of that.", "start": 496.79, "duration": 9.139}, {"text": "So James Martin's plan always really had two halves.", "start": 506.53, "duration": 4.059}, {"text": "It had", "start": 510.59, "duration": 0.6}, {"text": "a precise description of what it is that we actually want to do,", "start": 511.19, "duration": 5.577}, {"text": "what the system needs to build, and that description also was turned into", "start": 516.767, "duration": 6.373}, {"text": "actual working code as well so we could build the prototype.", "start": 523.14, "duration": 6.31}, {"text": "Well, think about how this works today.", "start": 530.47, "duration": 2.88}, {"text": "AI agents have given us a very good code building machine, that's for sure.", "start": 534.03, "duration": 6.1}, {"text": "And the description half, well that's coming from something else now", "start": 540.94, "duration": 4.06}, {"text": "and that's something else is called spec driven development.", "start": 545.0, "duration": 5.119}, {"text": "So the idea is that discoveries from the prototype get written down as a spec.", "start": 550.88, "duration": 4.88}, {"text": "So the business rules, the acceptance criteria, the security requirements, like nobody ever their own expenses.", "start": 556.24, "duration": 7.52}, {"text": "Users clicking through the prototype...", "start": 564.4, "duration": 1.759}, {"text": "Well, they might never catch the self-approval loophole because they can't click on a rule that isn't there,", "start": 566.52, "duration": 5.669}, {"text": "but because it's in a spec, somebody from security reading that spec is", "start": 572.189, "duration": 5.094}, {"text": "gonna ask, hold on, what stops me from approving my own expenses?", "start": 577.283, "duration": 3.376}, {"text": "And once that rule is in the spec, it becomes a test.", "start": 581.28, "duration": 3.719}, {"text": "The generated code now has to pass.", "start": 585.36, "duration": 3.179}, {"text": "So yes, the prototype is still a keeper.", "start": 589.2, "duration": 4.24}, {"text": "But what actually goes into production is everything the prototype taught us which is captured in that spec.", "start": 593.88, "duration": 7.599}, {"text": "Which means RAD's four phases have held up pretty well for a 35 year old methodology.", "start": 601.62, "duration": 5.799}, {"text": "Plan lightly, prototype early, build in short cycles and don't move over into production until the thing has been verified.", "start": 608.02, "duration": 10.5}, {"text": "And as for James Martin and that 1982 book title, Application Development Without Programmers, 44 years on,", "start": 618.92, "duration": 8.704}, {"text": "I'd say that particular request is still waiting on its second sign off because the programmers, they are still very much here.", "start": 627.624, "duration": 7.796}, {"text": "They've just moved in the direction of writing the spec and verifying the result.", "start": 635.88, "duration": 4.48}]
+[
+  {
+    "text": "Agent skills are about the simplest way there is to make an AI agent better at a specific job.",
+    "start": 0.39,
+    "duration": 6.239
+  },
+  {
+    "text": "Because they're so simple, they're also really easy to get wrong.",
+    "start": 7.19,
+    "duration": 3.02
+  },
+  {
+    "text": "Yeah, so we are going to cover the five agent skills best practices for building these skills.",
+    "start": 10.55,
+    "duration": 6.579
+  },
+  {
+    "text": "And a quick reminder of what a skill even is.",
+    "start": 17.82,
+    "duration": 2.859
+  },
+  {
+    "text": "It's procedural knowledge handed to an AI agent.",
+    "start": 21.68,
+    "duration": 3.5
+  },
+  {
+    "text": "The model already knows plenty of facts, but what it doesn't know is your particular way of doing a particular job.",
+    "start": 25.72,
+    "duration": 6.22
+  },
+  {
+    "text": "So a skill teaches it that.",
+    "start": 32.259,
+    "duration": 1.621
+  },
+  {
+    "text": "And the format for this, I mean, it's almost comically simple.",
+    "start": 34.57,
+    "duration": 4.439
+  },
+  {
+    "text": "It is basically just a skill dot MD file.",
+    "start": 39.33,
+    "duration": 4.819
+  },
+  {
+    "text": "So MD markdown in a folder.",
+    "start": 44.31,
+    "duration": 2.399
+  },
+  {
+    "text": "But Martin, here's the part that worries me.",
+    "start": 47.74,
+    "duration": 2.719
+  },
+  {
+    "text": "Agent skills are handing a probabilistic model of folder of text and trusting it to run a fragile multi-step job.",
+    "start": 50.66,
+    "duration": 7.799
+  },
+  {
+    "text": "Yeah, and a skill can also contain and run code.",
+    "start": 58.6,
+    "duration": 5.28
+  },
+  {
+    "text": "So in sorting one off the internet means running a random person software on your machine.",
+    "start": 64.08,
+    "duration": 4.82
+  },
+  {
+    "text": "And while there is an open agent skills standard defined at agent skills dot I O.",
+    "start": 69.84,
+    "duration": 8.6
+  },
+  {
+    "text": "These are some of the things we need to consider when creating AI agent skills.",
+    "start": 78.7,
+    "duration": 3.879
+  },
+  {
+    "text": "So Martin, how about we get started with the best practice?",
+    "start": 83.06,
+    "duration": 2.959
+  },
+  {
+    "text": "Number one.",
+    "start": 86.04,
+    "duration": 0.91
+  },
+  {
+    "text": "Let's do it!",
+    "start": 86.95,
+    "duration": 0.7
+  },
+  {
+    "text": "Best practice number one.",
+    "start": 87.65,
+    "duration": 1.839
+  },
+  {
+    "text": "The description is the trigger, by which I mean it's the agent description that decides whether a skill ever actually runs.",
+    "start": 89.77,
+    "duration": 7.84
+  },
+  {
+    "text": "And by description, you mean?",
+    "start": 97.84,
+    "duration": 1.52
+  },
+  {
+    "text": "Every skill.md file like this guy here opens with a bit of YAML so in here we define a name and we also define a description.",
+    "start": 100.02,
+    "duration": 14.1
+  },
+  {
+    "text": "And there on the short side, according to agentskills.io,",
+    "start": 114.73,
+    "duration": 3.876
+  },
+  {
+    "text": "a name can be a maximum of 64 characters, and a description,",
+    "start": 118.606,
+    "duration": 5.351
+  },
+  {
+    "text": "which describes what the skill actually does, is limited to 1,024 characters.",
+    "start": 123.957,
+    "duration": 7.392
+  },
+  {
+    "text": "So I might have, let's say 100 of these skills installed.",
+    "start": 131.72,
+    "duration": 3.679
+  },
+  {
+    "text": "Now the agent can't read all of them at once without filling up its context window.",
+    "start": 135.56,
+    "duration": 3.88
+  },
+  {
+    "text": "So at startup, it just loads the name and the description of each skill.",
+    "start": 140.16,
+    "duration": 5.44
+  },
+  {
+    "text": "And here's where the best practice comes in, right?",
+    "start": 146.19,
+    "duration": 1.94
+  },
+  {
+    "text": "Yeah, yeah.",
+    "start": 148.23,
+    "duration": 0.74
+  },
+  {
+    "text": "So the name and the description need to contain enough",
+    "start": 148.97,
+    "duration": 3.248
+  },
+  {
+    "text": "information by themselves so that the agent knows when to use it.",
+    "start": 152.218,
+    "duration": 4.052
+  },
+  {
+    "text": "So a compliance skill of generates reports might be just a little bit too vague.",
+    "start": 156.7,
+    "duration": 8.32
+  },
+  {
+    "text": "Right, right.",
+    "start": 165.17,
+    "duration": 0.72
+  },
+  {
+    "text": "The fix is to say what the skill does and when the agent should make use of it.",
+    "start": 165.89,
+    "duration": 5.179
+  },
+  {
+    "text": "Give me a good version of the description.",
+    "start": 171.85,
+    "duration": 1.84
+  },
+  {
+    "text": "Ah, this sounds like a bit of a test, but fortunately here is one I made earlier.",
+    "start": 174.63,
+    "duration": 5.02
+  },
+  {
+    "text": "So generates the monthly compliance report from internal",
+    "start": 180.45,
+    "duration": 3.229
+  },
+  {
+    "text": "data used when someone asks for the compliance report or the monthly filing, something like that, it says what the skill does.",
+    "start": 183.679,
+    "duration": 7.091
+  },
+  {
+    "text": "And it also says when the skill should do it.",
+    "start": 190.87,
+    "duration": 3.159
+  },
+  {
+    "text": "I've also heard the description should lean a bit on the pushy side.",
+    "start": 194.555,
+    "duration": 4.424
+  },
+  {
+    "text": "Pushy?",
+    "start": 199.6,
+    "duration": 1.0
+  },
+  {
+    "text": "Models tend to under trigger.",
+    "start": 201.08,
+    "duration": 1.539
+  },
+  {
+    "text": "They might skip a skill they should have used.",
+    "start": 203.0,
+    "duration": 2.119
+  },
+  {
+    "text": "So it's safer to oversell the description a touch rather than undersell it.",
+    "start": 205.28,
+    "duration": 4.26
+  },
+  {
+    "text": "Oh, like LinkedIn posts, got it.",
+    "start": 209.8,
+    "duration": 1.98
+  },
+  {
+    "text": "So that's getting a skill to trigger.",
+    "start": 212.4,
+    "duration": 2.899
+  },
+  {
+    "text": "What goes inside it once it does?",
+    "start": 215.68,
+    "duration": 2.259
+  },
+  {
+    "text": "Well, that part's all yours, brief.",
+    "start": 218.18,
+    "duration": 1.9
+  },
+  {
+    "text": "All right.",
+    "start": 220.14,
+    "duration": 0.87
+  },
+  {
+    "text": "Yeah, and this is where a lot of skills go sideways, because the temptation is to just have the LLM write the skill for you.",
+    "start": 221.01,
+    "duration": 7.019
+  },
+  {
+    "text": "Yeah, the first skills I created were all like this.",
+    "start": 228.05,
+    "duration": 2.439
+  },
+  {
+    "text": "I'd say like, hey, AI agent, write me a skill that does X and it generated stuff,",
+    "start": 230.63,
+    "duration": 5.943
+  },
+  {
+    "text": "which honestly, I only glanced at that then call the skill, build a complete success.",
+    "start": 236.573,
+    "duration": 5.376
+  },
+  {
+    "text": "And what you get out of that is very generic mush.",
+    "start": 242.47,
+    "duration": 2.86
+  },
+  {
+    "text": "Handle errors appropriately, validate inputs, stuff the model already knew.",
+    "start": 245.75,
+    "duration": 4.82
+  },
+  {
+    "text": "Which brings us to the best practice number two, build from real expertise.",
+    "start": 251.03,
+    "duration": 5.48
+  },
+  {
+    "text": "Meaning what exactly?",
+    "start": 257.54,
+    "duration": 1.039
+  },
+  {
+    "text": "The whole point of a skill is your specific way of doing a specific job.",
+    "start": 259.2,
+    "duration": 3.759
+  },
+  {
+    "text": "So the content has to come from somewhere the model can't get to on its own.",
+    "start": 263.34,
+    "duration": 4.299
+  },
+  {
+    "text": "And there are two ways to do that.",
+    "start": 268.14,
+    "duration": 1.979
+  },
+  {
+    "text": "One, you walk through the task by hand once and write down what actually worked,",
+    "start": 270.42,
+    "duration": 4.815
+  },
+  {
+    "text": "including the corrections you made along the way.",
+    "start": 275.235,
+    "duration": 2.305
+  },
+  {
+    "text": "Or two, you synthesize it from artifacts you already have, so",
+    "start": 277.9,
+    "duration": 4.527
+  },
+  {
+    "text": "things like old reports, run books, review comments, PR feedback.",
+    "start": 282.427,
+    "duration": 3.693
+  },
+  {
+    "text": "Yeah, and fellow Brit ,Simon Willison, has a line about this.",
+    "start": 286.64,
+    "duration": 3.139
+  },
+  {
+    "text": "He says, keep the domain expertise and let the agent do the routine part.",
+    "start": 289.92,
+    "duration": 5.219
+  },
+  {
+    "text": "That's right.",
+    "start": 295.28,
+    "duration": 0.82
+  },
+  {
+    "text": "And Mr. Willison is absolutely right about this.",
+    "start": 296.1,
+    "duration": 2.239
+  },
+  {
+    "text": "You bring the expertise.",
+    "start": 298.84,
+    "duration": 1.18
+  },
+  {
+    "text": "The model brings the typing.",
+    "start": 300.36,
+    "duration": 1.459
+  },
+  {
+    "text": "And what does this mean for the skill.md body?",
+    "start": 302.57,
+    "duration": 3.66
+  },
+  {
+    "text": "I feel like I've drawn this box a few times already.",
+    "start": 306.35,
+    "duration": 2.359
+  },
+  {
+    "text": "Yes, you have.",
+    "start": 308.93,
+    "duration": 1.0
+  },
+  {
+    "text": "It means the highest value section you can put in the skill body is gotchas.",
+    "start": 310.21,
+    "duration": 6.34
+  },
+  {
+    "text": "Environment-specific facts that defy reasonable assumptions.",
+    "start": 319.26,
+    "duration": 3.36
+  },
+  {
+    "text": "Every time you correct the agent by hand, that correction is a gotcha.",
+    "start": 323.22,
+    "duration": 4.08
+  },
+  {
+    "text": "Write it down.",
+    "start": 327.68,
+    "duration": 1.0
+  },
+  {
+    "text": "Otherwise, you'll be making the same correction next week.",
+    "start": 328.72,
+    "duration": 2.519
+  },
+  {
+    "text": "And the week after.",
+    "start": 331.39,
+    "duration": 1.0
+  },
+  {
+    "text": "Mm-hmm, you're not wrong.",
+    "start": 332.5,
+    "duration": 1.12
+  },
+  {
+    "text": "Now, even when you do all this right, it doesn't always work for the first time around.",
+    "start": 334.1,
+    "duration": 4.6
+  },
+  {
+    "text": "I built a skill for a monthly compliance report from an actual",
+    "start": 339.34,
+    "duration": 3.137
+  },
+  {
+    "text": "real report I had done, which is real expertise, exactly what we're talking about.",
+    "start": 342.477,
+    "duration": 5.022
+  },
+  {
+    "text": "But on the first run, the row totals didn't add up to the common totals.",
+    "start": 348.06,
+    "duration": 4.579
+  },
+  {
+    "text": "So the math was right.",
+    "start": 352.74,
+    "duration": 1.26
+  },
+  {
+    "text": "Yeah, the math was wrong.",
+    "start": 354.69,
+    "duration": 1.179
+  },
+  {
+    "text": "On a compliance report.",
+    "start": 356.17,
+    "duration": 1.0
+  },
+  {
+    "text": "Yeah, but that's the good kind of wrong because it's the kind you can catch.",
+    "start": 357.26,
+    "duration": 3.66
+  },
+  {
+    "text": "We'll come back to this one.",
+    "start": 361.27,
+    "duration": 1.439
+  },
+  {
+    "text": "Point is, a good skilled body gets thorough.",
+    "start": 362.93,
+    "duration": 3.179
+  },
+  {
+    "text": "And thorough, that means it can get...",
+    "start": 366.35,
+    "duration": 2.609
+  },
+  {
+    "text": "really, really long.",
+    "start": 369.17,
+    "duration": 2.539
+  },
+  {
+    "text": "Yeah, and long, as it turns out, gets expensive.",
+    "start": 371.82,
+    "duration": 3.1
+  },
+  {
+    "text": "Which brings us to best practice number three, which is spend context wisely.",
+    "start": 375.63,
+    "duration": 5.139
+  },
+  {
+    "text": "At startup, the agent only sees the name and the description, but when it selects a skill, that's when it actually reads the rest.",
+    "start": 381.07,
+    "duration": 8.499
+  },
+  {
+    "text": "So now we take a look at the body of the skill.md file and bring that into context.",
+    "start": 389.59,
+    "duration": 6.219
+  },
+  {
+    "text": "And that context is shared with everything else already in the context window.",
+    "start": 396.22,
+    "duration": 4.44
+  },
+  {
+    "text": "Yeah, every line here in the skill body is now competing for the model's attention, which means the goal is to write left.",
+    "start": 400.86,
+    "duration": 8.159
+  },
+  {
+    "text": "Which feels a little bit in opposition to our last best practice, because",
+    "start": 409.59,
+    "duration": 3.533
+  },
+  {
+    "text": "the more detailed and thorough a skill body is, the better.",
+    "start": 413.123,
+    "duration": 3.186
+  },
+  {
+    "text": "You'd think so, but the model is already smart.",
+    "start": 416.59,
+    "duration": 3.299
+  },
+  {
+    "text": "It knows stuff.",
+    "start": 420.23,
+    "duration": 0.54
+  },
+  {
+    "text": "It knows what a PDF is.",
+    "start": 420.77,
+    "duration": 1.4
+  },
+  {
+    "text": "It knows, what a database migration does.",
+    "start": 422.27,
+    "duration": 2.379
+  },
+  {
+    "text": "So only write down what the agent wouldn't know on its own.",
+    "start": 425.19,
+    "duration": 3.639
+  },
+  {
+    "text": "Stuff that's not already part of the AI model's training data.",
+    "start": 428.83,
+    "duration": 3.319
+  },
+  {
+    "text": "And we can put this into numbers.",
+    "start": 432.73,
+    "duration": 1.499
+  },
+  {
+    "text": "It's recommended to keep this body here of skill.md to under about 500 lines of text, or we could say that's roughly about five",
+    "start": 434.29,
+    "duration": 11.0
+  },
+  {
+    "text": "thousand tokens and just keep it at that.",
+    "start": 445.45,
+    "duration": 3.439
+  },
+  {
+    "text": "And when it's bigger than that?",
+    "start": 449.07,
+    "duration": 1.22
+  },
+  {
+    "text": "Well, when it's bigger than that, just split it out.",
+    "start": 450.9,
+    "duration": 2.859
+  },
+  {
+    "text": "The skill folder can actually hold a sub-folder called references,",
+    "start": 453.94,
+    "duration": 4.974
+  },
+  {
+    "text": "and this is a directory, and the agent will only open the files in the references when it actually needs them.",
+    "start": 458.914,
+    "duration": 7.746
+  },
+  {
+    "text": "It's part of a pattern called progressive disclosure, which is to",
+    "start": 466.96,
+    "duration": 3.04
+  },
+  {
+    "text": "say disclose additional information like this only when it is needed.",
+    "start": 470.0,
+    "duration": 3.88
+  },
+  {
+    "text": "So staying lean is one thing, but some steps you really don't want the agent guessing out at all.",
+    "start": 474.69,
+    "duration": 5.28
+  },
+  {
+    "text": "So guessing at what?",
+    "start": 480.7,
+    "duration": 1.0
+  },
+  {
+    "text": "Every time the model runs your skill, it reads the instructions and improvises through them.",
+    "start": 482.35,
+    "duration": 5.32
+  },
+  {
+    "text": "For loose steps, that's fine.",
+    "start": 488.09,
+    "duration": 1.18
+  },
+  {
+    "text": "A lot of paths get you to the right answer.",
+    "start": 489.65,
+    "duration": 1.959
+  },
+  {
+    "text": "But for a step that has to be exactly right every single time, you don't want the model regenerating the logic on the fly.",
+    "start": 492.21,
+    "duration": 6.819
+  },
+  {
+    "text": "Hmm, this sounds to me like a...",
+    "start": 499.38,
+    "duration": 1.959
+  },
+  {
+    "text": "Best practice number four?",
+    "start": 501.89,
+    "duration": 1.0
+  },
+  {
+    "text": "It is.",
+    "start": 503.01,
+    "duration": 1.0
+  },
+  {
+    "text": "Make use of deterministic scripts.",
+    "start": 504.05,
+    "duration": 2.8
+  },
+  {
+    "text": "Match how prescriptive you are to how fragile the step is.",
+    "start": 507.51,
+    "duration": 4.299
+  },
+  {
+    "text": "So, loose step, write instructions.",
+    "start": 512.35,
+    "duration": 1.819
+  },
+  {
+    "text": "Fragile step, right code.",
+    "start": 514.63,
+    "duration": 1.32
+  },
+  {
+    "text": "Okay, and code, that code is where?",
+    "start": 516.22,
+    "duration": 1.72
+  },
+  {
+    "text": "The skills folder that holds a scripts directory.",
+    "start": 518.52,
+    "duration": 3.68
+  },
+  {
+    "text": "So scripts directory, same idea as references.",
+    "start": 523.38,
+    "duration": 5.5
+  },
+  {
+    "text": "You drop a script in there, say script one.",
+    "start": 530.82,
+    "duration": 3.739
+  },
+  {
+    "text": "And the skill body just tells the agent, run this.",
+    "start": 536.77,
+    "duration": 3.96
+  },
+  {
+    "text": "The script doesn't get loaded into context, so you'd save tokens as well.",
+    "start": 541.11,
+    "duration": 3.8
+  },
+  {
+    "text": "And it's more reliable than having the model improvise from scratch every time.",
+    "start": 545.19,
+    "duration": 4.5
+  },
+  {
+    "text": "Now you do have to be explicit about intent though right, so the model doesn't just kind of read the script as reference material.",
+    "start": 549.89,
+    "duration": 6.58
+  },
+  {
+    "text": "Yeah, exactly.",
+    "start": 556.64,
+    "duration": 1.0
+  },
+  {
+    "text": "Say, run this script or read this as reference.",
+    "start": 558.04,
+    "duration": 4.94
+  },
+  {
+    "text": "Don't leave that to a guess.",
+    "start": 564.38,
+    "duration": 1.42
+  },
+  {
+    "text": "Yeah, and that works in Claude Code, but it isn't just an Anthropic thing.",
+    "start": 566.25,
+    "duration": 3.039
+  },
+  {
+    "text": "Opening a codex works roughly the same way as well.",
+    "start": 569.55,
+    "duration": 2.4
+  },
+  {
+    "text": "So back to my compliance report, the one where the row totaled and reconciled.",
+    "start": 572.46,
+    "duration": 4.599
+  },
+  {
+    "text": "Yeah, the math one.",
+    "start": 577.09,
+    "duration": 0.94
+  },
+  {
+    "text": "Yeah, that one.",
+    "start": 578.03,
+    "duration": 1.0
+  },
+  {
+    "text": "The masked up is now a deterministic math script.",
+    "start": 579.23,
+    "duration": 5.059
+  },
+  {
+    "text": "The model doesn't add the numbers anymore.",
+    "start": 585.29,
+    "duration": 2.179
+  },
+  {
+    "text": "It calls a script that adds the numbers.",
+    "start": 587.63,
+    "duration": 2.46
+  },
+  {
+    "text": "And that whole class of bug just goes away.",
+    "start": 590.57,
+    "duration": 3.199
+  },
+  {
+    "text": "Yeah, because the script doesn't guess.",
+    "start": 594.05,
+    "duration": 2.1
+  },
+  {
+    "text": "This script, math script here.",
+    "start": 596.39,
+    "duration": 1.5
+  },
+  {
+    "text": "It's running code.",
+    "start": 598.03,
+    "duration": 1.0
+  },
+  {
+    "text": "Right.",
+    "start": 599.03,
+    "duration": 0.72
+  },
+  {
+    "text": "And the answer isn't write more test.",
+    "start": 599.75,
+    "duration": 2.86
+  },
+  {
+    "text": "You can test your way to trust.",
+    "start": 602.95,
+    "duration": 1.74
+  },
+  {
+    "text": "A test only catches what you already thought to check.",
+    "start": 605.07,
+    "duration": 2.88
+  },
+  {
+    "text": "The answer is, for the parts that have to be right, take the guess out of the loop.",
+    "start": 608.39,
+    "duration": 4.519
+  },
+  {
+    "text": "Yeah, right.",
+    "start": 613.17,
+    "duration": 0.74
+  },
+  {
+    "text": "So this is moving away from probabilistic, which is what an",
+    "start": 613.91,
+    "duration": 4.21
+  },
+  {
+    "text": "agent does by itself into being more of a deterministic model instead.",
+    "start": 618.12,
+    "duration": 5.89
+  },
+  {
+    "text": "And I've been doing this a lot in the skills that I build.",
+    "start": 624.03,
+    "duration": 2.279
+  },
+  {
+    "text": "I don't want to make the agent make guesses if something can be hard coded as logic deterministic,",
+    "start": 626.87,
+    "duration": 6.302
+  },
+  {
+    "text": "because if the agent is having to make probabilistic decisions,",
+    "start": 633.172,
+    "duration": 4.147
+  },
+  {
+    "text": "those decisions will not always be consistent across multiple runs.",
+    "start": 637.319,
+    "duration": 3.71
+  },
+  {
+    "text": "So it was skill you built yourself and that you've read and that your hardened the fragile steps on, that's a skill you can trust.",
+    "start": 641.82,
+    "duration": 7.459
+  },
+  {
+    "text": "But not all skills you'll run, you build yourself, right?",
+    "start": 650.01,
+    "duration": 4.32
+  },
+  {
+    "text": "Right? What about the skills you'll run that came from a stranger?",
+    "start": 654.624,
+    "duration": 3.915
+  },
+  {
+    "text": "Which brings us to best practice number five, vet a skill before you run it.",
+    "start": 659.17,
+    "duration": 5.42
+  },
+  {
+    "text": "So I said a skill can run code.",
+    "start": 664.69,
+    "duration": 2.479
+  },
+  {
+    "text": "The stranger software on",
+    "start": 667.49,
+    "duration": 1.58
+  },
+  {
+    "text": "your machine thing.",
+    "start": 669.09,
+    "duration": 1.0
+  },
+  {
+    "text": "So a skill folder can contain, as we said, executable scripts that we can run, scripts that can access stuff,",
+    "start": 670.51,
+    "duration": 9.413
+  },
+  {
+    "text": "access stuff like, for example, the local file system on your computer, or in fact, ",
+    "start": 679.923,
+    "duration": 6.869
+  },
+  {
+    "text": "it could access any API keys that you happen to have lying around.",
+    "start": 686.792,
+    "duration": 5.837
+  },
+  {
+    "text": "Which is exactly what makes skills so powerful.",
+    "start": 693.49,
+    "duration": 2.72
+  },
+  {
+    "text": "But I saw an audit from earlier this year that scanned almost 4,000",
+    "start": 696.83,
+    "duration": 5.77
+  },
+  {
+    "text": "public skills, and over 35% of them had a security flaw of some kind, and 13% had something critical",
+    "start": 702.6,
+    "duration": 13.95
+  },
+  {
+    "text": "going on like a prompt injection or straight up malware.",
+    "start": 716.55,
+    "duration": 3.199
+  },
+  {
+    "text": "Which means we have to treat an agent skill like, well, like any other dependency,",
+    "start": 720.37,
+    "duration": 4.44
+  },
+  {
+    "text": "just the same way we'd check a random package before pulling it into a project,",
+    "start": 724.81,
+    "duration": 4.353
+  },
+  {
+    "text": "which is to say, read what it does and check what it reaches out to.",
+    "start": 729.163,
+    "duration": 3.747
+  },
+  {
+    "text": "So just because an agent's skills are an open standard, that doesn't say anything about whether a given skill is safe.",
+    "start": 733.52,
+    "duration": 7.06
+  },
+  {
+    "text": "Okay, so that's our five best practices.",
+    "start": 741.11,
+    "duration": 3.1
+  },
+  {
+    "text": "A good skill is...",
+    "start": 744.53,
+    "duration": 1.6
+  },
+  {
+    "text": "A skill the agent will actually trigger.",
+    "start": 746.16,
+    "duration": 3.579
+  },
+  {
+    "text": "Built with real hands-on expertise.",
+    "start": 750.34,
+    "duration": 3.439
+  },
+  {
+    "text": "Kept lean so it doesn't fill up the context window.",
+    "start": 754.61,
+    "duration": 3.34
+  },
+  {
+    "text": "With a deterministic script whenever a guess would be dangerous or just inconsistent.",
+    "start": 758.43,
+    "duration": 5.359
+  },
+  {
+    "text": "And vetted before it ever runs.",
+    "start": 765.28,
+    "duration": 2.379
+  },
+  {
+    "text": "And look, this is all moving fast.",
+    "start": 768.16,
+    "duration": 2.1
+  },
+  {
+    "text": "It's an open standard and more agentic platforms are adopting it.",
+    "start": 770.6,
+    "duration": 3.559
+  },
+  {
+    "text": "So this list is going to grow.",
+    "start": 774.32,
+    "duration": 1.78
+  },
+  {
+    "text": "Which is really us asking what did we miss?",
+    "start": 776.663,
+    "duration": 3.326
+  },
+  {
+    "text": "If you've built agent skills and maybe you've got a sick best practice, well drop it in the comments.",
+    "start": 780.43,
+    "duration": 5.64
+  },
+  {
+    "text": "Preferably one that isn't malware.",
+    "start": 786.1,
+    "duration": 1.699
+  },
+  {
+    "text": "Yeah, preferably.",
+    "start": 788.35,
+    "duration": 1.0
+  }
+]

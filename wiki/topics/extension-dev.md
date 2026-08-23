@@ -18,12 +18,17 @@ updated: 2026-08-06
 - [[wiki/entities/plannotator|Plannotator]]
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — Plugin 系統（10 slots）、Extension UI System 🛠️
 - [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]]
+- [[wiki/entities/mcp-extensions|MCP Extensions]] — MCP 擴充機制與支援矩陣 🛠️
+- [[wiki/entities/mcp-tasks|MCP Tasks]] — MCP 長任務擴充 🛠️
+- [[wiki/entities/mcp-apps|MCP Apps]] — MCP 互動式應用程式 🛠️
 
 ## Concepts
 
 - [[wiki/concepts/agent-extension-installation|Agent Extension 安裝位置與方式]]
 - [[wiki/concepts/npm-publishing-workflow|Package Publishing Workflow]]
 - [[wiki/concepts/okf-open-knowledge-format|OKF]]
+- [[wiki/concepts/mcp-agent-skills-integration|MCP + Agent Skills]] — MCP 與 Skills 的整合模式 🛠️
+- [[wiki/topics/mcp-ecosystem|MCP Ecosystem]] — MCP 完整生態系導航 🛠️
 
 ## Sources
 

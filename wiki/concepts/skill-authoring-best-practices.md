@@ -2,14 +2,17 @@
 title: "Skill 撰寫方法論"
 type: concept
 created: 2026-08-14
-updated: 2026-08-17
-sources: 2
+updated: 2026-08-23
+sources: 3
 tags: [skill, best-practices, authoring, evaluation, prompt-engineering]
 topics: [skill-system]
 canonical: concepts/skill-authoring-best-practices
 provenance:
   - kind: raw
     path: "raw/web/2026-08-14-skill-撰寫最佳實踐.md"
+  - kind: youtube
+    url: "https://www.youtube.com/watch?v=qYNs80FKIVc"
+    description: "IBM《5 Best Practices for Building Agent Skills》，經圓桌會議（Claude+Gemini）定稿補入 5 段"
 ---
 
 # Skill 撰寫方法論
@@ -24,6 +27,10 @@ Context window 是公共資源。預設假設：**Claude 已經非常聰明**，
 
 - ✅ ~50 tokens 的簡潔指令（假設 Claude 知道 PDF 和函式庫）
 - ❌ ~150 tokens 的冗長解釋（包含 Claude 已知的基礎知識）
+
+**不要讓 LLM 代寫 skill 本身**：找 AI 生成一份「幫我寫個處理 X 的 skill」看起來省事，但寫出來的內容多半是「適當處理錯誤」「驗證輸入」這種模型自己早就知道的空話——影片裡的說法是 generic mush（沒營養的通用廢話）。Skill 存在的意義，就是把模型自己拿不到的東西寫下來：具體做法、踩過的雷、事後修正過的細節。這些只能來自自己動手做一次，或是從既有的 runbook、review 意見、PR 回饋等真實素材整理出來，沒有捷徑。用 Simon Willison 的話說：把領域專業知識留給自己，把打字的苦力活交給 agent。
+
+> 📺 依據：IBM《5 Best Practices for Building Agent Skills》[03:41][04:11][04:46][04:56]
 
 ### 2. 設定適當自由度
 
@@ -54,18 +61,40 @@ description: Extract text...   # ≤1024 字元，功能+使用時機
 ---
 ```
 
+### 描述是觸發器
+
+Agent 啟動時只會載入每個 Skill 的 name 與 description，本體要等被選中才讀進 context——這代表 description 這 1024 字元，決定了這個 Skill 有沒有機會被用到。實務上模型偏向「觸發不足」：與其含蓄地描述功能，不如稍微誇大（oversell）一點也不要保守（undersell），寫得太謙虛，Agent 該用時反而不會用。
+
+判斷標準：description 有沒有同時交代「做什麼」和「什麼情境下用」。
+
+- ❌ 「產生報告」（太模糊，Agent 不知道什麼時候該用）
+- ✅ 「當有人要求月結報表或月度歸檔時，從內部資料產生月結合規報告」（功能 + 時機都鎖定）
+
+> 📺 依據：IBM《5 Best Practices for Building Agent Skills》[01:29][03:21][03:25]
+
 ### 命名慣例
 
 推薦**動名詞形式**：`processing-pdfs`、`analyzing-spreadsheets`、`managing-databases`
 
 ### 檔案組織
 
-- SKILL.md 主體 < 500 行
+- SKILL.md 主體 < 500 行（約 5,000 tokens 以內——行數只是粗略估算，tokens 才是真正吃掉 context 的額度，尤其中文字元的 token 密度跟英文不同，兩個維度最好都留意）
+- 超過篇幅就拆到 `references/` 子目錄，agent 需要時才讀取（跟下面「參考距離 SKILL.md 只一層深」是同一套規則的兩面）
 - 參考距離 SKILL.md 只**一層深**（避免深層巢狀）
 - 超過 100 行的參考檔案頂部加目錄
 - 按領域或功能建構目錄（`reference/finance.md` vs `docs/file1.md`）
 
+> 📺 依據：IBM《5 Best Practices for Building Agent Skills》[07:14][07:46]。**明確排除**：不採用「超過範圍拆成多個子技能（Sub-skills）」——講的是同一個 skill 內部把細節挪到 `references/`，不是拆成多個獨立 skill。
+
 ## 常見模式
+
+### 踩坑記錄（Gotchas）
+
+Skill body 裡，投資報酬率最高的一段不是流程說明，而是 **gotchas**——那些會打破「合理假設」的環境特定事實。每次手動糾正 Agent 的行為，那個糾正動作本身就是一個 gotcha，值得立刻寫下來；不寫下來的下場是，同樣的錯誤下週會再犯一次，下下週還會再犯一次。
+
+寫法上不需要長篇解釋原理，條列式記錄「什麼情況 + 什麼行為是錯的 + 正確做法是什麼」就夠了。這個段落的價值往往比整份 Skill 其他部分加起來還高，因為它裝的是別處學不到的實戰教訓。
+
+> 📺 依據：IBM《5 Best Practices for Building Agent Skills》[05:10][05:19][05:23][05:27][05:31]
 
 ### 範本模式
 
@@ -162,6 +191,23 @@ Here is a sensible default format, but use your best judgment...
 
 使用完全限定名稱：`ServerName:tool_name`（避免「找不到工具」錯誤）。
 
+## 安全使用守則
+
+> 這裡談的是「每次使用前」的個人習慣，跟組織層級的正式安全審查流程是兩回事——即使公司已經有把關，動手前自己這道檢查依然值得做。
+>
+> 📺 依據：IBM《5 Best Practices for Building Agent Skills》[10:59][11:04][11:07][11:10][11:33][11:36][12:00][12:13]
+
+Skill 可以包含並執行程式碼，這代表安裝一個來路不明的 Skill，等於在自己機器上跑陌生人寫的軟體。這些腳本能存取的東西不只本機檔案系統，也包括環境裡的任何 API key。這種能力正是 Skill 好用的原因，但也是風險所在。
+
+一份稽核掃描了近 4,000 個公開 Skill，發現超過 **35% 存在某種安全漏洞，13% 有嚴重問題**（例如 prompt injection 或直接夾帶惡意程式）。開放標準只保證格式相容，不保證內容安全。
+
+使用任何非自己撰寫的 Skill 前，建議養成兩個習慣：
+
+1. **用前先掃一遍**：打開 `scripts/` 目錄看一眼有哪些檔案，留意不必要的網路存取、檔案系統操作、或可疑的系統呼叫——就像拉一個新的第三方套件進專案前，會先看一眼它做了什麼。
+2. **看懂邏輯再放行**：如果 Skill 裡有腳本，執行前至少搞懂它在幹嘛、能碰到哪些資源（檔案、網路、環境變數）。讓 AI 跑一支腳本，等於代替你做了一次「知情同意」——至少自己要先知情。
+
+自己動手寫、自己讀過、也親自把脆弱步驟改成腳本的 Skill，才是能信任的 Skill；別人給的，規則一樣：用之前，先看過，切勿盲目授權執行。
+
 ## 檢查清單
 
 ### 核心品質
@@ -191,6 +237,7 @@ Here is a sensible default format, but use your best judgment...
 ## 來源
 
 - [[wiki/sources/2026-08-14-skill-writing-best-practices|Skill 撰寫最佳實踐]] — Anthropic 官方完整指南
+- IBM《5 Best Practices for Building Agent Skills》（YouTube，https://www.youtube.com/watch?v=qYNs80FKIVc）— 觸發精準度、避免代寫、5,000 tokens、安全使用守則、gotchas 五項補充皆出自本影片逐字稿，時間戳詳見各段落 blockquote
 
 ## 相關頁面
 

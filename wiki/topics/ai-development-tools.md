@@ -38,6 +38,8 @@ updated: 2026-08-18
 - [[wiki/concepts/ai-animation-generation-approaches|AI 動畫生成手法分類]] — 7 種 AI 動畫／影片生成手法分類索引 🛠️
 - [[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構]] — Event/Matcher/Handler 三層架構、5 種 Handler、deterministic 強制執行 🛠️
 - [[wiki/concepts/rapid-application-development|RAD (Rapid Application Development)]] — 1991 年四階段快速應用開發方法論，現代 AI 開發的歷史先驅 🛠️
+- [[wiki/concepts/mcp-servers|MCP Servers]] — MCP 伺服器端建置指南 🛠️
+- [[wiki/topics/mcp-ecosystem|MCP Ecosystem]] — MCP 完整生態系導航 🛠️
 - [[wiki/concepts/spec-driven-development|Spec-Driven Development]] — 規格驅動開發，補足 vibe coding 安全缺陷的關鍵機制 🛠️
 
 ## Discussions
@@ -46,6 +48,7 @@ updated: 2026-08-18
 
 ## Sources
 
+- [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs & Tooling]] — MCP 官方 SDK、Inspector、範例伺服器 🛠️
 - [[wiki/sources/2026-08-14-copilot-vs-claude-code-skills-ecosystem|Copilot vs Claude Code 比較]] — 第三方分析
 - [[wiki/sources/2026-08-13-claude-design-youtube|How To Use Claude Design To Build Beautiful Sites]] — 五階段設計工作流教學 🛠️
 - [[wiki/sources/2026-08-17-7-ai-animation-skills|7 個用 AI 做動畫的 Skills]] — YouTube 短片：7 種 AI 動畫生成工具速覽（已查證核實）

@@ -6,11 +6,42 @@
 ## In progress
 
 - [ ] W-2026-08-074 個人 AI 助理架構願景：最小規格 + 垂直切片 🆕 #ai-agent #architecture
-  - next: 圓桌會議（Claude+Gemini+Codex）已於 2026-08-22 完成第一輪並收斂共識（見 refs 會議紀要），下一步是實際動筆產出**最小規格**（不是完整規格文件）：① 核心=控制平面（無狀態、管流程/政策/派工/log，不管內容）vs Plugin=能力平面（標準插頭介面）的邊界文件 ② log schema 先定 MUST 欄位（trace_id/span_id/parent_span_id/timestamp/actor/event_type/status/latency_ms/error，不含敏感內容）即可，SHOULD 欄位（完整 input/output payload/token_usage/cost_estimate）待遮罩規則定案後再開 ③ orchestrator 派工邏輯直接把 round-table 既有角色分工（Claude=架構/Gemini=研究/Codex=工程/Pi=本機自動化）正式化，不重新設計 ④ stateless+記憶檢索直接把 work-tracker 現有「session 啟動讀 work/current.md」模式當雛形擴充，記憶分 Episodic/Semantic/Procedural/Artifact 四類 ⑤ 多 harness 調用包成統一 Agent Provider Adapter，記錄 provider/harness/model/輸入輸出reference/成本/驗證結果。**最小規格出爐後立刻做一條垂直切片**——優先選搜尋能力，跑通一次「輸入→派工→Tool呼叫→驗證→Log→回覆」的完整路徑，驗證規格可行再擴大，不要 5 大維度全部寫到完整才動手
+  - next: 圓桌會議（Claude+Gemini+Codex）已於 2026-08-22 完成第一輪並收斂共識（見 refs 會議紀要），下一步是實際動筆產出**最小規格**（不是完整規格文件）：① 核心=控制平面（無狀態、管流程/政策/派工/log，不管內容）vs Plugin=能力平面（標準插頭介面）的邊界文件 ② log schema 先定 MUST 欄位（trace_id/span_id/parent_span_id/timestamp/actor/event_type/status/latency_ms/error，不含敏感內容）即可，SHOULD 欄位（完整 input/output payload/token_usage/cost_estimate）待遮罩規則定案後再開 ③ orchestrator 派工邏輯直接把 round-table 既有角色分工（Claude=架構/Gemini=研究/Codex=工程/Pi=本機自動化）正式化，不重新設計 ④ stateless+記憶檢索直接把 work-tracker 現有「session 啟動讀 work/current.md」模式當雛形擴充，記憶分 Episodic/Semantic/Procedural/Artifact 四類 ⑤ 多 harness 調用包成統一 Agent Provider Adapter，記錄 provider/harness/model/輸入輸出reference/成本/驗證結果。**最小規格出爐後立刻做一條垂直切片**——優先選搜尋能力，跑通一次「輸入→派工→Tool呼叫→驗證→Log→回覆」的完整路徑，驗證規格可行再擴大，不要 5 大維度全部寫到完整才動手。**第二條垂直切片**已確認為 Azure DevOps 領域專家 Agent（見 [[work/current#W-2026-08-080|W-080]]），與搜尋能力平行推進
   - **訂正（8/22）**：[[work/current#W-2026-08-017|W-017]]／[[work/current#W-2026-08-025|W-025]]／[[work/current#W-2026-08-022|W-022]]／[[work/current#W-2026-08-033|W-033]]／W-2026-08-NEW-001／W-2026-08-NEW-002 這 6 個項目**目前都還沒開始做**（next 都只是「調研 XXX」的待辦，不是已完成的研究產出）。W-074 不是拿它們的成果來整合，而是先產出架構規格，讓這 6 個原本各自零散、範圍模糊的研究待辦，之後有明確的規格可以對齊、重新框定範圍（部分可能因此被合併或縮小，不用再各自從零摸索方向）
   - refs: [[raw/conversations/2026-08-22-personal-ai-assistant-architecture-vision|Cheer 架構願景原始想法]]、[[.pi/round-table/20260822-161304/synthesis|2026-08-22 圓桌會議紀要]]、[[work/current#W-2026-08-017|W-017]]、[[work/current#W-2026-08-025|W-025]]、[[work/current#W-2026-08-022|W-022]]、[[work/current#W-2026-08-033|W-033]]
   - 起因：2026-08-22 討論工作優先順序時，Cheer 提出完整的個人 AI 助理架構願景（核心/plugin 分離、自我成長觀測、單一對口統籌、stateless+記憶檢索、多 harness 外部 agent 調用），並點名「搜尋能力」是當前最迫切的 plugin（Pi 無 Deep Research、無法跟 Gemini 交互、Gemini 品質下降）
   - 無相依，可跟 W-072 平行進行（三方圓桌共識：不必等 W-072/W-057 做完才開始）
+
+- [ ] W-2026-08-080 Azure DevOps 領域專家 Agent PoC 🔄 #ai-agent #devops #ado #vertical-slice
+  - next: 開工前先做 W-ADO-000（評估 OCR 能否用於本次開發的程式碼審查）。之後照 8/22 二次訂正的順序：Block 1 溝通可行性驗證（W-ADO-001~003：ADO／SharePoint／Outlook）全過 → Block 2 設計 Tool 介面（W-ADO-004）→ Block 3 Agent 架構驗證（W-ADO-005~007：可被調用／ADO 呼叫+回饋／SharePoint+Outlook 溝通）→ 才回來決定 Plugin 定位與 Publish View（W-ADO-008~009）→ 最後深化（W-ADO-010~012：寫入操作/三 gate/Memory）
+  - refs: [[.pi/round-table/20260822-214627/synthesis|2026-08-22 圓桌會議紀要（ADO Agent）]]、[[work/current#W-2026-08-074|W-074]]（本項目是 W-074 的第二條垂直切片，第一条是搜尋能力）
+  - 起因：2026-08-22 四方圓桌會議（Claude+Gemini+Codex，Copilot 因額度用盡缺席）討論「要不要先做領域專家 Agent」，2 輪即收斂共識：應做、定位為 W-074 垂直切片、TypeScript 單語言、5 元件微型 UI Schema、三 gate 驗收。同日 Cheer 看過會議紀要後訂正部分結論（見下）
+  - **圓桌共識（未變）**：① 不等 Cheerio 本體完成，直接做 ② 定位為 W-074 第二垂直切片（不是獨立專案）③ LLM 不直接輸出任意 HTML，走固定元件 Schema ④ 三 gate 驗收精神保留 ⑤ 共用契約垂直實作
+  - **Cheer 訂正（8/22 同日，覆蓋圓桌部分結論，理由已記錄）**：
+    1. **Tech Stack：C#/.NET 10 取代 TypeScript 單語言**——理由：ADO 是 Microsoft 產品、公司主力 AI 工具是 GitHub Copilot，C#/.NET 生態整合度與內部信任度都更高，跟原始截圖「C#/.NET 扛 Agent Backend/企業整合」的分工邏輯一致。圓桌收斂到 TypeScript 是基於「降低語言分工複雜度」的簡化考量，沒把「公司工具鏈對齊」算進去。**SPFx 渲染路徑仍必須用 React/TypeScript**（框架限制無法迴避），所以最終是 C#/.NET 10（Agent Backend + 企業整合 + Tier 1 response）+ TypeScript/React（僅限 Tier 2 SPFx 渲染）兩語言分工，不是回到四語言
+    2. **輸出分兩層，不是一份 Renderer**：Tier 1「Agent Response」比照 MCP content block 模式，回給主 Agent Host（Claude／GitHub Copilot／未來 Cheerio），除文字外也能回結構化 HTML（走固定元件 UI Schema）；Tier 2「SharePoint Publish View」由人類主動觸發，把 ADO Board 資訊同步到指定 M365 SharePoint，用 SPFx 相容 React 前端呈現各案子進度與人力工作類別占比給主管看。兩條路徑、兩種消費者，不共用同一份 Renderer
+    3. **PoC 範圍擴大，收回原本「只做唯讀」的限縮**：ADO 端涵蓋 Collection Process 複製、Project Settings 複製、Boards Work Item 讀取/分析/新增/異動，並提供 Tier 1 response；人類要求同步時才觸發 SharePoint Form List 同步。**M365/Graph（查日期、預約/取消會議等）定位為此領域專家的 plugin，ADO 是主體**，M365 操作一樣要走 Tool Policy 授權（呼應原始截圖「不會讓 Agent 直接讀寫 M365 資料而沒有規範」）
+    4. **新增能力**：Graph Engineering（角色/職責/依賴關係的圖結構建模與查詢，呼應原始截圖依賴圖/Sankey 需求）、Loop Engineering（Cheerio 理解為能自跑「觀察 ADO 狀態→分析→建議/執行→驗證」迭代迴圈，非單次問答——**此詞定義待 Cheer 確認**，暫按此理解推進）、**Memory**（記住 ADO 專案權責歸屬、歷史決策、曾分析過的結論；建議沿用 Cheerio 自己驗證過的 decision-ledger 風格 [[memory-harness-research-validates-design]]，不上向量 RAG，W-ADO-002 一併補 Memory Schema）
+    5. **止損紀律不放棄，但改用更早的關卡**：原本「Phase 1 read-only 骨架先跑通」的止損精神保留，但 Cheer 進一步把它拆細成「先驗證連得上，才設計 Tool，才驗證 Agent 呼叫鏈，最後才決定 Plugin 定位與開發 Publish View」——比原本的 Phase 1-4 更保守，避免在 Tool Contract／Agent 邏輯上投入心力後才發現 SharePoint／Outlook API 權限根本要不到。**Gate 3 定義不變**：從「唯讀」改成「寫入操作經 Tool Policy 授權 + 全程可追溯」
+    6. **二次訂正（同日）：子項目改成三個 Block，取代原本的 Phase 1-4 排序**——① Block 1 溝通可行性驗證：ADO／M365 SharePoint／M365 Outlook 三者的 API 連通性各自獨立驗證（能不能打通、憑證申請不申請得到，不用先做完整權限規劃），三者都 OK 才進下一步；② 把驗證過的三者包裝成標準 Tool 介面，讓主 Agent 可以直接調用；③ Block 2 領域專家 Agent 架構驗證：先確認 Agent 本身能被主 Agent 調用，再確認能正確用 Tool 呼叫 ADO 並把結果正確回饋給主 Agent，最後同樣驗證 SharePoint／Outlook。這些都驗證完，才回來決定 M365 要做成外掛 Plugin 還是一開始就內建在領域專家裡、以及 Publish View（React）怎麼開發。原本 Phase 3（疊加寫入/plugin/Memory）與三 gate 驗收往後移到全部驗證完之後
+    7. **開工前先做 W-ADO-000**：Cheer 提出開工前先評估 [[wiki/entities/open-code-review|Alibaba OpenCodeReview (OCR)]] 能否用於本次 C#/.NET 開發的程式碼審查——這正是既有 backlog 的 [[work/current#W-2026-08-030|W-030]]／[[work/current#W-2026-08-031|W-031]]／[[work/current#W-2026-08-032|W-032]]（安裝測試 OCR → 跟既有 `code-review` skill 比較 → 整合進工作流），之前排在 backlog 底部一直沒動手，現在因為要開始寫 ADO Agent 的正式程式碼而變得更急迫，拉到最前面先做
+  - **PoC 仍然不做**：不做完整 RAG/長期記憶（Memory 用輕量 decision-ledger）、不做多 Agent swarm、不支援任意 HTML
+  - **預估時程**：W-ADO-000（OCR 評估，30分鐘~1小時）→ Block 1 溝通可行性驗證（每個服務數小時級，取決於憑證申請速度）→ Tool 介面設計（1天）→ Block 2 Agent 架構驗證（2-3天）→ 決策點（Plugin 定位＋Publish View 開發，時程視決策結果重估）→ 深化階段（寫入操作/三 gate/Memory，時程視前面結果重估）
+  - 子項目（按優先序，依 8/22 二次訂正的三 Block 順序）：
+    - [ ] W-ADO-000 評估 OCR 能否用於本次開發的程式碼審查（呼應 W-030/W-031/W-032，拉到本項目最前面）
+    - [ ] W-ADO-001 ADO 溝通可行性驗證（API 打得通、能申請到憑證，不用先做完整權限規劃）— Cheer 主導，阻斷性
+    - [ ] W-ADO-002 M365 SharePoint 溝通可行性驗證
+    - [ ] W-ADO-003 M365 Outlook 溝通可行性驗證
+    - [ ] W-ADO-004 三者（ADO/SharePoint/Outlook）包裝成標準 Tool 介面，含 Tier 1+2 UI Schema + Evidence Schema + Memory Schema，讓主 Agent 可直接調用（Block 1 全過才開始）
+    - [ ] W-ADO-005 確認領域專家 Agent 本身可以被主 Agent（Claude／GitHub Copilot／未來 Cheerio）調用
+    - [ ] W-ADO-006 確認 Agent 能正確用 Tool 呼叫 ADO，並把結果正確反饋給主 Agent（Tier 1 Agent Response 落地，C#/.NET 10）
+    - [ ] W-ADO-007 同樣驗證 Agent 跟 SharePoint、Outlook 溝通正常
+    - [ ] W-ADO-008 決策：M365 設計成外掛 Plugin，還是從一開始就內建在領域專家 Agent 架構裡（Block 2 全過才決定）
+    - [ ] W-ADO-009 開發 Tier 2 Publish View（React/SPFx，SharePoint 案子進度＋人力占比視圖）+ Form List 同步
+    - [ ] W-ADO-010 疊加 ADO 寫入操作：Collection Process/Project Settings 複製、Work Item 新增/異動，接上 Gate 3
+    - [ ] W-ADO-011 三 gate 驗收（Gate 1 資料正確／Gate 2 證據可追溯／Gate 3 寫入操作經 Tool Policy 授權+可追溯）
+    - [ ] W-ADO-012 Memory 落地（decision-ledger schema，記錄 ADO 專案權責/歷史決策/分析結論）
+  - 無相依，可跟 W-074（搜尋能力垂直切片）平行推進
 
 - [x] W-2026-08-076 建立 cheerio-roadmap skill：地鐵路線圖工作進度視覺化 ✅ #ai-agent #visualization #skill
   - completed: 2026-08-22
@@ -26,31 +57,22 @@
   - 備註：公司端工作追蹤是另一套系統（Azure DevOps，工作追蹤+工時統分），本 skill 只管 Cheerio 個人知識系統；未來重用同一套設計系統給公司端的規劃記在 [[work/current#W-2026-08-075|W-075]]
   - **⚠️ 事後訂正（8/22 同日）**：完成當下把重繪流程設計錯了——直接覆寫要同步進共用 `cheerio-skills` repo 的 `references/template.html`，導致 Cheer 真實工作內容（含洩漏雇主名稱）被推上 GitHub 兩次。另一 session（CheerCopilot）發現並修正架構，拆成「共用通用範本」（skill 資料夾內，不含真實資料）與「本機真實輸出」（`Obsidian/work/roadmap/cheerio-roadmap.html`，不進版控）兩份檔案；Claude 核對確認安全後推上 sanitize commit（`5232bbe`）。**git 歷史裡舊 commit（`64eff50`/`608f5da`）仍含洩漏內容，是否要 rewrite history 徹底清掉待 Cheer 決定。**詳見 work/history 同日事件
 
-- [ ] W-2026-08-073 IBM Skill 最佳實踐影片心得補寫進花園《Skill》專題頁 🆕 #knowledge #skill #notion #youtube
-  - next: Cheer 先看措辭草稿再決定要不要寫。若要寫，依既有流程先開圓桌會議（Claude+Gemini），寫入 Notion 後再雙模型覆核品質。定位角度：Topic 2/3 的空白是「組織治理層」（現有：怎麼審查才能部署）之外缺「個人習慣層」（使用者動筆寫/要用一支 skill 前自己該負的責任），建議用這個角度切入補寫，不要逐條加句子。
-  - refs: https://app.notion.com/p/Agent-Skills-3bc5979e3a8c8121924ef99b09671383（🔬 Agent Skills 專題頁，補寫目標）、https://youtu.be/qYNs80FKIVc?si=ONtRQtqXU73YXi8K（來源影片）、[[raw/notion-ingest/2026-09-01-notion-agent-skills-fulltext-raw|Notion 頁面全文本機備份]]、[[wiki/sources/2026-09-01-ibm-youtube-skill-best-practices-supplement-draft|本機 wiki 草稿（非最終目標，可能重寫或棄用）]]
+- [x] W-2026-08-073 IBM Skill 最佳實踐影片心得補寫進花園《Skill》專題頁 ✅ #knowledge #skill #notion #youtube
+  - completed: 2026-08-23
+  - next: ✅ 已完成。wiki 概念頁與 Notion 花園頁皆已補入 5 項重點，Cheer 審閱後確認無問題
+  - refs: https://app.notion.com/p/Agent-Skills-3bc5979e3a8c8121924ef99b09671383（🔬 Agent Skills 專題頁，已補寫）、https://youtu.be/qYNs80FKIVc?si=ONtRQtqXU73YXi8K（來源影片）、[[wiki/concepts/skill-authoring-best-practices|Skill 撰寫方法論]]（wiki 併入目標，已補寫）、[[.pi/round-table/20260822-231523/synthesis|圓桌會議定稿]]、[[work/current#W-2026-08-086|W-086]]（過程中發現的可用性系統誤鎖 bug，已拆成獨立項目）
   - 已完成的前置比對（Pi 比對 + Claude 逐字核對驗證，結論可信）：
     - Topic 1（觸發精準度）：Notion 頁面已完整涵蓋（Description 撰寫技巧、eval queries 迭代流程、Model/User-invoked 分類），**不需要補**
     - Topic 2（SKILL 專業知識要來自實戰、不能是 AI 生成；500行/5000字建議）：頁面**沒有**這個論點，真空白——唯一提到「1500行」是講 Pi Agent 核心大小，語境不同
     - Topic 3（Script 要具體化不要讓AI亂猜；使用前掃描避免惡意軟體；使用前理解資源存取權限）：頁面第六章只有「組織部署前審查」（8步審查清單/5級風險評估），缺「個人使用者每次要用一支 skill 前」的習慣層面，真空白
-  - 狀態：2026-08-21 暫停（Cheer 太累），2026-08-22 接續
-
-- [ ] W-2026-08-072 AI 模型/Host 可用性登記表 🆕 #tools #ai-agent #mcp
-  - next: 明天直接開始實作。先觀察各家 CLI 的真實限流錯誤訊息格式，再開發 `lib/availability.mjs` 共用模組 + 四個 bridge 的前置檢查邏輯
-  - refs: [[work/current#W-2026-08-068|W-2026-08-068]]（agy-bridge 問題觸發本設計）
-  - 起因：2026-08-21 處理 agy-bridge CANCELED 問題時，Cheer 聯想到更通用的問題——AI 模型/服務都有 Token 額度或限流上限，當某個 model/host 額度用盡時，我們應該記錄「什麼時候解封」，讓之後呼叫這些工具的 AI（Claude、Pi 等）可以提前知道「現在這個不能用」，不用白白浪費呼叫
-  - **設計定案（8/21 Cheer 討論拍板，直接照做）**：
-    - **共用登記表**：`Claude/mcp-bridges/state/availability.json`，JSON 格式記錄每個 model/host 的封鎖狀態（blocked_until / reason / confidence / recorded_by / recorded_at）
-    - **三種記錄來源**（由 `confidence` 欄位區分）：
-      - `exact`：supplier 錯誤訊息有明確解封時間（retry-after header、rate limit reset）。照時間走，時間到自動解封
-      - `estimated`：限流但沒給明確時間。預設封鎖 1 小時；1 小時後允許探針重試一次——成功就 `clearBlocked`，失敗就延長再封 1 小時（成本低，每小時最多浪費一次真實請求）
-      - `human-reported`：人類主動告知（查面板知道確切時間）。完全不做探針，當權威資訊封鎖到底。不需額外工具——使用者跟任何 AI 口頭講「某 model 被鎖到幾點」，AI 手動編輯 JSON 寫入
-    - **實作範圍**（四個 bridge 都要改：agy / pi / codex / copilot）：
-      1. `lib/availability.mjs` 共用模組：`checkAvailability(name)` / `recordBlocked(name, opts)` / `clearBlocked(name)`
-      2. 四個 bridge 的工具呼叫 CLI **之前**先 `checkAvailability()`：封鎖中→回傳清楚錯誤（不 spawn CLI）；`estimated` 已過 1 小時→允許探針
-      3. 四個 bridge 呼叫 CLI **之後**偵測限流訊號（429、quota exceeded、rate limit 等）→ `recordBlocked()`（有明確時間用 `exact`，沒有用 `estimated`）
-    - **待確認細節**（明天實作時觀察）：各家 CLI 實際限流錯誤訊息格式、`estimated` 預設 1 小時是否合理（先用固定值，看實際情況調整）
-  - **明天接續實作，不需重新設計**
+  - 執行紀錄（2026-08-23）：
+    - ✅ Claude 整理措辭草稿 + 圓桌定稿（`.pi/round-table/20260822-231523/synthesis.md`）成 Artifact 給 Cheer 審閱，Cheer 確認無問題後才動手
+    - ✅ 依定稿 5 段直接寫入 wiki `wiki/concepts/skill-authoring-best-practices.md`（觸發精準度、避免 LLM 代寫、5,000 tokens、安全使用守則、gotchas），並更新該頁 frontmatter/來源
+    - ✅ Notion 花園頁面結構跟 wiki 不同（一～十三章長文，非扁平章節），Claude 重新對位插入點：3 段併入既有章節（3.1/3.2/3.3），安全使用守則改用頁面既有的「X.Y-2」補寫慣例（比照 7.3-2、10.3-2）新增「6.1-2、個人使用前的安全習慣」獨立小節，跟 6.1 組織審查框架對照而非重複，此重新定位未經正式圓桌覆核（Cheer 口頭同意跳過，見下）
+    - ✅ 派 Pi 實際執行 Notion 寫入。過程波折：首次 `ntn pages update --content` 因命令列長度限制失敗 → PowerShell 管道方式「回報成功」但實際破壞 UTF-8 編碼（Cheer 手動還原）→ 改用 Notion API `PATCH /v1/blocks/{page_id}/children` + `position.after_block` 直接插入 block 成功 → 發現先前一次失敗的 Python 腳本其實仍寫入導致重複，已清除
+    - ✅ Claude 不採信 Pi 自我回報，獨立重新 fetch 頁面核對：4 段插入各僅出現 1 次、無亂碼（replacement char 掃描零命中）、65 個既有標題完整保留、6.2/6.3/6.4 等既有內容未受影響
+    - ✅ Cheer 親自檢視 Notion 頁面成品，確認沒有問題
+  - **跳過的步驟**：Notion 版本的插入位置/框架是 Claude 這次直接改寫，未如原計畫重新拉 Claude+Gemini 正式圓桌；Cheer 同意跳過（時間考量），改以「Claude 自行核對 + 事後獨立讀回驗證」替代，未另外執行 Gemini 覆核（Cheer 審閱後判斶不需要）
 
 - [x] W-2026-08-067 YouTube ingest：Understanding AI Infrastructure — GPUs, vLLM, K8s ✅ #knowledge #ai-agent #youtube
   - completed: 2026-08-21
@@ -63,7 +85,32 @@
     - ✅ agy-bridge 品管失敗後，Claude 改為人工核對 GPU 規格表（A100/H100/H200/B200 TFLOPS/VRAM/Bandwidth），數字與公開規格相符
   - 備註：agy-bridge 連續 4 次 CANCELED 見 [[work/current#W-2026-08-068|W-2026-08-068]]；NPU 研究見 [[work/current#W-2026-08-069|W-2026-08-069]]；引用驗證流程問題見 [[work/current#W-2026-08-070|W-2026-08-070]]
 
+- [ ] W-2026-08-082 NotebookLM Deep Research 能力重新設計為跨 Agent Research Collection Service 🔄 #skill #notebooklm #ai-agent #mcp
+  - **重排優先序（8/23）**：Cheer 判斷本項目比 [[work/current#W-2026-08-069|W-069]]（NPU 深度研究）更具價值，改為優先進行；W-069 改列第二順位（見下方 W-069 備註）
+  - **範圍大轉向（8/23，Cheer 看完初評後拍板）**：不是「整理重組 12 支舊 skill」，是**全新設計**。只保留兩個核心能力的精神並合併成一個：①先問清楚要查什麼、設計好研究 prompt ②執行查詢→篩選來源→逐一匯入，其餘 10 支不保留。**12 支舊 skill 只是參考**（Cheer 原話：讓 Claude 更清楚過去成功驗證過的做法，不是要照抄，原本好的部分可借鏡，但要重新設計出更好的方案）。且這個合併後的能力**不綁在單一 agent 的 skill 資料夾**，要讓 Claude／Gemini／Codex／Copilot／未來 Cheer 自建 Agent 都能用——高度對應 [[work/current#W-2026-08-074|W-074]] 點名最急迫的 Plugin(a) 搜尋能力（對應 W-025），很可能就是它的具體落地
+  - **設計流程已跑完 Claude+Codex 討論 → Pi 起草設計 → Gemini 覆核，目前 next: 等 Cheer 過目、拍板剩餘決策點，確認後才讓 Pi 開始實作**（12 支舊 skill 目前完全沒動，仍在 `C:\Agents\CheerCopilot\.agent\skills\`）：
+    - **Claude+Codex 討論**：原規劃走 Pi 主持的 round-table，但當時 pi:default（後來連 agy:default 也一樣）被 W-072 availability 系統標記限流封鎖——這正是 [[work/current#W-2026-08-086|W-086]] 那個誤鎖 bug 的再次發生（同一天 W-073 已踩過兩次），改成 Claude 直接用本機 `codex exec` CLI 跟 Codex 一對一討論兩輪，收斂共識：定位是「跨 Agent 的 Research Collection Service」而非「NotebookLM 自動化」，NotebookLM 只是第一個 provider adapter；第一版骨架通用、實作只做 NotebookLM 一個 provider；log event 直接沿用 W-074 已定案的 9 個 MUST 欄位；4 個 harness 各自註冊同一個 stdio MCP server；放在 `CheerioCorner/research-collection-service/`（跟 `mcp-bridges/` 平行，不是它的第 5 個 bridge）。完整紀要：[[.pi/round-table/20260823-170152/synthesis|設計討論紀要]]
+    - **Pi 起草實作設計**：依共識產出 1100+ 行具體設計文件（目錄結構、9 個 MCP tool 定義、ResearchJob/Event schema、5 張 SQLite table、NotebookLM provider adapter 含分段輪詢邏輯、4 個 harness 註冊範例）：[[.pi/round-table/20260823-170152/pi-implementation-design|實作設計文件]]
+    - **Gemini 覆核**：逐項讀檔查證（直接讀設計文件+對照 work/current.md 裡 W-074 原文+查自己的 agy MCP 文件），抓到 4 個真問題，Claude 已直接修正客觀技術性的 3 個到 v0.2：① SQLite 不支援 `SELECT ... FOR UPDATE`（無 row lock）→ 改樂觀鎖 ② 狀態機 `failed_retryable` 原本只能轉回 `researching`，匯入失敗會被迫整個重跑研究 → 補上依 checkpoint 階段決定重試路徑 ③ 外鍵約束/索引缺口 → 補上；**第 4 個是判斷性問題，留給 Cheer**：附錄把「先問清楚要查什麼」標記「❌ Agent 職責，不在第一版實作範圍」，Gemini 判斷這樣等於完全沒落實 Cheer 點名的第一個核心能力，建議 Research Core 內建輕量查詢優化器，而非留給每個 Agent 各自處理——已列進設計文件 §9 決策點 #9，等 Cheer 定奪
+  - **等 Cheer 拍板的關鍵決策點**（完整 10 項見設計文件 §9，這裡列最重要 3 項）：① 要不要做查詢優化器落實「先問清楚」這個核心能力，還是接受交給 Agent 對話處理 ② SQLite DB 路徑放專案 `data/` 還是 `%LOCALAPPDATA%` ③ TypeScript 還是 JavaScript（Pi 建議 TS）
+  - refs: [[.pi/round-table/20260823-170152/synthesis|Claude+Codex 設計討論紀要]]、[[.pi/round-table/20260823-170152/pi-implementation-design|Pi 實作設計文件 v0.2]]、[[work/current#W-2026-08-074|W-074]]（個人 AI 助理架構，log schema 對齊來源，本項目可能是其 Plugin(a) 落地）
+  - 起因：2026-08-23 Cheer 想讓 NotebookLM 成為日後收集資訊的重要地方，順口提到很久以前手寫過一批 NotebookLM skill 但已經忘記怎麼用
+  - **以下是 Claude 8/23 稍早完成的 12 支舊 skill 逐支初評，保留當歷史紀錄／給 Pi 起草設計時參考「過去驗證過的做法」用——範圍已被上面 Cheer 的拍板取代，不再是本項目的目標**：
+    1. 幾乎每支 SKILL.md 內部引用自己的 templates/scripts/references 路徑都寫成 `.github/skills/...`／`.github/prompts/...`，但實際資料夾是 `.agent/skills/...`／`.agent/prompts/...`（`implementation-plan-workflow.prompt.md` 確實存在，只是路徑寫錯）——這是不是最早在別的 agent 慣例下建的、搬到 `.agent/` 後沒同步改？要先修好這個才能信任其他交叉引用
+    2. `notebooklm-execute-deep-research` 資料夾裡有兩個從沒被 SKILL.md 提到的孤兒檔案（`importRawSources.py`、`retrieveSources.js`，後者是抓 NotebookLM 前端 DOM class name 的瀏覽器 console 爬蟲，很脆弱且命名慣例跟 SKILL.md 本文不一致）——是要當成已被 CLI 輪詢法取代的死程式碼刪掉，還是故意留著當 CLI 失敗時的手動備援？
+    3. `cross-account-transfer` 跟 `source-import-and-rename` 各自寫了一支獨立的「匯入來源進 notebook」腳本，邏輯重疊但 schema／重新命名時機不同——要合併成一支共用腳本（用參數區分模式），還是差異是刻意的，維持兩支？
+  - 12 支摘要（保留/優化/淘汰/合併判斷）：
+    - **維持現狀**：`cli-setup`（安裝/升級 nlm CLI，已經夠精簡）、`outline-to-note`（推 outline 進 NotebookLM 當筆記，已經夠精簡）
+    - **優化（不淘汰，重組/修小問題）**：`create-research-outline`（研究大綱設計，pipeline 第1站，評分表該搬進 references）、`design-deep-research`（Deep Research prompt 設計，pipeline 第2站，小問題：參考檔放錯資料夾）、`execute-deep-research`（跑 Deep Research 查詢，pipeline 第3站，**12支裡最肥大**，616行，輪詢/錯誤處理/FAQ 全塞在本文，需要最大幅拆分）、`filter-research-sources`（來源驗證/評分/去重，pipeline 第4站，12支裡結構最好，只需小修）、`source-import-and-rename`（批次匯入來源，pipeline 第5站，中度瘦身+跟決策點3有關）、`cross-account-transfer`（跨帳號搬 notebook，路徑要修+跟決策點3有關）、`export-all-source-urls`（批次匯出 URL 備份，寫死了絕對機器路徑要改成相對路徑，資料夾裡還混進一個殘留的 `__pycache__/*.pyc`）、`design-chat-settings`（生成 persona prompt 檔，範例檔名引用對不上實際檔案要修）、`query-and-produce`（NotebookLM Chat 問答/產生 Studio 產出物，**第二肥大**397行、零子資料夾、且 Step 2.2 整段重寫了 switch-chat-settings 已經做過的事，是重複邏輯）
+    - **維持獨立但要被別人呼叫**：`switch-chat-settings`（套用 persona，應該變成唯一實作，讓 query-and-produce 改成呼叫它而不是自己重寫一份）
+    - 沒有任何一支被判定「直接淘汰」——12 支大多不是真重複，是揭露程度不夠或輕微重疊，主要工夫在拆 `execute-deep-research` 跟 `query-and-produce` 這兩支，不是砍數量
+  - 提議分組：① Setup & Admin（cli-setup／cross-account-transfer／export-all-source-urls）② Research Pipeline（create-research-outline→design-deep-research→execute-deep-research→filter-research-sources→source-import-and-rename，外加 outline-to-note 側支）③ Notebook 使用（design-chat-settings＋switch-chat-settings 配對／query-and-produce 改呼叫 switch-chat-settings）
+  - refs（12 支初評的來源）: `C:\Agents\CheerCopilot\.agent\skills\`、[[work/current#W-2026-08-073|W-073]]（同源 IBM YouTube 影片，已補進花園與 wiki，2026-08-23 完成）、[[wiki/concepts/skill-design-methodology|Skill 設計方法論]]、https://github.com/jacob-bd/gemini-notebook-mcp-cli（NotebookLM CLI/MCP 專案）
+  - 同日已完成的前置整備（跟本項目相關但已處理完畢，不算在本任務範圍內）：pip 套件 `notebooklm-mcp-cli` 0.8.9 修好缺失依賴 `fastmcp` 並清掉殘留舊版本安裝、註冊 `notebooklm` server 進 `~/.pi/agent/mcp.json`（command: `notebooklm-mcp`, lazy），Pi 現在可直接呼叫 NotebookLM 工具
+  - 無相依，可任何 session 切入
+
 - [ ] W-2026-08-069 NPU 角色深度研究（Gemini research）🔄 #knowledge #ai-agent #research
+  - **優先序調整（8/23）**：Cheer 判斷 [[work/current#W-2026-08-082|W-082]]（NotebookLM skill 整理）更具價值，改列第一順位；本項目改列第二（Gemini 研究本身仍在背景跑，不受影響，只是回填/跟進動作往後排）
   - next: 等 Gemini chat-with-gemini-research 完成後，將研究結果回填進 [[wiki/discussions/npu-role-in-ai-infrastructure]]，補充引用來源
   - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]、[[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]
   - 起因：Cheer 看完影片後提出開放問題「NPU 在 AI 基礎設施架構中扮演什麼角色、為什麼 AI 時代需要 NPU」，已標記在 discussion 頁，正在派 Gemini 做深度研究（有引用來源要求）
@@ -209,9 +256,9 @@
 
 - [ ] W-2026-08-030 安裝並測試 OpenCodeReview（OCR） ⏫ #ai-agent #code-review
   - next: 安裝 OCR、設定 LLM provider、跑一次 `ocr review` 測試
-  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|Gemini 深度研究]]
+  - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|Gemini 深度研究]]、[[work/current#W-2026-08-080|W-080]]（8/22 Cheer 指定拉到 ADO Agent 開工前先做，見 W-ADO-000）
   - 預估時間：30 分鐘
-  - 為什麼先做：安裝簡單，能立即體驗「確定性工程 × Agent」混合架構
+  - 為什麼先做：安裝簡單，能立即體驗「確定性工程 × Agent」混合架構；現在因為 W-080 要開始寫 C#/.NET 正式程式碼而變得更急迫
 
 - [ ] W-2026-08-029 學習系統 + v0.84.0 學習任務 ⏫ #ai-agent #learning
   - next: 嘗試全螢幕模式、測試 AGENTS.override.md、玩 samplingParams
@@ -293,11 +340,11 @@
   - 為什麼重要：有更多模型可用
   - 備註：有免費 GitHub Copilot 訂閱，可在本機設定
 
-- [ ] W-2026-08-008 用 `grill-me` 跑一次完整需求追問（Pi Web） #skills
-  - next: grilling 已安裝，可執行
-  - refs: [[projects/pi-web-access-zh-tw/index|Pi Web project context]]
-  - 預估時間：1 小時
-  - 為什麼重要：確認 Pi Web 專案需求
+- [ ] W-2026-08-008 用 `grill-me` 直接測試用，改配合 W-080 ADO 領域專家 Agent 開發時使用 #skills #ado
+  - next: 不再單獨為 Pi Web 專案排時間執行；改成 W-080（Azure DevOps 領域專家 Agent PoC）開發過程中，需要對某個設計/假設做完整需求追問時直接呼叫 grilling 測試
+  - refs: [[work/current#W-2026-08-080|W-080]]（ADO Agent，本項目改為配合它使用）
+  - 為什麼重要：grilling 已安裝可執行，與其獨立排一次 Pi Web 需求追問，不如在真正有壓力測試需求的 ADO Agent 開發現場直接用
+  - 起因：2026-08-23 Cheer 決定把 W-008 的用途從「Pi Web 專案需求追問」改為「ADO Agent 開發時的直接測試工具」
 
 ## ⚪ Phase 4：延伸研究（有空再做）
 
@@ -313,11 +360,31 @@
 
 ## Backlog
 
-- [ ] W-2026-08-079 Pi 整理 raw/web MCP 官方文件剪藏進 wiki 🆕 #knowledge #ai-agent #mcp
-  - next: 指派 Pi 依 `wiki-ingest` 既有流程，把 `raw/web/2026-08-22-*.md`（42 篇，modelcontextprotocol.io 官方文件，涵蓋 Authorization／MCP Registry／Build a Server／Build a Client／Versioning／Extensions 等主題）整理進 wiki：建 source note、視情況拆 concept/entity 頁面、更新 index/log/topics
-  - refs: [[work/current#W-2026-08-022|W-022]]（研究 MCP Server 架構，這批文件正是它的素材）、`raw/web/2026-08-22-*.md`（42 篇原始剪藏）
-  - 起因：2026-08-22 同步 wiki 時發現有 session 已經把一整批 MCP 官方文件剪藏進 raw/web，但還沒 ingest 進 wiki；Cheer 指出這正好對應既有的 W-022 backlog 研究項目，兩邊不用分開處理
+- [ ] W-2026-08-086 修 AI 模型可用性登記表的誤鎖 bug 🆕 #tools #bug #ai-agent
+  - next: 檢視 `CheerioCorner/mcp-bridges/lib/availability.mjs` 的 `recordBlocked` 判斷邏輯，找出兩個誤判來源：① commit 後沒有清除舊的 untracked-file-based 封鎖（`clearBlocked` 只能手動呼叫，沒有掛在 git commit 或啟動時的一致性檢查上）② 把 CLI 正常執行中的 stdout/工具輸出內容（例如 read 工具回傳的頁面內容片段）誤判成錯誤訊號而觸發 `confidence: estimated` 封鎖
+  - refs: `CheerioCorner/mcp-bridges/lib/availability.mjs`、`CheerioCorner/mcp-bridges/state/availability.json`、[[work/current#W-2026-08-073|W-073]]（本次任務執行中連續踩到兩次）
+  - 起因：2026-08-23 執行 W-073 派工給 Pi 時，`pi:default` 連續被可用性系統誤鎖兩次——第一次是 W-072 commit（`cf2dc64`）完成後，鎖住的理由仍是「10 個未提交檔案」的舊狀態，Claude 用 `clearBlocked()` 手動清除確認 git status 乾淨後才解除；第二次是 Pi session 執行中，鎖住理由變成一段正常的 read 工具輸出內容（agent-skills.md 的 frontmatter），被系統誤判為不可用訊號，`confidence: estimated`
+  - 無相依，可任何 session 切入；不影響 W-073 本身結果（Pi 最終仍完成寫入且經 Claude 獨立讀回驗證通過）
+  - **第三、四次踩到（8/23 稍晚）**：[[work/current#W-2026-08-082|W-082]] 設計討論階段，`pi:default` 跟 `agy:default` 各被誤鎖一次，都是在 Claude 剛成功呼叫完後把那次呼叫的正常 tool 輸出（read/step_update 事件內容）誤判成封鎖理由——確認不是只有 read 工具會觸發，`recordBlocked` 的判斷邏輯可能太寬鬆，任何工具輸出都可能被誤抓
+
+- [x] W-2026-08-079 Pi 整理 raw/web MCP 官方文件剪藏進 wiki ✅ #knowledge #ai-agent #mcp
+  - completed: 2026-08-23
+  - next: ✅ 已完成。42 篇已全部 ingest 進 wiki，已產出新舊規範比較。W-022 的素材已就位，可直接開始研究
+  - refs: [[wiki/sources/mcp-official-docs-42|MCP 官方文件彙整（42 篇）]]、[[wiki/entities/mcp-model-context-protocol|MCP 主頁]]、[[work/current#W-2026-08-022|W-022]]
+  - 已完成：
+    - ✅ 雙模型交叉驗證（Claude + Gemini Round 1 共識成立）
+    - ✅ 建立 6 entities + 5 concepts + 2 sources + 1 topic = 14 個新頁面
+    - ✅ 全面重寫 mcp-model-context-protocol.md（含 ⚠️ 舊版規範演進比較表）
+    - ✅ 更新 4 個 topic 導航頁 + topics.md + index.md 全量重建
+    - ✅ log.md 記錄 ingest 流程
   - 無相依，可任何 session 切入（適合指派給 Pi）
+
+- [ ] W-2026-08-085 評估在 CheerioCorner 導入 Graphify（程式碼知識圖譜視覺化）🆕 #ai-agent #tools #visualization
+  - next: 檢視 `graphify install` 腳本內容，確認安全（本機執行、不外傳程式碼）後，在 CheerioCorner 底下某個 git repo（如 `cheerio-skills` 或 `pi-web-access-zh-tw`）試跑 `/graphify .`，看輸出的 graph.html／GRAPH_REPORT.md／graph.json 是否真的有助於看懂系統結構
+  - refs: [[wiki/entities/graphify|Graphify（既有 wiki 頁面，2026-08-06 YouTube ingest 建立）]]、[[raw/web/2026-08-23-Graphify-Labsgraphify Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A graphify skill for Claude Code, Cursor, Codex, and Gemini CLI local deterministic AST parsing, every edge expl|Cheer 今日用 Obsidian Web Clipper 存的 GitHub 頁面]]、[[work/current#W-2026-08-030|W-030]]（同期評估的 OCR，性質不同：OCR=AI code review 抓 bug，Graphify=架構視覺化，兩者互補）
+  - 起因：2026-08-23 Cheer 用 Obsidian Web Clipper 存了 `Graphify-Labs/graphify` GitHub 頁面，想知道能不能用它更清楚看到 CheerioCorner 各專案的系統結構
+  - 已完成的前置調查：確認 Graphify 純本地 tree-sitter 解析（無 LLM 成本、無向量存儲）、不要求目標資料夾是 git repo、不呼叫任何遠端 Git 平台 API（GitHub/GitLab/Azure DevOps Server 皆可用，只在本機讀 `.gitignore`）；也已釐清跟 Alibaba Open Code Review 的差異（不重疊，可互補）
+  - 無相依，可任何 session 切入
 
 - [ ] W-2026-08-075 未來：抽出「地鐵路線圖」設計系統給公司 Azure DevOps Analysis Report skill 重用 🆕 #ai-agent #devops #visualization
   - next: 等公司端 Azure DevOps work item/工時 API 可接（或決定用哪種方式讀取）之後，新建 `devops-analysis-report` skill，資料源換成 Azure DevOps，但 [[cheerio-roadmap 設計系統|C:\Users\User\.claude\skills\cheerio-roadmap\SKILL.md]] 裡的 CSS/JS（地鐵路線圖 SVG、可拖移浮動 popover、Read more 導頁高亮、zoom 工具列）直接搬過去重用，不重新設計
@@ -326,6 +393,33 @@
   - 無相依，可任何 session 切入（但實際上要等 Azure DevOps 那端條件成熟才會真的動手）
 
 ## Completed
+
+- [x] W-2026-08-084 Cheerio 路線圖新增「回到路線圖」浮動按鈕 ✅ #ai-agent #visualization #skill
+  - completed: 2026-08-23
+  - next: ✅ 已完成。已同步進 skill 通用範本，之後任何機器重繪都會內建這顆按鈕，不用重做
+  - refs: [[work/current#W-2026-08-076|W-076]]（cheerio-roadmap skill 本體）、`C:\Users\User\.claude\skills\cheerio-roadmap\SKILL.md`（設計系統章節＋新增「回饋機制」章節）
+  - 起因：Cheer 提出兩個小需求：① 路線圖右下角要有常駐的「回到上面路線圖」按鈕 ② 評估能否直接在 HTML 上針對某個 work item 內容給 Claude feedback
+  - 已完成：
+    - ✅ 右下角固定「⬆ 回到路線圖」按鈕（`.back-to-top`），任何捲動位置常駐、點擊平滑捲回 SVG 診斷圖本身（非頁面最頂端），手機寬度縮成純圖示；瀏覽器實測捲到最底部再點擊確認可正常跳回
+    - ✅ 同步寫回 `Obsidian/work/roadmap/cheerio-roadmap.html`（真實輸出）與 skill 的 `references/template.html`（通用範本，僅設計系統，未含真實資料），兩份保持同步，之後重繪／新機器起始都內建
+    - ✅ 發布更新到既有 Artifact 連結（同一個 URL）
+    - ✅ 需求②評估結論：Artifact 本身已原生支援留言（comment）功能，不需要額外開發——Cheer 在頁面留言模式選取內容留言並 @claude 啟用該串，Claude 就能讀取／回覆；已寫進 SKILL.md「回饋機制」章節供之後任何 session 參考
+    - ✅ 經 Cheer 確認後同步進 `CheerioCorner/cheerio-skills` GitHub repo（commit `bd84d97`），推送前 diff 核對內容只有設計系統/文件說明，沒有真實工作資料外流
+
+- [x] W-2026-08-083 workspace 資料夾整併：Claude/Projects 併入 CheerioCorner ✅ #tools #housekeeping
+  - completed: 2026-08-23
+  - next: ✅ 已完成。之後新的 CheerioCorner repo 直接建在 `CheerioCorner/` 底下，不要再散落到 `Claude/` 或 `Projects/`
+  - refs: [[work/current#W-2026-08-072|W-072]]（availability.json 共用登記表路徑已同步更新）、[[work/current#W-2026-08-071|W-071]]（agy-bridge 修復 refs 路徑已同步更新）
+  - 起因：Cheer 發現 `C:\Cheerio` 底下 `Claude\mcp-bridges` 和 `Projects\` 下的三個 repo，git remote 其實都指向 `github.com/CheerioCorner/*`，跟 `CheerioCorner\` 資料夾裡原有的兩個 repo 是同一個組織，希望全部歸位到同一個地方
+  - 已完成：
+    - ✅ 逐一核對 6 個資料夾（`CheerioCorner/cheerio-skills`、`garden-guard`、`Claude/mcp-bridges`、`Projects/pi-plannotator-auto`、`pi-todo-journal`、`pi-web-access-zh-tw`）的 git remote，確認皆屬 `CheerioCorner` org 才動手，不是盲搬
+    - ✅ 搬移 4 個 repo 進 `CheerioCorner/`；`pi-todo-journal` 一開始被鎖住（疑似防毒軟體剛掃描過）用一般 `mv` 搬不動，改用 `robocopy /MOVE /R:3 /W:2` 才順利搬完全部 1720 個目錄／20698 個檔案，沒有遺失內容
+    - ✅ 刪除搬空後的 `Claude/`、`Projects/` 資料夾
+    - ✅ 同步更新根目錄 `.mcp.json` 裡 4 個 bridge server（pi/agy/codex/copilot）的路徑，從 `Claude/mcp-bridges` 改成 `CheerioCorner/mcp-bridges`——這是目前實際生效的 MCP 設定檔，不改的話下次重啟 MCP 連線會失效
+    - ✅ 同步更新 `mcp-bridges` 自己的 `README.md`、`mcp-config.example.json` 範例路徑
+    - ✅ 全庫搜尋確認只剩 `.pi/codex-runs/` 底下的歷史 log 還提到舊路徑（過去執行的存檔，不需要也不應該回頭改），其餘都已更新
+    - ✅ sync work：補上這則 history 事件，並修正 `work/current.md`（W-072、W-071 refs）、`work/history/2026-08.md`、`wiki/log.md` 裡殘留的 `Claude/mcp-bridges` 舊路徑引用
+  - 備註：目前已啟動的 4 個 pi/agy-bridge node process 仍是用舊路徑啟動的，不受影響；下次 MCP 連線重啟才會讀到新路徑
 
 - [x] W-2026-08-078 cheerio-skills git 歷史清除：拿掉舊 commit 裡洩漏的真實工作資料 ✅ #tools #bug #security
   - completed: 2026-08-22
@@ -376,7 +470,7 @@
 - [x] W-2026-08-071 agy-bridge headless 權限修復方案評估與實作 ✅ #tools #bug
   - completed: 2026-08-21
   - next: ✅ 已修復（Codex 修、Claude 驗證）
-  - refs: [[work/current#W-2026-08-068|W-2026-08-068]]、`Claude/mcp-bridges/lib/agy.mjs`、`Claude/mcp-bridges/src/agy-bridge.mjs`
+  - refs: [[work/current#W-2026-08-068|W-2026-08-068]]、`CheerioCorner/mcp-bridges/lib/agy.mjs`、`CheerioCorner/mcp-bridges/src/agy-bridge.mjs`
   - 已完成：
     - ✅ Codex 修改兩個檔案：`buildAgyArgs()` 預設加 sandbox + dangerously-skip-permissions；`ask_agy` description 更新；`runAgy()` 的 `stderr` 截斷到 2000 字元寫入 audit log（之前完全沒用到）
     - ✅ Claude 逐項查證：讀檔 → node --check → 5 次 agy.exe 實測全 SUCCESS

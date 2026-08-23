@@ -13,6 +13,7 @@
 - [[wiki/topics/skill|Skill]] — AI agent skill 生態系：安裝、工作流程、設計方法論
 - [[wiki/topics/knowledge-mgmt|Knowledge Management]] — Wiki、provenance、workspace 與 learning
 - [[wiki/topics/meta-systems|Meta Systems]] — harness、orchestration 與研究主題
+- [[wiki/topics/mcp-ecosystem|MCP Ecosystem]] — Model Context Protocol 完整生態系：協定、伺服器/客戶端、授權、Registry、擴充套件、SDK
 
 Canonical content 請前往：
 

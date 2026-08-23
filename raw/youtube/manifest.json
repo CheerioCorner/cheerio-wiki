@@ -129,6 +129,18 @@
       "language": "en",
       "auto_generated": false,
       "source_api": "youtube_transcript_api"
+    },
+    {
+      "slug": "2026-09-01-ibm-skill-best-practices",
+      "title": "IBM: 5 Best Practices for Building Agent Skills",
+      "video_id": "qYNs80FKIVc",
+      "url": "https://www.youtube.com/watch?v=qYNs80FKIVc",
+      "duration": "00:13:09",
+      "segments": 175,
+      "language": "en",
+      "auto_generated": false,
+      "source_api": "youtube_transcript_api",
+      "created": "2026-09-01"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {
