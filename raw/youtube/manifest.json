@@ -150,6 +150,16 @@
       "created": "2026-08-24",
       "language": "en",
       "segments": 147
+    },
+    {
+      "slug": "how-to-modernize-legacy-codebases-ai-coding-agents",
+      "title": "How to modernize legacy codebases using AI coding agents (Step by step guide)",
+      "youtube_id": "RKvckuC6Bsk",
+      "url": "https://www.youtube.com/watch?v=RKvckuC6Bsk",
+      "duration": "08:13",
+      "segments": 158,
+      "paragraphs": 119,
+      "language": "en-US"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

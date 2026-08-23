@@ -1,4 +1,20 @@
 
+## [2026-08-25] ingest | Google Cloud — How to modernize legacy codebases using AI coding agents
+
+- 動作：Cheer 提供 YouTube 連結 `RKvckuC6Bsk`，Pi 執行 YouTube ingest + wiki-ingest 雙模型驗證
+- 雙模型共識：Claude 建議 1 個新 concept（legacy-code-modernization）+ 併入既有頁面；Gemini 建議 2 個新 concept（disposable-sandbox + blast-radius-analysis）+ Docker 替代方案。採用 Claude 架構（單一 concept 更整潔）+ Gemini 的 Docker 替代方案建議（Podman/Rancher Desktop）
+- 建立：
+  - `wiki/sources/2026-08-25-google-cloud-legacy-code-ai.md` — source note（含 Cheer 想法 + 陳述級溯源）
+  - `wiki/concepts/legacy-code-modernization.md` — concept 頁面（Plan→Execute→Verify 三步方法論）
+  - `raw/conversations/2026-08-25-google-cloud-legacy-code-ai.md` — Cheer 的原始想法
+- 更新：
+  - `wiki/concepts/ai-coding-workflow.md` — 比較表格加入 legacy-code-modernization
+  - `wiki/topics/agent-coding-practices.md` — Concepts + Sources 加入新頁面
+  - `wiki/topics/coding-agent.md` — Concepts + Sources 加入新頁面
+  - `wiki/index.md` — 新增 concept + source 條目
+- Cheer 想法要點：每間企業都面臨的問題（無文件/無測試/無 CI/CD）；Docker Compose 想深入研究但 Docker Desktop 收費；TDD 找受影響層面 + BDD 驗證 AI 品質跟他們想法契合，但之前沒有具體步驟
+- refs: [[raw/youtube/how-to-modernize-legacy-codebases-ai-coding-agents]]、[[wiki/concepts/legacy-code-modernization]]、[[raw/conversations/2026-08-25-google-cloud-legacy-code-ai]]
+
 ## [2026-08-24] ingest | WebMCP — 網頁原生 Agent-Ready 工具暴露機制
 
 - 動作：Cheer 提供 YouTube 連結 `FARxSG_EY98`，Pi 執行 YouTube ingest + wiki-ingest 雙模型驗證

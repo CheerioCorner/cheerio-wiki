@@ -13,6 +13,11 @@ updated: 2026-08-19
 ## Sources
 
 - [[wiki/sources/2026-07-23-plannotator-copilot-setup|Plannotator + Copilot CLI 安裝手冊]] — Windows 整合安裝流程
+- [[wiki/sources/2026-08-25-google-cloud-legacy-code-ai|How to modernize legacy codebases using AI coding agents]] — Google Cloud legacy code modernization 方法論
+
+## Concepts
+
+- [[wiki/concepts/legacy-code-modernization|Legacy Code Modernization with AI]] — 用 AI coding agent 現代化 legacy codebase 的三步方法論
 
 ## Related
 

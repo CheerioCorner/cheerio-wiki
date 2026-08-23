@@ -18,6 +18,7 @@ updated: 2026-08-23
 - [[wiki/concepts/contract-driven-development|Contract-Driven Development（契約驅動開發）]] — 用介面契約約束 AI 生成的程式碼
 - [[wiki/concepts/defect-metrics|Defect Metrics — 軟體品質測量]] — 缺陷密度與逃脫率指標
 - [[wiki/concepts/code-importance-spectrum|Code Importance Spectrum — 程式碼重要性光譜]] — 判斷應該閱讀多少程式碼的框架
+- [[wiki/concepts/legacy-code-modernization|Legacy Code Modernization with AI]] — 用 AI 現代化遺留系統的三步方法論（Plan→Execute→Verify）
 
 ## Entities
 
@@ -31,6 +32,7 @@ updated: 2026-08-23
 - [[wiki/sources/2026-08-10-write-code-you-will-never-read-again|Write Code You Will Never Read Again]] — 程式碼重要性光譜（YouTube）
 - [[wiki/sources/2026-08-17-frontend-ai-roundtable|圓桌會議：Claude vs Gemini vs ChatGPT — 前端全鏈路能力比較]] — 多 AI 前端能力比較
 - [[wiki/sources/2026-08-18-rad-methodology-for-ai-vibe-coding|RAD Methodology for AI Vibe Coding]] — RAD 四階段與 AI 開發流程對應 🛠️
+- [[wiki/sources/2026-08-25-google-cloud-legacy-code-ai|How to modernize legacy codebases using AI coding agents]] — Google Cloud 三步方法論（Sandbox + TDD/BDD + 三層驗證）
 
 ## 相關 Topics
 

@@ -79,6 +79,7 @@
 - [[wiki/concepts/knowledge-management.md|Knowledge Management]] — 系統化地收集、組織、檢索、維護知識的方法論與工具鏈。
 - [[wiki/concepts/knowledge-system-architecture.md|知識系統架構]] — 經過 4 輪圓桌會議（Pi + Gemini + Copilot）討論確定，並於 2026-08-12 修正為雙模型共識機制（取代人類確認）的知識管理系統架構。詳見 [[wiki/decisions/knowledge-system-architecture-decision|決策文件]] 第十一節。
 - [[wiki/concepts/late-conversion.md|late-conversion]] — 一種型別設計策略:**整個內部邏輯都以「應用層 AgentMessage」運作,只在邊界(打 LLM 前一刻)才濾成 LLM 能懂的 `Message[]`**。換句話說:保留訊息的「應用程式語義」直到最後一刻再翻譯。
+- [[wiki/concepts/legacy-code-modernization.md|Legacy Code Modernization with AI]] — 用 AI 現代化遺留系統的三步方法論——Plan（sandbox 隔離 + recon blast radius）→ Execute（TDD/BDD 雙模型分工）→ Verify（三層過濾器）。[[wiki/concepts/ai-coding-workflow|ai-coding-workflow]] 的 brownfield 特化版。
 - [[wiki/concepts/lint-ruleset.md|Lint 規則集]] — 定義「什麼是好的知識」的標準，用來自動化檢查知識庫的品質。
 - [[wiki/concepts/llm-serving-architecture.md|LLM Serving Architecture]] — 💡 這就是為什麼短問題回應快、長 Prompt 要等很久才蹦出第一個字——長 Prompt 的 Prefill 階段需要更多時間。
 - [[wiki/concepts/loop-vs-graph-engineering.md|loop-vs-graph-engineering]] — Loop 與 Graph 是 AI Agent 系統中兩種互補的工作流模式：Loop 讓 agent 自主迭代探索，Graph 用預定義流程平行執行。兩者共存而非替代。
@@ -284,6 +285,7 @@
 - [[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory.md|AI Agent 長期記憶架構 — 以 Mem0 為例（Alejandro AO）]] — Alejandro AO 深入解析 Mem0 的長期記憶架構，涵蓋 entity memory 概念、entity boost 公式、retrieval pipeline 組裝、開源 embedding 模型推薦，以及 coreference resolution 實作。
 - [[wiki/sources/2026-08-22-mem0-deep-research-comparison.md|Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價]] — 來自已查證版 Gemini 深度研究報告，涵蓋四個角度：跟其他記憶系統比較、生產環境限制、decision-ledger 適用性、授權定價。原始 Gemini 輸出經 Claude WebFetch 逐一查證後修正，**只有本檔案的內容可進 wiki**。
 - [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems.md|AI Agent Memory Systems — 5 種記憶架構設計方式（Sean's AI Stories）]] — Sean Chen（Sean's AI Stories 頻道）講解 AI agent 記憶系統的分析框架，涵蓋三支柱、五種存儲方式、四種檢索策略、六種維護機制，並實測比較 SQLite、mem0、LangMem、Zep 與無記憶控制組。
+- [[wiki/sources/2026-08-25-google-cloud-legacy-code-ai.md|How to modernize legacy codebases using AI coding agents]] — Google Cloud 三步方法論：Sandbox + Recon + TDD/BDD 領先 + 三層驗證過濾器。cheer 的想法：跟我們想法契合但之前沒有具體步驟。
 - [[wiki/sources/2026-09-01-ibm-youtube-skill-best-practices-supplement-draft.md|IBM YouTube 影片 Skill 五項最佳實踐 — 補充草稿]] — ⚠️ **草稿狀態**：本文件是待覆核的補充草稿，尚未併入任何既有文章或 Notion 花園。
 - [[wiki/sources/mcp-official-docs-42.md|MCP 官方文件彙整（42 篇）]] — 2026-08-22 從 modelcontextprotocol.io 剪藏的 42 篇官方文件，涵蓋 MCP 協定的完整規範。Protocol version `2026-07-28`。
 - [[wiki/sources/mcp-sdks-and-tooling.md|MCP SDKs & Development Tooling]] — 彙整 MCP 官方多語言 SDK、MCP Inspector 開發工具、參考伺服器範例與常用食譜。

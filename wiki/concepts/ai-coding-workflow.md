@@ -60,6 +60,7 @@ canonical: concepts/ai-coding-workflow
 | [[wiki/concepts/vibe-coding|Vibe Coding]] | 無 | 無 | 快速原型 |
 | [[wiki/concepts/rapid-application-development|RAD]] | 四階段迭代 | 無 | 快速原型（歷史先驅） |
 | **GSD/BMAD** | 強制全流程 | 固定 | 全專案管理 |
+| [[wiki/concepts/legacy-code-modernization\|Legacy Code Modernization]] | Plan→Execute→Verify 三步 | 單一變更原則 + checklist | Brownfield 現代化（無文件/無測試/無 CI/CD）|
 
 > RAD（1991）是 AI coding workflow 的歷史先驅，兩者都強調「先建原型再定 spec」的思路。
 
@@ -86,6 +87,7 @@ canonical: concepts/ai-coding-workflow
 - [[wiki/entities/mattpocock-skills|mattpocock-skills]] — 實作此工作流程的 skills repo
 - [[wiki/concepts/minimal-agent-philosophy|minimal-agent-philosophy]] — 「減法大於加法」哲學
 - [[wiki/concepts/vibe-coding|vibe-coding]] — 自然語言驅動的程式碼生成，與本工作流程互補
+- [[wiki/concepts/legacy-code-modernization|Legacy Code Modernization]] — 針對 brownfield 現代化的特化版本（多了 sandbox 隔離 + recon-first + 三層驗證）
 - [[wiki/concepts/rapid-application-development|RAD]] — 歷史先驅：1991 年的快速應用開發方法論
 - [[wiki/concepts/spec-driven-development|Spec-Driven Development]] — 規格驅動開發的核心機制
 - [[wiki/concepts/late-conversion|late-conversion]] — 型別策略
