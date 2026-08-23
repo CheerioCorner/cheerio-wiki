@@ -377,6 +377,8 @@
     - ✅ 全面重寫 mcp-model-context-protocol.md（含 ⚠️ 舊版規範演進比較表）
     - ✅ 更新 4 個 topic 導航頁 + topics.md + index.md 全量重建
     - ✅ log.md 記錄 ingest 流程
+    - ✅ Claude 獨立核實（不採信 Pi 自報）：14 個檔案實際存在、git commit `ee4b4c6` 已 push、過期比較表 5 項論點皆有標註、抽查 OAuth RFC 8414/7591/9728/8707 出處與 raw 文件核對相符、零亂碼字元
+  - **待補（不阻塞結案）**：原計畫的 Gemini 獨立覆核這次被 [[work/current#W-2026-08-086|W-086]] 誤鎖 bug 擋住（`agy:default` 鎖到 2026-08-23 約 18:11 台北時間），Cheer 決定先結案，之後找空檔補跑一次 Gemini 覆核當事後保險
   - 無相依，可任何 session 切入（適合指派給 Pi）
 
 - [ ] W-2026-08-085 評估在 CheerioCorner 導入 Graphify（程式碼知識圖譜視覺化）🆕 #ai-agent #tools #visualization
