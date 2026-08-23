@@ -1,4 +1,14 @@
 
+## [2026-08-24] record | Chunkless RAG 影片重複 ingest 確認 + Cheer KM 想法記錄
+
+- 動作：Cheer 提供 YouTube 連結 `vRZNJWw78BQ`，Pi 執行 YouTube ingest 流程後發現已在 2026-08-10 完整 ingest 過，清除重複 raw transcript；Cheer 分享 KM 想法，存入 raw/conversations 並建立雙向關聯
+- 原始想法：`raw/conversations/2026-08-24-chunkless-rag-km-thoughts.md`
+- 結論：無需建立新 wiki 頁面（既有 `wiki/concepts/chunkless-rag.md` + `wiki/entities/docling.md` + `wiki/sources/2026-08-10-chunkless-rag-docling.md` 已完整涵蓋）
+- Cheer 想法要點：Chunkless RAG 更接近人類搜尋模式、Token 成本會下降現在把精準度做高、目前手邊工作跟 Chunk/KM 有關
+- refs: [[raw/youtube/chunkless-rag-docling]]、[[wiki/concepts/chunkless-rag]]、[[wiki/entities/docling]]、[[raw/conversations/2026-08-24-chunkless-rag-km-thoughts]]
+
+---
+
 ## [2026-08-22] ingest | Portable Graph Agent Pattern — 延伸想法 backfill（雙模型共識）
 
 - 動作：Cheer 觀看 Loop vs Graph Engineering 影片後的原創延伸想法，走 §3.5 Backfill 流程

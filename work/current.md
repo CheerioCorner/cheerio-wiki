@@ -85,15 +85,43 @@
     - ✅ agy-bridge 品管失敗後，Claude 改為人工核對 GPU 規格表（A100/H100/H200/B200 TFLOPS/VRAM/Bandwidth），數字與公開規格相符
   - 備註：agy-bridge 連續 4 次 CANCELED 見 [[work/current#W-2026-08-068|W-2026-08-068]]；NPU 研究見 [[work/current#W-2026-08-069|W-2026-08-069]]；引用驗證流程問題見 [[work/current#W-2026-08-070|W-2026-08-070]]
 
-- [ ] W-2026-08-082 NotebookLM Deep Research 能力重新設計為跨 Agent Research Collection Service 🔄 #skill #notebooklm #ai-agent #mcp
+- [ ] W-2026-08-082 NotebookLM 深度研究能力重新設計：兩支共用 Skill（不做 MCP server）🔄 #skill #notebooklm #ai-agent
   - **重排優先序（8/23）**：Cheer 判斷本項目比 [[work/current#W-2026-08-069|W-069]]（NPU 深度研究）更具價值，改為優先進行；W-069 改列第二順位（見下方 W-069 備註）
-  - **範圍大轉向（8/23，Cheer 看完初評後拍板）**：不是「整理重組 12 支舊 skill」，是**全新設計**。只保留兩個核心能力的精神並合併成一個：①先問清楚要查什麼、設計好研究 prompt ②執行查詢→篩選來源→逐一匯入，其餘 10 支不保留。**12 支舊 skill 只是參考**（Cheer 原話：讓 Claude 更清楚過去成功驗證過的做法，不是要照抄，原本好的部分可借鏡，但要重新設計出更好的方案）。且這個合併後的能力**不綁在單一 agent 的 skill 資料夾**，要讓 Claude／Gemini／Codex／Copilot／未來 Cheer 自建 Agent 都能用——高度對應 [[work/current#W-2026-08-074|W-074]] 點名最急迫的 Plugin(a) 搜尋能力（對應 W-025），很可能就是它的具體落地
-  - **設計流程已跑完 Claude+Codex 討論 → Pi 起草設計 → Gemini 覆核，目前 next: 等 Cheer 過目、拍板剩餘決策點，確認後才讓 Pi 開始實作**（12 支舊 skill 目前完全沒動，仍在 `C:\Agents\CheerCopilot\.agent\skills\`）：
-    - **Claude+Codex 討論**：原規劃走 Pi 主持的 round-table，但當時 pi:default（後來連 agy:default 也一樣）被 W-072 availability 系統標記限流封鎖——這正是 [[work/current#W-2026-08-086|W-086]] 那個誤鎖 bug 的再次發生（同一天 W-073 已踩過兩次），改成 Claude 直接用本機 `codex exec` CLI 跟 Codex 一對一討論兩輪，收斂共識：定位是「跨 Agent 的 Research Collection Service」而非「NotebookLM 自動化」，NotebookLM 只是第一個 provider adapter；第一版骨架通用、實作只做 NotebookLM 一個 provider；log event 直接沿用 W-074 已定案的 9 個 MUST 欄位；4 個 harness 各自註冊同一個 stdio MCP server；放在 `CheerioCorner/research-collection-service/`（跟 `mcp-bridges/` 平行，不是它的第 5 個 bridge）。完整紀要：[[.pi/round-table/20260823-170152/synthesis|設計討論紀要]]
-    - **Pi 起草實作設計**：依共識產出 1100+ 行具體設計文件（目錄結構、9 個 MCP tool 定義、ResearchJob/Event schema、5 張 SQLite table、NotebookLM provider adapter 含分段輪詢邏輯、4 個 harness 註冊範例）：[[.pi/round-table/20260823-170152/pi-implementation-design|實作設計文件]]
-    - **Gemini 覆核**：逐項讀檔查證（直接讀設計文件+對照 work/current.md 裡 W-074 原文+查自己的 agy MCP 文件），抓到 4 個真問題，Claude 已直接修正客觀技術性的 3 個到 v0.2：① SQLite 不支援 `SELECT ... FOR UPDATE`（無 row lock）→ 改樂觀鎖 ② 狀態機 `failed_retryable` 原本只能轉回 `researching`，匯入失敗會被迫整個重跑研究 → 補上依 checkpoint 階段決定重試路徑 ③ 外鍵約束/索引缺口 → 補上；**第 4 個是判斷性問題，留給 Cheer**：附錄把「先問清楚要查什麼」標記「❌ Agent 職責，不在第一版實作範圍」，Gemini 判斷這樣等於完全沒落實 Cheer 點名的第一個核心能力，建議 Research Core 內建輕量查詢優化器，而非留給每個 Agent 各自處理——已列進設計文件 §9 決策點 #9，等 Cheer 定奪
-  - **等 Cheer 拍板的關鍵決策點**（完整 10 項見設計文件 §9，這裡列最重要 3 項）：① 要不要做查詢優化器落實「先問清楚」這個核心能力，還是接受交給 Agent 對話處理 ② SQLite DB 路徑放專案 `data/` 還是 `%LOCALAPPDATA%` ③ TypeScript 還是 JavaScript（Pi 建議 TS）
-  - refs: [[.pi/round-table/20260823-170152/synthesis|Claude+Codex 設計討論紀要]]、[[.pi/round-table/20260823-170152/pi-implementation-design|Pi 實作設計文件 v0.2]]、[[work/current#W-2026-08-074|W-074]]（個人 AI 助理架構，log schema 對齊來源，本項目可能是其 Plugin(a) 落地）
+  - **範圍大轉向（8/23，Cheer 看完初評後拍板）**：不是「整理重組 12 支舊 skill」，是**全新設計**。只保留兩個核心能力的精神並合併：①先問清楚要查什麼、設計好研究 prompt ②執行查詢→篩選來源→逐一匯入，其餘 10 支不保留。**12 支舊 skill 只是參考**，不是要照抄。這個能力要讓 Claude／Gemini／Codex／Copilot／未來 Cheer 自建 Agent 都能用——高度對應 [[work/current#W-2026-08-074|W-074]] 點名最急迫的 Plugin(a) 搜尋能力（對應 W-025）
+  - **架構二次轉向（8/23 稍晚，Cheer 看完 v0.2 MCP 設計後再拍板）**：Claude+Codex+Pi+Gemini 原本收斂到「獨立 MCP server + SQLite job store + 背景 worker」（v0.2），但 Cheer 指出一開始沒想過要做到 MCP 這個程度，質疑「本來就有 CLI，又何必多生一個 SKILL 或 MCP」——**Claude 重新評估後認同這個質疑**：長輪詢每個 Agent 自己的 Bash/exec 工具本來就有長時間執行/背景執行能力可以處理，不需要常駐 worker；4 個 Agent 共用邏輯只要共用同一份腳本（透過既有 cheerio-skills 同步機制分發）就好，不需要 MCP protocol；單一使用者本機執行也不需要 SQLite 處理併發，用檔案（每個 job 一個資料夾放幾份 JSON）就夠。**改為兩支 skill（`deep-research-intake` 負責釐清意圖／`deep-research-execute` 負責執行+篩選+匯入）+ 一組共用腳本，state 全部改成檔案**，v0.2 已驗證的輪詢/篩選/匯入技術細節直接沿用，只是拿掉服務化外殼。完整修訂版：[[.pi/round-table/20260823-170152/design-v3-skill-based|設計文件 v3（現行版）]]
+  - **「先問清楚要查什麼」的真正樣貌（Cheer 8/23 澄清）**：不是機械式把 query 跟 profile 兜成一個 prompt，是希望 AI 在真的開始 Deep Research 前，藉由不斷提出疑問，搞清楚人類的真實意圖與研究範圍——接近舊 `design-deep-research` skill 原本在做的事，是多輪對話，不是一次性資料轉換。落地方式：寫進 `deep-research-intake` skill 本文自己的引導提問流程，不是查詢優化器
+  - **Cheer 已拍板的技術決策**：Job/DB 狀態路徑用環境變數指定（不寫死）；Job ID 格式 `rc-YYYYMMDD-NNN`；`check_provider` 健檢與研究成果 artifact 都做；budget 預設 max_sources=50/max_duration=900s/max_retries=3；job 資料夾不進版控；語言改回純 JS（沒有服務化外殼要維護型別邊界，不強制 TypeScript build 流程）
+  - **待辦提醒**：Cheer 提到 Google NotebookLM 已更名「Gemini Notebook」——動手寫 `run_research.js` 前，先確認目前裝好的 `nlm` CLI（notebooklm-mcp-cli 0.8.9）的指令集/說明有沒有反映這個更名，避免腳本沿用的指令格式跟實際產品對不上
+  - next: **端到端實測已指定 [[work/current#W-2026-08-069|W-069]]（NPU 角色深度研究）當真實測試主題**，走 `deep-research-intake` → `deep-research-execute` 完整七步流程；W-069 的 Gemini 研究線不受影響，兩條線用同一題目各自跑。草擬的 spec.json 參考內容已備妥（見 W-069 條目），等 Cheer 排定時間再正式執行 intake
+  - 補充（2026-08-23）：指定 W-069 為實測案例的理由——① 研究主題「NPU 在 AI 基礎設施架構中扮演什麼角色」已有明確範圍、有引用來源要求（`citation_required: true`），天然適合驗證 intake 收斂能力 ② W-069 原本就在跑 `chat-with-gemini-research`，兩條路線用同一個題目可以交叉比對新舊 skill 的產出品質 ③ 不需要另外找新題目或消耗額外的 NotebookLM 額度（intake 本身不消耗額度，execute 才會）
+  - 草擬的 `spec.json`（僅供正式跑 intake 對話時參考，未寫入任何 job 資料夾，`job_id` 用 `rc-20260823-002` 避開已用掉的 `-001` 測試編號）：
+    ```json
+    {
+      "job_id": "rc-20260823-002",
+      "query": "NPU 在 AI 基礎設施架構中扮演什麼角色、為什麼 AI 時代需要 NPU",
+      "profile": "work",
+      "notebook_id": null,
+      "budget": { "max_sources": 50, "max_duration_seconds": 900, "max_retries": 3 },
+      "research_profile": {
+        "depth": "deep",
+        "timeframe": "any",
+        "preferred_language": "zh-TW",
+        "citation_required": true,
+        "source_bias": "mixed",
+        "output_format": "full"
+      }
+    }
+    ```
+    正式跑 intake 時 Cheer 可透過對話調整任何欄位，這份只是起點。
+  - refs: [[.pi/round-table/20260823-170152/synthesis|Claude+Codex 設計討論紀要（第一輪）]]、[[.pi/round-table/20260823-170152/pi-implementation-design|Pi 實作設計文件 v0.2（MCP 版，歷史紀錄，技術細節仍被 v3 引用）]]、[[.pi/round-table/20260823-170152/design-v3-skill-based|設計文件 v3（現行版）]]、[[work/current#W-2026-08-074|W-074]]（個人 AI 助理架構，log schema 對齊來源，本項目可能是其 Plugin(a) 落地）、`skills/deep-research-intake/SKILL.md`、`skills/deep-research-execute/SKILL.md`（含 `run_research.js`／`filter_sources.js`／`import_sources.js`／`check_provider.js`／`generate_report.js`）、cheerio-skills repo commit `f835314`
+  - **實作完成（8/23）**：v3 設計文件確認後，Cheer 決定由 Gemini（agy）撰寫、Codex 審查、Claude 協調驗證（非 Pi 直接動手），流程如下——
+    1. Gemini 依設計文件寫出 `deep-research-intake`、`deep-research-execute` 兩支 skill（含 4 支腳本）
+    2. Codex 第一輪純程式碼審查，找到 8 個必須修正的技術性 bug（規格檔名不一致、ResearchProfile 欄位沒接進執行邏輯、輪詢總時限計算錯誤、匯入失敗誤判為完成、URL 正規化過度小寫、篩選關鍵字誤判等），Claude 逐條對照原始碼複查確認都是真問題
+    3. Gemini 的 agy CLI 週配額用盡，Cheer 指示改由 Pi 接手修正 8 點；Pi 修完後 Codex 第二輪審查又抓到 3 點殘留問題（輪詢時限計算仍有遺漏、`max_retries` 邊界情況、匯入 resume 邏輯在「先失敗後成功」情境下會漏掉重試），Pi 再修一輪，Claude 逐行讀程式碼驗證 3 點都確實修好，四支腳本 `node --check` 全過
+    4. Cheer 指出兩支 SKILL.md 格式跟過往 skill 慣例（如 `devops-project-wiki-maintainer`）不一致——Gemini 寫成了「設計文件/報告」骨架（版本號、背景與動機、效益評估、總結），不是「可執行手冊」骨架；Claude 直接改寫成精簡操作手冊風格，技術內容不變
+    5. Cheer 要求 `deep-research-execute` 有固定給人類看「最後到底找到哪些來源」的資產；Claude 新增 `generate_report.js`，篩選後與匯入後都產生 `sources-report.md`（人類可讀 Markdown 報告），已實測驗證輸出正確
+    6. 依 AGENTS.md Skills 版控規則走完：`git pull` → 更新 `README.md`（新增「🔬 深度研究」分類）→ commit `f835314` → push 到 `CheerioCorner/cheerio-skills`
+  - **目前狀態**：兩支 skill 已寫好、審查過、修過兩輪、格式對齊、含人類可讀報告資產，並已推送到共用 repo。**但尚未實測跑過一次完整的端到端流程**（intake 問答 → execute 健檢/研究/篩選/人類確認/匯入），所以本項目不算完全結束，維持 🔄
   - 起因：2026-08-23 Cheer 想讓 NotebookLM 成為日後收集資訊的重要地方，順口提到很久以前手寫過一批 NotebookLM skill 但已經忘記怎麼用
   - **以下是 Claude 8/23 稍早完成的 12 支舊 skill 逐支初評，保留當歷史紀錄／給 Pi 起草設計時參考「過去驗證過的做法」用——範圍已被上面 Cheer 的拍板取代，不再是本項目的目標**：
     1. 幾乎每支 SKILL.md 內部引用自己的 templates/scripts/references 路徑都寫成 `.github/skills/...`／`.github/prompts/...`，但實際資料夾是 `.agent/skills/...`／`.agent/prompts/...`（`implementation-plan-workflow.prompt.md` 確實存在，只是路徑寫錯）——這是不是最早在別的 agent 慣例下建的、搬到 `.agent/` 後沒同步改？要先修好這個才能信任其他交叉引用
@@ -112,8 +140,9 @@
 - [ ] W-2026-08-069 NPU 角色深度研究（Gemini research）🔄 #knowledge #ai-agent #research
   - **優先序調整（8/23）**：Cheer 判斷 [[work/current#W-2026-08-082|W-082]]（NotebookLM skill 整理）更具價值，改列第一順位；本項目改列第二（Gemini 研究本身仍在背景跑，不受影響，只是回填/跟進動作往後排）
   - next: 等 Gemini chat-with-gemini-research 完成後，將研究結果回填進 [[wiki/discussions/npu-role-in-ai-infrastructure]]，補充引用來源
-  - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]、[[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]
+  - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]、[[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]、[[work/current#W-2026-08-082|W-082]]（本項目被指定為 W-082 兩支新 skill 的端到端實測案例）
   - 起因：Cheer 看完影片後提出開放問題「NPU 在 AI 基礎設施架構中扮演什麼角色、為什麼 AI 時代需要 NPU」，已標記在 discussion 頁，正在派 Gemini 做深度研究（有引用來源要求）
+  - **額外用途（2026-08-23）**：本研究主題同時被指定為 [[work/current#W-2026-08-082|W-082]]（`deep-research-intake` ／ `deep-research-execute`）的**端到端實測案例**。不是取代原本的 `chat-with-gemini-research` 路線，而是用同一個題目額外跑一次完整的 intake→execute 七步流程，驗證新 skill 真的能用。草擬的 `spec.json` 內容見 [[work/current#W-2026-08-082|W-082]] 條目，等 Cheer 排定時間再正式執行
 
 
 

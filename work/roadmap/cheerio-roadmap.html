@@ -414,7 +414,7 @@
       <svg id="map-svg" viewBox="0 0 1820 1180" role="img" aria-label="六條工作軌道的路線圖：知識花園線、基礎設施線、企業 Skill 自動化線、個人 AI 助理線、ADO 領域專家 Agent 線、自建 Agent 學習線。個人 AI 助理線的 W-074 最小規格站之後分兩路，一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。第五條 ADO 領域專家 Agent 線是同日第二場圓桌會議加碼開的，Cheer 兩輪事後訂正後改成「先驗證連通性、再設計 Tool、再驗證 Agent 架構，最後才決定 Plugin 定位與開發 Publish View」的順序；Block 1 的 ADO／SharePoint／Outlook 三項連通性驗證各自有獨立 work ID 且可並行，因此畫成三條分支後再匯合，不擠在同一個節點。第六條自建 Agent 學習線把原本埋在 Phase 1-4 backlog 裡、完全沒露臉的研究待辦（含 3 項 MCP 相關研究）集中呈現。一條紅色虛線標出 2026-08-23 可以同時起跑的站：W-057、W-074、W-080、W-029、W-030。每個站點可點擊查看詳情。">
       </svg>
       </div>
-      <figcaption>六條工作軌道：知識花園線的 W-073 已完成並經 Cheer 確認（wiki＋Notion 花園頁雙寫，過程中發現的可用性登記表誤鎖 bug 已獨立拆成 W-086）；W-082（8/23 排到 W-069 之前）初評已完成，等 Cheer 看摘要決定；W-069 等 Gemini 深度研究背景跑完。基礎設施線已全數完成（W-083／W-076／W-072／W-070），僅剩 W-064（Docker 化，有空再做）與新拆出的 W-086（可用性登記表誤鎖 bug，backlog）；企業 Skill 自動化線今天解開卡 3 天的 W-057；個人 AI 助理線是今天新開的主線，W-074 最小規格站之後分兩路——一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍；ADO 領域專家 Agent 線今天先評估 OCR 能否輔助開發，再開始 ADO／SharePoint／Outlook 三條並行支線各自的溝通可行性驗證（各有獨立 work ID，不擠在同一節點），三線全過才匯合去設計 Tool 介面、驗證 Agent 架構、最後才決定 Plugin 定位與開發 Publish View；自建 Agent 學習線是原本埋在 work/current.md Phase 1-4 backlog 裡完全沒上圖的研究待辦，今天可直接動手的是學習系統與 OCR 安裝，MCP 相關研究單獨集中成一站（含 Server 架構、Registry 企業管理、官方文件 ingest 三項）。W-070 是浮動的獨立小決策，不屬於任何一條軌道。</figcaption>
+      <figcaption>六條工作軌道：知識花園線的 W-073 已完成並經 Cheer 確認（wiki＋Notion 花園頁雙寫，過程中發現的可用性登記表誤鎖 bug 已獨立拆成 W-086）；W-082（8/23 排到 W-069 之前）設計定案 v3——改回兩支共用 skill，不做 MCP server，等 pi:default 解鎖即可派工；W-069 等 Gemini 深度研究背景跑完。基礎設施線已全數完成（W-083／W-076／W-072／W-070），僅剩 W-064（Docker 化，有空再做）與新拆出的 W-086（可用性登記表誤鎖 bug，backlog）；企業 Skill 自動化線今天解開卡 3 天的 W-057；個人 AI 助理線是今天新開的主線，W-074 最小規格站之後分兩路——一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍；ADO 領域專家 Agent 線今天先評估 OCR 能否輔助開發，再開始 ADO／SharePoint／Outlook 三條並行支線各自的溝通可行性驗證（各有獨立 work ID，不擠在同一節點），三線全過才匯合去設計 Tool 介面、驗證 Agent 架構、最後才決定 Plugin 定位與開發 Publish View；自建 Agent 學習線是原本埋在 work/current.md Phase 1-4 backlog 裡完全沒上圖的研究待辦，今天可直接動手的是學習系統與 OCR 安裝，MCP 相關研究單獨集中成一站（含 Server 架構、Registry 企業管理、官方文件 ingest 三項）。W-070 是浮動的獨立小決策，不屬於任何一條軌道。</figcaption>
     </figure>
   </div>
 
@@ -519,18 +519,18 @@
             }
           },
           {
-            id: "w082", x: 560, y: 120, hitR: 24, shape: "wait", r: 11,
+            id: "w082", x: 560, y: 120, hitR: 24, shape: "ready", r: 12,
             labels: [
               { cls: "lbl-id", x: 560, y: 152, text: "W-082", fill: "var(--ink)" },
-              { cls: "lbl-sub", x: 560, y: 169, text: "設計完成・等 Cheer 拍板" }
+              { cls: "lbl-sub", x: 560, y: 169, text: "v3 定案・等 Pi 動手" }
             ],
-            aria: "W-082 Research Collection Service 設計，查看詳情",
+            aria: "W-082 深度研究 skill 設計 v3，查看詳情",
             popover: {
-              title: "W-082 · NotebookLM 深度研究重新設計為跨 Agent Research Collection Service", status: "設計已完成・等 Cheer 拍板才實作", pill: "wait", card: "card-w082",
+              title: "W-082 · NotebookLM 深度研究重新設計為兩支共用 Skill", status: "架構二次轉向：不做 MCP，改回 skill", pill: "ready", card: "card-w082",
               bullets: [
-                "範圍大轉向：不是整理 12 支舊 skill，是全新設計——只留「先問清楚要查什麼」+「執行/篩選/匯入」兩個能力精神，合併成跨 Agent（Claude/Gemini/Codex/Copilot/未來自建 Agent）共用的 MCP server，NotebookLM 是第一個 provider",
-                "Claude+Codex 討論 → Pi 起草設計 → Gemini 覆核，已跑完三步；Gemini 抓到 4 個真問題，3 個技術性的已修好，1 個判斷性的（要不要做查詢優化器）留給 Cheer",
-                "12 支舊 skill 完全沒動，等 Cheer 過目設計文件、拍板剩餘決策點，才會讓 Pi 開始實作"
+                "Cheer 質疑「本來就有 CLI，何必多生 SKILL 或 MCP」，Claude 重新評估後認同：長輪詢每個 Agent 自己的長時間/背景執行能力就能處理，邏輯共用用同一份腳本＋既有 skill 同步機制即可，單一使用者也不需要 SQLite",
+                "改成 deep-research-intake（多輪提問釐清意圖，這才是「先問清楚」的真正樣貌）+ deep-research-execute（執行/篩選/匯入）兩支 skill，state 全部改用檔案，v0.2 已驗證的輪詢/篩選/匯入邏輯直接沿用",
+                "10 項技術決策已全數拍板（DB 路徑改環境變數、語言改回純 JS 等），不用再跑 Codex/Gemini，可直接讓 Pi 動手寫兩支 skill"
               ]
             }
           },
@@ -858,7 +858,7 @@
               title: "W-022 · 研究 MCP Server 架構", status: "待 074 後裁切・素材已到位", pill: "dim", card: "card-backlog6",
               bullets: [
                 "還沒開始做，等重新框定範圍",
-                "W-079：42 篇官方文件已剪藏進 raw/web，待 Pi ingest 進 wiki 才有素材可讀"
+                "W-079 ✅ 已完成：42 篇官方文件已全部 ingest 進 wiki（14 個新頁面 + 舊頁過期比較），Claude 獨立核實通過，Gemini 覆核因誤鎖 bug（W-086）延後補跑"
               ]
             }
           },
@@ -1076,7 +1076,7 @@
               bullets: [
                 "W-022 研究 MCP Server 架構與實作（protocol spec/transport 層/tool-resource-prompt 三大原語）",
                 "W-023 研究 MCP Registry 與企業級管理（server 發現/註冊/版本管控）",
-                "W-079 Pi 整理 42 篇 MCP 官方文件剪藏進 wiki（W-022 的研究素材，已剪藏待 ingest）"
+                "W-079 ✅ 已完成：42 篇 MCP 官方文件已 ingest 進 wiki，W-022 研究素材就緒可直接讀"
               ]
             }
           },
@@ -1318,17 +1318,18 @@
             foot: "跳過原計畫的 Notion 版本正式圓桌覆核，Cheer 同意以「Claude 自行核對＋獨立讀回驗證」替代"
           },
           {
-            id: "card-w082", idText: "W-2026-08-082", pill: "wait", pillText: "設計完成・等 Cheer 拍板",
-            name: "NotebookLM 深度研究重新設計為跨 Agent Research Collection Service",
+            id: "card-w082", idText: "W-2026-08-082", pill: "ready", pillText: "v3 定案・等 Pi 動手",
+            name: "NotebookLM 深度研究重新設計為兩支共用 Skill",
             bullets: [
-              "範圍大轉向（8/23 Cheer 看完 12 支舊 skill 初評後拍板）：不是整理重組，是全新設計。只留「先問清楚要查什麼、設計好 prompt」+「執行查詢→篩選來源→逐一匯入」兩個能力的精神，合併成一個跨 Agent（Claude/Gemini/Codex/Copilot/未來自建 Agent）共用的 MCP server，NotebookLM 是第一個 provider adapter，不綁在單一 agent 的 skill 資料夾",
-              "12 支舊 skill 只是參考（Cheer 原話：讓 Claude 更清楚過去驗證過的做法，不是要照抄），其餘 10 支不保留",
-              "Claude 直接用 codex CLI 跟 Codex 討論兩輪收斂共識（原規劃走 Pi 主持但 pi:default 當時被限流）→ Pi 起草 1100+ 行具體實作設計（目錄結構/9個MCP tool/ResearchJob與Event schema/SQLite table/provider adapter/4個harness註冊方式）→ Gemini 逐項讀檔查證覆核",
-              "Gemini 抓到 4 個真問題：3 個技術性的（SQLite 不支援 SELECT FOR UPDATE、狀態機缺匯入重試路徑、外鍵/索引缺口）Claude 已直接修好；1 個判斷性的（「先問清楚」這個核心能力目前完全沒實作，全丟給 Agent 自己處理）留給 Cheer 定奪",
-              "log event schema 直接沿用 W-074 個人 AI 助理架構已定案的 9 個 MUST 欄位，可能就是 W-074 最急迫的 Plugin(a) 搜尋能力的具體落地",
-              "12 支舊 skill 完全沒動，仍在原本位置"
+              "範圍大轉向（8/23）：不是整理重組 12 支舊 skill，是全新設計。只留「先問清楚要查什麼」+「執行/篩選/匯入」兩個能力的精神，其餘 10 支不保留，12 支舊 skill 只是參考不是照抄",
+              "架構二次轉向（8/23 稍晚）：Claude+Codex+Pi+Gemini 原本收斂到「MCP server + SQLite + 背景 worker」（v0.2），但 Cheer 質疑「本來就有 CLI，何必多生一個 SKILL 或 MCP」——Claude 重新評估後認同：長輪詢每個 Agent 自己就有長時間/背景執行能力可處理、邏輯共用靠同一份腳本+既有 skill 同步機制即可、單一使用者不需要 SQLite 處理併發",
+              "v0.2 已驗證的技術細節（分段輪詢策略、來源篩選規則、匯入 idempotent 手法）全部沿用，只是拿掉服務化外殼，改成 deep-research-intake（多輪提問釐清意圖與範圍）+ deep-research-execute（執行→篩選→匯入）兩支 skill，state 改用檔案",
+              "「先問清楚要查什麼」的真正樣貌（Cheer 澄清）：不是機械式資料轉換，是 AI 藉由不斷提出疑問搞清楚人類真實意圖與研究範圍，接近舊 design-deep-research 在做的事，寫進 intake skill 的引導提問流程",
+              "10 項技術決策已全數拍板：DB/job 狀態路徑改用環境變數、Job ID 格式 rc-YYYYMMDD-NNN、check_provider 與研究成果 artifact 都做、budget 預設值採建議、job 資料夾不進版控、語言改回純 JS（沒有服務化外殼要維護型別邊界，不強制 TypeScript）",
+              "待辦提醒：Google NotebookLM 已更名「Gemini Notebook」，動手前先確認 nlm CLI 指令集有沒有反映這個更名",
+              "12 支舊 skill 完全沒動，仍在原本位置；不用再跑 Codex/Gemini，可直接讓 Pi 動手寫兩支 skill"
             ],
-            foot: "Cheer 過目設計文件＋拍板剩餘決策點後，才讓 Pi 開始實作"
+            foot: "所有決策已拍板，等 pi:default 解除誤鎖（W-086）後即可派工"
           },
           {
             id: "card-w069", idText: "W-2026-08-069", pill: "wait", pillText: "等 Gemini・第二順位",
@@ -1360,7 +1361,7 @@
             bullets: [
               "W-022 研究 MCP Server 架構與實作：protocol spec、transport 層、tool/resource/prompt 三大原語",
               "W-023 研究 MCP Registry 與企業級管理：server 發現與註冊機制、版本管控",
-              "W-079 Pi 整理 raw/web 的 42 篇 MCP 官方文件剪藏進 wiki——這是 W-022 的研究素材，已經剪藏好只是還沒 ingest"
+              "W-079 ✅ 已完成：42 篇官方文件全部 ingest 進 wiki，14 個新頁面 + 舊頁過期比較，Claude 獨立核實通過（Gemini 覆核撞到 W-086 誤鎖 bug，延後補跑）"
             ],
             foot: "之前只在個人 AI 助理線上當一個很小的灰點，容易被忽略，這次獨立出來"
           },
