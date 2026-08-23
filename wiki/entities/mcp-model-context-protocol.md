@@ -112,6 +112,14 @@ MCP 受到廣泛支援：Claude、ChatGPT、VS Code、Cursor、MCPJam 等都支�
 - MCP Registry 提供官方伺服器註冊表 [[wiki/entities/mcp-registry|MCP Registry]]
 - MCP Inspector 提供開發除錯工具 [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs]]
 
+### 相關變體：WebMCP
+
+WebMCP 是 MCP tool-exposure 概念在瀏覽器內的延伸應用。它讓網站在頁面內直接宣告 agent-ready 工具，透過 browser API 暴露給 AI agent，不需額外的 MCP server。工具生命週期與頁面生命週期綁定，不同頁面暴露不同工具（Contextual Tools）。
+
+核心價值：token 效率（typed contract vs screenshot/DOM scraping）與網站方對 agent 體驗的主導權（Builder Control）。
+
+⚠️ 來源為單一介紹影片，規格歸屬（是否為 W3C 標準化提案）尚未查證。詳見 [[wiki/concepts/webmcp|WebMCP]]。
+
 ## ⚠️ 舊版頁面規範演進比較
 
 > 本頁面於 2026-08-04 建立時，唯一來源已移入 `raw/.trash/`。以下根據 2026-08-22 剪藏的 42 篇官方文件（protocol version `2026-07-28`），逐項比對既有論述。

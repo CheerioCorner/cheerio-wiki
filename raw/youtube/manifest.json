@@ -141,6 +141,15 @@
       "auto_generated": false,
       "source_api": "youtube_transcript_api",
       "created": "2026-09-01"
+    },
+    {
+      "video_id": "FARxSG_EY98",
+      "title": "Make your website agent ready with WebMCP",
+      "slug": "make-your-website-agent-ready-with-webmcp",
+      "url": "https://www.youtube.com/watch?v=FARxSG_EY98",
+      "created": "2026-08-24",
+      "language": "en",
+      "segments": 147
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

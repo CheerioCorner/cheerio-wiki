@@ -1,4 +1,21 @@
 
+## [2026-08-24] ingest | WebMCP — 網頁原生 Agent-Ready 工具暴露機制
+
+- 動作：Cheer 提供 YouTube 連結 `FARxSG_EY98`，Pi 執行 YouTube ingest + wiki-ingest 雙模型驗證
+- 雙模型共識：Claude + Gemini 一致（新建 concept + 更新 entity），分歧在 source note（Claude 有、Gemini 沒）與 mcp-servers/mcp-clients 更新（Gemini 提、Claude 沒）→ 採用 Claude 方案（source note 必要、servers/clients 更新過度延伸不採用）
+- 建立：
+  - `wiki/sources/2026-08-24-webmcp-youtube.md` — source note（含 Cheer 資安觀點作為開放問題）
+  - `wiki/concepts/webmcp.md` — concept 頁面
+- 更新：
+  - `wiki/entities/mcp-model-context-protocol.md` — 新增「相關變體：WebMCP」小節
+  - `wiki/topics/mcp-ecosystem.md` — Concepts 列表加入 WebMCP
+  - `wiki/topics/agent-infrastructure.md` — Concepts 列表加入 WebMCP
+  - `wiki/index.md` — 新增 WebMCP 條目
+- Cheer 想法要點：WebMCP 半年前就提出但當時效益低（AI 工具用戶少），現在時機成熟；不只服務瀏覽器 AI，也支援本地 agent + Web UI 工作流；資安是最大隱憂（多一個入口 = 多一個攻擊面）
+- refs: [[raw/youtube/make-your-website-agent-ready-with-webmcp]]、[[wiki/concepts/webmcp]]、[[raw/conversations/2026-08-24-webmcp-security-thoughts]]
+
+---
+
 ## [2026-08-24] record | Chunkless RAG 影片重複 ingest 確認 + Cheer KM 想法記錄
 
 - 動作：Cheer 提供 YouTube 連結 `vRZNJWw78BQ`，Pi 執行 YouTube ingest 流程後發現已在 2026-08-10 完整 ingest 過，清除重複 raw transcript；Cheer 分享 KM 想法，存入 raw/conversations 並建立雙向關聯

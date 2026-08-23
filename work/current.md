@@ -85,14 +85,15 @@
     - ✅ agy-bridge 品管失敗後，Claude 改為人工核對 GPU 規格表（A100/H100/H200/B200 TFLOPS/VRAM/Bandwidth），數字與公開規格相符
   - 備註：agy-bridge 連續 4 次 CANCELED 見 [[work/current#W-2026-08-068|W-2026-08-068]]；NPU 研究見 [[work/current#W-2026-08-069|W-2026-08-069]]；引用驗證流程問題見 [[work/current#W-2026-08-070|W-2026-08-070]]
 
-- [ ] W-2026-08-082 NotebookLM 深度研究能力重新設計：兩支共用 Skill（不做 MCP server）🔄 #skill #notebooklm #ai-agent
+- [x] W-2026-08-082 NotebookLM 深度研究能力重新設計：兩支共用 Skill（不做 MCP server）✅ #skill #notebooklm #ai-agent
+  - completed: 2026-08-23
   - **重排優先序（8/23）**：Cheer 判斷本項目比 [[work/current#W-2026-08-069|W-069]]（NPU 深度研究）更具價值，改為優先進行；W-069 改列第二順位（見下方 W-069 備註）
   - **範圍大轉向（8/23，Cheer 看完初評後拍板）**：不是「整理重組 12 支舊 skill」，是**全新設計**。只保留兩個核心能力的精神並合併：①先問清楚要查什麼、設計好研究 prompt ②執行查詢→篩選來源→逐一匯入，其餘 10 支不保留。**12 支舊 skill 只是參考**，不是要照抄。這個能力要讓 Claude／Gemini／Codex／Copilot／未來 Cheer 自建 Agent 都能用——高度對應 [[work/current#W-2026-08-074|W-074]] 點名最急迫的 Plugin(a) 搜尋能力（對應 W-025）
   - **架構二次轉向（8/23 稍晚，Cheer 看完 v0.2 MCP 設計後再拍板）**：Claude+Codex+Pi+Gemini 原本收斂到「獨立 MCP server + SQLite job store + 背景 worker」（v0.2），但 Cheer 指出一開始沒想過要做到 MCP 這個程度，質疑「本來就有 CLI，又何必多生一個 SKILL 或 MCP」——**Claude 重新評估後認同這個質疑**：長輪詢每個 Agent 自己的 Bash/exec 工具本來就有長時間執行/背景執行能力可以處理，不需要常駐 worker；4 個 Agent 共用邏輯只要共用同一份腳本（透過既有 cheerio-skills 同步機制分發）就好，不需要 MCP protocol；單一使用者本機執行也不需要 SQLite 處理併發，用檔案（每個 job 一個資料夾放幾份 JSON）就夠。**改為兩支 skill（`deep-research-intake` 負責釐清意圖／`deep-research-execute` 負責執行+篩選+匯入）+ 一組共用腳本，state 全部改成檔案**，v0.2 已驗證的輪詢/篩選/匯入技術細節直接沿用，只是拿掉服務化外殼。完整修訂版：[[.pi/round-table/20260823-170152/design-v3-skill-based|設計文件 v3（現行版）]]
   - **「先問清楚要查什麼」的真正樣貌（Cheer 8/23 澄清）**：不是機械式把 query 跟 profile 兜成一個 prompt，是希望 AI 在真的開始 Deep Research 前，藉由不斷提出疑問，搞清楚人類的真實意圖與研究範圍——接近舊 `design-deep-research` skill 原本在做的事，是多輪對話，不是一次性資料轉換。落地方式：寫進 `deep-research-intake` skill 本文自己的引導提問流程，不是查詢優化器
   - **Cheer 已拍板的技術決策**：Job/DB 狀態路徑用環境變數指定（不寫死）；Job ID 格式 `rc-YYYYMMDD-NNN`；`check_provider` 健檢與研究成果 artifact 都做；budget 預設 max_sources=50/max_duration=900s/max_retries=3；job 資料夾不進版控；語言改回純 JS（沒有服務化外殼要維護型別邊界，不強制 TypeScript build 流程）
   - **待辦提醒**：Cheer 提到 Google NotebookLM 已更名「Gemini Notebook」——動手寫 `run_research.js` 前，先確認目前裝好的 `nlm` CLI（notebooklm-mcp-cli 0.8.9）的指令集/說明有沒有反映這個更名，避免腳本沿用的指令格式跟實際產品對不上
-  - next: **端到端實測已指定 [[work/current#W-2026-08-069|W-069]]（NPU 角色深度研究）當真實測試主題**，走 `deep-research-intake` → `deep-research-execute` 完整七步流程；W-069 的 Gemini 研究線不受影響，兩條線用同一題目各自跑。草擬的 spec.json 參考內容已備妥（見 W-069 條目），等 Cheer 排定時間再正式執行 intake
+  - next: ✅ 本項目已完成。後續追蹤（不影響完成判定）：**端到端實測已指定 [[work/current#W-2026-08-069|W-069]]（NPU 角色深度研究）當真實測試主題**，走 `deep-research-intake` → `deep-research-execute` 完整七步流程；W-069 的 Gemini 研究線不受影響，兩條線用同一題目各自跑。草擬的 spec.json 參考內容已備妥（見 W-069 條目），等 Cheer 排定時間再正式執行 intake
   - 補充（2026-08-23）：指定 W-069 為實測案例的理由——① 研究主題「NPU 在 AI 基礎設施架構中扮演什麼角色」已有明確範圍、有引用來源要求（`citation_required: true`），天然適合驗證 intake 收斂能力 ② W-069 原本就在跑 `chat-with-gemini-research`，兩條路線用同一個題目可以交叉比對新舊 skill 的產出品質 ③ 不需要另外找新題目或消耗額外的 NotebookLM 額度（intake 本身不消耗額度，execute 才會）
   - 草擬的 `spec.json`（僅供正式跑 intake 對話時參考，未寫入任何 job 資料夾，`job_id` 用 `rc-20260823-002` 避開已用掉的 `-001` 測試編號）：
     ```json
@@ -121,7 +122,7 @@
     4. Cheer 指出兩支 SKILL.md 格式跟過往 skill 慣例（如 `devops-project-wiki-maintainer`）不一致——Gemini 寫成了「設計文件/報告」骨架（版本號、背景與動機、效益評估、總結），不是「可執行手冊」骨架；Claude 直接改寫成精簡操作手冊風格，技術內容不變
     5. Cheer 要求 `deep-research-execute` 有固定給人類看「最後到底找到哪些來源」的資產；Claude 新增 `generate_report.js`，篩選後與匯入後都產生 `sources-report.md`（人類可讀 Markdown 報告），已實測驗證輸出正確
     6. 依 AGENTS.md Skills 版控規則走完：`git pull` → 更新 `README.md`（新增「🔬 深度研究」分類）→ commit `f835314` → push 到 `CheerioCorner/cheerio-skills`
-  - **目前狀態**：兩支 skill 已寫好、審查過、修過兩輪、格式對齊、含人類可讀報告資產，並已推送到共用 repo。**但尚未實測跑過一次完整的端到端流程**（intake 問答 → execute 健檢/研究/篩選/人類確認/匯入），所以本項目不算完全結束，維持 🔄
+  - **目前狀態（完成，8/23 Cheer 拍板）**：兩支 skill 已寫好、審查過、修過兩輪、格式對齊、含人類可讀報告資產，並已推送到共用 repo。Cheer 確認這個階段就算完成；**端到端實測（intake→execute 全七步，用 W-069 主題，見上方草稿 spec.json）留待之後找時間驗證**，不影響本項目完成判定，實測若發現問題另開新項目處理
   - 起因：2026-08-23 Cheer 想讓 NotebookLM 成為日後收集資訊的重要地方，順口提到很久以前手寫過一批 NotebookLM skill 但已經忘記怎麼用
   - **以下是 Claude 8/23 稍早完成的 12 支舊 skill 逐支初評，保留當歷史紀錄／給 Pi 起草設計時參考「過去驗證過的做法」用——範圍已被上面 Cheer 的拍板取代，不再是本項目的目標**：
     1. 幾乎每支 SKILL.md 內部引用自己的 templates/scripts/references 路徑都寫成 `.github/skills/...`／`.github/prompts/...`，但實際資料夾是 `.agent/skills/...`／`.agent/prompts/...`（`implementation-plan-workflow.prompt.md` 確實存在，只是路徑寫錯）——這是不是最早在別的 agent 慣例下建的、搬到 `.agent/` 後沒同步改？要先修好這個才能信任其他交叉引用

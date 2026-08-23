@@ -28,6 +28,7 @@ updated: 2026-08-08
 - [[wiki/concepts/mcp-servers|MCP Servers]] — 伺服器端建置與除錯 🛠️
 - [[wiki/concepts/mcp-clients|MCP Clients]] — 客戶端建置與 elicitation 🛠️
 - [[wiki/concepts/mcp-protocol-versioning|MCP Protocol Versioning]] — 版本控制與功能生命週期 🛠️
+- [[wiki/concepts/webmcp|WebMCP]] — 網頁原生 Agent-Ready 工具暴露機制 🆕
 - [[wiki/concepts/agent-skills|Agent Skills 根概念]] — Skill 系統定義、三層漸進式揭露、基礎/進階導航 🛠️
 - [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施 🛠️
 - [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] — 為什麼 AI 需要 GPU 而不是 CPU 🛠️

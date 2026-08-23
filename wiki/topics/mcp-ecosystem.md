@@ -26,6 +26,7 @@ updated: 2026-08-23
 - [[wiki/concepts/mcp-client-types|MCP Client Types]] — CLI/TUI/Web 客戶端、本地/遠端連線
 - [[wiki/concepts/mcp-protocol-versioning|MCP Protocol Versioning]] — YYYY-MM-DD 版本、功能生命週期、deprecation
 - [[wiki/concepts/mcp-agent-skills-integration|MCP + Agent Skills]] — Skills 與 MCP 的整合模式
+- [[wiki/concepts/webmcp|WebMCP]] — 網頁原生 Agent-Ready 工具暴露機制 🆕
 
 ## Sources
 

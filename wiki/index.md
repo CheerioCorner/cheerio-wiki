@@ -88,6 +88,7 @@
 - [[wiki/concepts/mcp-protocol-versioning.md|MCP Protocol Versioning — 版本控制與演進]] — MCP 使用 `YYYY-MM-DD` 格式的字串版本識別碼，表示最後一次向後不相容變更的日期，並透過功能生命週期管理 deprecation。
 - [[wiki/concepts/mcp-servers.md|MCP Servers — 建置與操作]] — MCP Server 是向 MCP Client 提供上下文的程式，透過暴露 tools、resources、prompts 三種原語讓 AI 應用程式存取外部系統。
 - [[wiki/concepts/meta-harness.md|Meta-Harness]] — Meta-Harness 是「對 harness 本身的再抽象/最佳化層」——有兩個獨立但共享核心隱喻的主流定義。
+- [[wiki/concepts/webmcp.md|WebMCP — 網頁原生 Agent-Ready 工具暴露機制]] — 讓網站在頁面內直接宣告 agent-ready 工具，透過 browser API 暴露給 AI agent，不需額外的 MCP server。 🆕
 - [[wiki/concepts/minimal-agent-philosophy.md|minimal-agent-philosophy]] — 兩篇來源、兩個視角,**落到同一個結論**:agent 框架的價值不取決於堆了多少功能,而取決於它**拒絕排除了多少東西**。
 - [[wiki/concepts/moc-map-of-content.md|MOC — Map of Content]] — 一種導航頁面，用來連結相關的筆記。它不是筆記本身，而是一張「地圖」。
 - [[wiki/concepts/model-sharding.md|Model Sharding]] — Chatty talk 放盒子裡（同機器 NVLink），Light talk 放盒子間（跨機器網路）`[34:07]`
