@@ -25,6 +25,7 @@ updated: 2026-08-10
 ## Sources — AI Infrastructure
 
 - [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]] — Mumshad Mannambeth 的 AI 基礎設施完整課程
+- [[wiki/sources/2026-08-24-npu-deep-research|NPU 在 AI 基礎設施架構中的角色 — 深度研究]] — Gemini Deep Research，54 筆過濾後來源 🛠️
 
 ## Sources — Redis
 

@@ -1,7 +1,7 @@
 # Wiki Index
 
-> 自動全量重建，last rebuilt: 2026-08-23
-> 本次新增：mcp-official-docs-42 (source)、mcp-sdks-and-tooling (source)、6 entities + 5 concepts（MCP 官方文件 ingest）
+> 自動全量重建，last rebuilt: 2026-08-24
+> 本次更新：NPU 深度研究 ingest（W-2026-08-069），新增 1 source，更新 1 discussion + 2 topics
 
 ## Topics
 - [[wiki/topics/agent-architecture|Agent Architecture]]
@@ -289,6 +289,7 @@
 - [[wiki/sources/2026-09-01-ibm-youtube-skill-best-practices-supplement-draft.md|IBM YouTube 影片 Skill 五項最佳實踐 — 補充草稿]] — ⚠️ **草稿狀態**：本文件是待覆核的補充草稿，尚未併入任何既有文章或 Notion 花園。
 - [[wiki/sources/mcp-official-docs-42.md|MCP 官方文件彙整（42 篇）]] — 2026-08-22 從 modelcontextprotocol.io 剪藏的 42 篇官方文件，涵蓋 MCP 協定的完整規範。Protocol version `2026-07-28`。
 - [[wiki/sources/mcp-sdks-and-tooling.md|MCP SDKs & Development Tooling]] — 彙整 MCP 官方多語言 SDK、MCP Inspector 開發工具、參考伺服器範例與常用食譜。
+- [[wiki/sources/2026-08-24-npu-deep-research.md|NPU 在 AI 基礎設施架構中的角色 — 深度研究]] — Gemini Deep Research（54 筆過濾後來源），涵蓋 NPU 硬體架構、異質運算角色、LLM 推理 Prefill/Decode 資源失衡
 
 ### decisions
 - [[wiki/decisions/knowledge-system-architecture-decision.md|知識系統架構改進最終報告]] — 版本：v2.0
@@ -302,7 +303,7 @@
 - [[wiki/discussions/canonicalization-and-semantic-linking.md|Canonicalization and Semantic Linking]]
 - [[wiki/discussions/mem0-vs-decision-ledger-for-w074.md|Mem0 vs Decision-Ledger 對 W-074 架構的適用性]] — W-074 規劃四類記憶架構（Episodic / Semantic / Procedural / Artifact）。本頁探討 Mem0 與 Decision-Ledger 兩種記憶機制各自適合哪一類，以及為何應該疊加而非二選一。
 - [[wiki/discussions/notion-integration-architecture.md|Notion Integration Architecture]]
-- [[wiki/discussions/npu-role-in-ai-infrastructure.md|NPU 在 AI 基礎設施架構中的角色]] — 影片中並沒有提到 NPU。那 NPU 在整個 AI 基礎設施架構中扮演什麼角色？它是什麼樣的運作，跟為什麼說它更適合 AI 時代？為什麼現在除了 CPU、GPU 之外，還需要 NPU？
+- [[wiki/discussions/npu-role-in-ai-infrastructure.md|NPU 在 AI 基礎設施架構中的角色]] — 深度研究已完成（2026-08-24），涵蓋硬體架構（脈動陣列、量化、PIM）、異質運算角色、LLM 推理資源失衡。62 筆引用來源（8+54）。
 - [[wiki/discussions/topic-stub-cleanup.md|Existing Topic Stub Cleanup]]
 - [[wiki/discussions/wiki-youtube-pipeline-timing.md|YouTube-to-Wiki Pipeline Timing]]
 

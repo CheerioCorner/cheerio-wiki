@@ -1,4 +1,18 @@
 
+## [2026-08-24] ingest | NPU 在 AI 基礎設施架構中的角色 — 深度研究 ingest（W-2026-08-069）
+
+- 動作：Cheer 執行 deep-research-execute 完整十步流程（job rc-20260824-001），產出 54 筆過濾後來源的深度研究報告，再執行 wiki-ingest 進行雙模型交叉驗證後 ingest 進 wiki
+- 雙模型共識：Round 1 即達成一致（Claude + Gemini），不需 Round 2。兩邊都確認：update 既有 discussion 頁面、type: discussion、topics: [backend-systems, agent-infrastructure]、不推翻既有結論、補充 5 個新維度
+- 建立：
+  - `wiki/sources/2026-08-24-npu-deep-research.md` — 來源筆記（54 筆來源，Gemini Notebook 品質過濾）
+- 更新：
+  - `wiki/discussions/npu-role-in-ai-infrastructure.md` — 補充深度研究內容（資料流變體、量化、PIM、熱降頻、Copilot+ PC、模型管線化）
+  - `wiki/topics/agent-infrastructure.md` — 更新 NPU 討論頁標記（從「🔴 開放問題」改為「深度研究已完成」），加入新來源筆記
+  - `wiki/topics/backend-systems.md` — Sources 區塊加入新來源筆記
+  - `wiki/index.md` — 更新 last rebuilt 日期，新增 source 條目，更新 discussion 摘要
+- 注意：既有的 8 筆引用（REF-1 到 REF-8）保持不變（均經 Claude 手動 WebFetch 查證）；新增的 54 筆來源經 Cheer 抽查 5 筆 URL 驗證為真實內容。報告中引用清單的標題顯示為 `undefined`（generate_report.js 的 bug），URL 本身正確
+- refs: [[wiki/sources/2026-08-24-npu-deep-research]]、[[wiki/discussions/npu-role-in-ai-infrastructure]]、raw/deep-research/rc-20260824-001/
+
 ## [2026-08-25] ingest | Google Cloud — How to modernize legacy codebases using AI coding agents
 
 - 動作：Cheer 提供 YouTube 連結 `RKvckuC6Bsk`，Pi 執行 YouTube ingest + wiki-ingest 雙模型驗證

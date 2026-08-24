@@ -37,7 +37,7 @@ updated: 2026-08-08
 
 ## Discussions
 
-- [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 在 AI 基礎設施架構中的角色]] — 🔴 開放問題：NPU vs GPU 在 AI 推理中的定位
+- [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 在 AI 基礎設施架構中的角色]] — 深度研究已完成（2026-08-24），涵蓋硬體架構、異質運算、LLM 推理資源失衡
 
 ## Sources
 
@@ -48,3 +48,4 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-04-code-review-graph|code-review-graph]] — Tree-sitter 知識圖譜做 Code Review，省 8.2 倍 Token 🛠️
 - [[wiki/sources/2026-08-04-rust-analyzer|rust-analyzer]] — Rust LSP 實作，高效能代碼分析 🛠️
 - [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]] — AI 基礎設施完整課程 🛠️
+- [[wiki/sources/2026-08-24-npu-deep-research|NPU 在 AI 基礎設施架構中的角色 — 深度研究]] — Gemini Deep Research，54 筆過濾後來源 🛠️
