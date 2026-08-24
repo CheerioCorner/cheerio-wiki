@@ -123,6 +123,14 @@
     5. Cheer 要求 `deep-research-execute` 有固定給人類看「最後到底找到哪些來源」的資產；Claude 新增 `generate_report.js`，篩選後與匯入後都產生 `sources-report.md`（人類可讀 Markdown 報告），已實測驗證輸出正確
     6. 依 AGENTS.md Skills 版控規則走完：`git pull` → 更新 `README.md`（新增「🔬 深度研究」分類）→ commit `f835314` → push 到 `CheerioCorner/cheerio-skills`
   - **目前狀態（完成，8/23 Cheer 拍板）**：兩支 skill 已寫好、審查過、修過兩輪、格式對齊、含人類可讀報告資產，並已推送到共用 repo。Cheer 確認這個階段就算完成；**端到端實測（intake→execute 全七步，用 W-069 主題，見上方草稿 spec.json）留待之後找時間驗證**，不影響本項目完成判定，實測若發現問題另開新項目處理
+  - **後續發現與重新設計（2026-08-24）**：Cheer 觀察到 Pi 8/23 執行 W-069 端到端實測時，只改了本機 `.agents/skills/deep-research-execute`（`.pi`/`.claude` 的實際執行位置），完全沒動 `cheerio-skills` repo——Claude 核對後確認 repo 版本 git log 自建立以來只有一次 commit，6 個當天修好的 bug 全部沒進版控，等於「只有 Cheer 這台機器能用，repo 是壞的」。Cheer 接著針對整支 skill 的設計提出 6 點檢討（nlm 升級要能 AI 自主完成、intake→execute 之間缺最終確認關卡、研究階段重複建立 notebook 的成因不明、篩選改成「先全部匯入→讓 Gemini Notebook 自己讀內容判斷品質」、要有 recheck 補研究迴圈（≤3輪）、要有分類重新命名步驟），Claude 據此重新設計並實作：
+    - `run_research.js` 改用 `nlm research start --wait-and-import`（單一阻塞呼叫，等待交給 nlm 處理）取代手動輪詢；查程式碼與 `nlm --help` 確認重複建立 notebook的根因是「Task ID 解析失敗就重試，但重試時沒有 notebook id 只能帶 `--title`，必定建新 notebook」+ `--force` 繞過 nlm 自己的重複防護；新版一旦解出 notebook id 只用 `-n`，不再重演
+    - 移除 `filter_sources.js`／`import_sources.js`（本地關鍵字評分），新增 `quality_filter.js`（Gemini 讀來源內容揪出廣告/膚淺心得文/過期資訊並實際刪除）、`recheck_sources.js`（Gemini 判斷來源夠不夠，不夠就對同notebook補跑 fast 模式研究，≤3輪）、`rename_sources.js`（Gemini 分類+建議新標題並執行 `nlm source rename`）、`query_answers.js`（逐題查詢＋快照最終來源清單）
+    - `deep-research-execute/SKILL.md` 新增「最終確認」關卡（研究開始前必須 Y/N，每次執行都要問）；新增 `references/nlm-upgrade-guide.md` 讓 AI 以後自主處理 nlm CLI 升級（含 WinError 32 檔案占用的處理原則、升級後驗證程序）
+    - `deep-research-intake/SKILL.md`：`profile` 改成動態偵測（跑 `check_provider.js` 決定，不再寫死 `"work"`）；新增可選 `sub_questions`
+    - **實測驗證（不是用 NPU 題目，用 `fast` 模式的無關痛癢小題目 "Pomodoro Technique" 跑完整 10 步流程，完成後已刪除測試 notebook）**：過程中發現並修好一個新 bug——`nlm query notebook --json` 把 Gemini 的結構化回覆包在 `.answer` 字串裡，要再解一層 JSON 才能拿到 `{"remove":[...]}` 這類資料（修進 `lib/nlm_common.js` 的 `extractStructuredAnswer()`）；也發現 `nlm query notebook` 不會可靠回傳逐句引用對應（`citations`/`references`/`sources_used` 欄位始終是空的），改成報告末尾附完整已重新命名來源清單當附錄。驗證結果：全程只建立 1 個 notebook、品質過濾/recheck/重新命名/報告產出皆符合預期
+    - repo（`cheerio-skills`）與 `.agents/skills`（實際執行位置）已重新同步一致，Cheer 確認後 commit + push（commit `d533ec5`），解決了「本機能跑、repo 是壞的」的落差
+  - **仍待完成**：用真正的研究題目（原訂 NPU，見 [[work/current#W-2026-08-069|W-069]]）跑一次完整流程正式驗證，smoke test 只證明了流程機制本身沒問題，還沒證明真實深度研究題目下的表現
   - 起因：2026-08-23 Cheer 想讓 NotebookLM 成為日後收集資訊的重要地方，順口提到很久以前手寫過一批 NotebookLM skill 但已經忘記怎麼用
   - **以下是 Claude 8/23 稍早完成的 12 支舊 skill 逐支初評，保留當歷史紀錄／給 Pi 起草設計時參考「過去驗證過的做法」用——範圍已被上面 Cheer 的拍板取代，不再是本項目的目標**：
     1. 幾乎每支 SKILL.md 內部引用自己的 templates/scripts/references 路徑都寫成 `.github/skills/...`／`.github/prompts/...`，但實際資料夾是 `.agent/skills/...`／`.agent/prompts/...`（`implementation-plan-workflow.prompt.md` 確實存在，只是路徑寫錯）——這是不是最早在別的 agent 慣例下建的、搬到 `.agent/` 後沒同步改？要先修好這個才能信任其他交叉引用
@@ -140,10 +148,11 @@
 
 - [ ] W-2026-08-069 NPU 角色深度研究（Gemini research）🔄 #knowledge #ai-agent #research
   - **優先序調整（8/23）**：Cheer 判斷 [[work/current#W-2026-08-082|W-082]]（NotebookLM skill 整理）更具價值，改列第一順位；本項目改列第二（Gemini 研究本身仍在背景跑，不受影響，只是回填/跟進動作往後排）
-  - next: 等 Gemini chat-with-gemini-research 完成後，將研究結果回填進 [[wiki/discussions/npu-role-in-ai-infrastructure]]，補充引用來源
-  - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]、[[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]、[[work/current#W-2026-08-082|W-082]]（本項目被指定為 W-082 兩支新 skill 的端到端實測案例）
+  - next: `deep-research-intake`/`deep-research-execute` 已於 2026-08-24 完成重新設計與修復（見 [[work/current#W-2026-08-082|W-082]] 8/24 條目），並用 fast 模式的無關題目跑通完整 10 步流程驗證過機制本身沒問題。**還沒拿 NPU 這個真正題目正式跑過**——下一步是找時間執行 `deep-research-intake` 收斂 spec、`deep-research-execute` 跑完整流程，再把 `research-report.md` 回填進 [[wiki/discussions/npu-role-in-ai-infrastructure]]
+  - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]、[[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]、[[work/current#W-2026-08-082|W-082]]（本項目被指定為 W-082 兩支新 skill 的端到端實測案例，8/24 已完成流程重新設計＋smoke test，正式題目待跑）
   - 起因：Cheer 看完影片後提出開放問題「NPU 在 AI 基礎設施架構中扮演什麼角色、為什麼 AI 時代需要 NPU」，已標記在 discussion 頁，正在派 Gemini 做深度研究（有引用來源要求）
-  - **額外用途（2026-08-23）**：本研究主題同時被指定為 [[work/current#W-2026-08-082|W-082]]（`deep-research-intake` ／ `deep-research-execute`）的**端到端實測案例**。不是取代原本的 `chat-with-gemini-research` 路線，而是用同一個題目額外跑一次完整的 intake→execute 七步流程，驗證新 skill 真的能用。草擬的 `spec.json` 內容見 [[work/current#W-2026-08-082|W-082]] 條目，等 Cheer 排定時間再正式執行
+  - **額外用途（2026-08-23）**：本研究主題同時被指定為 [[work/current#W-2026-08-082|W-082]]（`deep-research-intake` ／ `deep-research-execute`）的**端到端實測案例**。不是取代原本的 `chat-with-gemini-research` 路線，而是用同一個題目額外跑一次完整的 intake→execute 流程，驗證新 skill 真的能用。草擬的 `spec.json` 內容見 [[work/current#W-2026-08-082|W-082]] 條目
+  - **8/23 實測發現流程本身有 6 個 bug、8/24 已重新設計並用假題目驗證通過**（詳見 W-082 條目），正式拿 NPU 題目跑的動作留到下一次執行
 
 
 
