@@ -1,4 +1,40 @@
 
+## [2026-08-25] work | 新增 W-2026-08-088 代碼知識圖譜工具深度研究 + 安全性審查
+
+- 動作：Cheer 要求對 codebase-memory-mcp / CodeGraph / Graphify / OCR 做更深入的運作背景研究（不只是表面 README 比較），加上安全性深度審查（原始碼抽查、supply chain、CVE、遙測行為分析），最終選出適合的安裝測試比較
+- 新增：`work/current.md` W-2026-08-088（§1 背景研究 + §2 安全性審查 + §3 選型建議，blockedBy W-030 + W-087）
+- 跟既有待辦的關係：W-030（OCR 安裝測試）→ W-085（Graphify 評估）→ W-087（codebase-memory-mcp 安裝）都是實作導向；W-088 是統籌性深度研究，§3 會影響 §1/§2 的安裝決策
+- refs: [[wiki/entities/codebase-memory-mcp]]、[[wiki/entities/codegraph]]、[[wiki/entities/graphify]]、[[wiki/entities/open-code-review]]
+
+## [2026-08-25] ingest | 深入拆解 Codebase-Memory-MCP vs CodeGraph：兩種代碼知識圖譜的路線之爭（YouTube ingest）
+
+- 動作：YouTube 影片（7pSZx9-VT3k）→ youtube_transcript_api 抓中文字幕（手動，217 segments → 合併 8 paragraphs）→ 雙模型交叉驗證（Pi 主持，因內容為比較分析直接執行）→ 建立 wiki 頁面
+- 建立：
+  - `wiki/sources/2026-08-25-codebase-memory-mcp-vs-codegraph.md` — source note（陳述級溯源，含影片關鍵數據比較表）
+  - `wiki/entities/codegraph.md` — CodeGraph entity 頁面（全新，含與 codebase-memory-mcp 詳細比較）
+- 更新：
+  - `wiki/entities/codebase-memory-mcp.md` — 新增「影片補充」章節（LZ4/Aho-Corasick 演算法、記憶體管理、定位轉變、跟 CodeGraph 核心差異），新增相關頁面連結
+  - `wiki/topics/ai-development-tools.md` — Entities 區塊新增 CodeGraph 條目
+  - `wiki/topics/coding-agent.md` — Entities 區塊新增 CodeGraph 條目
+  - `wiki/index.md` — Entities 區塊新增 CodeGraph 條目
+  - `wiki/log.md` — 本筆紀錄
+- 關鍵比較：兩者是「不同賽道」而非競爭——CodeGraph=框架路由+file watcher+開發者體驗，codebase-memory-mcp=性能+Hybrid LSP+團隊共享圖譜
+- 安全性差異：CodeGraph 預設開啟匿名遙測（需 `codegraph telemetry off`），codebase-memory-mcp 零遙測
+- refs: [[raw/youtube/2026-08-25-codebase-memory-mcp-vs-codegraph]]、[[wiki/sources/2026-08-25-codebase-memory-mcp-vs-codegraph]]、[[wiki/entities/codegraph]]、[[wiki/entities/codebase-memory-mcp]]
+
+## [2026-08-25] ingest | codebase-memory-mcp — 高效能代碼知識圖譜 MCP Server（Web Clipper ingest）
+
+- 動作：Cheer 用 Web Clipper 存了 GitHub README raw，Pi 依 Cheer 指示建立 wiki entity 頁面 + 更新 topics + 新增 work item
+- 建立：`wiki/entities/codebase-memory-mcp.md` — entity 頁面（基本資訊、核心功能、與 Graphify 比較、安裝方式、我們的判斷）
+- 更新：
+  - `wiki/topics/ai-development-tools.md` — Entities 區塊新增 codebase-memory-mcp 條目
+  - `wiki/topics/coding-agent.md` — 新增 Entities 區塊 + codebase-memory-mcp 條目
+  - `work/current.md` — 新增 W-2026-08-087 待辦（評估安裝 codebase-memory-mcp）
+  - `wiki/entities/graphify.md` — 新增「與 codebase-memory-mcp 比較」小節 + 相關頁面連結
+  - `wiki/entities/open-code-review.md` — 相關頁面補充 codebase-memory-mcp 連結
+- 關鍵比較：跟 Graphify 幾乎同品類（tree-sitter → 知識圖譜），但 MCP 原生 + SQLite 持久化 + auto-index + 視覺化更成熟，Graphify 建議跳過
+- refs: [[raw/web/2026-08-25-DeusDatacodebase-memory-mcp High-performance code intelligence MCP server]]、[[wiki/entities/codebase-memory-mcp]]
+
 ## [2026-08-25] ingest | 五大 Coding Agent Harness Hook 機制比較研究（deep-research ingest）
 
 - 動作：Pi 執行 deep-research-execute 完整流程（job rc-20260825-001），產出 60 筆過濾後來源的深度研究報告，Cheer 審閱確認後指示執行 wiki-ingest 進行雙模型交叉驗證後 ingest 進 wiki
@@ -315,6 +351,50 @@
 
 > 變更日誌。連結改用普通文字，避免 structural files 變成 graph 超級節點。
 > 需要追溯時，查 frontmatter 的 `provenance` 或 `sources` 欄位。
+
+## [2026-08-26] ingest | 10 個前端 UI 視覺設計 AI Agent Skill Repo 批次 ingest（含比較頁）
+
+- 動作：Cheer 提供 10 個前端/UI 視覺設計相關的 AI agent skill GitHub repo 連結，Claude 已完成逐一確認（WebFetch + GitHub API 交叉核實），Pi 執行 §3.1 標準 Ingest 流程
+- 雙模型交叉驗證：
+  - Round 1：呼叫 Claude CLI（chat-with-claude）+ Gemini（chat-with-gemini）各自獨立產出結構化提案
+  - Claude CLI 因權限問題（max_turns 限制 + file system permission denials）未能產出可用提案
+  - Gemini 成功產出完整 JSON 提案（10 source notes + 10 entity pages + 1 comparison page + topic updates）
+  - **裁決**：Gemini 提案與 Pi 對 10 個 raw 全文的理解高度一致，關鍵欄位（目標頁面、type、topics）全部合理，直接採用 → `auto_verified`
+  - **跳過 copilot 第三票**：因 Cheer GitHub Copilot 額度用完，依照 Cheer 指示跳過 copilot 仲裁
+- 建立：
+  - `wiki/sources/2026-08-26-leonxlnx-taste-skill.md` — taste-skill 來源筆記
+  - `wiki/sources/2026-08-26-nextlevelbuilder-ui-ux-pro-max-skill.md` — ui-ux-pro-max-skill 來源筆記
+  - `wiki/sources/2026-08-26-pbakaus-impeccable.md` — impeccable 來源筆記
+  - `wiki/sources/2026-08-26-anthropics-claude-code-frontend-design.md` — Anthropic frontend-design 來源筆記
+  - `wiki/sources/2026-08-26-nutlope-hallmark.md` — hallmark 來源筆記
+  - `wiki/sources/2026-08-26-greensock-gsap-skills.md` — gsap-skills 來源筆記
+  - `wiki/sources/2026-08-26-google-labs-code-stitch-skills.md` — stitch-skills 來源筆記
+  - `wiki/sources/2026-08-26-vercel-labs-web-interface-guidelines.md` — web-interface-guidelines 來源筆記
+  - `wiki/sources/2026-08-26-conardli-garden-skills.md` — garden-skills 來源筆記
+  - `wiki/sources/2026-08-26-dominikmartn-nothing-design-skill.md` — nothing-design-skill 來源筆記
+  - `wiki/entities/leonxlnx-taste-skill.md` — taste-skill entity
+  - `wiki/entities/nextlevelbuilder-ui-ux-pro-max-skill.md` — ui-ux-pro-max-skill entity
+  - `wiki/entities/pbakaus-impeccable.md` — impeccable entity
+  - `wiki/entities/anthropics-claude-code-frontend-design.md` — Anthropic frontend-design entity
+  - `wiki/entities/nutlope-hallmark.md` — hallmark entity
+  - `wiki/entities/google-labs-code-stitch-skills.md` — stitch-skills entity
+  - `wiki/entities/vercel-labs-web-interface-guidelines.md` — web-interface-guidelines entity
+  - `wiki/entities/conardli-web-design-engineer-skill.md` — web-design-engineer entity
+  - `wiki/entities/dominikmartn-nothing-design-skill.md` — nothing-design-skill entity
+  - `wiki/comparisons/frontend-ui-design-skills-comparison.md` — 10 repo 全景比較頁（競爭/互補/品牌皮膚/情境選型）
+- 更新：
+  - `wiki/entities/gsap.md` — 補充 8 個子 skill 詳細列表 + 核心規則 + 定位說明，topics 新增 skill-cases-and-comparisons, skill-presentation-design
+  - `wiki/topics/skill-cases-and-comparisons.md` — 新增 Comparisons 區塊 + 10 個新 source + 10 個新 entity
+  - `wiki/topics/skill-presentation-design.md` — 新增 9 個新 entity + 9 個新 source
+  - `wiki/topics/skill.md` — 更新頁數（9→19）+ 新增 comparisons 橫跨頁面
+  - `wiki/index.md` — 全量重建（124 sources, 74 entities, 76 concepts）
+- 關鍵發現：
+  - taste-skill 與 hallmark 是最直接的競爭者（都在解 anti-AI-slop 問題），美學偏向互斥
+  - impeccable 源自 Anthropic frontend-design（同源不同走向：工程化 vs 質性流程）
+  - gsap-skills 與 web-interface-guidelines 是互補型（動畫實作 + 生成後稽核）
+  - stitch-skills 的 taste-design 與 taste-skill LILA RULE 疑似同源（未查證）
+  - ⚠️ taste-skill (80k stars/6 個月) 和 ui-ux-pro-max-skill (120k stars/9 個月) star 數異常，已保留備註供 Cheer 判斷
+- refs: [[wiki/comparisons/frontend-ui-design-skills-comparison]]、10 個 raw/web/2026-08-26-*.md
 
 ## [2026-08-22] ingest | Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價（已查證版）
 - 來源：`raw/research/2026-08-22-mem0-deep-research-verified.md`（Gemini 深度研究經 Claude WebFetch 逐一查證修正）

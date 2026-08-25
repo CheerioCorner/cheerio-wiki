@@ -19,6 +19,11 @@ updated: 2026-08-19
 
 - [[wiki/concepts/legacy-code-modernization|Legacy Code Modernization with AI]] — 用 AI coding agent 現代化 legacy codebase 的三步方法論
 
+## Entities
+
+- [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]] — DeusData 高性能代碼知識圖譜 MCP Server，158 語言 tree-sitter + Hybrid LSP 🛠️
+- [[wiki/entities/codegraph|CodeGraph]] — colbymchenry 代碼知識圖譜 MCP Server，20+ 語言 + 框架路由 🛠️
+
 ## Related
 
 - [[wiki/topics/ai-development-tools|AI Development Tools]]

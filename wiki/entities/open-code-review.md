@@ -250,6 +250,7 @@ Plannotator 標註（需要人類判斷時）
 - [[wiki/entities/pi-agent-core]] — Pi agent 核心
 - [[wiki/concepts/meta-harness]] — Agent 架構
 - [[wiki/topics/extension-dev]] — Extension 開發
+- [[wiki/entities/codebase-memory-mcp]] — 同品類工具（tree-sitter 知識圖譜），功能更完整
 
 ## 標籤
 

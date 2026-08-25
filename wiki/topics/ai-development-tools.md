@@ -19,6 +19,8 @@ updated: 2026-08-18
 - [[wiki/entities/github-copilot|GitHub Copilot]] — GitHub AI 程式碼輔助工具生態系 🛠️
 - [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI AI Coding Agent，CLI 工具 🛠️
 - [[wiki/entities/open-code-review|OpenCodeReview]] — Alibaba 開源 AI 代碼審查 CLI 工具 🛠️
+- [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]] — DeusData 高性能代碼知識圖譜 MCP Server，158 語言 tree-sitter + Hybrid LSP 🛠️
+- [[wiki/entities/codegraph|CodeGraph]] — colbymchenry 代碼知識圖譜 MCP Server，20+ 語言 + 框架路由 🛠️
 - [[wiki/entities/hyperframes|hyperframes]] — HTML 轉影片的 Agent 工具（HeyGen）🛠️
 - [[wiki/entities/gsap|GSAP]] — 網頁動畫 Industry Standard（GreenSock）🛠️
 - [[wiki/entities/pixel2motion|pixel2motion]] — AI Logo 動畫 Skill 🛠️

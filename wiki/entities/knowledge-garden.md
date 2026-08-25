@@ -2,7 +2,7 @@
 title: knowledge-garden — Cheerio 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-22
+updated: 2026-08-25
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -95,8 +95,9 @@ canonical: entities/knowledge-garden
 | OKF — AI 時代的知識格式 | [連結](https://app.notion.com/p/3b35979e3a8c819ab5ebf9230906a1c1) | [[wiki/concepts/okf-open-knowledge-format\|okf-open-knowledge-format]] | 🗺️ [[wiki/visualizations/okf-open-knowledge-format.canvas\|視覺地圖]] |
 | mattpocock/skills — 第一棵樹苗 | [連結](https://app.notion.com/p/3b35979e3a8c81b299d6e6689d78f20e) | [[wiki/entities/mattpocock-skills\|mattpocock-skills]] | 🗺️ [[wiki/visualizations/mattpocock-skills.canvas\|視覺地圖]] |
 | Pi Agent 架構研究 — 從 Runtime 到 Extension | [連結](https://app.notion.com/p/3b35979e3a8c8129ba33f558c588a06f) | [[wiki/entities/agent-extension-installation\|agent-extension-installation]] | 🗺️ [[wiki/visualizations/agent-extension-installation.canvas\|視覺地圖]] |
+| Claude Code — Anthropic AI Coding Agent 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81ce93fdfd8be0c7ab49) | [[wiki/entities/claude-code\|claude-code]] | 🗺️ [視覺地圖](https://app.notion.com/p/3c75979e3a8c81378bb9da4a79375189) |
 
-### 🌱 種子期（17 顆）
+### 🌱 種子期（18 顆）
 
 | 種子名稱 | Notion Link | Wiki 來源 | 視覺地圖 |
 |----------|-------------|-----------|----------|
@@ -111,8 +112,7 @@ canonical: entities/knowledge-garden
 | LSP — 程式碼理解的基礎 | [連結](https://app.notion.com/p/3b75979e-3a8c-8117-8580-f33cc9a2e6fc) | [[wiki/entities/lsp\|lsp]] | — |
 | OpenCodeReview — AI 代碼審查 CLI 工具 | [連結](https://app.notion.com/p/3b55979e-3a8c-81c8-8283-f0e3eaf4f9d6) | [[wiki/entities/open-code-review\|open-code-review]] | 🗺️ [[wiki/visualizations/open-code-review.canvas\|視覺地圖]] |
 | Omnigent — Databricks 開源 meta-harness | [連結](https://app.notion.com/p/3b35979e3a8c819990edcf332d1fc175) | [[wiki/entities/omnigent\|omnigent]] | 🗺️ [[wiki/visualizations/omnigent.canvas\|視覺地圖]] |
-| Claude Code — Anthropic AI Coding Agent 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81ce93fdfd8be0c7ab49) | [[wiki/entities/claude-code\|claude-code]] | — |
-| GitHub Copilot — AI 程式碼輔助生態系 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81baa661e06f1d8a1edc) | [[wiki/entities/github-copilot\|github-copilot]] | — |
+| GitHub Copilot — AI 程式碼輔助生態系 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81baa661e06f1d8a1edc) | [[wiki/entities/github-copilot\|github-copilot]] | 🗺️ [視覺地圖](https://app.notion.com/p/3c75979e3a8c81378bb9da4a79375189) |
 | LangGraph — Graph-based Agent Runtime 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81d187eee8b3c55cdd4b) | [[wiki/entities/langgraph\|langgraph]] | — |
 | Tree-sitter — 高效能增量 Parser 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81468edfd59f0b407ddf) | [[wiki/entities/tree-sitter\|tree-sitter]] | — |
 | Agentic AI — 自主 AI 系統核心概念 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81f2b665de005e942e92) | [[wiki/concepts/agentic-ai\|agentic-ai]] | — |
@@ -121,6 +121,7 @@ canonical: entities/knowledge-garden
 | Mem0 — AI Agent 長期記憶工具剖析 🆕 | [連結](https://app.notion.com/p/Mem0-AI-Agent-3c45979e3a8c815fbacad32e9ef0622b) | [[wiki/entities/mem0\|mem0]] | — |
 | Entity Boost — 從工具技巧到可遷移架構原則 🆕 | [連結](https://app.notion.com/p/Entity-Boost-3c45979e3a8c8173b44df8324c552a1b) | [[wiki/concepts/ai-agent-memory-systems\|ai-agent-memory-systems]] | — |
 | Recall Policy — 排序品質決定記憶系統的成敗 🆕 | [連結](https://app.notion.com/p/Recall-Policy-3c45979e3a8c81d9a3b3e9dc5ff54644) | [[wiki/concepts/recall-policy-ladder\|recall-policy-ladder]] | — |
+| OpenAI Codex CLI — 企業級 Hook 機制 🆕 | [連結](https://app.notion.com/p/3c75979e3a8c8139a5f6ee5100ad8da8) | [[wiki/entities/codex-cli\|codex-cli]] | 🗺️ [視覺地圖](https://app.notion.com/p/3c75979e3a8c81378bb9da4a79375189) |
 > ⚠️ 以下 3 顆已 trash（2026-08-15），內容併入 Claude Code 種子頁：
 > - Skill 撰寫與評估方法論 → 併入 Claude Code（撰寫規格章節）
 > - Agent Skills 企業治理 → 併入 Claude Code（企業治理章節）
@@ -144,6 +145,15 @@ canonical: entities/knowledge-garden
 > ✅ 新增研究專題「🔬 Agent Skills」+ 3 顆子概念種子（2026-08-14）
 ✅ 新增 4 顆 AI Agent 記憶架構種子（2026-08-22 圓桌會議）：記憶架構設計框架、Mem0 工具剖析、Entity Boost、Recall Policy
 > ⚠️ 3 顆子種子已 trash，內容併入 Claude Code 和 GitHub Copilot 種子頁（2026-08-15） |
+
+## 最近更新紀錄
+
+| 日期 | 事件 | 種子 |
+|------|------|------|
+| 2026-08-25 | W-033 種植計畫：Hooks 完整技術細節灌溉 | Claude Code |
+| 2026-08-25 | W-033 種植計畫：多介面差異 + Fail-Safe 策略灌溉 | GitHub Copilot |
+| 2026-08-25 | W-033 種植計畫：新種子建立 | OpenAI Codex CLI |
+| 2026-08-25 | W-033 視覺地圖：五大 Harness Hook 生命週期比較 | Claude Code, GitHub Copilot, OpenAI Codex CLI |
 
 ---
 

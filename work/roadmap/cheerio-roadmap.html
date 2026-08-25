@@ -619,18 +619,19 @@
             }
           },
           {
-            id: "w086", x: 680, y: 300, hitR: 22, shape: "dim", r: 10,
+            id: "w086", x: 680, y: 300, hitR: 22, shape: "done", r: 10,
             labels: [
               { cls: "lbl-id", x: 680, y: 328, text: "W-086", fill: "var(--ink)" },
-              { cls: "lbl-sub", x: 680, y: 344, text: "誤鎖 bug・backlog" }
+              { cls: "lbl-sub", x: 680, y: 344, text: "誤鎖 bug・已完成" }
             ],
             aria: "W-086 可用性登記表誤鎖 bug，查看詳情",
             popover: {
-              title: "W-086 · 可用性登記表誤鎖 bug", status: "Backlog", pill: "dim", card: "card-w086",
+              title: "W-086 · 可用性登記表誤鎖 bug", status: "已完成", pill: "done", card: "card-w086",
               bullets: [
-                "W-073 執行中連續踩到兩次、W-082 又再踩兩次（pi:default + agy:default 都中過）：commit 後舊 untracked-file 封鎖沒清除、把正常工具輸出誤判為不可用訊號",
-                "檢視 lib/availability.mjs 的 recordBlocked 判斷邏輯，修這兩個誤判來源",
-                "不影響 W-073 本身結果，Pi 最終仍完成寫入且經 Claude 獨立驗證通過"
+                "根因：CLI runner 把我方逾時（timeout）跟真正的 CLI 錯誤折疊進同一個 hadError 旗標，逾時就整包 stdout 全文掃描；/429/ 沒有 word boundary，token 數／timestamp 裡的數字子字串會被誤配對",
+                "lib/rate-limit.mjs 拆開 hadError／timedOut 兩個訊號，純逾時只掃 stderr/error；四個 handler 同步改傳參數；新增 6 個測試，npm test 100/100 全過，commit 45257a9",
+                "8/25 重新踩雷 3 次確認範圍比預期更廣（連 toolcall_start 都會誤鎖），修完後 Claude 用真實 fixture 獨立跑 standalone smoke test 再次確認 limited:false",
+                "手動砍掉 5 個 pi-bridge + 5 個 agy-bridge 舊進程（讀著修復前程式碼常駐在記憶體），讓下次呼叫重新 spawn 讀到新程式碼，完全生效"
               ]
             }
           },

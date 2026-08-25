@@ -12,6 +12,16 @@ updated: 2026-08-23
 
 ## Entities
 
+- [[wiki/entities/leonxlnx-taste-skill|leonxlnx/taste-skill — Anti-Slop Frontend Framework]] — 13 個子 skill 🛠️
+- [[wiki/entities/nextlevelbuilder-ui-ux-pro-max-skill|nextlevelbuilder/ui-ux-pro-max-skill — 跨平台 UI/UX 設計 Intelligence]] — 120k+ stars ⚠️ 🛠️
+- [[wiki/entities/pbakaus-impeccable|pbakaus/impeccable — 35 Playbooks + 59 Detectors]] 🛠️
+- [[wiki/entities/anthropics-claude-code-frontend-design|anthropics/claude-code — frontend-design plugin]] 🛠️
+- [[wiki/entities/nutlope-hallmark|nutlope/hallmark — Anti-AI-Slop Design Skill]] 🛠️
+- [[wiki/entities/gsap|gsap-skills — GSAP 官方 AI 技能包]] — 8 個動畫子 skill 🛠️
+- [[wiki/entities/google-labs-code-stitch-skills|stitch-skills — Stitch UI MCP Skill Library]] 🛠️
+- [[wiki/entities/vercel-labs-web-interface-guidelines|web-interface-guidelines — Web UI 合規稽核清單]] 🛠️
+- [[wiki/entities/conardli-web-design-engineer-skill|web-design-engineer — 協作式設計 Skill]] 🛠️
+- [[wiki/entities/dominikmartn-nothing-design-skill|nothing-design-skill — Nothing 品牌風格皮膚]]
 - [[wiki/entities/mattpocock-skills|mattpocock/skills — AI Coding Agent Skills 集合]] — Matt Pocock 維護，162k+ stars 🛠️
 - [[wiki/entities/round-table|Round Table — 多 AI 圓桌會議]] — Pi 主持的多 AI 討論機制 🛠️
 - [[wiki/entities/wiki-knowledge|wiki-knowledge — Obsidian 知識庫操作 Skill（已刪除）]] — 已拆分為 wiki-ingest/query/lint
@@ -21,8 +31,22 @@ updated: 2026-08-23
 - [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 11 個 knowledge-garden 相關 skills 全景圖 🛠️
 - [[wiki/concepts/content-redesign|Content 設計 Redesign]] — 知識花園 Content 設計重構 🛠️
 
+## Comparisons
+
+- [[wiki/comparisons/frontend-ui-design-skills-comparison|前端 UI 設計 AI Agent Skills 比較]] — 10 個 repo 全景比較：競爭/互補/品牌皮膚/情境選型 🛠️
+
 ## Sources
 
+- [[wiki/sources/2026-08-26-leonxlnx-taste-skill|leonxlnx/taste-skill — Anti-Slop Frontend Framework]] — 13 個子 skill
+- [[wiki/sources/2026-08-26-nextlevelbuilder-ui-ux-pro-max-skill|nextlevelbuilder/ui-ux-pro-max-skill — 跨平台 UI/UX 設計 Intelligence]] — 120k+ stars ⚠️
+- [[wiki/sources/2026-08-26-pbakaus-impeccable|pbakaus/impeccable — 35 Playbooks + 59 Detectors]] — 源自 Anthropic
+- [[wiki/sources/2026-08-26-anthropics-claude-code-frontend-design|anthropics/claude-code — frontend-design plugin]] — Anthropic 官方
+- [[wiki/sources/2026-08-26-nutlope-hallmark|nutlope/hallmark — Anti-AI-Slop Design Skill]] — 21 macrostructure + 58 slop test
+- [[wiki/sources/2026-08-26-greensock-gsap-skills|greensock/gsap-skills — GSAP 官方 AI 技能集合]] — 8 個動畫子 skill
+- [[wiki/sources/2026-08-26-google-labs-code-stitch-skills|google-labs-code/stitch-skills — Stitch UI MCP Skill Library]] — ~14 子 skill
+- [[wiki/sources/2026-08-26-vercel-labs-web-interface-guidelines|vercel-labs/web-interface-guidelines — Web UI 合規稽核清單]] — 20 章節稽核
+- [[wiki/sources/2026-08-26-conardli-garden-skills|ConardLi/garden-skills — web-design-engineer]] — 協作式設計
+- [[wiki/sources/2026-08-26-dominikmartn-nothing-design-skill|dominikmartn/nothing-design-skill — Nothing 品牌風格皮膚]] — 窄範圍品牌型
 - [[wiki/sources/2026-07-11-mattpocock-skills|mattpocock/skills — 工程實踐 Skills 集合]] — repo 研究與完整清單
 - [[wiki/sources/2026-08-02-morphir-dotnet-agents|morphir-dotnet AGENTS.md — AI Agent 貢獻指南]] — 企業級 .NET AGENTS.md 範例
 - [[wiki/sources/2026-08-05-hermes-agent-github-readme|Hermes Agent: GitHub README — 自我改進 AI Agent]] — learning loop + skills hub

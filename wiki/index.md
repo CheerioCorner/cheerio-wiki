@@ -1,98 +1,89 @@
 # Wiki Index
 
-> 自動全量重建，last rebuilt: 2026-08-25
+> 自動全量重建，last rebuilt: 2026-08-26
 
 ## Topics
 
 - [[wiki/topics/agent-architecture|Agent Architecture]]
 - [[wiki/topics/agent-coding-practices|Agent Coding Practices]]
 - [[wiki/topics/agent-infrastructure|Agent Infrastructure]]
-- [[wiki/topics/agent-memory-context|Agent Memory Context]]
+- [[wiki/topics/agent-memory-context|Agent Memory & Context]]
+- [[wiki/topics/agent-research-benchmarks|Agent Research & Benchmarks]]
 - [[wiki/topics/agent-research|Agent Research]]
-- [[wiki/topics/agent-research-benchmarks|Agent Research Benchmarks]]
 - [[wiki/topics/agent-runtime-implementations|Agent Runtime Implementations]]
-- [[wiki/topics/ai-agent|Ai Agent]]
-- [[wiki/topics/ai-development-tools|Ai Development Tools]]
-- [[wiki/topics/annotator|Annotator]]
+- [[wiki/topics/ai-agent|AI Agent]]
+- [[wiki/topics/ai-development-tools|AI Development Tools]]
 - [[wiki/topics/backend-systems|Backend Systems]]
-- [[wiki/topics/canonicalization|Canonicalization]]
 - [[wiki/topics/claude-code|Claude Code]]
 - [[wiki/topics/code-review|Code Review]]
 - [[wiki/topics/coding-agent|Coding Agent]]
-- [[wiki/topics/copilot-sdk|Copilot Sdk]]
-- [[wiki/topics/extension-dev|Extension Dev]]
+- [[wiki/topics/copilot-sdk|Copilot SDK]]
+- [[wiki/topics/extension-dev|Extension Development]]
 - [[wiki/topics/hooks|Hooks]]
-- [[wiki/topics/knowledge-mgmt|Knowledge Mgmt]]
-- [[wiki/topics/linking|Linking]]
-- [[wiki/topics/mcp-ecosystem|Mcp Ecosystem]]
+- [[wiki/topics/knowledge-mgmt|Knowledge Management]]
+- [[wiki/topics/mcp-ecosystem|MCP Ecosystem]]
 - [[wiki/topics/meta-systems|Meta Systems]]
 - [[wiki/topics/migration|Migration]]
-- [[wiki/topics/notion|Notion]]
-- [[wiki/topics/okf|Okf]]
-- [[wiki/topics/pi-agent|Pi Agent]]
+- [[wiki/topics/okf|OKF (Open Knowledge Format)]]
 - [[wiki/topics/pi-agent-ecosystem|Pi Agent Ecosystem]]
-- [[wiki/topics/pi-todo-journal|Pi Todo Journal]]
-- [[wiki/topics/pipeline|Pipeline]]
+- [[wiki/topics/pi-agent|Pi Agent]]
 - [[wiki/topics/project-architecture|Project Architecture]]
-- [[wiki/topics/provenance|Provenance]]
-- [[wiki/topics/skill|Skill]]
-- [[wiki/topics/skill-cases-and-comparisons|Skill Cases And Comparisons]]
-- [[wiki/topics/skill-presentation-design|Skill Presentation Design]]
+- [[wiki/topics/skill-cases-and-comparisons|Skill Cases & Comparisons]]
+- [[wiki/topics/skill-presentation-design|Skill Presentation & Design]]
 - [[wiki/topics/skill-system|Skill System]]
-- [[wiki/topics/topics|Topics]]
-- [[wiki/topics/wiki-architecture|Wiki Architecture]]
-- [[wiki/topics/youtube|Youtube]]
+- [[wiki/topics/skill|Skill]]
 
 ---
 
 ## Sources（最新 10 筆）
 
-- [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]] — 2026-08-25
-- [[wiki/sources/2026-08-24-webmcp-youtube|WebMCP YouTube]] — 2026-08-24
-- [[wiki/sources/2026-08-24-npu-deep-research|NPU Deep Research]] — 2026-08-24
-- [[wiki/sources/2026-08-22-mem0-deep-research-comparison|Mem0 Deep Research Comparison]] — 2026-08-22
-- [[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory|Alejandro Ao Mem0 Long Term Memory]] — 2026-08-22
-- [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph In 10 Minutes]] — 2026-08-21
-- [[wiki/sources/2026-08-20-langchain-openwiki-overview|LangChain OpenWiki Overview]] — 2026-08-20
-- [[wiki/sources/2026-08-20-opencode-review-deep-research|OpenCode Review Deep Research]] — 2026-08-20
-- [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Pi Agent GitHub Copilot Provider Setup]] — 2026-08-19
-- [[wiki/sources/2026-08-18-claude-code-hooks-tutorial|Claude Code Hooks Tutorial]] — 2026-08-18
+- [[wiki/sources/2026-09-01-ibm-youtube-skill-best-practices-supplement-draft|IBM YouTube 影片 Skill 五項最佳實踐 — 補充草稿]] — 2026-09-01
+- [[wiki/sources/2026-08-26-anthropics-claude-code-frontend-design|anthropics/claude-code — frontend-design plugin]] — 2026-08-26
+- [[wiki/sources/2026-08-26-conardli-garden-skills|ConardLi/garden-skills — 精選 Skill 集合（含 web-design-engineer）]] — 2026-08-26
+- [[wiki/sources/2026-08-26-dominikmartn-nothing-design-skill|dominikmartn/nothing-design-skill — Nothing 品牌風格皮膚]] — 2026-08-26
+- [[wiki/sources/2026-08-26-google-labs-code-stitch-skills|google-labs-code/stitch-skills — Stitch UI 設計工具 Skill Library]] — 2026-08-26
+- [[wiki/sources/2026-08-26-greensock-gsap-skills|greensock/gsap-skills — GSAP 官方 AI 技能集合]] — 2026-08-26
+- [[wiki/sources/2026-08-26-leonxlnx-taste-skill|leonxlnx/taste-skill — Anti-Slop Frontend Framework]] — 2026-08-26
+- [[wiki/sources/2026-08-26-nextlevelbuilder-ui-ux-pro-max-skill|nextlevelbuilder/ui-ux-pro-max-skill — 跨平台 UI/UX 設計 Intelligence]] — 2026-08-26
+- [[wiki/sources/2026-08-26-nutlope-hallmark|nutlope/hallmark — Anti-AI-Slop Design Skill]] — 2026-08-26
+- [[wiki/sources/2026-08-26-pbakaus-impeccable|pbakaus/impeccable — 基於 Anthropic frontend-design 的設計語言]] — 2026-08-26
 
 > 完整清單見 [[wiki/sources/README|Sources README]]
 
 ## Entities（最新 10 筆）
 
-- [[wiki/entities/deepseek-harness|DeepSeek Harness]] — Cordis 微核心編碼 Agent 平台 🛠️
-- [[wiki/entities/claude-code|Claude Code]] — Anthropic AI Coding Agent 🛠️
-- [[wiki/entities/github-copilot|GitHub Copilot]] — AI 程式碼輔助生態系 🛠️
-- [[wiki/entities/openai-codex|OpenAI Codex]] — AI Coding Agent 🛠️
-- [[wiki/entities/pi-mono|Pi Coding Agent]] — Agent Toolkit Monorepo 🛠️
-- [[wiki/entities/langgraph|LangGraph]] — Agent Runtime 框架
-- [[wiki/entities/mcp-model-context-protocol|MCP]] — Model Context Protocol
-- [[wiki/entities/omnigent|Omnigent]] — Meta-harness 實例
-- [[wiki/entities/tau|Tau]] — Pi 的 Python port
-- [[wiki/entities/hermes-agent|Hermes Agent]] — 自我改進 Agent
+- [[wiki/entities/anthropics-claude-code-frontend-design|anthropics/claude-code — frontend-design plugin]] — 2026-08-26
+- [[wiki/entities/conardli-web-design-engineer-skill|ConardLi/garden-skills — web-design-engineer]] — 2026-08-26
+- [[wiki/entities/dominikmartn-nothing-design-skill|dominikmartn/nothing-design-skill — Nothing 品牌風格皮膚]] — 2026-08-26
+- [[wiki/entities/google-labs-code-stitch-skills|google-labs-code/stitch-skills — Stitch UI MCP Skill Library]] — 2026-08-26
+- [[wiki/entities/leonxlnx-taste-skill|leonxlnx/taste-skill — Anti-Slop Frontend Framework]] — 2026-08-26
+- [[wiki/entities/nextlevelbuilder-ui-ux-pro-max-skill|nextlevelbuilder/ui-ux-pro-max-skill — 跨平台 UI/UX 設計 Intelligence]] — 2026-08-26
+- [[wiki/entities/nutlope-hallmark|nutlope/hallmark — Anti-AI-Slop Design Skill]] — 2026-08-26
+- [[wiki/entities/pbakaus-impeccable|pbakaus/impeccable — 35 Playbooks + 59 Deterministic Detectors]] — 2026-08-26
+- [[wiki/entities/vercel-labs-web-interface-guidelines|vercel-labs/web-interface-guidelines — Web UI 合規稽核清單]] — 2026-08-26
+- [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp — 高效能代碼知識圖譜 MCP Server]] — 2026-08-25
 
 > 完整清單見 [[wiki/entities/README|Entities README]]
 
 ## Concepts（最新 10 筆）
 
-- [[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構]] — Event / Matcher / Handler 三層架構 🛠️
-- [[wiki/concepts/copilot-hooks-system|Copilot Hooks 系統]] — Lifecycle Callback 🛠️
-- [[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級]] — Skill / Hook / Extension 能力邊界 🛠️
-- [[wiki/concepts/harness|Harness — LLM 的驅動層]] — Harness 概念定義 🛠️
-- [[wiki/concepts/agent-skills|Agent Skills 根概念]] — Skill 系統定義
-- [[wiki/concepts/agentic-ai|Agentic AI]] — Agentic AI 概念根
-- [[wiki/concepts/meta-harness|Meta-Harness]] — Harness 的再抽象
-- [[wiki/concepts/continual-harness|Continual Harness]] — 自我改進 Harness
-- [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]] — 程式架構比較
-- [[wiki/concepts/chunkless-rag|Chunkless RAG]] — RAG 新範式
+- [[wiki/concepts/coala-four-memory-types|CoALA 四種記憶類型 — AI Agent 的功能分類框架]] — 2026-08-25
+- [[wiki/concepts/legacy-code-modernization|Legacy Code Modernization with AI — 用 AI 現代化遺留系統的方法論]] — 2026-08-25
+- [[wiki/concepts/webmcp|WebMCP — 網頁原生的 Agent-Ready 工具暴露機制]] — 2026-08-24
+- [[wiki/concepts/mcp-agent-skills-integration|MCP + Agent Skills 整合]] — 2026-08-23
+- [[wiki/concepts/mcp-client-types|MCP Client Types — 類型與連線模式]] — 2026-08-23
+- [[wiki/concepts/mcp-clients|MCP Clients — 建置與操作]] — 2026-08-23
+- [[wiki/concepts/mcp-protocol-versioning|MCP Protocol Versioning — 版本控制與演進]] — 2026-08-23
+- [[wiki/concepts/mcp-servers|MCP Servers — 建置與操作]] — 2026-08-23
+- [[wiki/concepts/portable-graph-agent-pattern|Portable Graph Agent Pattern — 可攜式 Graph 專家 Agent 模式]] — 2026-08-22
+- [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns — 狀態持久化的三種路徑]] — 2026-08-21
 
 > 完整清單見 [[wiki/concepts/README|Concepts README]]
 
 ## Comparisons
 
-- [[wiki/comparisons/coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較]] — 優劣勢、生命週期事件、配置方式、企業跨工具標準分析 🛠️
+- [[wiki/comparisons/coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較]]
+- [[wiki/comparisons/frontend-ui-design-skills-comparison|前端 UI 設計 AI Agent Skills 比較]]
 
 ---
 

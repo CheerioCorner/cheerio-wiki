@@ -34,3 +34,5 @@ canonical: entities/graphify
 
 ## 相關頁面
 - [[wiki/entities/hermes-agent|hermes-agent]]、[[wiki/concepts/code-knowledge-graph|Code Knowledge Graph]]
+- [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]] — 同品類工具，功能更完整（MCP 原生、SQLite 持久化、auto-index、視覺化），建議安裝後者
+- [[wiki/entities/open-code-review|OpenCodeReview]] — Code review CLI，跟本工具零重疊

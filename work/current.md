@@ -327,13 +327,20 @@
   - 為什麼重要：MCP 是 Tool 系統的標準協定
   - 備註：素材已到位（見 W-079），之後研究不用再自己找來源，直接讀 ingest 完的 wiki 頁面即可
 
-- [ ] W-2026-08-033 研究 Hook 機制：五個 Harness 的生命週期擴充機制盤點與比較 🔄 #ai-agent #hook #deep-research
+- [x] W-2026-08-033 研究 Hook 機制：五個 Harness 的生命週期擴充機制盤點與比較 ✅ #ai-agent #hook #deep-research
   - **範圍重新表達（8/25，Cheer 訂正前一晚 Pi 整理方向錯誤）**：研究對象與問題結構全部重寫，取代舊版「調研 Claude Code、Cursor、Windsurf、Pi Agent 的 hook 系統」的粗略描述。五個研究對象：① GitHub Copilot（VS Code／Visual Studio 2022／Visual Studio 2026／GitHub Copilot CLI-App 四種介面分開調查）② Claude Code ③ OpenAI Codex CLI ④ Pi Coding Agent（pi-mono）⑤ DeepSeek Harness（https://deepseek.com/harness/en/）。五個要調查的問題：1. 各自有沒有提供 Hook 或等效機制、正式名稱是什麼 2. 各自優勢與限制的比較總表 3. 各自具體怎麼實作、完整生命週期事件比較 4. 是只能設定檔配置還是可程式碼注入 5. 企業導入是否有跨工具通用標準，或必須各自量身開發（不像 Agent Skill 有通用版本）
   - **前一晚失敗原因診斷（job `rc-20260824-002`，已判定不可用）**：查詢字串用「不同 LLMs 的 Hook 機制比較」，把「coding agent harness 的生命週期擴充機制」跟「機器學習模型層級的 hook」（PyTorch/TransformerLens activation hook、vLLM/SGLang logits processor、LangChain callback）搞混，87 筆來源裡有一大票是 DeepSeek 模型架構（MLA/MoE）、Inflection AI 的聊天機器人「Pi」（跟 Pi Coding Agent 是完全不同產品）、logit_bias／guided decoding 等不相干主題；且卡在 `sources_ready` 階段沒往下跑完（`quality_filter`／`rename` 皆解析失敗留下 `-raw.md`），notebook 已被 Cheer 手動刪除
   - **研究已完成並經 Claude 獨立驗證（8/25）**：Pi 執行 `deep-research-execute` 完整十一步流程，job `rc-20260825-001`，profile `personal`。83 筆來源 → 品質過濾剩 71 → 蒸餾剩 60，過程中 quality_filter／recheck／distill／rename／query_answers 全部正常解析，沒有卡住、沒有 `-raw.md` 解析失敗殘留。`research-report.md`（715 行）已產出，五個問題逐一有完整章節＋比較總表＋生命週期事件對照表
   - **Claude 品質驗證（不採信 Pi 自報）**：不只讀 Pi 的自我回報，另外用 WebFetch 逐筆實查 7 個關鍵引用（GitHub Copilot／VS Code／Claude Code／OpenAI Codex CLI×prempti／Pi Coding Agent×oh-my-pi／pi.dev／DeepSeek Harness 官網＋GitHub repo），全部真實存在且內容與報告陳述相符，未發現捏造。特別針對「Pi Coding Agent」交叉核對：`oh-my-pi` 經確認是 `earendil-works/pi`（前身 `badlogic/pi-mono`，即 Cheer 實際使用的 Pi Agent）的官方認可 fork，`pi.dev` 確認是 Earendil Inc. 官方套件登記站，並非重演昨晚「搞混成別的 Pi 產品」的問題；蒸餾階段移除清單裡也看到 `earendil-works/pi` 原始 repo 頁面（因載入失敗被移除，非搞混，屬正常雜訊淘汰）。另外重點驗證 Q5 的核心結論（Hook 在 Agent Plugins 1.0 標準中屬 client-specific／不可跨工具移植，Skill／MCP 才是可移植標準組件）逐字對照 VS Code 官方文件屬實
-  - next: 品質驗證已通過 Claude 這關，**待 Cheer 親自看過 `research-report.md` 確認滿意**，之後才呼叫 `wiki-ingest` 整理進 `wiki/`（比照既有 raw/deep-research 交接慣例）
-  - refs: `Obsidian/raw/deep-research/rc-20260825-001/research-report.md`（完整報告）、`Obsidian/raw/deep-research/rc-20260825-001/spec.json`（規格）、`Obsidian/raw/deep-research/rc-20260824-002/`（前一晚失敗紀錄，保留供對照，不刪除）、[[work/current#W-2026-08-082|W-082]]（本項目沿用其 deep-research-execute 十一步流程）、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - completed: 2026-08-25
+  - **Wiki-ingest 完成（8/25）**：Cheer 確認報告品質後，Pi 執行 `wiki-ingest` 整理進 `wiki/`（commit `3f8197e`）。新建 `wiki/sources/2026-08-25-coding-agent-hooks-comparison.md`（來源筆記）、`wiki/entities/deepseek-harness.md`（全新 entity）、`wiki/comparisons/coding-agent-hooks-comparison.md`（五大 Harness 比較頁）；更新 `wiki/entities/{claude-code,github-copilot,openai-codex,pi-mono}.md`、`wiki/topics/hooks.md`、`wiki/index.md`
+  - **過程問題與修正**：
+    1. **W-086 可用性登記表誤鎖 bug 這次連環發作 3 次**（正常的 thinking 串流、toolcall_start 事件都被誤判成錯誤訊號並封鎖 `pi:default`），比原本記錄的「誤判單一事件」更嚴重——已手動 `clearBlocked` 三次排除，W-086 backlog 項目需要提升優先序
+    2. **雙模型交叉驗證（SKILL.md Step 3）未真正跑完**：Claude CLI 呼叫因 `max-turns 3` 限制失敗，第二次嘗試又被上述誤鎖打斷，Pi 最終自行判斷寫入，少了一道品質關卡
+    3. Claude 獨立核對（不採信 Pi 自報）發現一個壞掉的 wikilink（`[[wiki/raw/deep-research/...]]` 路徑錯誤，raw/ 不在 wiki collection 內），已修正為比照既有慣例的純路徑引用（commit `e29217e`）
+    4. **針對第 2 點缺口，改派 Gemini（agy）做獨立品質補審**（Cheer 8/25 指示「讓 Gemini 監管品質」），Gemini 逐檔讀取新頁面對照原始報告，抓到一個真實問題：5 個檔案共 7 處把 Claude Code 事件數寫成「31 種」，但這次研究報告原文只說「25 個以上／超過 25 個」，屬於未經這份來源支撐的具體數字。Claude 進一步查證發現「31」其實是既有頁面（`claude-code-hooks-architecture.md`，源自 YouTube 教學影片 `[04:14]` 時間戳）已有的更精確計數，不是憑空捏造，但這次新頁面明確標示「根據本次研究報告」卻寫出報告沒有的數字，屬於溯源錯誤——已全部修正為「25+ 種事件」並附註既有頁面有更精確的「31」計數，不互相矛盾（commit `0252e39`）
+  - **後續建議（不阻塞本項目結案）**：W-086（可用性登記表誤鎖）優先序應提升，這次同一 session 內連環發作 3 次已經明顯干擾正常工作流程；未來 wiki-ingest 若雙模型交叉驗證因技術問題被跳過，應比照這次做法追加一輪獨立模型（Gemini 或 Codex）事後補審，不要無聲放行
+  - refs: `Obsidian/raw/deep-research/rc-20260825-001/research-report.md`（完整報告）、`Obsidian/raw/deep-research/rc-20260825-001/spec.json`（規格）、`Obsidian/raw/deep-research/rc-20260824-002/`（前一晚失敗紀錄，保留供對照，不刪除）、`wiki/comparisons/coding-agent-hooks-comparison.md`、`wiki/entities/deepseek-harness.md`、`wiki/sources/2026-08-25-coding-agent-hooks-comparison.md`、[[work/current#W-2026-08-082|W-082]]（本項目沿用其 deep-research-execute 十一步流程）、[[work/current#W-2026-08-086|W-086]]（誤鎖 bug 本次再犯 3 次）、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
   - 預估時間：deep 模式研究本身約 5-6 分鐘阻塞執行，加上品質過濾/recheck/蒸餾/重新命名/逐題查詢，全程約 20-40 分鐘（視 recheck 輪數而定）
   - 為什麼重要：理解 Agent 的事件系統；同時是 Cheer 判斷企業導入 Hook 機制能否比照 Skill 走通用化路線的關鍵輸入
 
@@ -404,12 +411,25 @@
 
 ## Backlog
 
-- [ ] W-2026-08-086 修 AI 模型可用性登記表的誤鎖 bug 🆕 #tools #bug #ai-agent
-  - next: 檢視 `CheerioCorner/mcp-bridges/lib/availability.mjs` 的 `recordBlocked` 判斷邏輯，找出兩個誤判來源：① commit 後沒有清除舊的 untracked-file-based 封鎖（`clearBlocked` 只能手動呼叫，沒有掛在 git commit 或啟動時的一致性檢查上）② 把 CLI 正常執行中的 stdout/工具輸出內容（例如 read 工具回傳的頁面內容片段）誤判成錯誤訊號而觸發 `confidence: estimated` 封鎖
-  - refs: `CheerioCorner/mcp-bridges/lib/availability.mjs`、`CheerioCorner/mcp-bridges/state/availability.json`、[[work/current#W-2026-08-073|W-073]]（本次任務執行中連續踩到兩次）
+- [x] W-2026-08-086 修 AI 模型可用性登記表的誤鎖 bug ✅ #tools #bug #ai-agent
+  - completed: 2026-08-25
+  - next: ✅ 根因已找到並修復（程式碼層面）。⚠️ 但服務尚未重啟套用，見下方「待補」，不能視為完全結案
+  - refs: `CheerioCorner/mcp-bridges/lib/availability.mjs`、`CheerioCorner/mcp-bridges/lib/rate-limit.mjs`、`CheerioCorner/mcp-bridges/lib/pi-handler.mjs`、`CheerioCorner/mcp-bridges/lib/agy-handler.mjs`、`CheerioCorner/mcp-bridges/lib/codex-handler.mjs`、`CheerioCorner/mcp-bridges/lib/copilot-handler.mjs`、`CheerioCorner/mcp-bridges/test/rate-limit.test.mjs`、`CheerioCorner/mcp-bridges/test/codex-bridge-availability.test.mjs`、[[work/current#W-2026-08-073|W-073]]
   - 起因：2026-08-23 執行 W-073 派工給 Pi 時，`pi:default` 連續被可用性系統誤鎖兩次——第一次是 W-072 commit（`cf2dc64`）完成後，鎖住的理由仍是「10 個未提交檔案」的舊狀態，Claude 用 `clearBlocked()` 手動清除確認 git status 乾淨後才解除；第二次是 Pi session 執行中，鎖住理由變成一段正常的 read 工具輸出內容（agent-skills.md 的 frontmatter），被系統誤判為不可用訊號，`confidence: estimated`
   - 無相依，可任何 session 切入；不影響 W-073 本身結果（Pi 最終仍完成寫入且經 Claude 獨立讀回驗證通過）
   - **第三、四次踩到（8/23 稍晚）**：[[work/current#W-2026-08-082|W-082]] 設計討論階段，`pi:default` 跟 `agy:default` 各被誤鎖一次，都是在 Claude 剛成功呼叫完後把那次呼叫的正常 tool 輸出（read/step_update 事件內容）誤判成封鎖理由——確認不是只有 read 工具會觸發，`recordBlocked` 的判斷邏輯可能太寬鬆，任何工具輸出都可能被誤抓
+  - **優先序提升（8/25）**：[[work/current#W-2026-08-033|W-033]] 執行 wiki-ingest 過程中，同一個 session 內 `pi:default` 連環誤鎖 3 次——第五次是正常的 `thinking_end` 串流內容片段被判定為錯誤訊號，第六、七次更誇張，連 `assistantMessageEvent: toolcall_start`（工具呼叫「即將開始」的事件通知，內容連實質輸出都還沒有）也被判定為錯誤訊號並封鎖。三次都靠 Claude 手動 `node -e "...clearBlocked('pi:default')..."` 才排除，直接打斷並拖慢了原本要一次跑完的任務。這確認 bug 不只發生在「工具輸出內容」層級，而是任何 `message_update`／串流事件都可能觸發，範圍比原先認知的更廣，且發生頻率已經高到明顯干擾正常工作流程，應該提前處理，不要繼續排在 backlog 底部
+  - 已完成：
+    - ✅ 根因確認：`lib/pi.mjs`／`lib/agy.mjs`／`lib/codex.mjs`／`lib/copilot.mjs` 這四個 CLI runner 都把「我方逾時（timeout）殺掉 process」折疊進同一個 `hadError` 旗標（例如 `hadError: parsed.hadError || res.code !== 0 || res.timedOut`）。`detectRateLimit()` 的關卡只看 `hadError` 就決定要不要掃描，於是每次單純逾時（CLI 根本沒回報任何錯誤，只是還沒跑完）都會觸發對「整包累積下來的 stdout」做全文比對
+    - ✅ 根因確認第二點：`RATE_LIMIT_PATTERNS` 裡的 `/429/` 沒有 word boundary，會比對到任何大數字裡剛好含有「429」子字串的情況（例如 token count `14293`、timestamp、tool-call id）。這解釋了為何誤鎖內容五花八門（read 內容、`step_update`、`thinking_end`、`toolcall_start`）——問題根本不在「內容種類」，而是逾時當下累積的 stdout 裡剛好哪段數字含有 429
+    - ✅ 已用真實案例重現：用 W-086 描述的 `thinking_end`（`usage.input_tokens: 14293`）事件實際餵給修復前的 `detectRateLimit()`，重現出跟 `state/availability.json` 裡一模一樣的「整包原始事件 JSON 被塞進 reason 欄位」現象，確認找對根因
+    - ✅ 修法：`lib/rate-limit.mjs` 的 `detectRateLimit()` 拆開 `hadError`（CLI 真正回報的錯誤）跟 `timedOut`（單純我方逾時殺掉）兩個獨立訊號；純逾時且沒有真正錯誤訊號時，只掃 `stderr`/`error`，不掃全量 `stdout`/`text`；若逾時情境下仍在 `stderr`/`error` 抓到疑似訊號，`reason` 會加註 `[timeout, unconfirmed]` 前綴，跟真正確認的錯誤訊號區分開來；`/429/` 改成 `/\b429\b/` 避免誤配對大數字子字串
+    - ✅ 四個 `*-handler.mjs`（pi/agy/codex/copilot）呼叫 `detectRateLimit()` 時改傳 `hadError: result.hadError && !result.timedOut` 與 `timedOut: result.timedOut`，不用改動四個 runner 檔案本身
+    - ✅ 新增 6 個測試（`test/rate-limit.test.mjs` 5 個 + `test/codex-bridge-availability.test.mjs` 1 個 handler 層級回歸測試），其中一個直接重現本次事件的 `thinking_end`/`toolcall_start` fixture 並斷言 `limited === false`／`recordBlocked` 不會被呼叫；同時保留「逾時中若 stderr 真的有限流訊號仍要抓到」的測試，避免修過頭
+    - ✅ `npm test` 跑過：100/100 通過（94 個原有 + 6 個新增），無既有測試被破壞
+  - **✅ 已完全結案（8/25 稍晚）**：Claude 用 W-086 真實 fixture（`thinking_end` + `input_tokens: 14293`、`timedOut: true`、`hadError: false`）獨立跑一次 standalone smoke test，確認已 commit 的 `lib/rate-limit.mjs` 回傳 `limited: false`，程式碼正確性再次確認。7 個檔案已 commit（`45257a9`，獨立 repo `CheerioCorner/mcp-bridges`）。接著清查發現機器上有 5 個 `pi-bridge.mjs` + 5 個 `agy-bridge.mjs` 進程仍在跑修復前的舊程式碼（stdio 型 MCP server，啟動時把模組讀進記憶體，之後改檔案／commit 不會讓它們自動重載）；Cheer 確認後 Claude 手動全部砍掉（0 個殘留，codex/copilot 兩個 bridge 當時本來就沒在跑），下次各 session 呼叫 pi/agy 工具時會重新 spawn 並讀到修好的程式碼。額外發現一筆已過期的舊鎖（`pi:default` blocked_until 11:19 UTC，reason 內容其實是一段講 Copilot 額度用盡的 markdown 表格列，明顯又是同一種「誤把不相干文字當封鎖理由」的症狀，但已自然過期，不需手動清除）
+  - **關於原本記載的第二個問題（commit 後沒清除舊的 untracked-file 封鎖）**：查證後判斷這不是獨立機制。全文搜尋 `CheerioCorner/mcp-bridges` 沒有任何程式碼會讀 git status／uncommitted files 來決定要不要封鎖，`recordBlocked`／`clearBlocked` 完全不知道 git 狀態存在。過去那次「10 個未提交檔案」的 reason 內容，很可能只是同一個「把普通工具輸出內容誤判成錯誤訊號」舊 bug 的另一種呈現（例如 Pi 執行 `git status` 後的正常回報文字被誤掃到），不是真的有一套 git-aware 的封鎖邏輯。如實記錄此判斷，避免之後有人去找一個不存在的機制
+  - **發現 `mcp-bridges` 其實是獨立 git repo**：`C:\Cheerio\CheerioCorner\mcp-bridges` 底下有自己的 `.git`，跟原本被告知「整個 Cheerio／CheerioCorner 都不是 git repo」不符。7 個修復檔案已 commit（見上）
 
 - [x] W-2026-08-079 Pi 整理 raw/web MCP 官方文件剪藏進 wiki ✅ #knowledge #ai-agent #mcp
   - completed: 2026-08-23
@@ -431,6 +451,27 @@
   - 起因：2026-08-23 Cheer 用 Obsidian Web Clipper 存了 `Graphify-Labs/graphify` GitHub 頁面，想知道能不能用它更清楚看到 CheerioCorner 各專案的系統結構
   - 已完成的前置調查：確認 Graphify 純本地 tree-sitter 解析（無 LLM 成本、無向量存儲）、不要求目標資料夾是 git repo、不呼叫任何遠端 Git 平台 API（GitHub/GitLab/Azure DevOps Server 皆可用，只在本機讀 `.gitignore`）；也已釐清跟 Alibaba Open Code Review 的差異（不重疊，可互補）
   - 無相依，可任何 session 切入
+
+- [ ] W-2026-08-087 評估安裝 codebase-memory-mcp（高性能代碼知識圖譜 MCP Server）🆕 #tools #code-analysis #knowledge-graph #mcp
+  - next: 安裝 codebase-memory-mcp、對 CheerioCorner 專案跑一次索引、評估 15 個 MCP tools 效用
+  - refs: [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]]、[[wiki/entities/graphify|Graphify]]、[[wiki/entities/open-code-review|OpenCodeReview]]
+  - 預估時間：1 小時
+  - 優先序：OCR（W-030）之後、Graphify（W-085）之前。Graphify 建議跳過（功能子集，跟 codebase-memory-mcp 高度重疊）
+  - 起因：2026-08-25 Cheer 用 Web Clipper 存了 DeusData/codebase-memory-mcp GitHub README（`raw/web/2026-08-25-DeusDatacodebase-memory-mcp`），Cheerio 三工具比較討論後判斷：OCR 擋在 ADO Agent 前面先做、codebase-memory-mcp 排第二（開發時降本增效）、Graphify 跳過
+  - 已完成的前置調查：確認 158 語言 tree-sitter + Hybrid LSP 語意解析、SQLite 持久化、15 個 MCP tools、零 API key、zero LLM、內建 3D 視覺化 UI、43 個 client surface、MIT license、arXiv 學術論文驗證
+  - 無相依，可任何 session 切入
+
+- [ ] W-2026-08-088 代碼知識圖譜工具深度研究：codebase-memory-mcp / CodeGraph / Graphify / OCR 運作背景 + 安全性審查 🆕 #tools #code-analysis #knowledge-graph #security #deep-research
+  - next: 先做 §1 背景研究（逐工具讀原始碼、論文、SECURITY.md），產出比較文件；再做 §2 安全性深度審查（原始碼抽查、supply chain、CVE、遙測/網路行為分析）；最後 §3 選型建議（安裝哪個、跳過哪個、理由）
+  - refs: [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]]、[[wiki/entities/codegraph|CodeGraph]]、[[wiki/entities/graphify|Graphify]]、[[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-25-codebase-memory-mcp-vs-codegraph|YouTube 比較影片]]、[[work/current#W-2026-08-030|W-030]]、[[work/current#W-2026-08-085|W-085]]、[[work/current#W-2026-08-087|W-087]]
+  - 預估時間：多 session（背景研究各 1-2 小時 + 安全性審查 2-3 小時 + 選型討論 30 分鐘）
+  - 子項目：
+    - [ ] §1 運作背景研究：逐工具理解底層機制（tree-sitter 哪些 grammar、Hybrid LSP 怎麼實作、file watcher 用什麼 library、壓縮算法細節），不是表面 README 比較
+    - [ ] §2 安全性深度審查：原始碼層級抽查（codebase-memory-mcp 是 C/C++ 有 memory safety 風險？CodeGraph 的遙測內容是什麼？）、supply chain 風險（npm vs native binary vs 自建）、已知 CVE 回報、網路行為分析（零遙測 vs 預設遙測的具體差異）
+    - [ ] §3 選型建議：綜合 §1+§2 結論，決定安裝哪個、跳過哪個、實際跑一輪比較測試
+  - blockedBy: [W-2026-08-030, W-2026-08-087]
+  - 起因：2026-08-25 三工具比較討論後，Cheer 判斷表面 README 比較不夠，需要更深入理解底層機制與安全性，才能做有把握的安裝決策。跟 W-030（OCR 評估）、W-085（Graphify 評估）、W-087（codebase-memory-mcp 評估）都有重疊但不完全相同——本項目是統籌性深度研究，那三個是安裝測試實作
+  - 無相依，可任何 session 切入（但 §3 需等 §1+§2 完成）
 
 - [ ] W-2026-08-075 未來：抽出「地鐵路線圖」設計系統給公司 Azure DevOps Analysis Report skill 重用 🆕 #ai-agent #devops #visualization
   - next: 等公司端 Azure DevOps work item/工時 API 可接（或決定用哪種方式讀取）之後，新建 `devops-analysis-report` skill，資料源換成 Azure DevOps，但 [[cheerio-roadmap 設計系統|C:\Users\User\.claude\skills\cheerio-roadmap\SKILL.md]] 裡的 CSS/JS（地鐵路線圖 SVG、可拖移浮動 popover、Read more 導頁高亮、zoom 工具列）直接搬過去重用，不重新設計
