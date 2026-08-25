@@ -78,7 +78,7 @@ plugins:
 
 | 面向 | DeepSeek Harness | Claude Code | GitHub Copilot |
 |------|------------------|-------------|----------------|
-| **事件廣度** | Cordis 微核心事件 | 31 種事件 | 7+ 種事件 |
+| **事件廣度** | Cordis 微核心事件 | 25+ 種事件 | 7+ 種事件 |
 | **上下文干預深度** | 深（可重寫 messages） | 中（additionalContext） | 低（additionalContext） |
 | **異步能力** | 由 Cordis 框架控制 | 原生 async: true | 同步阻塞 |
 | **Fail-Safe 設計** | 由插件控制 | Fail-Closed（command）/ Fail-Open（HTTP） | Fail-Closed（command）/ Fail-Open（HTTP） |

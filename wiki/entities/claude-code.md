@@ -54,7 +54,7 @@ Observe → Reason → Action → Evaluate → Loop
 
 根據 [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]]，Claude Code Hooks 有以下關鍵特性：
 
-- **31 種事件**：比其他 Harness 更細緻，包括作業系統級檔案異動監控（`FileChanged`）、MCP 交互對話、Git Worktree 操作等
+- **25+ 種事件**：比其他 Harness 更細緻，包括作業系統級檔案異動監控（`FileChanged`）、MCP 交互對話、Git Worktree 操作等（既有頁面另有依 YouTube 教學影片精算出的「31 種」精確計數，兩者不矛盾，本次研究報告用語較保守）
 - **5 種 Handler 類型**：`command`（Shell 指令）、`http`（POST 請求）、`mcp_tool`（MCP 工具調用）、`prompt`（LLM 評估）、`agent`（子代理驗證）
 - **非同步背景執行**：原生支援 `async: true`，適合讓耗時的測試套件或通知在背景執行
 - **動態掛載與卸載**：可將 Hook 宣告在 Skill 或 Subagent 檔案的 Frontmatter 中，隨該組件執行而動態加載

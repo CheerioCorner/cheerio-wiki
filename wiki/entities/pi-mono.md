@@ -171,7 +171,7 @@ export default function hook(pi: HookAPI): void {
 
 | 面向 | Pi Hook | Claude Code Hook |
 |------|---------|------------------|
-| **事件廣度** | Extension 事件 | 31 種事件 |
+| **事件廣度** | Extension 事件 | 25+ 種事件 |
 | **Handler 類型** | Extension script | command/http/mcp_tool/prompt/agent |
 | **上下文干預** | 可重寫 messages 陣列 | additionalContext 追加 |
 | **配置方式** | JS/TS 程式碼 + YAML 設定 | JSON 設定檔 + Frontmatter |

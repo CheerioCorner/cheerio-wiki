@@ -21,7 +21,7 @@ provenance:
 | 工具 | 正式名稱 | 事件數量 | Handler 類型 | 配置方式 |
 |------|---------|---------|-------------|---------|
 | **GitHub Copilot** | Agent Hooks / Lifecycle Hooks | 7+（VS Code / CLI） | TypeScript callback | JSON 設定檔 + SDK 程式化 |
-| **Claude Code** | Claude Code Hooks | 31 種 | command / http / mcp_tool / prompt / agent | JSON 設定檔 + Frontmatter 動態注入 |
+| **Claude Code** | Claude Code Hooks | 25+ 種 | command / http / mcp_tool / prompt / agent | JSON 設定檔 + Frontmatter 動態注入 |
 | **OpenAI Codex CLI** | Codex Hook System | 10 個（實務僅支援 2 個） | 外部二進位攔截器 | JSON/TOML 設定檔（純宣告式） |
 | **Pi Coding Agent** | Event hooks / Hostcall hooks | Extension 事件 | pi.on API / YAML hooks | JS/TS 程式碼 + YAML 設定 |
 | **DeepSeek Harness** | Cordis events / Session events | Cordis 微核心事件 | ctx.on API | TypeScript 插件 + YAML 設定 |
