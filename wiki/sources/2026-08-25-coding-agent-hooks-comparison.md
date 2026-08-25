@@ -74,9 +74,7 @@ provenance:
 
 ## 引用來源
 
-本報告引用 60 個來源，完整清單見原始研究報告：
-
-- [[wiki/raw/deep-research/rc-20260825-001/research-report.md|完整研究報告]]
+本報告引用 60 個來源，完整清單見 `raw/deep-research/rc-20260825-001/research-report.md`。
 
 ## 相關頁面
 
