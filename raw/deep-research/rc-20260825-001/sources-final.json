@@ -1,0 +1,422 @@
+[
+  {
+    "id": "e4634c12-b4ae-4e3d-8bbd-9cbc370ef441",
+    "title": "[Adobe 開源官方] 指南文件 - 基於 OpenAI Codex 的 AI 優先開發準則",
+    "type": "web_page",
+    "url": "https://opensource.adobe.com/mysticat-ai-native-guidelines/04-configuration/ai-tools/codex/",
+    "status": 2
+  },
+  {
+    "id": "e5f15b4e-5c27-4979-bfe0-918e6dbac32c",
+    "title": "[Anthropic 官方] 指南文件 - 如何在 Claude 生態中配置與使用插件",
+    "type": "web_page",
+    "url": "https://support.claude.com/en/articles/13837440-use-plugins-in-claude",
+    "status": 2
+  },
+  {
+    "id": "2d577546-5065-496a-898b-33f16e36567e",
+    "title": "[Anthropic 官方] 產品規格 - 在 Claude Code 中集成 Codex 插件之對抗性審查",
+    "type": "web_page",
+    "url": "https://www.ai.joaoqueiros.com/blog/codex-plugin-claude-code-adversarial-review-workflow",
+    "status": 2
+  },
+  {
+    "id": "563181d8-71fa-4e8e-a2b1-d4b9ae03af3f",
+    "title": "[Anthropic 官方] 開發文件 - Claude Code Hooks 與生命週期事件清單",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/hooks",
+    "status": 2
+  },
+  {
+    "id": "d2dcd73a-4449-4d69-8bf3-e56102104d24",
+    "title": "[Anthropic 官方] 開發文件 - Claude Code 擴充機制與 Plugin 設定",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/features-overview",
+    "status": 2
+  },
+  {
+    "id": "853a2a5f-dbb5-431e-9c7a-faadb685cc40",
+    "title": "[Anthropic 官方] 開發文件 - 在 Claude Code CLI 中推薦與動態載入自訂插件",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/plugin-hints",
+    "status": 2
+  },
+  {
+    "id": "63dbca6b-08c3-4688-93a2-d2371450de2c",
+    "title": "[Anthropic 官方] 開發文件 - 建立 Claude Code 插件之開發指南",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/plugins",
+    "status": 2
+  },
+  {
+    "id": "12144c5e-f474-499a-9d8d-aa1c32943ad0",
+    "title": "[ChatGPT Learn 網站] 教學指南 - OpenAI Codex CLI 的基礎操作與設定",
+    "type": "web_page",
+    "url": "https://learn.chatgpt.com/docs/codex/cli",
+    "status": 2
+  },
+  {
+    "id": "6f188bde-6bf2-47cf-b7ba-a1bb2aeeeb09",
+    "title": "[Composio 部落格] 產品介紹 - DeepSeek Harness 2026 年推薦插件清單",
+    "type": "web_page",
+    "url": "https://composio.dev/content/best-deepseek-harness-plugins",
+    "status": 2
+  },
+  {
+    "id": "2ce953b8-f9d2-463c-8335-ee4ddc196748",
+    "title": "[DataCamp 網站] 教學指南 - DeepSeek Harness 開源代理環境架設教學",
+    "type": "web_page",
+    "url": "https://www.datacamp.com/tutorial/deepseek-harness",
+    "status": 2
+  },
+  {
+    "id": "d170115e-7eaa-4a2f-a60e-96598670dd01",
+    "title": "[DeepSeek 官方] 產品規格 - DeepSeek Harness 開發者預覽：全面插件化架構",
+    "type": "web_page",
+    "url": "https://deepseek.com/harness/en/",
+    "status": 2
+  },
+  {
+    "id": "e1286832-c64e-44e5-a214-f2683a8a3b94",
+    "title": "[DeepSeek 官方] 開發文件 - DeepSeek API 與 Pi Coding Agent 整合指南",
+    "type": "web_page",
+    "url": "https://api-docs.deepseek.com/quick_start/agent_integrations/pi_mono/",
+    "status": 2
+  },
+  {
+    "id": "0e9efe0d-bf42-43fe-9b51-1d01bb0d24ff",
+    "title": "[GitHub Issue] 技術探討 - 支援 JetBrains IDE 中 Copilot CLI 插件市場格式之提案",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/copilot-intellij-feedback/issues/1539",
+    "status": 2
+  },
+  {
+    "id": "4a3d1ef6-7600-453a-aa42-a3e8a8f8c274",
+    "title": "[GitHub Issue] 架構文件 - oh-my-dsh：用於自我演化治理的 DeepSeek Harness 散佈版提案",
+    "type": "web_page",
+    "url": "https://github.com/deepseek-ai/deepseek-harness/discussions/3113",
+    "status": 2
+  },
+  {
+    "id": "309abedb-a64f-4fec-8132-dc29b09617dd",
+    "title": "[GitHub 官方] 指南文件 - 使用 Hooks 確保 Copilot CLI 合規且可預測的執行",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/copilot/tutorials/copilot-cli-hooks",
+    "status": 2
+  },
+  {
+    "id": "b1c3961b-be33-4c6b-a8ee-1801861f8a88",
+    "title": "[GitHub 官方] 指南文件 - 環境中配置 GitHub Copilot 與自訂擴充",
+    "type": "web_page",
+    "url": "https://docs.github.com/copilot/configuring-github-copilot/configuring-github-copilot-in-your-environment?tool=visualstudio",
+    "status": 2
+  },
+  {
+    "id": "7a180101-2a9b-40b9-9f1c-c9e68482c665",
+    "title": "[GitHub 官方] 版本公告 - 2026年6月 VS Code 中 GitHub Copilot 的新擴充功能",
+    "type": "web_page",
+    "url": "https://github.blog/changelog/2026-07-08-github-copilot-in-visual-studio-code-june-2026-releases/",
+    "status": 2
+  },
+  {
+    "id": "4886a673-d7c5-4e5f-a253-3c005de9e66a",
+    "title": "[GitHub 官方] 產品規格 - GitHub Copilot 插件與擴充機制概述",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/copilot/concepts/agents/about-plugins",
+    "status": 2
+  },
+  {
+    "id": "a534fbc7-4e3a-44d3-b2cb-e4787ff25c8a",
+    "title": "[GitHub 官方] 開發文件 - GitHub Copilot CLI 插件 API 參考指南",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference",
+    "status": 2
+  },
+  {
+    "id": "29989a22-bb0e-462f-84b2-bdcf46bb8b9d",
+    "title": "[GitHub 官方] 開發文件 - GitHub Copilot CLI 擴充機制說明",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/copilot-cli/about-cli-extensions",
+    "status": 2
+  },
+  {
+    "id": "43c98940-27f5-481e-8415-6c74394da638",
+    "title": "[GitHub 官方] 開發文件 - GitHub Copilot Lifecycle Hooks 機制",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/copilot/concepts/agents/hooks",
+    "status": 2
+  },
+  {
+    "id": "35e8e5a6-29fc-4ee1-80a8-f1d9999e3b51",
+    "title": "[GitHub 官方] 開發文件 - GitHub Copilot 完整 Hooks 生命週期參考",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/copilot/reference/hooks-reference",
+    "status": 2
+  },
+  {
+    "id": "08e5ba1e-9958-43df-be4a-e1bdbfa7b1b0",
+    "title": "[GitHub 官方] 開發文件 - 在 GitHub Copilot CLI 中整合自訂 Hooks 的最佳實踐",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/use-hooks",
+    "status": 2
+  },
+  {
+    "id": "3e87938a-3743-48b7-8f11-c937401fe972",
+    "title": "[GitHub 官方] 開發文件 - 建立 GitHub Copilot CLI 插件與擴充",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating",
+    "status": 2
+  },
+  {
+    "id": "08e8b307-f1cd-49fd-b052-ff574a8b455a",
+    "title": "[GitHub 社群] 產品介紹 - Awesome GitHub Copilot 精選插件與擴充生態系統",
+    "type": "web_page",
+    "url": "https://awesome-copilot.github.com/plugins/",
+    "status": 2
+  },
+  {
+    "id": "cea0d6fc-a5f2-47e0-9cf8-cb905acbe519",
+    "title": "[GitHub 開源專案] 教學指南 - DeepSeek Harness 的 Cordis 核心擴充開發教學",
+    "type": "web_page",
+    "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cordis-tutorial/index.md",
+    "status": 2
+  },
+  {
+    "id": "9954a39b-d2b7-47d6-a1d2-6bbad3ffb345",
+    "title": "[GitHub 開源專案] 架構文件 - DeepSeek Harness 官方儲存庫與插件架構",
+    "type": "web_page",
+    "url": "https://github.com/deepseek-ai/deepseek-harness",
+    "status": 2
+  },
+  {
+    "id": "f0315004-6c13-466b-9c2f-8a78d19fe1cc",
+    "title": "[GitHub 開源專案] 開發文件 - GitHub Copilot 的 Azure 專屬官方擴充套件庫",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/github-copilot-for-azure",
+    "status": 2
+  },
+  {
+    "id": "af9ac3b0-e0c4-4b14-83fa-230dfd69d33a",
+    "title": "[GitHub 開源專案] 開發文件 - oh-my-pi 專案中的 Pi Agent Hooks 技術指南",
+    "type": "web_page",
+    "url": "https://github.com/can1357/oh-my-pi/blob/main/docs/hooks.md",
+    "status": 2
+  },
+  {
+    "id": "97a9787e-7451-4345-8012-3f922088ab90",
+    "title": "[GitHub 開源專案] 開發文件 - pi-hooks：相容於 Claude Code 的 Pi 代理指令 Hooks",
+    "type": "web_page",
+    "url": "https://github.com/hsingjui/pi-hooks",
+    "status": 2
+  },
+  {
+    "id": "916a0207-4a4e-4654-b64a-895c39525a1a",
+    "title": "[GitHub 開源專案] 開發文件 - prempti 專案中的 Codex CLI Hooks 技術說明",
+    "type": "web_page",
+    "url": "https://github.com/falcosecurity/prempti/blob/main/hooks/codex/README.md",
+    "status": 2
+  },
+  {
+    "id": "8619e212-34b1-4aa9-bc6f-b238836d6dbf",
+    "title": "[GitHub 開源專案] 開發文件 - 採用 Rust 實作的高效能 Pi Coding Agent",
+    "type": "web_page",
+    "url": "https://github.com/Dicklesworthstone/pi_agent_rust",
+    "status": 2
+  },
+  {
+    "id": "d9aed927-f2f6-4081-a384-1a83c56df5a5",
+    "title": "[Habr 部落格] 架構文件 - 深入 DeepSeek Harness：Cordis、會話事件與權限邊界",
+    "type": "web_page",
+    "url": "https://habr.com/en/articles/1070958/",
+    "status": 2
+  },
+  {
+    "id": "f1ff196b-88e6-45f6-9bf5-2074129653c6",
+    "title": "[InfoQ 媒體] 媒體報導 - DeepSeek Harness 開源推動模組化 AI 代理基礎設施發展",
+    "type": "web_page",
+    "url": "https://www.infoq.com/news/2026/08/deep-seek-harness/",
+    "status": 2
+  },
+  {
+    "id": "33db193d-1244-4b31-9e18-578b4f29090e",
+    "title": "[LobeHub 社群] 開發文件 - 建立 Pi 代理專屬擴充功能與技能市場整合",
+    "type": "web_page",
+    "url": "https://lobehub.com/skills/zenobi-us-dotfiles-creating-pi-extensions",
+    "status": 2
+  },
+  {
+    "id": "c23c153f-7db2-4621-ac05-567eff8c4ebf",
+    "title": "[MarkTechPost 媒體] 媒體報導 - DeepSeek 開源 DSH 代理 Harness 開發者預覽版",
+    "type": "web_page",
+    "url": "https://www.marktechpost.com/2026/08/17/deepseek-ai-releases-deepseek-harness-in-developer-preview/",
+    "status": 2
+  },
+  {
+    "id": "ef5db493-12b3-4c67-9f9f-68e6e141dc30",
+    "title": "[Microsoft 官方] 版本公告 - Visual Studio 2026 新特性與 AI 代理整合架構",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-notes",
+    "status": 2
+  },
+  {
+    "id": "8e6c3970-6f10-444f-8806-76230bfeba7f",
+    "title": "[Microsoft 官方] 開發文件 - 在 Visual Studio 中使用 Copilot 代理模式",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/visualstudio/ide/copilot-agent-mode?view=visualstudio",
+    "status": 2
+  },
+  {
+    "id": "3ada829c-73eb-4cf3-ac06-fdec0c55d945",
+    "title": "[Microsoft 官方] 開發文件 - 在 Visual Studio 中導入與配置自訂 Copilot 代理",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/visualstudio/ide/copilot-specialized-agents?view=visualstudio",
+    "status": 2
+  },
+  {
+    "id": "5ff6be86-f80a-4f86-b37e-4b58d4d2fb9f",
+    "title": "[MindStudio 媒體] 比較分析 - DeepSeek Harness、Claude Code 與 Codex 深度對比",
+    "type": "web_page",
+    "url": "https://www.mindstudio.ai/blog/deepseek-harness-vs-claude-code-codex",
+    "status": 2
+  },
+  {
+    "id": "65ed84e3-ed40-42bb-9393-422e17cba3f3",
+    "title": "[MindStudio 媒體] 產品介紹 - 詳解 DeepSeek Harness：以插件為核心的編碼代理",
+    "type": "web_page",
+    "url": "https://www.mindstudio.ai/blog/deepseek-harness-agentic-coding",
+    "status": 2
+  },
+  {
+    "id": "850ee8e4-d9d6-4124-a16b-efbf492330df",
+    "title": "[OpenAI 官方] 架構文件 - Codex 作為平台：基於開放代理 Harness 的構建指引",
+    "type": "web_page",
+    "url": "https://developers.openai.com/blog/codex-as-a-platform",
+    "status": 2
+  },
+  {
+    "id": "8eb3a864-ee93-4833-acc8-a23ad5eca9a4",
+    "title": "[OpenAI 官方] 版本公告 - Codex CLI v0.116.0 企業級 Hook 機制功能更新",
+    "type": "web_page",
+    "url": "https://www.augmentcode.com/learn/openai-codex-cli-enterprise",
+    "status": 2
+  },
+  {
+    "id": "b61c5b4e-af99-4cd8-bf64-b6cfece1c899",
+    "title": "[OpenAI 官方] 開發文件 - Codex CLI 與開發者指南",
+    "type": "web_page",
+    "url": "https://developers.openai.com/learn/codex",
+    "status": 2
+  },
+  {
+    "id": "9955ffc5-170f-4812-8c2f-ec8a17dfc5f1",
+    "title": "[Pi 官方] 產品規格 - pi-codebase-memory-hooks 擴充套件說明",
+    "type": "web_page",
+    "url": "https://pi.dev/packages/pi-codebase-memory-hooks?name=RAG&type=extension&page=2",
+    "status": 2
+  },
+  {
+    "id": "b4e8e2d1-5d21-49dc-945f-3f53930c1b33",
+    "title": "[Pi 官方] 產品規格 - pi-yaml-hooks 宣告式 CLI 事件 Hook 套件",
+    "type": "web_page",
+    "url": "https://pi.dev/packages/pi-yaml-hooks",
+    "status": 2
+  },
+  {
+    "id": "e7620756-b9a0-4d03-8501-6eab271f423d",
+    "title": "[Reddit 社群] 心得討論 - DeepSeek Harness 朝向自我演化 AI 系統的具體實踐",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/DeepSeek/comments/1vpmdg9/deepseek_harness_a_concrete_step_toward/",
+    "status": 2
+  },
+  {
+    "id": "28a024d1-8682-4c10-8a19-41abda4b42e9",
+    "title": "[Reddit 社群] 技術探討 - 如何在 Go 語言代理中實作 Pi 樣式的擴充機制",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/PiCodingAgent/comments/1vs8yg2/how_would_you_implement_pistyle_extensions_in_a/",
+    "status": 2
+  },
+  {
+    "id": "a37541fc-fadb-408c-9c64-bcfe29a86c13",
+    "title": "[Reddit 社群] 比較分析 - 探討 Visual Studio 2026 與 VS Code 的 Copilot 整合差異",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/GithubCopilot/comments/1s66tzo/vs2026_vs_vscode_integration/",
+    "status": 2
+  },
+  {
+    "id": "16f1b1ca-b6d1-4d79-a250-2ed2dea76151",
+    "title": "[Tricontinental 機構] 指南文件 - 在學術與社會研究中導入 DeepSeek Harness 流程",
+    "type": "web_page",
+    "url": "https://thetricontinental.org/how-to-use-deepseek-harness/",
+    "status": 2
+  },
+  {
+    "id": "f43b658e-449a-40e9-9f21-7152a2b2e893",
+    "title": "[VS Code 官方] 指南文件 - 選擇與使用 IDE 中的 AI 代理 Harness",
+    "type": "web_page",
+    "url": "https://code.visualstudio.com/docs/agents/run/agent-harnesses",
+    "status": 2
+  },
+  {
+    "id": "fdbfba93-6584-42f3-893a-dfd48ab86ba2",
+    "title": "[VS Code 官方] 版本公告 - VS Code 2026年1月更新與 AI 代理支援規格",
+    "type": "web_page",
+    "url": "https://code.visualstudio.com/updates/v1_109",
+    "status": 2
+  },
+  {
+    "id": "72ad516d-d7b0-4827-99ea-cdb93ee3f4d6",
+    "title": "[VS Code 官方] 版本公告 - VS Code 2026年2月更新與 Agent 擴充支援",
+    "type": "web_page",
+    "url": "https://code.visualstudio.com/updates/v1_110",
+    "status": 2
+  },
+  {
+    "id": "2785fa6d-8a7c-4c1b-a4ce-bb27af3fecd1",
+    "title": "[VS Code 官方] 開發文件 - VS Code 中的 Agent 插件架構",
+    "type": "web_page",
+    "url": "https://code.visualstudio.com/docs/agent-customization/agent-plugins",
+    "status": 2
+  },
+  {
+    "id": "b8684248-9062-46ae-8f1c-5a126d454dd9",
+    "title": "[VS Code 官方] 開發文件 - VS Code 擴充套件中的 Lifecycle Hooks 機制簡介",
+    "type": "web_page",
+    "url": "https://code.visualstudio.com/learn/customizations/5-hooks",
+    "status": 2
+  },
+  {
+    "id": "6e7ec483-c7cb-4e3f-8a64-bf6e90fcae29",
+    "title": "[個人部落格] 架構文件 - 剖析 Pi Agent 底層運行邏輯與擴充插槽",
+    "type": "web_page",
+    "url": "https://edward40.com/p/pi-agent-internal/",
+    "status": 2
+  },
+  {
+    "id": "0a710fd6-b1eb-4dbe-87ed-235c50bf9766",
+    "title": "[個人部落格] 案例研究 - 利用 Hooks 實現 GitHub Copilot 代碼格式化自動化",
+    "type": "web_page",
+    "url": "https://bartwullems.blogspot.com/2026/04/github-copilotformat-your-code-using.html",
+    "status": 2
+  },
+  {
+    "id": "984985b2-57ec-47e2-8c01-98ded373a4b0",
+    "title": "[個人部落格] 案例研究 - 實作 GitHub Copilot CLI 的 WakaTime 整合擴充",
+    "type": "web_page",
+    "url": "https://dev.to/geeknees/building-a-github-copilot-cli-extension-implementing-wakatime-integration-5c0a",
+    "status": 2
+  },
+  {
+    "id": "eb2a425d-fe30-4e56-891d-420a7b34920d",
+    "title": "[個人部落格] 案例研究 - 為 Pi Coding Agent 實作 OpenTelemetry 可觀測性擴充",
+    "type": "web_page",
+    "url": "https://prokopov.me/posts/pi-otel-telemetry-extension/",
+    "status": 2
+  },
+  {
+    "id": "12dac9e0-e760-4d1a-bab1-81c914dd38b5",
+    "title": "[個人部落格] 產品介紹 - Pi Agent：專為掌握底層工具的工程師設計的編碼代理",
+    "type": "web_page",
+    "url": "https://alexander.holbreich.org/posts/2026/pi-coding-agent/",
+    "status": 2
+  }
+]

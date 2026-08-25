@@ -64,9 +64,31 @@ codex "建立一個 REST API 使用 Express"
 | **擴充性** | 低 | 極高 | 中等 | 高 |
 | **生態系** | OpenAI | Anthropic | GitHub | 開源社群 |
 
+## Hook 機制（2026-08-25 研究更新）
+
+根據 [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]]：
+
+- **正式名稱**：Codex Hook System
+- **引進版本**：v0.116.0 企業級功能更新
+- **配置路徑**：`~/.codex/hooks.json` 或 `~/.codex/config.toml` 的 `[hooks]` 區塊
+- **實作方式**：無狀態外部二進位攔截器（`codex-interceptor`），透過 Unix socket 與 Falco 的 `prempti` 安全經紀人通訊
+
+### 實務限制
+
+- **生命週期極窄**：雖然定義了 10 個事件，但外部安全經紀人實務上**僅支援 `PreToolUse` 與 `PermissionRequest`**。若將其註冊到其他 8 個事件（如 PostToolUse），會直接組態報錯並強制結束進程
+- **流失 Ask 能力**：Codex 缺乏 per-call 的 Hook 使用者確認介面，原本在策略中的 Ask 指令會被無差別硬性轉為 Deny
+- **信任授權未自動化**：即使自動寫入設定檔，Codex 仍強制要求使用者必須手動在終端執行過一次 `/hooks` 信任確認
+- **高度實驗性**：目前架構仍在早期開發，且並未內置於主流安裝程式中
+
+### Fail-Safe 設計
+
+- **Fail-Closed**：當通訊中斷或攔截器異常時，系統預設硬性拒絕（Deny）該工具執行
+- **設計理念**：為高安全局域網設計，將安全漏洞風險降到最低
+
 ## 來源
 
 - [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF+LSP+CodeGraph AI Agent 研究]]
+- [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]]
 - [OpenAI Codex](https://openai.com/research/codex)
 - [Codex CLI](https://github.com/openai/codex)
 

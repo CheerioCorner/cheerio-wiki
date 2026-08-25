@@ -129,6 +129,53 @@ Extension 能力清單：
 - 新增 keyboard shortcuts / CLI flags
 - 更新 system prompt / 渲染 custom messages
 
+## Hook 機制（2026-08-25 研究更新）
+
+根據 [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]]：
+
+### 原生 Event Hooks
+
+- **正式名稱**：Event hooks / Hostcall hooks / Lifecycle hooks
+- **API**：`pi.on("tool_call", async (event, ctx) => { ... })`
+- **支援的事件**：`tool_call`（工具呼叫前）、`context`（LLM 請求前）、`session_start`、`tool_result`、`session_shutdown` 等
+- **特色**：零編譯動態載入，直接在 QuickJS 虛擬機中執行
+
+### 實作範例
+
+```typescript
+import type { HookAPI } from "@oh-my-pi/pi-coding-agent/extensibility/hooks";
+
+export default function hook(pi: HookAPI): void {
+  // 監聽並攔截工具調用前 (tool_call)
+  pi.on("tool_call", async (event, ctx) => {
+    if (event.toolName === "bash" && String(event.input.command).includes("sudo")) {
+      return { block: true, reason: "Blocked: sudo is not allowed in sandbox." };
+    }
+  });
+  
+  // 在模型調用前 (context) 動態修剪/修改 LLM 歷史 messages 陣列
+  pi.on("context", async (event) => {
+    const filtered = event.messages.filter(msg => msg.customType !== "debug-only");
+    return { messages: filtered };
+  });
+}
+```
+
+### 生態擴充
+
+- **pi-hooks**：相容 Claude Code 格式的 Hook 適配層，將 Claude 的 `SessionStart` 映射為 Pi 的 `session_start`
+- **pi-yaml-hooks**：宣告式 YAML Hook 設定（存放在 `.pi/hook/hooks.yaml`），支援 `tool.before.*`、`tool.after.*` 等事件
+- **pi-codebase-memory-hooks**：在 `tool_result` 觸發時將 graph-first 檢索上下文自動回填給 grep/find 工具結果
+
+### 與 Claude Code Hooks 的比較
+
+| 面向 | Pi Hook | Claude Code Hook |
+|------|---------|------------------|
+| **事件廣度** | Extension 事件 | 31 種事件 |
+| **Handler 類型** | Extension script | command/http/mcp_tool/prompt/agent |
+| **上下文干預** | 可重寫 messages 陣列 | additionalContext 追加 |
+| **配置方式** | JS/TS 程式碼 + YAML 設定 | JSON 設定檔 + Frontmatter |
+
 ## Read-only Mode
 
 `--tools read,grep,find`：啟用隱藏的 grep + find 工具，停用 bash/write/edit，適用於 RPC / 程式化自動化。

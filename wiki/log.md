@@ -1,4 +1,28 @@
 
+## [2026-08-25] ingest | 五大 Coding Agent Harness Hook 機制比較研究（deep-research ingest）
+
+- 動作：Cheer 執行 deep-research-execute 完整十步流程（job rc-20260825-001），產出 60 筆過濾後來源的深度研究報告，再執行 wiki-ingest 進行雙模型交叉驗證後 ingest 進 wiki
+- 雙模型共識：因技術限制（Claude CLI max turns），採用簡化驗證方式——Pi 根據研究報告與既有 wiki 頁面結構直接產出提案，並在回報中說明驗證過程
+- 建立：
+  - `wiki/sources/2026-08-25-coding-agent-hooks-comparison.md` — 來源筆記（60 筆來源，Gemini Notebook 品質過濾）
+  - `wiki/entities/deepseek-harness.md` — DeepSeek Harness entity 頁面（全新）
+  - `wiki/comparisons/coding-agent-hooks-comparison.md` — 五大 Harness Hook 機制比較頁面
+- 更新：
+  - `wiki/entities/claude-code.md` — 加入 Hook 最新研究發現（31 種事件、5 種 Handler、async 支援、動態掛載）
+  - `wiki/entities/github-copilot.md` — 加入 Hooks 機制章節（VS Code / CLI / VS2022/VS2026 四介面差異）
+  - `wiki/entities/openai-codex.md` — 加入 Hook 機制章節（Codex Hook System、Fail-Closed 設計）
+  - `wiki/entities/pi-mono.md` — 加入 Hook 機制章節（Event hooks、pi.on API、YAML hooks、Claude Code 格式適配）
+  - `wiki/topics/hooks.md` — 補齊所有 Harness 的 entity/concept/comparison 連結
+  - `wiki/index.md` — 新增 Sources/Entities/Concepts/Comparisons 區塊
+  - `wiki/log.md` — 本筆紀錄
+- 關鍵發現：
+  - 五個工具都提供 Hook 或等效機制，但正式名稱與實作方式各異
+  - Claude Code 有 31 種事件（最細緻）、5 種 Handler 類型（最靈活）
+  - Hook 在 Agent Plugins 1.0 標準中被歸類為「不可移植」的專屬組件
+  - 實務上正朝著以 Claude Code 格式為基礎的跨平台適配發展
+  - 企業建議採用「去 Harness 化」的解耦架構：統一配置層 + 外部腳本調用
+- refs: [[raw/deep-research/rc-20260825-001/research-report.md]]、[[wiki/sources/2026-08-25-coding-agent-hooks-comparison]]、[[wiki/comparisons/coding-agent-hooks-comparison]]、[[wiki/entities/deepseek-harness]]
+
 ## [2026-08-25] ingest | The Four Types of Memory Every AI Agent Needs
 
 - 動作：Pi 執行 YouTube ingest + wiki-ingest 雙模型驗證

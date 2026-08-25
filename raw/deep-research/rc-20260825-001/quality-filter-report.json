@@ -1,0 +1,30 @@
+{
+  "job_id": "rc-20260825-001",
+  "notebook_id": "3940f00b-c38b-40c0-a639-4b1a901f91b7",
+  "before_count": 83,
+  "after_count": 71,
+  "removed": [
+    {
+      "id": "d263e8d6-d1e7-46f1-a78b-b08cbefc0c46",
+      "title": "API Platform - DeepSeek",
+      "reason": "這是 DeepSeek API 平台的官方定價、銷售與推廣首頁，僅包含模型 API 價格和一般性產品連結，缺乏關於 DeepSeek Harness 的具體實作或技術細節。"
+    },
+    {
+      "id": "17511676-7250-4dc3-a491-801e48df4d99",
+      "title": "Deepseek Harness Preview link - DGX Spark / GB10 - NVIDIA Developer Forums",
+      "reason": "這是 NVIDIA 開發者論壇上簡短的社群討論，內容多為個別使用者極其簡短的主觀初體驗與隨筆感受（例如建議目前不值得認真投入時間），缺乏具體的架構分析或技術細節支撐。"
+    },
+    {
+      "id": "67db3387-2196-480f-b6e7-dc17c9de9ca2",
+      "title": "GitHub Copilot Agent Hooks - Peter Miľovčík - Obsidian Publish",
+      "reason": "該來源為失效的無效連結（404 頁面），實際內容僅顯示「Not found. This page does not exist」，完全沒有任何實質的資訊或技術內容。"
+    }
+  ],
+  "unmatched_flags": [
+    {
+      "title": "VS2026 vs VSCode integration : r/GithubCopilot",
+      "reason": "這是 Reddit 上的簡短社群問答與偏好交流，內容全為開發者對於 Visual Studio 2026 與 VS Code 整合 Copilot 的主觀偏好、吐槽與使用心得，缺乏對 Harness、生命週期或 Hook 等底層機制的技術分析。"
+    }
+  ],
+  "checked_at": "2026-08-25T04:38:28.915Z"
+}

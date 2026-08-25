@@ -327,11 +327,15 @@
   - 為什麼重要：MCP 是 Tool 系統的標準協定
   - 備註：素材已到位（見 W-079），之後研究不用再自己找來源，直接讀 ingest 完的 wiki 頁面即可
 
-- [ ] W-2026-08-033 研究 Hook 機制：不同 IDE / Harness 的實作比較 #ai-agent
-  - next: 調研 Claude Code、Cursor、Windsurf、Pi Agent 的 hook 系統
-  - refs: [[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
-  - 預估時間：2-3 小時
-  - 為什麼重要：理解 Agent 的事件系統
+- [ ] W-2026-08-033 研究 Hook 機制：五個 Harness 的生命週期擴充機制盤點與比較 🔄 #ai-agent #hook #deep-research
+  - **範圍重新表達（8/25，Cheer 訂正前一晚 Pi 整理方向錯誤）**：研究對象與問題結構全部重寫，取代舊版「調研 Claude Code、Cursor、Windsurf、Pi Agent 的 hook 系統」的粗略描述。五個研究對象：① GitHub Copilot（VS Code／Visual Studio 2022／Visual Studio 2026／GitHub Copilot CLI-App 四種介面分開調查）② Claude Code ③ OpenAI Codex CLI ④ Pi Coding Agent（pi-mono）⑤ DeepSeek Harness（https://deepseek.com/harness/en/）。五個要調查的問題：1. 各自有沒有提供 Hook 或等效機制、正式名稱是什麼 2. 各自優勢與限制的比較總表 3. 各自具體怎麼實作、完整生命週期事件比較 4. 是只能設定檔配置還是可程式碼注入 5. 企業導入是否有跨工具通用標準，或必須各自量身開發（不像 Agent Skill 有通用版本）
+  - **前一晚失敗原因診斷（job `rc-20260824-002`，已判定不可用）**：查詢字串用「不同 LLMs 的 Hook 機制比較」，把「coding agent harness 的生命週期擴充機制」跟「機器學習模型層級的 hook」（PyTorch/TransformerLens activation hook、vLLM/SGLang logits processor、LangChain callback）搞混，87 筆來源裡有一大票是 DeepSeek 模型架構（MLA/MoE）、Inflection AI 的聊天機器人「Pi」（跟 Pi Coding Agent 是完全不同產品）、logit_bias／guided decoding 等不相干主題；且卡在 `sources_ready` 階段沒往下跑完（`quality_filter`／`rename` 皆解析失敗留下 `-raw.md`），notebook 已被 Cheer 手動刪除
+  - **研究已完成並經 Claude 獨立驗證（8/25）**：Pi 執行 `deep-research-execute` 完整十一步流程，job `rc-20260825-001`，profile `personal`。83 筆來源 → 品質過濾剩 71 → 蒸餾剩 60，過程中 quality_filter／recheck／distill／rename／query_answers 全部正常解析，沒有卡住、沒有 `-raw.md` 解析失敗殘留。`research-report.md`（715 行）已產出，五個問題逐一有完整章節＋比較總表＋生命週期事件對照表
+  - **Claude 品質驗證（不採信 Pi 自報）**：不只讀 Pi 的自我回報，另外用 WebFetch 逐筆實查 7 個關鍵引用（GitHub Copilot／VS Code／Claude Code／OpenAI Codex CLI×prempti／Pi Coding Agent×oh-my-pi／pi.dev／DeepSeek Harness 官網＋GitHub repo），全部真實存在且內容與報告陳述相符，未發現捏造。特別針對「Pi Coding Agent」交叉核對：`oh-my-pi` 經確認是 `earendil-works/pi`（前身 `badlogic/pi-mono`，即 Cheer 實際使用的 Pi Agent）的官方認可 fork，`pi.dev` 確認是 Earendil Inc. 官方套件登記站，並非重演昨晚「搞混成別的 Pi 產品」的問題；蒸餾階段移除清單裡也看到 `earendil-works/pi` 原始 repo 頁面（因載入失敗被移除，非搞混，屬正常雜訊淘汰）。另外重點驗證 Q5 的核心結論（Hook 在 Agent Plugins 1.0 標準中屬 client-specific／不可跨工具移植，Skill／MCP 才是可移植標準組件）逐字對照 VS Code 官方文件屬實
+  - next: 品質驗證已通過 Claude 這關，**待 Cheer 親自看過 `research-report.md` 確認滿意**，之後才呼叫 `wiki-ingest` 整理進 `wiki/`（比照既有 raw/deep-research 交接慣例）
+  - refs: `Obsidian/raw/deep-research/rc-20260825-001/research-report.md`（完整報告）、`Obsidian/raw/deep-research/rc-20260825-001/spec.json`（規格）、`Obsidian/raw/deep-research/rc-20260824-002/`（前一晚失敗紀錄，保留供對照，不刪除）、[[work/current#W-2026-08-082|W-082]]（本項目沿用其 deep-research-execute 十一步流程）、[[wiki/entities/pi-mono|pi-mono]]、[[wiki/concepts/meta-harness|meta-harness]]
+  - 預估時間：deep 模式研究本身約 5-6 分鐘阻塞執行，加上品質過濾/recheck/蒸餾/重新命名/逐題查詢，全程約 20-40 分鐘（視 recheck 輪數而定）
+  - 為什麼重要：理解 Agent 的事件系統；同時是 Cheer 判斷企業導入 Hook 機制能否比照 Skill 走通用化路線的關鍵輸入
 
 - [ ] W-2026-08-NEW-001 研究 Session 管理：對話如何持久化與壓縮 #ai-agent
   - next: 調研 Pi、Claude Code、LangChain 的 session storage 機制

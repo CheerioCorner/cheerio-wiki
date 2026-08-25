@@ -25,6 +25,24 @@ canonical: entities/github-copilot
 ### 4. Copilot CLI
 `gh copilot` 在終端機使用。支援 **Hooks** 機制（事件驅動擴展點）。我們已建立 `chat-with-copilot` skill 串接。
 
+#### Hooks 機制（2026-08-25 研究更新）
+
+根據 [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]]：
+
+**VS Code 介面：**
+- **正式名稱**：Agent Hooks / Lifecycle Hooks
+- **事件數量**：7+ 種（`SessionStart`、`UserPromptSubmitted`、`PreToolUse`、`PostToolUse`、`PostToolUseFailure`、`Stop`、`ErrorOccurred`）
+- **配置路徑**：專案級 `.github/hooks/*.json`、個人全域 `~/.copilot/hooks/*.json`
+- **特色**：防死鎖安全鎖（連續攔截 8 次後強制結束）、同步阻塞執行（建議 5 秒內完成）
+
+**CLI / Cloud Agent 介面：**
+- **正式名稱**：GitHub Copilot Lifecycle Hooks
+- **用途**：防範憑證洩漏、安全合規審查、審計日誌
+- **Fail-Safe 設計**：exit code 2 或失敗時 Fail-Closed（deny）；HTTP Hook 超時時 Fail-Open
+
+**Visual Studio 2022 / 2026 介面：**
+- **不支援**自訂 Hook，功能被限制為 VS Code 與 CLI 專屬
+
 ### 5. GitHub Copilot App（桌面應用程式）
 2025 年推出的獨立桌面 App，專做 agent-driven development。可同時跑多個 agent session、管理 issues/PRs、設定排程自動執行。
 

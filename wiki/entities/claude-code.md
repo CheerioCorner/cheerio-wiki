@@ -50,6 +50,16 @@ Observe → Reason → Action → Evaluate → Loop
 
 → 詳見 [[wiki/concepts/claude-code-hooks-architecture|Claude Code Hooks 架構]]
 
+#### 最新研究發現（2026-08-25）
+
+根據 [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]]，Claude Code Hooks 有以下關鍵特性：
+
+- **31 種事件**：比其他 Harness 更細緻，包括作業系統級檔案異動監控（`FileChanged`）、MCP 交互對話、Git Worktree 操作等
+- **5 種 Handler 類型**：`command`（Shell 指令）、`http`（POST 請求）、`mcp_tool`（MCP 工具調用）、`prompt`（LLM 評估）、`agent`（子代理驗證）
+- **非同步背景執行**：原生支援 `async: true`，適合讓耗時的測試套件或通知在背景執行
+- **動態掛載與卸載**：可將 Hook 宣告在 Skill 或 Subagent 檔案的 Frontmatter 中，隨該組件執行而動態加載
+- **環境變數持久化**：可利用 `CLAUDE_ENV_FILE` 寫入變數，並使其在後續的 Bash 工具調用中持續生效
+
 ### 7. Context Compaction（上下文壓縮）
 對話過長時自動摘要化，釋放 context window 空間。
 

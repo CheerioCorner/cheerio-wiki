@@ -1,0 +1,66 @@
+{
+  "job_id": "rc-20260825-001",
+  "notebook_id": "3940f00b-c38b-40c0-a639-4b1a901f91b7",
+  "status": "applied",
+  "before_count": 71,
+  "after_count": 60,
+  "removed": [
+    {
+      "id": "b162788d-a4aa-468d-bbaa-582187f58332",
+      "title": "Chat Session ID and Completion Status API · community · Discussion #185849 - GitHub",
+      "reason": "由於網頁加載錯誤，此來源僅包含 GitHub 網站導覽選單與頁首連結，完全沒有任何與 Hook、生命週期或技術實作相關的實質內容。"
+    },
+    {
+      "id": "3c0585ff-2143-4319-a025-793324273eaf",
+      "title": "Data Processing Statement - DeepSeek Harness",
+      "reason": "此來源為隱私權與資料處理聲明，僅說明資料如何在地端處理，完全不涉及技術擴充、Hook、Plugin 或生命週期機制。"
+    },
+    {
+      "id": "4c9dfb15-3b77-4246-8765-cea7f419f3eb",
+      "title": "DeepSeek Harness | Safe Use Policy",
+      "reason": "屬於合規與安全使用政策，主要說明限制用途（如禁止用於軍事、網路攻擊等）及基本安全建議，完全缺乏生命週期擴充或 Hook 實作等技術細節。"
+    },
+    {
+      "id": "fd9d3a51-d8ae-4b33-a899-cabda1f52466",
+      "title": "DeepSeek-V4-Flash-Vision-Exp Release: Multimodal API Now Live",
+      "reason": "此來源為 DeepSeek 的多模態模型發佈公告，介紹 Vision API 的參數與計費方式。雖然提及 DeepSeek Harness 提供支援，但對於 DSH 本身的 Hook 或生命週期擴充機制沒有任何技術上的實質貢獻。"
+    },
+    {
+      "id": "397c67e0-c091-4c50-9ce6-b8ae87745ef8",
+      "title": "GitHub Copilot Chat cheat sheet",
+      "reason": "為使用者層級的 Copilot Chat 快速鍵及斜線指令（/clear、/explain、/fix）、聊天變數（#file、#block）等速查表，與開發者用於自動化或擴充 IDE 代理的 Hook、生命週期擴充或 Middleware 機制無關。"
+    },
+    {
+      "id": "c3cb176b-0302-4e6f-9133-8fe80a5690d7",
+      "title": "deepseek-harness/docs/architecture.md at master - GitHub",
+      "reason": "由於 GitHub 網頁加載失敗，此來源僅包含「There was an error while loading」的錯誤提示，無任何有用的技術內容。"
+    },
+    {
+      "id": "fcba8a0d-95c5-4305-8e74-8e7f2bfaafde",
+      "title": "deepseek-harness/packages/extensions/tool-cordis/README.md at master - GitHub",
+      "reason": "由於網頁加載失敗，此來源僅包含錯誤提示與 GitHub 導覽列，對 Cordis 核心或工具擴充無任何實質技術細節。"
+    },
+    {
+      "id": "2ab1d0f9-6eb1-4730-9b08-dd5c3bef8ca5",
+      "title": "dsh-self-evolving — an evidence-first, crash-resumable self-evolution engine (standard DSH Cordis bundle) #2547 - GitHub",
+      "reason": "由於 GitHub 網頁加載失敗，此來源僅包含錯誤提示與導覽選單，未包含任何有關 DSH 自演化引擎或 Cordis 綁定的實質技術細節。"
+    },
+    {
+      "id": "0e3f3be6-cf05-4bec-8ac6-375d6040622e",
+      "title": "pi/packages/coding-agent/docs/rpc.md at main · earendil-works/pi - GitHub",
+      "reason": "由於網頁加載失敗，此來源僅包含 GitHub 頁尾與導覽資訊，完全缺乏任何關於 Pi Agent RPC 機制的技術內容。"
+    },
+    {
+      "id": "4b30d50a-6bcd-4c16-a916-27c2dca8d0e0",
+      "title": "pi/packages/coding-agent/docs/termux.md at main · earendil-works/pi - GitHub",
+      "reason": "由於網頁加載失敗，此來源僅有 GitHub 導覽列和頁尾選單，對在 Termux 環境下運行或擴充 Pi 代理無任何實質技術貢獻。"
+    },
+    {
+      "id": "66dec46a-788b-4b3d-9e47-217810759f2b",
+      "title": "pi/packages/coding-agent/examples/extensions/README.md at main · earendil-works/pi - GitHub",
+      "reason": "由於網頁加載失敗，此來源僅有 GitHub 的頁尾和導覽選單，未包含任何關於擴充範例的實質內容。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-08-25T04:41:29.430Z"
+}

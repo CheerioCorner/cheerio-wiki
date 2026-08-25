@@ -1,0 +1,26 @@
+{
+  "job_id": "rc-20260825-001",
+  "query": "AI 編碼 Agent／IDE 開發工具 Harness 的生命週期擴充機制（可能稱為 Hook、Extension、Lifecycle Event、Plugin 或 Middleware）之盤點與比較研究，以官方文件為主要來源。研究對象限定以下五個工具，且必須逐一分開調查：\n1. GitHub Copilot —— 在 Visual Studio Code、Visual Studio 2022、Visual Studio 2026、GitHub Copilot CLI/App 四種介面下的擴充機制（各介面可能不同，需分別調查，不要混為一談）\n2. Claude Code（Anthropic 官方的編碼 Agent CLI 工具，不是 Claude 模型本身）\n3. OpenAI Codex CLI（ChatGPT 旗下的編碼 Agent 工具，不是舊版 Codex 模型）\n4. Pi Coding Agent（pi-mono 專案的編碼 Agent harness；注意這跟 Inflection AI 出品的對話機器人『Pi』是完全不同的兩個產品，必須完全排除後者的所有結果）\n5. DeepSeek Harness（官方頁面 https://deepseek.com/harness/en/ 這款開發工具本身；不是 DeepSeek 的大型語言模型內部架構研究，例如 MLA、MoE 等模型設計主題要完全排除）\n\n本研究要嚴格排除機器學習模型層級的『hook』概念（例如 PyTorch/TransformerLens 的 activation hook、vLLM/SGLang 的 logits processor、LangChain/LlamaIndex 的 callback 或 instrumentation 機制），這些屬於完全不同的技術範疇，不在研究範圍內，不要納入來源。\n\n要調查的具體問題：\n1. 這五個工具各自有沒有提供「在特定事件時機自動觸發自訂邏輯」的機制？各自的正式名稱是什麼（不一定叫 Hook）？功能意圖是否等同於 Hook？\n2. 這五個工具在此機制上的優勢與限制分別是什麼？整理成一張比較總表。\n3. 每個工具若要實作這個機制，具體要怎麼寫？各自完整的生命週期事件有哪些（例如啟動前、工具呼叫前後、發生錯誤時、對話/工作階段結束時等），並比較彼此生命週期涵蓋範圍的差異。\n4. 這個機制在各工具中是只能透過設定檔做宣告式配置，還是可以用程式碼直接注入/掛接（程式化擴充）？請逐一分類說明。\n5. 對企業導入而言，這五個工具的此類機制是否存在跨工具通用的共通標準或抽象層，還是必須各自量身開發，無法像 Agent Skill 標準（例如 Claude 的 Agent Skills）一樣有跨工具通用的版本？",
+  "sub_questions": [
+    "這五個 Harness（GitHub Copilot 的 VS Code／Visual Studio 2022／Visual Studio 2026／GitHub Copilot CLI-App、Claude Code、OpenAI Codex CLI、Pi Coding Agent、DeepSeek Harness）各自有沒有提供 Hook 或等效機制？各自的正式名稱是什麼、功能意圖是否等同於 Hook？",
+    "這五個 Harness 在此機制上的優勢與限制分別是什麼？請整理成一張比較總表。",
+    "每個 Harness 若要實作這個機制，具體要怎麼寫？各自完整的生命週期事件有哪些，彼此的生命週期涵蓋範圍有什麼差異？",
+    "這個機制在各 Harness 中是只能透過設定檔配置，還是可以用程式碼注入/掛接？請逐一分類。",
+    "對企業來說，這五個 Harness 的此類機制是否存在跨工具通用的共通標準，還是必須各自量身開發，不像 Agent Skill 有跨工具通用版本？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 60,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "past_year",
+    "preferred_language": "any",
+    "citation_required": true,
+    "source_bias": "industry",
+    "output_format": "full"
+  }
+}
