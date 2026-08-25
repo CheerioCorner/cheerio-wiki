@@ -1,4 +1,17 @@
 
+## [2026-08-25] ingest | The Four Types of Memory Every AI Agent Needs
+
+- 動作：Pi 執行 YouTube ingest + wiki-ingest 雙模型驗證
+- 雙模型共識：Round 1 即達成一致（Claude + Gemini），不需 Round 2。兩邊都確認：建立新 source + concept 頁面、更新既有 concept + topic 頁面、type 分類正確、topics: [agent-memory-context]、不推翻既有結論。Claude 額外建議新建 `coala-four-memory-types` concept 頁面（功能分類 vs 存儲機制分類的正交軸），Gemini 建議併入既有頁面——採用 Claude 架構（獨立頁面更清晰）
+- 建立：
+  - `wiki/sources/2026-08-25-four-types-memory-ai-agent.md` — source note（含陳述級溯源）
+  - `wiki/concepts/coala-four-memory-types.md` — CoALA 四種記憶類型功能分類框架
+- 更新：
+  - `wiki/concepts/ai-agent-memory-systems.md` — 加入 CoALA 框架交叉引用說明（功能 vs 存儲機制正交軸）
+  - `wiki/topics/agent-memory-context.md` — Concepts + Sources 加入新頁面
+- 關鍵發現：CoALA（普林斯頓大學）將 agent 記憶分為 Working / Semantic / Procedural / Episodic 四種功能類型；不同複雜度的 agent 需要不同記憶組合（reflex = working only，coding agent = 全部四種）；「Memory is what separates a chatbot from an agent」
+- refs: [[raw/youtube/four-types-memory-ai-agent]]、[[wiki/concepts/coala-four-memory-types]]、[[wiki/sources/2026-08-25-four-types-memory-ai-agent]]
+
 ## [2026-08-24] ingest | NPU 在 AI 基礎設施架構中的角色 — 深度研究 ingest（W-2026-08-069）
 
 - 動作：Cheer 執行 deep-research-execute 完整十步流程（job rc-20260824-001），產出 54 筆過濾後來源的深度研究報告，再執行 wiki-ingest 進行雙模型交叉驗證後 ingest 進 wiki

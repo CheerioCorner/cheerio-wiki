@@ -1,0 +1,19 @@
+{
+  "job_id": "rc-20260823-001",
+  "query": "NPU 在 AI 基礎設施架構中的角色：底層運作原理（脈動陣列、資料流架構、記憶體層級）、AI 推理的角色定位（端側 vs 資料中心）、異質運算協作（CPU+GPU+NPU 上 LLM 如何運行）、實際產品比較（Intel NPU/Qualcomm Hexagon/Google TPU/AWS Inferentia/華為 Ascend）、對長榮航空 IT 企業 AI 基礎設施規劃的影響",
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "1y",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "mixed",
+    "output_format": "full"
+  }
+}

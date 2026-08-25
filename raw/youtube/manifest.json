@@ -160,6 +160,17 @@
       "segments": 158,
       "paragraphs": 119,
       "language": "en-US"
+    },
+    {
+      "video_id": "BacJ6sEhqMo",
+      "slug": "four-types-memory-ai-agent",
+      "title": "The Four Types of Memory Every AI Agent Needs",
+      "url": "https://www.youtube.com/watch?v=BacJ6sEhqMo",
+      "ingested_at": "2026-08-25",
+      "segments": 92,
+      "language": "en",
+      "auto_generated": false,
+      "source_api": "youtube_transcript_api"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

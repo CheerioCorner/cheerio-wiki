@@ -1,4 +1,4 @@
-# Raw Sources
+ # Raw Sources
 
 > `raw/` 保存未整理、可追溯的原始輸入。Raw content 原則上只讀；整理後的知識進入 `wiki/`。
 
@@ -7,6 +7,7 @@
 - [[raw/web|Web]] — Browser / Obsidian Web Clipper 輸入
 - [[raw/youtube|YouTube]] — 字幕、逐字稿與影片資訊
 - [[raw/conversations|Conversations]] — annotator / agent 對話原始紀錄
+- [[raw/deep-research|Deep Research]] — 深度研究的原始輸出（Gemini Deep Research、NotebookLM 等）
 - [[raw/assets|Assets]] — raw sources 使用的圖片與附件
 
 ## Rules

@@ -12,7 +12,8 @@ updated: 2026-08-23
 
 ## Concepts
 
-- [[wiki/concepts/ai-agent-memory-systems|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]] — 三支柱分析 × 五種存儲 × 四種檢索 × 六種維護策略
+- [[wiki/concepts/coala-four-memory-types|CoALA 四種記憶類型]] — AI Agent 記憶的功能分類框架：Working / Semantic / Procedural / Episodic 🛠️
+- [[wiki/concepts/ai-agent-memory-systems|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]] — 三支柱分析 × 五種存儲 × 四種檢索 × 六種維護策略 🛠️
 - [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder — 記憶檢索策略的效果階梯]] — 四階檢索策略在長時任務中的實測效果排名 🛠️
 - [[wiki/concepts/consumer-ai-memory-personalization|Consumer AI Memory Personalization]] — 消費級 AI 產品的記憶設計（ChatGPT/Claude running profile，與 agent harness 記憶不同領域）🛠️
 - [[wiki/concepts/context-decay|Context Decay（脈絡衰減）]] — 跨模型交接時 context 資訊逐漸失真的現象與對策
@@ -37,6 +38,7 @@ updated: 2026-08-23
 - [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|Memory Harnesses for Long-Running Research Agents]] — Sakana AI 實驗：write-manage-read 迴圈、recall policy ladder 🛠️
 - [[wiki/sources/2026-08-20-shlok-khemani-chatgpt-and-claude-memory|Shlok Khemani — ChatGPT/Claude 記憶系統分析]] — 消費級產品個人化記憶（不同領域）🛠️
 - [[wiki/sources/2026-08-22-mem0-deep-research-comparison|Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價]] — 四角度深度研究（已查證版）：系統比較 / 生產限制 / Decision-Ledger 適用性 / 授權定價 🛠️
+- [[wiki/sources/2026-08-25-four-types-memory-ai-agent|The Four Types of Memory Every AI Agent Needs]] — CoALA 框架四種記憶類型：Working / Semantic / Procedural / Episodic 🛠️
 - [[wiki/sources/2026-08-10-chunkless-rag-docling|What Is Chunkless RAG? How Docling & AI Agents Navigate Documents]] — IBM Docling 如何讓 AI Agent 保留文件結構做 Chunkless RAG
 
 ## 相關 Topics

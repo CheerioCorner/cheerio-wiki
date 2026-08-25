@@ -148,7 +148,8 @@
 
 - [ ] W-2026-08-069 NPU 角色深度研究（Gemini research）🔄 #knowledge #ai-agent #research
   - **優先序調整（8/23）**：Cheer 判斷 [[work/current#W-2026-08-082|W-082]]（NotebookLM skill 整理）更具價值，改列第一順位；本項目改列第二（Gemini 研究本身仍在背景跑，不受影響，只是回填/跟進動作往後排）
-  - next: `deep-research-intake`/`deep-research-execute` 已於 2026-08-24 完成重新設計與修復（見 [[work/current#W-2026-08-082|W-082]] 8/24 條目），並用 fast 模式的無關題目跑通完整 10 步流程驗證過機制本身沒問題。**還沒拿 NPU 這個真正題目正式跑過**——下一步是找時間執行 `deep-research-intake` 收斂 spec、`deep-research-execute` 跑完整流程，再把 `research-report.md` 回填進 [[wiki/discussions/npu-role-in-ai-infrastructure]]
+  - next: **2026-08-24 已跑完正式研究**：Pi 執行 `deep-research-execute` 完整十步流程，job `rc-20260824-001`，profile 用健檢結果 `personal`，62 筆來源經品質過濾剩 54 筆，`research-report.md` 已產出於 `raw/deep-research/rc-20260824-001/`。Claude 抽查 5 筆引用 URL（arXiv PDF、Microsoft Learn、alphaXiv、rtlearner 部落格、GitHub issue）皆為真實內容且與標題描述相符，未發現捏造。**待決定**：是否現在呼叫 `wiki-ingest` 回填進 [[wiki/discussions/npu-role-in-ai-infrastructure]]（尚未執行，等 Cheer 確認）。
+  - **發現的 skill bug（待修，不影響本次報告可用性）**：`generate_report.js` 產出的 `research-report.md` 裡有兩段引用清單——前段「引用來源清單」整段是 100+ 行的 `undefined`（標題解析失敗），後段「參考來源清單」才是正確的完整清單（含標題與 URL）。建議之後開一個小任務修掉前段壞掉的區塊。
   - refs: [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 角色討論]]、[[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|AI Infrastructure Source Note]]、[[work/current#W-2026-08-082|W-082]]（本項目被指定為 W-082 兩支新 skill 的端到端實測案例，8/24 已完成流程重新設計＋smoke test，正式題目待跑）
   - 起因：Cheer 看完影片後提出開放問題「NPU 在 AI 基礎設施架構中扮演什麼角色、為什麼 AI 時代需要 NPU」，已標記在 discussion 頁，正在派 Gemini 做深度研究（有引用來源要求）
   - **額外用途（2026-08-23）**：本研究主題同時被指定為 [[work/current#W-2026-08-082|W-082]]（`deep-research-intake` ／ `deep-research-execute`）的**端到端實測案例**。不是取代原本的 `chat-with-gemini-research` 路線，而是用同一個題目額外跑一次完整的 intake→execute 流程，驗證新 skill 真的能用。草擬的 `spec.json` 內容見 [[work/current#W-2026-08-082|W-082]] 條目

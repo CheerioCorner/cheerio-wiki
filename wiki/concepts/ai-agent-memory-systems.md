@@ -13,6 +13,8 @@ canonical: concepts/ai-agent-memory-systems
 
 > AI agent 記憶架構的設計框架：三支柱分析 × 五種存儲方式 × 四種檢索方法 × 六種維護策略。
 
+**注意：** 本頁從**存儲機制**角度切分（純文本/SQLite/向量/圖譜/混合）。若要從**功能**角度切分（Working/Semantic/Procedural/Episodic），見 [[wiki/concepts/coala-four-memory-types|CoALA 四種記憶類型]]——兩者是正交軸，可交叉組合。
+
 ## 為什麼需要記憶？
 
 任何 LLM 呼叫都不會長期攜帶記憶權重。ChatGPT 和 Claude Code 之所以能記住對話，是因為它們在底層構建了記憶系統。記憶是 AI agent harness 最有價值的資產。
@@ -128,6 +130,7 @@ w_memory = 1 / (1 + 0.001 × (n_linked - 1)²)
 
 ## 相關頁面
 
+- [[wiki/concepts/coala-four-memory-types|CoALA 四種記憶類型]] — 功能分類框架（與本頁存儲機制分類互補）
 - [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder]] — 四階檢索策略效果排名（與本頁「按技術類型分類」互補）🛠️
 - [[wiki/concepts/context-rot|Context Rot]] — 長任務脈絡惡化 🛠️
 - [[wiki/concepts/consumer-ai-memory-personalization|Consumer AI Memory]] — 消費級產品個人化記憶（不同領域：使用者個人化 vs agent harness 記憶，字面都叫 memory 但場景不同）
