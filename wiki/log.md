@@ -1,4 +1,22 @@
 
+## [2026-08-27] ingest | Prompt Caching — 兩支 YouTube 影片 ingest（概念解說 + Agent 實作）
+
+- 動作：兩支 YouTube 影片（IBM Technology + Alejandro AO）→ youtube_transcript_api 抓英文字幕（手動字幕）→ raw transcript 建檔 → 雙模型交叉驗證（Pi 主持，Claude + Gemini Round 1 分歧：概念頁拆分 vs 合併；Round 2 Claude 改採 Gemini 合併方案，達成共識）→ 建立 wiki 頁面
+- 建立：
+  - `raw/youtube/ibm-technology-prompt-caching.md` — IBM Technology 影片 raw transcript（17 segments, 09:00）
+  - `raw/youtube/alejandro-ao-prompt-caching.md` — Alejandro AO 影片 raw transcript（51 segments, 17:14）
+  - `wiki/sources/2026-08-27-ibm-technology-prompt-caching.md` — IBM 影片 source note（陳述級溯源，含 Cheer 心得）
+  - `wiki/sources/2026-08-27-alejandro-ao-prompt-caching.md` — Alejandro AO 影片 source note（陳述級溯源，含 Cheer 心得）
+  - `wiki/concepts/prompt-caching.md` — Prompt Caching 完整概念頁（整合兩支影片，機制 + 實作 + Provider 差異）
+- 更新：
+  - `wiki/concepts/llm-serving-architecture.md` — Prefix Caching 章節精簡，加入連結指向新 prompt-caching 概念頁
+  - `wiki/topics/backend-systems.md` — Concepts 新增 prompt-caching、Sources 新增兩筆 source notes
+  - `wiki/topics/agent-infrastructure.md` — Concepts 新增 prompt-caching、Sources 新增兩筆 source notes
+  - `wiki/index.md` — 全量重建
+  - `raw/youtube/manifest.json` — 新增兩筆影片記錄
+- 交叉連結：兩份 source note 均以 wikilink 連結到既有 [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] 與 [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] 頁面，呼應 Cheer 提到的「之前看過 GPU/LLM 推論基礎」
+- refs: [[wiki/concepts/prompt-caching]]、[[wiki/sources/2026-08-27-ibm-technology-prompt-caching]]、[[wiki/sources/2026-08-27-alejandro-ao-prompt-caching]]
+
 ## [2026-08-25] work | 新增 W-2026-08-088 代碼知識圖譜工具深度研究 + 安全性審查
 
 - 動作：Cheer 要求對 codebase-memory-mcp / CodeGraph / Graphify / OCR 做更深入的運作背景研究（不只是表面 README 比較），加上安全性深度審查（原始碼抽查、supply chain、CVE、遙測行為分析），最終選出適合的安裝測試比較

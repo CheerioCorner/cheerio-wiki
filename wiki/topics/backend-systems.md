@@ -15,6 +15,7 @@ updated: 2026-08-10
 - [[wiki/concepts/redis|Redis]] — In-memory key-value 資料庫，μs 級延遲 🛠️
 - [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] — 為什麼 AI 需要 GPU 而不是 CPU 🛠️
 - [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] — 從 Token 到 KV Cache 的完整推理流程 🛠️
+- [[wiki/concepts/prompt-caching|Prompt Caching]] — LLM 輸入端 KV Cache 重用機制 🛠️
 - [[wiki/concepts/model-sharding|Model Sharding]] — 多 GPU 切分巨型模型的兩種策略 🛠️
 
 ## Entities
@@ -24,6 +25,8 @@ updated: 2026-08-10
 
 ## Sources — AI Infrastructure
 
+- [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology]] — Prompt Caching 概念解說
+- [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO]] — Agent 設計與成本實作 🛠️
 - [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]] — Mumshad Mannambeth 的 AI 基礎設施完整課程
 - [[wiki/sources/2026-08-24-npu-deep-research|NPU 在 AI 基礎設施架構中的角色 — 深度研究]] — Gemini Deep Research，54 筆過濾後來源 🛠️
 

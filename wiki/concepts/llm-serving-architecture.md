@@ -40,11 +40,11 @@ Prefill 完成後，計算結果存入 GPU 記憶體的 KV Cache `[25:53]`。後
 
 **問題：** 對話結束後 Cache 被清除，第二輪要從頭處理整個對話歷史 `[26:05]`。對話越長，等待越久 `[26:44]`。
 
-## Prefix Caching `[26:54]`
+## Prefix Caching / Prompt Caching `[26:54]`
 
 保留 Cache 並按文字內容標記。模型偵測到重複的開頭文字時，跳過已處理的部分 `[27:16]`。Anthropic 的 Prompt Caching 讓快取輸入 Token 成本僅 1/10 `[27:23]`。
 
-**實際應用：** 公司共用的系統提示（System Prompt）只處理一次，所有使用者共用同一份 Cache `[27:49]`。
+> 📖 **深入閱讀：** 完整的 Prompt Caching 機制（前綴匹配、可快取內容、Provider 差異、Agent 設計規則）請見 [[wiki/concepts/prompt-caching|Prompt Caching]]。
 
 ## Batching：多用戶共用 GPU `[28:27]`
 

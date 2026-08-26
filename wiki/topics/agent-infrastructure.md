@@ -33,6 +33,7 @@ updated: 2026-08-08
 - [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施 🛠️
 - [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] — 為什麼 AI 需要 GPU 而不是 CPU 🛠️
 - [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] — 從 Token 到 KV Cache 的完整推理流程 🛠️
+- [[wiki/concepts/prompt-caching|Prompt Caching]] — LLM 輸入端 KV Cache 重用機制 🛠️
 - [[wiki/concepts/model-sharding|Model Sharding]] — 多 GPU 切分巨型模型的兩種策略 🛠️
 
 ## Discussions
@@ -48,4 +49,6 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-04-code-review-graph|code-review-graph]] — Tree-sitter 知識圖譜做 Code Review，省 8.2 倍 Token 🛠️
 - [[wiki/sources/2026-08-04-rust-analyzer|rust-analyzer]] — Rust LSP 實作，高效能代碼分析 🛠️
 - [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]] — AI 基礎設施完整課程 🛠️
+- [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology]] — Prompt Caching 概念解說
+- [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO]] — Agent 設計與成本實作 🛠️
 - [[wiki/sources/2026-08-24-npu-deep-research|NPU 在 AI 基礎設施架構中的角色 — 深度研究]] — Gemini Deep Research，54 筆過濾後來源 🛠️
