@@ -1,4 +1,20 @@
 
+## [2026-09-04] ingest | 5 Terms You Need to Know About Agentic AI — IBM Technology
+
+- 動作：YouTube 影片 → youtube_transcript_api 抓英文字幕（手動字幕，136 segments, 10:55）→ 分段合併為 90 paragraphs → raw transcript 建檔 → 雙模型交叉驗證（Pi 主持，Claude + Gemini Round 1 一致）→ 建立 wiki 頁面 + 更新既有頁面
+- 建立：
+  - `raw/youtube/ibm-agentic-ai-five-terms.md` — raw transcript（136 segments → 90 paragraphs）
+  - `wiki/sources/2026-09-04-ibm-agentic-ai-five-terms.md` — source note（陳述級溯源 [MM:SS]）
+  - `wiki/entities/a2a-protocol.md` — A2A（Agent2Agent Protocol）entity 頁
+  - `wiki/concepts/sub-agents-pattern.md` — Sub-agents 子 agent 委派模式 concept 頁
+  - `wiki/concepts/agents-md-format.md` — AGENTS.md 專案配置規範 concept 頁
+- 更新：
+  - `wiki/topics/agent-infrastructure.md` — Entities 加入 A2A、Concepts 加入 AGENTS.md + Sub-agents、Sources 加入 source note
+  - `wiki/concepts/agentic-ai.md` — Minimal Philosophy 段落加入 sub-agents 對照視角、相關頁面加入 IBM 五大術語區塊
+  - `wiki/entities/mcp-model-context-protocol.md` — 相關頁面加入 A2A 對比、來源段落加入治理沿革⚠️待查證註記
+  - `wiki/index.md` — Sources/Entities/Concepts 各新增最新條目
+- 特殊標記：治理沿革（Agentic AI Foundation）為⚠️未查證（單一影片來源）；Minimal Philosophy vs Sub-agents 張力已標註
+
 ## [2026-08-27] ingest | Prompt Caching — 兩支 YouTube 影片 ingest（概念解說 + Agent 實作）
 
 - 動作：兩支 YouTube 影片（IBM Technology + Alejandro AO）→ youtube_transcript_api 抓英文字幕（手動字幕）→ raw transcript 建檔 → 雙模型交叉驗證（Pi 主持，Claude + Gemini Round 1 分歧：概念頁拆分 vs 合併；Round 2 Claude 改採 Gemini 合併方案，達成共識）→ 建立 wiki 頁面

@@ -16,6 +16,7 @@ updated: 2026-08-08
 - [[wiki/entities/mcp-authorization|MCP Authorization]] — OAuth 2.1 授權框架 🛠️
 - [[wiki/entities/mcp-registry|MCP Registry]] — 官方伺服器註冊表 🛠️
 - [[wiki/entities/mcp-extensions|MCP Extensions]] — 擴充機制與支援矩陣 🛠️
+- [[wiki/entities/a2a-protocol|A2A]] — Agent2Agent Protocol，Agent 間通訊標準 🆕
 - [[wiki/entities/lsp|LSP]] — Language Server Protocol，語言伺服器標準
 - [[wiki/entities/tree-sitter|Tree-sitter]] — 增量解析器，程式碼結構分析
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層，MCP + Guardrails + Agent 管理 🛠️
@@ -29,7 +30,9 @@ updated: 2026-08-08
 - [[wiki/concepts/mcp-clients|MCP Clients]] — 客戶端建置與 elicitation 🛠️
 - [[wiki/concepts/mcp-protocol-versioning|MCP Protocol Versioning]] — 版本控制與功能生命週期 🛠️
 - [[wiki/concepts/webmcp|WebMCP]] — 網頁原生 Agent-Ready 工具暴露機制 🆕
+- [[wiki/concepts/agents-md-format|AGENTS.md]] — Agent 專案配置規範 🆕
 - [[wiki/concepts/agent-skills|Agent Skills 根概念]] — Skill 系統定義、三層漸進式揭露、基礎/進階導航 🛠️
+- [[wiki/concepts/sub-agents-pattern|Sub-agents]] — 子 agent 委派模式 🆕
 - [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施 🛠️
 - [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] — 為什麼 AI 需要 GPU 而不是 CPU 🛠️
 - [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] — 從 Token 到 KV Cache 的完整推理流程 🛠️
@@ -52,3 +55,4 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology]] — Prompt Caching 概念解說
 - [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO]] — Agent 設計與成本實作 🛠️
 - [[wiki/sources/2026-08-24-npu-deep-research|NPU 在 AI 基礎設施架構中的角色 — 深度研究]] — Gemini Deep Research，54 筆過濾後來源 🛠️
+- [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — Agentic AI 五大核心術語 🆕

@@ -38,6 +38,7 @@
 
 ## Sources（最新 10 筆）
 
+- [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — 2026-09-04
 - [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO — Agent 設計與成本實作]] — 2026-08-27
 - [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology — 概念解說]] — 2026-08-27
 - [[wiki/sources/2026-08-26-anthropics-claude-code-frontend-design|anthropics/claude-code — frontend-design plugin]] — 2026-08-26
@@ -53,6 +54,7 @@
 
 ## Entities（最新 10 筆）
 
+- [[wiki/entities/a2a-protocol|A2A（Agent2Agent Protocol）]] — 2026-09-04
 - [[wiki/entities/anthropics-claude-code-frontend-design|anthropics/claude-code — frontend-design plugin]] — 2026-08-26
 - [[wiki/entities/conardli-web-design-engineer-skill|ConardLi/garden-skills — web-design-engineer]] — 2026-08-26
 - [[wiki/entities/dominikmartn-nothing-design-skill|dominikmartn/nothing-design-skill — Nothing 品牌風格皮膚]] — 2026-08-26
@@ -68,6 +70,8 @@
 
 ## Concepts（最新 10 筆）
 
+- [[wiki/concepts/agents-md-format|AGENTS.md — Agent 專案配置規範]] — 2026-09-04
+- [[wiki/concepts/sub-agents-pattern|Sub-agents — 子 agent 委派模式]] — 2026-09-04
 - [[wiki/concepts/prompt-caching|Prompt Caching — LLM 輸入端 KV Cache 重用機制]] — 2026-08-27
 - [[wiki/concepts/coala-four-memory-types|CoALA 四種記憶類型 — AI Agent 的功能分類框架]] — 2026-08-25
 - [[wiki/concepts/legacy-code-modernization|Legacy Code Modernization with AI — 用 AI 現代化遺留系統的方法論]] — 2026-08-25

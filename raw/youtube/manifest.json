@@ -171,6 +171,19 @@
       "language": "en",
       "auto_generated": false,
       "source_api": "youtube_transcript_api"
+    },
+    {
+      "slug": "ibm-agentic-ai-five-terms",
+      "title": "5 Terms You Need to Know About Agentic AI",
+      "video_id": "k5jYwyhDMxA",
+      "url": "https://www.youtube.com/watch?v=k5jYwyhDMxA",
+      "duration": "00:10:55",
+      "segments": 136,
+      "paragraphs": 90,
+      "language": "en",
+      "auto_generated": false,
+      "source_api": "youtube_transcript_api",
+      "created": "2026-09-04"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

@@ -75,6 +75,8 @@ Agent 不是「更大的模型」，而是「讓模型能做事的包裝層」�
 
 **核心洞察**：前沿模型已被 RL 訓練得足夠理解「編碼 Agent」是什麼，不需要 10,000 token 的系統提示詞。
 
+> ⚠️ **對照視角**：IBM 的产业觀察（[[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms for Agentic AI]]）將 sub-agents 描述為現代 agent 系統的主流 pattern，與此處「不需要 sub-agents」的立場形成張力。兩者適用情境不同：前者是大型系統的产业實踐，後者是個人化極簡工具的設計哲學。詳見 [[wiki/concepts/sub-agents-pattern|Sub-agents Pattern]]。
+
 ### 2. Agent Durability Patterns（狀態持久化）
 
 | 路徑 | 複雜度 | 恢復能力 | 適合場景 |
@@ -167,3 +169,9 @@ Agent 的能力上限取決於它能使用的工具：
 ### Topics
 - [[wiki/topics/ai-agent|AI Agent]] — AI Agent 核心概念與框架比較
 - [[wiki/topics/agent-infrastructure|Agent Infrastructure]] — 協定、語言工具、企業治理
+
+### IBM 五大術語
+- [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms for Agentic AI]] — IBM Technology 影片來源
+- [[wiki/concepts/agents-md-format|AGENTS.md]] — 專案級 agent 配置規範
+- [[wiki/entities/a2a-protocol|A2A]] — Agent 間通訊協定
+- [[wiki/concepts/sub-agents-pattern|Sub-agents]] — 子 agent 委派模式

@@ -146,9 +146,12 @@ WebMCP 是 MCP tool-exposure 概念在瀏覽器內的延伸應用。它讓網站
 - [[wiki/concepts/mcp-client-types|MCP Client Types]] — 客戶端類型與連線
 - [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs & Tooling]] — SDK 與開發工具
 - [[wiki/concepts/mcp-agent-skills-integration|MCP + Agent Skills]] — Agent Skills 整合
+- [[wiki/entities/a2a-protocol|A2A]] — Agent 間通訊協定（對比：MCP = agent↔工具，A2A = agent↔agent）
 - [[wiki/entities/lsp|LSP]] — Language Server Protocol
 - [[wiki/concepts/agent-skills|Agent Skills]] — Skill 系統根概念
 
 ## 來源
 
 所有 42 篇原始剪藏來自 modelcontextprotocol.io 官方文件（剪藏日期 2026-08-22），完整列表見 [[wiki/sources/mcp-official-docs-42|MCP 官方文件彙整（42 篇）]]。
+
+> ⚠️ **治理沿革待查證**：IBM Technology 影片（[[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms for Agentic AI]]）聲稱 MCP 現由 Agentic AI Foundation（Linux Foundation 底下）治理。此為單一影片來源說法，目前知識庫無其他佐證，待進一步確認。
