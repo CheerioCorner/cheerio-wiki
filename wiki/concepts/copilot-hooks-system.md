@@ -9,7 +9,7 @@ topics: [copilot-sdk, ai-development-tools]
 canonical: concepts/copilot-hooks-system
 provenance:
   - kind: raw
-    path: "raw/.trash/2026-08-14-working-with-hooks.md"
+    path: "raw/web/2026-08-14-session-lifecycle-hooks.md"
   - kind: raw
     path: "raw/.trash/2026-08-14-session-hooks.md"
   - kind: raw
@@ -101,7 +101,7 @@ onSessionStart: async (input) => {
 
 ## 來源
 
-- [[wiki/sources/2026-08-14-working-with-hooks|Working with Hooks]]
+- [[wiki/sources/2026-08-14-session-lifecycle-hooks|Working with Hooks]]
 - [[wiki/sources/2026-08-14-session-lifecycle-hooks|Session Lifecycle Hooks (含 Session Hooks 概覽)]]
 - [[wiki/sources/2026-08-14-pre-tool-use-hook|Pre-tool Use Hook]]
 - [[wiki/sources/2026-08-14-post-tool-use-hook|Post-tool Use Hook]]

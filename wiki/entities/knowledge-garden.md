@@ -2,7 +2,7 @@
 title: knowledge-garden — Cheerio 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-25
+updated: 2026-08-26
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -121,7 +121,8 @@ canonical: entities/knowledge-garden
 | Mem0 — AI Agent 長期記憶工具剖析 🆕 | [連結](https://app.notion.com/p/Mem0-AI-Agent-3c45979e3a8c815fbacad32e9ef0622b) | [[wiki/entities/mem0\|mem0]] | — |
 | Entity Boost — 從工具技巧到可遷移架構原則 🆕 | [連結](https://app.notion.com/p/Entity-Boost-3c45979e3a8c8173b44df8324c552a1b) | [[wiki/concepts/ai-agent-memory-systems\|ai-agent-memory-systems]] | — |
 | Recall Policy — 排序品質決定記憶系統的成敗 🆕 | [連結](https://app.notion.com/p/Recall-Policy-3c45979e3a8c81d9a3b3e9dc5ff54644) | [[wiki/concepts/recall-policy-ladder\|recall-policy-ladder]] | — |
-| OpenAI Codex CLI — 企業級 Hook 機制 🆕 | [連結](https://app.notion.com/p/3c75979e3a8c8139a5f6ee5100ad8da8) | [[wiki/entities/codex-cli\|codex-cli]] | 🗺️ [視覺地圖](https://app.notion.com/p/3c75979e3a8c81378bb9da4a79375189) |
+| OpenAI Codex CLI — 企業級 Hook 機制 🆕 | [連結](https://app.notion.com/p/3c75979e3a8c8139a5f6ee5100ad8da8) | [[wiki/entities/openai-codex\|codex-cli]] | 🗺️ [視覺地圖](https://app.notion.com/p/3c75979e3a8c81378bb9da4a79375189) |
+| codebase-memory-mcp — 本地程式碼知識圖譜 MCP Server 🆕 | [連結](https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c8113bf8bec74e8fe9f89) | — | 🗺️ [視覺地圖](https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c810095a5c782f7d80ba9) |
 > ⚠️ 以下 3 顆已 trash（2026-08-15），內容併入 Claude Code 種子頁：
 > - Skill 撰寫與評估方法論 → 併入 Claude Code（撰寫規格章節）
 > - Agent Skills 企業治理 → 併入 Claude Code（企業治理章節）
@@ -144,6 +145,7 @@ canonical: entities/knowledge-garden
 > ✅ 新增種子「Harness — LLM 的驅動層」（2026-08-14）
 > ✅ 新增研究專題「🔬 Agent Skills」+ 3 顆子概念種子（2026-08-14）
 ✅ 新增 4 顆 AI Agent 記憶架構種子（2026-08-22 圓桌會議）：記憶架構設計框架、Mem0 工具剖析、Entity Boost、Recall Policy
+✅ codebase-memory-mcp 視覺地圖寫入 Notion（2026-08-26）
 > ⚠️ 3 顆子種子已 trash，內容併入 Claude Code 和 GitHub Copilot 種子頁（2026-08-15） |
 
 ## 最近更新紀錄
@@ -154,6 +156,8 @@ canonical: entities/knowledge-garden
 | 2026-08-25 | W-033 種植計畫：多介面差異 + Fail-Safe 策略灌溉 | GitHub Copilot |
 | 2026-08-25 | W-033 種植計畫：新種子建立 | OpenAI Codex CLI |
 | 2026-08-25 | W-033 視覺地圖：五大 Harness Hook 生命週期比較 | Claude Code, GitHub Copilot, OpenAI Codex CLI |
+| 2026-08-26 | 新種子建立：codebase-memory-mcp（圓桌會議 Claude+Gemini+Codex 草擬 → Claude 核實） | codebase-memory-mcp |
+| 2026-08-26 | 視覺地圖寫入 Notion：使用情境+運作機制雙圖（圓桌 2 輪收斂 → mmdc 驗證 → Notion 寫入） | codebase-memory-mcp |
 
 ---
 

@@ -452,22 +452,26 @@
   - 已完成的前置調查：確認 Graphify 純本地 tree-sitter 解析（無 LLM 成本、無向量存儲）、不要求目標資料夾是 git repo、不呼叫任何遠端 Git 平台 API（GitHub/GitLab/Azure DevOps Server 皆可用，只在本機讀 `.gitignore`）；也已釐清跟 Alibaba Open Code Review 的差異（不重疊，可互補）
   - 無相依，可任何 session 切入
 
-- [ ] W-2026-08-087 評估安裝 codebase-memory-mcp（高性能代碼知識圖譜 MCP Server）🆕 #tools #code-analysis #knowledge-graph #mcp
-  - next: 安裝 codebase-memory-mcp、對 CheerioCorner 專案跑一次索引、評估 15 個 MCP tools 效用
-  - refs: [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]]、[[wiki/entities/graphify|Graphify]]、[[wiki/entities/open-code-review|OpenCodeReview]]
+- [ ] W-2026-08-087 評估安裝 codebase-memory-mcp（高性能代碼知識圖譜 MCP Server）🔄 #tools #code-analysis #knowledge-graph #mcp
+  - next: **種子期文件理解已於 2026-08-26 完整完成並逐項查證**（見下方 refs 的 Notion 種子頁），下一步是實際安裝測試：安裝 codebase-memory-mcp、對 CheerioCorner 專案跑一次索引、逐一操作 15 個 MCP tools 驗證種子頁記載的情境對應是否準確，驗證通過後種子從 🌱 升級為 🌿
+  - refs: [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]]、[[wiki/entities/graphify|Graphify]]、[[wiki/entities/open-code-review|OpenCodeReview]]、https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c8113bf8bec74e8fe9f89（🌱 花園種子頁，含企業導入 checklist）、https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c810095a5c782f7d80ba9（視覺地圖：使用情境→功能→順序 + 運作機制）
   - 預估時間：1 小時
   - 優先序：OCR（W-030）之後、Graphify（W-085）之前。Graphify 建議跳過（功能子集，跟 codebase-memory-mcp 高度重疊）
   - 起因：2026-08-25 Cheer 用 Web Clipper 存了 DeusData/codebase-memory-mcp GitHub README（`raw/web/2026-08-25-DeusDatacodebase-memory-mcp`），Cheerio 三工具比較討論後判斷：OCR 擋在 ADO Agent 前面先做、codebase-memory-mcp 排第二（開發時降本增效）、Graphify 跳過
-  - 已完成的前置調查：確認 158 語言 tree-sitter + Hybrid LSP 語意解析、SQLite 持久化、15 個 MCP tools、零 API key、zero LLM、內建 3D 視覺化 UI、43 個 client surface、MIT license、arXiv 學術論文驗證
+  - **已完成的前置調查（2026-08-26 大幅擴充，逐項親自查證，非採信單方回報）**：158+ 語言 tree-sitter + Hybrid LSP 語意解析（11 個語言家族）、SQLite+FTS5 持久化、**15 個 MCP tools 精確清單**（官方表格 14 個 + 向量搜尋段落額外定義的 `semantic_query`）、零 API key、zero LLM、內建 3D 視覺化 UI（localhost:9749）、43 個 client surfaces（README Multi-Agent Support 完整表格逐一列出啟用方式與設定檔路徑）、npm/PyPI/AUR 三個套件通路皆直接查 registry API 確認真實存在、6 個環境變數（`CBM_ALLOWED_ROOT`/`CBM_CACHE_DIR`/`CBM_DIAGNOSTICS`/`CBM_LOG_LEVEL`/`CBM_WORKERS`/`CBM_MEM_BUDGET_MB`）、MIT license、arXiv 論文驗證（**發現版本落差**：論文評估基準是早期 66 語言版本，現行版本已擴充至 158+，效能數字不可直接套用現行版本）、供應鏈安全（SLSA Build L3 + Sigstore 簽章 + SBOM + VirusTotal 掃描證據）、網路行為（唯一外連是 non-blocking 5 秒逾時的版本檢查，不上傳任何專案資料）
   - 無相依，可任何 session 切入
 
-- [ ] W-2026-08-088 代碼知識圖譜工具深度研究：codebase-memory-mcp / CodeGraph / Graphify / OCR 運作背景 + 安全性審查 🆕 #tools #code-analysis #knowledge-graph #security #deep-research
-  - next: 先做 §1 背景研究（逐工具讀原始碼、論文、SECURITY.md），產出比較文件；再做 §2 安全性深度審查（原始碼抽查、supply chain、CVE、遙測/網路行為分析）；最後 §3 選型建議（安裝哪個、跳過哪個、理由）
-  - refs: [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]]、[[wiki/entities/codegraph|CodeGraph]]、[[wiki/entities/graphify|Graphify]]、[[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-25-codebase-memory-mcp-vs-codegraph|YouTube 比較影片]]、[[work/current#W-2026-08-030|W-030]]、[[work/current#W-2026-08-085|W-085]]、[[work/current#W-2026-08-087|W-087]]
+- [ ] W-2026-08-088 代碼知識圖譜工具深度研究：codebase-memory-mcp / CodeGraph / Graphify / OCR 運作背景 + 安全性審查 🔄 #tools #code-analysis #knowledge-graph #security #deep-research
+  - next: **codebase-memory-mcp 這一項的 §1 已大幅完成、§2 部分完成**（見下方 2026-08-26 進度），CodeGraph／Graphify／OCR 三項的 §1+§2 仍未開始；剩餘的 codebase-memory-mcp 缺口是原始碼層級 memory safety 抽查與已知 CVE 查詢，做完這兩項 + 其他三工具的背景研究後才能進 §3 選型建議
+  - refs: [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]]、[[wiki/entities/codegraph|CodeGraph]]、[[wiki/entities/graphify|Graphify]]、[[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-25-codebase-memory-mcp-vs-codegraph|YouTube 比較影片]]、[[work/current#W-2026-08-030|W-030]]、[[work/current#W-2026-08-085|W-085]]、[[work/current#W-2026-08-087|W-087]]、https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c8113bf8bec74e8fe9f89（🌱 花園種子頁，涵蓋 §1 大部分+§2 供應鏈/網路行為部分）
   - 預估時間：多 session（背景研究各 1-2 小時 + 安全性審查 2-3 小時 + 選型討論 30 分鐘）
+  - **2026-08-26 進度（codebase-memory-mcp 這一項）**：
+    - §1 運作背景研究：**大部分完成**——tree-sitter 158+ 語言 + Hybrid LSP 11 語言家族解析機制、SQLite+FTS5 儲存、圖譜資料模型（節點/邊完整清單）、15 個 MCP tools 精確定義、vendored 依賴清單（mimalloc/xxHash/yyjson/TRE/LZ4/Zstandard 各自授權）皆已從原始碼倉庫（README、THIRD_PARTY.md、server.json）逐項核實，寫入花園種子頁「客觀事實」章節。**未做**：file watcher 用的 library 細節、壓縮演算法實作細節
+    - §2 安全性深度審查：**部分完成**——supply chain 風險已核實（SLSA Build L3 provenance + Sigstore 簽章 + SBOM + VirusTotal 掃描證據，release assets 逐一確認存在）、網路行為已核實（唯一外連是 non-blocking 5 秒逾時版本檢查，不上傳任何專案資料，SECURITY.md 逐句核對屬實）。**未做**：C 原始碼層級 memory safety 抽查（是否有 buffer overflow/use-after-free 風險）、已知 CVE 查詢、CodeGraph 的遙測內容分析（CodeGraph 這項還沒開始）
+    - 過程中也驗證了 QA 方法論本身：Gemini 兩次因為自己的網頁抓取工具失敗（快取截斷/過期）產出整批錯誤的「不存在」斷言，皆由 Claude 重新直接查證原始檔案推翻，詳見 work/history/2026-08.md 2026-08-26 條目與 [[gemini-qa-can-hallucinate-on-tool-failure]]
   - 子項目：
-    - [ ] §1 運作背景研究：逐工具理解底層機制（tree-sitter 哪些 grammar、Hybrid LSP 怎麼實作、file watcher 用什麼 library、壓縮算法細節），不是表面 README 比較
-    - [ ] §2 安全性深度審查：原始碼層級抽查（codebase-memory-mcp 是 C/C++ 有 memory safety 風險？CodeGraph 的遙測內容是什麼？）、supply chain 風險（npm vs native binary vs 自建）、已知 CVE 回報、網路行為分析（零遙測 vs 預設遙測的具體差異）
+    - [ ] §1 運作背景研究：CodeGraph／Graphify／OCR 三項尚未開始；codebase-memory-mcp 缺 file watcher／壓縮演算法細節
+    - [ ] §2 安全性深度審查：codebase-memory-mcp 缺原始碼 memory safety 抽查 + CVE 查詢；CodeGraph 遙測分析未開始
     - [ ] §3 選型建議：綜合 §1+§2 結論，決定安裝哪個、跳過哪個、實際跑一輪比較測試
   - blockedBy: [W-2026-08-030, W-2026-08-087]
   - 起因：2026-08-25 三工具比較討論後，Cheer 判斷表面 README 比較不夠，需要更深入理解底層機制與安全性，才能做有把握的安裝決策。跟 W-030（OCR 評估）、W-085（Graphify 評估）、W-087（codebase-memory-mcp 評估）都有重疊但不完全相同——本項目是統籌性深度研究，那三個是安裝測試實作

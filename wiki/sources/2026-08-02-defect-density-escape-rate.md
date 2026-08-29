@@ -9,9 +9,10 @@ provenance:
     path: raw/web/2026-08-02-defect-density-escape-rate-agile-metrics-guide-2026.md
 tags: [software-quality, metrics, agile, devops, defect-tracking, testing]
 collection: sources
-topics: []
+topics: [software-quality, metrics]
 canonical: sources/2026-08-02-defect-density-escape-rate
-provenance_raw: "raw/web/[[../../raw/web/2026-08-02-defect-density-escape-rate-agile-metrics-guide-2026|2026-08-02-defect-density-escape-rate-agile-metrics-guide-2026]].md"---
+provenance_raw: "raw/web/2026-08-02-defect-density-escape-rate-agile-metrics-guide-2026.md"
+---
 
 # Defect Density & Escape Rate — Agile 品質指標指南
 

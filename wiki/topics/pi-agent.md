@@ -8,22 +8,21 @@ updated: 2026-08-08
 
 # Pi Agent
 
-> Pi Agent 專門：架構、Extension、排程、Dashboard 的導航頁。
+> 與 Pi Agent 相關的技術實體、抽象概念與研究來源。
 
 ## Entities
 
-- [[wiki/entities/pi-agent/changelog/v0.84.0|Pi v0.84.0 更新]] — TUI/Mermaid/samplingParams/thinking_token_budget
-- [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard]] — BlackBeltTechnology 即時 Web Dashboard 🛠️
-- [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler]] — Pi 的 Cron Job 與排程系統（@pi-agents/loop） 🛠️
-- [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw]] — Pi Web 中文化 Access 🛠️
+- [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard — Real-time Web Dashboard for Pi Sessions]] — BlackBeltTechnology 開發的 Pi coding-agent 即時 Web Dashboard。一個瀏覽器 tab 管理多個 pi session——**與 TUI 並存，不取代它**。 🛠️
+- [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler — Pi 的 Cron Job 與排程系統]] — `@pi-agents/loop` — Pi 的排程 extension，提供 cron job、動態自節奏、idle gating 等功能。非 core runtime 內建，而是透過 extension 機制載入。 🛠️
+- [[wiki/entities/pi-web-access-zh-tw|pi-web-access-zh-tw — Web 存取擴充的繁體中文本地化版]] — **你維護的 `pi-web-access` 繁體中文本地化套件**，已安裝到 Pi 全域（`pi install file:../../../Cheerio/pi-web-access-zh-tw`）。 🛠️
+- [[wiki/entities/pi-agent/changelog/v0.84.0|Pi Agent v0.84.0 更新分析]] — 版本日期：2026-08-06 | 分析日期：2026-08-20 | 重要性：⭐⭐⭐⭐（4/5） 🛠️
 
 ## Concepts
 
-- [[wiki/concepts/pi-project-workspace-model|Pi Project Workspace Model]] — Pi 的專案工作區模型
+- [[wiki/concepts/pi-project-workspace-model|pi-project-workspace-model — Pi 專案/工作區模型]] — Pi 的「專案」概念**不強制綁定單一實體路徑**。專案 = **設定作用域**（`.pi/` 目錄存在的位置），而非工作目錄本身。這使得「一個實體路徑對應多個專案人格」成為可能。 🛠️
 
 ## Sources
 
-- [[wiki/sources/2026-08-06-pi-architecture-walkthrough|Pi Architecture Walkthrough]] — 完整架構解析（YouTube）
-- [[wiki/sources/2026-08-10-pi-cron-job-explained|Pi Cron Job 實作原理]] — @pi-agents/loop 排程系統
-- [[wiki/sources/2026-08-10-antigravity-cli-integration|Antigravity CLI 整合]] — Gemini CLI 整合方案
-- [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Pi GitHub Copilot Provider Setup]] — Copilot 整合設定
+- [[wiki/sources/2026-08-15-round-table-pi-agent-v084-learning|圓桌會議：Pi Agent v0.84.x 更新中值得學習的設計模式]] — 日期：2026-08-15 | 參與者：Claude（深度分析）、Copilot（實作面）| 主持人：Pi 🛠️
+
+## 相關 Topics

@@ -8,17 +8,14 @@ updated: 2026-08-19
 
 # Migration
 
-> 知識庫架構遷移、格式轉換與資料搬移相關工作。
+> 與 Migration 相關的技術實體、抽象概念與研究來源。
 
 ## Sources
 
-- [[wiki/sources/2026-08-02-wiki-okf-migration-complete|Wiki × OKF 架構優化]] — 完整 migration 工作紀錄
+- [[wiki/sources/2026-08-02-wiki-okf-migration-complete|2026-08-02 Wiki × OKF 架構優化完整工作紀錄]] — 本頁是本輪 Wiki × OKF 架構優化的完整 canonical work record。它記錄決策、實作、驗證、Git commits、保留邊界與未來工作；不是 package source code、PLAN 或 raw conversation 的替代品。 🛠️
 
-## Discussions
+## Others
 
-- [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]] — compatibility stubs 移除決策
+- [[wiki/discussions/topic-stub-cleanup|Existing Topic Stub Cleanup]] 🛠️
 
-## Related
-
-- [[wiki/topics/knowledge-mgmt|Knowledge Management]]
-- [[wiki/topics/okf|OKF]]
+## 相關 Topics

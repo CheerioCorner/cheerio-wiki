@@ -6,21 +6,17 @@ created: 2026-08-23
 updated: 2026-08-23
 ---
 
-# Agent Research & Benchmarks
+# Agent Research Benchmarks
 
-> 前沿研究論文、benchmark 評測與深度分析。
+> 與 Agent Research Benchmarks 相關的技術實體、抽象概念與研究來源。
 
 ## Concepts
 
-- [[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]] — 互動式推理 benchmark，RHAE 計分，同模型換 harness 差距達 3 倍以上 🛠️
+- [[wiki/concepts/arc-agi-3-benchmark|ARC-AGI-3 Benchmark]] — ARC-AGI-3——ARC Prize Foundation 於 2026 年推出的互動式推理 benchmark，測試 agent 在完全未知規則的模擬世界中探索、建立假設、修正錯誤與長期規劃的能力，用 **RHAE**（Relative Human Action Efficiency）評分。[[wiki/entities/prime-agent|Prime Agent]] 用它作為主要評測案例，也是「harness 差異可以讓同一個模型表現差 3 倍以上」的核心例證。 🛠️
 
 ## Sources
 
-- [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research|Wow 頻道 5 支 AI Agent 前沿研究影片]] — 知識圖譜 + 自我進化 + Context-CoT + SkillOpt + MemGraph-RAG
-- [[wiki/sources/2026-08-20-opencode-review-deep-research|OpenCodeReview 深度研究（Gemini Research）]] — 阿里巴巴開源 AI 代碼審查 CLI 深度分析
-- [[wiki/sources/2026-08-13-prime-agent-official-blog|Prime Agent 官方部落格全文]] — RLM / Continual Harness 完整定義、ARC-AGI-3 評測
-- [[wiki/sources/2026-08-13-prime-agent-youtube|Prime Agent YouTube 介紹]] — 用 Python Runtime 取代 Tool Calling
-- [[wiki/sources/2026-08-13-prime-agent-arc-agi-3-aiposthub|Prime Agent ARC-AGI-3 分析（AI郵報）]] — 拆解三種成績口徑、reward hacking 風險
+- [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research|Wow 頻道 5 支 AI Agent 前沿研究影片]] — 來源：[Wow YouTube 頻道](https://www.youtube.com/@wow.insight) 5 支前沿 AI Agent 研究影片 🛠️
 
 ## 相關 Topics
 

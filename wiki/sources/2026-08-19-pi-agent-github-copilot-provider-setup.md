@@ -13,7 +13,7 @@ sources:
     title: Pi Agent Official Providers Documentation
     accessed: 2026-08-19
   - url: https://github.com/earendil-works/pi/issues/4599
-    title: GitHub Copilot provider: support dynamic model discovery
+    title: "GitHub Copilot provider: support dynamic model discovery"
     accessed: 2026-08-19
   - url: https://marketplace.visualstudio.com/items?itemName=brijbyte.piagent-vscode
     title: PiAgent VSCode Extension

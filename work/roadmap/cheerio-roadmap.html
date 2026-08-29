@@ -396,7 +396,7 @@
 <div class="wrap">
 
   <header class="page">
-    <span class="eyebrow">2026-08-22 · 兩場圓桌會議共識（架構願景 + ADO 領域專家 Agent）</span>
+    <span class="eyebrow">2026-08-26 更新 · codebase-memory-mcp 花園種子＋視覺地圖完成（W-087/088）</span>
     <h1>Cheerio 路線圖</h1>
     <p class="subtitle">目前手上六條工作軌道，哪些今天可以平行起跑、哪些互相依賴、哪些只是在等一句話。垂直虛線標的是「今天」。</p>
   </header>
@@ -1042,10 +1042,11 @@
           { d: "M340,1060 L440,1060" },
           { d: "M520,1060 L620,1060" },
           { d: "M700,1060 L800,1060" },
-          { d: "M880,1060 L980,1060", dashed: true, markerEnd: true }
+          { d: "M880,1060 L980,1060", dashed: true, markerEnd: true },
+          { d: "M1060,1060 L1160,1060" }
         ],
         notes: [
-          { x: 1060, y: 1048, anchor: "start", opacity: 0.85, text: "→ 待 W-074 規格出爐後裁切範圍" }
+          { x: 1240, y: 1048, anchor: "start", opacity: 0.85, text: "→ 待 W-074 規格出爐後裁切範圍" }
         ],
         stations: [
           {
@@ -1114,6 +1115,22 @@
               bullets: [
                 "W-028 設定 Pi Agent 用 GitHub Copilot 訂閱",
                 "W-008 grill-me 改配合 W-080 ADO Agent 開發時直接測試用"
+              ]
+            }
+          },
+          {
+            id: "harness-codegraph", x: 1200, y: 1060, hitR: 24, shape: "wait", r: 11,
+            labels: [
+              { cls: "lbl-id", x: 1200, y: 1036, text: "W-087/088", fill: "var(--ink)" },
+              { cls: "lbl-sub", x: 1200, y: 1090, text: "codebase-memory-mcp" }
+            ],
+            aria: "codebase-memory-mcp 花園種子與深度研究，查看詳情",
+            popover: {
+              title: "🕸️ codebase-memory-mcp 評估與深度研究", status: "種子期完成・待安裝實測", pill: "wait", card: "card-harness-codegraph",
+              bullets: [
+                "W-087 花園種子（🌱）＋視覺地圖已完成，2026-08-26 逐項親自查證：15 個 MCP tools、43 個 client surfaces、npm/PyPI/AUR 套件真實性、SLSA+Sigstore+SBOM 供應鏈證據",
+                "W-088 §1 運作背景大部分完成、§2 供應鏈與網路行為已核實，缺原始碼 memory safety 抽查與 CVE 查詢；CodeGraph/Graphify 兩項還沒開始",
+                "下一步：實際安裝索引 CheerioCorner 專案，逐一操作 15 個工具驗證種子頁記載的情境對應"
               ]
             }
           }
@@ -1392,6 +1409,17 @@
               "W-028 設定 Pi Agent 使用 GitHub Copilot 訂閱作為 Provider",
               "W-008 用 grill-me 改配合 W-080 ADO Agent 開發時直接測試用"
             ]
+          },
+          {
+            id: "card-harness-codegraph", idText: "W-2026-08-087 / 088", pill: "wait", pillText: "種子期完成・待安裝實測",
+            name: "🕸️ codebase-memory-mcp 評估與深度研究",
+            bullets: [
+              "W-087：Pi 主持圓桌會議（Claude+Gemini+Codex，Copilot 額度用盡跳過）產出花園種子候選稿 → Claude 逐項親自查證 → Gemini QA → Claude 核實後定稿 → 正式寫入 Notion 並讀回核對，同時完成兩張 Mermaid 視覺地圖（使用情境→功能→順序／運作機制架構）",
+              "種子內容涵蓋：15 個 MCP tools 精確清單（含官方表格未列的 `semantic_query`）、npm/PyPI/AUR 真實性核實、43 個 client surfaces、SLSA+Sigstore+SBOM 供應鏈證據、企業導入 checklist（`CBM_ALLOWED_ROOT` 等）",
+              "W-088：codebase-memory-mcp 這一項的 §1 運作背景大部分完成、§2 供應鏈與網路行為已核實；CodeGraph／Graphify／OCR 三項還沒開始，§3 選型建議待全部完成",
+              "過程踩坑：Pi 一度謊報圓桌會議（無對應 log 資料夾），退回重做後才是真的；Gemini QA 兩次因抓取工具失敗（README 快取截斷）產出整批錯誤的否定結論，皆由 Claude 重新查證原始檔案推翻——已寫入記憶，往後 Copilot 額度用盡期間圓桌一律找 Codex 補位"
+            ],
+            foot: "下一步：實際安裝並對 CheerioCorner 跑一次索引，驗證種子頁記載是否屬實，通過後種子從 🌱 升級為 🌿"
           }
         ]
       }

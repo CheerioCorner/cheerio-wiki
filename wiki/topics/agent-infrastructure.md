@@ -8,51 +8,51 @@ updated: 2026-08-08
 
 # Agent Infrastructure
 
-> AI Agent 技術基礎設施：協定、語言工具、企業治理的導航頁。
+> 與 Agent Infrastructure 相關的技術實體、抽象概念與研究來源。
 
 ## Entities
 
-- [[wiki/entities/mcp-model-context-protocol|MCP]] — Model Context Protocol，AI Agent 工具整合標準 🛠️
-- [[wiki/entities/mcp-authorization|MCP Authorization]] — OAuth 2.1 授權框架 🛠️
-- [[wiki/entities/mcp-registry|MCP Registry]] — 官方伺服器註冊表 🛠️
-- [[wiki/entities/mcp-extensions|MCP Extensions]] — 擴充機制與支援矩陣 🛠️
-- [[wiki/entities/a2a-protocol|A2A]] — Agent2Agent Protocol，Agent 間通訊標準 🆕
-- [[wiki/entities/lsp|LSP]] — Language Server Protocol，語言伺服器標準
-- [[wiki/entities/tree-sitter|Tree-sitter]] — 增量解析器，程式碼結構分析
-- [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway]] — 企業 AI 治理層，MCP + Guardrails + Agent 管理 🛠️
-- [[wiki/entities/agentskills-io-standard|agentskills-io-standard]] — AI Agent Skill 開放標準，跨平台相容 🛠️
-- [[wiki/entities/vllm|vLLM]] — 高吞吐量 LLM 推理引擎 🛠️
-- [[wiki/entities/llm-d|LLM-D]] — Kubernetes 上的 AI 推理智慧路由器 🛠️
+- [[wiki/entities/a2a-protocol|A2A（Agent2Agent Protocol）]] — Agent 間通訊的開放協定，讓不同 agent 能互相發現、溝通與協作。
+- [[wiki/entities/agentskills-io-standard|agentskills.io — AI Agent Skill 開放標準]] — 一個包含**指令、腳本、資源**的可移植工作流模塊。 🛠️
+- [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway — 企業 AI 治理層]] — 企業級 AI 閘道，在前端應用程式、AI Agents 與企業後端 IT 生態系之間搭建安全、受控且靈活的橋樑。
+- [[wiki/entities/llm-d|LLM-D — Kubernetes 上的 AI 推理智慧路由器]] 🛠️
+- [[wiki/entities/lsp|LSP (Language Server Protocol)]] — 微軟提出的語言伺服器協定，將程式語言語意分析從編輯器中解耦，實現 $M \times N \rightarrow M + N$ 的架構革新。 🛠️
+- [[wiki/entities/mcp-authorization|MCP Authorization — OAuth 2.1 授權框架]] — MCP 使用標準化的 OAuth 2.1 授權流程保護伺服器上的敏感資源與操作，支援一般 OAuth、Client Credentials 與企業託管授權三種模式。 🛠️
+- [[wiki/entities/mcp-model-context-protocol|MCP (Model Context Protocol)]] — Anthropic 發起的開源標準，讓 AI 應用程式透過統一協定連接外部系統——就像 AI 世界的 USB-C 介面。 🛠️
+- [[wiki/entities/mcp-registry|MCP Registry — 官方伺服器註冊表]] — MCP Registry 是官方的 MCP Server 註冊表，支援多種套件格式（npm、PyPI、Docker 等），提供伺服器發現、審查政策與自動化發佈流程。 🛠️
+- [[wiki/entities/tree-sitter|Tree-sitter]] — 高效能 Parser Generator，支援毫秒級增量解析，是現代 Code Intelligence 的核心基礎設施。 🛠️
+- [[wiki/entities/vllm|vLLM — 高吞吐量 LLM 推理引擎]] 🛠️
 
 ## Concepts
 
-- [[wiki/concepts/mcp-servers|MCP Servers]] — 伺服器端建置與除錯 🛠️
-- [[wiki/concepts/mcp-clients|MCP Clients]] — 客戶端建置與 elicitation 🛠️
-- [[wiki/concepts/mcp-protocol-versioning|MCP Protocol Versioning]] — 版本控制與功能生命週期 🛠️
-- [[wiki/concepts/webmcp|WebMCP]] — 網頁原生 Agent-Ready 工具暴露機制 🆕
-- [[wiki/concepts/agents-md-format|AGENTS.md]] — Agent 專案配置規範 🆕
-- [[wiki/concepts/agent-skills|Agent Skills 根概念]] — Skill 系統定義、三層漸進式揭露、基礎/進階導航 🛠️
-- [[wiki/concepts/sub-agents-pattern|Sub-agents]] — 子 agent 委派模式 🆕
-- [[wiki/concepts/code-graph|Code Graph]] — AI Code Assistant 的核心基礎設施 🛠️
-- [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] — 為什麼 AI 需要 GPU 而不是 CPU 🛠️
-- [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] — 從 Token 到 KV Cache 的完整推理流程 🛠️
-- [[wiki/concepts/prompt-caching|Prompt Caching]] — LLM 輸入端 KV Cache 重用機制 🛠️
-- [[wiki/concepts/model-sharding|Model Sharding]] — 多 GPU 切分巨型模型的兩種策略 🛠️
-
-## Discussions
-
-- [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 在 AI 基礎設施架構中的角色]] — 深度研究已完成（2026-08-24），涵蓋硬體架構、異質運算、LLM 推理資源失衡
+- [[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級 — 從 Skill、Hook 到 Extension 的能力邊界]] — 當 Skill 不足以控制流程，下一層是什麼？系統化比較 Skill / Hook / Extension 的能力光譜與適用場景。**屬於 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 的擴充層。** 🛠️
+- [[wiki/concepts/agent-skills|Agent Skills — Skill 系統根概念]] — Skill 是**可重複使用、基於檔案系統的模組化能力單元**，為 AI Agent 提供特定領域的專業知識，將通用代理轉變為專家。 🛠️
+- [[wiki/concepts/agents-md-format|AGENTS.md — Agent 專案配置規範]] — 放在專案根目錄的 markdown 文字檔，每次 agent 開始工作時自動讀取，用來定義專案的行為規則。類似 README，但寫給 agent 看。 🛠️
+- [[wiki/concepts/code-graph|Code Graph]] — 跨檔案、跨模組的代碼語意圖譜，結合 AST、控制流圖、資料流圖與全域符號表，是現代 Code Intelligence 與 AI RAG 的核心基礎。 🛠️
+- [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference — 為什麼 AI 需要 GPU 而不是 CPU]] 🛠️
+- [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture — 從 Token 到 KV Cache 的完整推理流程]] — 💡 這就是為什麼短問題回應快、長 Prompt 要等很久才蹦出第一個字——長 Prompt 的 Prefill 階段需要更多時間。 🛠️
+- [[wiki/concepts/mcp-clients|MCP Clients — 建置與操作]] — MCP Client 是維持與 MCP Server 連線的元件，負責為 MCP Host 取得上下文。每個 Client 維持與對應 Server 的專用連線。 🛠️
+- [[wiki/concepts/mcp-protocol-versioning|MCP Protocol Versioning — 版本控制與演進]] — MCP 使用 `YYYY-MM-DD` 格式的字串版本識別碼，表示最後一次向後不相容變更的日期，並透過功能生命週期管理 deprecation。 🛠️
+- [[wiki/concepts/mcp-servers|MCP Servers — 建置與操作]] — MCP Server 是向 MCP Client 提供上下文的程式，透過暴露 tools、resources、prompts 三種原語讓 AI 應用程式存取外部系統。 🛠️
+- [[wiki/concepts/model-sharding|Model Sharding — 多 GPU 切分巨型模型的兩種策略]] — Chatty talk 放盒子裡（同機器 NVLink），Light talk 放盒子間（跨機器網路）`[34:07]` 🛠️
+- [[wiki/concepts/prompt-caching|Prompt Caching — LLM 輸入端 KV Cache 重用機制]] 🛠️
+- [[wiki/concepts/sub-agents-pattern|Sub-agents — 子 agent 委派模式]] — 主 agent 將複雜任務拆解，分派給多個子 agent 在獨立 context window 中執行，完成後回傳結果。 🛠️
+- [[wiki/concepts/webmcp|WebMCP — 網頁原生的 Agent-Ready 工具暴露機制]] — WebMCP 讓網站在頁面內直接宣告 agent-ready 工具，透過 browser API 暴露給 AI agent，不需額外的 MCP server。工具生命週期與頁面生命週期綁定，不同頁面暴露不同工具。 🛠️
 
 ## Sources
 
-- [[wiki/sources/mcp-official-docs-42|MCP 官方文件彙整（42 篇）]] — MCP 協定完整規範 🛠️
-- [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs & Tooling]] — 官方 SDK 與開發工具 🛠️
-- [[wiki/sources/2026-08-04-lsp-code-graph-research|LSP 與 Code Graph 技術深度研究]] — AI Code Assistant 核心基礎 🛠️
-- [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF + LSP + CodeGraph AI Agent 研究]] — 三者整合分析
-- [[wiki/sources/2026-08-04-code-review-graph|code-review-graph]] — Tree-sitter 知識圖譜做 Code Review，省 8.2 倍 Token 🛠️
-- [[wiki/sources/2026-08-04-rust-analyzer|rust-analyzer]] — Rust LSP 實作，高效能代碼分析 🛠️
-- [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]] — AI 基礎設施完整課程 🛠️
-- [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology]] — Prompt Caching 概念解說
-- [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO]] — Agent 設計與成本實作 🛠️
-- [[wiki/sources/2026-08-24-npu-deep-research|NPU 在 AI 基礎設施架構中的角色 — 深度研究]] — Gemini Deep Research，54 筆過濾後來源 🛠️
-- [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — Agentic AI 五大核心術語 🆕
+- [[wiki/sources/2026-08-04-code-review-graph|code-review-graph：用知識圖譜幫 AI Code Review 省下 8 倍 Token]] — 來源：[別再讓 AI 讀整個專案了！code-review-graph 用知識圖譜幫你省下 8 倍 Token](https://repoinside.com/tirth8205/code-review-graph) 🛠️
+- [[wiki/sources/2026-08-04-rust-analyzer|rust-analyzer — Rust 語言的 LSP 實作]] — 來源：[rust-analyzer Introduction](https://rust-analyzer.github.io/book/)
+- [[wiki/sources/2026-08-07-ai-related-seeds|Notion AI 相關種子 — agentskills.io + Axway AI Gateway]] — 來源：Notion「任何當下 → AI相關」頁面 🛠️
+- [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]] — Duration: 00:51:00 | Segments: 219 | Language: en | Source: API (auto-generated) 🛠️
+- [[wiki/sources/2026-08-24-npu-deep-research|NPU 在 AI 基礎設施架構中的角色 — 深度研究]] — Gemini Deep Research 執行的深度研究報告（job rc-20260824-001），涵蓋 54 筆過濾後來源，主題：NPU 在 AI 基礎設施架構中扮演什麼角色、為什麼 AI 時代需要 NPU。 🛠️
+- [[wiki/sources/2026-08-24-webmcp-youtube|Make your website agent ready with WebMCP]] — 來源：[YouTube — Make your website agent ready with WebMCP](https://www.youtube.com/watch?v=FARxSG_EY98) 🛠️
+- [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO — Agent 設計與成本實作]] — 之前已經看過 GPU 作為 LLM Server 如何進行 AI 運算的基礎原理，看完這兩支影片後，更能理解 Prompt Caching 和傳統應用系統的 Caching 不同之處，也更明白這在節省 Token 上背後的原理是什麼。 🛠️
+- [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology — 概念解說]] — 之前已經看過 GPU 作為 LLM Server 如何進行 AI 運算的基礎原理，看完這兩支影片後，更能理解 Prompt Caching 和傳統應用系統的 Caching 不同之處，也更明白這在節省 Token 上背後的原理是什麼。 🛠️
+- [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — IBM Technology 出品，主講 Martin Keen。10 分鐘內拆解 front-end AI agent 底下的五個核心組件。 🛠️
+
+## Others
+
+- [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 在 AI 基礎設施架構中的角色]] — 影片中並沒有提到 NPU。那 NPU 在整個 AI 基礎設施架構中扮演什麼角色？它是什麼樣的運作，跟為什麼說它更適合 AI 時代？為什麼現在除了 CPU、GPU 之外，還需要 NPU？ 🛠️
+
+## 相關 Topics

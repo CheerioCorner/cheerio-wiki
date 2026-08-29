@@ -1,14 +1,14 @@
 ---
 type: topic
-title: Skill
-topic: skill
-created: 2026-07-22
-updated: 2026-08-23
+title: "Notion"
+topic: notion
+created: 2026-08-29
+updated: 2026-08-29
 ---
 
-# Skill
+# Notion
 
-> 與 Skill 相關的技術實體、抽象概念與研究來源。
+> 與 Notion 相關的技術實體、抽象概念與研究來源。
 
 ## Others
 
