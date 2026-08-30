@@ -25,7 +25,12 @@ updated: 2026-08-19
 - [[wiki/sources/2026-07-23-plannotator-copilot-setup|Plannotator IT 安裝手冊：GitHub Copilot CLI 整合]] — 來源：PDF 安裝手冊（2026-07-23），描述 Plannotator 與 GitHub Copilot CLI 在 Windows 上的整合安裝流程。 🛠️
 - [[wiki/sources/2026-08-25-codebase-memory-mcp-vs-codegraph|深入拆解 Codebase-Memory-MCP vs CodeGraph：兩種代碼知識圖譜的路線之爭]] — YouTube 影片：深入拆解 codebase-memory-mcp 與 CodeGraph 的技術差異、設計哲學與定位分析。 🛠️
 - [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]] — 2026 年 AI 編碼 Agent／IDE 開發工具 Harness 的生命週期擴充機制（Hook）盤點與比較，涵蓋 GitHub Copilot、Claude Code、OpenAI Codex CLI、Pi Coding Agent、DeepSeek Harness 五大工具。 🛠️
+- [[wiki/sources/2026-08-25-herdr-deep-research|Herdr 深度研究 — Coding Agent 的 Terminal Runtime]] — Gemini 深度研究報告，涵蓋 Herdr 架構、Socket API、Plugin 系統、與 Pi/Tau 比較、對 Cheerio 助理的啟發。
 - [[wiki/sources/2026-08-25-google-cloud-legacy-code-ai|How to modernize legacy codebases using AI coding agents]] — 來源：[Google Cloud Tech YouTube](https://www.youtube.com/watch?v=RKvckuC6Bsk) | 講者：Martin & JK | 時長：8:13 | 語言：English | 字幕：Manual captions 🛠️
+
+## Entities
+
+- [[wiki/entities/herdr|herdr — Coding Agent 的 Terminal Runtime]] — 基於 Rust 的終端機代理人執行期與多路複用器，專為 AI coding agent 設計。Client-Server 架構、四語義狀態偵測、Socket API 三大編排原語（Spawn/Inject/Wait）、Plugin 系統。
 
 ## Others
 

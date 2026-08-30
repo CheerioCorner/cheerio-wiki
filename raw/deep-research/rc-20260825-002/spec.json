@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260825-002",
+  "query": "Herdr — coding agent 的 terminal runtime 全面研究：架構設計（session management、plugin system、socket API）vs Pi/Tau 比較（定位差異、互補性）、agent orchestration 能力（pane spawn、blocked detection、agent 間 prompt）及其對 Cheerio 助理的啟發",
+  "sub_questions": [
+    "Herdr 的核心架構是什麼？session state、plugin、socket API 如何運作？",
+    "Herdr 與 Pi/Tau 的定位差異是什麼？互補性如何？",
+    "Herdr 的 agent orchestration（pane spawn、blocked detection、agent 間 prompt）如何實現？",
+    "Herdr 對 Cheerio 助理的設計有什麼啟發或可借鑑之處？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "3m",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "industry",
+    "output_format": "full"
+  }
+}

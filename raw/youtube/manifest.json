@@ -184,6 +184,19 @@
       "auto_generated": false,
       "source_api": "youtube_transcript_api",
       "created": "2026-09-04"
+    },
+    {
+      "slug": "herdr-runtime-for-coding-agents",
+      "video_id": "Ct-mtWqV3Ro",
+      "title": "Herdr: The Runtime Your Coding Agents Live On",
+      "url": "https://www.youtube.com/watch?v=Ct-mtWqV3Ro",
+      "language": "en",
+      "auto_generated": false,
+      "source_api": "youtube_transcript_api",
+      "segments": 173,
+      "duration": "00:16:41",
+      "created": "2026-08-25",
+      "raw_path": "raw/youtube/herdr-runtime-for-coding-agents.md"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

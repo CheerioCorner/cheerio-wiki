@@ -1,0 +1,94 @@
+✓ Created new notebook: Herdr — coding agent 的 terminal runtime 
+全面研究：架構設計（session management、plugin syst...
+✓ Research started
+  Query: Herdr — coding agent 的 terminal runtime 全面研究：架構設計（session 
+management、plugin system、socket API）vs Pi/Tau 比較（定位差異、互補性）、agent
+orchestration 能力（pane spawn、blocked detection、agent 間 prompt）及其對 
+Cheerio 助理的啟發
+  Source: web
+  Mode: deep
+  Notebook ID: 4aa704ca-c7b6-436c-a8d0-4e415495d284
+  Task ID: ChBkMTAwNzA3NzE4ZTZlNGJhEAgaBGNkZjgqA3Vzdw
+
+Waiting for research to complete...
+⠦ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 3d4abb42-74af-4471-8617-530453898b6c
+  Sources found: 60
+
+Run 'nlm research import 4aa704ca-c7b6-436c-a8d0-4e415495d284 <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 55 sources.
+  • Herdr and Parallel Agent Sessions: The Tmux-for-AI-Agents Pattern - Dotzlaw 
+Consulting
+  • herdr 2026: Monitor Claude Code, Codex & Devin in One Terminal - Shareuhack
+  • Agent automation | herdr
+  • Socket API - Herdr
+  • Integrations | herdr
+  • Concepts | herdr
+  • Herdr and the Throughput Case for Parallel Coding Agents - DEV Community
+  • Herdr: Terminal Multiplexer with Built-in AI Agent State Awareness | Better 
+Stack Community
+  • Herdr: The Rust-Powered Agent Multiplexer That Runs All Your AI Coding 
+Agents in One Terminal - CoddyKit
+  • Pi Coding Agent
+  • pi/packages/coding-agent/docs/rpc.md at main · earendil-works/pi - GitHub
+  • superqode - PyPI
+  • Cheerio AI Agent Sandbox - ScrapeNinja
+  • Cheerio AI Raises ₹8 Crore to Build the Future of Agentic AI for Enterprise 
+Workflows
+  • Coding agents are becoming runtimes — Herdr blog
+  • Agents | herdr
+  • Plugins | herdr
+  • CLI reference - Herdr
+  • Quick start | herdr
+  • Herdr: the runtime coding agents run on
+  • Herdr: Agent multiplexer that lives in your terminal | Hacker News
+  • herdr: building the open agent runtime - Y Combinator
+  • herdr | Claude Skills & Agent Skills Library - Awesome MCP Servers
+  • goncalossilva/tau: Batteries-included distribution for Pi - GitHub
+  • tau-all-agent · Packages · Pi
+  • How do you create and deploy an AI Assistant on WhatsApp or Instagram? - 
+Cheerio AI
+  • Cheerio AI | Agentic AI for Enterprise Revenue & Growth
+  • Cheerio AI | Valuation, Funding Rounds & Stock Price - Caplight
+  • Cheerio AI: Funding, Team & Investors - Startup Intros
+  • Web Scraping With Cheerio and Node.js: Step-by-Step Guide - Oxylabs
+  • GitHub - cheeriojs/cheerio: The fast, flexible, and elegant library for 
+parsing and manipulating HTML and XML.
+  • Cheerio | APIs.io Providers
+  • Cheerio - GitHub
+  • herdr_sdk - Rust - Docs.rs
+  • Herdr, cmux, tmux... are they really that helpful? : r/ClaudeCode - Reddit
+  • tau-coding-agent · Packages · Pi
+  • Cheerio Web Scraper - AI SDK AGENTS
+  • TiborUdvari/cheerio-ai-cheerleader - GitHub
+  • Test package for pi coding agent - GitHub
+  • pi/packages/coding-agent/examples/extensions/README.md at main · 
+earendil-works/pi - GitHub
+  • badlogic/pi-skills: Skills for pi coding agent (compatible with Claude Code 
+and Codex CLI)
+  • pi-telegram extension (built by badlogic himself) : r/PiCodingAgent - Reddit
+  • Best AI Chat Agents & Chatbot Tools for Businesses | RevAvenues
+  • [NEW] ScrapeNinja official integration with n8n: web scraping API with 
+rotating proxies and real browser - Page 2
+  • ScrapeNinja Web Scraping API: Turns websites into data, on scale.
+  • Build a custom RAG AI agent in TypeScript and Jupyter | Deno
+  • Build with any npm package with this AI assist - DEV Community
+  • Using scripts in skills - Agent Skills
+  • Simple extension for SuperAgent that adds cheerio to html responses · GitHub
+  • AMV0027/sudoai: local-first, terminal-native AI runtime with agentic 
+capabilities—reason, act, and automate directly from your CLI. - GitHub
+  • GitHub - Aashutosh31/arc-ai-project: Realtime multimodal AI agent with voice
+streaming, RAG memory, and autonomous workflows
+  • GitHub - UnlimitedBytes/searcho: A React web application that uses 5 AI 
+agents to research and vote on the best answer to your questions.
+  • Add url filtering to Cheerio scraper. Also fix multiple issues of link limit
+enforcement. #1417 - GitHub
+  • Windows support | herdr
+  • Web scraping with Cheerio in 2025 - Apify Blog
+

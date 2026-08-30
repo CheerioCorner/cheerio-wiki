@@ -1,4 +1,18 @@
 
+## [2026-08-25] ingest | Herdr 深度研究 — Coding Agent 的 Terminal Runtime
+
+- 動作：GitHub repo + YouTube 影片 → Gemini Notebook 深度研究（rc-20260825-002，39 筆來源）→ 研究報告產出 → wiki ingest
+- 建立：
+  - `raw/deep-research/rc-20260825-002/research-report.md` — 深度研究報告（4 題查詢結果）
+  - `raw/youtube/herdr-runtime-for-coding-agents.md` — YouTube 影片 raw transcript（173 segments, 16:41）
+  - `wiki/entities/herdr.md` — herdr entity 頁（Terminal Runtime、Socket API、Plugin、與 Pi/Tau 互補）
+  - `wiki/sources/2026-08-25-herdr-deep-research.md` — source note
+- 更新：
+  - `wiki/topics/agent-runtime-implementations.md` — Entities + Sources 加入 herdr
+  - `wiki/topics/coding-agent.md` — Entities + Sources 加入 herdr
+  - `wiki/index.md` — Entities + Sources 各新增 herdr 條目
+- 特殊標記：Socket API（Spawn/Inject/Wait 三大編排原語）是 Cheerio 助理多 agent 協作的關鍵參考架構
+
 ## [2026-09-04] ingest | 5 Terms You Need to Know About Agentic AI — IBM Technology
 
 - 動作：YouTube 影片 → youtube_transcript_api 抓英文字幕（手動字幕，136 segments, 10:55）→ 分段合併為 90 paragraphs → raw transcript 建檔 → 雙模型交叉驗證（Pi 主持，Claude + Gemini Round 1 一致）→ 建立 wiki 頁面 + 更新既有頁面

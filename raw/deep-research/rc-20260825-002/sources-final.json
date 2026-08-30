@@ -1,0 +1,247 @@
+[
+  {
+    "id": "94964f2a-2a2b-4f0e-b63b-39aacfcf9c0f",
+    "title": "[AI SDK AGENTS 官方] 案例研究 - Cheerio 網頁爬蟲與數據擷取助理",
+    "type": "web_page",
+    "url": "https://www.aisdkagents.com/patterns/cheerio-scraper",
+    "status": 2
+  },
+  {
+    "id": "7086ff12-2395-4be1-a86c-476a8eb16dbf",
+    "title": "[Apify 部落格] 技術教學 - 2025 年最新 Cheerio 網頁數據抓取架構與最佳實踐",
+    "type": "web_page",
+    "url": "https://blog.apify.com/web-scraping-with-cheerio/",
+    "status": 2
+  },
+  {
+    "id": "71ae14af-54ec-4e0d-bba6-26683414f7e1",
+    "title": "[Awesome MCP Servers] 產品規格 - Herdr 所支援的 Claude 與 Agent 技能庫整合",
+    "type": "web_page",
+    "url": "https://mcpservers.org/agent-skills/ogulcancelik/herdr",
+    "status": 2
+  },
+  {
+    "id": "8865a6c9-2e9f-42ed-9d44-a83c4dff7dea",
+    "title": "[Better Stack 社群] 技術文章 - 具備 AI 狀態感知能力的終端多路複用器 Herdr",
+    "type": "web_page",
+    "url": "https://betterstack.com/community/guides/ai/herdr-ai-agent/",
+    "status": 2
+  },
+  {
+    "id": "dc6a5860-d664-4d09-a62b-555e6711c567",
+    "title": "[Cheerio 官方] 產品規格 - HTML/XML 快速解析與操作庫",
+    "type": "web_page",
+    "url": "https://github.com/cheeriojs",
+    "status": 2
+  },
+  {
+    "id": "b9d2f6c3-5065-4f9f-93da-ad4b942d7137",
+    "title": "[CoddyKit 媒體] 產品規格 - Rust 驅動的終端 AI Agent 多路複用與管理",
+    "type": "web_page",
+    "url": "https://www.coddykit.com/pages/blog-detail?id=512895&slug=herdr-the-rust-powered-agent-multiplexer-that-runs-all-your-ai-coding-agents-in-",
+    "status": 2
+  },
+  {
+    "id": "666b39b2-fbdc-4e8b-b439-af4638a26897",
+    "title": "[DEV Community] 技術分析 - 併行 Coding Agent 吞吐量與效能提升論證",
+    "type": "web_page",
+    "url": "https://dev.to/pvgomes/herdr-and-the-throughput-case-for-parallel-coding-agents-4dk0",
+    "status": 2
+  },
+  {
+    "id": "c1e2dcf4-2a24-4b9c-9972-99a23e84d270",
+    "title": "[Docs.rs 官方] 開發者文件 - Rust 版本 herdr_sdk API 規格手冊",
+    "type": "web_page",
+    "url": "https://docs.rs/herdr-sdk",
+    "status": 2
+  },
+  {
+    "id": "2561b3be-3e3e-49f9-9ba1-7cf0dca09dff",
+    "title": "[Dotzlaw 諮詢] 比較分析 - Herdr 併行會話與 AI Agent 版 Tmux 模式",
+    "type": "web_page",
+    "url": "https://dotzlaw.com/insights/claude-code-13-herdr-parallel-agent-sessions/",
+    "status": 2
+  },
+  {
+    "id": "f01eceb5-501d-48ba-8c8f-41743cbd77e0",
+    "title": "[GitHub 專案] 產品規格 - Tau 開箱即用版 Pi Agent 套件整合包",
+    "type": "web_page",
+    "url": "https://github.com/goncalossilva/tau",
+    "status": 2
+  },
+  {
+    "id": "fe85c1a5-913b-4e8c-8d6c-c65e2cd33bb8",
+    "title": "[GitHub 專案] 開發者文件 - Pi Coding Agent 的測試套件與擴充驗證",
+    "type": "web_page",
+    "url": "https://github.com/badlogic/pi-package-test",
+    "status": 2
+  },
+  {
+    "id": "8def8233-ab5f-4845-8c2e-24cb79ae48dd",
+    "title": "[GitHub 專案] 開發者文件 - Pi Coding Agent 與 Claude Code 相容技能庫",
+    "type": "web_page",
+    "url": "https://github.com/badlogic/pi-skills",
+    "status": 2
+  },
+  {
+    "id": "62f7dc02-db42-4d86-a286-acc17ecc2a27",
+    "title": "[Hacker News] 社群討論 - 終端 AI Agent 多路複用器 Herdr 技術反響",
+    "type": "web_page",
+    "url": "https://news.ycombinator.com/item?id=48714802",
+    "status": 2
+  },
+  {
+    "id": "716309d7-9f9d-4ed9-86d5-8b1fcdbec5ee",
+    "title": "[Herdr 官方] 架構文件 - 插件系統設計與自訂工具擴充規格",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/plugins/",
+    "status": 2
+  },
+  {
+    "id": "79a2af41-5478-4eef-8482-24e140b3ae9b",
+    "title": "[Herdr 官方] 架構文件 - 核心概念與多路複用架構設計",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/concepts/",
+    "status": 2
+  },
+  {
+    "id": "a235e1fc-f72a-44d1-9995-da80a4818fed",
+    "title": "[Herdr 官方] 產品規格 - Agent 自動化與工作流編排",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/agent-automation/",
+    "status": 2
+  },
+  {
+    "id": "1e5ac9be-b95f-495d-ae8c-e6a45c3a6711",
+    "title": "[Herdr 官方] 產品規格 - Windows 系統相容性與環境設定支援",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/windows-beta/",
+    "status": 2
+  },
+  {
+    "id": "6c9a51f7-12b0-4586-80d0-e79affff34c0",
+    "title": "[Herdr 官方] 產品規格 - 代理人 (Agents) 生命週期與管理",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/agents/",
+    "status": 2
+  },
+  {
+    "id": "cbcc08a5-e5e4-4e44-8857-d8ad9f2f5e01",
+    "title": "[Herdr 官方] 產品規格 - 定位為 AI 代理人專屬之終端執行期環境",
+    "type": "web_page",
+    "url": "https://herdr.dev/",
+    "status": 2
+  },
+  {
+    "id": "7710e8bd-8636-408d-a77c-493eeb267fe7",
+    "title": "[Herdr 官方] 開發者文件 - Socket API 通訊協定與動態監控數據",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/socket-api/",
+    "status": 2
+  },
+  {
+    "id": "4edb7821-24a7-4562-a6b7-1db590918dc3",
+    "title": "[Herdr 官方] 開發者文件 - 外部工具、IDE 與 Agent 整合生態系",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/integrations/",
+    "status": 2
+  },
+  {
+    "id": "8971d228-a2e0-4940-ae76-af5d2af7af47",
+    "title": "[Herdr 官方] 開發者文件 - 快速上手指南與基礎環境部署",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/quick-start/",
+    "status": 2
+  },
+  {
+    "id": "a74422a9-73bb-4b03-8112-2b43ee9a58bf",
+    "title": "[Herdr 官方] 開發者文件 - 終端命令列 (CLI) 完整指令參考",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/cli-reference/",
+    "status": 2
+  },
+  {
+    "id": "adf02efd-075c-4ffd-aff7-b1d9444ff7f6",
+    "title": "[Herdr 部落格] 架構文件 - 程式開發 Agent 的終端執行期趨勢",
+    "type": "web_page",
+    "url": "https://herdr.dev/blog/coding-agents-are-becoming-runtimes/",
+    "status": 2
+  },
+  {
+    "id": "f1ae9f28-f20d-45e3-a985-26c96778b4cf",
+    "title": "[Oxylabs 官方] 技術教學 - 使用 Cheerio 與 Node.js 的網頁數據抓取步驟指南",
+    "type": "web_page",
+    "url": "https://oxylabs.io/blog/cheerio-web-scraping",
+    "status": 2
+  },
+  {
+    "id": "10109f59-c084-48be-8259-1bfb57bb63c8",
+    "title": "[Pi 官方] 產品規格 - Pi Coding Agent 的終端開發助理功能",
+    "type": "web_page",
+    "url": "https://pi.dev/",
+    "status": 2
+  },
+  {
+    "id": "ab9ae015-7b19-48fc-a9cb-742ef3e6e331",
+    "title": "[Reddit 社群] 社群問答 - Herdr 與 cmux、tmux 終端多路複用工具實用性對比",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/ClaudeCode/comments/1v8lk76/herdr_cmux_tmux_are_they_really_that_helpful/",
+    "status": 2
+  },
+  {
+    "id": "b6d04a7b-4ccc-4ced-a9c4-381f7fc8cb88",
+    "title": "[Reddit 社群] 社群討論 - Pi Coding Agent 的 Telegram 擴充插件實踐",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/PiCodingAgent/comments/1uibcp0/pitelegram_extension_built_by_badlogic_himself/",
+    "status": 2
+  },
+  {
+    "id": "d486dc35-85ec-4f29-bd3a-9eede32d0f00",
+    "title": "[Shareuhack 媒體] 產品規格 - 2026 年在單一終端監控 Claude Code、Codex 與 Devin 實戰",
+    "type": "web_page",
+    "url": "https://www.shareuhack.com/en/posts/herdr-terminal-agent-multiplexer-guide-2026",
+    "status": 2
+  },
+  {
+    "id": "9bf84d07-181a-47ce-bdaa-863e9af15bd2",
+    "title": "[Y Combinator 專頁] 產品規格 - Herdr 構建開源 Agent 執行期的商業與技術願景",
+    "type": "web_page",
+    "url": "https://www.ycombinator.com/companies/herdr",
+    "status": 2
+  },
+  {
+    "id": "e788db2b-b1dc-4be9-ac19-31359f52ef16",
+    "title": "[cheeriojs 專案] 開發者文件 - Cheerio 核心功能與開發指引",
+    "type": "web_page",
+    "url": "https://github.com/cheeriojs/cheerio",
+    "status": 2
+  },
+  {
+    "id": "3c21b9a2-e4d7-409f-9a41-9ddc73e1f82e",
+    "title": "pi/packages/coding-agent/docs/rpc.md at main · earendil-works/pi - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/rpc.md",
+    "status": 2
+  },
+  {
+    "id": "bc6600cd-86c2-42df-8df0-b79f28578127",
+    "title": "pi/packages/coding-agent/examples/extensions/README.md at main · earendil-works/pi - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/README.md",
+    "status": 2
+  },
+  {
+    "id": "e2e597a2-5ff1-4c1c-a233-4e3cdb506669",
+    "title": "tau-all-agent · Packages · Pi",
+    "type": "web_page",
+    "url": "https://pi.dev/packages/tau-all-agent?type=theme",
+    "status": 2
+  },
+  {
+    "id": "d552e0f5-a03d-460a-b653-42397da86454",
+    "title": "tau-coding-agent · Packages · Pi",
+    "type": "web_page",
+    "url": "https://pi.dev/packages/tau-coding-agent?page=40",
+    "status": 2
+  }
+]

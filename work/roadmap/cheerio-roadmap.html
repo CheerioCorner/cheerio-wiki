@@ -396,7 +396,7 @@
 <div class="wrap">
 
   <header class="page">
-    <span class="eyebrow">2026-08-26 更新 · codebase-memory-mcp 花園種子＋視覺地圖完成（W-087/088）</span>
+    <span class="eyebrow">2026-08-30 更新 · Cheerio 架構全貌已畫、MVP 已圈定（W-074）</span>
     <h1>Cheerio 路線圖</h1>
     <p class="subtitle">目前手上六條工作軌道，哪些今天可以平行起跑、哪些互相依賴、哪些只是在等一句話。垂直虛線標的是「今天」。</p>
   </header>
@@ -414,7 +414,7 @@
       <svg id="map-svg" viewBox="0 0 1820 1180" role="img" aria-label="六條工作軌道的路線圖：知識花園線、基礎設施線、企業 Skill 自動化線、個人 AI 助理線、ADO 領域專家 Agent 線、自建 Agent 學習線。個人 AI 助理線的 W-074 最小規格站之後分兩路，一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。第五條 ADO 領域專家 Agent 線是同日第二場圓桌會議加碼開的，Cheer 兩輪事後訂正後改成「先驗證連通性、再設計 Tool、再驗證 Agent 架構，最後才決定 Plugin 定位與開發 Publish View」的順序；Block 1 的 ADO／SharePoint／Outlook 三項連通性驗證各自有獨立 work ID 且可並行，因此畫成三條分支後再匯合，不擠在同一個節點。第六條自建 Agent 學習線把原本埋在 Phase 1-4 backlog 裡、完全沒露臉的研究待辦（含 3 項 MCP 相關研究）集中呈現。一條紅色虛線標出 2026-08-23 可以同時起跑的站：W-057、W-074、W-080、W-029、W-030。每個站點可點擊查看詳情。">
       </svg>
       </div>
-      <figcaption>六條工作軌道：知識花園線的 W-073 已完成並經 Cheer 確認（wiki＋Notion 花園頁雙寫，過程中發現的可用性登記表誤鎖 bug 已獨立拆成 W-086）；W-082（8/23 排到 W-069 之前）已完成——兩支共用 skill（deep-research-intake／deep-research-execute）寫好、經 Codex 兩輪審查與 Pi 兩輪修正、格式對齊、已推送 cheerio-skills repo，端到端實測留待之後用 W-069 主題跑；W-069 等 Gemini 深度研究背景跑完，同時也是上述端到端實測的候選題目。基礎設施線已全數完成（W-083／W-076／W-072／W-070），僅剩 W-064（Docker 化，有空再做）與新拆出的 W-086（可用性登記表誤鎖 bug，backlog）；企業 Skill 自動化線今天解開卡 3 天的 W-057；個人 AI 助理線是今天新開的主線，W-074 最小規格站之後分兩路——一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍；ADO 領域專家 Agent 線今天先評估 OCR 能否輔助開發，再開始 ADO／SharePoint／Outlook 三條並行支線各自的溝通可行性驗證（各有獨立 work ID，不擠在同一節點），三線全過才匯合去設計 Tool 介面、驗證 Agent 架構、最後才決定 Plugin 定位與開發 Publish View；自建 Agent 學習線是原本埋在 work/current.md Phase 1-4 backlog 裡完全沒上圖的研究待辦，今天可直接動手的是學習系統與 OCR 安裝，MCP 相關研究單獨集中成一站（含 Server 架構、Registry 企業管理、官方文件 ingest 三項）。W-070 是浮動的獨立小決策，不屬於任何一條軌道。</figcaption>
+      <figcaption>六條工作軌道：知識花園線的 W-073 已完成並經 Cheer 確認（wiki＋Notion 花園頁雙寫，過程中發現的可用性登記表誤鎖 bug 已獨立拆成 W-086）；W-082（8/23 排到 W-069 之前）已完成——兩支共用 skill（deep-research-intake／deep-research-execute）寫好、經 Codex 兩輪審查與 Pi 兩輪修正、格式對齊、已推送 cheerio-skills repo，端到端實測留待之後用 W-069 主題跑；W-069 等 Gemini 深度研究背景跑完，同時也是上述端到端實測的候選題目。基礎設施線已全數完成（W-083／W-076／W-072／W-070），僅剩 W-064（Docker 化，有空再做）與新拆出的 W-086（可用性登記表誤鎖 bug，backlog）；企業 Skill 自動化線今天解開卡 3 天的 W-057；個人 AI 助理線 8/30 有重大進展：Cheer × Claude 五輪對談把整個架構全貌畫成 Excalidraw 圖（v0.6），15 項架構決策拍板、五個互相衝突處全部釐清，並圈定第一版 MVP＝「一個案子、一位專家、不開分身、只跑全自動」的最小閉環，下一步是寫三份 schema（意圖紀錄／任務契約／四態轉換規則）就動工；原本欽點的搜尋能力改列後續 Plugin(a)，第一條切片換成核心閉環本身；ADO 領域專家 Agent 線今天先評估 OCR 能否輔助開發，再開始 ADO／SharePoint／Outlook 三條並行支線各自的溝通可行性驗證（各有獨立 work ID，不擠在同一節點），三線全過才匯合去設計 Tool 介面、驗證 Agent 架構、最後才決定 Plugin 定位與開發 Publish View；自建 Agent 學習線是原本埋在 work/current.md Phase 1-4 backlog 裡完全沒上圖的研究待辦，今天可直接動手的是學習系統與 OCR 安裝，MCP 相關研究單獨集中成一站（含 Server 架構、Registry 企業管理、官方文件 ingest 三項）。W-070 是浮動的獨立小決策，不屬於任何一條軌道。</figcaption>
     </figure>
   </div>
 
@@ -473,8 +473,8 @@
   var ROADMAP = {
     today: {
       x: 300, y1: 55, y2: 1080,
-      label: "📍 2026-08-23 同時起跑", labelY: 36,
-      sub: "W-057・W-074・W-080・W-029・W-030", subY: 1100
+      label: "📍 2026-08-30 今天", labelY: 36,
+      sub: "W-074 全貌已畫、MVP 已圈定 → 下一步寫三份 schema 開工", subY: 1100
     },
 
     tracks: [
@@ -746,32 +746,33 @@
             id: "w074", x: 300, y: 540, hitR: 27, shape: "ready", r: 14,
             labels: [
               { cls: "lbl-id", x: 300, y: 516, text: "W-074", fill: "var(--ink)" },
-              { cls: "lbl-sub", x: 300, y: 570, text: "最小規格・今天" }
+              { cls: "lbl-sub", x: 300, y: 570, text: "MVP 已圈定・今天" }
             ],
-            aria: "W-074 個人 AI 助理最小規格，查看詳情",
+            aria: "W-074 個人 AI 助理架構全貌與 MVP，查看詳情",
             popover: {
-              title: "W-074 · 個人 AI 助理最小規格", status: "今天", pill: "today", card: "card-w074",
+              title: "W-074 · 全貌已畫，MVP 已圈定", status: "今天", pill: "today", card: "card-w074",
               bullets: [
-                "核心＝控制平面（無狀態），Plugin＝能力平面（標準插頭介面）",
-                "log schema 先定 MUST 欄位，SHOULD（完整 payload）待遮罩規則定案",
-                "orchestrator 派工沿用 round-table 既有角色分工",
-                "記憶檢索沿用 work-tracker 現有「session 啟動讀 current.md」模式"
+                "8/30 Cheer × Claude 五輪對談：全貌畫成 Excalidraw 圖（v0.6），15 項架構決策拍板",
+                "方法論：先畫全貌 → 找出互相衝突處 → 釐清後才圈 MVP → 逐片實作，核心路徑不會被移動",
+                "主 Cheerio 核心職責定調：判斷「人類要的」跟「實際做出來的」是不是同一件事",
+                "五個衝突已全部釐清（記憶/Context 邊界/專家隔離/誰能標完成/插話怎麼走）"
               ]
             }
           },
           {
-            id: "vslice", x: 520, y: 540, hitR: 22, shape: "wait", r: 10,
+            id: "vslice", x: 520, y: 540, hitR: 22, shape: "ready", r: 12,
             labels: [
-              { cls: "lbl-sub", x: 520, y: 516, text: "垂直切片" },
-              { cls: "lbl-sub", x: 520, y: 570, text: "（搜尋優先）" }
+              { cls: "lbl-sub", x: 520, y: 512, text: "MVP 最小閉環" },
+              { cls: "lbl-sub", x: 520, y: 570, text: "先寫 3 份 schema" }
             ],
-            aria: "垂直切片，查看詳情",
+            aria: "MVP 最小閉環，查看詳情",
             popover: {
-              title: "垂直切片（搜尋優先）", status: "緊接 074 之後", pill: "wait", card: "card-vslice",
+              title: "MVP 最小閉環", status: "下一步就動手", pill: "today", card: "card-vslice",
               bullets: [
-                "用搜尋能力跑通「輸入→派工→Tool呼叫→驗證→Log→回覆」全流程",
-                "驗證規格可行，再擴大到完整 plugin",
-                "Codex 提出，三方無異議採納"
+                "一個案子、一位專家、不開分身、只跑全自動模式",
+                "意圖紀錄 → 任務契約派工 → 專家標「待驗收」→ 主 Cheerio 比對意圖 vs 產出 → 完成／退回／上呈",
+                "先寫三份 schema：意圖紀錄／任務契約／四態轉換規則（只定已知大欄位）",
+                "第一個案子＝造出第一個正式專家；需先有一位「零號專家」（Tier C/B 外部 harness 粗暴包裝）來執行它"
               ]
             }
           },
@@ -1146,28 +1147,32 @@
     cardSections: [
       {
         trackId: "assistant", title: "🤖 個人 AI 助理架構願景",
-        note: "2026-08-22 圓桌會議（Claude + Gemini + Codex）共識",
+        note: "2026-08-22 圓桌共識 → 2026-08-30 Cheer × Claude 五輪對談收斂出全貌與 MVP",
         cards: [
           {
             id: "card-w074", idText: "W-2026-08-074", pill: "today", pillText: "今天",
-            name: "最小規格：核心 vs Plugin 邊界",
+            name: "全貌已畫，MVP 已圈定",
             bullets: [
-              "核心＝控制平面（無狀態、管流程/政策/派工/log，不管內容）",
-              "Plugin＝能力平面，介面像「標準插頭」，不能自行決定助理身份或記憶策略",
-              "observability log 先定 MUST 欄位（trace_id/span_id/actor/event_type/status），SHOULD 欄位（完整 payload/token 用量）要等遮罩規則定案才開",
-              "orchestrator 派工直接沿用 round-table 既有角色分工，記憶檢索沿用 work-tracker 現有「session 啟動讀 current.md」模式，不重新發明"
+              "方法論（Cheer 定調）：先把全貌畫出來 → 找出互相衝突的地方 → 釐清後才圈 MVP → 從最核心處逐片實作。這樣核心路徑不會在擴增過程中被移動",
+              "主 Cheerio ＝ 總 PM／秘書，核心職責是判斷「人類要的」跟「實際做出來的」是不是同一件事；「不背記憶」≠ 沒記憶，是全記在外面、要用才調，所以意圖必須被寫下來成一級紀錄",
+              "兩種模式是同一套系統的兩個檔位，且是案件級可切換：全自動（主 Cheerio ＝ 唯一翻譯官）／互動（＝ 主持人，意圖廣播、它負責統整解讀分歧）。插話 ＝ 把該案切成互動，決策完切回",
+              "專家 ＝ 可實例化的角色，跨案共用「角色定義」而非實例；分身繼承 PM 的 Context 且不能再生分身；合體 ＝ 分身邊做邊寫進案件共享工作區，真身直接讀",
+              "狀態基本四態（不是三態）：待辦 → 進行中 → 待驗收 → 完成。專家只能推到「待驗收」，只有主 Cheerio 能推到「完成」",
+              "Harness 可觀測性分 Tier A/B/C，是「專家 × harness 綁定」的屬性且可升級；Tier A 定義成一份可觀測性契約而非某個實作，自建 harness 刻意用不同 Agent Framework 打造"
             ],
-            foot: "產出後 → 立刻做垂直切片，不要 5 大維度全寫完才動手"
+            foot: "全貌圖：Obsidian/excalidraw/Cheerio 核心架構.excalidraw.md（v0.6）｜五個衝突已全部釐清，照方法論即收手動工"
           },
           {
-            id: "card-vslice", idText: "垂直切片", pill: "wait", pillText: "緊接 074 之後",
-            name: "用搜尋能力跑通一次全流程",
+            id: "card-vslice", idText: "MVP 最小閉環", pill: "today", pillText: "下一步就動手",
+            name: "一個案子、一位專家、不開分身、只跑全自動",
             bullets: [
-              "優先選搜尋（Cheer 點名最急：Pi 無 Deep Research、無法跟 Gemini 交互）",
-              "跑通「輸入 → 派工 → Tool 呼叫 → 驗證 → Log → 回覆」完整路徑",
-              "驗證規格可行，再擴大到完整搜尋 plugin、記憶 plugin"
+              "① 我講一句話 → 主 Cheerio 翻成「意圖紀錄」寫下來　② 依意圖產生「任務契約」派給一位專家",
+              "③ 專家執行、做完標「待驗收」（不能自己標完成）　④ 主 Cheerio 調出意圖紀錄跟產出比對　⑤ 相符→完成／不符→退回或上呈　⑥ 全程進事件流、狀態面可查",
+              "先寫三份 schema：意圖紀錄／任務契約／四態轉換規則，只定已知大欄位（契約欄位等做出來才會清楚）。事件流沿用 8/22 MUST 欄位、狀態面沿用 current.md 概念，不用重新設計",
+              "刻意不做：分身、共享工作區、互動模式/主持人、跨案 Context 共享、多專家仲裁——都疊在這閉環之上，之後補不用動核心",
+              "第一個案子＝「造出第一個正式專家」；需先有一位零號專家（Tier C/B 外部 harness 粗暴包裝）執行它，否則派工那段沒被驗證。從最弱 tier 起步是刻意的：逼核心只靠「意圖＋最終產出」驗收，不偷看過程"
             ],
-            foot: "Codex 提出，Gemini／Claude 無異議採納"
+            foot: "搜尋能力仍是後續 Plugin(a)，但第一條切片改成核心閉環本身"
           },
           {
             id: "card-backlog6", idText: "六個 Phase 1 研究", pill: "dim", pillText: "待重新框定",

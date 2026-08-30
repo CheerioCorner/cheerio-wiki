@@ -6,11 +6,35 @@
 ## In progress
 
 - [ ] W-2026-08-074 個人 AI 助理架構願景：最小規格 + 垂直切片 🆕 #ai-agent #architecture
-  - next: 圓桌會議（Claude+Gemini+Codex）已於 2026-08-22 完成第一輪並收斂共識（見 refs 會議紀要），下一步是實際動筆產出**最小規格**（不是完整規格文件）：① 核心=控制平面（無狀態、管流程/政策/派工/log，不管內容）vs Plugin=能力平面（標準插頭介面）的邊界文件 ② log schema 先定 MUST 欄位（trace_id/span_id/parent_span_id/timestamp/actor/event_type/status/latency_ms/error，不含敏感內容）即可，SHOULD 欄位（完整 input/output payload/token_usage/cost_estimate）待遮罩規則定案後再開 ③ orchestrator 派工邏輯直接把 round-table 既有角色分工（Claude=架構/Gemini=研究/Codex=工程/Pi=本機自動化）正式化，不重新設計 ④ stateless+記憶檢索直接把 work-tracker 現有「session 啟動讀 work/current.md」模式當雛形擴充，記憶分 Episodic/Semantic/Procedural/Artifact 四類 ⑤ 多 harness 調用包成統一 Agent Provider Adapter，記錄 provider/harness/model/輸入輸出reference/成本/驗證結果。**最小規格出爐後立刻做一條垂直切片**——優先選搜尋能力，跑通一次「輸入→派工→Tool呼叫→驗證→Log→回覆」的完整路徑，驗證規格可行再擴大，不要 5 大維度全部寫到完整才動手。**第二條垂直切片**已確認為 Azure DevOps 領域專家 Agent（見 [[work/current#W-2026-08-080|W-080]]），與搜尋能力平行推進
+  - next: **MVP 已圈定（2026-08-30），下一步是動筆寫三份 schema 然後開工**：① 意圖紀錄 schema ② 任務契約 schema ③ 四態狀態機的轉換規則（誰能觸發哪個轉換）。只定已知大欄位，不追求完整——契約欄位等第一版做出來才會清楚。事件流 schema 直接沿用 8/22 定的 MUST 欄位、狀態面沿用 `work/current.md` 概念，這兩件不用重新設計。完整收斂內容見下方「2026-08-30 Cheerio 全貌與 MVP」
+  - **8/22 當時的 next（歷史保留，已被 8/30 收斂納入）**：圓桌會議（Claude+Gemini+Codex）已於 2026-08-22 完成第一輪並收斂共識（見 refs 會議紀要），下一步是實際動筆產出**最小規格**（不是完整規格文件）：① 核心=控制平面（無狀態、管流程/政策/派工/log，不管內容）vs Plugin=能力平面（標準插頭介面）的邊界文件 ② log schema 先定 MUST 欄位（trace_id/span_id/parent_span_id/timestamp/actor/event_type/status/latency_ms/error，不含敏感內容）即可，SHOULD 欄位（完整 input/output payload/token_usage/cost_estimate）待遮罩規則定案後再開 ③ orchestrator 派工邏輯直接把 round-table 既有角色分工（Claude=架構/Gemini=研究/Codex=工程/Pi=本機自動化）正式化，不重新設計 ④ stateless+記憶檢索直接把 work-tracker 現有「session 啟動讀 work/current.md」模式當雛形擴充，記憶分 Episodic/Semantic/Procedural/Artifact 四類 ⑤ 多 harness 調用包成統一 Agent Provider Adapter，記錄 provider/harness/model/輸入輸出reference/成本/驗證結果。**最小規格出爐後立刻做一條垂直切片**——優先選搜尋能力，跑通一次「輸入→派工→Tool呼叫→驗證→Log→回覆」的完整路徑，驗證規格可行再擴大，不要 5 大維度全部寫到完整才動手。**第二條垂直切片**已確認為 Azure DevOps 領域專家 Agent（見 [[work/current#W-2026-08-080|W-080]]），與搜尋能力平行推進
   - **訂正（8/22）**：[[work/current#W-2026-08-017|W-017]]／[[work/current#W-2026-08-025|W-025]]／[[work/current#W-2026-08-022|W-022]]／[[work/current#W-2026-08-033|W-033]]／W-2026-08-NEW-001／W-2026-08-NEW-002 這 6 個項目**目前都還沒開始做**（next 都只是「調研 XXX」的待辦，不是已完成的研究產出）。W-074 不是拿它們的成果來整合，而是先產出架構規格，讓這 6 個原本各自零散、範圍模糊的研究待辦，之後有明確的規格可以對齊、重新框定範圍（部分可能因此被合併或縮小，不用再各自從零摸索方向）
   - refs: [[raw/conversations/2026-08-22-personal-ai-assistant-architecture-vision|Cheer 架構願景原始想法]]、[[.pi/round-table/20260822-161304/synthesis|2026-08-22 圓桌會議紀要]]、[[work/current#W-2026-08-017|W-017]]、[[work/current#W-2026-08-025|W-025]]、[[work/current#W-2026-08-022|W-022]]、[[work/current#W-2026-08-033|W-033]]
   - 起因：2026-08-22 討論工作優先順序時，Cheer 提出完整的個人 AI 助理架構願景（核心/plugin 分離、自我成長觀測、單一對口統籌、stateless+記憶檢索、多 harness 外部 agent 調用），並點名「搜尋能力」是當前最迫切的 plugin（Pi 無 Deep Research、無法跟 Gemini 交互、Gemini 品質下降）
   - 無相依，可跟 W-072 平行進行（三方圓桌共識：不必等 W-072/W-057 做完才開始）
+  - **2026-08-30 Cheerio 全貌與 MVP（Cheer × Claude 五輪對談收斂）**
+    - 產出：`Obsidian/excalidraw/Cheerio 核心架構.excalidraw.md`（v0.6 Excalidraw 全貌圖，逐輪迭代而成）
+    - **方法論（Cheer 定調）**：先把想要的全貌畫出來 → 找出互相衝突的地方 → 釐清衝突後才圈 MVP → 從最有價值最核心的部分切入逐片實作。這樣核心路徑不會在擴增過程中被移動，因為每一片都 follow 同一個大框架。「它一開始就是一個大專案，只是實作一定從切片開始」
+    - **已拍板的架構決策**：
+      1. 單一對口：人類只跟主 Cheerio 講話。主 Cheerio = 總 PM／秘書，核心職責是**判斷「人類要的」跟「實際做出來的」是不是同一件事**；自己不做事、不存內容，只管流程/政策/記錄
+      2. 兩種模式是同一套系統的兩個檔位，且**切換是案件級的**：全自動（主 Cheerio = 唯一翻譯官，意圖只經過它）／互動（主 Cheerio = 主持人，意圖廣播給所有專家，它負責評估各自解讀並統整分歧）。**插話 = 把該案從全自動切成互動**，決策完切回。底層完全共用，換的只是主 Cheerio 的帽子
+      3. 「不背記憶」≠ 沒有記憶：全部記在外面、要用才調（來自 Cheer 本人工作方式）。**意圖必須被寫下來成一級紀錄**（否則主 Cheerio 事後無從比對），每層再配一份 summary 供快查。⚠ summary 是衍生資料會過時，更新時機建議綁在狀態轉換上
+      4. 專家 = 可實例化的角色。跨案件共用的是**角色定義**，不是實例；工作記憶按案件隔離——這是防汙染的實際機制，要寫死成規則
+      5. 分身：同一專家可同時開多個實例跑不同案子。**分身一律繼承 PM 的 Context，且分身不能再生分身**
+      6. 合體 = 分身邊做邊往「案件共享工作區」寫，真身直接讀，不是事後拼三份報告。工作區分兩層：① 過程軌跡 ② 已收斂結論（真身平常只讀 ②，避免淹在流水帳裡）
+      7. 跨案共享依 DDD **Bounded Context**：從同一案切出來的子案或本質相關才共享，不相關就隔離不汙染。小 Domain 合起來就是大 Domain 的職責與邊界
+      8. 衝突三階仲裁：案件 PM（主責專家）→ 主 Cheerio → 人類
+      9. 狀態機基本**四態**（不是三態）：待辦 → 進行中 → **待驗收** → 完成。專家只能推到「待驗收」，只有主 Cheerio 能推到「完成」，只有人類能推翻主 Cheerio。少了待驗收，主 Cheerio 的核心職責就落空
+      10. 觀測是兩件不同的事：**事件流**（流水帳，互動模式即時投影的就是它）vs **狀態面**（結論，秘書打電話問進度問的是它）。混用會讓主 Cheerio 沒辦法又輕便又 stateless
+      11. 專家註冊表可增可減，**新增專家不該需要動核心**。主 Cheerio 可自己新增專家：判斷有重大影響 → 停下來等人類仲裁；沒有 → 先做、事後報告「因為什麼而新增了什麼」，兩者都要留下理由。新增專家本身就是一個案子，不需要第二套治理流程
+      12. **Harness 可觀測性分級**：Tier A（自建，過程+結果全可驗、可完整旁聽）／Tier B（拿得到工具呼叫，拿不到內部推理與記憶調用）／Tier C（黑盒，只驗結果、過程不可稽核）。**Tier 是「專家 × harness 綁定」的屬性、可升級**，不是專家的固定身份。契約的驗收方式必須跟 tier 綁——Tier C 專家不該被派需要過程稽核的任務
+      13. **Tier A 定義成一份「可觀測性契約」，不是某個具體實作**：任何 framework 只要吐得出契約要求的觀測資料就算 Tier A。自建 harness 刻意用**不同 Agent Framework** 打造，避免被單一體制限制，讓每個專家用最適合它專業的框架——這就是最初「專家像 plugin」的意思
+      14. 自建 harness 的硬理由：只有自己的底座拿得到完整可觀測性，而**完整可觀測性正是「自我成長」的前提**（看不到自己做了什麼就無從改進）
+      15. 專家調用介面拆兩層：**調用契約**（所有 tier 共用：怎麼遞任務契約、怎麼收產出）／**觀測契約**（決定 tier）。分開後把專家從 Tier C 升到 Tier A 不用動核心調用邏輯
+    - **MVP 範圍（Cheer 已同意）**：一個案子、一位專家、不開分身、只跑全自動模式，跑通「① 我講一句話 → 主 Cheerio 翻成意圖紀錄寫下來 ② 依意圖產生任務契約派給一位專家 ③ 專家執行、做完標『待驗收』 ④ 主 Cheerio 調出意圖紀錄跟產出比對 ⑤ 相符→完成／不符→退回或上呈人類 ⑥ 全程進事件流、狀態面隨時可查」
+    - **刻意不做**：分身、共享工作區、互動模式/主持人、跨案 Context 共享、多專家仲裁——它們都疊在這個閉環之上，之後補上不用動核心
+    - **第一個案子**：Cheer 傾向讓「造出第一個正式專家」本身就是第一個案子（專家怎麼被造出來，是調用第一個專家之前的設計）。需先有一位**零號專家**——從 **Tier C／B 的外部 harness** 粗暴包裝而成，唯一任務是把第一個正式專家造出來，之後可退役或用正式規格重新定義自己；沒有它，派工那一段不會被驗證到。**從最弱 tier 起步是刻意的**：逼核心只能靠「意圖 + 最終產出」驗收、不偷看過程，日後升 Tier A 只是多拿到資訊，不必改核心邏輯
+    - **下一步**：草擬三份 schema（意圖紀錄／任務契約／四態轉換規則），只定已知大欄位
 
 - [ ] W-2026-08-080 Azure DevOps 領域專家 Agent PoC 🔄 #ai-agent #devops #ado #vertical-slice
   - next: 開工前先做 W-ADO-000（評估 OCR 能否用於本次開發的程式碼審查）。之後照 8/22 二次訂正的順序：Block 1 溝通可行性驗證（W-ADO-001~003：ADO／SharePoint／Outlook）全過 → Block 2 設計 Tool 介面（W-ADO-004）→ Block 3 Agent 架構驗證（W-ADO-005~007：可被調用／ADO 呼叫+回饋／SharePoint+Outlook 溝通）→ 才回來決定 Plugin 定位與 Publish View（W-ADO-008~009）→ 最後深化（W-ADO-010~012：寫入操作/三 gate/Memory）

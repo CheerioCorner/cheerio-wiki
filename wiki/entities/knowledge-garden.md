@@ -2,7 +2,7 @@
 title: knowledge-garden — Cheerio 知識花園 Manifest
 type: entity
 created: 2026-08-03
-updated: 2026-08-26
+updated: 2026-08-30
 sources: 1
 tags: [notion, knowledge-garden, manifest]
 collection: entities
@@ -65,6 +65,8 @@ canonical: entities/knowledge-garden
 | 最後更新 | Date | 最近一次灌溉/更新 |
 | Sync Status | Select | ✅ 已同步 / ⏳ 待同步 / ⚠️ 衝突 |
 
+> ⚠️ **Sync Status 卡在「⏳ 待同步」的種子要當作可疑訊號**：2026-08-22 圓桌會議新增的 4 顆記憶架構種子，Sync Status 從建立起就沒被標記過「✅ 已同步」，後來被使用者判定內容過於空洞而砍掉，但花園裡的其他頁面（父專題的種子關聯）留下了懸空連結，直到 2026-08-30 才被發現並清理。詳見下方「最近更新紀錄」。
+
 ---
 
 ## 研究專題 Database Schema
@@ -76,10 +78,12 @@ canonical: entities/knowledge-garden
 | 研究問題 | Rich text | 核心研究問題 |
 | 下一步 | Rich text | 目前的下一步行動 |
 | 相關種子 | Relation | 相關的種子（單向） |
-| 🌳 知識花園 | Relation | 反向關聯知識花園（雙向） |
+| 🌳 知識花園 | Relation | 反向關聯知識花園（雙向）；實際欄位名稱是「🌳 知識花園」，不是舊版寫的「相關種子」 |
 | Wiki Link | URL | 對應的 wiki topic 頁面 |
 | 建立日期 | Date | 專題建立時間 |
 | 最後更新 | Date | 最近更新時間 |
+| 父專題 🆕 | Relation（自我關聯，雙向） | 2026-08-30 新增。上層專題，用來支援多層分層（大主題→子專題→種子），對應 MOC 的「多層 MOC」概念 |
+| 子專題 🆕 | Relation（自我關聯，雙向） | 2026-08-30 新增。與「父專題」自動同步的反向欄位 |
 
 ---
 
@@ -97,7 +101,7 @@ canonical: entities/knowledge-garden
 | Pi Agent 架構研究 — 從 Runtime 到 Extension | [連結](https://app.notion.com/p/3b35979e3a8c8129ba33f558c588a06f) | [[wiki/entities/agent-extension-installation\|agent-extension-installation]] | 🗺️ [[wiki/visualizations/agent-extension-installation.canvas\|視覺地圖]] |
 | Claude Code — Anthropic AI Coding Agent 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81ce93fdfd8be0c7ab49) | [[wiki/entities/claude-code\|claude-code]] | 🗺️ [視覺地圖](https://app.notion.com/p/3c75979e3a8c81378bb9da4a79375189) |
 
-### 🌱 種子期（18 顆）
+### 🌱 種子期（14 顆）
 
 | 種子名稱 | Notion Link | Wiki 來源 | 視覺地圖 |
 |----------|-------------|-----------|----------|
@@ -117,36 +121,40 @@ canonical: entities/knowledge-garden
 | Tree-sitter — 高效能增量 Parser 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81468edfd59f0b407ddf) | [[wiki/entities/tree-sitter\|tree-sitter]] | — |
 | Agentic AI — 自主 AI 系統核心概念 🆕 | [連結](https://app.notion.com/p/3bb5979e3a8c81f2b665de005e942e92) | [[wiki/concepts/agentic-ai\|agentic-ai]] | — |
 | Harness — LLM 的驅動層 🆕 | [連結](https://app.notion.com/p/Harness-LLM-3bc5979e3a8c81f98e54eea5a2deeeea) | [[wiki/concepts/harness\|harness]] | — |
-| AI Agent 記憶架構設計框架 🆕 | [連結](https://app.notion.com/p/AI-Agent-3c45979e3a8c812b8709ce8053ed942a) | [[wiki/concepts/ai-agent-memory-systems\|ai-agent-memory-systems]] | — |
-| Mem0 — AI Agent 長期記憶工具剖析 🆕 | [連結](https://app.notion.com/p/Mem0-AI-Agent-3c45979e3a8c815fbacad32e9ef0622b) | [[wiki/entities/mem0\|mem0]] | — |
-| Entity Boost — 從工具技巧到可遷移架構原則 🆕 | [連結](https://app.notion.com/p/Entity-Boost-3c45979e3a8c8173b44df8324c552a1b) | [[wiki/concepts/ai-agent-memory-systems\|ai-agent-memory-systems]] | — |
-| Recall Policy — 排序品質決定記憶系統的成敗 🆕 | [連結](https://app.notion.com/p/Recall-Policy-3c45979e3a8c81d9a3b3e9dc5ff54644) | [[wiki/concepts/recall-policy-ladder\|recall-policy-ladder]] | — |
 | OpenAI Codex CLI — 企業級 Hook 機制 🆕 | [連結](https://app.notion.com/p/3c75979e3a8c8139a5f6ee5100ad8da8) | [[wiki/entities/openai-codex\|codex-cli]] | 🗺️ [視覺地圖](https://app.notion.com/p/3c75979e3a8c81378bb9da4a79375189) |
 | codebase-memory-mcp — 本地程式碼知識圖譜 MCP Server 🆕 | [連結](https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c8113bf8bec74e8fe9f89) | — | 🗺️ [視覺地圖](https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c810095a5c782f7d80ba9) |
 > ⚠️ 以下 3 顆已 trash（2026-08-15），內容併入 Claude Code 種子頁：
 > - Skill 撰寫與評估方法論 → 併入 Claude Code（撰寫規格章節）
 > - Agent Skills 企業治理 → 併入 Claude Code（企業治理章節）
 > - Agent Skills API 整合機制 → 併入 Claude Code（API 整合章節）
+> ⚠️ 以下 4 顆已 trash（使用者確認：內容過於空洞，主動要求砍掉，非誤刪；2026-08-30 才發現懸空關聯並清理）：
+> - AI Agent 記憶架構設計框架
+> - Mem0 — AI Agent 長期記憶工具剖析
+> - Entity Boost — 從工具技巧到可遷移架構原則
+> - Recall Policy — 排序品質決定記憶系統的成敗
 
 ---
 
 ## 研究專題清單（離線快取）
 
-| 專題 | 狀態 | Wiki Topic | 相關種子 |
-|------|------|------------|----------|
-| 🤖 AI Agent 架構研究 | 🔬 研究 | [[wiki/topics/ai-agent\|ai-agent]] | Plannotator, Omnigent, mattpocock/skills, OpenCodeReview, MCP, LSP, Code Graph, LangGraph, Tree-sitter, Agentic AI, Obsidian, Harness, AI Agent 記憶架構設計框架, Mem0, Entity Boost, Recall Policy |
-| 🛠️ AI 驅動的開發系統 | 🔬 研究 | [[wiki/topics/ai-development-tools\|ai-development-tools]] | Claude Code, GitHub Copilot, NPM Publishing, MCP, LSP, Code Graph, LOOP Engineering, Obsidian |
-| 🧠 Meta-Harness 元鞍具 | 🔬 研究 | [[wiki/topics/meta-systems\|meta-systems]] | Omnigent, Pi Agent 架構研究, Harness |
-| 🔌 Extension 開發生態 | 🔬 研究 | [[wiki/topics/extension-dev\|extension-dev]] | NPM Publishing, OKF, Pi Agent 架構研究 |
-| 📚 知識管理系統 | 🔬 研究 | [[wiki/topics/knowledge-mgmt\|knowledge-mgmt]] | OKF, PARA, Lint 規則集, 語意關係, MOC, Zettelkasten |
-| 🔬 Agent Skills | 🔬 研究 | [[wiki/topics/skill\|skill]] | mattpocock/skills, GitHub Copilot, Claude Code |
+| 專題 | 層級 | 狀態 | Wiki Topic | 相關種子 |
+|------|------|------|------------|----------|
+| 🤖 AI Agent 架構研究 | 頂層 | 🔬 研究 | [[wiki/topics/ai-agent\|ai-agent]] | Plannotator, Omnigent, mattpocock/skills, OpenCodeReview, MCP, LSP, Code Graph, LangGraph, Tree-sitter, Agentic AI, Obsidian, Harness（14 顆，已扣除 2026-08-30 清理的 4 顆已 trash 種子；仍超過 >8 顆拆分門檻，待後續正式分層） |
+| 🛠️ AI 驅動的開發系統 | 頂層 | 🔬 研究 | [[wiki/topics/ai-development-tools\|ai-development-tools]] | Claude Code, GitHub Copilot, NPM Publishing, MCP, LSP, Code Graph, LOOP Engineering, Obsidian, codebase-memory-mcp |
+| ┗ 🔬 Coding Agent Hook 機制比較 | 子專題（父：AI 驅動的開發系統） | 🔬 研究 | [[wiki/comparisons/coding-agent-hooks-comparison\|coding-agent-hooks-comparison]] | Claude Code, GitHub Copilot, OpenAI Codex CLI（不重複內容，只做橫向導覽；Pi/DeepSeek 尚無獨立種子） |
+| 🧠 Meta-Harness 元鞍具 | 頂層 | 🔬 研究 | [[wiki/topics/meta-systems\|meta-systems]] | Omnigent, Pi Agent 架構研究, Harness |
+| 🔌 Extension 開發生態 | 頂層 | 🔬 研究 | [[wiki/topics/extension-dev\|extension-dev]] | NPM Publishing, OKF, Pi Agent 架構研究 |
+| 📚 知識管理系統 | 頂層 | 🔬 研究 | [[wiki/topics/knowledge-mgmt\|knowledge-mgmt]] | OKF, PARA, Lint 規則集, 語意關係, MOC, Zettelkasten |
+| 🔬 Agent Skills | 頂層 | 🔬 研究 | [[wiki/topics/skill\|skill]] | mattpocock/skills, GitHub Copilot, Claude Code |
 
 > ✅ 所有 Relation 已於 2026-08-10 更新完成
 > ✅ 新增種子「Harness — LLM 的驅動層」（2026-08-14）
 > ✅ 新增研究專題「🔬 Agent Skills」+ 3 顆子概念種子（2026-08-14）
-✅ 新增 4 顆 AI Agent 記憶架構種子（2026-08-22 圓桌會議）：記憶架構設計框架、Mem0 工具剖析、Entity Boost、Recall Policy
-✅ codebase-memory-mcp 視覺地圖寫入 Notion（2026-08-26）
-> ⚠️ 3 顆子種子已 trash，內容併入 Claude Code 和 GitHub Copilot 種子頁（2026-08-15） |
+> ✅ codebase-memory-mcp 視覺地圖寫入 Notion（2026-08-26）
+> ✅ 研究專題 Database 新增「父專題／子專題」自我關聯欄位，支援多層分層（2026-08-30）
+> ✅ 建立並驗證「父專題／子專題」分層機制：試跑子專題「AI Agent 記憶架構」，確認雙向關聯正確同步後，因原掛的 4 顆種子已被使用者主動 trash（內容空洞）而撤掉，機制本身保留待未來有真正內容時再用（2026-08-30）
+> ⚠️ 3 顆子種子已 trash，內容併入 Claude Code 和 GitHub Copilot 種子頁（2026-08-15）
+> ⚠️ 2026-08-22 圓桌會議新增的 4 顆 AI Agent 記憶架構種子（記憶架構設計框架、Mem0 工具剖析、Entity Boost、Recall Policy）已確認為使用者因內容空洞主動 trash，manifest 先前誤植為仍存活，已於 2026-08-30 修正
 
 ## 最近更新紀錄
 
@@ -158,6 +166,10 @@ canonical: entities/knowledge-garden
 | 2026-08-25 | W-033 視覺地圖：五大 Harness Hook 生命週期比較 | Claude Code, GitHub Copilot, OpenAI Codex CLI |
 | 2026-08-26 | 新種子建立：codebase-memory-mcp（圓桌會議 Claude+Gemini+Codex 草擬 → Claude 核實） | codebase-memory-mcp |
 | 2026-08-26 | 視覺地圖寫入 Notion：使用情境+運作機制雙圖（圓桌 2 輪收斂 → mmdc 驗證 → Notion 寫入） | codebase-memory-mcp |
+| 2026-08-30 | 研究專題 Database 新增「父專題／子專題」自我關聯欄位（DUAL relation），支援多層分層架構 | — |
+| 2026-08-30 | 建立子專題「AI Agent 記憶架構」試跑分層機制，父專題設為 AI Agent 架構研究；後確認原掛的 4 顆種子已被使用者主動 trash（內容空洞），子專題淪為空殼，使用者確認撤掉，Claude 手動刪除頁面能力不足，改由使用者在 Notion 手動刪除，Claude 清掉父專題指向它的懸空「子專題」關聯 | AI Agent 架構研究 |
+| 2026-08-30 | 發現並清理懸空關聯：4 顆記憶架構種子（記憶架構設計框架、Mem0、Entity Boost、Recall Policy）實際已在 Notion 垃圾桶，使用者確認是主動因內容空洞而刪除；清掉父專題（AI Agent 架構研究）指向這 4 顆的關聯 | AI Agent 架構研究 |
+| 2026-08-30 | 建立子專題「Coding Agent Hook 機制比較」，父專題設為 AI 驅動的開發系統，關聯既有的 Claude Code/GitHub Copilot/OpenAI Codex CLI 三顆種子（不重寫內容，只做橫向導覽）——這是候選清單「五大 Hook 比較」的最終處理方式 | Coding Agent Hook 機制比較（子專題） |
 
 ---
 
