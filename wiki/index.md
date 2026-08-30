@@ -329,6 +329,7 @@
 - [[wiki/sources/2026-08-25-herdr-deep-research.md|Herdr 深度研究 — Coding Agent 的 Terminal Runtime]]
 - [[wiki/sources/2026-08-25-multi-agent-orchestration-patterns.md|Multi-Agent Orchestration 設計模式深度研究]]
 - [[wiki/sources/2026-08-25-opentelemetry-observability.md|System Observability: Logs, Metrics, Traces & OpenTelemetry]]
+- [[wiki/sources/2026-08-30-dev-security-vibe-coding.md|Vibe Coding 資安基本功：給非技術人員的資安教學]]
 - [[wiki/sources/2026-08-25-four-types-memory-ai-agent.md|The Four Types of Memory Every AI Agent Needs]]
 - [[wiki/sources/2026-08-25-google-cloud-legacy-code-ai.md|How to modernize legacy codebases using AI coding agents]]
 - [[wiki/sources/2026-08-26-anthropics-claude-code-frontend-design.md|anthropics/claude-code — frontend-design plugin]]

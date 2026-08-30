@@ -1,4 +1,15 @@
 
+## [2026-08-30] ingest | Vibe Coding 資安基本功：給非技術人員的資安教學
+
+- 動作：YouTube 影片（字幕被關閉）→ 使用者手動提供 SRT 逐字稿 → 去重複（簡/繁）→ 合併段落 → raw transcript 建檔 → wiki ingest
+- 建立：
+  - `raw/youtube/dev-security-vibe-coding.md` — raw transcript（100 segments, 22:14）
+  - `wiki/sources/2026-08-30-dev-security-vibe-coding.md` — source note（CIA 原則、Threat Modeling、信任邊界、RLS、Race Condition、Codex Security）
+- 更新：
+  - `wiki/topics/software-quality.md` — Sources 加入 dev-security-vibe-coding
+  - `wiki/index.md` — Sources 新增條目
+- 特殊標記：資安觀念（CIA、信任邊界、RLS）直接適用於多 agent 爬蟲系統設計
+
 ## [2026-08-25] ingest | System Observability: Logs, Metrics, Traces & OpenTelemetry
 
 - 動作：YouTube 影片 → youtube_transcript_api 抓英文字幕（auto-generated，764 segments → 223 paragraphs，35:51）→ raw transcript 建檔 → 雙模型交叉驗證（Pi 主持，Claude + Gemini Round 1 一致）→ 建立 wiki 頁面 + 更新既有頁面

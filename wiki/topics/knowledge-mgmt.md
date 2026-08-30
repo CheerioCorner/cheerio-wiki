@@ -3,7 +3,7 @@ type: topic
 title: Knowledge Management
 topic: knowledge-mgmt
 created: 2026-08-02
-updated: 2026-08-11
+updated: 2026-08-25
 ---
 
 # Knowledge Mgmt
@@ -22,6 +22,7 @@ updated: 2026-08-11
 
 ## Concepts
 
+- [[wiki/concepts/graphify-obsidian-export|Graphify → Obsidian Export]] — 將代碼知識圖譜匯出為 Obsidian vault 的工作流，讓 AI Coding Agent 可以在更廣泛的專案脈絡中查詢圖譜。
 - [[wiki/concepts/ai-agent-memory-systems|AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式]] — AI agent 記憶架構的設計框架：三支柱分析 × 五種存儲方式 × 四種檢索方法 × 六種維護策略。 🛠️
 - [[wiki/concepts/content-redesign|Content 設計 Redesign]] — 知識花園 Content 設計重構：從「套模板」到「針對性報告」。經 Copilot + Gemini 三輪討論確立。 🛠️
 - [[wiki/concepts/knowledge-garden-skill-architecture|知識花園 Skill 架構]] — 知識花園相關 skills 的架構全景圖，描述 11 個 skill 的職責、資料流和關聯。 🛠️
@@ -43,6 +44,7 @@ updated: 2026-08-11
 - [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|Plannotator × Obsidian — 知識迴流系統報告簡報企劃]] — 來源：Pi 整理的簡報企劃文件，經過 Gemini + Copilot 雙重審閱 🛠️
 - [[wiki/sources/2026-08-13-garden-guard-incident|2026-08-13 花園巡檢事故與 garden-guard extension 建立全記錄]] — 類型：內部事故報告 + 修復全過程記錄 🛠️
 - [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|AI Agent Memory Systems — 5 種記憶架構設計方式]] — 來源：[YouTube](https://www.youtube.com/watch?v=072eNztI06k) | 作者：Sean Chen ([@ShenSeanChen](https://github.com/ShenSeanChen)) | 頻道：Sean's AI Stories | 時長：30:26 🛠️
+- [[wiki/sources/2026-08-25-graphify-obsidian-cheat-code|Graphify + Obsidian + Claude Code = CHEAT CODE]] — 將 Graphify 知識圖譜匯出為 Obsidian vault 的實作教學，含四種整合策略。 🛠️
 
 ## Others
 

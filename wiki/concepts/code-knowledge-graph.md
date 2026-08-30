@@ -42,3 +42,4 @@ canonical: concepts/code-knowledge-graph
 
 ## 相關頁面
 - [[wiki/entities/graphify|Graphify]]、[[wiki/entities/memgraph-rag|MemGraph-RAG]]
+- [[wiki/concepts/graphify-obsidian-export|Graphify → Obsidian Export]] — KG 建好之後怎麼進 Obsidian 的工作流

@@ -210,6 +210,30 @@
       "duration": "00:35:51",
       "created": "2026-08-30",
       "raw_path": "raw/youtube/observability-opentelemetry-logs-metrics-traces.md"
+    },
+    {
+      "slug": "2026-08-25-graphify-obsidian-claude-code-cheat-code",
+      "title": "Graphify + Obsidian + Claude Code = CHEAT CODE",
+      "youtube_id": "mWLDn49_8HA",
+      "url": "https://www.youtube.com/watch?v=mWLDn49_8HA",
+      "duration": "16:37",
+      "segments": 496,
+      "paragraphs": 52,
+      "language": "en",
+      "auto_generated": true
+    },
+    {
+      "slug": "dev-security-vibe-coding",
+      "video_id": "t9WA-BkLUps",
+      "title": "Vibe Coding 資安基本功：給非技術人員的資安教學",
+      "url": "https://www.youtube.com/watch?v=t9WA-BkLUps",
+      "language": "zh-TW",
+      "auto_generated": false,
+      "source_api": "manual",
+      "segments": 100,
+      "duration": "00:22:14",
+      "created": "2026-08-30",
+      "raw_path": "raw/youtube/dev-security-vibe-coding.md"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {
