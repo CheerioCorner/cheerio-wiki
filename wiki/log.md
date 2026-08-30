@@ -1,4 +1,20 @@
 
+## [2026-08-30] ingest | Graphify + Obsidian + Claude Code = CHEAT CODE
+
+- 動作：YouTube 影片 → youtube_transcript_api 抓英文字幕（auto-generated，496 segments → 52 paragraphs，16:37）→ raw transcript 建檔 → 雙模型交叉驗證（Claude 單方提案，Gemini 因 CLI 權限問題缺席）→ 建立 wiki 頁面 + 更新既有頁面
+- 建立：
+  - `raw/youtube/2026-08-25-graphify-obsidian-claude-code-cheat-code.md` — raw transcript
+  - `wiki/sources/2026-08-25-graphify-obsidian-cheat-code.md` — source note（四種整合策略、demo 數據、跨平台通用性）
+  - `wiki/concepts/graphify-obsidian-export.md` — Graphify → Obsidian Export 工作流概念（source-doc wiring、四種整合策略、與 Vector RAG 差異）
+- 更新：
+  - `wiki/entities/graphify.md` — 新增 `--obsidian` 參數功能、跨平台支援（20+ platforms）、sources 1→2
+  - `wiki/concepts/code-knowledge-graph.md` — 相關頁面加入 graphify-obsidian-export
+  - `wiki/entities/obsidian.md` — 相關頁面加入 graphify-obsidian-export + source note
+  - `wiki/topics/agent-research.md` — Concepts 加入 graphify-obsidian-export、Sources 加入 source note
+  - `wiki/topics/knowledge-mgmt.md` — Concepts 加入 graphify-obsidian-export、Sources 加入 source note
+  - `wiki/index.md` — Concepts + Sources 新增條目
+- 特殊標記：Gemini CLI (agy) 因 headless mode 權限問題無法執行，僅 Claude 單方提案。無分歧需仲裁。
+
 ## [2026-08-30] ingest | Vibe Coding 資安基本功：給非技術人員的資安教學
 
 - 動作：YouTube 影片（字幕被關閉）→ 使用者手動提供 SRT 逐字稿 → 去重複（簡/繁）→ 合併段落 → raw transcript 建檔 → wiki ingest

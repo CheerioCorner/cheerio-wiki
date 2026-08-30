@@ -2,7 +2,7 @@
 title: "Graphify — 開源代碼知識圖譜工具"
 type: entity
 created: 2026-08-06
-updated: 2026-08-06
+updated: 2026-08-25
 sources: 2
 tags: [knowledge-graph, code-analysis, tree-sitter]
 collection: entities
@@ -32,6 +32,7 @@ canonical: entities/graphify
 
 ## 來源
 - [[wiki/sources/2026-08-06-wow-youtube-5-ai-agent-research|Wow 5支AI Agent研究]]
+- [[wiki/sources/2026-08-25-graphify-obsidian-cheat-code|Graphify + Obsidian + Claude Code = CHEAT CODE]]
 
 ## 跨平台支援
 支援 20+ 個 AI coding assistant 平台：Claude Code、Cursor、Codex、Gemini CLI、GitHub Copilot、Pi coding agent、Aider、Hermes、Kilo Code、Amp、Devin CLI 等。不限定 Claude Code。

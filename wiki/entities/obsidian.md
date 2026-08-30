@@ -157,8 +157,10 @@ raw/ ──wiki ingest──► wiki/ ──美化──► Notion 花園
 ## 相關頁面
 
 - [[wiki/topics/knowledge-mgmt|知識管理]] — 本種子所屬 topic
+- [[wiki/concepts/graphify-obsidian-export|Graphify → Obsidian Export]] — 將代碼知識圖譜匯出為 Obsidian vault 的工作流
 - [[wiki/concepts/okf-open-knowledge-format|OKF]] — Open Knowledge Format
 - [[wiki/concepts/pi-project-workspace-model|Pi Project Workspace Model]] — 提到 Obsidian 作為跨專案知識方案
+- [[wiki/sources/2026-08-25-graphify-obsidian-cheat-code|Graphify + Obsidian + Claude Code]] — Graphify → Obsidian 匯出實作教學
 - [[wiki/sources/2026-08-08-plannotator-obsidian-presentation|Plannotator × Obsidian 簡報企劃]]
 - [[wiki/visualizations/obsidian-seed-map|Obsidian 視覺地圖]] — 功能與延伸應用全景圖
 
