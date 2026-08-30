@@ -1,0 +1,457 @@
+[
+  {
+    "id": "120b1399-6913-49f7-b44c-7fd1644ee0c0",
+    "title": "[4Geeks Academy 媒體] 產品規格 - Browserbase Stagehand v4 瀏覽器 Agent SDK 解析",
+    "type": "web_page",
+    "url": "https://4geeks.com/en/blog/ai-tools/que-es-stagehand",
+    "status": 2
+  },
+  {
+    "id": "44ed053f-261f-4eb6-a07f-d45b853ed5e7",
+    "title": "[AnswerAgentAI 官方] 產品規格 - AnswerAgent 中的 Cheerio 網頁爬蟲配置",
+    "type": "web_page",
+    "url": "https://answeragent.ai/docs/sidekick-studio/chatflows/document-loaders/cheerio-web-scraper",
+    "status": 2
+  },
+  {
+    "id": "1f3201b9-7ae5-4b48-b921-7298ad0e57e3",
+    "title": "[Anthropic 官方] 實作指南 - 在 Claude Code 中使用 Skills 擴充 Agent 能力",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/agent-sdk/skills",
+    "status": 2
+  },
+  {
+    "id": "a5d4c336-8322-4b91-9048-d6f4c222986d",
+    "title": "[Anthropic 官方] 實作指南 - 如何協同與編排多個 Claude Code 終端會話",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/agent-teams",
+    "status": 2
+  },
+  {
+    "id": "46e70d48-053f-4b03-a84b-d170fe4de18a",
+    "title": "[Anthropic 官方] 實作指南 - 快速上手：在 API 中啟用 Agent Skills 擴充功能",
+    "type": "web_page",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart",
+    "status": 2
+  },
+  {
+    "id": "6a211879-b013-4b33-a979-93b016f94931",
+    "title": "[Anthropic 官方] 實作指南 - 為 Claude Code 擴充自訂 Skills 的實作方法",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/skills",
+    "status": 2
+  },
+  {
+    "id": "905653cc-0ca3-4efe-9a49-82872cfba737",
+    "title": "[Anthropic 官方] 架構文件 - Claude API Skill 擴充機制與呼叫規範",
+    "type": "web_page",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill",
+    "status": 2
+  },
+  {
+    "id": "e00117c4-a734-426b-8d51-3d1ad7aa870d",
+    "title": "[Anthropic 官方] 架構文件 - Claude API 中的 Agent Skills 設計與規範",
+    "type": "web_page",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+    "status": 2
+  },
+  {
+    "id": "bdcec70f-4880-464d-97a8-5fe0445e715a",
+    "title": "[Anthropic 官方] 架構文件 - Claude Code 終端 Agent 的底層運作原理",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/how-claude-code-works",
+    "status": 2
+  },
+  {
+    "id": "12d219ed-a2c3-4b3a-9857-f9ad9a6cf0c0",
+    "title": "[Anthropic 官方] 架構文件 - 企業級 Claude 應用中的 Skills 權限與整合架構",
+    "type": "web_page",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise",
+    "status": 2
+  },
+  {
+    "id": "65f05b43-9cdc-4892-a087-0c708ced2394",
+    "title": "[Apify 官方] 技術分析 - 2025年 Cheerio 網頁數據抓取最新技術與優化方法",
+    "type": "web_page",
+    "url": "https://blog.apify.com/web-scraping-with-cheerio/",
+    "status": 2
+  },
+  {
+    "id": "b9231008-67f2-42c1-a7e0-dc8fe1931208",
+    "title": "[Apify 官方] 產品規格 - Cheerio Scraper 網頁 HTML 爬取工具",
+    "type": "web_page",
+    "url": "https://apify.com/apify/cheerio-scraper",
+    "status": 2
+  },
+  {
+    "id": "afcbf599-2809-4291-b228-01947ad780a6",
+    "title": "[Check Point Research 媒體] 安全研究 - 漏洞分析：利用 LangGraph Checkpointer 實現遠端程式碼執行",
+    "type": "web_page",
+    "url": "https://research.checkpoint.com/2026/from-sqli-to-rce-exploiting-langgraphs-checkpointer/",
+    "status": 2
+  },
+  {
+    "id": "54e091da-0536-4e1d-abca-11f1df7f6c0c",
+    "title": "[Cheerio 官方] 產品規格 - Cheerio 輕量級快速 HTML/XML 解析程式庫",
+    "type": "web_page",
+    "url": "https://github.com/cheeriojs/cheerio",
+    "status": 2
+  },
+  {
+    "id": "3c625531-ffd9-4fd3-9d98-72dddd865c19",
+    "title": "[DEV Community 媒體] 技術分析 - 選擇器的終結：基於 LLM 的 HTML 語義解析新時代",
+    "type": "web_page",
+    "url": "https://dev.to/deepak_mishra_35863517037/the-end-of-selectors-llm-driven-html-parsing-28b2",
+    "status": 2
+  },
+  {
+    "id": "96c0193f-c792-48c1-a4bf-89b507892929",
+    "title": "[Deno 官方] 實作指南 - 使用 TypeScript 在 Deno 中建立自訂 RAG AI Agent",
+    "type": "web_page",
+    "url": "https://deno.com/blog/build-custom-rag-ai-agent",
+    "status": 2
+  },
+  {
+    "id": "97fddc90-2e5a-4f57-b43a-6eb84897c3f5",
+    "title": "[Developers Digest 媒體] 比較分析 - Agent 執行期環境對決：Herdr vs Pi vs Tmux",
+    "type": "web_page",
+    "url": "https://www.developersdigest.tech/blog/herdr-vs-pi-vs-tmux-agent-harness-compared",
+    "status": 2
+  },
+  {
+    "id": "98a05438-3545-4133-9bfa-5b769f6ca264",
+    "title": "[FlowiseAI 官方] 產品規格 - Flowise 中的 Cheerio 網頁爬蟲節點設計",
+    "type": "web_page",
+    "url": "https://docs.flowiseai.com/integrations/langchain/document-loaders/cheerio-web-scraper",
+    "status": 2
+  },
+  {
+    "id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+    "title": "[GitHub 官方] 架構文件 - GitHub Copilot SDK for Go 開發者指引與規格",
+    "type": "web_page",
+    "url": "https://github.com/github/copilot-sdk/blob/main/go/README.md",
+    "status": 2
+  },
+  {
+    "id": "766c6710-f974-4932-b43a-60753faf4d70",
+    "title": "[GitHub 官方] 架構文件 - GitHub Copilot SDK 與 CLI 相容性規格說明",
+    "type": "web_page",
+    "url": "https://docs.github.com/en/copilot/how-tos/copilot-sdk/troubleshooting/compatibility",
+    "status": 2
+  },
+  {
+    "id": "6cf63f15-22a6-496c-beca-bfcb32d63bf4",
+    "title": "[GitHub 官方] 架構文件 - nodetool Agent 管理與調度機制規範",
+    "type": "web_page",
+    "url": "https://github.com/nodetool-ai/nodetool/blob/main/AGENTS.md",
+    "status": 2
+  },
+  {
+    "id": "23101699-5a0b-420d-bc5b-a52c2f59061e",
+    "title": "[GitHub 官方] 產品規格 - Copilot SDK 跨平台 Agent 整合開發套件",
+    "type": "web_page",
+    "url": "https://github.com/github/copilot-sdk",
+    "status": 2
+  },
+  {
+    "id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+    "title": "[GitHub 官方] 產品規格 - pi-herdr-agents 封裝與調用依賴規格",
+    "type": "web_page",
+    "url": "https://pi.dev/packages/pi-herdr-agents",
+    "status": 2
+  },
+  {
+    "id": "9eaaa199-54fd-4367-9313-b2bff01e9b7c",
+    "title": "[GitHub 社群] 案例研究 - Awesome Claude Fable 5 高階 Prompt 精選庫",
+    "type": "web_page",
+    "url": "https://github.com/thenicolas1894/awesome-claude-fable-5-prompt-vault",
+    "status": 2
+  },
+  {
+    "id": "4060f5d6-3af8-46b9-bde6-61cc3fdf0eff",
+    "title": "[Herdr 官方] 實作指南 - 使用 Herdr 進行 Agent 自動化工作流",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/agent-automation/",
+    "status": 2
+  },
+  {
+    "id": "e566acee-7ca0-4201-a798-d39b2ceb5ca7",
+    "title": "[Herdr 官方] 架構文件 - Herdr Agent 執行期技術架構與原理",
+    "type": "web_page",
+    "url": "https://herdr.dev/",
+    "status": 2
+  },
+  {
+    "id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+    "title": "[Herdr 官方] 架構文件 - Herdr 中的多 Agent 管理與執行期環境",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/agents/",
+    "status": 2
+  },
+  {
+    "id": "0e83b2e7-3313-48cc-b874-e5331f7c2894",
+    "title": "[Herdr 官方] 架構文件 - Herdr 多 Agent 多路複用器完整技術手冊",
+    "type": "web_page",
+    "url": "https://herdr.dev/docs/",
+    "status": 2
+  },
+  {
+    "id": "e457da46-1715-4775-b68e-a57717ef5f7e",
+    "title": "[Herdr 官方] 產品規格 - 基於 Rust 實現的終端多 Agent 協調多路複用器",
+    "type": "web_page",
+    "url": "https://www.coddykit.com/pages/blog-detail?id=512884&slug=herdr-the-rust-agent-multiplexer-that-runs-all-your-ai-coding-agents-in-one-term",
+    "status": 2
+  },
+  {
+    "id": "e23539dc-a626-4bc3-ae7a-424e5322b6d9",
+    "title": "[IPRoyal 官方] 實作指南 - 給初學者的 Cheerio 與 Node.js 網頁爬蟲快速入門",
+    "type": "web_page",
+    "url": "https://iproyal.com/blog/web-scraping-cheerio-nodejs/",
+    "status": 2
+  },
+  {
+    "id": "9d5f27f0-1003-4e81-b058-98cd9b483c7c",
+    "title": "[Incogniton 媒體] 實作指南 - Cheerio 與 User-Agent 網頁爬蟲入門教學",
+    "type": "web_page",
+    "url": "https://api-docs.incogniton.com/how-to-guides/beginners-guide-to-scraping",
+    "status": 2
+  },
+  {
+    "id": "8e550c34-c80e-454b-b14a-dc76976d4379",
+    "title": "[LangChain 官方] 實作指南 - LangGraph 層級式多 Agent 團隊協調範例",
+    "type": "web_page",
+    "url": "https://github.com/langchain-ai/langgraphjs/blob/main/examples/multi_agent/hierarchical_agent_teams.ipynb?ref=blog.langchain.com",
+    "status": 2
+  },
+  {
+    "id": "6db30885-7b22-4ca4-9d31-a33e89a09e8b",
+    "title": "[LangChain 官方] 實作指南 - 使用 LangGraph 構建自訂 RAG AI Agent",
+    "type": "web_page",
+    "url": "https://docs.langchain.com/oss/javascript/langgraph/agentic-rag",
+    "status": 2
+  },
+  {
+    "id": "33c7eba6-9a3e-491c-a480-b0a211780652",
+    "title": "[LangChain 官方] 架構文件 - LangChain 中的網頁瀏覽器工具與節點整合",
+    "type": "web_page",
+    "url": "https://docs.langchain.com/oss/javascript/integrations/tools/webbrowser",
+    "status": 2
+  },
+  {
+    "id": "ec2b5938-1bfe-4ba8-a240-6c7419153f44",
+    "title": "[LangChain 官方] 架構文件 - LangGraph Checkpoints 模組與狀態持久化 API",
+    "type": "web_page",
+    "url": "https://reference.langchain.com/python/langgraph/checkpoints",
+    "status": 2
+  },
+  {
+    "id": "9e6b3574-6334-4de5-b504-7a76dbe6459e",
+    "title": "[LangChain 官方] 架構文件 - LangGraph Postgres 儲存器持久化配置",
+    "type": "web_page",
+    "url": "https://reference.langchain.com/python/langgraph.store.postgres",
+    "status": 2
+  },
+  {
+    "id": "eff95fa4-6960-4310-b274-c0ebcb88ce1d",
+    "title": "[LangChain 官方] 架構文件 - LangGraph 中的狀態持久化與記憶機制",
+    "type": "web_page",
+    "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+    "status": 2
+  },
+  {
+    "id": "242f3c88-fd1f-4f27-9113-5fec74c3fd4c",
+    "title": "[MachineLearningMastery 媒體] 技術分析 - AI Agent 記憶與狀態的五大架構模式",
+    "type": "web_page",
+    "url": "https://machinelearningmastery.com/5-architectural-patterns-for-persistent-memory-and-state-in-ai-agents/",
+    "status": 2
+  },
+  {
+    "id": "e819868d-0909-44a6-9617-430b9d58e3d4",
+    "title": "[Mem0 官方] 產品規格 - 具備持久化記憶的 AI Agent 平台",
+    "type": "web_page",
+    "url": "https://mem0.ai/blog/ai-agent-platforms-with-persistent-memory",
+    "status": 2
+  },
+  {
+    "id": "60ec4fe8-7531-40d7-b4b8-6bfb8b835ec2",
+    "title": "[Microsoft 官方] 實作指南 - 在 Copilot Studio 中實作多 Agent 協調架構",
+    "type": "web_page",
+    "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/implementing-multi%E2%80%91agent-orchestration-in-microsoft-copilot-studio/4494717",
+    "status": 2
+  },
+  {
+    "id": "c3f443b3-5db2-4635-b648-47ca536c0e81",
+    "title": "[Microsoft 官方] 技術分析 - Copilot Studio 多 Agent 協調模式與最佳實踐",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/multi-agent-patterns",
+    "status": 2
+  },
+  {
+    "id": "6282a7f2-ef75-4e9d-a74f-58e084bb48d0",
+    "title": "[Microsoft 官方] 架構文件 - 企業級多 Agent 協調模式設計指南",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/agents/architecture/multi-agent-patterns",
+    "status": 2
+  },
+  {
+    "id": "61a7feab-1acc-41d5-838e-3d88df66dbfa",
+    "title": "[Microsoft 社群] 實作指南 - 結合 Agent Framework、GitHub Copilot CLI 與 Squad 構建 Agent 團隊",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/agent-framework/building-agent-teams-with-agent-framework-github-copilot-cli-and-squad/",
+    "status": 2
+  },
+  {
+    "id": "ffb0a7f7-2f74-4022-92ba-bf3d1d343118",
+    "title": "[Microsoft 社群] 案例研究 - 結合 GitHub Copilot SDK 與 Foundry Local 的 Agent 程式碼自動修復",
+    "type": "web_page",
+    "url": "https://techcommunity.microsoft.com/blog/educatordeveloperblog/agentic-code-fixing-with-github-copilot-sdk-and-foundry-local/4493967",
+    "status": 2
+  },
+  {
+    "id": "491c8431-616e-4281-a592-5a74e7ce58e9",
+    "title": "[Olostep 官方] 實作指南 - 使用 Cheerio 在 Node.js 中進行高效網頁爬取的現代指南",
+    "type": "web_page",
+    "url": "https://www.olostep.com/blog/web-scraping-cheerio",
+    "status": 2
+  },
+  {
+    "id": "4863e47e-625f-46fb-b558-f0f8ec922465",
+    "title": "[OrbitScraper 官方] 實作指南 - 使用 Node.js API 爬取 Google 搜尋結果",
+    "type": "web_page",
+    "url": "https://orbitscraper.com/blog/scrape-google-results-node-js",
+    "status": 2
+  },
+  {
+    "id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+    "title": "[Pi coding agent 官方] 產品規格 - andrewjacop/pi-herdr 整合套件規格",
+    "type": "web_page",
+    "url": "https://pi.dev/packages/@andrewjacop/pi-herdr?name=web",
+    "status": 2
+  },
+  {
+    "id": "713d918f-9ebb-4d9f-96cd-89a4ef5dc27f",
+    "title": "[Reddit 社群] 技術分析 - AI Agent 核心概念與技術術語高層次定義",
+    "type": "web_page",
+    "url": "https://www.reddit.com/user/maltelandwehr/comments/1kdmi8v/simple_ai_definitions/",
+    "status": 2
+  },
+  {
+    "id": "5cdf0f6d-2bbd-4959-b0c6-28e1fc358407",
+    "title": "[Reddit 社群] 案例研究 - Gem Team：基於 Copilot SDK 的多 Agent 協調工作流實作分享",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/GithubCopilot/comments/1r2oht8/i_built_gem_team_multiagent_orchestration/",
+    "status": 2
+  },
+  {
+    "id": "990644c6-6d06-43a2-a9ed-a3ffce5afacd",
+    "title": "[Reddit 社群] 案例研究 - 基於 Herdr 與獨立 Git 工作區的多 Agent 協調並行開發高階工作流",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/ClaudeWorkflows/comments/1vpdryi/workflow_advanced_multiagent_orchestration_with/",
+    "status": 2
+  },
+  {
+    "id": "070429b5-2341-433e-815c-e3fcdbb94ef6",
+    "title": "[Reddit 社群] 案例研究 - 解決 LangGraph + SQLite Checkpointer 在 Vercel 部署後的記憶流失問題",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/AI_Agents/comments/1vfasz4/langgraph_sqlite_checkpointer_loses_memory_after/",
+    "status": 2
+  },
+  {
+    "id": "b0690bb6-b606-4605-ba19-3613b1857687",
+    "title": "[ScrapeOps 媒體] 實作指南 - 使用 Node.js 與 Cheerio 進行 HTML 網頁解析",
+    "type": "web_page",
+    "url": "https://scrapeops.io/nodejs-web-scraping-playbook/nodejs-cheerio-guide/",
+    "status": 2
+  },
+  {
+    "id": "b9e439f2-d00f-4fc1-9067-650314766abc",
+    "title": "[ScrapingBee 媒體] 實作指南 - 使用 Python 與 Node.js 爬取 Yandex 搜尋結果",
+    "type": "web_page",
+    "url": "https://www.scrapingbee.com/blog/how-to-scrape-yandex-search-results/",
+    "status": 2
+  },
+  {
+    "id": "332df5ac-de9d-4982-b3af-46cd2fde1903",
+    "title": "[Scrappey 官方] 實作指南 - Node.js 網頁爬蟲技術：Cheerio 與 Playwright 實戰比較",
+    "type": "web_page",
+    "url": "https://scrappey.com/qa/web-scraping-languages/web-scraping-with-nodejs",
+    "status": 2
+  },
+  {
+    "id": "443203c5-0f16-4ff4-ba39-6c0c66d56f6a",
+    "title": "[Shift Asia 媒體] 比較分析 - 企業級 Agent 框架大比拼：Nous Hermes Agent vs. OpenClaw",
+    "type": "web_page",
+    "url": "https://shiftasia.com/column/nous-hermes-agent-vs-openclaw-architectural-deep-dive/",
+    "status": 2
+  },
+  {
+    "id": "5ed6d045-d992-4f8a-81c5-e4893899c487",
+    "title": "[Spaceout 媒體] 技術分析 - 探討 LangChain、LangGraph 與常見 Agentic AI 設計模式",
+    "type": "web_page",
+    "url": "https://spaceout.pl/langchain-langgraph-and-agentic-ai-patterns/",
+    "status": 2
+  },
+  {
+    "id": "2902a98f-cb32-4fb3-b585-0a6c587274f7",
+    "title": "[Tech Blog 媒體] 實作指南 - 結合 RAG 與向量搜尋建立具持久記憶的 AI Agent",
+    "type": "web_page",
+    "url": "https://www.mindstudio.ai/blog/ai-agent-persistent-memory-rag-vector-search",
+    "status": 2
+  },
+  {
+    "id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+    "title": "[Tech Blog 媒體] 技術分析 - 2026年長工期 AI Agent 的七大狀態持久化策略",
+    "type": "web_page",
+    "url": "https://www.indium.tech/7-state-persistence-strategies-ai-agents-2026/",
+    "status": 2
+  },
+  {
+    "id": "0d469aef-bae5-405e-ad95-d29d5c2bb216",
+    "title": "[Tech Blog 媒體] 架構文件 - 確定性 AI 協調：面向自主開發的平台架構",
+    "type": "web_page",
+    "url": "https://www.praetorian.com/blog/deterministic-ai-orchestration-a-platform-architecture-for-autonomous-development/",
+    "status": 2
+  },
+  {
+    "id": "b0a65e07-4f41-489a-bfc9-69355135ae80",
+    "title": "[Twilio 官方] 實作指南 - 使用 Node.js 與 Cheerio 進行 HTML 網頁下載與解析",
+    "type": "web_page",
+    "url": "https://www.twilio.com/en-us/blog/developers/tutorials/building-blocks/web-scraping-and-parsing-html-with-node-js-and-cheerio",
+    "status": 2
+  },
+  {
+    "id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+    "title": "[arXiv 學術] 學術論文 - MA-VLA：用於協同與任務泛化的多手臂視覺-語言-動作模型",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/2608.25864v1",
+    "status": 2
+  },
+  {
+    "id": "4e46919e-09da-4de3-a16a-13edc10adde3",
+    "title": "[arXiv 學術] 學術論文 - PanelTR：基於多 Agent 科學研討的零樣本表格推理框架",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/2508.06110v1",
+    "status": 2
+  },
+  {
+    "id": "3a5c5058-2333-4ada-a2f8-4d39e73343c6",
+    "title": "[arXiv 學術] 學術論文 - 深入剖析 Claude Code：當前與未來 AI Agent 系統之設計空間",
+    "type": "web_page",
+    "url": "https://arxiv.org/abs/2604.14228",
+    "status": 2
+  },
+  {
+    "id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+    "title": "[arXiv 學術] 學術論文 - 長工期行動端 GUI Agent 的任務狀態表示法",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/2607.00502v1",
+    "status": 2
+  },
+  {
+    "id": "7dba56e0-ac31-4ebd-aea2-bc2ac67298a2",
+    "title": "[htek.dev 媒體] 技術分析 - GitHub Copilot SDK：將 Agent 整合至各類應用的技術探討",
+    "type": "web_page",
+    "url": "https://htek.dev/articles/github-copilot-sdk-agents-for-every-app",
+    "status": 2
+  }
+]

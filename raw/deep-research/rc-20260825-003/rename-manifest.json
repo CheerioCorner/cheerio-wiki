@@ -1,0 +1,457 @@
+[
+  {
+    "original_title": "5 Architectural Patterns for Persistent Memory and State in AI Agents - MachineLearningMastery.com",
+    "new_title": "[MachineLearningMastery 媒體] 技術分析 - AI Agent 記憶與狀態的五大架構模式",
+    "category": "狀態管理與持久化",
+    "source_id": "242f3c88-fd1f-4f27-9113-5fec74c3fd4c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "7 State Persistence Strategies for Long-Running AI Agents in 2026",
+    "new_title": "[Tech Blog 媒體] 技術分析 - 2026年長工期 AI Agent 的七大狀態持久化策略",
+    "category": "狀態管理與持久化",
+    "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "A Task-State Representation for Long-Horizon Mobile GUI Agents - arXiv",
+    "new_title": "[arXiv 學術] 學術論文 - 長工期行動端 GUI Agent 的任務狀態表示法",
+    "category": "學術研究與理論",
+    "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI agent platforms with persistent memory - Mem0",
+    "new_title": "[Mem0 官方] 產品規格 - 具備持久化記憶的 AI Agent 平台",
+    "category": "狀態管理與持久化",
+    "source_id": "e819868d-0909-44a6-9617-430b9d58e3d4",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agent Skills - Claude Platform Docs",
+    "new_title": "[Anthropic 官方] 架構文件 - Claude API 中的 Agent Skills 設計與規範",
+    "category": "Claude Code 與工具實作",
+    "source_id": "e00117c4-a734-426b-8d51-3d1ad7aa870d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agent automation | herdr",
+    "new_title": "[Herdr 官方] 實作指南 - 使用 Herdr 進行 Agent 自動化工作流",
+    "category": "Agent 架構與協調",
+    "source_id": "4060f5d6-3af8-46b9-bde6-61cc3fdf0eff",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agentic Code Fixing with GitHub Copilot SDK and Foundry Local | Microsoft Community Hub",
+    "new_title": "[Microsoft 社群] 案例研究 - 結合 GitHub Copilot SDK 與 Foundry Local 的 Agent 程式碼自動修復",
+    "category": "Copilot SDK 與工具實作",
+    "source_id": "ffb0a7f7-2f74-4022-92ba-bf3d1d343118",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agents | herdr",
+    "new_title": "[Herdr 官方] 架構文件 - Herdr 中的多 Agent 管理與執行期環境",
+    "category": "Agent 架構與協調",
+    "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Beginners guide to Web Scraping (Cheerio, User-Agents) - Incogniton",
+    "new_title": "[Incogniton 媒體] 實作指南 - Cheerio 與 User-Agent 網頁爬蟲入門教學",
+    "category": "網頁爬蟲與解析",
+    "source_id": "9d5f27f0-1003-4e81-b058-98cd9b483c7c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Build a custom RAG AI agent in TypeScript and Jupyter | Deno",
+    "new_title": "[Deno 官方] 實作指南 - 使用 TypeScript 在 Deno 中建立自訂 RAG AI Agent",
+    "category": "狀態管理與持久化",
+    "source_id": "96c0193f-c792-48c1-a4bf-89b507892929",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Build a custom RAG agent with LangGraph - Docs by LangChain",
+    "new_title": "[LangChain 官方] 實作指南 - 使用 LangGraph 構建自訂 RAG AI Agent",
+    "category": "LangGraph 與工具實作",
+    "source_id": "6db30885-7b22-4ca4-9d31-a33e89a09e8b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Building agent teams with Agent Framework, GitHub Copilot CLI and Squad",
+    "new_title": "[Microsoft 社群] 實作指南 - 結合 Agent Framework、GitHub Copilot CLI 與 Squad 構建 Agent 團隊",
+    "category": "Agent 架構與協調",
+    "source_id": "61a7feab-1acc-41d5-838e-3d88df66dbfa",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Cheerio Scraper - HTML scraping tool - Apify",
+    "new_title": "[Apify 官方] 產品規格 - Cheerio Scraper 網頁 HTML 爬取工具",
+    "category": "網頁爬蟲與解析",
+    "source_id": "b9231008-67f2-42c1-a7e0-dc8fe1931208",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Cheerio Web Scraper | AnswerAgentAI",
+    "new_title": "[AnswerAgentAI 官方] 產品規格 - AnswerAgent 中的 Cheerio 網頁爬蟲配置",
+    "category": "網頁爬蟲與解析",
+    "source_id": "44ed053f-261f-4eb6-a07f-d45b853ed5e7",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Cheerio Web Scraper | FlowiseAI",
+    "new_title": "[FlowiseAI 官方] 產品規格 - Flowise 中的 Cheerio 網頁爬蟲節點設計",
+    "category": "網頁爬蟲與解析",
+    "source_id": "98a05438-3545-4133-9bfa-5b769f6ca264",
+    "status": "renamed"
+  },
+  {
+    "original_title": "CheerioJS Guide - Scraping HTML Pages With NodeJs - ScrapeOps",
+    "new_title": "[ScrapeOps 媒體] 實作指南 - 使用 Node.js 與 Cheerio 進行 HTML 網頁解析",
+    "category": "網頁爬蟲與解析",
+    "source_id": "b0690bb6-b606-4605-ba19-3613b1857687",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Claude API skill - Claude Platform Docs",
+    "new_title": "[Anthropic 官方] 架構文件 - Claude API Skill 擴充機制與呼叫規範",
+    "category": "Claude Code 與工具實作",
+    "source_id": "905653cc-0ca3-4efe-9a49-82872cfba737",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Deterministic AI Orchestration: A Platform Architecture for Autonomous Development",
+    "new_title": "[Tech Blog 媒體] 架構文件 - 確定性 AI 協調：面向自主開發的平台架構",
+    "category": "Agent 架構與協調",
+    "source_id": "0d469aef-bae5-405e-ad95-d29d5c2bb216",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Dive into Claude Code: The Design Space of Today's and Future AI Agent Systems - arXiv",
+    "new_title": "[arXiv 學術] 學術論文 - 深入剖析 Claude Code：當前與未來 AI Agent 系統之設計空間",
+    "category": "學術研究與理論",
+    "source_id": "3a5c5058-2333-4ada-a2f8-4d39e73343c6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Extend Claude with skills - Claude Code Docs",
+    "new_title": "[Anthropic 官方] 實作指南 - 為 Claude Code 擴充自訂 Skills 的實作方法",
+    "category": "Claude Code 與工具實作",
+    "source_id": "6a211879-b013-4b33-a979-93b016f94931",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Extend agents with skills - Claude Code Docs",
+    "new_title": "[Anthropic 官方] 實作指南 - 在 Claude Code 中使用 Skills 擴充 Agent 能力",
+    "category": "Claude Code 與工具實作",
+    "source_id": "1f3201b9-7ae5-4b48-b921-7298ad0e57e3",
+    "status": "renamed"
+  },
+  {
+    "original_title": "From SQLi to RCE - Exploiting LangGraph's Checkpointer - Check Point Research",
+    "new_title": "[Check Point Research 媒體] 安全研究 - 漏洞分析：利用 LangGraph Checkpointer 實現遠端程式碼執行",
+    "category": "LangGraph 與工具實作",
+    "source_id": "afcbf599-2809-4291-b228-01947ad780a6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Get started with Agent Skills in the API - Claude Platform Docs",
+    "new_title": "[Anthropic 官方] 實作指南 - 快速上手：在 API 中啟用 Agent Skills 擴充功能",
+    "category": "Claude Code 與工具實作",
+    "source_id": "46e70d48-053f-4b03-a84b-d170fe4de18a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub - cheeriojs/cheerio: The fast, flexible, and elegant library for parsing and manipulating HTML and XML.",
+    "new_title": "[Cheerio 官方] 產品規格 - Cheerio 輕量級快速 HTML/XML 解析程式庫",
+    "category": "網頁爬蟲與解析",
+    "source_id": "54e091da-0536-4e1d-abca-11f1df7f6c0c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub - github/copilot-sdk: Multi-platform SDK for integrating GitHub Copilot Agent into apps and services",
+    "new_title": "[GitHub 官方] 產品規格 - Copilot SDK 跨平台 Agent 整合開發套件",
+    "category": "Copilot SDK 與工具實作",
+    "source_id": "23101699-5a0b-420d-bc5b-a52c2f59061e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub - thenicolas1894/awesome-claude-fable-5-prompt-vault",
+    "new_title": "[GitHub 社群] 案例研究 - Awesome Claude Fable 5 高階 Prompt 精選庫",
+    "category": "Claude Code 與工具實作",
+    "source_id": "9eaaa199-54fd-4367-9313-b2bff01e9b7c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Herdr documentation",
+    "new_title": "[Herdr 官方] 架構文件 - Herdr 多 Agent 多路複用器完整技術手冊",
+    "category": "Agent 架構與協調",
+    "source_id": "0e83b2e7-3313-48cc-b874-e5331f7c2894",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Herdr vs pi vs tmux: Which Agent Harness Should You Run? - Developers Digest",
+    "new_title": "[Developers Digest 媒體] 比較分析 - Agent 執行期環境對決：Herdr vs Pi vs Tmux",
+    "category": "Agent 架構與協調",
+    "source_id": "97fddc90-2e5a-4f57-b43a-6eb84897c3f5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Herdr: The Rust Agent Multiplexer That Runs All Your AI Coding Agents in One Terminal",
+    "new_title": "[Herdr 官方] 產品規格 - 基於 Rust 實現的終端多 Agent 協調多路複用器",
+    "category": "Agent 架構與協調",
+    "source_id": "e457da46-1715-4775-b68e-a57717ef5f7e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Herdr: the runtime coding agents run on",
+    "new_title": "[Herdr 官方] 架構文件 - Herdr Agent 執行期技術架構與原理",
+    "category": "Agent 架構與協調",
+    "source_id": "e566acee-7ca0-4201-a798-d39b2ceb5ca7",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How Claude Code works - Claude Code Docs",
+    "new_title": "[Anthropic 官方] 架構文件 - Claude Code 終端 Agent 的底層運作原理",
+    "category": "Claude Code 與工具實作",
+    "source_id": "bdcec70f-4880-464d-97a8-5fe0445e715a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How to Build an AI Agent with Persistent Memory Using RAG and Vector Search",
+    "new_title": "[Tech Blog 媒體] 實作指南 - 結合 RAG 與向量搜尋建立具持久記憶的 AI Agent",
+    "category": "狀態管理與持久化",
+    "source_id": "2902a98f-cb32-4fb3-b585-0a6c587274f7",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How to Scrape Yandex Search Results: Python & Node.js - ScrapingBee",
+    "new_title": "[ScrapingBee 媒體] 實作指南 - 使用 Python 與 Node.js 爬取 Yandex 搜尋結果",
+    "category": "網頁爬蟲與解析",
+    "source_id": "b9e439f2-d00f-4fc1-9067-650314766abc",
+    "status": "renamed"
+  },
+  {
+    "original_title": "I built Gem Team — multi-agent orchestration workflow for copilot : r/GithubCopilot - Reddit",
+    "new_title": "[Reddit 社群] 案例研究 - Gem Team：基於 Copilot SDK 的多 Agent 協調工作流實作分享",
+    "category": "Copilot SDK 與工具實作",
+    "source_id": "5cdf0f6d-2bbd-4959-b0c6-28e1fc358407",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Implementing Multi‑Agent Orchestration in Microsoft Copilot Studio",
+    "new_title": "[Microsoft 官方] 實作指南 - 在 Copilot Studio 中實作多 Agent 協調架構",
+    "category": "Agent 架構與協調",
+    "source_id": "60ec4fe8-7531-40d7-b4b8-6bfb8b835ec2",
+    "status": "renamed"
+  },
+  {
+    "original_title": "LangChain, LangGraph, and Agentic AI Patterns - Spaceout",
+    "new_title": "[Spaceout 媒體] 技術分析 - 探討 LangChain、LangGraph 與常見 Agentic AI 設計模式",
+    "category": "LangGraph 與工具實作",
+    "source_id": "5ed6d045-d992-4f8a-81c5-e4893899c487",
+    "status": "renamed"
+  },
+  {
+    "original_title": "LangGraph + SQLite checkpointer loses memory after every Vercel deployment. What's the best solution? : r/AI_Agents - Reddit",
+    "new_title": "[Reddit 社群] 案例研究 - 解決 LangGraph + SQLite Checkpointer 在 Vercel 部署後的記憶流失問題",
+    "category": "LangGraph 與工具實作",
+    "source_id": "070429b5-2341-433e-815c-e3fcdbb94ef6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "MA-VLA: Multi-Arm Vision-Language-Action Model for Collaboration and Compositional Generalization - arXiv",
+    "new_title": "[arXiv 學術] 學術論文 - MA-VLA：用於協同與任務泛化的多手臂視覺-語言-動作模型",
+    "category": "學術研究與理論",
+    "source_id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Multi-agent orchestration patterns and best practices - Microsoft Copilot Studio",
+    "new_title": "[Microsoft 官方] 技術分析 - Copilot Studio 多 Agent 協調模式與最佳實踐",
+    "category": "Agent 架構與協調",
+    "source_id": "c3f443b3-5db2-4635-b648-47ca536c0e81",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Multi-agent patterns | Microsoft Learn",
+    "new_title": "[Microsoft 官方] 架構文件 - 企業級多 Agent 協調模式設計指南",
+    "category": "Agent 架構與協調",
+    "source_id": "6282a7f2-ef75-4e9d-a74f-58e084bb48d0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Nous Hermes Agent vs. OpenClaw Architectural Deep-Dive - Which AI Framework is Ready for Enterprise Production? - Software Testing and Development Company - Shift Asia",
+    "new_title": "[Shift Asia 媒體] 比較分析 - 企業級 Agent 框架大比拼：Nous Hermes Agent vs. OpenClaw",
+    "category": "Agent 架構與協調",
+    "source_id": "443203c5-0f16-4ff4-ba39-6c0c66d56f6a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Orchestrate teams of Claude Code sessions - Claude Code Docs",
+    "new_title": "[Anthropic 官方] 實作指南 - 如何協同與編排多個 Claude Code 終端會話",
+    "category": "Claude Code 與工具實作",
+    "source_id": "a5d4c336-8322-4b91-9048-d6f4c222986d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "PanelTR: Zero-Shot Table Reasoning Framework Through Multi-Agent Scientific Discussion",
+    "new_title": "[arXiv 學術] 學術論文 - PanelTR：基於多 Agent 科學研討的零樣本表格推理框架",
+    "category": "學術研究與理論",
+    "source_id": "4e46919e-09da-4de3-a16a-13edc10adde3",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Persistence - Docs by LangChain",
+    "new_title": "[LangChain 官方] 架構文件 - LangGraph 中的狀態持久化與記憶機制",
+    "category": "LangGraph 與工具實作",
+    "source_id": "eff95fa4-6960-4310-b274-c0ebcb88ce1d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "SDK and CLI compatibility - GitHub Copilot",
+    "new_title": "[GitHub 官方] 架構文件 - GitHub Copilot SDK 與 CLI 相容性規格說明",
+    "category": "Copilot SDK 與工具實作",
+    "source_id": "766c6710-f974-4932-b43a-60753faf4d70",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Scrape Google Results with Node.js API - OrbitScraper",
+    "new_title": "[OrbitScraper 官方] 實作指南 - 使用 Node.js API 爬取 Google 搜尋結果",
+    "category": "網頁爬蟲與解析",
+    "source_id": "4863e47e-625f-46fb-b558-f0f8ec922465",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Simple AI Definitions : u/maltelandwehr - Reddit",
+    "new_title": "[Reddit 社群] 技術分析 - AI Agent 核心概念與技術術語高層次定義",
+    "category": "學術研究與理論",
+    "source_id": "713d918f-9ebb-4d9f-96cd-89a4ef5dc27f",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Skills for enterprise - Claude Platform Docs",
+    "new_title": "[Anthropic 官方] 架構文件 - 企業級 Claude 應用中的 Skills 權限與整合架構",
+    "category": "Claude Code 與工具實作",
+    "source_id": "12d219ed-a2c3-4b3a-9857-f9ad9a6cf0c0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "The End of Selectors: LLM-Driven HTML Parsing - DEV Community",
+    "new_title": "[DEV Community 媒體] 技術分析 - 選擇器的終結：基於 LLM 的 HTML 語義解析新時代",
+    "category": "網頁爬蟲與解析",
+    "source_id": "3c625531-ffd9-4fd3-9d98-72dddd865c19",
+    "status": "renamed"
+  },
+  {
+    "original_title": "The GitHub Copilot SDK: Agents for Every App - htek.dev",
+    "new_title": "[htek.dev 媒體] 技術分析 - GitHub Copilot SDK：將 Agent 整合至各類應用的技術探討",
+    "category": "Copilot SDK 與工具實作",
+    "source_id": "7dba56e0-ac31-4ebd-aea2-bc2ac67298a2",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Web Scraping With Cheerio in Node.js: The Modern Guide - Olostep",
+    "new_title": "[Olostep 官方] 實作指南 - 使用 Cheerio 在 Node.js 中進行高效網頁爬取的現代指南",
+    "category": "網頁爬蟲與解析",
+    "source_id": "491c8431-616e-4281-a592-5a74e7ce58e9",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Web Scraping With Node.js: Cheerio & Playwright - Scrappey",
+    "new_title": "[Scrappey 官方] 實作指南 - Node.js 網頁爬蟲技術：Cheerio 與 Playwright 實戰比較",
+    "category": "網頁爬蟲與解析",
+    "source_id": "332df5ac-de9d-4982-b3af-46cd2fde1903",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Web Scraping and Parsing HTML with Node.js and Cheerio | Twilio",
+    "new_title": "[Twilio 官方] 實作指南 - 使用 Node.js 與 Cheerio 進行 HTML 網頁下載與解析",
+    "category": "網頁爬蟲與解析",
+    "source_id": "b0a65e07-4f41-489a-bfc9-69355135ae80",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Web Scraping with Cheerio and Node.js: A Beginner-Friendly Guide - IPRoyal.com",
+    "new_title": "[IPRoyal 官方] 實作指南 - 給初學者的 Cheerio 與 Node.js 網頁爬蟲快速入門",
+    "category": "網頁爬蟲與解析",
+    "source_id": "e23539dc-a626-4bc3-ae7a-424e5322b6d9",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Web browser integration - Docs by LangChain",
+    "new_title": "[LangChain 官方] 架構文件 - LangChain 中的網頁瀏覽器工具與節點整合",
+    "category": "網頁爬蟲與解析",
+    "source_id": "33c7eba6-9a3e-491c-a480-b0a211780652",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Web scraping with Cheerio in 2025 - Apify Blog",
+    "new_title": "[Apify 官方] 技術分析 - 2025年 Cheerio 網頁數據抓取最新技術與優化方法",
+    "category": "網頁爬蟲與解析",
+    "source_id": "65f05b43-9cdc-4892-a087-0c708ced2394",
+    "status": "renamed"
+  },
+  {
+    "original_title": "What is Stagehand v4: Browserbase's SDK for browser agents - 4Geeks Academy",
+    "new_title": "[4Geeks Academy 媒體] 產品規格 - Browserbase Stagehand v4 瀏覽器 Agent SDK 解析",
+    "category": "網頁爬蟲與解析",
+    "source_id": "120b1399-6913-49f7-b44c-7fd1644ee0c0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Workflow] Advanced Multi-Agent Orchestration with Herdr and Isolated Git Worktrees for Parallel Development : r/ClaudeWorkflows - Reddit",
+    "new_title": "[Reddit 社群] 案例研究 - 基於 Herdr 與獨立 Git 工作區的多 Agent 協調並行開發高階工作流",
+    "category": "Agent 架構與協調",
+    "source_id": "990644c6-6d06-43a2-a9ed-a3ffce5afacd",
+    "status": "renamed"
+  },
+  {
+    "original_title": "andrewjacop/pi-herdr · Packages - Pi Coding Agent",
+    "new_title": "[Pi coding agent 官方] 產品規格 - andrewjacop/pi-herdr 整合套件規格",
+    "category": "Agent 架構與協調",
+    "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+    "status": "renamed"
+  },
+  {
+    "original_title": "checkpoints | langgraph - LangChain Reference",
+    "new_title": "[LangChain 官方] 架構文件 - LangGraph Checkpoints 模組與狀態持久化 API",
+    "category": "LangGraph 與工具實作",
+    "source_id": "ec2b5938-1bfe-4ba8-a240-6c7419153f44",
+    "status": "renamed"
+  },
+  {
+    "original_title": "copilot-sdk/go/README.md at main - GitHub",
+    "new_title": "[GitHub 官方] 架構文件 - GitHub Copilot SDK for Go 開發者指引與規格",
+    "category": "Copilot SDK 與工具實作",
+    "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+    "status": "renamed"
+  },
+  {
+    "original_title": "langgraph.store.postgres - LangChain Reference",
+    "new_title": "[LangChain 官方] 架構文件 - LangGraph Postgres 儲存器持久化配置",
+    "category": "LangGraph 與工具實作",
+    "source_id": "9e6b3574-6334-4de5-b504-7a76dbe6459e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "langgraphjs/examples/multi_agent/hierarchical_agent_teams.ipynb at main - GitHub",
+    "new_title": "[LangChain 官方] 實作指南 - LangGraph 層級式多 Agent 團隊協調範例",
+    "category": "Agent 架構與協調",
+    "source_id": "8e550c34-c80e-454b-b14a-dc76976d4379",
+    "status": "renamed"
+  },
+  {
+    "original_title": "nodetool/AGENTS.md at main - GitHub",
+    "new_title": "[GitHub 官方] 架構文件 - nodetool Agent 管理與調度機制規範",
+    "category": "Agent 架構與協調",
+    "source_id": "6cf63f15-22a6-496c-beca-bfcb32d63bf4",
+    "status": "renamed"
+  },
+  {
+    "original_title": "pi-herdr-agents · Packages",
+    "new_title": "[GitHub 官方] 產品規格 - pi-herdr-agents 封裝與調用依賴規格",
+    "category": "Agent 架構與協調",
+    "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+    "status": "renamed"
+  }
+]

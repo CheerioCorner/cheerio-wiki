@@ -15,6 +15,7 @@ updated: 2026-08-23
 - [[wiki/entities/claude-code|Claude Code — Anthropic AI Coding Agent]] — Claude Code 是 Anthropic 推出的 agentic coding tool，以終端機為起點，擴展到 Desktop App、Web、IDE、GitHub（`@claude` tag）。核心建立在 MCP（Model Context Protocol）之上，能自主觀察 codebase → 推理 → 執行工具 → 評估結果 → 重複循環。 🛠️
 - [[wiki/entities/coinbase-ai-engineering|Coinbase AI Engineering — 多模型基礎設施與成本工程實踐]] — Coinbase 用 LLM gateway、task-based routing、aggressive caching 三大槓桿，在增加 AI 用量的同時降低 50% 花費。
 - [[wiki/entities/herdr|herdr — Coding Agent 的 Terminal Runtime]] — 基於 Rust 的終端機代理人執行期與多路複用器，專為 AI coding agent 設計。Client-Server 架構、四語義狀態偵測、Socket API 三大編排原語（Spawn/Inject/Wait）、Plugin 系統。支援與 Pi/Tau 整合，是 agent 的「基礎設施層」。
+- [[wiki/entities/multi-agent-orchestration-patterns|Multi-Agent Orchestration 設計模式]] — 三大核心設計模式：常駐背景、語義狀態偵測、原子化 Prompt。涵蓋 Herdr / Pi / Claude Code / Copilot SDK / LangGraph 的實現比較，及 Cheerio 助理應用架構。
 - [[wiki/entities/github-copilot-sdk|GitHub Copilot SDK — Custom Agents 平台]] — GitHub Copilot SDK 是 Copilot 的**程式化代理平台**，提供 Custom Agents、Sub-agent Orchestration、Custom Skills、Fleet Mode、Hooks、MCP 整合等完整 agent 能力。**⚠️ 此頁面基於 GitHub 官方文件（docs.github.com），修正了先前基於第三方文章的多處錯誤描述。** 🛠️
 - [[wiki/entities/github-copilot|GitHub Copilot — AI 程式碼輔助生態系]] — GitHub Copilot 是 GitHub（Microsoft 旗下）推出的 AI 程式碼輔助產品線，從 IDE 補全演化為完整 Agent 生態系：Extensions SDK、Agent Skills、Cloud Agent、Code Review、MCP 整合。 🛠️
 - [[wiki/entities/hermes-agent|hermes-agent — 開源 AI Agent 框架]] — Nous Research 開源的 AI Agent，具備 40+ 工具鏈、跨會話記憶與動態 Skill 庫生成機制。
@@ -39,6 +40,7 @@ updated: 2026-08-23
 
 - [[wiki/sources/2026-07-22-mattpocock-skills-tutorial|mattpocock/skills — 完整 AI Coding 工作流程教學]] — 來源：[YouTube — mattpocock/skills: A complete AI Coding workflow, end-to-end](https://www.youtube.com/watch?v=M6mYodf0dJM)
 - [[wiki/sources/2026-08-25-herdr-deep-research|Herdr 深度研究 — Coding Agent 的 Terminal Runtime]] — Gemini 深度研究報告，涵蓋 Herdr 架構、Socket API、Plugin 系統、與 Pi/Tau 比較、對 Cheerio 助理的啟發。
+- [[wiki/sources/2026-08-25-multi-agent-orchestration-patterns|Multi-Agent Orchestration 設計模式深度研究]] — Gemini 深度研究報告，65 筆來源，三大模式在五大工具的實現比較。
 - [[wiki/sources/2026-08-02-morphir-dotnet-agents|morphir-dotnet AGENTS.md — AI Agent 貢獻指南]] — FINOS morphir-dotnet 專案的 AGENTS.md，展示企業級 .NET 專案如何組織 AI agent 指南。 🛠️
 - [[wiki/sources/2026-08-02-qwenpaw-github-readme|QwenPaw: GitHub README — 完整功能與安裝指南]] — 來源：[agentscope-ai/QwenPaw GitHub README](https://github.com/agentscope-ai/QwenPaw)
 - [[wiki/sources/2026-08-02-waku-agent-code-walkthrough|Waku Waku! Waku agent — code walkthrough]] — 來源：[YouTube — Waku Waku! Waku agent is your personal AI agent](https://youtu.be/rvRyBhILrls)

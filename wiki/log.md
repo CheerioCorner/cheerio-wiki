@@ -1,4 +1,16 @@
 
+## [2026-08-25] ingest | Multi-Agent Orchestration 設計模式深度研究
+
+- 動作：Gemini Notebook 深度研究（rc-20260825-003，65 筆來源）→ 研究報告產出 → wiki ingest
+- 建立：
+  - `raw/deep-research/rc-20260825-003/research-report.md` — 深度研究報告（5 題查詢結果）
+  - `wiki/entities/multi-agent-orchestration-patterns.md` — entity 頁（三大設計模式 + 五大工具比較 + Cheerio 應用架構）
+  - `wiki/sources/2026-08-25-multi-agent-orchestration-patterns.md` — source note
+- 更新：
+  - `wiki/topics/agent-runtime-implementations.md` — Entities + Sources 加入 multi-agent-orchestration-patterns
+  - `wiki/index.md` — Entities + Sources 各新增條目
+- 特殊標記：三大模式（常駐背景、語義狀態偵測、原子化 Prompt）是 Cheerio 助理多 agent 協作的核心設計參考
+
 ## [2026-08-25] ingest | Herdr 深度研究 — Coding Agent 的 Terminal Runtime
 
 - 動作：GitHub repo + YouTube 影片 → Gemini Notebook 深度研究（rc-20260825-002，39 筆來源）→ 研究報告產出 → wiki ingest

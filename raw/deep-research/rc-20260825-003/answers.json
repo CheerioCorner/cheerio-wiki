@@ -1,0 +1,2055 @@
+[
+  {
+    "question": "常駐背景（persistent background）模式如何實作？哪些工具支援？對 agent 容錯有什麼幫助？",
+    "answer": "將**常駐背景（Persistent Background）**、**語義狀態偵測（Semantic State Detection）**與**原子化 Prompt（Atomic Prompt）**三大編排模式落地於 **Cheerio 助理**的多 Agent 協同設計，能徹底解決傳統爬蟲助理常見的「脆弱 CSS 選擇器失效（Selector Drift）」[15]、「遭遇 CAPTCHA 阻擋陷入死循環」[11, 53] 以及「長工期爬取中斷前功盡棄」[58] 等痛點。\n\n以下為 Cheerio 助理多 Agent 協作架構的具體應用與設計建議：\n\n---\n\n### 一、 基於「原子化 Prompt 與物理隔離」的並行解析與代碼生成\n\nCheerio 最大的優勢在於**極高的 HTML 解析速度與輕量級記憶體佔用** [14, 17, 54]，但隨著網站結構的複雜化，讓單一 Agent 處理整條爬取管道容易造成 Prompt 膨脹與競態衝突。\n\n*   **原子化職責拆解（Micro-Scrapers Task Allocation）**：\n    將協作架構拆解為三個高度原子化的 Agent 角色，彼此不共享對話歷史（Context Isolation）以節省 Token [9, 22]：\n    1.  **結構分析師（Structure Scout）**：負責獲取目標網頁 HTML [45, 60]，利用 LLM 語義解析（LLM-Driven HTML Parsing）定位目標數據的 DOM 結構或 JSON-LD 區塊 [15, 45]，輸出簡潔的數據欄位對照清單。\n    2.  **腳本工程師（Cheerio Writer）**：接收結構分析師的原子 Prompt 指令，**專注且唯一地編寫並測試單一網頁的 Cheerio 提取代碼** [14, 52]。\n    3.  **管道整合器（Pipeline Merger）**：負責管理任務進度 [59]。\n*   **Git Worktree 與檔案鎖雙重隔離機制**：\n    當需要同時爬取或分析多個不同版面結構的子頁面時，主協調器（Orchestrator）應效仿 **Herdr 的 Worktrees 模式** [50]，在臨時的隔離 Git Worktree 或獨立的 scratch 工作區中分派複數個「腳本工程師」Agent [50]。在寫入最終的 `scrapers.js` 設定檔時，必須引用**檔案寫入鎖（File Locking）** [3, 10]，確保代碼生成時不會產生 Race Condition。\n\n---\n\n### 二、 基於「語義狀態偵測」的動態「輕/重型爬蟲切換」與防死循環策略\n\nCheerio 助理在面對動態渲染（SPA）或設有嚴格 Cloudflare 防禦、CAPTCHA 的網站時極易觸發 Blocked [1, 54]。系統必須具備敏銳的狀態偵測與避障機制。\n\n*   **建立「阻礙（Blocked）」與「無效動作」狀態偵測鏈**：\n    實作 **TSR（任務狀態表示法）** 的思想 [64]。當 Cheerio 助理下載網頁後，外部的狀態更新器（State Updater）立即解析 HTML 狀態碼或 DOM 樹 [11, 64]。\n    *   **Blocked 偵測**：若 HTML 內含有 `cloudflare`、`security checkpoint`、`429 Too Many Requests` 或 `captcha` 等特定關鍵字 [11, 53]，或畫面截圖比對後判定動作無效 [64]，立即向 EventBus 拋出 `state: blocked` 信號 [47]，中斷當前的 Cheerio 提取。\n*   **動態降級與路由（Fallback to Heavy Crawler）**：\n    一旦 Cheerio 偵測到 `blocked` 狀態，Orchestrator 應暫停該 Cheerio 任務，並利用 **Stagehand v4** [1] 或 **Playwright** [54] 等重量級瀏覽器 Agent 作為備用路徑（Fallback Route），接管該 PTY 終端或工作流 [26, 47]，待通過驗證碼、獲取靜態 HTML 後，再將數據快照（Snapshot）返還給輕量級的 Cheerio 助理進行後續的高速 DOM 遍歷與清洗 [14, 45]，實現「**輕重配合，極速容錯**」。\n*   **Compaction 門檻防範記憶體崩潰**：\n    Cheerio 下載的原始 HTML 文本動輒數萬行，直接塞入 LLM 進行語義分析會迅速壓迫 Context Window 臨界線 [9, 15]。助理必須配置如 Claude Code 的 **Compaction Gates 機制** [9]：當累積導入的網頁源碼 Token 達到限制的 75% 時，非同步觸發壓縮過濾 Agent [9, 22]，將 HTML 徹底精簡為只剩有價值的 CSS 樹和 metadata（如 `cheerio.load(html)` 後僅保留特定的 article/div 節點） [14, 18]，之後才允許下一個 Crawl 節點的 Spawning [9]。\n\n---\n\n### 三、 基於「常駐背景與 Checkpointing」的長工期非同步爬取與中斷重啟\n\n當面對需要爬取成千上萬個網址（例如電商全站目錄或新聞封存庫）的長工期任務時，網路波動或 API 限制是不可避免的常態 [11, 58]。\n\n*   **利用圖狀態機 Checkpointer 實作斷點續爬（Checkpoint & Resume）**：\n    切忌將爬蟲任務設計為單一的線性 Script。建議採用 **LangGraph 狀態圖** 搭配 **`AsyncPostgresSaver`** 的架構 [36, 37]。\n    *   將每一筆待爬取的 URL 與其對應的 Cheerio 提取代碼視為圖中的一個原子節點 [37]。\n    *   每成功爬取並儲存一個頁面，系統在背景自動向數據庫提交一次 Checkpoint（包括 `thread_id`、`scraped_urls`、`extracted_json`） [35, 36]。\n    *   即使背景進程因 API 逾時、設備斷電而中斷，重新啟動後，Agent 能讀取資料庫狀態並直接從未爬取的 URL 列表繼續推進 [37]，**保證節點執行的冪等性（Idempotency），避免耗費 Token 重複爬取已完成網頁** [37]。\n*   **Herdr 終端託管下的「人機協同審核（HITL）」**：\n    將 Cheerio 助理部署在 **Herdr 背景 Daemon 伺服器**中 [26]。當助理在背景連續解析出錯（例如因網站改版導致 Cheerio Selector 解析出的 JSON 欄位全為 `null` [15, 52]），助理會自動將狀態標記為 `blocked` 並掛起（Pause）進程 [26, 47]。此時，人類工程師可以透過 `herdr --remote` 連線接管該 Pane [28, 29]，直接在終端內對 Cheerio 提取器進行手動代碼修正（Hot-fix），確認無誤後輸入指令，背景 Agent 隨即無縫還原（Resume）並繼續執行後續數百個頁面的非同步爬取 [26, 47]。\n\n---\n\n🧭 這套將常駐背景、狀態偵測與原子化 Prompt 融入 Cheerio 助理的架構，能最大程度發揮 Cheerio 的效能優勢並克服其靜態解析的侷限性。**您是否希望我為您將這個架構設計撰寫成一份結構完整的「企業級多 Agent 容錯爬蟲系統設計報告（Tailored Report）」並儲存在您的 Studio 面板中，以便您後續開發參考呢？**",
+    "citations": []
+  },
+  {
+    "question": "語義狀態偵測（semantic state detection）如何實現 blocked/working/done 的精準判斷？各工具的偵測策略差異？",
+    "answer": "在多 Agent 編排（Orchestration）中，**語義狀態偵測（Semantic State Detection）**是避免長工期（Long-Horizon）任務因網路波動、API 限制或環境延遲而崩潰，進而實現「高容錯、非阻塞、自主協同」的核心技術。\n\n以下深度解析此模式如何精準判定 **`blocked`（受阻）**、**`working`（執行中）**、**`done`（完成）**，以及主流工具的偵測策略與實作差異。\n\n---\n\n### 一、 語義狀態偵測的四種實作機制\n\n為了解決大語言模型（LLM）無狀態的缺陷，避免 Agent 在任務進度中產生**目標漂移（Goal Drift）**、**進度幻覺（Progress Hallucination）**或**面臨延遲網頁時盲目重複無效動作（Stale-screen repetition）**，技術界主要透過以下四種機制實現狀態判斷 [1, 2]：\n\n#### 1. 視覺與狀態解耦比對模式（Task-State Representation, TSR）\n此模式將「持久任務狀態」與「瞬時畫面觀測」徹底解耦，在 Agent 外圍包覆一個 **State Updater（狀態更新器）** [3, 4]。\n*   **精準判定實作**：在每一次動作前後（\\\\(o_{t-1}\\\\) 與 \\\\(o_t\\\\)），Updater 會藉由一筆 Prompted MLLM 呼叫進行比對 [4-6]。\n    *   **Working/Done 判定**：更新器維護一個結構化的 JSON 進度追蹤器（Progress Tracker），包含`任務分解`、`已完成里程碑`、`當前子目標`、`剩餘需求`等欄位，藉此防止進度幻覺或提早結束 [7, 8]。\n    *   **Blocked 判定**：若環境畫面未更新，更新器比對截圖後會將 `action_effective` 判定為 `false`，並在 `next_action_focus` 欄位寫入引導（如要求刷新、驗證狀態），**主動阻斷 Agent 陷入死循環** [8-10]。\n\n#### 2. 底層虛擬終端（PTY）緩衝區匹配\n針對本身不具備主動報告機制或無法修改源碼的 CLI 助理（例如 Claude Code、Codex 等），平台層透過讀取終端文字來推估 [11, 12]。\n*   **精準判定實作**：\n    *   **Working 判定**：讀取虛擬終端（PTY）底部的螢幕快照緩衝區（非 Scrolled Viewport），並比對 OSC 進度序列或終端標題（OSC 0/2）來推估活動狀態 [13, 14]。\n    *   **Blocked 判定**：**採用極為嚴格的匹配策略**。系統讀取 TOML 格式的偵測規則文件（Screen Manifests），只有當螢幕底部的 ANSI 文本完全匹配已知的審批、問題或許可 UI（例如 Claude Code 的交互式輸入提示）時，才會判定為 `blocked`；無規則匹配時，預設 fallback 為 `idle`，以防發送盲目 keystroke 造成破壞 [13, 15, 16]。\n    *   **Done 判定**：當背景工作執行完畢回到 PTY Shell 提示符時，標記為 `done`，直到使用者聚焦該 Tab/Pane，才回到 `idle` [17]。\n\n#### 3. 程序級生命週期鉤子與主動自我宣告（Self-Reporting Hooks）\n最精準、最無誤差的判定，是由 Agent 程序直接在內部的生命週期節點主動申報 [18, 19]。\n*   **精準判定實作**：\n    *   **Working/Idle 判定**：程式碼在關鍵節點（Lifecycle Hooks）上寫入宣告。例如：開始呼叫 API 或執行工具（`agent_start`）時向 Socket 拋出 `working`；回到等待輸入狀態（`agent_settled`）時拋出 `idle` [18]。\n    *   **Blocked 判定**：當程序內部調用 `ask_user` 等阻礙組件時，EventBus 立即攔截此事件，並向外部協調器拋出 `report-agent --state blocked` 主動申報 [18]。\n\n#### 4. 圖形編排狀態機與資料庫 Checkpointing\n這是不涉及終端外殼、純邏輯與程式級的狀態管理 [20, 21]。\n*   **精準判定實作**：\n    *   **Working/Done 判定**：將狀態（State）定義為圖形節點執行的轉移邊（Edges），當 State 流傳播至 `END` 節點即判定為 Done [22, 23]。\n    *   **Blocked 判定**：在圖編譯時配置 **Interrupts（中斷點）** [24]。當執行流到達中斷邊時，圖形執行緒自動掛起，將 Graph State 序列化寫入持久化資料庫（如 PostgreSQL），執行緒轉為 Sleep 釋放運算資源，直到人類更新 State 或發送 Resume 信號 [20, 25-27]。\n\n---\n\n### 二、 主流工具的偵測策略差異\n\n這五款工具在狀態偵測的架構與定位上存在著根本性的差異：\n\n#### 1. Herdr\n*   **策略：終端級 Screen Inference 與 Status Authority Chain** [12, 19]\n*   **偵測實作**：優先使用 installed hooks（如 Pi, OMP 的 Hook 報告）[19]。針對無完整 Hook 支援的 CLI，則藉由 PTY 底部的 recent buffer 快照，對照 TOML 格式的 `agent-detection` 規則文件進行啟發式匹配 [13, 16]。當遇到未知 prompts 時，Herdr 會因「Blocked 判定刻意從嚴」而 fallback 至 idle，主動防止 Orchestrator 進行盲目且破壞性的 keystroke 寫入 [15]。其 `explain` 輸出可提供極具細節的規則匹配與 matched 證據 [28]。\n\n#### 2. Pi (pi-herdr-agents)\n*   **策略：程序內部主動自我宣告與微觀生命週期追蹤** [18, 29]\n*   **偵測實作**：Pi 本身不推估 PTY 像素，而是利用其 `pi-herdr-agents` 擴充套件，在 `agent_start` 拋出 `working`，`agent_settled` 拋出 `idle`，並在調用 `ask_user` 時主動通報 `blocked` [18]。\n*   主會話協調器會渲染出一個極為精緻的 **Subagents 狀態監控 Widget**，實時追蹤並投射 `starting`、`active`、`blocked`、`waiting`、`interrupted`、`stalled`、`running`、`finalizing` 八種微觀生命週期 [29-31]。它還設有 Watchdog 機制，在 Pane 消失或失聯時，將其判定為 `stalled` 並向主會話發送 steer 警報 [29, 32]。\n\n#### 3. Claude Code (Anthropic)\n*   **策略：對話日誌監控與 Compaction Gates** [33-35]\n*   **偵測實作**：系統背景解析 `~/.claude/projects/` 下的 JSONL 對話歷史日誌中的 Token 計數 [36, 37]。當 Token 佔用率達到 75% 時啟動 compaction 警告，80% 時執行 compaction（自動壓縮歷史 tool output 提取為摘要） [34, 35, 37]。**一旦達到 85% 臨界線，Hook 會強制硬性阻斷（Block）所有 subagent 的 spawning**，以確保不會因為 context window 爆滿而發生崩潰 [35, 37]。\n*   在 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` 平行協作中，Teammates 透過各自的 `~/.claude/teams/{team}/inboxes/{agent}.json` 信箱發信，領取任務時採用 file-locking 進行阻斷防止 race condition [38, 39]。\n\n#### 4. GitHub Copilot SDK\n*   **策略：協定級連線事件監聽與 On-Demand Elicitation** [40, 41]\n*   **偵測實作**：使用 JSON-RPC 協定。在 streaming 模式下實時監聽 `assistant.message_delta` 與 `assistant.reasoning_delta` 事件以定義 Active 狀態 [40]。\n*   當需要人類介入時，SDK 會觸發 `OnUserInputRequest` 或是調用 `UI` 模組的 `Confirm`、`Select`、`Input`、`Elicitation`（帶 Schema 驗證）交互式 UI schema [41, 42]。這會將 Session 轉入等待狀態。同時，`OnPostToolUseFailure` 鉤子能截獲工具失敗，並在背景向 Agent 注入糾錯引導 context [43]。其 Infinite Sessions 也在背景設有 80%/95% 的 compaction 監控與事件回報 [44]。\n\n#### 5. LangGraph (LangChain)\n*   **策略：有向無環圖（DAG）狀態轉移與資料庫 Checkpoint** [20, 21, 27]\n*   **偵測實作**：純邏輯狀態機判定。將 status 解耦為圖節點執行的轉移邊，done 狀態即是指狀態流傳播至 `END` 節點 [98, END]。\n*   若遇到預先定義的 `interrupt`（中斷點）[24]，執行流與執行緒將會凍結掛起（Sleep），並自動將當前 State 快照序列化寫入 `SqliteSaver` 或 `PostgresSaver` 中（在 Vercel 等 Serverless 部署中，本地 SQLite 寫入 ephemeral 的 `/tmp` 會流失記憶，推薦使用 `AsyncPostgresSaver` 解決） [45, 46]。此時資源完全釋放，直到外界提供 input 或者是 Resume/Time Travel 觸發，系統能從 Checkpoint 瞬時恢復運行 [20, 25-27]。\n\n---\n🧭 語義狀態偵測是多 Agent 能夠長工期運行的心臟。既然您對狀態偵測與這五大工具的實作細節有了如此深入的掌握，**是否想了解如何將這些機制與「原子化 prompt（atomic prompt）」機制整合，以設計出具備高容錯與並行開發能力的 Cheerio 網路數據抓取助理工作流呢？**",
+    "citations": [
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 1,
+        "cited_text": "In practice, this assumption breaks down as the steps increases. We identify three recurring failure modes in long-horizon mobile benchmarks: (1) goal drift , where the actor gradually loses sight of the original task after observing numerous intermediate screens; (2) progress hallucination , where the actor lose access to earlier visual observations and fabricates past states when reasoning about cumulative progress; and (3) stale-screen repetition , where the actor misinterprets a delayed update in the user interface as a failed action and enters a localized loop."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 2,
+        "cited_text": "These failures are not solely attributable to limitations in the model's capacity. Rather, they arise from a structural deficiency in how the input of the actor is organized: the standard prompt conflates two fundamentally different categories of information— persistent task state (the request of the user, the accomplished subgoals, and the remaining steps) and transient observation state (the content displayed on the current screen). Without an explicit mechanism to separate and maintain the former, the actor must re-derive the task progress from the raw history at every step—a burden that scales linearly with the length of the trajectory."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 3,
+        "cited_text": "License: arXiv.org perpetual non-exclusive license arXiv:2607.00502v1 [cs.CL] 01 Jul 2026 A Task-State Representation for Long-Horizon Mobile GUI Agents Yujie Zheng Zikang Liu Xin Zhao Ji-Rong Wen Affiliation: Gaoling School of Artificial Intelligence, Renmin University of China Affiliation: School of Software, Beihang University{janeyujie555,jasonlaw8121,batmanfly}@gmail.com, jrwen@ruc.edu.cn Abstract While long-horizon mobile GUI agents typically rely on thought-action-observation loops, they struggle to separate persistent task states from transient screen observations. As execution histories grow, this entanglement imposes a severe context burden, causing agents to forget initial requirements, hallucinate progress, or repeatedly interact with stale interfaces. To address this, we introduce Task-State Representation (TSR)—a training-free framework that explicitly decouples task state from sensory input. Acting as a lightweight external wrapper, TSR maintains three structured components: a global instruction summary, a dynamic progress tracker for subgoals, and a transition-aware action verifier. By continuously updating through pre- and post-action visual comparisons, TSR effectively guides the agent's reasoning without requiring architectural modifications. Experiments across four mobile GUI benchmarks validate TSR's effectiveness, yielding up to a 12 absolute point increase in success rate on complex cross-application and memory-intensive tasks. 1 1"
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 4,
+        "cited_text": "We propose a task-state representation that addresses this separation. The representation is maintained externally to a fixed GUI actor and is updated at each step by a training-free state updater that compares the pre-action and post-action screenshots. It comprises three functional views: a global task-state summary that preserves the original instruction, a progress tracker that records the completed and remaining subgoals, and a transition-aware focus that verifies the effectiveness of the preceding action and guides the next decision. The resulting state block is serialized and injected into the prompt of the actor, requiring no model retraining and architectural modification."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 5,
+        "cited_text": "2.3 State Update and Actor Injection At the beginning of a task, the initial state S 0 S_{0} is derived solely from the task instruction I I . At each subsequent step t t , following the execution of action a t − 1 a_{t-1} by the actor and the generation of observation o t o_{t} by the environment, the state updater 𝒰 ϕ \\mathcal{U}_{\\phi} receives the task instruction, the previous state, the previous response of the actor, and the screenshots captured before and after the action. It then produces the updated state through a single function call:"
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 6,
+        "cited_text": "S t = 𝒰 ϕ  ( I , S t − 1 , r t − 1 , o t − 1 , o t ) . S_{t}=\\mathcal{U} {\\phi}(I,;S {t-1},;r_{t-1},;o_{t-1},;o_{t}). The updater 𝒰 ϕ \\mathcal{U}_{\\phi} is implemented via a prompted LLM that outputs a structured JSON object encompassing all three views. Subsequently, the actor receives the standard context augmented with a serialized rendering of the task state: a t = π θ  ( I , O t , H t − 1 , ℐ  ( S t ) ) , a_{t}=\\pi_{\\theta}(I,;O_{t},;H_{t-1},;\\mathcal{I}(S_{t})), where ℐ  ( S t ) \\mathcal{I}(S_{t}) denotes an injection function that formats the three state views into a text block appended to the prompt of the actor. Crucially, π θ \\pi_{\\theta} remains fixed throughout, so that the entire mechanism operates externally at inference time without any training or architectural modifications."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 7,
+        "cited_text": "Progress Tracker. During complex long-horizon tasks, the agent often loses track of their overarching goals, creating severe ambiguity in evaluating current progress. To resolve this ambiguity, we design a progress tracker that decomposes the task into atomic requirements and tracks the execution status of each. It maintains four fields: task decomposition, completed milestones, current subgoal, and remaining requirements. By making verified progress and unresolved steps explicit, the tracker mitigates the risk of the actor hallucinating earlier observations or terminating prematurely."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 8,
+        "cited_text": "Appendix E State Updater Prompt Template The state updater 𝒰 ϕ \\mathcal{U} {\\phi} receives the following prompt along with before/after screenshots ( o t − 1 o {t-1} , o t o_{t} ) as image inputs. System message. User message."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 9,
+        "cited_text": "Transition-Aware Focus. Furthermore, since H t − 1 H_{t-1} reflects past intentions rather than environmental feedback, the actor risks repetitive loops during system delays or failures. To close this loop, the transition view evaluates the previous action by comparing observations o t − 1 o_{t-1} and o t o_{t} . If the outcome is uncertain, the representation prevents blind repetition by generating a next-action focus —such as verifying the state or refreshing a list—to guide the actor's next decision."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 10,
+        "cited_text": "3.4 Case Study Figure 2: Stale-screen recovery. The baseline repeats the same removal action against a delayed UI update. The task-state representation detects the uncertain transition and redirects the actor to verify before retrying. Figure 3: Over-decomposition failure. The state updater decomposes the task too aggressively, causing the actor to inspect items individually rather than using global visual inference, exceeding the step budget. Figure 2 illustrates a bookmark-management task where the baseline enters a repetition loop after a delayed UI update; the transition-aware focus detects the uncertain effect and guides the actor to verify before retrying. Figure 3 shows a failure mode: when the updater decomposes a task too aggressively, the actor inspects items individually instead of leveraging global visual inference, exceeding the step budget. The task-state representation should therefore be treated as guidance rather than an override of current-screen evidence."
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 11,
+        "cited_text": "To coordinate agents from scripts or from another agent, see Agent automation . Supported agents Section titled “Supported agents” Automatic detection works out of the box for common coding agents. The table shows which signal determines idle , working , and blocked for each one. <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Agent",
+              "State authority",
+              "Integration role"
+            ],
+            [
+              "Pi",
+              "lifecycle hooks when installed; otherwise screen manifest",
+              "state and session"
+            ],
+            [
+              "OMP",
+              "lifecycle hooks when installed",
+              "state and session"
+            ],
+            [
+              "GitHub Copilot CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Devin CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Kimi Code CLI",
+              "lifecycle hooks when installed; otherwise screen manifest",
+              "state and session"
+            ],
+            [
+              "Hermes Agent",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Qoder CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Qwen Code",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Droid",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "OpenCode",
+              "lifecycle plugin when installed; otherwise screen manifest",
+              "state and session"
+            ],
+            [
+              "Kilo Code CLI",
+              "lifecycle plugin when installed; otherwise screen manifest",
+              "state and session"
+            ],
+            [
+              "MastraCode",
+              "lifecycle hooks when installed",
+              "state and session"
+            ],
+            [
+              "Claude Code",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Codex",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Cursor Agent CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Amp",
+              "screen manifest",
+              "none"
+            ],
+            [
+              "Grok CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Antigravity CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Kiro CLI",
+              "screen manifest",
+              "none"
+            ],
+            [
+              "Maki",
+              "screen manifest",
+              "none"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "97fddc90-2e5a-4f57-b43a-6eb84897c3f5",
+        "citation_number": 12,
+        "cited_text": "The parts that matter for the comparison: Agent detection with a status authority chain. For each pane, Herdr identifies the foreground process, then classifies lifecycle state using per-agent TOML \"screen manifests\" matched against the live bottom-of-buffer snapshot, upgraded to authoritative hook reports when an agent's integration is installed. Manifest updates arrive from herdr.dev automatically without a restart (disable with [update] manifest_check = false ). Local overrides go in ~/.config/herdr/agent-detection/<agent>.toml . Breadth : the launch list supports 22 agent kinds - including pi itself - and the detection table covers around two dozen CLIs, from Claude Code and Codex to Kimi, Droid , and Qwen Code. Unsupported agents still run as ordinary terminal processes. Automation primitives : pane run , pane send-text , pane send-keys , pane wait-output --regex ; and agent-level agent start --kind , agent prompt --wait --until idle|done|blocked , agent wait , agent read . Waits resolve against the classified lifecycle, not raw text. When an agent prompt targets a blocked agent, Herdr returns agent_blocked instead of typing into a dialog. Rollups and attention routing : state rolls up from pane to tab to workspace in a sidebar. A blocked agent makes its whole workspace look blocked. The stated workflow: start several agents, walk away, look at the sidebar to see which project needs a decision. Remote and embedded surfaces : herdr --remote workbox turns your local install into a thin client over SSH (bridging even image paste into the remote session), named sessions isolate independent servers, and a read-only terminal session observe stream emits framed ANSI records for third-party bridges - which is exactly what Multiplex, a 9-star Swift client for Vision Pro, iPad, and iPhone, consumes alongside tmux and plain SSH."
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 13,
+        "cited_text": "For agents without complete lifecycle hooks, Herdr identifies the foreground process and reads the live bottom-buffer screen snapshot. It evaluates TOML manifests against that snapshot to classify idle , working , and blocked . For agents that emit them, manifests can also match terminal title and progress (OSC) sequences as detection evidence; when that evidence is absent, screen rules carry detection on their own. The screen snapshot comes from the recent bottom of the pane buffer, not the scrolled viewport. If you scroll back in Herdr, detection still follows the live agent UI at the bottom."
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 14,
+        "cited_text": "state controls waits, notifications, and rollups. The summary token is display-only and can be used as $summary in an Agent sidebar row. Agent sidebar rows can also opt into terminal_title or terminal_title_stripped ; neither appears in the default rows. The first shows the latest safety-normalized OSC 0/2 terminal title. The second removes one recognized leading activity or spinner glyph and following whitespace. Herdr owns these values on the server; they are ephemeral across a cold restart and remain independent of metadata titles and semantic agent state. Spinner animation can therefore update the raw title without producing a pane update when the stripped text stays the same."
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 15,
+        "cited_text": "Blocked state Section titled “Blocked state” Blocked detection is deliberately strict for screen-manifest agents. Herdr only marks blocked when the live bottom-buffer snapshot matches known visible approval, question, or permission UI. If no manifest rule matches for a known agent, Herdr falls back to idle and labels that fallback as default_known_agent_idle_fallback in explain output. This means unusual new agent prompts may initially show as idle instead of blocked until Herdr learns that screen shape. The misclassification affects only the visible status and waits. It should not make Herdr send input or take destructive action."
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 16,
+        "cited_text": "Detection manifests Section titled “Detection manifests” Bundled manifests live inside Herdr. Herdr also checks herdr.dev for remote manifest updates and applies valid per-agent rule updates automatically without requiring a Herdr restart. Remote manifests are stored in Herdr's state directory. Set [update] manifest_check = false to disable background remote manifest checks. Local overrides can replace a remote or bundled manifest from the platform config directory:"
+      },
+      {
+        "source_id": "4060f5d6-3af8-46b9-bde6-61cc3fdf0eff",
+        "citation_number": 17,
+        "cited_text": "Pane input addresses the terminal regardless of its current occupant. Agent input resolves the live agent and rejects the operation if that agent no longer controls the pane. agent prompt --wait submits immediately unless the agent is already blocked , in which case it returns agent_blocked without starting the wait. If an accepted prompt starts from another non-working state, Herdr must observe a lifecycle change within five seconds. Otherwise, it returns agent_prompt_stalled instead of waiting indefinitely; a caller --timeout of five seconds or less returns the normal timeout error. After Herdr observes activity, it waits for the requested settled status. It does not track individual turns. If the agent is already working, completion of that active turn may satisfy the wait. Standalone agent wait observes the current agent and returns immediately if its status already matches. Both commands default to idle , done , or blocked . Repeat --until to accept several exact states, for example --until idle --until done ; use --until unknown explicitly when needed. On agent prompt , --until requires --wait . idle means the agent is ready for input and its tab has been seen in the focused Herdr UI. done is the same underlying idle state after background work finishes, until that tab is focused or pane focus / agent focus targets it. Reading through the CLI does not mark it seen. blocked means Herdr recognized an approval or question UI. unknown means an agent is present but Herdr cannot classify its lifecycle confidently; it does not prove successful completion. Use exact --until states when that distinction matters. pane wait-output does not interpret agent lifecycle. It polls the selected terminal snapshot and searches it immediately, so text that was already present can match. The default source name is recent ; matching treats that source as unwrapped recent output from the latest 80 rendered terminal rows. --lines changes that row limit, and --regex uses Rust regular-expression syntax and matches one line at a time."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 18,
+        "cited_text": "How completion is detected (and why it's reliable) herdr auto-detects a pi pane's state from its TUI. It reliably catches idle → working but sometimes misses working → idle , which can leave a finished pane stuck on working and hang a wait. pi-herdr solves this with self-report : When pi runs inside a herdr pane, this extension pushes its real state to herdr on lifecycle hooks — agent_start → working , agent_settled → idle — and on the blocked EventBus channels. The current channel is herdr:blocked , emitted by pi-ask-user (v0.14+) when ask_user waits/resumes and by pi-subagents for attention states; the legacy rpiv:ask-user:blocked ( @juicesharp/rpiv-ask-user-question ) and pi-cursor-sdk:ask-question:blocked ( pi-cursor-sdk ) are kept for back-compat ( active: true → blocked , active: false → working so the turn resumes). pi-herdr is the bridge that turns herdr:blocked into a herdr pane report-agent --state blocked — nothing else in JS consumes it, so without this bridge blocked detection relies on herdr's native TUI-watching. herdr renders that idle-after-working as done on builds that derive it; herdr_delegate / herdr_wait_agent race the idle and done transition waits (plus a polling fallback — see below). A global install ( pi install npm:@andrewjacop/pi-herdr ) loads the extension into every pi — including spawned ones — so all pi agents report reliably."
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 19,
+        "cited_text": "Detected but less thoroughly tested: Gemini CLI and Cline. Unsupported agents still run normally as terminal processes. They just may not get rich state unless you add an integration or report state over the socket API. Status authority Section titled “Status authority” Herdr first detects the foreground process in each pane. After that, each pane has one status authority. For agents with complete lifecycle hooks, the integration is authoritative when it is installed and actively reporting for the running pane. Herdr uses those hook reports for idle , working , blocked , and session identity. It does not also run screen manifest fallback for that same lifecycle authority. This avoids two competing sources of truth."
+      },
+      {
+        "source_id": "242f3c88-fd1f-4f27-9113-5fec74c3fd4c",
+        "citation_number": 20,
+        "cited_text": "The Concept Long-running tasks fail. An agent might time out, hit a rate limit, or pause waiting for a human to approve an action. Checkpointing saves the agent's workflow state to a database so execution can resume exactly where it stopped, without re-running work that already completed. How It Works Graph-based frameworks model workflows as nodes and edges. After each step, the framework persists the workflow state, including variables, history, and current position, to a durable store like PostgreSQL or SQLite . If the agent crashes, it reloads the last checkpoint and picks up from there."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 21,
+        "cited_text": "Two primary approaches exist for implementing checkpoints: Complete state snapshots that save everything: agent states, contexts, intermediate data, and system state Clean breakpoints that only allow pauses at predefined checkpoints, preventing mid-operation interruptions When building checkpointing into your AI systems, choose frameworks with built-in support. LangGraph's persistence layer automatically handles state preservation, storing each execution step in a durable backend. Similarly, Microsoft's Agent Framework provides explicit checkpointing capabilities through its Checkpoint Manager interface."
+      },
+      {
+        "source_id": "6db30885-7b22-4ca4-9d31-a33e89a09e8b",
+        "citation_number": 22
+      },
+      {
+        "source_id": "5ed6d045-d992-4f8a-81c5-e4893899c487",
+        "citation_number": 23,
+        "cited_text": "Core Concepts State: A shared data structure representing the current snapshot of your application (e.g., messages, memory, documents). Nodes: Functions that perform work (LLM calls, tool invocations, grading, etc.). Edges: Define which node(s) to execute next, based on the current state (can be conditional or fixed). Reducers: Functions that specify how updates from nodes are applied to the state. Example: Minimal LangGraph Workflow (TypeScript)"
+      },
+      {
+        "source_id": "eff95fa4-6960-4310-b274-c0ebcb88ce1d",
+        "citation_number": 24,
+        "cited_text": "On this page Quickstart Checkpointer vs. store Troubleshooting common issues PostgresSaver: thread_id too long MemorySaver does not persist between restarts Checkpoints growing unboundedly State access from parent graph to subgraph Next steps Capabilities Persistence Copy page Copy page LangGraph's persistence layer gives agents short-term memory through checkpointers and long-term memory through stores. Copy page Copy page Persistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions. LangGraph provides two complementary persistence systems:"
+      },
+      {
+        "source_id": "242f3c88-fd1f-4f27-9113-5fec74c3fd4c",
+        "citation_number": 25,
+        "cited_text": "One thing practitioners regularly get burned by: resumption doesn't give you exactly-once semantics. If a node partially executed before crashing (say it sent an email or wrote a database row), it may execute again on resume. Side-effecting nodes need to be idempotent. Also keep in mind that open file handles and client objects can't be checkpointed, which limits what you can safely put in state. When To Use It Essential for human-in-the-loop systems, regulated workflows where actions need approval, and any long-horizon task susceptible to network failures."
+      },
+      {
+        "source_id": "eff95fa4-6960-4310-b274-c0ebcb88ce1d",
+        "citation_number": 26,
+        "cited_text": "Checkpointers persist a thread's graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance. Stores persist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge. Most applications can use both: a checkpointer tracks the current thread, and a store tracks durable information across threads. Quickstart Compile your graph with a checkpointer, a store, or both:"
+      },
+      {
+        "source_id": "ec2b5938-1bfe-4ba8-a240-6c7419153f44",
+        "citation_number": 27,
+        "cited_text": "checkpoints | langgraph | LangChain Reference LangChain Reference home pageLangChain ReferenceLangChain Reference Search... Python langgraph Checkpointing Checkpointing Checkpoints allow LangGraph agents to persist their state within and across multiple interactions. A checkpoint is a snapshot of the graph state at a given point in time, identified by a unique, monotonically increasing ID. Learn more: For conceptual guides and tutorials on persistence, see the Persistence documentation . Core Concepts <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Concept",
+              "Description"
+            ],
+            [
+              "Checkpoint",
+              "Snapshot of graph state at a point in time, including channel values, channel versions, and version tracking per node"
+            ],
+            [
+              "Thread",
+              "A sequence of checkpoints identified by a unique"
+            ],
+            [
+              "Serde",
+              "Serialization protocol used to encode/decode checkpoint data; defaults to"
+            ],
+            [
+              "Pending writes",
+              "Writes from successful nodes preserved when other nodes fail, enabling resumption without re-running completed work"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 28,
+        "cited_text": "Live explain is evaluated by the running server, so it reflects the active manifest cache. The explain output shows the agent, final state, whether screen detection was skipped by a full lifecycle authority, manifest source and version, cached remote version, local override shadowing, remote update status, matched rule, visible evidence flags, matcher and region evidence for evaluated rules, skipped-update reason for transcript viewers, and the idle fallback reason when no rule matched. Herdr can run inside tmux as the outer terminal environment. Agent detection does not inspect tmux sessions launched inside a Herdr pane. If a shell framework auto-enters tmux inside Herdr, Herdr sees tmux as the pane process instead of the agent behind it."
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 29,
+        "cited_text": "In-progress status updates The widget projects each sub-agent from a process + turn lifecycle : Herdr pane inspection is the coarse authority for whether the child process is present and whether Herdr reports it as idle, working, blocked, or done. Child activity snapshots enrich the label with Pi-only detail (tool name, streaming, etc.) when available. Session JSONL is still used for transcript, resume, lineage, and result extraction — not for liveness. Projected labels include: starting — launched; pane/activity confirmation is still settling active — processing work (agent turn, provider request, streaming, or tool execution) blocked — Herdr reports the child as blocked waiting — turn finished; the process is intentionally open for more input or another stage interrupted — the current turn was cancelled (Escape / subagent_interrupt ); the process stays open and is not treated as active processing stalled — pane inspection is unhealthy long enough that the parent can no longer trust the run running — fallback when only coarse process presence is known (e.g. non-Pi backends) finalizing — completion was observed and delivery is in progress; the process elapsed timer freezes here"
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 30,
+        "cited_text": "Use ordinary panes for read-only agents. Give each independent writing agent a unique managed worktree; see Worktree subagents . How it works A subagent call creates a dedicated Herdr pane or worktree, launches a child Pi session, and returns started . The parent watcher combines Herdr process state with child activity details and projects the result into a live widget:"
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 31,
+        "cited_text": "Multiple subagents run concurrently — each steers its result back independently as it finishes. Active watchers survive parent /reload , /new , /resume , and /fork transitions, so completion is delivered into the replacement session. Quitting Pi still stops parent-side delivery. The live widget above the input tracks every agent still in flight:"
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 32,
+        "cited_text": "A fixed internal watchdog marks a run as stalled when pane inspection fails or the pane disappears without a completion sidecar; valid long-running active or waiting states do not become stalled just because time passes. When a run enters stalled or recovers from it, the parent agent receives a steer message so it can react. All other status transitions stay in the widget only. Interactive subagents stay silent. Long-running user-driven subagents (e.g. planner , or any /iterate fork) do not wake the parent session on stalled / recovered transitions — the user is working directly in the subagent's pane, and a steer message there would just burn an orchestrator turn on a no-op \"still waiting\" ping. The widget still updates normally, and activity snapshots are still recorded/classified regardless of the interactive setting. By default, agents with auto-exit: true are treated as autonomous and get stall pings; agents without it are treated as interactive and stay quiet. Override per-agent with interactive: true|false in frontmatter, or per-spawn with interactive: true|false on the tool call."
+      },
+      {
+        "source_id": "6a211879-b013-4b33-a979-93b016f94931",
+        "citation_number": 33,
+        "cited_text": "Skill content lifecycle When you or Claude invoke a skill, the rendered SKILL.md content enters the conversation as a single message and stays there across later turns. This persistence applies to the skill's instructions, not its permissions: an allowed-tools grant clears when you send your next message. Claude Code does not re-read the skill file on later turns, so write guidance that should apply throughout a task as standing instructions rather than one-time steps. When Claude re-invokes a skill whose rendered content is identical to the copy already in context, Claude Code adds a short note that the skill is already loaded rather than a second copy of the content. When the rendered content differs, because the arguments changed or a dynamic context command produced new output, Claude Code appends the full content again. Auto-compaction carries invoked skills forward within a token budget. When the conversation is summarized to free context, Claude Code re-attaches the most recent invocation of each skill after the summary, keeping the first 5,000 tokens of each. Re-attached skills share a combined budget of 25,000 tokens. Claude Code fills this budget starting from the most recently invoked skill, so older skills can be dropped entirely after compaction if you have invoked many in one session. If a skill seems to stop influencing behavior after the first response, the content is usually still present and the model is choosing other tools or approaches. Strengthen the skill's description and instructions so the model keeps preferring it, or use hooks to enforce behavior deterministically. If the skill is large or you invoked several others after it, re-invoke it after compaction to restore the full content."
+      },
+      {
+        "source_id": "bdcec70f-4880-464d-97a8-5fe0445e715a",
+        "citation_number": 34,
+        "cited_text": "When context fills up Claude Code manages context automatically as you approach the limit. It clears older tool outputs first, then summarizes the conversation if needed. Your requests and key code snippets are preserved; detailed instructions from early in the conversation may be lost. Put persistent rules in CLAUDE.md rather than relying on conversation history. To control what's preserved during compaction, add a “Compact Instructions” section to CLAUDE.md or run /compact with a focus (like /compact focus on the API changes ). If a single file or tool output is so large that context refills immediately after each summary, Claude Code stops auto-compacting after a few attempts and shows an error instead of looping. See Auto-compaction stops with a thrashing error for recovery steps. Run /context to see what's using space. MCP tool definitions are deferred by default and loaded on demand via tool search , so only tool names and server instructions consume context until Claude uses a specific tool."
+      },
+      {
+        "source_id": "0d469aef-bae5-405e-ad95-d29d5c2bb216",
+        "citation_number": 35,
+        "cited_text": "Compaction Gate (⛔): We enforce token hygiene programmatically. Before entering heavy execution phases (3, 8, 13), the system checks context usage: < 75%: Proceed. 75-85%: Warning (Should compact). > 85%: Hard Block. The system refuses to spawn new agents until precompact-context.sh runs. <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Phase",
+              "Name",
+              "Purpose"
+            ],
+            [
+              "1",
+              "Setup",
+              "Worktree creation, output directory, MANIFEST.yaml"
+            ],
+            [
+              "2",
+              "Triage",
+              "Classify work type, select phases to execute"
+            ],
+            [
+              "3",
+              "Codebase Discovery",
+              "2 Phase Discovery. Explore patterns, detect technologies"
+            ],
+            [
+              "4",
+              "Skill Discovery",
+              "Map technologies to skills"
+            ],
+            [
+              "5",
+              "Complexity",
+              "Technical assessment, execution strategy"
+            ],
+            [
+              "6",
+              "Brainstorming",
+              "Design refinement with human-in-loop"
+            ],
+            [
+              "7",
+              "Architecting Plan",
+              "Technical design AND task decomposition"
+            ],
+            [
+              "8",
+              "Implementation",
+              "Code development"
+            ],
+            [
+              "9",
+              "Design Verification",
+              "Verify implementation matches plan"
+            ],
+            [
+              "10",
+              "Domain Compliance",
+              "Domain-specific mandatory patterns"
+            ],
+            [
+              "11",
+              "Code Quality",
+              "Code review for maintainability"
+            ],
+            [
+              "12",
+              "Test Planning",
+              "Test strategy and plan creation"
+            ],
+            [
+              "13",
+              "Testing",
+              "Test implementation and execution"
+            ],
+            [
+              "14",
+              "Coverage Verification",
+              "Verify test coverage meets threshold"
+            ],
+            [
+              "15",
+              "Test Quality",
+              "No low-value tests, correct assertions"
+            ],
+            [
+              "16",
+              "Completion",
+              "Final verification, PR, cleanup"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "bdcec70f-4880-464d-97a8-5fe0445e715a",
+        "citation_number": 36,
+        "cited_text": "Work with sessions Claude Code saves your conversation locally as you work. Each message, tool use, and result is written to a plaintext JSONL file under ~/.claude/projects/ , which enables rewinding , resuming, and forking sessions. Before Claude makes code changes, it also snapshots the affected files so you can revert if needed. For paths, retention, and how to clear this data, see application data in ~/.claude . Sessions are independent. Each new session starts with a fresh context window, without the conversation history from previous sessions. Claude can persist learnings across sessions using auto memory , and you can add your own persistent instructions in CLAUDE.md ."
+      },
+      {
+        "source_id": "0d469aef-bae5-405e-ad95-d29d5c2bb216",
+        "citation_number": 37,
+        "cited_text": "Programmatic Context Tracking How do compaction gates know when context is full? They parse Claude Code's own session transcripts:"
+      },
+      {
+        "source_id": "a5d4c336-8322-4b91-9048-d6f4c222986d",
+        "citation_number": 38,
+        "cited_text": "Task claiming uses file locking to prevent race conditions when multiple teammates try to claim the same task simultaneously. Shut down teammates To gracefully end a teammate's session, refer to it by name. For example, with a teammate named researcher: The lead sends a shutdown request. The teammate can approve, exiting gracefully, or reject with an explanation. The team's shared directories are cleaned up automatically when the session ends, so there's no separate cleanup step. See Architecture for which directories are removed and which persist for resumed sessions."
+      },
+      {
+        "source_id": "a5d4c336-8322-4b91-9048-d6f4c222986d",
+        "citation_number": 39,
+        "cited_text": "<cited_table> Each agent's mailbox is a JSON file at ~/.claude/teams/{team-name}/inboxes/{agent-name}.json . Claude Code validates every entry when it reads a mailbox file. Entries that don't match the message format are reported as errors and removed from the file; the valid messages are still delivered. Before v2.1.207, a single malformed mailbox entry caused a repeated error every second and blocked delivery for that mailbox until you deleted the file manually. Claude Code reports a message as sent only when the write to the recipient's mailbox file succeeds, whether the message is plain text or a structured protocol message such as a plan approval or shutdown request. When the write fails, for example because the disk is full or the mailbox directory isn't writable, the sending agent receives an error and nothing is sent. See Failed to write to a teammate's inbox for the error messages and recovery steps. Claude Code manages task dependencies automatically: when a teammate completes a task that other tasks depend on, it unblocks the dependent tasks without any action from you. Teams and tasks are stored locally under a session-derived name. The name is session- followed by the first eight characters of the session ID:",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Component",
+              "Role"
+            ],
+            [
+              "Team lead",
+              "The main Claude Code session that spawns teammates and coordinates work"
+            ],
+            [
+              "Teammates",
+              "Separate Claude Code instances that each work on assigned tasks"
+            ],
+            [
+              "Task list",
+              "Shared list of work items that teammates claim and complete"
+            ],
+            [
+              "Mailbox",
+              "Messaging system for communication between agents"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+        "citation_number": 40,
+        "cited_text": "When Streaming: copilot.Bool(true) : assistant.message_delta events are sent with DeltaContent containing incremental text assistant.reasoning_delta events are sent with DeltaContent for reasoning/chain-of-thought (model-dependent) Accumulate DeltaContent values to build the full response progressively The final assistant.message and assistant.reasoning events contain the complete content Note: assistant.message and assistant.reasoning (final events) are always sent regardless of streaming setting. Infinite Sessions By default, sessions use infinite sessions which automatically manage context window limits through background compaction and persist state to a workspace directory."
+      },
+      {
+        "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+        "citation_number": 41
+      },
+      {
+        "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+        "citation_number": 42
+      },
+      {
+        "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+        "citation_number": 43,
+        "cited_text": "Available hooks: OnPreToolUse - Intercept tool calls before execution. Can allow/deny or modify arguments. OnPostToolUse - Process tool results after successful execution. Can modify results or add context. OnPostToolUseFailure - Observe failed tool executions and inject extra context to guide the model's next step. OnUserPromptSubmitted - Intercept user prompts. Can modify the prompt before processing. OnSessionStart - Run logic when a session starts or resumes. OnSessionEnd - Cleanup or logging when session ends. OnErrorOccurred - Handle errors with retry/skip/abort strategies."
+      },
+      {
+        "source_id": "766c6710-f974-4932-b43a-60753faf4d70",
+        "citation_number": 44,
+        "cited_text": "Context compaction Instead of /compact , configure automatic compaction or trigger it manually:"
+      },
+      {
+        "source_id": "070429b5-2341-433e-815c-e3fcdbb94ef6",
+        "citation_number": 45,
+        "cited_text": "vercel's filesystem is ephemeral by design. sqlite writes to /tmp and that folder doesn't survive between function invocations, let alone deployments. swap to langgraph-checkpoint-postgres (AsyncPostgresSaver) or langgraph-checkpoint-redis . postgres is the more common choice since you probably already have a db. set DATABASE_URL in vercel env vars and it just works across everything. took me about 20 minutes to migrate a project with the exact same issue. the real trap is that it works perfectly fine locally because your dev machine has persistent disk."
+      },
+      {
+        "source_id": "ec2b5938-1bfe-4ba8-a240-6c7419153f44",
+        "citation_number": 46,
+        "cited_text": "Checkpoint Savers LangGraph provides several checkpoint saver implementations: <cited_table>",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Saver",
+              "Package",
+              "Async Support",
+              "Use Case"
+            ],
+            [
+              "InMemorySaver",
+              "langgraph-checkpoint",
+              "Yes",
+              "Debugging and testing only"
+            ],
+            [
+              "SqliteSaver",
+              "langgraph-checkpoint-sqlite",
+              "No",
+              "Lightweight demos and small projects"
+            ],
+            [
+              "AsyncSqliteSaver",
+              "langgraph-checkpoint-sqlite",
+              "Yes",
+              "Async SQLite; not recommended for production"
+            ],
+            [
+              "PostgresSaver",
+              "langgraph-checkpoint-postgres",
+              "No",
+              "Production workloads with full checkpoint history"
+            ],
+            [
+              "AsyncPostgresSaver",
+              "langgraph-checkpoint-postgres",
+              "Yes",
+              "Async production workloads with full checkpoint history"
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "question": "原子化 prompt（atomic prompt）如何避免競態條件？哪些工具已有此機制？",
+    "answer": "**原子化 Prompt（Atomic Prompt）** 是一種將複雜、長工期的任務，拆解為最簡潔、自持且一次僅專注於「單一特定任務或概念」的提示詞指令設計 [1]。\n\n在多 Agent 協同編排系統中，主協調器（Orchestrator）會將高階總體目標分解為一系列在時間上或邏輯上有順序的、針對個別專屬 Agent 的原子化子指令或子目標 [2-5]。透過這種高度專注的任務拆解，系統再結合特定的**鎖定與隔離機制**，能從根本上消除多 Agent 平行協作時所產生的**競態條件（Race Conditions）**。\n\n---\n\n### 一、 原子化 Prompt 如何避免競態條件？\n\n原子化 Prompt 主要透過以下四種具體機制與執行期（Runtime）的控制配合來消除競態條件：\n\n#### 1. 任務認領鎖定（Task Claiming Locks）\n*   **原理與痛點**：當多個並行的 Agent 同時在共享的任務清單（Task List）中尋找並嘗試認領（Claim）未完成的子任務時，如果缺乏並行控制，極易發生兩個 Agent 同時去爭奪、認領並重複執行相同任務的衝突 [2, 6]。\n*   **避免方式**：系統在認領流程中採用**檔案鎖（File Locking）**機制 [6, 7]。當某個 Agent 開始嘗試認領某項任務時，會先獲取該任務的檔案排他鎖，同一時間僅允許一個 Agent 鎖定並修改任務狀態為 In Progress，其餘 Agent 則會被阻擋並自動去尋找其他未被認領的任務，從而避免重複派工與資源浪費 [6, 7]。\n\n#### 2. 分散式原始碼檔案鎖（Distributed File Locking）\n*   **原理與痛點**：當多個 Specialized Developer Agent 同時根據各自收到的原子 Prompt 去編輯同一個代碼庫時，如果多個 Agent 同時寫入相同的檔案（例如 `auth.ts`），後寫入的變更會覆蓋掉先前的修改，造成嚴重的程式碼競態衝突 [7]。\n*   **避免方式**：在執行 Edit/Write 工具時，系統會強制實施**檔案鎖定**（如 `.claude/locks/{agent}.lock`）[7]。任何寫入型 Agent 在鎖釋放前都會處於等待或阻塞狀態，確保對同一個原始碼檔案的寫入具有絕對的排他性 [7]。\n\n#### 3. 環境與工作區實體隔離（Git Worktrees）\n*   **原理與痛點**：即使在程式碼層面有檔案鎖，若多個並行的 Agent 在同一個工作目錄下執行依賴安裝、編譯建置與測試，依然會因為共用同一個 `node_modules` 或暫存目錄而產生嚴重的環境競態與干擾 [8, 9]。\n*   **避免方式**：系統為每個執行原子 Prompt 的子 Agent **分配一個獨立且隔離的 Git Worktree 運作空間** [8, 10, 11]。各 Agent 在各自獨立的 checkout 目錄中進行本地測試、編譯與修改，任務完成後再統一進行 Git Commit 與 Merge，物理性地根除了環境競態衝突 [8, 9]。\n\n#### 4. 原子化狀態更新與 API 控制\n*   **原理與痛點**：在協調器向背景發送指令並等待其響應的過程中，若發送指令與啟動監聽事件之間存在時間差，可能會因為狀態流轉過快而導致事件丟失（Desynchronization） [12, 13]。另外，多個 Agent 同時寫入全局狀態（如進程控制塊）時也容易造成數據不一致 [2, 7]。\n*   **避免方式**：更新全域進度（如 `MANIFEST.yaml`）時採用**原子化寫入操作（Atomic Operations）**，確保狀態變更「要麼完全成功，要麼完全不發生」 [2, 7]。同時在 API 呼叫層面，將 Prompt 發送與 Waiting 監聽封裝在單次**原子呼叫（Atomic Call）**中 [12, 13]。\n\n---\n\n### 二、 哪些主流工具已有此機制？\n\n這幾種技術已在當前主流的 Agent 執行期環境和編排框架中得到實作：\n\n#### 1. Claude Code (Anthropic)\n*   **任務認領檔案鎖**：在啟動實驗性 Agent Teams（`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`）的協作會話中，**任務認領內建了 File Locking 機制**，能完全杜絕多個 Teammates 搶佔同個 Task 的 Race Condition [6]。\n*   **信箱寫入保護**：Teammates 之間的非同步通訊透過寫入對方的 JSON 格式信箱（`~/.claude/teams/{team-name}/inboxes/{agent-name}.json`）完成，系統在寫入時會驗證每筆訊息格式並確保檔案寫入成功，避免同時寫信時的衝突 [14]。\n*   **子 Agent 上下文隔離**：支持透過 `context: fork` 將原子 Prompt 發送至乾淨、無共享歷史的隔離會話中運作，避免 Context 污染 [15]。\n\n#### 2. Praetorian Development Platform (薄 Agent 內核開發平台)\n*   **分散式原始碼檔案鎖**：在其 16 階段的多 Agent 協作工作流中，當多個 Specialized Developer 進行平行代碼變更時，強制在沙盒內採用 **`.claude/locks/{agent}.lock` 鎖文件**，確保在同一時間只有一個 Worker 擁有該檔案的寫入權 [7]。\n*   **Process Control Block 狀態持久化**：使用持久化於磁碟的 `MANIFEST.yaml` 來記錄目前的任務階段與狀態，並在巢狀反饋循環中保障狀態寫入的原子性，即使會話崩潰也能無縫恢復 [7]。\n\n#### 3. Herdr & Pi (pi-herdr-agents 整合套件)\n*   **Git Worktree 託管隔離**：結合 Pi 與 Herdr 的 `pi-herdr-agents` 支援透過 `worktree` 參數同時 **Spawn 複數個平行子 Agent**（如 Scouts, Workers, Reviewers）[10, 11, 16]。Herdr 會自動為每個原子任務檢出一個獨立且隔離的 Git Worktree 工作區 [8, 10, 11]，並在完成後自動回收，物理性阻斷並行衝突。\n*   **API 原子化控制**：在 Herdr 0.7.5+ 中，`agent prompt <target> <text> --wait` 被設計為**原子化呼叫（Atomic Call）**，與 `agent wait <target> --until <status>` 一同保證指令發送與狀態監聽不因時間差而掛起 [12, 13]。\n\n#### 4. LangGraph (LangChain)\n*   **節點原子化與狀態隔離**：將複雜的 Orchestration 邏輯切分為極度原子化的 functions（Nodes），並透過圖形（StateGraph）與 Thread ID 將每一次會話狀態嚴格隔離，Subgraph 亦擁有獨立命名空間，防範記憶體污染 [17-21]。\n*   **Pending Writes 保護**：多 Node 平行執行時，若其中一個 Node 失敗，其 Checkpointer（如 PostgresSaver 或 SqliteSaver）會**安全保留其餘成功 Node 的寫入結果（Pending writes）** [22, 23]。當 Resume 重啟時，Agent 可以直接跳過已完成的原子任務繼續執行（需保證節點具冪等性），規避了重複執行與競態條件的風險 [22, 24]。\n\n#### 5. MA-VLA (多手臂視覺-語言-動作模型)\n*   **原子動作分配（Atomic Action Assignment）**：由 VLM planner 將高階協作指令分解為 temporally ordered 的**原子 Prompts（如 grasp object, hold bowl）** [3, 5, 25]，並分配給各自獨立的機械手臂執行 [3]，從模型底層進行明確的分工協調，有效提升任務泛化能力 [3, 26]。",
+    "citations": [
+      {
+        "source_id": "713d918f-9ebb-4d9f-96cd-89a4ef5dc27f",
+        "citation_number": 1,
+        "cited_text": "Arena-Hard : A test for AI models, using tough questions to see how well they match human preferences. Based on 500 real-world queries from Chatbot Arena. Atomic Prompt : A concise, self-contained instruction or question given to an AI model that focuses on a single, specific task or concept. Often used for image generation models like Midjourney. Attention Is All You Need : A scientific paper introducing the Transformer, a key AI model that uses self-attention instead of older methods. Augmented Machine Learning : Machine learning that combines AI with human ideas, tools, or extra data to make it smarter."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 2,
+        "cited_text": "Without proper memory coordination, agents frequently duplicate work, repeating tasks others have already completed. To prevent this, implement atomic operations ensuring that critical memory updates happen entirely or not at all. For optimal implementation, create a separate task state that tracks completed actions, pending items, and overall goals. This shared memory foundation becomes what Anthropic researchers call a “collective.” The primary tradeoff involves increased token consumption, multi-agent systems typically use 15× more tokens than standard chat interactions. However, for high-value workflows requiring robust persistence, the coordination benefits justify the cost."
+      },
+      {
+        "source_id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+        "citation_number": 3,
+        "cited_text": "To address this gap, we propose MA-VLA, a unified vision-language-action framework for multi-arm collaboration via atomic action assignment. Given a high-level instruction, MA-VLA outputs a sequence of interpretable mid-level atomic actions and assigns them to each arm within a shared model. This representation makes division of labor explicit and offers a simple interface for coordinating execution across arms, while remaining end-to-end at inference time. To reduce reliance on fixed arm identities and improve compositional transfer, we introduce Arm Shuffle, a training-time permutation that randomizes the mapping between arms and their input bundles, including arm state, local observation, and assigned atomic prompts. By preventing the model from binding behaviors to arm indices, Arm Shuffle promotes role-agnostic instruction following and enables recomposition of atomic actions into unseen collaboration patterns, such as novel stacking orders and object-passing strategies."
+      },
+      {
+        "source_id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+        "citation_number": 4,
+        "cited_text": ", Arm2: , Arm3: ). During training, Arm Shuffle randomly permutes these arm tuples, preventing the model from binding behaviors to fixed arm identities and promoting role-agnostic coordination across diverse collaboration patterns. 4.1 System Overview MA-VLA is a unified architecture for language-guided multi-arm coordination. It consists of two key components: (1) a VLM-based Planner that decomposes complex tasks into temporally ordered atomic sub-goals for each arm, and (2) a VLA Executor that grounds these linguistic arm-wise sub-goals into actions."
+      },
+      {
+        "source_id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+        "citation_number": 5,
+        "cited_text": "4.2 VLM-based Planner: Task Decomposition via Atomic Prompts To mirror how humans coordinate through language, we introduce a VLM-based planner 𝒫 ϕ \\mathcal{P}_{\\phi} that converts a high-level goal into a structured sequence of per-arm sub-instructions. Instead of mapping 𝐥 \\mathbf{l} directly to low-level control, the planner predicts a stage-wise assignment of atomic prompts by jointly conditioning on the instruction 𝐥 \\mathbf{l} , visual observations ℐ \\mathcal{I} , and a predefined atomic prompt set 𝒜 \\mathcal{A} . Here ℐ \\mathcal{I} denotes a set of images available at planning time, which can come from multi-view observations or consecutive frames (e.g., from a short video clip), without assuming a specific frame-sampling procedure. This yields an interpretable interface for multi-arm coordination while keeping the downstream executor fully end-to-end."
+      },
+      {
+        "source_id": "a5d4c336-8322-4b91-9048-d6f4c222986d",
+        "citation_number": 6,
+        "cited_text": "Task claiming uses file locking to prevent race conditions when multiple teammates try to claim the same task simultaneously. Shut down teammates To gracefully end a teammate's session, refer to it by name. For example, with a teammate named researcher: The lead sends a shutdown request. The teammate can approve, exiting gracefully, or reject with an explanation. The team's shared directories are cleaned up automatically when the session ends, so there's no separate cleanup step. See Architecture for which directories are removed and which persist for resumed sessions."
+      },
+      {
+        "source_id": "0d469aef-bae5-405e-ad95-d29d5c2bb216",
+        "citation_number": 7
+      },
+      {
+        "source_id": "990644c6-6d06-43a2-a9ed-a3ffce5afacd",
+        "citation_number": 8,
+        "cited_text": "What problem this solves Managing multiple parallel agent sessions, their dependencies, and ensuring isolated environments for complex development tasks without losing track of progress or creating conflicts. Summary An advanced multi-agent orchestration workflow using 'herdr' where a 'foreman' agent delegates complex tasks (estimated to take >3 turns) to 'crew member' agents. Each crew member operates in an isolated, auto-cleaned-up git worktree, handling dependency installation, tests, and type checks in parallel."
+      },
+      {
+        "source_id": "990644c6-6d06-43a2-a9ed-a3ffce5afacd",
+        "citation_number": 9,
+        "cited_text": "Why it is useful This workflow presents a sophisticated and structured approach to managing complex development tasks using multiple AI agents. It effectively solves the common problems of session management, dependency isolation, and parallel execution, which are significant challenges in advanced AI-assisted development. The use of git worktrees for isolation and auto-cleanup is a robust pattern, demonstrating a high level of efficiency and organization for complex projects. Workflow A main 'foreman' orchestration session receives an incoming task."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 10,
+        "cited_text": "Example 3 — Parallel fan-out (do N things at once) herdr_delegate calls run concurrently, so you can fan work out: Prompt: In parallel, use herdr_delegate three times to spawn three pi agents — one to write tests for auth.ts, one for payment.ts, one for user.ts. Wait for all three, then give me a combined summary and any failures. What happens: Three panes spawn at once, each works its task concurrently, pi collects all three results. (Pair with git worktrees — coming in a later tier — to give each its own checkout.)"
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 11,
+        "cited_text": "README Pi Herdr Agents Asynchronous subagents and approved review workflows for Pi , running exclusively in Herdr . Delegate investigation, implementation, and review without blocking the parent session. Each child runs as a real Pi process in its own Herdr surface; results return automatically when the child finishes. Features Non-blocking delegation — subagent acknowledges launch immediately while the parent keeps working. Parallel execution — run independent scouts, workers, and reviewers at the same time. Live supervision — track process and turn state in Pi's subagent widget; interrupt one child turn without destroying its session. Managed worktrees — isolate writing agents in retained Herdr workspaces with explicit Git ownership and recovery details. Conversation handoff — continue the active Pi conversation in a new worktree with /worktree while preserving the parent session. Approved review workflows — prepare and run bounded, read-only multi-agent reviews with fresh evidence and one synthesized result. Reusable roles — use bundled agents, project or global definitions, and installable role packs."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 12,
+        "cited_text": "How completion is detected (and why it's reliable) herdr auto-detects a pi pane's state from its TUI. It reliably catches idle → working but sometimes misses working → idle , which can leave a finished pane stuck on working and hang a wait. pi-herdr solves this with self-report : When pi runs inside a herdr pane, this extension pushes its real state to herdr on lifecycle hooks — agent_start → working , agent_settled → idle — and on the blocked EventBus channels. The current channel is herdr:blocked , emitted by pi-ask-user (v0.14+) when ask_user waits/resumes and by pi-subagents for attention states; the legacy rpiv:ask-user:blocked ( @juicesharp/rpiv-ask-user-question ) and pi-cursor-sdk:ask-question:blocked ( pi-cursor-sdk ) are kept for back-compat ( active: true → blocked , active: false → working so the turn resumes). pi-herdr is the bridge that turns herdr:blocked into a herdr pane report-agent --state blocked — nothing else in JS consumes it, so without this bridge blocked detection relies on herdr's native TUI-watching. herdr renders that idle-after-working as done on builds that derive it; herdr_delegate / herdr_wait_agent race the idle and done transition waits (plus a polling fallback — see below). A global install ( pi install npm:@andrewjacop/pi-herdr ) loads the extension into every pi — including spawned ones — so all pi agents report reliably."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 13,
+        "cited_text": "Completion is read from herdr's state events — never inferred from the rendered Working… spinner (tool-call output replaces that spinner mid-work, which would otherwise cause false \"idle\" reports). On herdr 0.7.5 , herdr_delegate submits and waits in one atomic call ( agent prompt <target> <text> --wait ) and herdr_wait_agent blocks on the repeatable agent wait <target> --until <status> ( idle / done / blocked can be raced in a single call); on <0.7.5 these use the legacy agent send + wait agent-status group. Both also race a polling agent get fallback alongside the event wait: if the event is flaky or never fires (e.g. herdr 0.7.3's failed to decode pane get error , or a done / idle state herdr no longer derives), the poll still detects the settled state promptly — instead of hanging on the event or timing out the budget. For an agent that can't self-report (e.g. claude / codex ), the poll catches the settled state too."
+      },
+      {
+        "source_id": "a5d4c336-8322-4b91-9048-d6f4c222986d",
+        "citation_number": 14,
+        "cited_text": "<cited_table> Each agent's mailbox is a JSON file at ~/.claude/teams/{team-name}/inboxes/{agent-name}.json . Claude Code validates every entry when it reads a mailbox file. Entries that don't match the message format are reported as errors and removed from the file; the valid messages are still delivered. Before v2.1.207, a single malformed mailbox entry caused a repeated error every second and blocked delivery for that mailbox until you deleted the file manually. Claude Code reports a message as sent only when the write to the recipient's mailbox file succeeds, whether the message is plain text or a structured protocol message such as a plan approval or shutdown request. When the write fails, for example because the disk is full or the mailbox directory isn't writable, the sending agent receives an error and nothing is sent. See Failed to write to a teammate's inbox for the error messages and recovery steps. Claude Code manages task dependencies automatically: when a teammate completes a task that other tasks depend on, it unblocks the dependent tasks without any action from you. Teams and tasks are stored locally under a session-derived name. The name is session- followed by the first eight characters of the session ID:",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Component",
+              "Role"
+            ],
+            [
+              "Team lead",
+              "The main Claude Code session that spawns teammates and coordinates work"
+            ],
+            [
+              "Teammates",
+              "Separate Claude Code instances that each work on assigned tasks"
+            ],
+            [
+              "Task list",
+              "Shared list of work items that teammates claim and complete"
+            ],
+            [
+              "Mailbox",
+              "Messaging system for communication between agents"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "6a211879-b013-4b33-a979-93b016f94931",
+        "citation_number": 15
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 16,
+        "cited_text": "Spawning Subagents"
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 17,
+        "cited_text": "This transforms vast memory into curated knowledge. Your agent doesn't remember every stumble; it remembers the lessons learned. Strategy 4: Graph-Based State Passing Some frameworks like LangGraph model agent execution as a directed graph: nodes represent decision steps or tool calls, edges represent data flow. What makes this powerful: state flows are visible in the graph. When a node completes, for example, validating a user's email, it updates the shared state that all downstream nodes can see. The next node (send welcome email) sees the validated email automatically. If something fails two steps later, you can inspect exactly which state was passed where, when it was updated, and by whom."
+      },
+      {
+        "source_id": "6db30885-7b22-4ca4-9d31-a33e89a09e8b",
+        "citation_number": 18,
+        "cited_text": "2 Test the tool Generate a query or respond With the retriever tool ready, start building the agent as a LangGraph graph. In the Graph API , a graph is made of: State : Shared data that nodes read and update. This tutorial uses MessagesAnnotation , which stores a messages list of chat messages . Nodes : Functions that take the current state, run a step (for example, call a model or a tool), and return state updates. Edges : Connections that define which node runs next, including conditional edges that branch based on the state."
+      },
+      {
+        "source_id": "6db30885-7b22-4ca4-9d31-a33e89a09e8b",
+        "citation_number": 19
+      },
+      {
+        "source_id": "eff95fa4-6960-4310-b274-c0ebcb88ce1d",
+        "citation_number": 20,
+        "cited_text": "Checkpointers persist a thread's graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance. Stores persist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge. Most applications can use both: a checkpointer tracks the current thread, and a store tracks durable information across threads. Quickstart Compile your graph with a checkpointer, a store, or both:"
+      },
+      {
+        "source_id": "eff95fa4-6960-4310-b274-c0ebcb88ce1d",
+        "citation_number": 21,
+        "cited_text": "Checkpointer vs. store <cited_table> Troubleshooting common issues PostgresSaver: thread_id too long When using PostgresSaver (or AsyncPostgresSaver ), the thread_id is stored in a column with limited length. If your thread_id exceeds the column size, you will see a database error. Fix: Keep thread_id values under 255 characters. Use a UUID or hash if you need deterministic IDs:",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "",
+              "Checkpointer",
+              "Store"
+            ],
+            [
+              "Persists",
+              "Graph state snapshots",
+              "Application-defined key-value data"
+            ],
+            [
+              "Scope",
+              "A single thread",
+              "Across threads"
+            ],
+            [
+              "Memory type",
+              "Short-term, thread-scoped memory",
+              "Long-term, cross-thread memory"
+            ],
+            [
+              "Use for",
+              "Conversation continuity, human-in-the-loop, time travel, and fault tolerance",
+              "User preferences, facts, and shared knowledge"
+            ],
+            [
+              "Access pattern",
+              "Pass a",
+              "Read and write items from nodes or application code"
+            ],
+            [
+              "Full guide",
+              "Checkpointers",
+              "Stores"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "ec2b5938-1bfe-4ba8-a240-6c7419153f44",
+        "citation_number": 22,
+        "cited_text": "checkpoints | langgraph | LangChain Reference LangChain Reference home pageLangChain ReferenceLangChain Reference Search... Python langgraph Checkpointing Checkpointing Checkpoints allow LangGraph agents to persist their state within and across multiple interactions. A checkpoint is a snapshot of the graph state at a given point in time, identified by a unique, monotonically increasing ID. Learn more: For conceptual guides and tutorials on persistence, see the Persistence documentation . Core Concepts <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Concept",
+              "Description"
+            ],
+            [
+              "Checkpoint",
+              "Snapshot of graph state at a point in time, including channel values, channel versions, and version tracking per node"
+            ],
+            [
+              "Thread",
+              "A sequence of checkpoints identified by a unique"
+            ],
+            [
+              "Serde",
+              "Serialization protocol used to encode/decode checkpoint data; defaults to"
+            ],
+            [
+              "Pending writes",
+              "Writes from successful nodes preserved when other nodes fail, enabling resumption without re-running completed work"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "9e6b3574-6334-4de5-b504-7a76dbe6459e",
+        "citation_number": 23,
+        "cited_text": "Copy Async"
+      },
+      {
+        "source_id": "242f3c88-fd1f-4f27-9113-5fec74c3fd4c",
+        "citation_number": 24,
+        "cited_text": "One thing practitioners regularly get burned by: resumption doesn't give you exactly-once semantics. If a node partially executed before crashing (say it sent an email or wrote a database row), it may execute again on resume. Side-effecting nodes need to be idempotent. Also keep in mind that open file handles and client objects can't be checkpointed, which limits what you can safely put in state. When To Use It Essential for human-in-the-loop systems, regulated workflows where actions need approval, and any long-horizon task susceptible to network failures."
+      },
+      {
+        "source_id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+        "citation_number": 25,
+        "cited_text": "Formally, the instruction 𝐥 \\mathbf{l} is decomposed into T T atomic stages: 𝐥 = ( 𝐩 1 , … , 𝐩 T ) , 𝐩 t = ( p t 1 , … , p t N ) , \\mathbf{l}=(\\mathbf{p} {1},\\dots,\\mathbf{p} {T}),\\qquad\\mathbf{p} {t}=(p {t}^{1},\\dots,p_{t}^{N}), (6) where p t i ∈ 𝒜 p_{t}^{i}\\in\\mathcal{A} denotes the atomic prompt assigned to arm i i at stage t t (e.g., grasp object, hold bowl, place cube). We use stages to represent temporally grounded sub-goals, each executed until a task-dependent termination condition is met (Appendix)."
+      },
+      {
+        "source_id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+        "citation_number": 26,
+        "cited_text": "5.3 In-domain Collaboration Results Table 1 shows that conditioning on atomic action instructions consistently improves in-domain collaboration on RoboFactory. The gains grow with more arms (3–4 arms), suggesting atomic prompts better disambiguate per-arm responsibilities as coordination complexity increases. On RoboTwin2.0 (Hard), Table 2 shows MA-VLA remains robust under strong visual disturbances, consistently improving over the Pi0 backbone and diffusion-based baselines. 5.4 Out-of-domain Compositional Generalization Results We evaluate compositional generalization across unseen collaboration patterns in RoboFactory and RoboTwin2.0 (Hard). As shown in Table 3 , MA-VLA achieves non-trivial success where end-to-end imitation baselines collapse, improving out-of-domain success by up to 13.0These scenarios contain novel role orders and coordination structures unseen in training. Overall, atomic action conditioning, Arm Shuffle, and View Dropout reduce reliance on fixed arm identities and promote instruction-centric coordination, enabling recomposition of learned atomic skills under unseen collaboration paradigms."
+      }
+    ]
+  },
+  {
+    "question": "這三個模式在主流工具（Herdr / Pi / Claude Code / Copilot SDK / LangGraph）中的實現程度比較？",
+    "answer": "這三個模式在 **Herdr**、**Pi**、**Claude Code**、**GitHub Copilot SDK** 與 **LangGraph** 五款主流工具中的實現程度與技術細節對比如下：\n\n---\n\n### 一、 常駐背景（Persistent Background）模式\n\n此模式旨在解決長工期任務中 LLM 無狀態的缺陷，實現「長生命週期、非阻塞、自主運行」[1, 2]。\n\n*   **Herdr**：**實現程度：極高**\n    *   **技術實作**：Herdr 是專為 AI 代理設計的終端多路複用器 [3, 4]。它採用 Rust 編寫的背景伺服器 `herdr-server` 直接擁有並託管底層虛擬終端進程（PTY）[5-7]。\n    *   **容錯表現**：當使用者關閉電腦或 SSH 中斷後，背景 Agent 仍持續在伺服器端推進任務 [5, 7, 8]；系統重啟後能自動還原工作區與 Pane 佈局並恢復會話 [5, 7]。\n*   **Pi (搭配 pi-herdr-agents)**：**實現程度：高**\n    *   **技術實作**：Pi 核心本身拒絕成為平台，倡導 \"No background bash. Use tmux\" [3]。但透過與 `@andrewjacop/pi-herdr` 整合 [9, 10]，Pi 能以非阻塞方式將子任務 Spawning 到 Herdr 的各個 PTY 獨立 Pane 中 [10, 11]，主會話 Acknowledge 後即可繼續在前景工作 [12]。\n*   **Claude Code (Anthropic)**：**實現程度：高**\n    *   **技術實作**：支援將自訂 Skill 設定為 `context: fork` 與 `background: true` [13, 14]，這會孵化獨立於主線程 Context 限制的背景子 Agent（Teammate）[13, 14]。在平行協作（Agent Teams）中，Teammates 在本地 `~/.claude/teams/` 下擁有專屬信箱 [15]。\n*   **Copilot SDK**：**實現程度：中高**\n    *   **技術實作**：預設啟用「**Infinite Sessions**」，自動將 Checkpoints 與狀態持久化在 `~/.copilot/session-state/` 工作區 [16, 17]。支援 Fleet Mode（平行子 Agent 執行）[16, 17]。\n*   **LangGraph**：**實現程度：中（框架級持久化，不託管背景）**\n    *   **技術實作**：圖的狀態在每個節點執行完畢後會透過 Checkpointer 自動寫入持久化層 [18-20]。\n    *   **容錯表現**：在 Serverless（如 Vercel）環境部署中，本地 SQLite 寫入 ephemeral 的 `/tmp` 會流失記憶 [21]；生產環境中必須使用 `AsyncPostgresSaver`（結合 Neon 或 Supabase Postgres）來維持跨部署的狀態持久 [21-23]。\n\n---\n\n### 二、 語義狀態偵測（Semantic State Detection）模式\n\n此模式用於精準判定 Agent 目前處於 `working`、`blocked`、`done`/`idle` 的哪一種狀態，以引導控制流 [24, 25]。\n\n*   **Herdr**：**實現程度：極高**\n    *   **技術實作**：採用「狀態權威鏈（Status Authority Chain）」[26, 27]。若 Agent 安裝了 Hooks（如 Pi），則直接採用 Hook 報告為權威 [26, 28]；若無 Hooks（如 Claude Code、Codex），則讀取 PTY 底部的 ANSI 螢幕快照緩衝區（非 Scrolled Viewport），比對 TOML 格式的 `agent-detection` 規則文件進行啟發式匹配 [27, 29]。\n    *   **嚴格 Blocked 判定**：只有當螢幕底部的 ANSI 文本完全匹配已知的審批、問題或許可 UI 時才標記 blocked [30]；其餘 fallback 至 idle，主動防止 Orchestrator 進行盲目且破壞性的 keystroke 寫入 [30]。\n*   **Pi (搭配 pi-herdr-agents)**：**實現程度：高**\n    *   **技術實作**：Pi 不依賴螢幕推估，而是利用內置的 lifecycle hooks 執行主動自我宣告 [31]。在 `agent_start` 拋出 `working`，`agent_settled` 拋出 `idle`，並在調用 `ask_user` 時主動通報 `blocked` [31]。\n    *   **視覺化監控**：父 Agent 會在終端渲染出一個極為精緻的 **Subagents 狀態監控 Widget**，實時追蹤並投射 `starting`、`active`、`blocked`、`waiting`、`interrupted`、`stalled` 等微觀生命週期 [32-34]。設有 Watchdog 機制，在子進程失聯時將狀態標記為 `stalled` 並向主會話發送 steer 警報 [34, 35]。\n*   **Claude Code**：**實現程度：中**\n    *   **技術實作**：主要透過解析 `~/.claude/projects/` 下的 JSONL 對話歷史日誌中的 Token 計數來監控狀態 [36, 37]。\n    *   **Blocked 觸發**：當 Token 佔用率達到 75% 時啟動 compaction 警告 [37]，**一旦達到 85% 臨界線，Hook 會強制硬性阻斷（Block）所有 subagent 的 spawning**，以確保不會因為 context window 爆滿而發生崩潰 [37]。\n*   **Copilot SDK**：**實現程度：中高**\n    *   **技術實作**：透過 JSON-RPC 的 `streaming: true` [17]，實時監控 `delta` 資訊以定義 Active 狀態 [38]。\n    *   **Blocked 觸發**：當需要人類介入時，SDK 會觸發 `onPermissionRequest` 或 `onUserInputRequest`（即 `ask_user`）[17, 39]；其 `onPostToolUseFailure` 鉤子能截獲工具失敗並在背景向 Agent 注入糾錯引導 [17, 40]。\n*   **LangGraph**：**實現程度：極高（邏輯級）**\n    *   **技術實作**：純圖形狀態機判定 [41, 42]。\n    *   **Blocked 觸發**：透過在圖編譯時配置特定的**中斷點（Interrupts/Breakpoints）** [20, 43, 44]。當執行流到達中斷邊時，圖形執行緒自動掛起，將 Graph State 序列化寫入持久化資料庫 [18, 45]，執行緒轉為 Sleep 釋放全部運算資源，直到外界提供 input 或者是 Resume 觸發 [18, 45]。\n\n---\n\n### 三、 原子化 Prompt（Atomic Prompt）模式\n\n此模式將複雜的長工期任務拆解為自持且一次僅專注於單一概念的指令（Atomic Sub-instructions），並配合鎖定或隔離機制，避免多 Agent 並行時產生競態條件（Race Conditions）[46, 47]。\n\n*   **Herdr**：**實現程度：高**\n    *   **技術實作**：在 0.7.5+ 中，`agent prompt --wait` 被設計為**原子化呼叫（Atomic Call）**，避免了發送 prompt 與等待狀態監聽之間因時間差導致狀態流失 [48-50]。\n    *   **環境隔離**：Herdr 提供 Tier 4 的 **Git Worktrees 隔離機制** [12, 51]，能為並行運行的各個原子任務單獨 checkout 出乾淨、獨立的工作目錄，物理性地根除了並行測試、編譯與檔案寫入時的競態衝突 [12, 52]。\n*   **Pi (搭配 pi-herdr-agents)**：**實現程度：高**\n    *   **技術實作**：提供 `herdr_delegate` 複合工具，在一筆呼叫中原子化封裝「spawn → send prompt → wait → harvest」[31, 49, 53]。\n    *   **中斷容錯**：其工作流控制器（`herdr_workflow`）擁有強大的 **Cancel 終止契約** [54, 55]：取消會搶佔全局終端閘門 [56]，同步向 PTY 發送 close 並輪詢 PTY 是否退出 [56]，確認超時則進行安全鎖定（fail-closed），拒絕向父 Agent 返還未驗證的髒數據 [56, 57]。\n*   **Claude Code**：**實現程度：中高**\n    *   **技術實作**：\n        1.  **Skills 兩層漸進式載入模式** [14]：Skills 的 YAML frontmatter（L1 metadata）預設載入 [13, 58]，而完整的 markdown 運作細節（L2 instructions）只有在 matching 觸發或主動呼叫時才 lazy-load [13, 58]，極大地減少了系統 prompt 膨脹與 token 浪費。\n        2.  **檔案鎖避障**：在 Teammates 平行寫作或透過 mailbox 通訊時，系統會強制執行 **`~/.claude/locks/{agent}.lock` 檔案鎖** [15]，防止並行執行時將同個原始碼檔案寫壞 [15]。\n*   **Copilot SDK**：**實現程度：中**\n    *   **技術實作**：SDK 提供極其強大的 SystemMessage 控制權 [17, 39]。建立會話時，可配置 `Mode: \"customize\"` [39, 59]，對 system prompt 的十二個核心切片進行細顆粒度操作 [39, 59]。例如，可對 `SectionTone` 進行 `replace`，對 `SectionCodeChangeRules` 進行 `remove`，並對 `SectionGuidelines` 進行 `append` [59]。這使得在上層架構中動態重構原子 Prompt 變得十分高效。\n*   **LangGraph**：**實現程度：極高（邏輯級）**\n    *   **技術實作**：\n        1.  **節點高度原子化**：邏輯被切分為極度原子化的 functions（Nodes）[42, 60]。\n        2.  **保留 Pending Writes**：多 Node 並行執行時，若其中一個 Node 失敗，其 Checkpointer 會**安全保留其餘已成功 Node 的寫入結果（Pending writes）** [61]。這允許 Agent 在重啟（Resume）時直接跳過已成功的節點推進，只要保證 side-effecting 節點的冪等性，就能優雅地防止重複執行與競態條件的風險 [61, 62]。\n\n---\n\n🧭 這五大主流工具在三大模式上的實現策略各有千秋。既然您對各工具的編排架構有了如此深入的掌握，**是否想將這些常駐背景、語義狀態偵測與隔離 Worktree 等高容錯機制，具體應用到 Cheerio 網頁數據抓取助理的多 Agent 協作架構中呢？**",
+    "citations": [
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 1,
+        "cited_text": "7 State Persistence Strategies for Long-Running AI Agents in 2026 March 17, 2026 Posted by: Abinaya Venkatesh Category: Product Engineering No Comments Building an AI agent that actually finishes complex work is harder than it looks. An agent starts analyzing a 100-page compliance document, makes progress for hours, then crashes mid-way. Your system reboots. The agent wakes up with zero memory of what it just learned and starts over from scratch, wasting time, cost, and frustration. This is a failure of architecture. Without a proper persistence strategy, your agent is essentially a goldfish: intelligent but forgetful, starting fresh every time the environment shifts."
+      },
+      {
+        "source_id": "e819868d-0909-44a6-9617-430b9d58e3d4",
+        "citation_number": 2,
+        "cited_text": "AI agent platforms with persistent memory Blog Library AI agent platforms with persistent memory Aashi Dutt • Jun 2, 2026 Production AI agents rarely operate in a single request. They handle multi-step workflows, recurring tasks, and user-specific preferences that span many sessions. Without persistent memory, agents either ask the same questions repeatedly or rely on brittle prompt hacks. Persistent memory turns stateless LLM calls into stateful behavior. It lets an agent: Remember user identity, preferences, and constraints across conversations Track tasks and entities over long-running workflows Ground decisions in prior outputs, documents, and actions"
+      },
+      {
+        "source_id": "97fddc90-2e5a-4f57-b43a-6eb84897c3f5",
+        "citation_number": 3,
+        "cited_text": "This is Part 3 of our Herdr series, and it is the honest one. Everything below traces to fetched documentation and repository data pulled August 23, 2026. Where a cell in a comparison is not documented by the vendor, it says so. We also cover where Herdr loses outright, because it does. First, untangle the categories # The HN question quietly compares three things that are not the same kind of object: tmux is a terminal multiplexer. It manages panes, windows, and sessions. It knows nothing about what runs inside a pane. pi is a coding agent. The repo describes \"an AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI.\" One pi process drives one agent session. Its own README is explicit that it is not a multiplexer: \"No sub-agents . There's many ways to do this. Spawn pi instances via tmux, or build your own with extensions.\" And: \"No background bash. Use tmux. Full observability, direct interaction.\" Herdr is a terminal multiplexer that tries to understand its contents. Its self-description: \"the runtime your coding agents live on.\" It tracks which panes hold agents and classifies each as working, blocked, idle, or done."
+      },
+      {
+        "source_id": "e457da46-1715-4775-b68e-a57717ef5f7e",
+        "citation_number": 4,
+        "cited_text": "Home › Blog › Herdr: The Rust Agent Multiplexer That Runs All Your AI Coding Agents in One Terminal Herdr: The Rust Agent Multiplexer That Runs All Your AI Coding Agents in One Terminal Run Claude Code, Codex, Copilot CLI, Cursor Agent, and 15+ AI coding agents in a single terminal with real-time state tracking. Herdr is tmux rebuilt for the AI age — a single 10MB Rust binary that keeps every agent alive, visible, and scriptable. C CoddyKit Team Jul 1, 2026 · 9 min read · 1,764 words Quick Answer: Herdr is a free, open-source terminal multiplexer built in Rust specifically for AI coding agents. It runs Claude Code, Codex, Copilot CLI, Cursor Agent, and 15+ other agents in one terminal, shows you at a glance which agent is blocked, working, or done, and keeps everything alive even when you disconnect. Install with curl -fsSL https://herdr.dev/install.sh | sh — it's a single ~10MB binary with zero dependencies."
+      },
+      {
+        "source_id": "97fddc90-2e5a-4f57-b43a-6eb84897c3f5",
+        "citation_number": 5,
+        "cited_text": "Two caveats cut against it in a fleet context. First, pi ships no built-in permission system at all - the docs tell you to containerize it (Docker, a Gondolin micro-VM, or OpenShell). Second, everything multi-agent is DIY by design: extensions can build it, packages might provide it, but nothing in the core spawns, names, watches, or waits on other agents. Herdr: the multiplexer that claims to know what an agent is # Herdr (herdrdev/herdr) sits at 31,765 stars, is written in Rust, ships as one binary under Apache-2.0, and publishes docs at version 0.8.2. The architecture: a background server owns the terminals; your terminal is a client. Close the lid, drop the network, kill the client - panes keep running, and the server restores session shape after a full restart."
+      },
+      {
+        "source_id": "e457da46-1715-4775-b68e-a57717ef5f7e",
+        "citation_number": 6,
+        "cited_text": "With over 9,200 GitHub stars and nearly 500 new stars daily, Herdr has become the go-to tool for developers who orchestrate multiple AI agents as part of their daily workflow. Let's break down what makes it special. What Is Herdr and How Does It Work? Herdr is a single Rust binary (~10MB) that runs inside the terminal you already use — iTerm, Terminal.app, Alacritty, WezTerm, whatever. Think of it as tmux rebuilt from scratch with first-class awareness of AI coding agents. When you run herdr , it starts (or attaches to) a lightweight background server. That server manages:"
+      },
+      {
+        "source_id": "e566acee-7ca0-4201-a798-d39b2ceb5ca7",
+        "citation_number": 7,
+        "cited_text": "The whole herd in one terminal. Click the sidebar, it's a real layout. A real session: three workspaces, four agents, two of them mid-task. Nobody is attached to any of it right now — that's the point. Click an agent in the sidebar, it's a live layout, not an image. [01 Always running. → Herdr isn't an app you keep open. It's a server running in the background, and the terminals live inside it. Close the lid or drop the network and the agents keep working; restart the machine and Herdr brings the layout back and resumes their sessions. herdr-server up 3 workspaces · 4 agents · nobody attached](https://herdr.dev/docs/session-state/)"
+      },
+      {
+        "source_id": "e457da46-1715-4775-b68e-a57717ef5f7e",
+        "citation_number": 8,
+        "cited_text": "If you're running multiple AI coding agents simultaneously — Claude Code on one project, Codex on another, Copilot reviewing tests — you've hit the same wall: a sprawl of terminal windows, no idea which agent finished or got stuck, and losing everything when you close your laptop. Herdr solves this. It's a terminal-native agent multiplexer written in Rust that gives every coding agent its own real terminal pane, tracks their state automatically, and keeps them all alive on a background server you can detach from and reattach to — even from your phone over SSH."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 9,
+        "cited_text": "@andrewjacop/pi-herdr · Packages · Pi Copy SVG Download SVG Press Kit Home Documentation News Packages Models Home → Documentation → News → Packages → Models → GitHub npm Discord X Earendil Inc. @andrewjacop/pi-herdr herdr integration for the pi coding agent — spawn, drive, wait for, and harvest AI agent panes running in herdr. Packages Package details extension Install @andrewjacop/pi-herdr from npm and Pi will load the resources declared by the package manifest. npm repo home report $ pi install npm:@andrewjacop/pi-herdr Copy"
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 10,
+        "cited_text": "Package @andrewjacop/pi-herdr Version 0.4.0 Published Aug 30, 2026 Downloads 1,098/mo · 136/wk Author andrewjacop License MIT Types extension Size 181.9 KB Dependencies 0 dependencies · 3 peers Pi manifest JSON Security note Pi packages can execute code and influence agent behavior. Review the source before installing third-party packages. README pi-herdr A pi coding-agent extension that turns pi into an orchestrator over a fleet of visible AI agent panes running in herdr . Spawn another pi , claude , codex , or opencode in its own terminal pane, send it a prompt, wait for it to finish, and harvest its response — all from your pi session. Each spawned agent is an independent CLI process you can watch, attach to, and intervene in while pi coordinates them."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 11,
+        "cited_text": "Complementary to pi-subagents : pi-subagents runs children in-process (fast, shared context). pi-herdr runs agents in separate herdr panes (visible, heterogeneous, resumable, directly attachable). They work well together. Platform support Tested on Windows and macOS. The code is platform-aware (separate Windows/POSIX launch presets; herdr spawned directly as a native binary) and is expected to work on Linux too, though that has not been verified. herdr's own availability on each platform follows herdr.dev . If you try Linux, please open an issue with the result."
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 12,
+        "cited_text": "README Pi Herdr Agents Asynchronous subagents and approved review workflows for Pi , running exclusively in Herdr . Delegate investigation, implementation, and review without blocking the parent session. Each child runs as a real Pi process in its own Herdr surface; results return automatically when the child finishes. Features Non-blocking delegation — subagent acknowledges launch immediately while the parent keeps working. Parallel execution — run independent scouts, workers, and reviewers at the same time. Live supervision — track process and turn state in Pi's subagent widget; interrupt one child turn without destroying its session. Managed worktrees — isolate writing agents in retained Herdr workspaces with explicit Git ownership and recovery details. Conversation handoff — continue the active Pi conversation in a new worktree with /worktree while preserving the parent session. Approved review workflows — prepare and run bounded, read-only multi-agent reviews with fresh evidence and one synthesized result. Reusable roles — use bundled agents, project or global definitions, and installable role packs."
+      },
+      {
+        "source_id": "6a211879-b013-4b33-a979-93b016f94931",
+        "citation_number": 13,
+        "cited_text": "<cited_table> In a regular session, skill descriptions are loaded into context so Claude knows what's available, but full skill content only loads when invoked. Subagents with preloaded skills work differently: the full skill content is injected at startup.",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Frontmatter",
+              "You can invoke",
+              "Claude can invoke",
+              "When loaded into context"
+            ],
+            [
+              "(default)",
+              "Yes",
+              "Yes",
+              "Description always in context, full skill loads when invoked"
+            ],
+            [
+              "disable-model-invocation: true",
+              "Yes",
+              "No",
+              "Description not in context, full skill loads when you invoke"
+            ],
+            [
+              "user-invocable: false",
+              "No",
+              "Yes",
+              "Description always in context, full skill loads when invoked"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "bdcec70f-4880-464d-97a8-5fe0445e715a",
+        "citation_number": 14,
+        "cited_text": "Manage context with skills and subagents Beyond compaction, you can use other features to control what loads into context. Skills load on demand. Claude sees skill descriptions at session start, but the full content only loads when a skill is used. For skills you invoke manually, set disable-model-invocation: true to keep descriptions out of context until you need them. For skills you didn't write, use skillOverrides to do the same from settings. Subagents work in their own context window. A subagent starts fresh unless it's a fork , which starts with a copy of your conversation so far. Either way, the subagent's tool calls stay out of your context, and Claude gets back a summary when the subagent finishes. See context costs for what each feature costs, and reduce token usage for tips on managing context."
+      },
+      {
+        "source_id": "a5d4c336-8322-4b91-9048-d6f4c222986d",
+        "citation_number": 15,
+        "cited_text": "<cited_table> Each agent's mailbox is a JSON file at ~/.claude/teams/{team-name}/inboxes/{agent-name}.json . Claude Code validates every entry when it reads a mailbox file. Entries that don't match the message format are reported as errors and removed from the file; the valid messages are still delivered. Before v2.1.207, a single malformed mailbox entry caused a repeated error every second and blocked delivery for that mailbox until you deleted the file manually. Claude Code reports a message as sent only when the write to the recipient's mailbox file succeeds, whether the message is plain text or a structured protocol message such as a plan approval or shutdown request. When the write fails, for example because the disk is full or the mailbox directory isn't writable, the sending agent receives an error and nothing is sent. See Failed to write to a teammate's inbox for the error messages and recovery steps. Claude Code manages task dependencies automatically: when a teammate completes a task that other tasks depend on, it unblocks the dependent tasks without any action from you. Teams and tasks are stored locally under a session-derived name. The name is session- followed by the first eight characters of the session ID:",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Component",
+              "Role"
+            ],
+            [
+              "Team lead",
+              "The main Claude Code session that spawns teammates and coordinates work"
+            ],
+            [
+              "Teammates",
+              "Separate Claude Code instances that each work on assigned tasks"
+            ],
+            [
+              "Task list",
+              "Shared list of work items that teammates claim and complete"
+            ],
+            [
+              "Mailbox",
+              "Messaging system for communication between agents"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "766c6710-f974-4932-b43a-60753faf4d70",
+        "citation_number": 16,
+        "cited_text": "Customize Copilot CLI Overview Add custom instructions Change settings Use hooks Add agent skills Add MCP servers Create custom agents Use your own model provider Plugins: Find and install Plugins: Create a plugin Plugins: Create a marketplace Administer for enterprise Copilot CLI in Actions Sandbox Copilot Enable or disable cloud sandboxes Use local sandboxing Configure local sandbox GitHub Copilot app All articles Customize the GitHub Copilot app Agent sessions Canvas extensions Managing issues and pull requests Automations Use your own model provider Open with deep links Copilot SDK Getting Started Authentication Authenticate BYOK Server-to-server tokens Features Agent Loop Citations Cloud Sessions Context management Custom Agents Fleet Mode Hooks Image Input MCP Plugin Directories Remote Sessions Session limits Session Persistence Skills Steering And Queueing"
+      },
+      {
+        "source_id": "766c6710-f974-4932-b43a-60753faf4d70",
+        "citation_number": 17,
+        "cited_text": "<cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Feature",
+              "SDK Method",
+              "Notes"
+            ],
+            [
+              "Session Management",
+              "",
+              ""
+            ],
+            [
+              "Create session",
+              "createSession()",
+              "Full config support"
+            ],
+            [
+              "Resume session",
+              "resumeSession()",
+              "With infinite session workspaces"
+            ],
+            [
+              "Disconnect session",
+              "disconnect()",
+              "Release in-memory resources"
+            ],
+            [
+              "Destroy session",
+              "destroy()",
+              "Use"
+            ],
+            [
+              "Delete session",
+              "deleteSession()",
+              "Remove from storage"
+            ],
+            [
+              "List sessions",
+              "listSessions()",
+              "All stored sessions"
+            ],
+            [
+              "Get last session",
+              "getLastSessionId()",
+              "For quick resume"
+            ],
+            [
+              "Get foreground session",
+              "getForegroundSessionId()",
+              "Multi-session coordination"
+            ],
+            [
+              "Set foreground session",
+              "setForegroundSessionId()",
+              "Multi-session coordination"
+            ],
+            [
+              "Messaging",
+              "",
+              ""
+            ],
+            [
+              "Send message",
+              "send()",
+              "With attachments"
+            ],
+            [
+              "Send and wait",
+              "sendAndWait()",
+              "Blocks until complete"
+            ],
+            [
+              "Steering (immediate mode)",
+              "send({ mode: \"immediate\" })",
+              "Inject mid-turn without aborting"
+            ],
+            [
+              "Queueing (enqueue mode)",
+              "send({ mode: \"enqueue\" })",
+              "Buffer for sequential processing (default)"
+            ],
+            [
+              "File attachments",
+              "send({ attachments: [{ type: \"file\", path }] })",
+              "Images auto-encoded and resized"
+            ],
+            [
+              "Directory attachments",
+              "send({ attachments: [{ type: \"directory\", path }] })",
+              "Attach directory context"
+            ],
+            [
+              "Get history",
+              "getEvents()",
+              "All session events"
+            ],
+            [
+              "Abort",
+              "abort()",
+              "Cancel in-flight request"
+            ],
+            [
+              "Tools",
+              "",
+              ""
+            ],
+            [
+              "Register custom tools",
+              "registerTools()",
+              "Full JSON Schema support"
+            ],
+            [
+              "Tool permission control",
+              "onPreToolUse",
+              "Allow/deny/ask"
+            ],
+            [
+              "Tool result modification",
+              "onPostToolUse",
+              "Transform results"
+            ],
+            [
+              "Available/excluded tools",
+              "availableTools",
+              "Filter tools"
+            ],
+            [
+              "Models",
+              "",
+              ""
+            ],
+            [
+              "List models",
+              "listModels()",
+              "With capabilities, billing, policy"
+            ],
+            [
+              "Set model (at creation)",
+              "model",
+              "Per-session"
+            ],
+            [
+              "Switch model (mid-session)",
+              "session.setModel()",
+              "Also via"
+            ],
+            [
+              "Get current model",
+              "session.rpc.model.getCurrent()",
+              "Query active model"
+            ],
+            [
+              "Reasoning effort",
+              "reasoningEffort",
+              "For supported models"
+            ],
+            [
+              "Agent Mode",
+              "",
+              ""
+            ],
+            [
+              "Get current mode",
+              "session.rpc.mode.get()",
+              "Returns current mode"
+            ],
+            [
+              "Set mode",
+              "session.rpc.mode.set()",
+              "Switch between modes"
+            ],
+            [
+              "Plan Management",
+              "",
+              ""
+            ],
+            [
+              "Read plan",
+              "session.rpc.plan.read()",
+              "Get plan.md content and path"
+            ],
+            [
+              "Update plan",
+              "session.rpc.plan.update()",
+              "Write plan.md content"
+            ],
+            [
+              "Delete plan",
+              "session.rpc.plan.delete()",
+              "Remove plan.md"
+            ],
+            [
+              "Workspace Files",
+              "",
+              ""
+            ],
+            [
+              "List workspace files",
+              "session.rpc.workspace.listFiles()",
+              "Files in session workspace"
+            ],
+            [
+              "Read workspace file",
+              "session.rpc.workspace.readFile()",
+              "Read file content"
+            ],
+            [
+              "Create workspace file",
+              "session.rpc.workspace.createFile()",
+              "Create file in workspace"
+            ],
+            [
+              "Authentication",
+              "",
+              ""
+            ],
+            [
+              "Get auth status",
+              "getAuthStatus()",
+              "Check login state"
+            ],
+            [
+              "Use token",
+              "gitHubToken",
+              "Programmatic auth"
+            ],
+            [
+              "Connectivity",
+              "",
+              ""
+            ],
+            [
+              "Ping",
+              "client.ping()",
+              "Health check with server timestamp"
+            ],
+            [
+              "Get server status",
+              "client.getStatus()",
+              "Protocol version and server info"
+            ],
+            [
+              "MCP Servers",
+              "",
+              ""
+            ],
+            [
+              "Local/stdio servers",
+              "mcpServers",
+              "Spawn processes"
+            ],
+            [
+              "Remote HTTP/SSE",
+              "mcpServers",
+              "Connect to services"
+            ],
+            [
+              "Hooks",
+              "",
+              ""
+            ],
+            [
+              "Pre-tool use",
+              "onPreToolUse",
+              "Permission, modify args"
+            ],
+            [
+              "Post-tool use (success)",
+              "onPostToolUse",
+              "Modify results"
+            ],
+            [
+              "Post-tool use (failure)",
+              "onPostToolUseFailure",
+              "Observe failed tool calls, inject retry guidance"
+            ],
+            [
+              "User prompt",
+              "onUserPromptSubmitted",
+              "Modify prompts"
+            ],
+            [
+              "Session start/end",
+              "onSessionStart",
+              "Lifecycle with source/reason"
+            ],
+            [
+              "Error handling",
+              "onErrorOccurred",
+              "Custom handling"
+            ],
+            [
+              "Events",
+              "",
+              ""
+            ],
+            [
+              "All session events",
+              "on()",
+              "40+ event types"
+            ],
+            [
+              "Streaming",
+              "streaming: true",
+              "Delta events"
+            ],
+            [
+              "Session Config",
+              "",
+              ""
+            ],
+            [
+              "Custom agents",
+              "customAgents",
+              "Define specialized agents"
+            ],
+            [
+              "System message",
+              "systemMessage",
+              "Append or replace"
+            ],
+            [
+              "Custom provider",
+              "provider",
+              "BYOK support"
+            ],
+            [
+              "Infinite sessions",
+              "infiniteSessions",
+              "Auto-compaction"
+            ],
+            [
+              "Permission handler",
+              "onPermissionRequest",
+              "Approve/deny requests; optionally attach a"
+            ],
+            [
+              "User input handler",
+              "onUserInputRequest",
+              "Handle ask_user"
+            ],
+            [
+              "Skills",
+              "skillDirectories",
+              "Custom skills"
+            ],
+            [
+              "Disabled skills",
+              "disabledSkills",
+              "Disable specific skills"
+            ],
+            [
+              "Config directory",
+              "configDir",
+              "Override default config location"
+            ],
+            [
+              "Client name",
+              "clientName",
+              "Identify app in User-Agent"
+            ],
+            [
+              "Working directory",
+              "workingDirectory",
+              "Set session cwd"
+            ],
+            [
+              "Additional directories",
+              "additionalDirectories",
+              "Grant session access beyond the working directory; re-supply on resume"
+            ],
+            [
+              "Experimental",
+              "",
+              ""
+            ],
+            [
+              "Agent management",
+              "session.rpc.agent.*",
+              "List, select, deselect, get current agent"
+            ],
+            [
+              "Fleet mode",
+              "session.rpc.fleet.start()",
+              "Parallel sub-agent execution; see"
+            ],
+            [
+              "Manual compaction",
+              "session.rpc.history.compact()",
+              "Trigger compaction on demand"
+            ],
+            [
+              "Context clearing",
+              "session.rpc.history.clearContext()",
+              "Replace conversation context from a terminal tool"
+            ],
+            [
+              "History truncation",
+              "session.rpc.history.truncate()",
+              "Remove events from a point onward"
+            ],
+            [
+              "Session forking",
+              "server.rpc.sessions.fork()",
+              "Fork a session at a point in history"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "242f3c88-fd1f-4f27-9113-5fec74c3fd4c",
+        "citation_number": 18,
+        "cited_text": "The Concept Long-running tasks fail. An agent might time out, hit a rate limit, or pause waiting for a human to approve an action. Checkpointing saves the agent's workflow state to a database so execution can resume exactly where it stopped, without re-running work that already completed. How It Works Graph-based frameworks model workflows as nodes and edges. After each step, the framework persists the workflow state, including variables, history, and current position, to a durable store like PostgreSQL or SQLite . If the agent crashes, it reloads the last checkpoint and picks up from there."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 19,
+        "cited_text": "Two primary approaches exist for implementing checkpoints: Complete state snapshots that save everything: agent states, contexts, intermediate data, and system state Clean breakpoints that only allow pauses at predefined checkpoints, preventing mid-operation interruptions When building checkpointing into your AI systems, choose frameworks with built-in support. LangGraph's persistence layer automatically handles state preservation, storing each execution step in a durable backend. Similarly, Microsoft's Agent Framework provides explicit checkpointing capabilities through its Checkpoint Manager interface."
+      },
+      {
+        "source_id": "eff95fa4-6960-4310-b274-c0ebcb88ce1d",
+        "citation_number": 20,
+        "cited_text": "Checkpointers persist a thread's graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance. Stores persist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge. Most applications can use both: a checkpointer tracks the current thread, and a store tracks durable information across threads. Quickstart Compile your graph with a checkpointer, a store, or both:"
+      },
+      {
+        "source_id": "070429b5-2341-433e-815c-e3fcdbb94ef6",
+        "citation_number": 21,
+        "cited_text": "vercel's filesystem is ephemeral by design. sqlite writes to /tmp and that folder doesn't survive between function invocations, let alone deployments. swap to langgraph-checkpoint-postgres (AsyncPostgresSaver) or langgraph-checkpoint-redis . postgres is the more common choice since you probably already have a db. set DATABASE_URL in vercel env vars and it just works across everything. took me about 20 minutes to migrate a project with the exact same issue. the real trap is that it works perfectly fine locally because your dev machine has persistent disk."
+      },
+      {
+        "source_id": "070429b5-2341-433e-815c-e3fcdbb94ef6",
+        "citation_number": 22,
+        "cited_text": "Upvote 2 Downvote Reply Award Share Report Award Share Separate_Listen3329 OP â€¢ 26d ago Yes it works perfectly fine in local now I will switch on postgres with neon Upvote 1 Downvote Reply Award Share Report Award Share More replies RemoteSaint â€¢ 26d ago Yeah nothing beats neon with langgraph checkpointer. Decoupled storage compute is awesome, you get to save some with scale to zero. If you hit free tier storage/compute you can also try databricks free edition for same. Upvote 2 Downvote Reply Award"
+      },
+      {
+        "source_id": "ec2b5938-1bfe-4ba8-a240-6c7419153f44",
+        "citation_number": 23,
+        "cited_text": "Checkpoint Savers LangGraph provides several checkpoint saver implementations: <cited_table>",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Saver",
+              "Package",
+              "Async Support",
+              "Use Case"
+            ],
+            [
+              "InMemorySaver",
+              "langgraph-checkpoint",
+              "Yes",
+              "Debugging and testing only"
+            ],
+            [
+              "SqliteSaver",
+              "langgraph-checkpoint-sqlite",
+              "No",
+              "Lightweight demos and small projects"
+            ],
+            [
+              "AsyncSqliteSaver",
+              "langgraph-checkpoint-sqlite",
+              "Yes",
+              "Async SQLite; not recommended for production"
+            ],
+            [
+              "PostgresSaver",
+              "langgraph-checkpoint-postgres",
+              "No",
+              "Production workloads with full checkpoint history"
+            ],
+            [
+              "AsyncPostgresSaver",
+              "langgraph-checkpoint-postgres",
+              "Yes",
+              "Async production workloads with full checkpoint history"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 24,
+        "cited_text": "GitHub Select theme Dark Light Auto Select language English 日本語 简体中文 On this page Overview Overview Supported agents Status authority VMs and sandbox wrappers Blocked state Detection manifests State rollups Direct integrations Custom agent labels Custom status labels Attach directly to an agent On this page Overview Supported agents Status authority VMs and sandbox wrappers Blocked state Detection manifests State rollups Direct integrations Custom agent labels Custom status labels Attach directly to an agent Agents Herdr is built for running more than one coding agent at a time. Each agent stays in a real terminal pane with its shell, logs, prompts, and running processes intact. Herdr tracks which panes contain agents, rolls their state up to tabs and workspaces, and lets you jump straight to the pane that needs attention instead of polling every terminal by hand."
+      },
+      {
+        "source_id": "e566acee-7ca0-4201-a798-d39b2ceb5ca7",
+        "citation_number": 25,
+        "cited_text": "[02 You never hunt for the stuck one. → Herdr reads every pane and marks each agent working, blocked or idle. When one stops and needs an answer it says so, so you don't go pane by pane looking for whoever is waiting on you. web-dashboard blocked herdr working data-pipeline idle ](https://herdr.dev/docs/agents/) [03 Agent-native. → The CLI and the socket API are the same surface agents drive. They split panes, start each other, prompt each other, and wait until another agent is genuinely blocked instead of firing keystrokes and hoping. $ herdr](https://herdr.dev/docs/agent-automation/)"
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 26,
+        "cited_text": "Detected but less thoroughly tested: Gemini CLI and Cline. Unsupported agents still run normally as terminal processes. They just may not get rich state unless you add an integration or report state over the socket API. Status authority Section titled “Status authority” Herdr first detects the foreground process in each pane. After that, each pane has one status authority. For agents with complete lifecycle hooks, the integration is authoritative when it is installed and actively reporting for the running pane. Herdr uses those hook reports for idle , working , blocked , and session identity. It does not also run screen manifest fallback for that same lifecycle authority. This avoids two competing sources of truth."
+      },
+      {
+        "source_id": "97fddc90-2e5a-4f57-b43a-6eb84897c3f5",
+        "citation_number": 27,
+        "cited_text": "The parts that matter for the comparison: Agent detection with a status authority chain. For each pane, Herdr identifies the foreground process, then classifies lifecycle state using per-agent TOML \"screen manifests\" matched against the live bottom-of-buffer snapshot, upgraded to authoritative hook reports when an agent's integration is installed. Manifest updates arrive from herdr.dev automatically without a restart (disable with [update] manifest_check = false ). Local overrides go in ~/.config/herdr/agent-detection/<agent>.toml . Breadth : the launch list supports 22 agent kinds - including pi itself - and the detection table covers around two dozen CLIs, from Claude Code and Codex to Kimi, Droid , and Qwen Code. Unsupported agents still run as ordinary terminal processes. Automation primitives : pane run , pane send-text , pane send-keys , pane wait-output --regex ; and agent-level agent start --kind , agent prompt --wait --until idle|done|blocked , agent wait , agent read . Waits resolve against the classified lifecycle, not raw text. When an agent prompt targets a blocked agent, Herdr returns agent_blocked instead of typing into a dialog. Rollups and attention routing : state rolls up from pane to tab to workspace in a sidebar. A blocked agent makes its whole workspace look blocked. The stated workflow: start several agents, walk away, look at the sidebar to see which project needs a decision. Remote and embedded surfaces : herdr --remote workbox turns your local install into a thin client over SSH (bridging even image paste into the remote session), named sessions isolate independent servers, and a read-only terminal session observe stream emits framed ANSI records for third-party bridges - which is exactly what Multiplex, a 9-star Swift client for Vision Pro, iPad, and iPhone, consumes alongside tmux and plain SSH."
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 28,
+        "cited_text": "To coordinate agents from scripts or from another agent, see Agent automation . Supported agents Section titled “Supported agents” Automatic detection works out of the box for common coding agents. The table shows which signal determines idle , working , and blocked for each one. <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Agent",
+              "State authority",
+              "Integration role"
+            ],
+            [
+              "Pi",
+              "lifecycle hooks when installed; otherwise screen manifest",
+              "state and session"
+            ],
+            [
+              "OMP",
+              "lifecycle hooks when installed",
+              "state and session"
+            ],
+            [
+              "GitHub Copilot CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Devin CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Kimi Code CLI",
+              "lifecycle hooks when installed; otherwise screen manifest",
+              "state and session"
+            ],
+            [
+              "Hermes Agent",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Qoder CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Qwen Code",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Droid",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "OpenCode",
+              "lifecycle plugin when installed; otherwise screen manifest",
+              "state and session"
+            ],
+            [
+              "Kilo Code CLI",
+              "lifecycle plugin when installed; otherwise screen manifest",
+              "state and session"
+            ],
+            [
+              "MastraCode",
+              "lifecycle hooks when installed",
+              "state and session"
+            ],
+            [
+              "Claude Code",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Codex",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Cursor Agent CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Amp",
+              "screen manifest",
+              "none"
+            ],
+            [
+              "Grok CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Antigravity CLI",
+              "screen manifest",
+              "session"
+            ],
+            [
+              "Kiro CLI",
+              "screen manifest",
+              "none"
+            ],
+            [
+              "Maki",
+              "screen manifest",
+              "none"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 29,
+        "cited_text": "For agents without complete lifecycle hooks, Herdr identifies the foreground process and reads the live bottom-buffer screen snapshot. It evaluates TOML manifests against that snapshot to classify idle , working , and blocked . For agents that emit them, manifests can also match terminal title and progress (OSC) sequences as detection evidence; when that evidence is absent, screen rules carry detection on their own. The screen snapshot comes from the recent bottom of the pane buffer, not the scrolled viewport. If you scroll back in Herdr, detection still follows the live agent UI at the bottom."
+      },
+      {
+        "source_id": "eb995e52-fcee-4a8e-a116-feeebd41b1eb",
+        "citation_number": 30,
+        "cited_text": "Blocked state Section titled “Blocked state” Blocked detection is deliberately strict for screen-manifest agents. Herdr only marks blocked when the live bottom-buffer snapshot matches known visible approval, question, or permission UI. If no manifest rule matches for a known agent, Herdr falls back to idle and labels that fallback as default_known_agent_idle_fallback in explain output. This means unusual new agent prompts may initially show as idle instead of blocked until Herdr learns that screen shape. The misclassification affects only the visible status and waits. It should not make Herdr send input or take destructive action."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 31,
+        "cited_text": "How completion is detected (and why it's reliable) herdr auto-detects a pi pane's state from its TUI. It reliably catches idle → working but sometimes misses working → idle , which can leave a finished pane stuck on working and hang a wait. pi-herdr solves this with self-report : When pi runs inside a herdr pane, this extension pushes its real state to herdr on lifecycle hooks — agent_start → working , agent_settled → idle — and on the blocked EventBus channels. The current channel is herdr:blocked , emitted by pi-ask-user (v0.14+) when ask_user waits/resumes and by pi-subagents for attention states; the legacy rpiv:ask-user:blocked ( @juicesharp/rpiv-ask-user-question ) and pi-cursor-sdk:ask-question:blocked ( pi-cursor-sdk ) are kept for back-compat ( active: true → blocked , active: false → working so the turn resumes). pi-herdr is the bridge that turns herdr:blocked into a herdr pane report-agent --state blocked — nothing else in JS consumes it, so without this bridge blocked detection relies on herdr's native TUI-watching. herdr renders that idle-after-working as done on builds that derive it; herdr_delegate / herdr_wait_agent race the idle and done transition waits (plus a polling fallback — see below). A global install ( pi install npm:@andrewjacop/pi-herdr ) loads the extension into every pi — including spawned ones — so all pi agents report reliably."
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 32,
+        "cited_text": "Use ordinary panes for read-only agents. Give each independent writing agent a unique managed worktree; see Worktree subagents . How it works A subagent call creates a dedicated Herdr pane or worktree, launches a child Pi session, and returns started . The parent watcher combines Herdr process state with child activity details and projects the result into a live widget:"
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 33,
+        "cited_text": "Multiple subagents run concurrently — each steers its result back independently as it finishes. Active watchers survive parent /reload , /new , /resume , and /fork transitions, so completion is delivered into the replacement session. Quitting Pi still stops parent-side delivery. The live widget above the input tracks every agent still in flight:"
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 34,
+        "cited_text": "In-progress status updates The widget projects each sub-agent from a process + turn lifecycle : Herdr pane inspection is the coarse authority for whether the child process is present and whether Herdr reports it as idle, working, blocked, or done. Child activity snapshots enrich the label with Pi-only detail (tool name, streaming, etc.) when available. Session JSONL is still used for transcript, resume, lineage, and result extraction — not for liveness. Projected labels include: starting — launched; pane/activity confirmation is still settling active — processing work (agent turn, provider request, streaming, or tool execution) blocked — Herdr reports the child as blocked waiting — turn finished; the process is intentionally open for more input or another stage interrupted — the current turn was cancelled (Escape / subagent_interrupt ); the process stays open and is not treated as active processing stalled — pane inspection is unhealthy long enough that the parent can no longer trust the run running — fallback when only coarse process presence is known (e.g. non-Pi backends) finalizing — completion was observed and delivery is in progress; the process elapsed timer freezes here"
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 35,
+        "cited_text": "A fixed internal watchdog marks a run as stalled when pane inspection fails or the pane disappears without a completion sidecar; valid long-running active or waiting states do not become stalled just because time passes. When a run enters stalled or recovers from it, the parent agent receives a steer message so it can react. All other status transitions stay in the widget only. Interactive subagents stay silent. Long-running user-driven subagents (e.g. planner , or any /iterate fork) do not wake the parent session on stalled / recovered transitions — the user is working directly in the subagent's pane, and a steer message there would just burn an orchestrator turn on a no-op \"still waiting\" ping. The widget still updates normally, and activity snapshots are still recorded/classified regardless of the interactive setting. By default, agents with auto-exit: true are treated as autonomous and get stall pings; agents without it are treated as interactive and stay quiet. Override per-agent with interactive: true|false in frontmatter, or per-spawn with interactive: true|false on the tool call."
+      },
+      {
+        "source_id": "6a211879-b013-4b33-a979-93b016f94931",
+        "citation_number": 36,
+        "cited_text": "Skill content lifecycle When you or Claude invoke a skill, the rendered SKILL.md content enters the conversation as a single message and stays there across later turns. This persistence applies to the skill's instructions, not its permissions: an allowed-tools grant clears when you send your next message. Claude Code does not re-read the skill file on later turns, so write guidance that should apply throughout a task as standing instructions rather than one-time steps. When Claude re-invokes a skill whose rendered content is identical to the copy already in context, Claude Code adds a short note that the skill is already loaded rather than a second copy of the content. When the rendered content differs, because the arguments changed or a dynamic context command produced new output, Claude Code appends the full content again. Auto-compaction carries invoked skills forward within a token budget. When the conversation is summarized to free context, Claude Code re-attaches the most recent invocation of each skill after the summary, keeping the first 5,000 tokens of each. Re-attached skills share a combined budget of 25,000 tokens. Claude Code fills this budget starting from the most recently invoked skill, so older skills can be dropped entirely after compaction if you have invoked many in one session. If a skill seems to stop influencing behavior after the first response, the content is usually still present and the model is choosing other tools or approaches. Strengthen the skill's description and instructions so the model keeps preferring it, or use hooks to enforce behavior deterministically. If the skill is large or you invoked several others after it, re-invoke it after compaction to restore the full content."
+      },
+      {
+        "source_id": "0d469aef-bae5-405e-ad95-d29d5c2bb216",
+        "citation_number": 37,
+        "cited_text": "Programmatic Context Tracking How do compaction gates know when context is full? They parse Claude Code's own session transcripts:"
+      },
+      {
+        "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+        "citation_number": 38,
+        "cited_text": "Streaming Enable streaming to receive assistant response chunks as they're generated:"
+      },
+      {
+        "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+        "citation_number": 39,
+        "cited_text": "SessionConfig: Model (string): Model to use (\"gpt-5\", \"claude-sonnet-4.5\", etc.). Required when using custom provider. ReasoningEffort (string): Reasoning effort level for models that support it (\"low\", \"medium\", \"high\", \"xhigh\", \"max\"). Use ListModels() to check which models support this option. SessionID (string): Custom session ID Tools ([]Tool): Custom tools exposed to the CLI SystemMessage (*SystemMessageConfig): System message configuration. Supports three modes: append (default): Appends Content after the SDK-managed prompt replace : Replaces the entire prompt with Content customize : Selectively override individual sections via Sections map (keys: SectionPreamble , SectionIdentity , SectionTone , SectionToolEfficiency , SectionEnvironmentContext , SectionCodeChangeRules , SectionGuidelines , SectionSafety , SectionToolInstructions , SectionCustomInstructions , SectionRuntimeInstructions , SectionLastInstructions ; values: SectionOverride with Action and optional Content ) Provider (*ProviderConfig): Custom API provider configuration (BYOK). See Custom Providers section. Streaming (*bool): Enable streaming delta events (nil = runtime default) InfiniteSessions (*InfiniteSessionConfig): Automatic context compaction configuration WorkingDirectory (string): Working directory for the session (default: runtime process working directory) EnableSessionStore (*bool): Enables the cross-session store for search and retrieval across sessions. When unset in ModeCopilotCli , the runtime default applies (enabled). In ModeEmpty , defaults to disabled. GitHubTokenProvider (GitHubTokenProvider): Acquires session-scoped GitHub tokens on demand. Return GitHubTokenResult with a positive ExpiresIn value (production GitHub tokens typically use 8 * 60 * 60 seconds), or GitHubTokenCancelled . Cannot be combined with GitHubToken . OnPermissionRequest (PermissionHandlerFunc): Optional handler called before each tool execution to approve or deny it. When nil, permission requests are emitted as events and left pending for manual resolution. copilot.PermissionHandler.ApproveAll approves requests when managed settings are disabled and returns an error when EnableManagedSettings is true. Custom handlers can inspect RequiresManagedApproval() for human-facing confirmation logic. See Permission Handling section. OnUserInputRequest (UserInputHandler): Handler for user input requests from the agent (enables ask_user tool). See User Input Requests section. Hooks (*SessionHooks): Hook handlers for session lifecycle events. See Session Hooks section. Commands ([]CommandDefinition): Slash-commands registered for this session. See Commands section. OnElicitationRequest (ElicitationHandler): Handler for elicitation requests from the server. See Elicitation Requests section."
+      },
+      {
+        "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+        "citation_number": 40,
+        "cited_text": "Available hooks: OnPreToolUse - Intercept tool calls before execution. Can allow/deny or modify arguments. OnPostToolUse - Process tool results after successful execution. Can modify results or add context. OnPostToolUseFailure - Observe failed tool executions and inject extra context to guide the model's next step. OnUserPromptSubmitted - Intercept user prompts. Can modify the prompt before processing. OnSessionStart - Run logic when a session starts or resumes. OnSessionEnd - Cleanup or logging when session ends. OnErrorOccurred - Handle errors with retry/skip/abort strategies."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 41,
+        "cited_text": "This transforms vast memory into curated knowledge. Your agent doesn't remember every stumble; it remembers the lessons learned. Strategy 4: Graph-Based State Passing Some frameworks like LangGraph model agent execution as a directed graph: nodes represent decision steps or tool calls, edges represent data flow. What makes this powerful: state flows are visible in the graph. When a node completes, for example, validating a user's email, it updates the shared state that all downstream nodes can see. The next node (send welcome email) sees the validated email automatically. If something fails two steps later, you can inspect exactly which state was passed where, when it was updated, and by whom."
+      },
+      {
+        "source_id": "5ed6d045-d992-4f8a-81c5-e4893899c487",
+        "citation_number": 42,
+        "cited_text": "Core Concepts State: A shared data structure representing the current snapshot of your application (e.g., messages, memory, documents). Nodes: Functions that perform work (LLM calls, tool invocations, grading, etc.). Edges: Define which node(s) to execute next, based on the current state (can be conditional or fixed). Reducers: Functions that specify how updates from nodes are applied to the state. Example: Minimal LangGraph Workflow (TypeScript)"
+      },
+      {
+        "source_id": "5ed6d045-d992-4f8a-81c5-e4893899c487",
+        "citation_number": 43,
+        "cited_text": "Why LangGraph? Controllability: Explicitly define the flow of your application as a graph. Persistence: Built-in support for checkpointing, state management, and time travel. Streaming: First-class support for streaming outputs and events. Debugging: Visualize and debug your agentic workflows with LangGraph Studio. Modularity: Compose complex systems from reusable subgraphs and nodes. LangGraph is especially powerful for building advanced agentic systems: multi-agent collaboration, self-reflective RAG, planning and execution, human-in-the-loop, and more."
+      },
+      {
+        "source_id": "eff95fa4-6960-4310-b274-c0ebcb88ce1d",
+        "citation_number": 44,
+        "cited_text": "LangChain LangGraph OpenWiki Integrations Learn Reference Contribute Python Overview Get started Install Quickstart Local server Changelog Thinking in LangGraph Workflows + agents Capabilities Persistence Checkpointers Stores Fault tolerance Event streaming Streaming Interrupts Time travel Memory Subgraphs Production Application structure Test Backward compatibility LangSmith Studio Agent Chat UI Deployment LangSmith Observability Frontend Overview Graph execution Custom stream channels LangGraph APIs Graph API Functional API Runtime Studio"
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 45,
+        "cited_text": "This isn't just nice for debugging. It's essential for recovery. Instead of a tangled spaghetti of function calls, you have a clear, query execution history. You can replay from any node. You can branch (“what if we used Plan B here?”). You can pause and ask a human for approval at any step without losing context. Complex workflows requiring auditability, human-in-the-loop systems where pausing/resuming is common, teams that need to debug agent behavior systematically. Strategy 5: State checkpointing and recovery Checkpointing serves as an insurance policy for your long-running AI agents, beyond mere memory management. This strategy focuses on capturing complete agent states at strategic moments, enabling resilience against both technical failures and workflow interruptions. Effective checkpointing requires identifying the critical junctures where saving state delivers maximum value."
+      },
+      {
+        "source_id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+        "citation_number": 46,
+        "cited_text": "𝒰 test = 𝒰 train , 𝒫 test ⊄ 𝒫 train . \\mathcal{U} {\\text{test}}=\\mathcal{U} {\\text{train}},\\qquad\\mathcal{P} {\\text{test}}\\not\\subset\\mathcal{P} {\\text{train}}. (5) Thus, the atomic actions remain in-distribution, while the collaboration structure is out-of-distribution. Concretely, the shift comes from new (i) arm-role assignments ( i t i_{t} ), (ii) ordering and synchronization, and (iii) the resulting intermediate states and interactions. 4 Method Figure 3: MA-VLA Pipeline. A high-level instruction is first decomposed into a sequence of atomic prompts. Each arm is represented by a tuple containing its atomic prompt, state, wrist-view observation, and ground-truth action (e.g., Arm1:"
+      },
+      {
+        "source_id": "85d7faef-8d4b-45b3-80f5-8ad6a1a6d782",
+        "citation_number": 47,
+        "cited_text": "4.2 VLM-based Planner: Task Decomposition via Atomic Prompts To mirror how humans coordinate through language, we introduce a VLM-based planner 𝒫 ϕ \\mathcal{P}_{\\phi} that converts a high-level goal into a structured sequence of per-arm sub-instructions. Instead of mapping 𝐥 \\mathbf{l} directly to low-level control, the planner predicts a stage-wise assignment of atomic prompts by jointly conditioning on the instruction 𝐥 \\mathbf{l} , visual observations ℐ \\mathcal{I} , and a predefined atomic prompt set 𝒜 \\mathcal{A} . Here ℐ \\mathcal{I} denotes a set of images available at planning time, which can come from multi-view observations or consecutive frames (e.g., from a short video clip), without assuming a specific frame-sampling procedure. This yields an interpretable interface for multi-arm coordination while keeping the downstream executor fully end-to-end."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 48,
+        "cited_text": "The herdr server must be running for pi-herdr 's tools to work — they talk to that server. If herdr is missing or not running, every tool returns a clean HERDR_UNAVAILABLE error instead of hanging. ℹ Version compatibility. pi-herdr probes herdr --version at session start and branches to match your herdr: it supports both the redesigned 0.7.5 API ( agent start / agent prompt ) and the older 0.7.3 API. If the herdr binary is missing you get a warning toast with the install link; the detected version shows in the footer, e.g. herdr: 3 agents (1 working) (0.7.5) ."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 49,
+        "cited_text": "Completion is read from herdr's state events — never inferred from the rendered Working… spinner (tool-call output replaces that spinner mid-work, which would otherwise cause false \"idle\" reports). On herdr 0.7.5 , herdr_delegate submits and waits in one atomic call ( agent prompt <target> <text> --wait ) and herdr_wait_agent blocks on the repeatable agent wait <target> --until <status> ( idle / done / blocked can be raced in a single call); on <0.7.5 these use the legacy agent send + wait agent-status group. Both also race a polling agent get fallback alongside the event wait: if the event is flaky or never fires (e.g. herdr 0.7.3's failed to decode pane get error , or a done / idle state herdr no longer derives), the poll still detects the settled state promptly — instead of hanging on the event or timing out the budget. For an agent that can't self-report (e.g. claude / codex ), the poll catches the settled state too."
+      },
+      {
+        "source_id": "4060f5d6-3af8-46b9-bde6-61cc3fdf0eff",
+        "citation_number": 50,
+        "cited_text": "Pane input addresses the terminal regardless of its current occupant. Agent input resolves the live agent and rejects the operation if that agent no longer controls the pane. agent prompt --wait submits immediately unless the agent is already blocked , in which case it returns agent_blocked without starting the wait. If an accepted prompt starts from another non-working state, Herdr must observe a lifecycle change within five seconds. Otherwise, it returns agent_prompt_stalled instead of waiting indefinitely; a caller --timeout of five seconds or less returns the normal timeout error. After Herdr observes activity, it waits for the requested settled status. It does not track individual turns. If the agent is already working, completion of that active turn may satisfy the wait. Standalone agent wait observes the current agent and returns immediately if its status already matches. Both commands default to idle , done , or blocked . Repeat --until to accept several exact states, for example --until idle --until done ; use --until unknown explicitly when needed. On agent prompt , --until requires --wait . idle means the agent is ready for input and its tab has been seen in the focused Herdr UI. done is the same underlying idle state after background work finishes, until that tab is focused or pane focus / agent focus targets it. Reading through the CLI does not mark it seen. blocked means Herdr recognized an approval or question UI. unknown means an agent is present but Herdr cannot classify its lifecycle confidently; it does not prove successful completion. Use exact --until states when that distinction matters. pane wait-output does not interpret agent lifecycle. It polls the selected terminal snapshot and searches it immediately, so text that was already present can match. The default source name is recent ; matching treats that source as unwrapped recent output from the latest 80 rendered terminal rows. --lines changes that row limit, and --regex uses Rust regular-expression syntax and matches one line at a time."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 51,
+        "cited_text": "The other tiers (one line each) Tier 2 — layout: herdr_split_pane , herdr_close_pane , herdr_list_panes , herdr_get_pane , herdr_resize_pane , herdr_zoom_pane , herdr_move_pane , herdr_swap_panes ; tab + workspace create / list / get / focus / rename / close . Tier 3 — pane-sync: herdr_run_command , herdr_read_pane , herdr_wait_output , herdr_send_keys ⚠ (send logical keys like ctrl+c / esc ). Tier 4 — worktrees: herdr_worktree_create / open / list / remove ⚠. Tier 5 — fleet introspection: herdr_api_snapshot , herdr_session_list , herdr_session_stop ⚠, herdr_session_delete ⚠. herdr_start_agent and herdr_delegate take an AgentSpec :"
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 52,
+        "cited_text": "Example 3 — Parallel fan-out (do N things at once) herdr_delegate calls run concurrently, so you can fan work out: Prompt: In parallel, use herdr_delegate three times to spawn three pi agents — one to write tests for auth.ts, one for payment.ts, one for user.ts. Wait for all three, then give me a combined summary and any failures. What happens: Three panes spawn at once, each works its task concurrently, pi collects all three results. (Pair with git worktrees — coming in a later tier — to give each its own checkout.)"
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 53,
+        "cited_text": "Tools pi-herdr exposes the full herdr tool surface across five tiers. Tier 1 (orchestration) is the headline use case; tiers 2–5 cover layout, pane-sync, git worktrees, and fleet introspection. Every tool that targets an existing pane accepts target as a pane id ( w1:p3 ), agent name , or label . Tier 1 — orchestration (spawn & drive agents) <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Tool",
+              "What it does"
+            ],
+            [
+              "herdr_start_agent",
+              "Launch an agent ("
+            ],
+            [
+              "herdr_send_prompt",
+              "Send a prompt to a pane; submits with Enter by default."
+            ],
+            [
+              "herdr_read_agent",
+              "Read recent/visible output text from a pane."
+            ],
+            [
+              "herdr_wait_agent",
+              "Block until a pane reaches"
+            ],
+            [
+              "herdr_list_agents",
+              "List all running agents with their status."
+            ],
+            [
+              "herdr_get_agent",
+              "Get one agent's details."
+            ],
+            [
+              "herdr_stop_agent",
+              "Destructive."
+            ],
+            [
+              "herdr_rename_agent",
+              "Rename (or clear the name of) a pane."
+            ],
+            [
+              "herdr_focus_agent",
+              "Focus a pane in the herdr UI."
+            ],
+            [
+              "herdr_explain_agent",
+              "Natural-language explanation of what a pane is/does."
+            ],
+            [
+              "herdr_delegate",
+              "Composite one-shot:"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 54,
+        "cited_text": "What's Included Extensions Subagents — 5 main-session tools + 6 commands, plus 2 child-only tools: <cited_table> <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Tool",
+              "Description"
+            ],
+            [
+              "subagent",
+              "Spawn a sub-agent in a dedicated herdr pane (async — returns immediately)"
+            ],
+            [
+              "subagent_interrupt",
+              "Interrupt a running Pi-backed subagent's current turn"
+            ],
+            [
+              "subagents_list",
+              "List available agent definitions"
+            ],
+            [
+              "subagent_resume",
+              "Resume a previous Pi-backed sub-agent session in a new ordinary pane (async)"
+            ],
+            [
+              "herdr_workflow",
+              "Prepare, start, or cancel one exact approved project-local review workflow"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 55,
+        "cited_text": "See ADR-0002 for the accepted decision, rationale, migration boundaries, and evidence. The current workflow inventory is: <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Workflow",
+              "Entry point",
+              "Composition, artifacts, and runtime"
+            ],
+            [
+              "Planning",
+              "/plan",
+              "Scout → interactive planner → workers → reviewer; writes"
+            ],
+            [
+              "Iteration",
+              "/iterate",
+              "Opens one interactive full-context Pi fork and returns its completion summary."
+            ],
+            [
+              "Side question",
+              "/btw",
+              "Opens one replaceable interactive Pi side session; its answer stays outside the parent transcript."
+            ],
+            [
+              "Worktree handoff",
+              "/worktree <name> [task]",
+              "Forks the active conversation into a long-lived interactive Pi process in a new worktree created from committed"
+            ],
+            [
+              "Approved review runner",
+              "herdr_workflow",
+              "Validates and runs exact approved project-local JavaScript with bounded read-only Pi reviewers. The bundled"
+            ],
+            [
+              "Adversarial review",
+              "adversarial-reviewer",
+              "Transitional workflow implementation that selects eligible authenticated Pi runtimes for generic reviewer passes, verifies findings, and uses a fresh reviewer synthesis pass. It does not write artifacts in the reviewed checkout."
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 56,
+        "cited_text": "Cancel contract Cancel claims a process-global terminal gate. Completion, failure, interruption, and cancellation cannot each produce a terminal outcome. Queued agent() calls resolve as cancelled; no later reviewer or synthesizer starts. New panes are queried through Herdr process-info until their interactive shell is ready before launch. Active panes are queried again before close so foreground process identities can be waited on. After synchronous pane close, cancel waits for pane absence and captured process exit before disposing the reader checkout. If process identity cannot be captured for an active pane, the pane remains present after close, or any captured process still lives after the bounded wait, the checkout is retained and the run ends failed with cancel_termination_failed . Successful cancellation is not reported in that case. A successful cancel writes one cancelled terminal journal event and one result-free delivery. Repeated cancel is idempotent and returns the authoritative terminal outcome (including a prior fail-closed result)."
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 57,
+        "cited_text": "The parent calls herdr_workflow prepare , presents its packet unchanged, and waits for the exact APPROVE <8-character lowercase hash prefix> reply before calling start . After start, one final delivery is sent without polling. Cancellation is fail-closed and retains evidence when process exit cannot be confirmed. Same-process /reload preserves ownership; full restart records interruption without replay, restart, cleanup, or history. Workflow JavaScript runs in a Worker-hosted vm for event-loop availability only; neither the Worker nor vm is a security boundary, and worktrees do not provide process or security isolation."
+      },
+      {
+        "source_id": "e00117c4-a734-426b-8d51-3d1ad7aa870d",
+        "citation_number": 58,
+        "cited_text": "This filesystem-based architecture enables progressive disclosure: Claude loads information in stages as needed, rather than consuming context upfront. Skills can contain three types of content, each loaded at a different time:  Level 1: Metadata (always loaded) The Skill's YAML frontmatter provides discovery information:"
+      },
+      {
+        "source_id": "aad03224-8df2-4b2b-b274-32ea9c4ac3dc",
+        "citation_number": 59,
+        "cited_text": "The SDK auto-injects environment context, tool instructions, and security guardrails. The default CLI persona is preserved, and your Content is appended after SDK-managed sections. To change the persona or fully redefine the prompt, use Mode: \"replace\" or Mode: \"customize\" . Customize Mode Use Mode: \"customize\" to selectively override individual sections of the prompt while preserving the rest:"
+      },
+      {
+        "source_id": "6db30885-7b22-4ca4-9d31-a33e89a09e8b",
+        "citation_number": 60,
+        "cited_text": "2 Test the tool Generate a query or respond With the retriever tool ready, start building the agent as a LangGraph graph. In the Graph API , a graph is made of: State : Shared data that nodes read and update. This tutorial uses MessagesAnnotation , which stores a messages list of chat messages . Nodes : Functions that take the current state, run a step (for example, call a model or a tool), and return state updates. Edges : Connections that define which node runs next, including conditional edges that branch based on the state."
+      },
+      {
+        "source_id": "ec2b5938-1bfe-4ba8-a240-6c7419153f44",
+        "citation_number": 61,
+        "cited_text": "checkpoints | langgraph | LangChain Reference LangChain Reference home pageLangChain ReferenceLangChain Reference Search... Python langgraph Checkpointing Checkpointing Checkpoints allow LangGraph agents to persist their state within and across multiple interactions. A checkpoint is a snapshot of the graph state at a given point in time, identified by a unique, monotonically increasing ID. Learn more: For conceptual guides and tutorials on persistence, see the Persistence documentation . Core Concepts <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Concept",
+              "Description"
+            ],
+            [
+              "Checkpoint",
+              "Snapshot of graph state at a point in time, including channel values, channel versions, and version tracking per node"
+            ],
+            [
+              "Thread",
+              "A sequence of checkpoints identified by a unique"
+            ],
+            [
+              "Serde",
+              "Serialization protocol used to encode/decode checkpoint data; defaults to"
+            ],
+            [
+              "Pending writes",
+              "Writes from successful nodes preserved when other nodes fail, enabling resumption without re-running completed work"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "242f3c88-fd1f-4f27-9113-5fec74c3fd4c",
+        "citation_number": 62,
+        "cited_text": "One thing practitioners regularly get burned by: resumption doesn't give you exactly-once semantics. If a node partially executed before crashing (say it sent an email or wrote a database row), it may execute again on resume. Side-effecting nodes need to be idempotent. Also keep in mind that open file handles and client objects can't be checkpointed, which limits what you can safely put in state. When To Use It Essential for human-in-the-loop systems, regulated workflows where actions need approval, and any long-horizon task susceptible to network failures."
+      }
+    ]
+  },
+  {
+    "question": "對 Cheerio 助理的多 agent 協作設計有什麼具體應用建議？",
+    "answer": "將**常駐背景（Persistent Background）**、**語義狀態偵測（Semantic State Detection）**與**原子化 Prompt（Atomic Prompt）**三大編排模式，具體應用於 **Cheerio 網頁數據抓取助理**的多 Agent 協作設計中，能夠根本性地解決傳統網頁爬蟲面臨的**選擇器易碎（Selector Fragility）**、**反爬鎖定（Anti-bot blocks）**與**長工期中斷前功盡棄**等生產環境痛點 [1, 2]。\n\n以下為 Cheerio 助理的多 Agent 協作架構設計與具體應用建議：\n\n---\n\n### 一、 微型 Agent 與實體限制分工（Thin-Agent & Specialized Roles）\n\n傳統的單體式爬蟲常將網頁下載、DOM 解析、資料清洗與代碼寫入邏輯耦合在一個龐大的 Agent 中，極易因 Prompt 膨脹、Context Window 爆滿或 A/B 測試變更而全面崩潰 [3, 4]。\n建議採用 **Thin-Agent / Fat-Platform** 模式 [4]，限制個別 Agent 的能力邊界，將抓取管道拆解為五個高度原子化的 Specialized Roles（專屬角色），從實體限制上防止 Planner 與 Executor 發生衝突 [4, 5]：\n\n1.  **領班協調器（Orchestrator / Foreman）**\n    *   **職責**：駐留在主會話（Kernel Mode）中 [4]。負責解析目標網頁的 Sitemap、URL 隊列或分頁規律 [6, 7]，將待爬子任務寫入共享的 `MANIFEST.yaml` 狀態清單，並分派中階原子 Prompt 給子 Agent 執行 [2, 4]。\n    *   **限制（Coordinator 限制）**：**不擁有代碼寫入或 CLI 執行權限**，只能進行任務分派，杜絕代碼修改時的混亂 [4]。\n2.  **網頁獲取者（Fetcher Agent）**\n    *   **職責**：專注執行 HTTP 網路獲取 [6]。\n    *   **策略**：首選以輕量、高速的靜態 HTTP 請求下載網頁原始碼 [6, 8]。若偵測到客戶端動態渲染（如 HTML 僅含 skeleton 骨架或空標籤） [9]，則**自動升級（Escalate）**調用重量級無頭瀏覽器（如 Playwright 或 Stagehand v4）獲取 Hydrated DOM [9, 10]，兼顧效能與靈活度。\n3.  **DOM 淨化器（Distiller Agent）**\n    *   **職責**：在將 HTML 送入 LLM 前進行 DOM 剪枝 [11]。利用底層 Cheerio 快速解析的特性 [12, 13]，主動剝離 `<script>`, `<style>`, `<svg>`, `<iframe>` 及廣告等高噪聲節點 [11]，將 HTML 壓縮為乾淨的 Markdown 格式，防止 Context 溢出 [4]。\n    *   **無障礙標籤注入（Accessibility Injection）**：**在淨化過程中，主動將 HTML 的 ARIA Labels（無障礙標籤）抽離並注入 Markdown 中** [1]。這能為後續的 LLM 提供最直接的導航語義，使資料提取準確度顯著上升 [1]。\n4.  **語義提取器（Extractor Agent）**\n    *   **職責**：進行 **LLM-Driven 無選擇器語義解析** [1]。\n    *   **策略**：不依賴脆弱的 `.price` 或 `.title` CSS Class Name [1]，而是直接閱讀 Distiller 提供的乾淨 Markdown，透過空間相鄰性與語義特徵（如：「貨幣格式且鄰近購物車按鈕的數值即是價格」）進行推理提取 [1, 14]。\n    *   **限制（Executor 限制）**：配合 **Zod / Pydantic V2** 進行 Schema 強類型驗證 [9, 15]，將 LLM 提取的字串自動脅迫轉換為 clean float 或 ISO 日期格式 [9, 15]。**實體限制不允許 Spawn 任何子 Agent** [4]。\n5.  **自癒工程師（Self-Healing Agent）**\n    *   **職責**：負責維護**「靜態快取選擇器」**，在 Cheerio 助理遭遇提取異常時進行代碼自癒（Self-Healing） [1, 4]。\n\n---\n\n### 二、 基於「任務狀態表示法（TSR）」的精準狀態偵測與斷點續爬\n\n在數千個 URL 的長工期（Long-Horizon）抓取任務中，若對網頁錯誤或 CAPTCHA 阻擋缺乏狀態感知，Agent 極易陷入重複請求的 token 燒毀死循環 [14, 16]。\n\n1.  **任務狀態（Persistent Task State）與瞬時觀測（Transient Observation）徹底解耦**\n    *   實作 **TSR 框架** [14]，外置狀態更新器（State Updater）。\n    *   在 Orchestrator 中維護一個獨立的結構化 JSON `Progress Tracker`，記錄：`Global Goal`（抓取 10 頁數據）、`Milestones Completed`（Page 1-4 已完成）、`Current Subgoal`（Page 5 正在獲取）、`Remaining Requirements` [14]。這能防止 Agent 產生進度幻覺（Progress Hallucination）或提早終止任務 [14]。\n2.  **精準偵測 Blocked 狀態以防止封鎖升級**\n    *   Fetcher 下載 HTML 後，必須先經由驗證保護（Validation Guard） [17]。若 HTML 內文匹配到已知反爬 Class 或 CAPTCHA 關鍵字（如 SmartCaptcha、CheckboxCaptcha 或 429 狀態碼） [17, 18]，**嚴禁 Agent 盲目重試** [2]。\n    *   系統立即發送 `report-agent --state blocked` 主動向 Orchestrator 申報 `Blocked` [19, 20]，並暫存當前 HTML 快照 [19]。\n3.  **利用 `caller_ping` 實作人機協同（HITL）與時間旅行**\n    *   當爬蟲 Agent 被標記為 `Blocked` 時，子會話呼叫 `caller_ping({message: \"encounter_captcha\"})` 安全退出並暫停（Pause） [19, 21, 22]。\n    *   這會將 Graph State 序列化寫入持久化資料庫（推薦使用 `AsyncPostgresSaver` 或 Redis，防止 Serverless 部署時 SQLite ephemeral 的記憶流失） [23-25]，徹底釋放運算資源 [2, 3]。\n    *   待人類工程師手動調整 Proxy、解開驗證碼或提供輸入後，Orchestrator 觸發 `subagent_resume` [19, 21] 還原 Snapshot，並**承接 Checkpoint 斷點續爬，無需重新開始** [2, 26]。\n\n---\n\n### 三、 基於 Git Worktrees 的物理隔離與原子化 Prompt 防範競態\n\n當有多個 Specialized Developer Agent 同時針對不同版面結構的網站（如電商、新聞、論壇）編寫 Cheerio 抓取代碼時，如果共用同一個目錄，極易在並行測試、套件安裝和代碼寫入時產生嚴重的競態條件與寫入覆蓋 [4, 27]。\n\n1.  **Git Worktrees 物理隔離平行派發**\n    *   主協調器在分派任務時，應利用 Herdr 的 **Git Worktrees 託管機制** [19, 28]，為每個並行任務單獨 Checkout 出乾淨、獨立的工作目錄（如 `~/.copilot/session-state/{id}/`）與 Git 分支 [15, 19]。\n    *   各子 Agent 在各自隔離、互不影響的目錄下獨立安裝依賴包、撰寫 Cheerio 腳本並跑測試 [27]，從物理上根除並行衝突 [4, 27]。\n2.  **分佈式檔案寫入鎖（Distributed File Locking）**\n    *   當並行的 Agent 完成任務並將 Cheerio 腳本合併回主項目的 `scrapers.js` 配置檔時，系統在執行代碼寫入工具時會強制執行 **`.claude/locks/{agent}.lock` 檔案鎖** [4]。\n    *   同時間僅允許一個 Agent 擁有寫入權，其餘 Agent 處於等待狀態，確保設定檔寫入具有排他性 [4]。\n3.  **Fail-Closed 安全鎖定與終止契約**\n    *   主協調器在平行 Spawning 子 Agent 時（如 `herdr_delegate`） [19, 29]，使用強大且具搶佔性的 **Cancel 終止契約** [19]。\n    *   當手動取消或子任務超時，系統會同步向 PTY 終端發送 close，並持續輪詢直到捕捉到進程退出（Exit Code） [19]。若退出確認超時則進行安全鎖定（Fail-Closed），拒絕向主會話返還未驗證的髒數據，保障狀態原子性 [19, 30]。\n\n---\n\n### 四、 自癒混合模式（Self-Healing Hybrid Routing）的經濟學優化\n\n雖然 LLM-Driven 語義解析非常強大，但每次調用都會耗費 API Token [2]。為達到效能與成本的經濟學最佳平衡，建議實施自癒混合模式：\n\n```\n                    [下載 HTML 原始碼]\n                           │\n                           ▼\n             [執行 Syntactic Fast Path]\n            (使用快取的 Cheerio 靜態選擇器)\n                           │\n                 ┌─────────┴─────────┐\n         (提取成功)│                 │(提取失敗/Null)\n                 ▼                 ▼\n           [寫入資料庫]     [觸發 Blocked / Failed]\n                                   │\n                                   ▼\n                       [轉入 Inference Core]\n                     (調用 LLM 語義提取數據)\n                                   │\n                                   ▼\n                       [Self-Healing Agent]\n                     (反向推導新 CSS Selector)\n                                   │\n                                   ▼\n                         [更新選擇器 Cache]\n                    (下次抓取回歸 $0 快速路徑)\n```\n\n*   **Syntactic Fast Path（高速靜態路徑）**：Cheerio 的執行成本接近 **\\$0**，且速度極快 [6, 13]。系統預設使用先前快取的 CSS 選擇器進行抓取 [11]。\n*   **Inference Core（語義提取路徑）**：當網頁改版、CSS 異動導致 Cheerio 解析出的 JSON 欄位出現 `null`、`empty` 或型別不符時 [1]，系統立即中斷，並將任務路由至 Extractor Agent 進行高成本的 LLM 語義數據提取（成本約 **\\$0.01**） [1]。\n*   **選擇器自癒（Self-Healing）**：成功提取數據後，**Self-Healing Agent 會根據目前最新的 DOM 結構，重新反向推導出一套全新的、基於 stable 屬性（如 `data-*`）的 CSS 選擇器** [4]。這套新選擇器會自動更新並寫回本地快取，使未來的 10,000 次請求重新回到 \\$0 的高速靜態路徑，達到極高的系統韌性 [1, 4]。\n\n---\n\n### 五、 離線記憶精煉與系統自我演進（Offline Refinement & Self-Annealing）\n\n1.  **休眠期非同步記憶精煉（Sleep-Time Asynchronous Memory Refinement）**\n    *   在白天的密集抓取任務結束後，系統於深夜進入 Idle 閒置期 [2]。\n    *   啟動一個專門的 **Memory Refinement Agent** [2]，異步檢索整天的抓取日誌、429 頻率限制、代理封鎖與選擇器漂移失敗等軌跡（Episodic Event Logs） [3]。\n    *   Refinement Agent 負責在背景總結失敗規律，並自動將其提煉為 actionable wisdom（例如：「Target-B 網站每秒 Request 限制為 5 次」），自動調整該網站的調度延遲（Delay）至 2000ms，寫入持久化記憶層（如 Mem0 平台） [2, 31]，實現越用越聰明的正向循環 [2, 3]。\n2.  **自我修正與 Meta-Agent（Self-Annealing Workflow）**\n    *   當 Cheerio 助理在 Implementation → Review 循環中連續失敗超過 3 次 [4]，系統會觸發 **Self-Annealing 工作流**，喚醒一個 **Meta-Agent（元代理）** 獲取 `.claude/` 目錄的編輯權 [4]。\n    *   Meta-Agent 讀取會話日誌 [4]，識別出 Agent 寫入 buggy Cheerio 代碼的「思維路徑」（如：「我以為這是簡單的 typo 所以跳過了測試」） [4]。\n    *   它會主動修改 `SKILL.md`，將其寫入 explicit **\"Anti-Pattern\"（反模式）** 提醒，並更新 `.claude/config/orchestration-limits.yaml` 中的限制引導，實現 prompt 的自我淬火硬化 [4]。\n\n---\n🧭 這套整合了常駐背景、TSR 狀態更新器、Git Worktrees 與自癒混合路徑的 Cheerio 多 Agent 協作設計，能最大程度發揮 Cheerio 的超高速優勢，同時藉由 LLM 賦予系統鋼鐵般的容錯自癒能力。**您是否希望我為您將此架構具體撰寫成一份包含代碼框架與 MANIFEST.yaml 設定規格的「企業級多 Agent 容錯爬蟲系統設計報告（Tailored Report）」並儲存在您的 Studio 面板中，以便您後續開發參考呢？**",
+    "citations": [
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 1,
+        "cited_text": "When your agent needs to respond to a user, it pulls fresh context from Redis, retrieves semantically similar past cases from the vector database, and proceeds. When it finishes work, it archives results to SQL and updates long-term memory summaries. If it crashes midway, it restores session state from Redis and semantic context from the vector database. High-volume customer service agents, multi-session personalized assistants, systems where you need both real-time speed and historical accountability."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 2,
+        "cited_text": "Team et al. (2026) K. Team, T. Bai, Y. Bai, Y. Bao, S. Cai, Y. Cao, Y. Charles, H. Che, C. Chen, G. Chen, et al. Kimi k2. 5: visual agentic intelligence. arXiv preprint arXiv:2602.02276. Cited by: Appendix A , Table 4 . Yang et al. (2025) A. Yang, A. Li, B. Yang, B. Zhang, B. Hui, B. Zheng, B. Yu, C. Gao, C. Huang, C. Lv, et al. Qwen3 technical report. arXiv preprint arXiv:2505.09388. Cited by: Appendix A , Table 4 . Yao et al. (2022) S. Yao, J. Zhao, D. Yu, N. Du, I. Shafran, K. Narasimhan, and Y. Cao React: synergizing reasoning and acting in language models. arXiv preprint arXiv:2210.03629. Cited by: §1 ."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 3,
+        "cited_text": "To reduce context overhead, existing systems retain only the m m most recent screenshots alongside the full text history ( Li et al., 2026 ) . Formally, at step t t , the actor generates: a t = π θ  ( I , O t , H t − 1 ) , a_{t}=\\pi_{\\theta}(I,;O_{t},;H_{t-1}), where O t = { o t − m + 1 , … , o t } O_{t}={o_{t-m+1},\\ldots,o_{t}} denotes the recent observation window and H t − 1 = { ( T 1 , a 1 ) , … , ( T t − 1 , a t − 1 ) } H_{t-1}={(T_{1},a_{1}),\\ldots,(T_{t-1},a_{t-1})} is the interaction history comprising all prior reasonings and actions. This design preserves local visual continuity but discards earlier observations. Consequently, the actor must infer task progress from past responses, a growing burden in long trajectories that leads to the potential failures."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 4,
+        "cited_text": "Zhang et al. (2025) C. Zhang, Z. Yang, J. Liu, Y. Li, Y. Han, X. Chen, Z. Huang, B. Fu, and G. Yu Appagent: multimodal agents as smartphone users. In Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems, pp. 1–20. Cited by: §1 , §4 . Zhang et al. (2024) J. Zhang, J. Wu, T. Yihua, M. Liao, N. Xu, X. Xiao, Z. Wei, and D. Tang Android in the zoo: chain-of-action-thought for gui agents. In Findings of the Association for Computational Linguistics: EMNLP 2024, pp. 12016–12031. Cited by: §1 ."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 5,
+        "cited_text": "Baselines. Our baseline is the standard MobileWorld actor, which instantiates π θ \\pi_{\\theta} as defined in Section 2.1. We compare this baseline against the same actor augmented with the task-state representation S t S_{t} . Implementation Details. We use two multimodal LLMs as the underlying model for both the actor and the state updater: Qwen3.5-plus ( Yang et al., 2025 ) and Kimi-k2.5 ( Team et al., 2026 ) , accessed via Bailian API with temperature 0. Appendix B Action Space Definition The action space 𝒜 \\mathcal{A} differs between benchmarks. Table 3 lists all available actions."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 6,
+        "cited_text": "Stateful agents remember. They keep notes about what you've discussed, what you prefer, and what worked last time. They pick up where they left off instead of reinventing the wheel. For long-running work such as customer support escalations, multi-step data analysis, and iterative design workflows, stateful architecture is essential. The catch? Remembering costs money. Storage, retrieval speed, consistency across failures; it all has a price. The seven strategies that follow each represent different trade-offs in how you decide what to remember, where to keep it, and how to recover it when things inevitably break."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 7,
+        "cited_text": "Throughout extended operations, your AI agents inevitably encounter situations requiring temporary suspension. Without proper state persistence, these interruptions force complete restarts, wasting computational resources and time. For long-running agents (those running >4 hours), systems without state persistence have a 90% higher risk of total task failure due to API timeouts or infrastructure disruptions. The primary value of robust pause/resume capabilities includes: Recovery from provider outages (e.g., LLM API failures) without losing progress Resource efficiency through releasing compute during idle periods Context refreshing options when resuming after significant delays"
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 8,
+        "cited_text": "Limitations The state updater can propagate errors: if it incorrectly marks a subgoal as completed or omits a remaining requirement, the actor conditions subsequent decisions on a flawed state, potentially compounding mistakes across steps. Additionally, the updater introduces one extra LLM call per step (1024 tokens), increasing both latency and cost; for short tasks where the baseline already succeeds, this overhead provides no benefit and may degrade performance through over-decomposition. All experiments are conducted on Android-based mobile benchmarks; whether the representation generalizes to desktop or web GUI environments remains untested. Finally, the current design updates all three state views jointly—a more selective mechanism that activates views only when needed could reduce noise on simpler tasks."
+      },
+      {
+        "source_id": "242f3c88-fd1f-4f27-9113-5fec74c3fd4c",
+        "citation_number": 9,
+        "cited_text": "By now, we know that approach breaks down fast. Latency spikes, and the model's ability to actually use what's in context degrades: relevant facts get buried, and when two versions of a fact are both in the window, there's no guarantee it picks the current one. Token costs balloon too, though prompt caching has softened that blow for stable prefixes. The fix isn't a bigger context window; it's treating memory and state as deliberate architectural decisions, not afterthoughts. Before getting into the patterns, it's worth being precise about what those two terms mean, because they're easy to conflate."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 10,
+        "cited_text": "Hu et al. (2025) M. Hu, T. Chen, Q. Chen, Y. Mu, W. Shao, and P. Luo Hiagent: hierarchical working memory management for solving long-horizon agent tasks with large language model. In Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pp. 32779–32798. Cited by: §4 . Kong et al. (2025) Q. Kong, X. Zhang, Z. Yang, N. Gao, C. Liu, P. Tong, C. Cai, H. Zhou, J. Zhang, L. Chen, et al. MobileWorld: benchmarking autonomous mobile agents in agent-user interactive and mcp-augmented environments. arXiv preprint arXiv:2512.19432. Cited by: Appendix A , §1 , §3.1 ."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 11,
+        "cited_text": "7 State Persistence Strategies for Long-Running AI Agents in 2026 March 17, 2026 Posted by: Abinaya Venkatesh Category: Product Engineering No Comments Building an AI agent that actually finishes complex work is harder than it looks. An agent starts analyzing a 100-page compliance document, makes progress for hours, then crashes mid-way. Your system reboots. The agent wakes up with zero memory of what it just learned and starts over from scratch, wasting time, cost, and frustration. This is a failure of architecture. Without a proper persistence strategy, your agent is essentially a goldfish: intelligent but forgetful, starting fresh every time the environment shifts."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 12,
+        "cited_text": "Hybrid memory solves this by using each tool for its sweet spot: Short-term memory (Redis): Current conversation context, active tasks, and recent tool outputs. Lives 15 minutes to a couple of hours. Ultrafast retrieval (<1ms), perfect for real-time responsiveness. Long-term memory (Vector DB): Summarized past interactions, learned user preferences, resolved issues, and patterns discovered. This layer stores information indefinitely. Great for semantic search (“find similar past scenarios”). Durable record (SQL/object storage): Audit logs, complete run history, compliance records. Immutable, slow but reliable. You keep it for legal reasons, not for agent speed."
+      },
+      {
+        "source_id": "65f05b43-9cdc-4892-a087-0c708ced2394",
+        "citation_number": 13,
+        "cited_text": "What is Cheerio? Now, what is Cheerio all about? Well, Cheerio is JavaScript technology used for web scraping in server-side implementations, and it's designed explicitly for Node.js. It's a lightweight library that allows you to crawl web pages and extract data using CSS-style selectors. Cheerio can load HTML as a string and returns an object to extract data using its built-in methods. One of the best things about Cheerio is that it runs directly in Node.js without a browser, making it faster and more efficient than other web scraping tools. It was first released in 2010 by Matt Mueller and has gained significant popularity among developers due to its versatility and ease of use."
+      },
+      {
+        "source_id": "e819868d-0909-44a6-9617-430b9d58e3d4",
+        "citation_number": 14,
+        "cited_text": "Identity aware: Memory scoped to users, teams, projects, agents, or any identity graph that exists in the system. Type aware: Memories categorized as preferences, facts, tasks, feedback, or arbitrary schemas instead of undifferentiated text blobs. Temporal: Ability to reason about recency, frequency, and decay. A preference from a year ago may be less relevant than one from yesterday. Retrieval aware: Query-time control over what kinds of memories are relevant to a request, and how many to bring into context. Model aware: Structures that map naturally to prompt templates, tools, and intermediate agent steps."
+      },
+      {
+        "source_id": "4ca3efac-f1fc-4713-bfc8-6dd759c85c4d",
+        "citation_number": 15,
+        "cited_text": "Table of Contents Understanding State Persistence: The Difference Between Stateless Chatter and Stateful Partners Strategy 1: Checkpoint and Restore Strategy 2: Hybrid Memory Layers Strategy 3: Memory Consolidation Strategy 4: Graph-Based State Passing Strategy 5: State checkpointing and recovery Human-in-the-Loop Workflows: The Power of Checkpointing Strategy 6: Sleep-Time Asynchronous Memory Refinement Strategy 7: Multi-agent memory coordination Putting It All Together: Building Memory That Lasts Frequently Asked Questions on State Persistence"
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 16,
+        "cited_text": "References Chen et al. (2025) G. Chen, Z. Qiao, X. Chen, D. Yu, H. Xu, W. X. Zhao, R. Song, W. Yin, H. Yin, L. Zhang, et al. IterResearch: rethinking long-horizon agents with interaction scaling. arXiv preprint arXiv:2511.07327. Cited by: §4 . Cheng et al. (2024) K. Cheng, Q. Sun, Y. Chu, F. Xu, L. YanTao, J. Zhang, and Z. Wu Seeclick: harnessing gui grounding for advanced visual gui agents. In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pp. 9313–9332. Cited by: §4 ."
+      },
+      {
+        "source_id": "b9e439f2-d00f-4fc1-9067-650314766abc",
+        "citation_number": 17
+      },
+      {
+        "source_id": "b9e439f2-d00f-4fc1-9067-650314766abc",
+        "citation_number": 18
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 19,
+        "cited_text": "You'll see a new pane appear in herdr, the spawned agent work, and pi return its answer. While orchestrating, pi's footer shows the fleet, e.g. herdr: 3 agents (1 working) (0.7.5) . Examples Example 1 — One-shot delegation (simplest) Hand a self-contained task to a fresh agent and get the answer back in one call. Prompt: Use herdr_delegate to spawn a fresh pi and ask it: \"what are 3 ways to reverse a list in Python?\" Return its answer. What happens: herdr_delegate spawns a new pi pane, sends the prompt, waits for the agent to finish, reads its reply, and returns it. The spawned pane is left alive for follow-ups (pass closeOnSuccess: true to close it)."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 20,
+        "cited_text": "How completion is detected (and why it's reliable) herdr auto-detects a pi pane's state from its TUI. It reliably catches idle → working but sometimes misses working → idle , which can leave a finished pane stuck on working and hang a wait. pi-herdr solves this with self-report : When pi runs inside a herdr pane, this extension pushes its real state to herdr on lifecycle hooks — agent_start → working , agent_settled → idle — and on the blocked EventBus channels. The current channel is herdr:blocked , emitted by pi-ask-user (v0.14+) when ask_user waits/resumes and by pi-subagents for attention states; the legacy rpiv:ask-user:blocked ( @juicesharp/rpiv-ask-user-question ) and pi-cursor-sdk:ask-question:blocked ( pi-cursor-sdk ) are kept for back-compat ( active: true → blocked , active: false → working so the turn resumes). pi-herdr is the bridge that turns herdr:blocked into a herdr pane report-agent --state blocked — nothing else in JS consumes it, so without this bridge blocked detection relies on herdr's native TUI-watching. herdr renders that idle-after-working as done on builds that derive it; herdr_delegate / herdr_wait_agent race the idle and done transition waits (plus a polling fallback — see below). A global install ( pi install npm:@andrewjacop/pi-herdr ) loads the extension into every pi — including spawned ones — so all pi agents report reliably."
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 21,
+        "cited_text": "What's Included Extensions Subagents — 5 main-session tools + 6 commands, plus 2 child-only tools: <cited_table> <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Tool",
+              "Description"
+            ],
+            [
+              "subagent",
+              "Spawn a sub-agent in a dedicated herdr pane (async — returns immediately)"
+            ],
+            [
+              "subagent_interrupt",
+              "Interrupt a running Pi-backed subagent's current turn"
+            ],
+            [
+              "subagents_list",
+              "List available agent definitions"
+            ],
+            [
+              "subagent_resume",
+              "Resume a previous Pi-backed sub-agent session in a new ordinary pane (async)"
+            ],
+            [
+              "herdr_workflow",
+              "Prepare, start, or cancel one exact approved project-local review workflow"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 22,
+        "cited_text": "Interaction flow: Child calls caller_ping({ message: \"Not sure which schema to use\" }) Child session exits (like subagent_done ) Parent receives a steer notification: \"Sub-agent Worker needs help: Not sure which schema to use\" Parent resumes the child session via subagent_resume with the response Child picks up where it left off with the parent's guidance Example:"
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 23,
+        "cited_text": "We evaluate two base models across four mobile GUI benchmarks: MobileWorld Kong et al. (2025) , AndroidWorld Rawles et al. (2025) , MemGUI-Bench Liu et al. (2026) , and VenusBench-Mobile Gong et al. (2026) . Our approach improves success rates in most configurations, with gains of up to 12% on long-horizon tasks. Our contributions are: • A task-state representation that separates persistent task state from transient observations for long-horizon mobile GUI agents. • Empirical evaluation showing consistent improvements across four benchmarks and two base models, with ablations suggesting synergistic necessity of all three state views. • Deeper analysis on the effect of structured task-state, identifying task horizon and state-tracking demand as key moderating factors."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 24,
+        "cited_text": "5 Conclusion In this paper, we propose a task-state representation that decouples persistent task state from transient screen observations to counter goal drift, progress hallucination, and stale-screen repetition for long-horizon mobile GUI agents. Our approach augments a fixed actor with three externally maintained views: a global task-state summary, a progress tracker, and a transition-aware focus, without any architectural modification. Evaluated across four benchmarks, our method improves success rates by up to 12 % on long-horizon cross-app tasks and yields consistent 3–5 % gains on memory-intensive tasks, validating the effectiveness of our approach."
+      },
+      {
+        "source_id": "9e6b3574-6334-4de5-b504-7a76dbe6459e",
+        "citation_number": 25,
+        "cited_text": "Copy Async"
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 26,
+        "cited_text": "2 Method Figure 1: Overview of the task-state representation. At each step, the state updater compares pre- and post-action screenshots and updates a structured state block which is then injected into the actor's input. 2.1 Problem Formulation We formulate mobile GUI automation as a sequential decision-making problem. Given a task instruction I I and an initial screen observation o 0 o_{0} , a GUI actor π θ \\pi_{\\theta} repeatedly observes the current screen and generates a response r t = ( T t , a t ) r_{t}=(T_{t},a_{t}) , where T t T_{t} denotes a reasoning trace and a t a_{t} represents an executable action drawn from a predefined action space 𝒜 \\mathcal{A} (detailed in Appendix B ). Following the execution of a t a_{t} , the environment transitions to a new screen state o t + 1 o_{t+1} , and the rollout continues until task completion or a predefined step limit."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 27,
+        "cited_text": "Long-Horizon Context for LLM Agents. Managing growing interaction trajectories is a central challenge for LLM agents. Existing approaches primarily address this through trajectory compression: HiAgent ( Hu et al., 2025 ) chunks working memory by subgoals, IterResearch ( Chen et al., 2025 ) periodically reconstructs a condensed workspace, and summarization-based methods learn to shorten history via RL ( Lu et al., 2025 ) . These methods treat the trajectory as a monolithic stream to be shortened; in contrast, we maintain a separate structured representation alongside the actor's unmodified observation history."
+      },
+      {
+        "source_id": "ad280ac1-6c7f-4a3e-a954-2d04adc67f51",
+        "citation_number": 28,
+        "cited_text": "Example 3 — Parallel fan-out (do N things at once) herdr_delegate calls run concurrently, so you can fan work out: Prompt: In parallel, use herdr_delegate three times to spawn three pi agents — one to write tests for auth.ts, one for payment.ts, one for user.ts. Wait for all three, then give me a combined summary and any failures. What happens: Three panes spawn at once, each works its task concurrently, pi collects all three results. (Pair with git worktrees — coming in a later tier — to give each its own checkout.)"
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 29,
+        "cited_text": "<cited_table> Table 2: Ablation on Qwen3.5-plus (Success Rate, %). Firstly, we discover that on MobileWorld, the full representation outperforms every ablated variant by 5–7%, suggesting that the three components function synergistically. Among individual removals, dropping the transition-aware focus causes the largest degradation (55 → \\to 48), suggesting that verifying action effectiveness is the most critical signal for long-horizon tasks. However, the pattern reverses on AndroidWorld. Specifically, removing the transition module improves over the baseline (63.79 vs. 61.21), while the full representation hurts. This indicates that for shorter, single-application tasks, transition verification introduces unnecessary decision noise. The task-state representation is therefore best viewed as conditionally beneficial—most valuable when tasks demand persistent state tracking across many steps.",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Method",
+              "MobileWorld",
+              "AndroidWorld"
+            ],
+            [
+              "Baseline",
+              "43.00",
+              "61.21"
+            ],
+            [
+              "+Context w/o summary",
+              "50.00",
+              "59.48"
+            ],
+            [
+              "+Context w/o tracker",
+              "49.00",
+              "61.21"
+            ],
+            [
+              "+Context w/o transition",
+              "48.00",
+              "63.79"
+            ],
+            [
+              "+Context full",
+              "55.00",
+              "57.76"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "ad44d402-2bf7-4a48-be82-f3124df974f8",
+        "citation_number": 30,
+        "cited_text": "Cancel contract Cancel claims a process-global terminal gate. Completion, failure, interruption, and cancellation cannot each produce a terminal outcome. Queued agent() calls resolve as cancelled; no later reviewer or synthesizer starts. New panes are queried through Herdr process-info until their interactive shell is ready before launch. Active panes are queried again before close so foreground process identities can be waited on. After synchronous pane close, cancel waits for pane absence and captured process exit before disposing the reader checkout. If process identity cannot be captured for an active pane, the pane remains present after close, or any captured process still lives after the bounded wait, the checkout is retained and the run ends failed with cancel_termination_failed . Successful cancellation is not reported in that case. A successful cancel writes one cancelled terminal journal event and one result-free delivery. Repeated cancel is idempotent and returns the authoritative terminal outcome (including a prior fail-closed result)."
+      },
+      {
+        "source_id": "d483b06d-f5e8-42c8-a5f7-c4a0a3b2b562",
+        "citation_number": 31,
+        "cited_text": "2.2 Task-State Representation To address these limitations, we introduce an externally maintained task-state representation S t S_{t} , which is updated at each step and injected into the actor's input. The state comprises three functional views, which are detailed below. Rather than operating as separate modules, these views are fields within a unified state object and are updated jointly at each step. Global Task-State Summary. When early visual contexts are truncated, the actor is prone to losing sight of the initial task goal. To counteract this intent decay, we design a summary module to record the persistent semantics of the task along with the cumulative progress. The primary role of this summary is to maintain the visibility of the original task instruction, even when recent screenshots display only a narrow slice of the interface. This mechanism prevents the actor from drifting away from the intent of the user during long sequences of interaction."
+      }
+    ]
+  }
+]

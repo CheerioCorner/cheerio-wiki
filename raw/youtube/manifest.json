@@ -197,6 +197,19 @@
       "duration": "00:16:41",
       "created": "2026-08-25",
       "raw_path": "raw/youtube/herdr-runtime-for-coding-agents.md"
+    },
+    {
+      "slug": "observability-opentelemetry-logs-metrics-traces",
+      "video_id": "umm-MyCl3Q4",
+      "title": "System Observability: Logs, Metrics, Traces & OpenTelemetry",
+      "url": "https://www.youtube.com/watch?v=umm-MyCl3Q4",
+      "language": "en",
+      "auto_generated": true,
+      "source_api": "youtube_transcript_api",
+      "segments": 764,
+      "duration": "00:35:51",
+      "created": "2026-08-30",
+      "raw_path": "raw/youtube/observability-opentelemetry-logs-metrics-traces.md"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

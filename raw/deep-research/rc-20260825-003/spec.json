@@ -1,0 +1,26 @@
+{
+  "job_id": "rc-20260825-003",
+  "query": "Multi-agent orchestration 設計模式深度研究：常駐背景（persistent background）、語義狀態偵測（semantic state detection）、原子化 prompt（atomic prompt）三大模式的實作原理、工具比較（Herdr / Pi / Claude Code / Copilot SDK / LangGraph）及對 Cheerio 助理的應用建議",
+  "sub_questions": [
+    "常駐背景（persistent background）模式如何實作？哪些工具支援？對 agent 容錯有什麼幫助？",
+    "語義狀態偵測（semantic state detection）如何實現 blocked/working/done 的精準判斷？各工具的偵測策略差異？",
+    "原子化 prompt（atomic prompt）如何避免競態條件？哪些工具已有此機制？",
+    "這三個模式在主流工具（Herdr / Pi / Claude Code / Copilot SDK / LangGraph）中的實現程度比較？",
+    "對 Cheerio 助理的多 agent 協作設計有什麼具體應用建議？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "1y",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "industry",
+    "output_format": "full"
+  }
+}

@@ -1,0 +1,111 @@
+✓ Created new notebook: Multi-agent orchestration 
+設計模式深度研究：常駐背景（persistent background）、語義狀態偵測（semantic s...
+✓ Research started
+  Query: Multi-agent orchestration 設計模式深度研究：常駐背景（persistent 
+background）、語義狀態偵測（semantic state detection）、原子化 prompt（atomic 
+prompt）三大模式的實作原理、工具比較（Herdr / Pi / Claude Code / Copilot SDK / 
+LangGraph）及對 Cheerio 助理的應用建議
+  Source: web
+  Mode: deep
+  Notebook ID: 2e0b821d-a22b-458c-86b6-7ebeb1f9d26f
+  Task ID: ChAyNDkzODVjZTc2OTYxY2Y5EAgaBGU1ZGMqA3Vzdw
+
+Waiting for research to complete...
+⠦ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 7d43cd31-0e81-473e-bc9e-26520c9bc33d
+  Sources found: 75
+
+Run 'nlm research import 2e0b821d-a22b-458c-86b6-7ebeb1f9d26f <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 67 sources.
+  • Herdr vs pi vs tmux: Which Agent Harness Should You Run? - Developers Digest
+  • Agent automation | herdr
+  • 7 State Persistence Strategies for Long-Running AI Agents in 2026
+  • A Task-State Representation for Long-Horizon Mobile GUI Agents - arXiv
+  • MA-VLA: Multi-Arm Vision-Language-Action Model for Collaboration and 
+Compositional Generalization - arXiv
+  • andrewjacop/pi-herdr · Packages - Pi Coding Agent
+  • GitHub - github/copilot-sdk: Multi-platform SDK for integrating GitHub 
+Copilot Agent into apps and services
+  • checkpoints | langgraph - LangChain Reference
+  • 5 Architectural Patterns for Persistent Memory and State in AI Agents - 
+MachineLearningMastery.com
+  • Implementing Multi‑Agent Orchestration in Microsoft Copilot Studio
+  • Build a custom RAG agent with LangGraph - Docs by LangChain
+  • Orchestrate teams of Claude Code sessions - Claude Code Docs
+  • Nous Hermes Agent vs. OpenClaw Architectural Deep-Dive - Which AI Framework 
+is Ready for Enterprise Production? - Software Testing and Development Company -
+Shift Asia
+  • Deterministic AI Orchestration: A Platform Architecture for Autonomous 
+Development
+  • Herdr: the runtime coding agents run on
+  • Multi-agent patterns | Microsoft Learn
+  • Extend Claude with skills - Claude Code Docs
+  • How Claude Code works - Claude Code Docs
+  • Herdr: The Rust Agent Multiplexer That Runs All Your AI Coding Agents in One
+Terminal
+  • copilot-sdk/go/README.md at main - GitHub
+  • pi-herdr-agents · Packages
+  • Agent Skills - Claude Platform Docs
+  • Dive into Claude Code: The Design Space of Today's and Future AI Agent 
+Systems - arXiv
+  • Build a custom RAG AI agent in TypeScript and Jupyter | Deno
+  • langgraph.store.postgres - LangChain Reference
+  • Persistence - Docs by LangChain
+  • From SQLi to RCE - Exploiting LangGraph's Checkpointer - Check Point 
+Research
+  • AI agent platforms with persistent memory - Mem0
+  • Building agent teams with Agent Framework, GitHub Copilot CLI and Squad
+  • What is Stagehand v4: Browserbase's SDK for browser agents - 4Geeks Academy
+  • The End of Selectors: LLM-Driven HTML Parsing - DEV Community
+  • Cheerio AI Agent Sandbox - ScrapeNinja
+  • Web Scraping With Cheerio in Node.js: The Modern Guide - Olostep
+  • Cheerio Scraper - HTML scraping tool - Apify
+  • CheerioJS Guide - Scraping HTML Pages With NodeJs - ScrapeOps
+  • GitHub - cheeriojs/cheerio: The fast, flexible, and elegant library for 
+parsing and manipulating HTML and XML.
+  • Web Scraping with Cheerio and Node.js: A Beginner-Friendly Guide - 
+IPRoyal.com
+  • Scrape Google Results with Node.js API - OrbitScraper
+  • How to Scrape Yandex Search Results: Python & Node.js - ScrapingBee
+  • Claude Code by Anthropic | AI Coding Agent, Terminal, IDE
+  • The GitHub Copilot SDK: Agents for Every App - htek.dev
+  • LangChain, LangGraph, and Agentic AI Patterns - Spaceout
+  • Agents | herdr
+  • LangGraph + SQLite checkpointer loses memory after every Vercel deployment. 
+What's the best solution? : r/AI_Agents - Reddit
+  • [Workflow] Advanced Multi-Agent Orchestration with Herdr and Isolated Git 
+Worktrees for Parallel Development : r/ClaudeWorkflows - Reddit
+  • Herdr documentation
+  • I built Gem Team — multi-agent orchestration workflow for copilot : 
+r/GithubCopilot - Reddit
+  • Multi-agent orchestration patterns and best practices - Microsoft Copilot 
+Studio
+  • How to Build an AI Agent with Persistent Memory Using RAG and Vector Search
+  • Cheerio Web Scraper | FlowiseAI
+  • Cheerio Web Scraper | AnswerAgentAI
+  • GitHub - thenicolas1894/awesome-claude-fable-5-prompt-vault
+  • PanelTR: Zero-Shot Table Reasoning Framework Through Multi-Agent Scientific 
+Discussion
+  • Simple AI Definitions : u/maltelandwehr - Reddit
+  • Claude API skill - Claude Platform Docs
+  • Extend agents with skills - Claude Code Docs
+  • Get started with Agent Skills in the API - Claude Platform Docs
+  • Skills for enterprise - Claude Platform Docs
+  • Agentic Code Fixing with GitHub Copilot SDK and Foundry Local | Microsoft 
+Community Hub
+  • SDK and CLI compatibility - GitHub Copilot
+  • langgraphjs/examples/multi_agent/hierarchical_agent_teams.ipynb at main - 
+GitHub
+  • Web browser integration - Docs by LangChain
+  • Web Scraping With Node.js: Cheerio & Playwright - Scrappey
+  • Beginners guide to Web Scraping (Cheerio, User-Agents) - Incogniton
+  • nodetool/AGENTS.md at main - GitHub
+  • Web scraping with Cheerio in 2025 - Apify Blog
+  • Web Scraping and Parsing HTML with Node.js and Cheerio | Twilio
+
