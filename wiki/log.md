@@ -47,6 +47,21 @@
   - `wiki/index.md` — Concepts + Sources 新增條目
 - 特殊標記：Gemini CLI (agy) 因 headless mode 權限問題無法執行，僅 Claude 單方提案。無分歧需仲裁。
 
+## [2026-08-30] ingest | AI 資安深度研究 × 4（Agent Security / Enterprise API / Threat Modeling / Skill Supply Chain）
+
+- 動作：4 組 Gemini Notebook 深度研究（rc-20260830-001~004，共 275 筆來源）→ 品質過濾 → 重新命名 → 查詢回答 → 報告產出 → wiki ingest
+- 建立：
+  - `wiki/entities/agent-security.md` — Agent Security entity（Prompt Injection、權限邊界、Sandbox）
+  - `wiki/entities/ai-threat-modeling.md` — AI Threat Modeling entity（STRIDE × AI、Attack Surface）
+  - `wiki/sources/2026-08-30-agent-security-basics.md` — Agent Security 深度研究 source note
+  - `wiki/sources/2026-08-30-enterprise-api-security.md` — Enterprise API Security 深度研究 source note
+  - `wiki/sources/2026-08-30-ai-threat-modeling.md` — AI Threat Modeling 深度研究 source note
+  - `wiki/sources/2026-08-30-skill-supply-chain-security.md` — Skill Supply Chain Security 深度研究 source note
+- 更新：
+  - `wiki/topics/agent-infrastructure.md` — Entities + Sources 加入 4 筆資安研究
+  - `wiki/index.md` — Entities + Sources 各新增條目
+- 目的：為 W-2026-08-085（AI 系統資安框架設計）建立知識基礎，供 W-074/W-080/W-056~059 實作時參考
+
 ## [2026-08-30] 新任務 | AI 系統資安框架設計（W-2026-08-085）
 
 - 新增 work/current.md 任務 W-2026-08-085：AI 系統資安框架設計

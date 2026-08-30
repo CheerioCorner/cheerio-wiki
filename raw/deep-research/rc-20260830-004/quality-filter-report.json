@@ -1,0 +1,40 @@
+{
+  "job_id": "rc-20260830-004",
+  "notebook_id": "7a49a488-1f82-44b0-b813-42cc345e6020",
+  "before_count": 101,
+  "after_count": 95,
+  "removed": [
+    {
+      "id": "f8402ac9-001e-47e0-94a1-4c5d6801b214",
+      "title": "GitHub Copilot - Microsoft Azure",
+      "reason": "此為微軟 Azure 的產品功能介紹首頁與常見問答 (FAQ) 行銷頁面，主要用於宣傳產品功能，缺乏實質的技術實作或安全分析細節。"
+    },
+    {
+      "id": "17c7a9d6-8541-4986-98db-1c2887510d28",
+      "title": "Announcing Telerik & Kendo UI AI Coding Assistants",
+      "reason": "此為產品發布行銷頁面，且內容提及的 GitHub Copilot 擴充功能已於 2025 年 11 月被微軟正式停用並下架，Progress 亦已廢棄該擴充，屬於過期且無實質技術參考價值的推廣資訊。"
+    },
+    {
+      "id": "fbe5be0f-77fa-4fd4-868d-06a9820b27a1",
+      "title": "Models disappeared after VS Code update — GitHub Education account · community · Discussion #189398",
+      "reason": "此為簡短的社群問答，內容僅圍繞學生免費方案中模型消失的政策調整與基本重啟軟體排解，缺乏具體技術細節與安全研究價值。"
+    },
+    {
+      "id": "16be56f4-6e6d-4a16-ae23-0cc7ddb81b22",
+      "title": "Pi-OS: an \"operating system\" managed by the Pi Coding Agent : r/PiCodingAgent - Reddit",
+      "reason": "此為社群論壇上的趣味分享心得，作者自承該專案「完全無用 (completely useless)」，僅作為好玩展示，無具體實質的技術深度或安全論據支撐。"
+    },
+    {
+      "id": "f766724a-5948-47b7-8c6d-ff37e83893b8",
+      "title": "GitHub Copilot Extension Developer Policy",
+      "reason": "此開發者政策頁面針對已於 2025 年 11 月 10 日起完全停用且下架的 GitHub App-based Copilot Extensions，屬於已被 Model Context Protocol (MCP) 後續更新取代的過期資訊。"
+    },
+    {
+      "id": "8d2979ac-ce00-40fa-acae-13f1a70c70a9",
+      "title": "What copilot canvas extensions y'all built · community · Discussion #197856 - GitHub",
+      "reason": "此為極其簡短且無結論的社群問答，提問未獲其他用戶實質回答，僅有機器人/官方回覆的 boilerplate 連結，不具任何實質技術細節。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-08-30T13:25:00.976Z"
+}

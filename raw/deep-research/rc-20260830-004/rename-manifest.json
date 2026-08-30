@@ -1,0 +1,631 @@
+[
+  {
+    "original_title": "[Admantium 部落格] 技術解析 - Claude Code 命令列工具診斷、使用者權限控制架構",
+    "new_title": "[Admantium 部落格] 技術解析 - Claude Code 命令列工具診斷、使用者權限控制架構",
+    "category": "權限控管與授權機制",
+    "source_id": "c62630c2-2be2-430f-9b86-23c27b8e4c4c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Adversa AI 專題] 安全報告 - OpenClaw 漏洞 CVE-2026-25253、憑證外洩與系統加固指南",
+    "new_title": "[Adversa AI 專題] 安全報告 - OpenClaw 漏洞 CVE-2026-25253、憑證外洩與系統加固指南",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "8d64bfc7-4019-4085-ba6d-31132bd78f10",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Agensi 部落格] 技術指南 - 適用於 Claude Code 的安全稽核與程式碼審查 Skill",
+    "new_title": "[Agensi 部落格] 技術指南 - 適用於 Claude Code 的安全稽核與程式碼審查 Skill",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "27e710c0-d547-4791-bec2-f50dedcbe8c0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic GitHub] 社群討論 - SKILL.md 中 allowed-tools 控制在 CLI 與 SDK 之間的重大不一致問題",
+    "new_title": "[Anthropic GitHub] 社群討論 - SKILL.md 中 allowed-tools 控制在 CLI 與 SDK 之間的重大不一致問題",
+    "category": "權限控管與授權機制",
+    "source_id": "b4fd87b4-554f-4098-8ab4-1bca313cb5e5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic GitHub] 社群討論 - allowed-tools 權限限制未強制執行的 Bug 追蹤",
+    "new_title": "[Anthropic GitHub] 社群討論 - allowed-tools 權限限制未強制執行的 Bug 追蹤",
+    "category": "權限控管與授權機制",
+    "source_id": "555b4c58-cd20-4702-a39a-f8922f661921",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic 官方] 使用指南 - Claude Code CLI 程式碼安全自動審查與合規流程",
+    "new_title": "[Anthropic 官方] 使用指南 - Claude Code CLI 程式碼安全自動審查與合規流程",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "b1d42cb3-474d-4ba1-882b-892f37de5611",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic 官方] 安全公告 - 將前沿資安防禦與漏洞挖掘技能開放予防守方的政策與理念",
+    "new_title": "[Anthropic 官方] 安全公告 - 將前沿資安防禦與漏洞挖掘技能開放予防守方的政策與理念",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "2d2e8df2-af5c-456a-bfc5-c60d44f98ca6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic 官方] 技術文件 - Claude Code 安全防護架構、終端機限制與本地檔案防線",
+    "new_title": "[Anthropic 官方] 技術文件 - Claude Code 安全防護架構、終端機限制與本地檔案防線",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "ef765f9b-d800-491c-b671-ecfb135fcd2a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic 官方] 更新日誌 - Claude Code 安全改進與功能更新歷史",
+    "new_title": "[Anthropic 官方] 更新日誌 - Claude Code 安全改進與功能更新歷史",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "665ecbc3-3c1a-41db-b5be-8e58366b9f42",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic 官方] 系統規格 - Claude Platform 的 Agent Skill 定義與基礎安全架構",
+    "new_title": "[Anthropic 官方] 系統規格 - Claude Platform 的 Agent Skill 定義與基礎安全架構",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "59bbe857-38aa-44f2-a563-434f716aa31f",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic 官方] 系統配置 - Claude Code 操作指令與 MCP 權限清單設定",
+    "new_title": "[Anthropic 官方] 系統配置 - Claude Code 操作指令與 MCP 權限清單設定",
+    "category": "權限控管與授權機制",
+    "source_id": "19dd58e7-5e80-42d3-a0ec-7689b2310d97",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic 官方] 系統配置 - 於 Claude Code 中配置受限沙盒的 Bash 工具執行環境",
+    "new_title": "[Anthropic 官方] 系統配置 - 於 Claude Code 中配置受限沙盒的 Bash 工具執行環境",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "5502370e-defb-44f8-80d1-7259dc3e1718",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Anthropic 官方] 配置指南 - Claude Code 權限模式選擇：Auto / Notify / Strict 詳解",
+    "new_title": "[Anthropic 官方] 配置指南 - Claude Code 權限模式選擇：Auto / Notify / Strict 詳解",
+    "category": "權限控管與授權機制",
+    "source_id": "e28deed9-bf31-4e1d-9aa1-791f810a1a04",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Arm 官方] 新聞稿 - GitHub Copilot 全新 Arm 擴充：協助無縫安全遷移至 Arm 架帶",
+    "new_title": "[Arm 官方] 新聞稿 - GitHub Copilot 全新 Arm 擴充：協助無縫安全遷移至 Arm 架構",
+    "category": "Skill 審查、檢測與生態系",
+    "status": "skipped_no_match"
+  },
+  {
+    "original_title": "[Checkmarx 專題] 安全報告 - 2026 GitHub Copilot 遭遇的五大安全威脅及修補方案",
+    "new_title": "[Checkmarx 專題] 安全報告 - 2026 GitHub Copilot 遭遇的五大安全威脅及修補方案",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "154cc943-438f-4ace-8f13-2e1c24c1fe36",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Checkmarx 專題] 安全報告 - Claude Code 核心安全威脅、控制措施與企業最佳實踐",
+    "new_title": "[Checkmarx 專題] 安全報告 - Claude Code 核心安全威脅、控制措施與企業最佳實踐",
+    "category": "權限控管與授權機制",
+    "source_id": "51543b07-46e7-4cf5-9e9c-5f69b062343b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[CodeToByte] 開發實務 - 撰寫自訂 GitHub Copilot 代理人的核心 API 與身分驗證指南",
+    "new_title": "[CodeToByte] 開發實務 - 撰寫自訂 GitHub Copilot 代理人的核心 API 與身分驗證指南",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "b770c76c-39e3-4397-a12b-00ed5a202e75",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Composio 專題] 資源目錄 - 十款提升開發效率與環境整合的 Pi Agent 推薦擴充",
+    "new_title": "[Composio 專題] 資源目錄 - 十款提升開發效率與環境整合的 Pi Agent 推薦擴充",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "f4559705-e593-4156-80fa-1e6f7650481a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[DataCamp 專題] 教學指南 - Claude Code 安全指引：MCP、權限機制與 Sandbox 隔離",
+    "new_title": "[DataCamp 專題] 教學指南 - Claude Code 安全指引：MCP、權限機制與 Sandbox 隔離",
+    "category": "權限控管與授權機制",
+    "source_id": "61988a51-68ae-4281-a0e9-47e2de6e6b2c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Digital Applied 專題] 技術新聞 - 基於 MCP 協定的 Copilot Code Review 正式推出與安全審查應用",
+    "new_title": "[Digital Applied 專題] 技術新聞 - 基於 MCP 協定的 Copilot Code Review 正式推出與安全審查應用",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "70869bc6-7540-4c78-baa5-8358e5b316b4",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Fastio 專題] 資源目錄 - 2026 全球 AI 代理人、MCP 工具與安全機制文獻存檔",
+    "new_title": "[Fastio 專題] 資源目錄 - 2026 全球 AI 代理人、MCP 工具與安全機制文獻存檔",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "3d4f3b3b-0f9c-47b3-808f-bf2d26feaca0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Fastio 部落格] 趨勢分析 - GitHub Copilot 擴充生態系全面向 Model Context Protocol (MCP) 的轉型",
+    "new_title": "[Fastio 部落格] 趨勢分析 - GitHub Copilot 擴充生態系全面向 Model Context Protocol (MCP) 的轉型",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "de3276a0-c249-485e-8ac7-c10d7cd6ce84",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Firecrawl 專題] 比較分析 - Claude Code 與 Codex 的功能、效率與沙盒安全性評估",
+    "new_title": "[Firecrawl 專題] 比較分析 - Claude Code 與 Codex 的功能、效率與沙盒安全性評估",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "acae777e-802a-4704-a302-7ee2802924b6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 官方] 企業指南 - 企業引入 GitHub Copilot 安全性評估與合規核准準備材料",
+    "new_title": "[GitHub 官方] 企業指南 - 企業引入 GitHub Copilot 安全性評估與合規核准準備材料",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "7d97b6fa-6678-4a5b-9610-0a05aa1c06c3",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 官方] 使用手冊 - 行動端 GitHub Copilot 安全互動與權限作用域",
+    "new_title": "[GitHub 官方] 使用手冊 - 行動端 GitHub Copilot 安全互動與權限作用域",
+    "category": "權限控管與授權機制",
+    "source_id": "73be0696-1da0-48a9-b4ec-b4f2b091a18c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 官方] 停用公告 - 淘汰基於 GitHub App 的 Copilot Extensions 及全面過渡至 MCP 協議",
+    "new_title": "[GitHub 官方] 停用公告 - 淘汰基於 GitHub App 的 Copilot Extensions 及全面過渡至 MCP 協議",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "1fafa03a-12e9-4439-8d12-d6ee1c96cc16",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 官方] 社群討論 - Copilot CLI 社群插件擴充 API 設計與安全限制提案",
+    "new_title": "[GitHub 官方] 社群討論 - Copilot CLI 社群插件擴充 API 設計與安全限制提案",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "e9b72fe0-c0f9-4eda-853c-c1aa43924a55",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 官方] 系統規格 - GitHub OAuth 授權範圍 (Scopes) 劃分與權限控管機制",
+    "new_title": "[GitHub 官方] 系統規格 - GitHub OAuth 授權範圍 (Scopes) 劃分與權限控管機制",
+    "category": "權限控管與授權機制",
+    "source_id": "4bfb5f20-95a1-4ff4-99bc-5c1a9b7ba63f",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 官方] 開源軟體 - Copilot Extensions 開發套件的請求驗證與安全防護 API",
+    "new_title": "[GitHub 官方] 開源軟體 - Copilot Extensions 開發套件的請求驗證與安全防護 API",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "7fabc2a5-612b-4c19-b2a7-66c3036c9a24",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 服務] 產品規格 - AgentAuditKit MCP 安全掃描工具與自動化審查機制",
+    "new_title": "[GitHub 服務] 產品規格 - AgentAuditKit MCP 安全掃描工具與自動化審查機制",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "994f2c87-cf2b-4a56-bc05-7168c46f0bca",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 開源] 漏洞驗證 - Claude Code 資訊洩露漏洞 CVE-2026-21852 概念驗證 POC",
+    "new_title": "[GitHub 開源] 漏洞驗證 - Claude Code 資訊洩露漏洞 CVE-2026-21852 概念驗證 POC",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "df4aeac2-c0c3-45c3-b58d-b7875931b4ab",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[GitHub 開源] 開源軟體 - 基於 Claude Code 的自動化安全審查與程式漏洞分析技能",
+    "new_title": "[GitHub 開源] 開源軟體 - 基於 Claude Code 的自動化安全審查與程式漏洞分析技能",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "f18ffcd2-9ea5-4f7c-93c5-d259b1e9fbfa",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Glean 官方] 配置指南 - 於 GitHub Copilot 中配置 Glean 企業搜尋的整合與權限控管",
+    "new_title": "[Glean 官方] 配置指南 - 於 GitHub Copilot 中配置 Glean 企業搜尋的整合與權限控管",
+    "category": "權限控管與授權機制",
+    "source_id": "591aaa1d-9ae5-44be-b4ba-1e4d14d821f1",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Hacker News] 開源軟體 - Clawk：為 AI 程式代理人提供拋棄式 Linux 虛擬機器防禦方案",
+    "new_title": "[Hacker News] 開源軟體 - Clawk：為 AI 程式代理人提供拋棄式 Linux 虛擬機器防禦方案",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "cb42ebf0-9572-4990-be7c-e9a6a657ab77",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[HiddenLayer 專題] 安全報告 - Claude Code 擴充技能 (Skills) 隱藏安全風險深度分析",
+    "new_title": "[HiddenLayer 專題] 安全報告 - Claude Code 擴充技能 (Skills) 隱藏安全風險深度分析",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "aafa3aa8-a359-4852-823c-0384f0e53951",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[MCP GitHub] 社群討論 - MCP Server 官方中心化與去中心化註冊表安全審查機制規劃",
+    "new_title": "[MCP GitHub] 社群討論 - MCP Server 官方中心化與去中心化註冊表安全審查機制規劃",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "ab11c233-1e88-4658-9a89-8c4b78518ec3",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[MCP GitHub] 社群討論 - MCP 伺服器發布至官方 Registry 出現不可見問題之機制與流程",
+    "new_title": "[MCP GitHub] 社群討論 - MCP 伺服器發布至官方 Registry 出現不可見問題之機制與流程",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "ab228ae5-d67d-4631-bcd6-a41109a57fc1",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[MCP 官方] 安全建議 - Model Context Protocol 伺服器與客戶端雙向驗證之安全實務",
+    "new_title": "[MCP 官方] 安全建議 - Model Context Protocol 伺服器與客戶端雙向驗證之安全實務",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "6759c860-6cde-4401-9006-5036de65ae00",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[MCP 官方] 安全建議 - Model Context Protocol 授權控制與連線安全考量",
+    "new_title": "[MCP 官方] 安全建議 - Model Context Protocol 授權控制與連線安全考量",
+    "category": "權限控管與授權機制",
+    "source_id": "0755fda8-acd7-45c1-8d32-94ca1710dc83",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[MCP 官方] 架構解析 - 深入理解 Model Context Protocol 的授權機制與工具調用防線",
+    "new_title": "[MCP 官方] 架構解析 - 深入理解 Model Context Protocol 的授權機制與工具調用防線",
+    "category": "權限控管與授權機制",
+    "source_id": "0bccb460-9b19-45ec-8e6f-02dcc294f190",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[MITRE 官方] 漏洞紀錄 - Claude Code 資訊洩露漏洞 CVE-2026-21852 報告",
+    "new_title": "[MITRE 官方] 漏洞紀錄 - Claude Code 資訊洩露漏洞 CVE-2026-21852 報告",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "06127c86-77be-4afd-919f-246553613ef5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[MintMCP 部落格] 安全專題 - 企業如何因應 Claude Code 嚴重漏洞與供應鏈安全防禦",
+    "new_title": "[MintMCP 部落格] 安全專題 - 企業如何因應 Claude Code 嚴重漏洞與供應鏈安全防禦",
+    "category": "Skill 供應鏈攻擊場景",
+    "source_id": "fbc5dddc-fd6e-4252-8674-63aefe5c7346",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[NIST 官方] 漏洞紀錄 - CVE-2026-21852 漏洞技術細節與嚴重性評估",
+    "new_title": "[NIST 官方] 漏洞紀錄 - CVE-2026-21852 漏洞技術細節與嚴重性評估",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "90f7d38c-365e-4f43-9fe4-f50f46d35769",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[OCDevel 播客] 架構解說 - Claude Code 組成要素與底層 Sandbox 執行沙盒機制",
+    "new_title": "[OCDevel 播客] 架構解說 - Claude Code 組成要素與底層 Sandbox 執行沙盒機制",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "740bd434-08a5-4333-b777-35c011f32d0a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Penligent 專題] 安全報告 - 超越對話框：AI Agent 被越獄 (Jailbreak) 後的自動化實體威脅",
+    "new_title": "[Penligent 專題] 安全報告 - 超越對話框：AI Agent 被越獄 (Jailbreak) 後的自動化實體威脅",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "7000038b-1038-456b-8fa1-c3589c25137a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Pi 官方] 技術指南 - Pi Coding Agent 擴充套件 (Extensions) 開發架構與規格",
+    "new_title": "[Pi 官方] 技術指南 - Pi Coding Agent 擴充套件 (Extensions) 開發架構與規格",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "4437cf24-bfc3-4cf3-a95e-a74ee44b9129",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Pi 官方] 技術文件 - Pi Coding Agent 安全模型：本地存取防禦與沙盒組態",
+    "new_title": "[Pi 官方] 技術文件 - Pi Coding Agent 安全模型：本地存取防禦與沙盒組態",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "9b018876-8f73-4e2c-9018-402239f3c04e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Pi 官方] 資源目錄 - Pi Coding Agent 套件市集與第三方 Extensions 資源清單",
+    "new_title": "[Pi 官方] 資源目錄 - Pi Coding Agent 套件市集與第三方 Extensions 資源清單",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "c3d73874-1a70-4389-b384-29eb72d629d8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Port.io 部落格] 架構分析 - 為什麼企業需要建立私有 MCP 服務註冊表 (Registry)",
+    "new_title": "[Port.io 部落格] 架構分析 - 為什麼企業需要建立私有 MCP 服務註冊表 (Registry)",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "824053d8-ddd1-416f-828f-26cb971a1603",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Red Hat 部落格] 安全專題 - AI Agent 技能安全威脅、漏洞成因與主動控制措施",
+    "new_title": "[Red Hat 部落格] 安全專題 - AI Agent 技能安全威脅、漏洞成因與主動控制措施",
+    "category": "權限控管與授權機制",
+    "source_id": "85395f22-3720-4998-8937-b94f40ef715e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Reddit 社群] 技術討論 - 如何以最安全的方式執行 Pi Agent (Docker 與本機隔離策略)",
+    "new_title": "[Reddit 社群] 技術討論 - 如何以最安全的方式執行 Pi Agent (Docker 與本機隔離策略)",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "6c697bfa-c22d-4fc8-81f6-6a411709210c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Reddit 社群] 技術討論 - 社群熱門安全主題 Claude 技能安裝數據與實用度分析",
+    "new_title": "[Reddit 社群] 技術討論 - 社群熱門安全主題 Claude 技能安裝數據與實用度分析",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "a217e967-876b-4562-bb37-b9d22194517a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[SentinelOne 專題] 安全報告 - Claude Code 資訊外洩漏洞成因與緩解機制",
+    "new_title": "[SentinelOne 專題] 安全報告 - Claude Code 資訊外洩漏洞成因與緩解機制",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "e7695512-f280-4281-81b3-41eb792fe2cd",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Snyk 專題] 資源目錄 - 九款用於網路安全檢測、駭客攻防與漏洞掃描的 Claude 技能推薦",
+    "new_title": "[Snyk 專題] 資源目錄 - 九款用於網路安全檢測、駭客攻防與漏洞掃描的 Claude 技能推薦",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "9a728d74-870a-4aa1-a122-47212101cbe6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[VS Code 官方] 技術指南 - VS Code 整合式環境的 AI 安全防護與模型防線",
+    "new_title": "[VS Code 官方] 技術指南 - VS Code 整合式環境的 AI 安全防護與模型防線",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "78380083-435a-4a40-a7b9-e9eae2dcad68",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Verdent Guides] 使用指南 - Pi 代理人工作流、插件系統配置與執行權限邊界",
+    "new_title": "[Verdent Guides] 使用指南 - Pi 代理人工作流、插件系統配置與執行權限邊界",
+    "category": "權限控管與授權機制",
+    "source_id": "d59ca53f-850a-48d6-82ea-c27b3b514ec3",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[ZigiWave 部落格] 技術趨勢 - GitHub Copilot 2026：代理人模式 (Agent Mode) 與 MCP 協定整合",
+    "new_title": "[ZigiWave 部落格] 技術趨勢 - GitHub Copilot 2026：代理人模式 (Agent Mode) 與 MCP 協定整合",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "ab17b4bc-279f-4939-a7e0-3859a4a1fe42",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[arXiv 學術] 漏洞剖析 - 利用提示注入 (Prompt Injection) 攻擊 AI 程式代理人技能與協議的系統化分析",
+    "new_title": "[arXiv 學術] 漏洞剖析 - 利用提示注入 (Prompt Injection) 攻擊 AI 程式代理人技能與協議的系統化分析",
+    "category": "Skill 供應鏈攻擊場景",
+    "source_id": "3974518c-12da-4bd2-be4f-4210df36098b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[arXiv 學術] 系統架構 - Claude Code 功能、底層原理與潛在安全邊界手冊",
+    "new_title": "[arXiv 學術] 系統架構 - Claude Code 功能、底層原理與潛在安全邊界手冊",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "2223e3c0-64f1-4fb6-9e3a-e6e8cbda389f",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[安全機構] 評測報告 - 實測 Pi Coding Agent 安全邊界與沙盒隔離機制",
+    "new_title": "[安全機構] 評測報告 - 實測 Pi Coding Agent 安全邊界與沙盒隔離機制",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "a26884dd-1815-44eb-a76f-ad5292f58973",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[安全部落格] 安全報告 - 馴服 OpenClaw：自主式 AI 代理人面臨的威脅分析與防禦緩解",
+    "new_title": "[安全部落格] 安全報告 - 馴服 OpenClaw：自主式 AI 代理人面臨的威脅分析與防禦緩解",
+    "category": "AI Agent 漏洞與安全風險",
+    "source_id": "590b0137-7224-459d-ab54-96a63a6bd0ae",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[安全部落格] 安全建議 - 保護 Model Context Protocol 身份驗證：金鑰與憑證管理最佳實踐",
+    "new_title": "[安全部落格] 安全建議 - 保護 Model Context Protocol 身份驗證：金鑰與憑證管理最佳實踐",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "7a7a9af8-a133-4de1-83c2-a97a237ab68e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[安全部落格] 漏洞剖析 - 利用惡意專案檔對 Claude Code 實施 RCE 與 API 密鑰竊取攻擊",
+    "new_title": "[安全部落格] 漏洞剖析 - 利用惡意專案檔對 Claude Code 實施 RCE 與 API 密鑰竊取攻擊",
+    "category": "Skill 供應鏈攻擊場景",
+    "source_id": "7f1aed92-4bb9-41a5-83d2-179dd06c6ac9",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[安全部落格] 漏洞剖析 - 利用惡意技能與第三方 Agent 危害 Claude Code 安全性 (第一部分)",
+    "new_title": "[安全部落格] 漏洞剖析 - 利用惡意技能與第三方 Agent 危害 Claude Code 安全性 (第一部分)",
+    "category": "Skill 供應鏈攻擊場景",
+    "source_id": "d6da7452-8ed2-4875-87aa-c20812129b3c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[安全部落格] 漏洞剖析 - 當 MCP 遇上 OAuth：因授權設計缺陷導致一鍵接管帳號之安全漏洞",
+    "new_title": "[安全部落格] 漏洞剖析 - 當 MCP 遇上 OAuth：因授權設計缺陷導致一鍵接管帳號之安全漏洞",
+    "category": "Skill 供應鏈攻擊場景",
+    "source_id": "d761fc3a-4249-49ce-a0c9-472746a78dd1",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[安全部落格] 配置指南 - 2026 最新 Claude Code 高安全防護部署與權限限制配置",
+    "new_title": "[安全部落格] 配置指南 - 2026 最新 Claude Code 高安全防護部署與權限限制配置",
+    "category": "權限控管與授權機制",
+    "source_id": "c844eda9-768e-4a79-b668-440b6721a304",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[技術媒體] 安全專題 - 從 Claude Code 看 AI Agent 權限授予與實際資料控制之間的落差",
+    "new_title": "[技術媒體] 安全專題 - 從 Claude Code 看 AI Agent 權限授予與實際資料控制之間的落差",
+    "category": "權限控管與授權機制",
+    "source_id": "7efa4d12-1220-42b9-b56d-2793cfcecb32",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[技術媒體] 安全專題 - 理解 GitHub Copilot 安全隱私風險與權限控管最佳實踐",
+    "new_title": "[技術媒體] 安全專題 - 理解 GitHub Copilot 安全隱私風險與權限控管最佳實踐",
+    "category": "權限控管與授權機制",
+    "source_id": "96eab550-b517-4ed1-a0a5-e484243dc10b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[技術媒體] 技術解析 - Claude Code 2026 權限控制：白名單、黑名單與沙盒機制",
+    "new_title": "[技術媒體] 技術解析 - Claude Code 2026 權限控制：白名單、黑名單與沙盒機制",
+    "category": "權限控管與授權機制",
+    "source_id": "d91c5f45-4b97-412d-8079-5638f1efd013",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[技術部落格] 深度分析 - GitHub Copilot 擴充架構與 Cursor 原生功能在安全性與整合度上的比較",
+    "new_title": "[技術部落格] 深度分析 - GitHub Copilot 擴充架構與 Cursor 原生功能在安全性與整合度上的比較",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "1f76d6e7-97c1-46f9-8a9e-26318d2272d7",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[社群整理] 資源目錄 - Claude Code 與 MCP Server 安全審查與安裝指南彙整",
+    "new_title": "[社群整理] 資源目錄 - Claude Code 與 MCP Server 安全審查與安裝指南彙整",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "f40a245a-e9dc-4d3b-a7a0-f8bebc74bc8a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[部落格] 技術分析 - Pi Coding Agent 套件 SDK 架構對開發與技能安全供應鏈的重大進展",
+    "new_title": "[部落格] 技術分析 - Pi Coding Agent 套件 SDK 架構對開發與技能安全供應鏈的重大進展",
+    "category": "Skill 供應鏈攻擊場景",
+    "source_id": "d399c25e-e902-4565-88a0-9498b9ccb888",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[部落格] 技術指南 - 運維視角下的 Claude Code 部署、權限管理與安全沙盒管理",
+    "new_title": "[部落格] 技術指南 - 運維視角下的 Claude Code 部署、權限管理與安全沙盒管理",
+    "category": "權限控管與授權機制",
+    "source_id": "d565f97f-df5f-4ef9-957c-c8cc6deea98f",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[部落格] 技術評測 - Pi 代理人體驗：簡潔、可高度客製化的命令列與沙盒限制",
+    "new_title": "[部落格] 技術評測 - Pi 代理人體驗：簡潔、可高度客製化的命令列與沙盒限制",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "d719711f-c34e-4553-8285-d7e388d63d7c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[部落格] 開發實務 - Claude Code 代理人運作實務指南與環境隔離考量",
+    "new_title": "[部落格] 開發實務 - Claude Code 代理人運作實務指南與環境隔離考量",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "5eb3f458-6690-44f5-8b47-452d7b9b3168",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[部落格] 開發實務 - GitHub Copilot Extensions 生態系特點與權限使用模型",
+    "new_title": "[部落格] 開發實務 - GitHub Copilot Extensions 生態系特點與權限使用模型",
+    "category": "權限控管與授權機制",
+    "source_id": "90a33328-5c6a-47f8-a692-9f258346db9b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[開源社群] 開源專案 - 為 Pi Coding Agent 設計的權限強制執行擴充套件",
+    "new_title": "[開源社群] 開源專案 - 為 Pi Coding Agent 設計的權限強制執行擴充套件",
+    "category": "權限控管與授權機制",
+    "source_id": "78fc87c7-5f43-4954-851a-7034a6ee9fff",
+    "status": "renamed"
+  },
+  {
+    "original_title": "awesome-openclaw-skills/categories/coding-agents-and-ides.md at main - GitHub",
+    "new_title": "[GitHub 開源] 資源目錄 - OpenClaw 適用於程式代理人與整合開發環境的優秀 Skill 彙整",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "85a30cf2-8b36-4736-8c31-dd173be28bf5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "gotgenes/pi-permission-system · Packages - Pi Coding Agent",
+    "new_title": "[Pi 官方] 開源軟體 - gotgenes 貢獻之 Pi 權限控制架構與套件發布",
+    "category": "權限控管與授權機制",
+    "source_id": "51513f37-102e-492a-a980-f2a967899782",
+    "status": "renamed"
+  },
+  {
+    "original_title": "mcp-security-best-practices-2025.md - GitHub",
+    "new_title": "[GitHub 開源] 安全建議 - 2025 最新 Model Context Protocol 實作之安全性最佳實踐指引",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "e6dd08ce-307a-41c0-8397-232332ffa71b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "opencode-power-pack - AI Agents on GitHub | SkillsLLM - AI Skills Marketplace",
+    "new_title": "[SkillsLLM 官方] 資源目錄 - opencode-power-pack 代理人市集技能清單與安全能力規格",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "a1a0cc38-6ab7-4c19-9060-dae5d51e278a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "partners - Awesome GitHub Copilot",
+    "new_title": "[GitHub 社群] 資源目錄 - GitHub Copilot 開發夥伴、延伸擴充套件推薦清單",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "5dc53394-59bf-43b0-b2e8-8ee0047e38ab",
+    "status": "renamed"
+  },
+  {
+    "original_title": "pasky/pi-gondolin: Pi coding agent extension - GitHub",
+    "new_title": "[GitHub 開源] 開源專案 - pi-gondolin：用於增強 Pi Agent 檔案操作與通訊之擴充擴展",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "e2bbcc15-37aa-4b14-a4e2-938b94427b19",
+    "status": "renamed"
+  },
+  {
+    "original_title": "pi-lab/permissions · Packages - Pi Coding Agent",
+    "new_title": "[Pi 官方] 開源軟體 - pi-lab 官方許可與精細權限控制組件軟體包",
+    "category": "權限控管與授權機制",
+    "source_id": "3dc44f01-daae-43d2-b51f-3504a30a9429",
+    "status": "renamed"
+  },
+  {
+    "original_title": "pi-permission-layers · Packages - Pi Coding Agent",
+    "new_title": "[Pi 官方] 開源軟體 - pi-permission-layers 多層次安全存取控管模型軟體包",
+    "category": "權限控管與授權機制",
+    "source_id": "3eddc137-245e-4f1f-822f-a6e85c50ab84",
+    "status": "renamed"
+  },
+  {
+    "original_title": "pi-skill-updates · Packages - Pi Coding Agent",
+    "new_title": "[Pi 官方] 開源軟體 - pi-skill-updates：Pi Agent 的技能安全動態更新與版本控管套件",
+    "category": "Skill 審查、檢測與生態系",
+    "source_id": "0688bcd7-31df-42ab-bf6f-9da24613abd1",
+    "status": "renamed"
+  },
+  {
+    "original_title": "pi/SECURITY.md at main · earendil-works/pi - GitHub",
+    "new_title": "[Pi GitHub] 安全公告 - Pi Coding Agent 漏洞回報機制、核心安全性承諾與聲明",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "46a9913b-0d57-4167-99f6-31cc6936db8d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "pi/packages/coding-agent/docs/containerization.md at main · earendil-works/pi - GitHub",
+    "new_title": "[Pi GitHub] 技術文件 - Pi Coding Agent 容器化 (Containerization) 與沙盒隔離部署手冊",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "7b80e639-946c-4558-b949-8941b3bf1f52",
+    "status": "renamed"
+  },
+  {
+    "original_title": "teamcoltra/go-copilot-api: A high-performance Go proxy server that turns GitHub Copilot's chat completion/embeddings capabilities into an OpenAI-compatible API service, with Anthropic compatibility and robust security.",
+    "new_title": "[GitHub 開源] 開源專案 - 基於 Go 語言的 Copilot 安全代理與 API 憑證轉接服務",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "e7ba6a3b-d63e-4978-ab6f-40e895e51bd5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "wave/docs/guides/sandbox-setup.md at main - GitHub",
+    "new_title": "[GitHub 開源] 技術文件 - wave 專案底層沙盒環境 (Sandbox) 架構與快速部署指南",
+    "category": "Sandbox 隔離與安全配置",
+    "source_id": "ca1d36c4-24d2-4ffe-97e3-933254feead8",
+    "status": "renamed"
+  }
+]

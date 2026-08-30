@@ -1,0 +1,115 @@
+✓ Created new notebook: Agent Security 基礎：Prompt Injection 防禦機制、Agent 
+權限邊界設計、多 Agent 系統的信任模型、Sandbox 隔離策...
+✓ Research started
+  Query: Agent Security 基礎：Prompt Injection 防禦機制、Agent 權限邊界設計、多 
+Agent 系統的信任模型、Sandbox 隔離策略、Agent-to-Agent 通訊安全。以 AI Coding 
+Agent（如 Pi/Claude Code/Codex）為主要研究對象，涵蓋開源與商業方案的安全實踐。
+  Source: web
+  Mode: deep
+  Notebook ID: 05586dfd-aed7-4845-bd60-95493bb1c3b6
+  Task ID: ChA3MDFmYmRkOTUxYmJkZjVlEAgaBDAzMTIqA3Vzdw
+
+Waiting for research to complete...
+⠴ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 82e7d28c-a5ea-4071-9595-e61a5090de92
+  Sources found: 74
+
+Run 'nlm research import 05586dfd-aed7-4845-bd60-95493bb1c3b6 <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 67 sources.
+  • Your Agent Has Root | sysid blog
+  • Security - Claude Code Docs
+  • Permissions - Devin Docs
+  • DualView: Preventing Indirect Prompt Injection in Personal AI Agents - arXiv
+  • [2606.30970] Behavioral Governance for Autonomous AI Agents: The AgentBound 
+Framework - arXiv
+  • 
+claude-code-gauntlet/docs/research/artifacts/05-prompt-injection-vulnerabilities
+.md at main
+  • Configure the sandboxed Bash tool - Claude Code Docs
+  • Sandbox - Devin Docs
+  • E2B | Ry Walker Research
+  • Agentic AI Security: Complete Guide for June 2026 - Arnica.io
+  • The dual-LLM pattern in 200 words | Blog - Archestra.AI
+  • LLM Security: Prompt Injection Defense with CaMeL Framework - AFINE
+  • Preventing Prompt Injection with Type-Directed Privilege Separation - arXiv
+  • Preventing Prompt Injection with Type-Directed Privilege Separation - arXiv
+  • Architecting Secure AI Agents: Perspectives on System-Level Defenses Against
+Indirect Prompt Injection Attacks - arXiv
+  • OpenHands Joins the Open Secure AI Alliance to Help Build AI Security in the
+Open
+  • Security & Action Confirmation - OpenHands Docs
+  • openhands.sdk.security
+  • Model Context Protocol: What Security Teams Need to Know Before Agents Scale
+- Zenity
+  • Security Best Practices - What is the Model Context Protocol (MCP)?
+  • Model Context Protocol (MCP): Security Design Considerations for AI-Driven 
+Automation - Department of War
+  • Model Context Protocol: Security Risks & Mitigations - SOC Prime
+  • Specification - What is the Model Context Protocol (MCP)?
+  • Agent-to-Agent Trust and Delegation Chains, Explained - Arthur AI
+  • How to secure AI agent delegation and multi-agent communication - WorkOS
+  • Multi Agent AI Security: Trust Boundaries and Controls - GS Consulting
+  • Cross-Organization AI Agent Federation: Trust, Discovery, and Secure 
+Interoperability | Zylos Research
+  • Identity Propagation Context for Multi-Hop Delegation in OAuth 2.0 
+Environments - IETF
+  • LLM01:2025 Prompt Injection - OWASP Gen AI Security Project
+  • How Prompt Injection Attacks Compromise AI Agents in 2026 - Atlan
+  • LLM Prompt Injection Attacks: 5 Defenses That Work [2026] - AIThinkerLab
+  • Design Patterns for Securing LLM Agents Against Prompt Injection: What Every
+Pattern Leaves Open - ARMO Platform
+  • AI security: Defending against prompt injection and unsafe actions - Red Hat
+  • AI Sandbox: The Complete Guide to Sandboxing AI Agents in 2026 | Cosmonic
+  • What Is an Agent Execution Sandbox? - Augment Code
+  • Agent Sandboxes: A Practical Guide to Running AI-Generated Code Safely
+  • E2B Sandbox vs Railway Sandboxes | Blog - Northflank
+  • E2B vs Sprites dev: comparing AI code execution sandboxes in 2026 | Blog - 
+Northflank
+  • Amp - Documentation - E2B
+  • Security model - Claude Platform Docs
+  • What Is Mutual TLS (mTLS)? Securing Non-Human Identities at Scale - 
+miniOrange
+  • Devin AI Software Engineer: Architecture, Sandboxes, and CLI Workflows - 
+Fastio
+  • Devin Local Agent
+  • Configure permissions - Claude Code Docs
+  • Choose a sandbox environment - Claude Code Docs
+  • Security Best Practices - What is the Model Context Protocol (MCP)?
+  • AI Has a History Problem - Autonomys Network
+  • Behavioral Governance for Autonomous AI Agents: The AgentBound Framework | 
+alphaXiv
+  • Claude Code Security Guide: Permissions, MCP, Sandboxing - DataCamp
+  • AgentBound: Verifiable Behavioral Governance for Autonomous AI Agents - 
+arXiv
+  • LLM Prompt Injection Prevention - OWASP Cheat Sheet Series
+  • The 2-Line Defense That Stops 90% of Real-World Prompt Injection - DEV 
+Community
+  • WebAssembly could solve AI agents' most dangerous security gap - The New 
+Stack
+  • Authenticated Delegation and Authorized AI Agents - arXiv
+  • Authenticated Delegation and Authorized AI Agents - arXiv
+  • security-threat-model | Claude Skills & Agent Skills Library - Awesome MCP 
+Servers
+  • Threat Modeling | OWASP Foundation
+  • E2B sandboxes - Docker Docs
+  • Beyond Identity | ACE Frontier Research - LogionACE
+  • Least-Privilege Language Models - Emergent Mind
+  • [2509.25926v1] Better Privilege Separation for Agents by Restricting Data 
+Types - arXiv
+  • dortort/agent-bound: Access control framework for MCP servers with 
+Android-style permissions - GitHub
+  • SAGA: A Security Architecture for Governing AI Agentic Systems - Semantic 
+Scholar
+  • The Future of AI Agent Security Is Guardrails - Snyk
+  • gsiros/saga: SAGA: A Security Architecture for Governing AI Agentic Systems 
+- GitHub
+  • SAGA: A Security Architecture for Governing AI Agentic Systems - arXiv
+  • Security of LLM Agents - Khoury College of Computer Sciences - Northeastern 
+University
+

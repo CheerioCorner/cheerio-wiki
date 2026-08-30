@@ -24,6 +24,8 @@ updated: 2026-08-08
 - [[wiki/entities/tree-sitter|Tree-sitter]] — 高效能 Parser Generator，支援毫秒級增量解析，是現代 Code Intelligence 的核心基礎設施。 🛠️
 - [[wiki/entities/vllm|vLLM — 高吞吐量 LLM 推理引擎]] 🛠️
 - [[wiki/entities/opentelemetry|OpenTelemetry — 分散式系統觀測性標準]] — CNCF 開源標準，用於生成與傳輸 traces/metrics/logs。OTLP 協議、Collector 架構、Sampling 策略、SLO/SLA/Error Budget。 🛠️
+- [[wiki/entities/agent-security|Agent Security — AI Agent 安全基礎]] — Prompt Injection 防禦、Agent 權限邊界、多 Agent 信任模型、Sandbox 隔離。 🛠️
+- [[wiki/entities/ai-threat-modeling|AI System Threat Modeling — AI 系統威脅建模]] — STRIDE × AI Agent、Attack Surface 分類、威脅建模工具。 🛠️
 
 ## Concepts
 
@@ -55,6 +57,10 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO — Agent 設計與成本實作]] — 之前已經看過 GPU 作為 LLM Server 如何進行 AI 運算的基礎原理，看完這兩支影片後，更能理解 Prompt Caching 和傳統應用系統的 Caching 不同之處，也更明白這在節省 Token 上背後的原理是什麼。 🛠️
 - [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology — 概念解說]] — 之前已經看過 GPU 作為 LLM Server 如何進行 AI 運算的基礎原理，看完這兩支影片後，更能理解 Prompt Caching 和傳統應用系統的 Caching 不同之處，也更明白這在節省 Token 上背後的原理是什麼。 🛠️
 - [[wiki/sources/2026-08-25-opentelemetry-observability|System Observability: Logs, Metrics, Traces & OpenTelemetry]] — YouTube 影片：從 ride-share 後端的演化過程完整介紹觀測性三大支柱、OpenTelemetry、SLO/SLA、alerting、eBPF、continuous profiling。 🛠️
+- [[wiki/sources/2026-08-30-agent-security-basics|Agent Security 基礎深度研究]] — Prompt Injection 防禦、Agent 權限邊界、多 Agent 信任模型、Sandbox 隔離。 🛠️
+- [[wiki/sources/2026-08-30-enterprise-api-security|Enterprise API Security 深度研究]] — OAuth 2.0、Azure AD、API Key 管理、DLP。 🛠️
+- [[wiki/sources/2026-08-30-ai-threat-modeling|AI Threat Modeling 深度研究]] — STRIDE × AI Agent、Attack Surface 分類、威脅建模工具。 🛠️
+- [[wiki/sources/2026-08-30-skill-supply-chain-security|Skill Supply Chain Security 深度研究]] — Skill 供應鏈風險、權限控管、Sandbox 隔離、生態系安全比較。 🛠️
 - [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — IBM Technology 出品，主講 Martin Keen。10 分鐘內拆解 front-end AI agent 底下的五個核心組件。 🛠️
 
 ## Others

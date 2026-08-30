@@ -1,0 +1,95 @@
+✓ Created new notebook: AI System Threat Modeling：STRIDE 模型在 AI 
+系統的應用、Agent-specific Attack Surface 分析、A...
+✓ Research started
+  Query: AI System Threat Modeling：STRIDE 模型在 AI 系統的應用、Agent-specific 
+Attack Surface 分析、AI 系統的風險評估方法論、威脅建模工具與框架。涵蓋 LLM-based
+Agent、RAG 系統、Multi-agent 系統的威脅場景。
+  Source: web
+  Mode: deep
+  Notebook ID: a4c1b3e2-f76d-4679-9bc0-d23c6c46a399
+  Task ID: ChA2YWQ0ZmQ1NTUyZDBiYTA3EAgaBDJmYjcqA3Vzdw
+
+Waiting for research to complete...
+⠦ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: d182370e-93f4-4b25-8f03-92f28a943edb
+  Sources found: 55
+
+Run 'nlm research import a4c1b3e2-f76d-4679-9bc0-d23c6c46a399 <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 49 sources.
+  • STRIDE-AI: A Threat Modeling Framework for Generative AI Security Assessment
+- arXiv
+  • Securing Generative AI: Introducing the STRIDE-AI Threat Modeling Framework
+  • GitHub - mrwadams/stride-gpt: An AI-powered threat modeling tool that 
+leverages OpenAI's GPT models to generate threat models for a given application 
+based on the STRIDE methodology.
+  • AI/Agentic Threat Modeling: Securing Systems That Include Agents | Augment 
+Code
+  • OWASP Top 10 for Agentic Applications 2026 Explained | Cycode
+  • MITRE ATLAS vs. STRIDE for AI Threat Modeling - InfosecTrain
+  • AI System Threat Modeling: A Guide to Mapping ML Pipeline Risks - ioSENTRIX
+  • Multi-Agent Systems Execute Arbitrary Malicious Code - arXiv
+  • Detect and Prevent Coordinated Attacks in Multi-Agent AI Systems | Galileo
+  • Retrieval-Augmented Generation (RAG) Security Cheat Sheet
+  • RAG Under Fire: Retrieval Pipeline Vulnerabilities & Indirect Prompt 
+Injection
+  • Lessons from OWASP Top 10 for Agentic Applications - Auth0
+  • Addressing the OWASP Top 10 Risks in Agentic AI with Microsoft Copilot 
+Studio
+  • Agentic AI Threat Modeling Framework: MAESTRO - Cloud Security Alliance 
+(CSA)
+  • Indirect Prompt Injection: The Hidden Threat Breaking Modern AI Systems | 
+Lakera
+  • How Prompt Injection Attacks Compromise AI Agents in 2026 - Atlan
+  • Prompt injection across AI agents: are your controls keeping up?
+  • Overcoming the Retrieval Barrier: Indirect Prompt Injection in the Wild for 
+LLM Systems - arXiv
+  • Confused Deputy Attacks on Autonomous AI Agents - Cloud Security Alliance
+  • Emerging Security Practices for AI Agents - Frontier Model Forum
+  • OWASP Agentic Skills Top 10
+  • OWASP's Top 10 Agentic AI Risks Explained - HUMAN Security
+  • Fooling AI Agents: Web-Based Indirect Prompt Injection Observed in the Wild
+  • Indirect Prompt Injection in RAG Systems and AI Agents: The Attack Nobody 
+Sees Coming
+  • How to secure multiagent AI: A layered strategy for enterprises - Infosys
+  • Lessons from Recent Multi-Agent Safety Incidents - Cooperative AI
+  • RAG security: the forgotten attack surface
+  • Visual Confused Deputy: Exploiting and Defending Perception Failures in 
+Computer-Using Agents - arXiv
+  • Prompt injection attacks on tool-calling agents: A verification approach : 
+r/aiagents - Reddit
+  • AI Security Frameworks: Enterprise Guide for 2026 - Truefoundry
+  • MAESTRO: Layered Threat Modeling for Agentic AI Ecosystems | Snyk Labs
+  • STRIDE-AI: A Threat Modeling Framework for Generative AI Security Assessment
+- arXiv
+  • STRIDE-AI: A Threat Modeling Framework for Generative AI Security Assessment
+- arXiv
+  • Multi-Agent Systems Execute Arbitrary Malicious Code - arXiv
+  • From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based 
+Multi-Agent Collaboration - arXiv
+  • A Guide to the STRIDE Threat Model - SecureFlag
+  • 10 Types of Threat Modeling Methodology To Use in 2026 - Practical DevSecOps
+  • Prompt Injection and Enterprise AI: The Attack Surface Most Security Teams 
+Aren't Monitoring | Airia
+  • Multi-Agent AI Security: Enterprise Risks, Compliance, and Mitigation | 
+Augment Code
+  • Modeling Threats to AI-ML Systems Using STRIDE - PMC
+  • AI security frameworks compared: NIST AI RMF vs MITRE ATLAS vs OWASP - 
+Speakeasy
+  • What is the difference between MITRE ATLAS and control frameworks like NIST 
+AI RMF or OWASP guidance? - Non-Human Identity Management Group
+  • Beyond AI Security Standards: Which Framework is Right for You? - Creative 
+Bits AI
+  • NIST AI Risk Management Framework vs MITRE ATLAS: Comparison
+  • Applying MAESTRO to Real-World Agentic AI Threat Models: From Framework to 
+CI/CD Pipeline - Cloud Security Alliance (CSA)
+  • CloudSecurityAlliance/MAESTRO - GitHub
+  • Prompt Injection Attacks in Multi-Agent Robotic Systems - arXiv
+  • Agent System Orchestration Hijack | LLM Security Database - Promptfoo
+  • Multi-Agent AI Security: 5 Compositional Risks and Fixes [2026] - Atlan
+

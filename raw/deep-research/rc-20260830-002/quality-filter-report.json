@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260830-002",
+  "notebook_id": "5c819ecf-5de3-448c-83b4-f4e9e2ff0224",
+  "before_count": 71,
+  "after_count": 68,
+  "removed": [
+    {
+      "id": "1b41c369-8cb7-48bf-a2f2-a56f2543cbe9",
+      "title": "Application Access Policies (legacy) - Microsoft Learn",
+      "reason": "Exchange Online 的 Application Access Policies 屬舊版（legacy）功能，已被新版的「Role Based Access Control for Exchange Applications」（App RBAC）功能取代，官方文件載明不應再配置此政策，屬於已被後續更新資訊取代的過期資訊。"
+    },
+    {
+      "id": "912132b8-00d2-4ec7-91b7-3781a61d50a6",
+      "title": "Enable Automatic Key Rotation | TrendAI™ - Trend Micro",
+      "reason": "該頁面包含「生命週期結束通知」（End of Life Notice），指出 Cloud One - Conformity 已於 2026 年 7 月 31 日正式停止服務（End of Life），屬於針對已停產/下架產品的過期資訊。"
+    },
+    {
+      "id": "9e4f43b5-4049-4b1b-8f5f-b1095f8710a3",
+      "title": "New-ApplicationAccessPolicy (ExchangePowerShell) | Microsoft Learn",
+      "reason": "該指令用於配置 Exchange Online 的舊版（legacy）Application Access Policies。官方文件明確載明該功能已被 App RBAC 取代，不應再建立新的政策，屬於過期且已被後續更新取代的資訊。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-08-30T12:44:59.189Z"
+}

@@ -1,0 +1,338 @@
+[
+  {
+    "original_title": "10 Types of Threat Modeling Methodology To Use in 2026 - Practical DevSecOps",
+    "new_title": "[Practical DevSecOps] 部落格文章 - 十大威脅建模方法論比較",
+    "category": "威脅建模方法論",
+    "source_id": "18a3f9f9-69fd-42b8-a34a-8d44a37e028c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "A Guide to the STRIDE Threat Model - SecureFlag",
+    "new_title": "[SecureFlag] 技術指南 - STRIDE 威脅建模模型介紹",
+    "category": "威脅建模方法論",
+    "source_id": "6cc67e30-d92b-4e93-a28f-d123dc152ed0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI Security Frameworks: Enterprise Guide for 2026 - Truefoundry",
+    "new_title": "[Truefoundry] 企業指南 - 2026 年 AI 安全框架與標準",
+    "category": "AI 安全框架與標準",
+    "source_id": "ac6ab5c0-9a6c-4bc9-8255-f0054a8788a8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI System Threat Modeling: A Guide to Mapping ML Pipeline Risks - ioSENTRIX",
+    "new_title": "[ioSENTRIX] 技術指南 - 機器學習管線風險對照與威脅建模",
+    "category": "威脅建模方法論",
+    "source_id": "373ff998-a01a-4274-84fc-9bd30a26278a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI security frameworks compared: NIST AI RMF vs MITRE ATLAS vs OWASP - Speakeasy",
+    "new_title": "[Speakeasy] 比較分析 - NIST AI RMF、MITRE ATLAS 與 OWASP 框架對比",
+    "category": "AI 安全框架與標準",
+    "source_id": "9be72d3d-6c08-478e-af30-d41f2d278f85",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI/Agentic Threat Modeling: Securing Systems That Include Agents | Augment Code",
+    "new_title": "[Augment Code] 技術部落格 - AI Agent 系統之威脅建模與安全維護",
+    "category": "Agent 安全與威脅",
+    "source_id": "2a35f3db-7ef7-4609-865c-bba5f035b070",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Addressing the OWASP Top 10 Risks in Agentic AI with Microsoft Copilot Studio",
+    "new_title": "[Microsoft 官方] 技術文件 - 透過 Copilot Studio 因應 OWASP Agentic AI 十大風險",
+    "category": "Agent 安全與威脅",
+    "source_id": "b90880d7-1ca3-4ff6-aa09-e1fb8a7ddc25",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agent System Orchestration Hijack | LLM Security Database - Promptfoo",
+    "new_title": "[Promptfoo] 安全資料庫 - Agent 系統編排劫持攻擊與防護",
+    "category": "Agent 安全與威脅",
+    "source_id": "0127db24-5857-46fd-81a4-fb008a5c2e19",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agentic AI Threat Modeling Framework: MAESTRO - Cloud Security Alliance (CSA)",
+    "new_title": "[Cloud Security Alliance] 官方架構 - MAESTRO Agentic AI 威脅建模框架",
+    "category": "AI 安全框架與標準",
+    "source_id": "700cfb64-9fdd-4251-a67b-d761b0832c59",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Applying MAESTRO to Real-World Agentic AI Threat Models: From Framework to CI/CD Pipeline - Cloud Security Alliance (CSA)",
+    "new_title": "[Cloud Security Alliance] 應用指南 - 將 MAESTRO 框架部署至 CI/CD Pipeline 實務",
+    "category": "AI 安全框架與標準",
+    "source_id": "7b378815-3fb0-4340-a66b-7029181336fa",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Beyond AI Security Standards: Which Framework is Right for You? - Creative Bits AI",
+    "new_title": "[Creative Bits AI] 部落格文章 - 企業如何評估與選擇合適的 AI 安全標準",
+    "category": "AI 安全框架與標準",
+    "source_id": "d481ec5f-a515-47f9-9ebd-a79c5f24d76f",
+    "status": "renamed"
+  },
+  {
+    "original_title": "CloudSecurityAlliance/MAESTRO - GitHub",
+    "new_title": "[Cloud Security Alliance] GitHub 專案 - MAESTRO 威脅建模工具與開源代碼",
+    "category": "AI 安全框架與標準",
+    "source_id": "03343882-d82a-4757-8f8a-fc7ddd07f6ca",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Confused Deputy Attacks on Autonomous AI Agents - Cloud Security Alliance",
+    "new_title": "[Cloud Security Alliance] 技術報告 - 自主 AI Agent 的混淆代理人攻擊機制與防禦",
+    "category": "Agent 安全與威脅",
+    "source_id": "3f72ab8d-c513-4df2-963b-ee8978456859",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Detect and Prevent Coordinated Attacks in Multi-Agent AI Systems | Galileo",
+    "new_title": "[Galileo] 技術部落格 - 偵測與防範多 Agent 系統中的協同惡意攻擊",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "33fc8668-35bb-48c2-96aa-b886aabde130",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Emerging Security Practices for AI Agents - Frontier Model Forum",
+    "new_title": "[Frontier Model Forum] 技術報告 - 針對 AI Agent 的前沿新興安全實踐",
+    "category": "Agent 安全與威脅",
+    "source_id": "f4673364-a939-4c5d-a2b2-28f94daab47d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Fooling AI Agents: Web-Based Indirect Prompt Injection Observed in the Wild",
+    "new_title": "[部落格文章] 案例研究 - 網頁端間接 Prompt 注入攻擊野外實錄",
+    "category": "Prompt 注入與攻擊",
+    "source_id": "287939a6-04e5-4f32-93d0-176d98c0394b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration - arXiv",
+    "new_title": "[arXiv] 學術論文 - LLM 多 Agent 協作之錯誤級聯效應建模與緩解方案",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "b60af013-8955-4f3b-9265-b7848080f923",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub - mrwadams/stride-gpt: An AI-powered threat modeling tool that leverages OpenAI's GPT models to generate threat models for a given application based on the STRIDE methodology.",
+    "new_title": "[mrwadams] GitHub 專案 - stride-gpt 基於 GPT 之 STRIDE 自動化威脅建模工具",
+    "category": "威脅建模方法論",
+    "source_id": "92a27f25-068e-4583-adb3-1a789dd79899",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How Prompt Injection Attacks Compromise AI Agents in 2026 - Atlan",
+    "new_title": "[Atlan] 技術文章 - 2026 年 Prompt 注入攻擊如何侵入與劫持 AI Agent",
+    "category": "Prompt 注入與攻擊",
+    "source_id": "6dd4b6ae-32fe-45a3-9429-d9a642931ad9",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How to secure multiagent AI: A layered strategy for enterprises - Infosys",
+    "new_title": "[Infosys] 企業方案 - 多 Agent AI 系統的分層防護安全策略",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "3f566a85-7ef1-4601-830d-64e2da442945",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Indirect Prompt Injection in RAG Systems and AI Agents: The Attack Nobody Sees Coming",
+    "new_title": "[技術部落格] 架構分析 - RAG 系統與 AI Agent 的隱蔽間接 Prompt 注入",
+    "category": "Prompt 注入與攻擊",
+    "source_id": "add70037-5e77-422c-89b9-1e3b40518a83",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Indirect Prompt Injection: The Hidden Threat Breaking Modern AI Systems | Lakera",
+    "new_title": "[Lakera] 技術文章 - 間接 Prompt 注入對現代 AI 系統的破壞性安全漏洞",
+    "category": "Prompt 注入與攻擊",
+    "source_id": "ca4aaef7-e811-4c54-b5a3-f8d500636f8c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Lessons from OWASP Top 10 for Agentic Applications - Auth0",
+    "new_title": "[Auth0] 技術部落格 - 從 OWASP Top 10 探討 Agent 應用程式之安全設計",
+    "category": "Agent 安全與威脅",
+    "source_id": "801fe81e-6e1a-44f6-8373-01b9a681c8c9",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Lessons from Recent Multi-Agent Safety Incidents - Cooperative AI",
+    "new_title": "[Cooperative AI] 案例研究 - 近期多 Agent 安全事件教訓與改善建議",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "5cf9ce99-c927-4e7a-8551-83425d36a20b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "MAESTRO: Layered Threat Modeling for Agentic AI Ecosystems | Snyk Labs",
+    "new_title": "[Snyk Labs] 技術部落格 - MAESTRO：專為 Agent AI 生態系設計的分層威脅建模",
+    "category": "AI 安全框架與標準",
+    "source_id": "d4dcf538-4f5a-4ad3-8a70-ce81dcc9bf50",
+    "status": "renamed"
+  },
+  {
+    "original_title": "MITRE ATLAS vs. STRIDE for AI Threat Modeling - InfosecTrain",
+    "new_title": "[InfosecTrain] 比較分析 - MITRE ATLAS 與傳統 STRIDE 對於 AI 威脅建模之對比",
+    "category": "AI 安全框架與標準",
+    "source_id": "8d2089ed-f046-4092-8392-bc458f605869",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Modeling Threats to AI-ML Systems Using STRIDE - PMC",
+    "new_title": "[PMC] 學術論文 - 使用傳統 STRIDE 對 AI-ML 系統進行威脅建模實踐",
+    "category": "威脅建模方法論",
+    "source_id": "681a5f39-8e04-4b2f-845f-d12141b6f053",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Multi-Agent AI Security: 5 Compositional Risks and Fixes [2026] - Atlan",
+    "new_title": "[Atlan] 技術分析 - 2026 多 Agent AI 的五大結構性安全風險與修復",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "e068f8b0-72d5-480d-b692-2f3584931f90",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Multi-Agent AI Security: Enterprise Risks, Compliance, and Mitigation | Augment Code",
+    "new_title": "[Augment Code] 企業指南 - 多 Agent AI 之企業運作風險、合規與安全防禦",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "a600188c-96f0-4553-a0a5-a77eb513e173",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Multi-Agent Systems Execute Arbitrary Malicious Code - arXiv",
+    "new_title": "[arXiv] 學術論文 - 多 Agent 系統中執行任意惡意代碼之安全性漏洞分析",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "eb065cfb-0cda-4537-8a7e-a049f6287d42",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Multi-Agent Systems Execute Arbitrary Malicious Code - arXiv",
+    "new_title": "[arXiv] 學術論文 - 多 Agent 系統中執行任意惡意代碼之安全性漏洞分析",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "eb065cfb-0cda-4537-8a7e-a049f6287d42",
+    "status": "renamed"
+  },
+  {
+    "original_title": "NIST AI Risk Management Framework vs MITRE ATLAS: Comparison",
+    "new_title": "[技術部落格] 比較分析 - NIST AI RMF 與 MITRE ATLAS 框架定位與功能差異",
+    "category": "AI 安全框架與標準",
+    "source_id": "fbf8b6ff-5396-4e1c-a3d6-a7a1187edff8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "OWASP Agentic Skills Top 10",
+    "new_title": "[OWASP] 官方標準 - Agentic Skills 十大安全風險指引",
+    "category": "AI 安全框架與標準",
+    "source_id": "0789fffd-6032-49ea-9486-78bd04fec19c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "OWASP Top 10 for Agentic Applications 2026 Explained | Cycode",
+    "new_title": "[Cycode] 解讀分析 - 2026 年 OWASP Agentic 應用安全十大風險詳細解析",
+    "category": "AI 安全框架與標準",
+    "source_id": "ea5b6525-cd99-4a7b-bb4e-be14be729a34",
+    "status": "renamed"
+  },
+  {
+    "original_title": "OWASP's Top 10 Agentic AI Risks Explained - HUMAN Security",
+    "new_title": "[HUMAN Security] 解讀分析 - 解密 OWASP Agentic AI 的十項關鍵安全威脅",
+    "category": "AI 安全框架與標準",
+    "source_id": "de30f6c0-b78a-4206-b5f8-85d8932d8c0b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Overcoming the Retrieval Barrier: Indirect Prompt Injection in the Wild for LLM Systems - arXiv",
+    "new_title": "[arXiv] 學術論文 - 跨越檢索障礙：針對 LLM 系統中真實世界的間接注入攻擊研究",
+    "category": "RAG 系統安全",
+    "source_id": "a58e76e7-5247-4ac9-b40d-5e086b95c37c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Prompt Injection Attacks in Multi-Agent Robotic Systems - arXiv",
+    "new_title": "[arXiv] 學術論文 - 多 Agent 機器人系統面臨的 Prompt 注入安全挑戰",
+    "category": "Multi-Agent 系統安全",
+    "source_id": "bef56c12-7a1d-49ed-9e5c-859d58145c13",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Prompt Injection and Enterprise AI: The Attack Surface Most Security Teams Aren't Monitoring | Airia",
+    "new_title": "[Airia] 技術部落格 - 企業級 AI 與其尚未受到重視的 Prompt 注入攻擊面",
+    "category": "Prompt 注入與攻擊",
+    "source_id": "3f3a6ea1-c597-48de-8fe3-489dd21ce8a0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Prompt injection across AI agents: are your controls keeping up?",
+    "new_title": "[技術部落格] 安全評估 - 跨 AI Agent 的 Prompt 注入防禦成效評估",
+    "category": "Prompt 注入與攻擊",
+    "source_id": "63d47071-004e-4f5b-a7e1-984416ade3a0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "RAG Under Fire: Retrieval Pipeline Vulnerabilities & Indirect Prompt Injection",
+    "new_title": "[技術部落格] 技術分析 - 檢索管線脆弱性與間接 Prompt 注入攻擊對 RAG 之威脅",
+    "category": "RAG 系統安全",
+    "source_id": "219e9523-bfb7-4057-a66b-ff955690083d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "RAG security: the forgotten attack surface",
+    "new_title": "[技術部落格] 安全評估 - RAG 資訊安全：經常被遺忘的隱蔽攻擊面分析",
+    "category": "RAG 系統安全",
+    "source_id": "6b504fe3-795a-40a9-b79a-6ab04846b715",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Retrieval-Augmented Generation (RAG) Security Cheat Sheet",
+    "new_title": "[安全指南] 備忘清單 - 檢索增強生成 (RAG) 安全實踐速查表",
+    "category": "RAG 系統安全",
+    "source_id": "48eb4aa1-498b-4c32-ad8f-a388c9addd24",
+    "status": "renamed"
+  },
+  {
+    "original_title": "STRIDE-AI: A Threat Modeling Framework for Generative AI Security Assessment - arXiv",
+    "new_title": "[arXiv] 學術論文 - STRIDE-AI：生成式 AI 系統安全評估的專用威脅建模框架",
+    "category": "威脅建模方法論",
+    "source_id": "df260393-665e-4b4d-adfa-d0e5eadfdab2",
+    "status": "renamed"
+  },
+  {
+    "original_title": "STRIDE-AI: A Threat Modeling Framework for Generative AI Security Assessment - arXiv",
+    "new_title": "[arXiv] 學術論文 - STRIDE-AI：生成式 AI 系統安全評估的專用威脅建模框架",
+    "category": "威脅建模方法論",
+    "source_id": "df260393-665e-4b4d-adfa-d0e5eadfdab2",
+    "status": "renamed"
+  },
+  {
+    "original_title": "STRIDE-AI: A Threat Modeling Framework for Generative AI Security Assessment - arXiv",
+    "new_title": "[arXiv] 學術論文 - STRIDE-AI：生成式 AI 系統安全評估的專用威脅建模框架",
+    "category": "威脅建模方法論",
+    "source_id": "df260393-665e-4b4d-adfa-d0e5eadfdab2",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Securing Generative AI: Introducing the STRIDE-AI Threat Modeling Framework",
+    "new_title": "[技術部落格] 架構介紹 - 解密生成式 AI 安全：STRIDE-AI 威脅建模框架簡介",
+    "category": "威脅建模方法論",
+    "source_id": "c86f2219-91ce-425e-9a23-14659d15f764",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Visual Confused Deputy: Exploiting and Defending Perception Failures in Computer-Using Agents - arXiv",
+    "new_title": "[arXiv] 學術論文 - 視覺混淆代理人：電腦使用 Agent perception 缺陷之漏洞利用與防禦",
+    "category": "Agent 安全與威脅",
+    "source_id": "22057fb2-91ee-45a3-b7e1-a7b8a3aac8c5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "What is the difference between MITRE ATLAS and control frameworks like NIST AI RMF or OWASP guidance? - Non-Human Identity Management Group",
+    "new_title": "[NHI Management Group] 比較分析 - MITRE ATLAS 與 NIST AI RMF、OWASP 架構之區別與關聯",
+    "category": "AI 安全框架與標準",
+    "source_id": "c362bd43-f988-4d28-9592-829be4caf1ef",
+    "status": "renamed"
+  }
+]

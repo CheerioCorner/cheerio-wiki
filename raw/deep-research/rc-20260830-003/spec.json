@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260830-003",
+  "query": "AI System Threat Modeling：STRIDE 模型在 AI 系統的應用、Agent-specific Attack Surface 分析、AI 系統的風險評估方法論、威脅建模工具與框架。涵蓋 LLM-based Agent、RAG 系統、Multi-agent 系統的威脅場景。",
+  "sub_questions": [
+    "STRIDE 模型如何套用到 AI Agent 系統？每個面向（Spoofing/Tampering/Repudiation/Info Disclosure/Denial of Service/Elevation of Privilege）在 Agent 場景的具體威脅？",
+    "AI Agent 的 Attack Surface 有哪些？Prompt injection、tool abuse、data exfiltration、privilege escalation、supply chain attack 的分類與防禦？",
+    "Multi-agent 系統的特有威脅？Agent impersonation、message tampering、collusion、deception 的風險與防禦？",
+    "有哪些威脅建模工具可以應用在 AI 系統？Microsoft Threat Modeling Tool、OWASP AI Security、MITRE ATLAS 的比較？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "1y",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "mixed",
+    "output_format": "full"
+  }
+}

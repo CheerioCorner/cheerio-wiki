@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260830-001",
+  "notebook_id": "05586dfd-aed7-4845-bd60-95493bb1c3b6",
+  "before_count": 73,
+  "after_count": 70,
+  "removed": [
+    {
+      "id": "00fa6cf2-a522-47b1-9eef-320464540dbf",
+      "title": "AgentBound: Verifiable Behavioral Governance for Autonomous AI Agents - arXiv",
+      "reason": "此來源為該學術論文的第一版（v1），後續已由更新、修正並改名的第二版（v2）「Behavioral Governance for Autonomous AI Agents: The AgentBound Framework」所取代，屬於已被更新資訊取代的過期資訊。"
+    },
+    {
+      "id": "a485bc33-6534-472b-af62-f45626579c20",
+      "title": "[2509.25926v1] Better Privilege Separation for Agents by Restricting Data Types - arXiv",
+      "reason": "此來源為該學術論文的第一版草稿，後續已被正式發表、修改並改名後的版本「Preventing Prompt Injection with Type-Directed Privilege Separation」取代，屬於已被更新資訊取代的過期資訊。"
+    },
+    {
+      "id": "0e19389c-882c-4cc7-b69a-354c172d6b97",
+      "title": "security-threat-model | Claude Skills & Agent Skills Library - Awesome MCP Servers",
+      "reason": "此頁面僅為產品功能與指令介紹的推廣首頁，缺乏具體威脅建模實作細節與實質技術深度，屬於廣告行銷推廣頁面。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-08-30T12:25:17.534Z"
+}

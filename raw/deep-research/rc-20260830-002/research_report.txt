@@ -1,0 +1,118 @@
+✓ Created new notebook: Enterprise API Security：OAuth 2.0 / OIDC 
+最佳實踐、Azure AD / Entra ID 權限管理、API Key 安...
+✓ Research started
+  Query: Enterprise API Security：OAuth 2.0 / OIDC 最佳實踐、Azure AD / Entra ID
+權限管理、API Key 
+安全管理（rotation/rotation/scoping）、資料外洩防禦（DLP）、企業級 API Gateway 
+安全配置。以 Microsoft 生態系（Azure DevOps / SharePoint / Outlook）為主要場景。
+  Source: web
+  Mode: deep
+  Notebook ID: 5c819ecf-5de3-448c-83b4-f4e9e2ff0224
+  Task ID: ChBjYjY1N2E0ZmY3OTE3NDRjEAgaBDYyZjIqA3Vzdw
+
+Waiting for research to complete...
+⠹ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 71128912-4e09-460a-a6a6-ea0809ed9cb4
+  Sources found: 72
+
+Run 'nlm research import 5c819ecf-5de3-448c-83b4-f4e9e2ff0224 <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 66 sources.
+  • OAuth 2.0 authorization with Microsoft Entra ID
+  • Azure API Management policy reference - validate-azure-ad-token | Microsoft 
+Learn
+  • API Authentication and Authorization - Overview - Azure API Management - 
+Microsoft Learn
+  • Scopes and permissions in the Microsoft identity platform
+  • Azure API Management policy reference - validate-jwt - Microsoft Learn
+  • OpenID Connect (OIDC) on the Microsoft identity platform
+  • Microsoft identity platform and OAuth 2.0 authorization code flow
+  • Use Microsoft Purview APIs to leverage your policies in your apps
+  • Authenticate and Authorize to LLM APIs - Azure API Management - Microsoft 
+Learn
+  • Understanding autorotation in Azure Key Vault | Microsoft Learn
+  • Understanding Resource Specific Consent for Microsoft Graph and SharePoint 
+Online
+  • Application Access Policies (legacy) - Microsoft Learn
+  • Authentication methods for Azure DevOps integrations - Microsoft Learn
+  • Use Service Principals and Managed Identities - Azure DevOps | Microsoft 
+Learn
+  • Access Azure DevOps with Microsoft Entra workload identity
+  • userDataSecurityAndGovernance: processContent - Microsoft Graph v1.0
+  • Purview DLP and Entra ID app inconsistent behavior - Microsoft Learn
+  • Get started with Power Automate integration in Microsoft Purview DLP
+  • New-ApplicationAccessPolicy (ExchangePowerShell) | Microsoft Learn
+  • Scope App Permissions for Secure Automation using Microsoft Azure Active 
+Directory
+  • Graph Search API returns all sites despite "Sites.Selected" App-Only 
+permission
+  • Endpoint access with Sites.Selected permission for Sharepoint - Microsoft 
+Q&A
+  • Azure API Management policy reference - rate-limit-by-key - Microsoft Learn
+  • Azure API Management policy reference - rate-limit - Microsoft Learn
+  • Azure API Management policy reference - validate-content | Microsoft Learn
+  • APIM Policy: JWT general validation on global scope and JWT audience check 
+on API scope - Microsoft Learn
+  • How to Validate an azlogin DefaultCredential JWT token using Azure Api 
+Management <Validate-Jwt> policy. - Microsoft Learn
+  • How to Configure Azure Key Vault Secret Rotation Using Azure Functions - 
+OneUptime
+  • Microsoft Purview Guardrail - LiteLLM
+  • Microsoft Purview DLP – Solo Enterprise for agentgateway docs
+  • Azure Key Vault Secret Rotation Best Practices - Safeguard
+  • Configure cryptographic key auto-rotation in Azure Key Vault | Azure Docs
+  • Enable Automatic Key Rotation | TrendAI™ - Trend Micro
+  • How to Implement Secret Rotation with Dapr and Azure Key Vault - OneUptime
+  • APIM manages Azure OpenAI policies. - Microsoft Q&A
+  • Power Platform Data Policies vs. Microsoft Purview DLP
+  • Use Sites.Selected application permission in Microsoft Graph - Darwin Droll
+  • Managing SharePoint Site Access for Applications Using Sites.Selected 
+Permission - CrushFTP
+  • Application access policies in Exchange Online | Practical365
+  • Microsoft Graph API permission
+  • Trying to apply JWT policy for an API import ( Function App ) - Microsoft 
+Learn
+  • What's up with all these SaaS wanting such broad permissions. How are you 
+watering it down? : r/sysadmin - Reddit
+  • Introducing Service Principal and Managed Identity support on Azure DevOps
+  • Managed Identities and Service Principal support - Microsoft Learn
+  • Expanding Purview DLP and Information Protection to Foreign Platforms : 
+r/microsoft365
+  • Policy as Code With Azure API Management and Cerbos
+  • Federated Identity Credentials for Azure DevOps Pipelines - Firefly AI
+  • Microsoft Purview extensibility and Development Partners
+  • Protect APIs in Azure API Management with Active Directory B2C | Microsoft 
+Learn
+  • 
+microsoft-graph-docs-contrib/api-reference/v1.0/api/userdatasecurityandgovernanc
+e-processcontent.md at main · microsoftgraph/microsoft-graph-docs-contrib · 
+GitHub
+  • Does Azure Key Vault support automatic rotation of SAS tokens for Azure 
+Storage accounts?
+  • How to Deploy Azure API Management with Custom Policies Using Pulumi 
+TypeScript
+  • Admin consent : r/MsGraphPowerShell - Reddit
+  • Microsoft Graph permissions reference
+  • microsoft-graph-docs-1/concepts/permissions-reference.md at main - GitHub
+  • View Power Platform connector activity logs in Microsoft Purview
+  • How to Restrict Microsoft Graph API Access to Mailboxes - ENow | AppGov
+  • Enterprise Application Permissions - Kindo Docs
+  • Configuring Application Access Policy In Exchange Online - GrinMark
+  • Control access to Calendars using an Application Access Policy - deskbird 
+Help Center
+  • Azure Application Access Policies - Knowledge Base - Humly
+  • Microsoft Purview List tenant sensitivity labels - Postman
+  • Microsoft Purview Get a tenant sensitivity label | Microsoft Purview | 
+Postman API Network
+  • Microsoft.KeyVault/vaults/keys 2026-03-01-preview - Bicep, ARM template & 
+Terraform AzAPI reference | Microsoft Learn
+  • Policy: Azure > CIS v2.0 > 08 - Key Vault > 8.08 - Ensure Automatic Key 
+Rotation is Enabled Within Azure Key Vault for the Supported Services > 
+Attestation | Turbot Guardrails Hub
+  • az keyvault key rotation-policy | Microsoft Learn
+

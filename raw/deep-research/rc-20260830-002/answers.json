@@ -1,0 +1,1503 @@
+[
+  {
+    "question": "OAuth 2.0 在 AI Agent 場景下的安全考量？Token scope 設計、refresh token 管理、on-behalf-of flow 的風險？",
+    "answer": "在 AI Agent 與大語言模型（LLM）API 整合的企業級應用中，OAuth 2.0 與 OIDC 的安全設計已不僅僅是傳統的「使用者登入」，而是延伸至**多代理人協作、即時資料外洩防禦（DLP）以及 API 閘道（API Gateway）防禦**。以下針對您的問題，逐一剖析 Token Scope 設計、Refresh Token 管理與 On-Behalf-Of (OBO) 流程的核心安全考量：\n\n---\n\n### 一、 OAuth 2.0 在 AI Agent 場景下的整體安全考量\n\n在 AI Agent 呼叫 LLM 服務時，API 閘道（如 Azure APIM、Solo agentgateway 或 LiteLLM）扮演著「深層防禦」的關鍵角色：\n*   **深層防禦與閘道權杖驗證**：用戶端應用程式呼叫 AI 服務時，閘道必須透過 `validate-jwt` 或 `validate-azure-ad-token` 原則強制進行全域驗證與 API 範圍（Scope/Audience）檢查 [1-3]。不合法的權杖在抵達 LLM 後端前就會被阻擋 [2]。\n*   **細粒度流量限制與配額（Rate Limiting & Quotas）**：為了防範 LLM 被濫用或遭遇阻斷服務攻擊，閘道可以從已驗證的 JWT 權杖中提取使用者主體（如 UPN 或 Email 宣告），並將其傳遞給 `llm-token-limit` 或 `azure-openai-token-limit` 原則，針對單一使用者設定每小時或每日的 Token 使用配額 [4, 5]。\n*   **Fail-Closed（失敗關閉）機制**：當 AI 閘道整合 Microsoft Purview DLP 來防護 prompt 與 completion 時 [6, 7]，如果閘道無法成功取得權杖或無法與 Purview 連線，**必須採取 Fail-Closed 策略，直接回傳 503 錯誤，拒絕未經 DLP 評估的敏感內容流向 LLM** [8-10]。\n\n---\n\n### 二、 Token Scope 設計：從「過度授權」到「最小權限」\n\nAI Agent 通常需要存取企業資源（如 Outlook、SharePoint、Teams），傳統 SaaS 應用經常因開發便利而要求廣泛的應用程式權限（Application Permissions，如 `Mail.ReadWrite`），這會為企業帶來極高的安全風險 [11, 12]：\n1.  **委派權限（Delegated Permissions）優先**：\n    *   在有登入使用者的場景下，**必須強制使用「委派權限」**，此時應用程式的實際存取權限是由「使用者本身的權限」與「被授予的 API 權限」取交集決定 [13, 14]。這能有效避免當 AI Agent 憑證遭竊取時，攻擊者可以存取組織內所有信箱或敏感文件的風險 [11, 15]。\n2.  **AI Agent 專屬 Scope**：\n    *   Microsoft 識別平台與 Graph API 已針對 AI 代理人定義了專屬權限，例如 `AgentInstance.Read.All` 與 `AgentInstance.ReadWrite.All`，用於安全管理組織 Agent 註冊表中的實例 [16, 17]；以及 `AiEnterpriseInteraction.Read`，專門用於在代表使用者時讀取企業與 AI 的互動歷程 [18]。\n3.  **DLP 與安全原則整合 Scope**：\n    *   若 AI Agent 整合了 Purview DLP API 以過濾內容 [6, 7]，則其 Entra ID 應用程式註冊應限制於專屬的內容處理與範圍計算權限，例如委派權限 `Content.Process.User`、`ProtectionScopes.Compute.User`，或應用程式權限 `Content.Process.All`、`ProtectionScopes.Compute.All` [19-22]。\n\n---\n\n### 三、 Refresh Token 的安全管理\n\nRefresh Token 具備較長的生命週期，用於在 Access Token 到期後靜默換發新 Token [23-25]。在 AI 應用場景下，其安全管理要點如下：\n*   **明確宣告 offline_access**：在 Microsoft 識別平台 v2.0 端點中，用戶端必須在初始化授權請求中明確加入 `offline_access` 範圍，才能取得 Refresh Token [26-28]。\n*   **單頁應用程式（SPA）的 24 小時壽命限制**：\n    *   如果 AI 介面是單頁 web 應用，其註冊的 Redirect URI 類型為 `spa` [29]。在這種情況下，**Microsoft 簽發的 Refresh Token 壽命將被強制限制為 24 小時** [30, 31]。當到期後，應用程式必須準備好重新引導使用者進行互動式驗證，以確保公共用戶端（Public Client）的憑證安全性 [31]。\n*   **拋棄舊 Token 的單向輪轉（Token Rotation）**：\n    *   當使用 Refresh Token 向 `/token` 端點換取新的 Access Token 時，識別平台通常會簽發一個新的 Refresh Token [31, 32]。**應用程式（或祕密金鑰快取）必須立即捨棄舊的 Refresh Token，並使用最新的 Token 進行覆蓋**，以降低 Token 被截獲重放的攻擊窗口 [31]。\n*   **嚴禁在用戶端儲存 Client Secret**：對於需要長期維持存取權的後端 Agent 服務，必須使用機密用戶端（Confidential Client）流程，且祕密金鑰必須儲存在硬體或安全的 Key Vault 中，絕不能洩露給前端用戶端 [33, 34]。\n\n---\n\n### 四、 On-Behalf-Of (OBO) Flow 的風險與設計考量\n\n當 AI Agent 閘道需要「代表」登入的使用者向後端 API（例如呼叫 Microsoft Graph 進行 DLP 檢查）發送請求時，會使用 On-Behalf-Of (OBO) 流程 [35, 36]。\n\n```\n[ 用戶端 (Client) ] ──( 攜帶使用者 Token )──> [ AI 閘道 (Gateway) ]\n                                                   │\n                                            ( OBO 憑證交換 )\n                                                   ▼\n[ 外部系統 (例如 Purview) ] <──( 攜帶 OBO Token )── [ Microsoft Entra ID ]\n```\n\n這個流程雖然能將活動正確歸屬到個人 [35]，但存在以下關鍵風險與相應的防護設計：\n\n1.  **憑證雙重證明（Dual Proof）的要求與洩露風險**：\n    *   **風險**：OBO 流程需要兩種憑證證明——「使用者的 Access Token（Asserted Token）」以及「閘道應用程式本身的 Client Secret 或憑證」 [37]。如果閘道的 Client Secret 洩露，攻擊者即可偽造閘道身分進行任意用戶的權杖交換。\n    *   **防護**：閘道服務應採用 **Azure 受控識別（Managed Identity）** 或 OIDC 同盟身分憑證（Federated Identity Credentials）來取得自身權杖，徹底消除儲存、維護與手動輪轉靜態祕密金鑰的維運開銷與洩露風險 [38-41]。\n2.  **不當讀取/解析 Token 宣告（Token Claim Decoding）**：\n    *   **風險**：開發人員常試圖解密或讀取 Token 內部的 claim 來做為安全邊界。然而，Access Token 是專門簽發給 Resource Server（接收端 API）的，其格式可能並非標準 JWT，甚至可能隨時被識別平台加密或修改，導致解密邏輯崩潰 [42-44]。\n    *   **防護**：**閘道與後端必須將 Token 視為不透明（Opaque）的字串** [45]。所有身分與權限的識別，應直接透過受支持且合規的 API（例如呼叫 Graph 的 `/me` 端點）來檢索，而非仰賴自行解析權杖宣告 [35, 45]。\n3.  **無 Token 請求的 Fail-Closed 防護**：\n    *   **風險**：在混和驗證環境下，若用戶端呼叫閘道時未攜帶使用者 Token，系統可能退而求其次，改用「閘道自身的應用程式憑證」代為呼叫後端服務。這會導致在後端審計日誌中，所有操作都變成閘道的系統服務帳戶（Service Account），失去個人歸屬性，並可能導致資料外洩 [10, 37]。\n    *   **防護**：在 OBO 模式中，**若請求中缺失 end-user Token，或 OBO 的 STS（安全權杖服務）交換失敗，閘道必須立即拒絕請求（Fail-Closed）**，絕對不允許降級回閘道服務帳戶的權限來執行操作 [9, 10, 37]。\n\n---\n\n💡 **建議的下一步**：\n我們是否可以針對您目前實作 AI Gateway 時所使用的架構（例如是使用 Azure API Management，還是其他第三方網關如 LiteLLM），來為您量身配置一份對應的 XML 政策或部署設定檔？",
+    "citations": [
+      {
+        "source_id": "c0223101-082e-41c6-9dea-1d1ac6e6723c",
+        "citation_number": 1,
+        "cited_text": "The following image shows an example where Microsoft Entra ID is the authorization provider. The client app might be a single-page application (SPA). Although the access token sent along with the HTTP request is intended for the backend API, API Management still allows for a defense in depth approach. For example, configure policies to validate the JWT , rejecting requests that arrive without a token or a token that's not valid for the intended backend API. You can also configure API Management to check other claims of interest extracted from the token."
+      },
+      {
+        "source_id": "cae50e46-117d-4ba6-b5c9-9be3ce7857dd",
+        "citation_number": 2,
+        "cited_text": "This enforces: Token must be present ( TokenNotPresent if missing). Signature, issuer, lifetime, etc. must be valid (other validate-jwt predefined errors). roles must contain access_as_application . On failure, APIM returns 401 with a validate-jwt error reason (for example TokenExpired , TokenClaimNotFound , etc.) and does not call the backend . Per‑API – Audience Check Only On each API that needs a specific audience, add another validate-jwt in the API's inbound policy, but only constrain the audience (no duplicate claim checks): XML Copy"
+      },
+      {
+        "source_id": "d394e159-cc0b-4603-a526-e61b703a2dc2",
+        "citation_number": 3,
+        "cited_text": "OAuth 2.0 authorization by using identity provider To enable more fine-grained access to Azure OpenAPI or other LLM APIs by particular users or clients, preauthorize access to the API by using OAuth 2.0 authorization with Microsoft Entra ID or another identity provider. For background, see Protect an API in Azure API Management using OAuth 2.0 authorization with Microsoft Entra ID . Note Use OAuth 2.0 authorization as part of a defense-in-depth strategy. It's not a replacement for API key authentication or managed identity authentication to an Azure OpenAI API."
+      },
+      {
+        "source_id": "0c6cd389-84e0-4b00-8843-53dba4f5ae7b",
+        "citation_number": 4,
+        "cited_text": "Go to your APIM instance in Azure Portal. Open the specific API and check the Inbound processing policies to confirm your rate-limit or quota policies are in place and published. Test Rate Limits for Internal IPs Send requests with the X-Forwarded-For header set to an internal IP (e.g., 10.0.0.1 ) and observe if the stricter rate limit is applied. Then test with an external IP and confirm it uses the regular limit. Test Quotas Use a valid subscription key or user identity. Send repeated requests until you hit the quota limit and confirm that the response returns a 429 Too Many Requests error. Check Response Headers Look for headers like X-RateLimit-Remaining , X-Quota-Remaining , or Retry-After in the API response. These confirm the policies are being enforced. 5. Monitor in Azure Go to your APIM diagnostics or Log Analytics to review request logs, quota hits, and rate-limiting behavior. 0 votes ![](data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='64' class='font-weight-bold' style='font: 600 30.11764705882353px \"SegoeUI\", Arial' width='64'%3E%3Ccircle fill='hsl(89.60000000000001, 77%, 18%)' cx='32' cy='32' r='32' /%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFF' %3ESP%3C/text%3E%3C/svg%3E) Sai Prabhu Naveen Parimi • Follow 3,970 Reputation points • Microsoft External Staff • Moderator Jun 11, 2025, 6:07 PM @凯旋 李 Just checking in to see if the above information was helpful. Let me know if you have any questions or need further clarification. 0 votes ![](data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='64' class='font-weight-bold' style='font: 600 30.11764705882353px \"SegoeUI\", Arial' width='64'%3E%3Ccircle fill='hsl(278.4, 7.000000000000001%, 36%)' cx='32' cy='32' r='32' /%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFF' %3E5%3C/text%3E%3C/svg%3E) 51155945 • Follow 20 Reputation points Jun 11, 2025, 6:41 PM Wrap Azure OpenAI as a Web App and implement Token Quota Limit through APIM.How can this be implemented? 0 votes ![](data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='64' class='font-weight-bold' style='font: 600 30.11764705882353px \"SegoeUI\", Arial' width='64'%3E%3Ccircle fill='hsl(128, 8%, 22%)' cx='32' cy='32' r='32' /%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFF' %3EA%3C/text%3E%3C/svg%3E)Anonymous Jun 13, 2025, 1:33 AM Hi 凯旋 李 , Wrap Azure OpenAI in a Web App: Create a lightweight app (e.g., with FastAPI or ASP.NET) that forwards requests to the Azure OpenAI API. Then import this app into APIM as a backend API. You can apply APIM policies to control access and usage by using <validate-jwt> to restrict access to specific Azure AD users, <llm-token-limit> to enforce token quotas and tokens-per-minute (TPM) limits per user based on their email claim, and <check-header> to restrict requests from specific internal IP addresses if needed. Sample policy: JavaScript Copy"
+      },
+      {
+        "source_id": "0c6cd389-84e0-4b00-8843-53dba4f5ae7b",
+        "citation_number": 5,
+        "cited_text": "0 votes 19. ![](data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='64' class='font-weight-bold' style='font: 600 30.11764705882353px \"SegoeUI\", Arial' width='64'%3E%3Ccircle fill='hsl(278.4, 7.000000000000001%, 36%)' cx='32' cy='32' r='32' /%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFF' %3E5%3C/text%3E%3C/svg%3E) 51155945 • Follow 20 Reputation points Jun 24, 2025, 1:28 AM can you handle it 0 votes 20. ![](data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='64' class='font-weight-bold' style='font: 600 30.11764705882353px \"SegoeUI\", Arial' width='64'%3E%3Ccircle fill='hsl(16, 60%, 11%)' cx='32' cy='32' r='32' /%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFF' %3ESC%3C/text%3E%3C/svg%3E) Suresh Chikkam • Follow 2,240 Reputation points • Microsoft External Staff • Moderator Jun 25, 2025, 4:14 AM 凯旋 李 , you don't need to touch the OpenAI code at all everything lives in the APIM inbound policy. Inside that policy you tell APIM to only accept requests from your internal IPs by matching the X-Forwarded-For header, then you make sure each request carries a valid Azure AD token and pull the caller's UPN out of it, and finally you hand that UPN to the azure-openai-token-limit policy so APIM meters exactly how many service tokens each person uses and stops them if they exceed your chosen hourly or daily quota. After those checks, APIM simply forwards the request on to your OpenAI backend. Here's the full snippet to drop into the inbound section. XML Copy"
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 6,
+        "cited_text": "When you configure the prompt guard, agentgateway sends the content of each LLM request and response to Microsoft Purview through the Microsoft Graph  processContent  API for evaluation against your DLP policy. When the content matches a policy rule, agentgateway rejects the interaction and returns a  403  response to the client. Agentgateway evaluates requests as uploads ( uploadText ) and responses as downloads ( downloadText ), so Purview selects the correct DLP policy set for each direction."
+      },
+      {
+        "source_id": "895a6646-ff84-4f61-9723-47d361bc049b",
+        "citation_number": 7,
+        "cited_text": "On this page Copy as Markdown Microsoft Purview Guardrail LiteLLM supports Microsoft Purview DLP policies via the Microsoft Graph processContent API . Supported modes <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Mode",
+              "What it does"
+            ],
+            [
+              "pre_call",
+              "Evaluates the user prompt against DLP policies before the LLM call. Blocks if a"
+            ],
+            [
+              "post_call",
+              "Evaluates the LLM response against DLP policies. Blocks if a"
+            ],
+            [
+              "logging_only",
+              "Sends both prompt and response to Purview for audit. Never blocks the request."
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 8,
+        "cited_text": "Keep the following behavior in mind: Reject only : When content matches a DLP rule, the prompt guard rejects the interaction. It does not mask or redact matched content. Buffered responses by default : The response guard does not evaluate a streamed response until you set  entPromptGuard.streaming  to  Enabled . Until you set that field, a client that sends  \"stream\": true  receives the LLM response without DLP evaluation on the response path. Request evaluation is not affected. Fail closed : If agentgateway cannot reach Purview or cannot acquire a Microsoft Graph token, the request fails with a  503  response rather than passing unevaluated content to the LLM."
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 9,
+        "cited_text": "Agentgateway rejects the request with a  403  response. Send a benign request with the user’s token and verify that it is allowed through to the LLM provider. Send a request without a user token and verify that the request is rejected. The response code depends on the identity option that you chose in Step 5 . curl -i  \"localhost:8080/openai\"   \\   -H  \"content-type: application/json\"   \\   -d  '{\"model\":\"gpt-4o-mini\",\"messages\":[{\"role\":\"user\",\"content\":\"what is the meaning of life?\"}]}' x-entra-jwt  header option : The request reaches the guard, which fails closed with a  503  response because no user assertion is present. In the proxy logs, you can confirm the reason for the rejection."
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 10,
+        "cited_text": "failed to call prompt guard webhook: Purview DLP per-user OBO is configured but no end-user assertion was found (expected `x-entra-jwt` header or a validated inbound JWT); failing closed Validated JWT option : The JWT authentication policy rejects the request with a  401  response before it reaches the guard, so the guard’s fail-closed  503  does not apply. To trigger the guard’s fail-closed behavior instead, send a request with a valid user token but a misconfigured OBO exchange. In the Purview Activity Explorer , verify that the DLP events from step 2 are attributed to the signed-in user instead of the gateway’s service account user."
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 11,
+        "cited_text": "Application permissions: sending email messages As IT administrators or software vendors, we should always strive to follow the principle of least privilege. Suppose we examine the permission set of the Microsoft Graph API and look at the application permission Mail.Send, we can see that the description of this permission states, \"Send mail as any user.\" Figure 1: API permissions for an app registration in the Entra portal In this case, having permission to send emails as any user in my tenant is excessive. Imagine if this app gets compromised and adversaries can impersonate and send emails from our tenant. This could lead to potential misuse of our email system."
+      },
+      {
+        "source_id": "788011ef-e813-426c-ae64-42bc5b08b240",
+        "citation_number": 12,
+        "cited_text": "it seems like Microsoft model makes it impossible to scale down for more of a least privilege model. I get I can monitor Entra ID sign in logs, but vendor says User.ReadBasic.All won't work and they need .all. This isn't the first time this has come up and honestly, we need a dedicated legal/compliance/security committee to be the ones to make these decisions honestly. I've been lobbying for one for over a year, but I get a new ask almost every month to go forth with integrations and it just seems like a recurring trend in the SaaS works. Makes me wonder if I'm not cut out for this piece of my territory with how much I'm having to pause and push back."
+      },
+      {
+        "source_id": "97e6dd10-3e87-4ac1-a758-918a12e8fa72",
+        "citation_number": 13,
+        "cited_text": "The alternative for your scenario would be to use delegate permissions, where the effective access is determined based on the user you are running with. I.e. the user's own mailbox (and potentially shared mailboxes he's been given access to), any Groups/Teams/Sites he's a member/owner of, and similar for any other resource. Was this answer helpful? Yes No 1 person found this answer helpful. 1 comment Show comments for this answer ![](data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='64' class='font-weight-bold' style='font: 600 30.11764705882353px \"SegoeUI\", Arial' width='64'%3E%3Ccircle fill='hsl(214.4, 55.00000000000001%, 30%)' cx='32' cy='32' r='32' /%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFF' %3EM%3C/text%3E%3C/svg%3E) MagiCapSss • Follow 40 Reputation points 11 May 2026, 1:03 am Hi, thank you for your prompt reply. I was a bit worried you might say that, but thank you. I'll discuss the next steps with my manager. Thanks again, and have a good day 0 votes"
+      },
+      {
+        "source_id": "788011ef-e813-426c-ae64-42bc5b08b240",
+        "citation_number": 14,
+        "cited_text": "And then for the vendor to state to make the client secret not expirable seems to be cherry on top here. You can't do that anymore, the maximum Entra app secret lifetime is now 2 years. Non-issue despite it being a weird ask from the vendor. it seems like Microsoft model makes it impossible to scale down for more of a least privilege model. I get I can monitor Entra ID sign in logs, but vendor says User.ReadBasic.All won't work and they need .all. Scope is the important part here -- Delegated permission of User.ReadBasic.All doesn't mean they can read all users, it means it can see what the logged in user has access to. Application permissions == the app is the \"credential\", so you've given that specified permission over all relevant objects in the tenant."
+      },
+      {
+        "source_id": "788011ef-e813-426c-ae64-42bc5b08b240",
+        "citation_number": 15,
+        "cited_text": "They wanted Application permissions for Mail.ReadWrire and Calendar.ReadWrite. I flat out rejected it then wrote up a risk assessment explaining that those permissions grant full access to ALL mailboxes and calendars including Legals and Executive ones and sent it to the CISO who backed it. The vendor had to update their integration to use Delegated permissions. As for the client secret not expiring, we have a security requirement that credentials have to be rotated at least once a year, including secrets."
+      },
+      {
+        "source_id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+        "citation_number": 16,
+        "cited_text": "Allows the app to create agent users, read and write the full set of profile properties, reports, and managers of agent ID users in your organization, delete and restore agent users under an agent blueprint, and read basic company properties, on behalf of the signed-in user. AdminConsentRequired Yes Yes AgentInstance.Read.All Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Category",
+              "Application",
+              "Delegated"
+            ],
+            [
+              "Identifier",
+              "799a4732-85b8-4c67-b048-75f0e88a232b",
+              "4c3c738a-2df0-4877-bf4a-f796950ff34c"
+            ],
+            [
+              "DisplayText",
+              "Read all agent instances in Agent Registry",
+              "Read all agent instances in Agent Registry"
+            ],
+            [
+              "Description",
+              "Allows the app to read all agent instances and their related collections in your organization's Agent Registry without a signed-in user.",
+              "Allows the app to read agent instances and their related collections in your organization's Agent Registry on behalf of the signed-in user."
+            ],
+            [
+              "AdminConsentRequired",
+              "Yes",
+              "Yes"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+        "citation_number": 17,
+        "cited_text": "AgentInstance.ReadWrite.All Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Category",
+              "Application",
+              "Delegated"
+            ],
+            [
+              "Identifier",
+              "07abdd95-78dc-4353-bd32-09f880ea43d0",
+              "fc79e324-da24-497a-b5ec-e7de08320375"
+            ],
+            [
+              "DisplayText",
+              "Read and write all agent instances in Agent Registry",
+              "Read and write agent instances in Agent Registry"
+            ],
+            [
+              "Description",
+              "Allows the app to create, read, update, and delete all agent instances in your organization's Agent Registry without a signed-in user.",
+              "Allows the app to create, read, update, and delete agent instances in your organization's Agent Registry on behalf of the signed-in user."
+            ],
+            [
+              "AdminConsentRequired",
+              "Yes",
+              "Yes"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+        "citation_number": 18,
+        "cited_text": "<cited_table> AiEnterpriseInteraction.Read.All Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Category",
+              "Application",
+              "Delegated"
+            ],
+            [
+              "Identifier",
+              "-",
+              "859cceb9-2ec2-4e48-bcd7-b8490b5248a5"
+            ],
+            [
+              "DisplayText",
+              "-",
+              "Read user AI enterprise interactions."
+            ],
+            [
+              "Description",
+              "-",
+              "Allows the app to read user AI enterprise interactions, on behalf of the signed-in user."
+            ],
+            [
+              "AdminConsentRequired",
+              "-",
+              "No"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "874da382-cdf2-4422-8058-7861d1ef20ac",
+        "citation_number": 19,
+        "cited_text": "Purview Compliance Section titled “Purview Compliance” <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "API",
+              "Permission",
+              "Description"
+            ],
+            [
+              "Microsoft Graph",
+              "AuditLogsQuery.Read.All",
+              "Read audit logs data from all services"
+            ],
+            [
+              "Microsoft Graph",
+              "Content.Process.User",
+              "Process content for data security, governance and compliance"
+            ],
+            [
+              "Microsoft Graph",
+              "Files.ReadWrite.All",
+              "Have full access to all files user can access"
+            ],
+            [
+              "Microsoft Graph",
+              "InformationProtectionPolicy.Read",
+              "Read user sensitivity labels and label policies"
+            ],
+            [
+              "Microsoft Graph",
+              "ProtectionScopes.Compute.User",
+              "Compute Purview policies for an individual user"
+            ],
+            [
+              "Microsoft Graph",
+              "SecurityAlert.ReadWrite.All",
+              "Read and write to all security alerts"
+            ],
+            [
+              "Microsoft Graph",
+              "SecurityIncident.ReadWrite.All",
+              "Read and write to incidents"
+            ],
+            [
+              "Microsoft Graph",
+              "ThreatHunting.Read.All",
+              "Run hunting queries"
+            ],
+            [
+              "Microsoft Graph",
+              "User.Read",
+              "Sign in and read user profile"
+            ],
+            [
+              "Microsoft Graph",
+              "User.Read.All",
+              "Read all users' full profiles"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 20,
+        "cited_text": "Grant the client app the following Microsoft Graph application permissions so that agentgateway can call Purview on its behalf. Content.Process.All ProtectionScopes.Compute.All $GRAPH_APP_ID   =   \"00000003-0000-0000-c000-000000000000\"   $CONTENT_PERM_ID   =   az   ad   sp  show   - -id   $GRAPH_APP_ID   `   - -query   \"appRoles[?value=='Content.Process.All'].id | [0]\"   -o   tsv   $SCOPES_PERM_ID   =   az   ad   sp  show   - -id   $GRAPH_APP_ID   `   - -query   \"appRoles[?value=='ProtectionScopes.Compute.All'].id | [0]\"   -o   tsv   az   ad   app   permission   add   `   - -id   $CLIENT_ID   `   - -api   $GRAPH_APP_ID   `   - -api-permissions   \" $CONTENT_PERM_ID =Role\"   \" $SCOPES_PERM_ID =Role\"   az   ad   app   permission   admin-consent   - -id   $CLIENT_ID GRAPH_APP_ID = \"00000003-0000-0000-c000-000000000000\"   CONTENT_PERM_ID = $( az ad sp show --id  \" $GRAPH_APP_ID \"   \\   --query  \"appRoles[?value=='Content.Process.All'].id | [0]\"  -o tsv )   SCOPES_PERM_ID = $( az ad sp show --id  \" $GRAPH_APP_ID \"   \\   --query  \"appRoles[?value=='ProtectionScopes.Compute.All'].id | [0]\"  -o tsv )   az ad app permission add  \\   --id  \" $CLIENT_ID \"   \\   --api  \" $GRAPH_APP_ID \"   \\   --api-permissions  \" $CONTENT_PERM_ID =Role\"   \" $SCOPES_PERM_ID =Role\"   az ad app permission admin-consent --id  \" $CLIENT_ID \""
+      },
+      {
+        "source_id": "895a6646-ff84-4f61-9723-47d361bc049b",
+        "citation_number": 21,
+        "cited_text": "Prerequisites An Entra app registration with the following Microsoft Graph application permissions: InformationProtectionPolicy.Read.All ProtectionScopes.Compute.User Content.Process.User A DLP policy in Microsoft Purview targeting your app registration's client_id as a Protected App. Without an active policy, policyActions in the API response will always be empty. Entra user object IDs — each request must carry the Entra object ID of the end-user (not a username or email). The guardrail skips the DLP check and logs a warning when no user ID can be resolved."
+      },
+      {
+        "source_id": "6a5ca748-347b-46ba-ac56-065e2439fc67",
+        "citation_number": 22,
+        "cited_text": "How to get started with Microsoft Graph If you're entirely new to using Microsoft Graph, see Microsoft Graph Fundamentals . The following steps help you experiment with the API. Don't use these steps to plan a production deployment of your application. Learn about the Microsoft Purview APIs in Microsoft Graph to integrate into your app. These APIs are described in detail later in this article. Have your Entra Admin register your app in Entra. Depending on your company's policy, they may let you register an app or you might need to follow a registration process. Be sure to check with your Entra admin to understand the process to follow for your tenant. For more information, see the following resources: Register an application with the Microsoft identity platform . Microsoft identity platform code samples for authentication and authorization . Microsoft Graph authentication and authorization overview . Establish applications in the Microsoft Entra ID ecosystem . Microsoft Entra ID Guide for independent software developers . Configure your app with the required permissions. Make sure your app requests these permissions when it requests the token from Microsoft Graph. For example, you can assign the Content.Process.User and ProtectionScopes.Compute.User permissions to your app. For more information, see Microsoft Graph permissions reference and Authorize applications, resources, and workloads with Microsoft Entra ID . Have your tenant admin configure Microsoft Purview policies and settings . For more information, see Configure Microsoft Purview solutions in Data Security Posture Management (DSPM) for AI for custom AI applications . Your administrator must use the New-DlpComplianceRule PowerShell cmdlet to create DLP policies for your Entra-registered apps. The Microsoft Purview portal doesn't support this scenario. Test your app. For more information, see How to test an AI application using the Purview API ."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 23,
+        "cited_text": "Indicates the token type value. The only type that Microsoft Entra ID supports is Bearer . expires_in How long the access token is valid, in seconds. scope The scopes that the access_token is valid for. Optional. This parameter is non-standard and, if omitted, the token is for the scopes requested on the initial leg of the flow. refresh_token An OAuth 2.0 refresh token. The app can use this token to acquire other access tokens after the current access token expires. Refresh tokens are long-lived. They can maintain access to resources for extended periods. For more detail on refreshing an access token, refer to Refresh the access token later in this article."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 24,
+        "cited_text": "Use the access token Now that you have successfully acquired an access_token , you can use the token in requests to web APIs by including it in the Authorization header: HTTP Copy Refresh the access token Access tokens are short lived. Refresh them after they expire to continue accessing resources. You can do so by submitting another POST request to the /token endpoint. Provide the refresh_token instead of the code . Refresh tokens are valid for all permissions that your client has already received consent for. For example, a refresh token issued on a request for scope=mail.read can be used to request a new access token for scope=api://contoso.com/api/UseResource ."
+      },
+      {
+        "source_id": "0ce50c93-b5d0-4aa2-94aa-8ea0efafaa3b",
+        "citation_number": 25,
+        "cited_text": "The access token is valid for around one hour. At that point, your app needs to redirect the user back to the /authorize endpoint to request a new authorization code. During this redirect and depending on app type, the user may need to enter their credentials again or consent to permissions again. The refresh token has a longer expiry than the access token and is typically valid for 90 days. For more information about how to get and use refresh tokens, see the Microsoft identity platform protocol reference ."
+      },
+      {
+        "source_id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+        "citation_number": 26,
+        "cited_text": "With the Microsoft identity platform v2.0 endpoint, you specify the offline_access scope in the scope parameter to explicitly request a refresh token when using the OAuth 2.0 or OpenID Connect protocols. With OpenID Connect, you specify the openid scope to request an ID token. You can also specify the email scope, profile scope, or both to return additional claims in the ID token. You don't need to specify the User.Read permission to return an ID token with the v2.0 endpoint. For more information, see OpenID Connect scopes ."
+      },
+      {
+        "source_id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+        "citation_number": 27,
+        "cited_text": "With the Microsoft identity platform v1.0 endpoint, only the openid scope is used. You specify it in the scope parameter in an authorization request to return an ID token when you use the OpenID Connect protocol to sign in a user to your app. For more information, see Microsoft identity platform and OAuth 2.0 authorization code flow . To successfully return an ID token, you must also make sure that the User.Read permission is configured when you register your app. With the Microsoft identity platform v2.0 endpoint, you specify the offline_access scope in the scope parameter to explicitly request a refresh token when using the OAuth 2.0 or OpenID Connect protocols. With OpenID Connect, you specify the openid scope to request an ID token. You can also specify the email scope, profile scope, or both to return additional claims in the ID token. You don't need to specify the User.Read permission to return an ID token with the v2.0 endpoint. For more information, see OpenID Connect scopes ."
+      },
+      {
+        "source_id": "0ce50c93-b5d0-4aa2-94aa-8ea0efafaa3b",
+        "citation_number": 28,
+        "cited_text": "Note This permission currently appears on all consent pages, even for flows that don't provide a refresh token (such as the implicit flow ). This setup addresses scenarios where a client can begin within the implicit flow and then move to the code flow where a refresh token is expected. On the Microsoft identity platform (requests made to the v2.0 endpoint), your app must explicitly request the offline_access scope, to receive refresh tokens. So when you redeem an authorization code in the OAuth 2.0 authorization code flow , you receive an access token from the /token endpoint."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 29,
+        "cited_text": "This diagram shows a high-level view of the authentication flow: Redirect URIs for single-page apps (SPAs) Redirect URIs for SPAs that use the auth code flow require special configuration. Add a redirect URI that supports auth code flow with PKCE and cross-origin resource sharing (CORS): Follow the steps in How to add a redirect URI to your application . Update a redirect URI : Set the redirect URI's type to spa by using the application manifest editor in the Microsoft Entra admin center. The spa redirect type is backward-compatible with the implicit flow. Apps currently using the implicit flow to get tokens can move to the spa redirect URI type without issues and continue using the implicit flow. Despite this backward compatibility, we recommend that you use the auth code flow with PKCE for SPAs."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 30,
+        "cited_text": "Refresh tokens for web apps and native apps don't have specified lifetimes. Typically, the lifetimes of refresh tokens are relatively long. However, in some cases, refresh tokens expire, are revoked, or lack sufficient privileges for the action. Your application needs to expect and handle errors returned by the token issuance endpoint . Single page apps get a token with a 24-hour lifetime, requiring a new authentication every day. This action can be done silently in an iframe when third-party cookies are enabled. It must be done in a top-level frame, either full page navigation or a pop-up window, in browsers without third-party cookies, such as Safari."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 31,
+        "cited_text": "Refresh tokens aren't revoked when used to acquire new access tokens. You're expected to discard the old refresh token. The OAuth 2.0 spec says: \"The authorization server MAY issue a new refresh token, in which case the client MUST discard the old refresh token and replace it with the new refresh token. The authorization server MAY revoke the old refresh token after issuing a new refresh token to the client.\" Important For refresh tokens sent to a redirect URI registered as spa , the refresh token expires after 24 hours. Additional refresh tokens acquired using the initial refresh token carries over that expiration time, so apps must be prepared to re-run the authorization code flow using an interactive authentication to get a new refresh token every 24 hours. Users do not have to enter their credentials, and usually don't even see any user experience, just a reload of your application. The browser must visit the login page in a top level frame in order to see the login session. This is due to privacy features in browsers that block third party cookies ."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 32,
+        "cited_text": "Indicates the token type value. The only type that Microsoft Entra ID supports is Bearer. expires_in How long the access token is valid, in seconds. scope The scopes that the access_token is valid for. refresh_token A new OAuth 2.0 refresh token. Replace the old refresh token with this newly acquired refresh token to ensure your refresh tokens remain valid for as long as possible. Note: Only provided if offline_access scope was requested. id_token An unsigned JSON Web Token. The app can decode the segments of this token to request information about the user who signed in. The app can cache the values and display them, but it shouldn't rely on them for any authorization or security boundaries. For more information about id_token , see the Microsoft identity platform ID tokens ."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 33,
+        "cited_text": "Redeem a code for an access token All confidential clients have a choice of using client secrets or certificate credentials. Symmetric shared secrets are generated by the Microsoft identity platform. Certificate credentials are asymmetric keys uploaded by the developer. For more information, see Microsoft identity platform application authentication certificate credentials . For best security, we recommend using certificate credentials. Public clients, which include native applications and single page apps, must not use secrets or certificates when redeeming an authorization code. Always ensure that your redirect URIs include the type of application and are unique ."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 34,
+        "cited_text": "required The refresh_token that you acquired in the second leg of the flow. client_secret required for web apps The application secret that you created in the app registration portal for your app. It shouldn't be used in a native app, because a client_secret can't be reliably stored on devices. It's required for web apps and web APIs, which can store the client_secret securely on the server side. This secret needs to be URL-Encoded. For more information, see the URI Generic Syntax specification . Successful response This example shows a successful token response:"
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 35,
+        "cited_text": "Agentgateway rejects the request with a  403  response. HTTP/1.1 403 Forbidden  The request was rejected due to inappropriate content Send a benign request and verify that it is allowed through to the LLM provider. curl -i  \"localhost:8080/openai\"   \\   -H  \"content-type: application/json\"   \\   -d  '{\"model\":\"gpt-4o-mini\",\"messages\":[{\"role\":\"user\",\"content\":\"what is the meaning of life?\"}]}' Per-user attribution with Entra OBO By default, the prompt guard evaluates all content as the single user in the  userId  field, so every gateway request appears as one identity in Purview’s Activity Explorer . To attribute DLP activity to the actual signed-in user, enable per-user attribution. Agentgateway resolves the end user’s Microsoft Entra token at request time, exchanges it for a delegated Microsoft Graph token through the built-in security token service (STS) by using the Entra On-Behalf-Of (OBO) flow, and evaluates the content against the Graph  /me  endpoint as that user."
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 36,
+        "cited_text": "sequenceDiagram participant Client participant Gateway participant STS as Gateway STS participant Entra as Microsoft Entra ID participant Purview as Microsoft Purview<br/>(Graph /me) participant LLM as LLM provider Client->>Gateway: LLM request + user's Entra token Gateway->>STS: Exchange user token STS->>Entra: OBO exchange<br/>grant_type=jwt-bearer<br/>+ app client secret Entra-->>STS: Delegated Graph token<br/>(represents the user) STS-->>Gateway: Delegated Graph token Gateway->>Purview: processContent as /me Purview-->>Gateway: DLP verdict, attributed to the user Gateway->>LLM: Forward request (if allowed)"
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 37,
+        "cited_text": "Keep the following behavior in mind: Identity resolution : Agentgateway resolves the end user’s Entra token from a JWT that a JWT authentication policy validated on the route, or from an  x-entra-jwt  request header. Agentgateway strips the  x-entra-jwt  header before it forwards the request to the LLM provider, so the user’s token never reaches the backend. Fail closed : If no user token is present, or the STS cannot complete the OBO exchange, agentgateway rejects the request with a  503  response. It never falls back to the gateway-level app credentials. userId  is ignored : When you set  policies.tokenExchange.entra , the delegated token identifies the user, so the  userId  field is optional and ignored. Client secret is still required : The OBO flow needs two proofs: the user’s token (the per-user part) and the gateway app’s client secret (the app authenticating itself to Entra). The client secret is the gateway app’s credential, not the user’s, and the data plane never sees it."
+      },
+      {
+        "source_id": "d237e6f6-5645-4808-955d-22f30a418ee2",
+        "citation_number": 38,
+        "cited_text": "Benefits PAT-free authentication : Eliminate the need to create, store, and rotate Personal Access Tokens . Least privilege : Use per-pipeline permissions instead of shared build service account permissions . Improved security : Use Entra federated credentials with automatic token rotation. Cross-organization access : Access Azure DevOps resources in different organizations by using a single service connection. Audit trail : All authentication attempts are logged in Azure DevOps audit logs. Supported scenarios The Azure DevOps service connection supports these scenarios:"
+      },
+      {
+        "source_id": "fca73546-4c59-46f1-adb3-1c22f3a121e5",
+        "citation_number": 39,
+        "cited_text": "Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 6,
+          "rows": [
+            [
+              "Method",
+              "Best for",
+              "Security posture",
+              "Credential management",
+              "Works with",
+              "Avoid when"
+            ],
+            [
+              "Managed identity",
+              "Azure-hosted automation, such as Azure Functions, App Service, or virtual machines",
+              "Strongest option for Azure-hosted workloads because tokens are short-lived and Azure manages the identity lifecycle",
+              "No client secret to store or rotate; Azure manages the identity and token acquisition",
+              "Azure DevOps Services; Azure-hosted workloads in the same Microsoft Entra tenant after you add the identity to Azure DevOps",
+              "The workload doesn't run on Azure, or you need a portable identity that isn't tied to an Azure resource"
+            ],
+            [
+              "Service principal",
+              "Automation that runs outside Azure, across multiple environments, or in external CI/CD systems",
+              "Strong option when you use certificate-based auth or federated approaches and apply least privilege",
+              "You manage the application identity and any client secret or certificate unless a federated flow removes the secret",
+              "Azure DevOps Services; apps, scripts, and services that need a Microsoft Entra application identity",
+              "You can use a managed identity instead for the same Azure-hosted workload, or the tool supports only PAT-based auth"
+            ],
+            [
+              "Azure DevOps service connection",
+              "Azure Pipelines access to Azure DevOps resources",
+              "Strong option for pipeline automation because it uses Microsoft Entra workload identity federation instead of long-lived tokens",
+              "Azure DevOps manages the service connection, and pipelines don't need to store PATs in variables",
+              "Azure DevOps Services; pipelines that access repos, feeds, or REST APIs across organizations",
+              "The scenario doesn't run through Azure Pipelines"
+            ],
+            [
+              "Personal access token (PAT)",
+              "Short-lived personal scripts, one-off testing, or legacy scenarios that can't yet use Microsoft Entra-based auth",
+              "Highest risk of the common choices because the token is a long-lived bearer secret tied to a user account",
+              "You must create, store, rotate, and revoke the token manually",
+              "Azure DevOps Services and Azure DevOps Server; CLI, REST calls, and legacy integrations that support PATs",
+              "The integration is a production service, shared automation, or any scenario where a service principal, managed identity, or service connection is available"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 40,
+        "cited_text": "Frequently Asked Questions Why Should You Use Federated Identity within Azure DevOps? For a long time, Service Principals have been the default way for Azure DevOps pipelines to authenticate with Azure. This method works but comes with long-term management headaches. Service Principals rely on secrets or certificates, which introduce security risks and operational overhead. These secrets need periodic rotation, and if they leak, they can grant unauthorized access. Federated Identity is a better approach. Instead of storing static credentials, it lets Azure DevOps authenticate directly with Entra ID using short-lived tokens. This eliminates the need to manage secrets, reduces security risks, and simplifies maintenance."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 41,
+        "cited_text": "Tip You can use AI to help with this task later in this article, or see Enable AI assistance with Azure DevOps MCP Server to get started. Benefits of service principals and managed identities Enhanced security Short-lived tokens : Microsoft Entra tokens expire every hour, which reduces exposure risk compared to PATs (which can last up to one year). Automatic rotation : Managed identities handle credential rotation automatically. No stored secrets : The need to store long-lived credentials in code or configuration is eliminated."
+      },
+      {
+        "source_id": "fca73546-4c59-46f1-adb3-1c22f3a121e5",
+        "citation_number": 42,
+        "cited_text": "Why shouldn't I decode or read claims from authentication tokens? Authentication tokens exist solely to prove who the caller is and what they're authorized to do . They're not a stable data interface or a schema you can depend on. Token claims are never publicly documented, and Azure DevOps reserves the right to change, rename, remove, or encrypt them at any time without notice. Starting summer 2025, Azure DevOps is further encrypting authentication tokens, which means clients can't read token payloads. Any application that decodes tokens to extract claims breaks."
+      },
+      {
+        "source_id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+        "citation_number": 43,
+        "cited_text": "Note: Only provided if openid scope was requested. Warning Don't attempt to validate or read tokens for any API you don't own, including the tokens in this example, in your code. Tokens for Microsoft services can use a special format that will not validate as a JWT, and may also be encrypted for consumer (Microsoft account) users. While reading tokens is a useful debugging and learning tool, do not take dependencies on this in your code or assume specifics about tokens that aren't for an API you control."
+      },
+      {
+        "source_id": "50b7534c-da0b-4e63-b3d3-b00b26571a80",
+        "citation_number": 44,
+        "cited_text": "For security and privacy, do not put URLs or other sensitive data directly in the state parameter. Instead, use a key or identifier that corresponds to data stored in browser storage, such as localStorage or sessionStorage. This approach lets your app securely reference the necessary data after authentication. Warning Don't attempt to validate or read tokens for any API you don't own, including the tokens in this example, in your code. Tokens for Microsoft services can use a special format that will not validate as a JWT, and may also be encrypted for consumer (Microsoft account) users. While reading tokens is a useful debugging and learning tool, do not take dependencies on this in your code or assume specifics about tokens that aren't for an API you control."
+      },
+      {
+        "source_id": "fca73546-4c59-46f1-adb3-1c22f3a121e5",
+        "citation_number": 45,
+        "cited_text": "Instead of reading token claims, follow these practices: Treat tokens as opaque — pass them in authorization headers, but don't decode or inspect them. Use supported REST APIs — retrieve user or organization data from Azure DevOps REST APIs , which provide stable contracts and documentation. Assume any claim can change — if you find yourself parsing token contents to read values, put that logic in an API call instead. These changes don't affect applications that already treat tokens as opaque. Implementation procedures After you choose the authentication method for your scenario, finish the implementation steps:"
+      }
+    ]
+  },
+  {
+    "question": "Azure AD / Entra ID 的 App Registration 安全最佳實踐？Conditional Access、Managed Identity、Service Principal 權限最小化？",
+    "answer": "針對 Microsoft Entra ID (Azure AD) 的應用程式註冊 (App Registration) 安全設計，企業應遵循「零信任 (Zero Trust)」與「最小權限 (Least Privilege)」原則。以下綜整來源文件，提供 App 註冊安全最佳實踐、受控識別 (Managed Identity)、服務主體 (Service Principal) 權限最小化，以及條件式存取 (Conditional Access) 的配置指引：\n\n### 一、 App Registration 安全最佳實踐\n\n1.  **無密碼與無密鑰化（Secret-Free / PAT-Free）驗證**\n    *   傳統的個人存取權杖 (PAT) 不僅有長達一年的效期風險，且屬於不具身分安全防護的承載權杖 (Bearer Token) [1-3]。一經洩漏即面臨高度權限被濫用的風險 [1-3]。\n    *   在 CI/CD 管線（如 Azure DevOps Pipelines）中，應全面淘汰靜態的 Service Principal Secret 或 PAT [4-6]。**推薦使用基於 OpenID Connect (OIDC) 的「工作負載身分識別同盟（Workload Identity Federation）」** [4, 7]。當管線執行時，系統會動態向 Entra ID 換取小時級到期的短期 Token，免除維護、儲存與手動輪轉靜態憑證的開銷 [8-10]。\n2.  **憑證驗證（Certificate-based Auth）優先於密鑰**\n    *   若因環境限制必須使用機密用戶端流程（Confidential Client Flow），應**優先上傳憑證（Certificate）進行認證**，而非建立 Client Secret [11, 12]。\n    *   若必須使用 Client Secret，請注意 **Entra ID 的 Secret 最大壽命限制已被強制設為 2 年**，嚴禁設定不逾期 [13]。且祕密必須儲存在 Azure Key Vault 中 [2]，並利用結合 Managed Identity 與 Microsoft Graph 的自動化輪轉機制（Auto-rotation Policy）進行安全更替 [14, 15]。\n3.  **啟用 Graph API 稽核與日誌監控**\n    *   Entra ID 預設未開啟完整的 Graph API 活動記錄 [16]。應透過「診斷設定」**啟用 `MicrosoftGraphActivityLogs` 並傳送至 Azure Log Analytics 工作區** [16]。這允許安全團隊利用 KQL（Kusto Query Language）交叉比對權限宣告與實際呼叫，找出過度授權或閒置的應用程式註冊 [17, 18]。\n\n---\n\n### 二、 Managed Identity (受控識別) 最小權限與適用場景\n\n受控識別可完全消弭開發人員管理憑證與金鑰的維運開銷，是 Azure 託管資源的首選認證方案 [10, 19]。\n\n1.  **系統指派受控識別（System-Assigned Managed Identity）**\n    *   **特性**：生命週期與特定 Azure 資源綁定，並隨資源刪除而自動清理 [20]。\n    *   **場景**：最適合**單一資源部署**的背景服務（例如：單一 Azure Function 或單一 App Service 執行 API 閘道整合） [21, 22]。\n2.  **使用者指派受控識別（User-Assigned Managed Identity）**\n    *   **特性**：作為獨立 Azure 資源存在，可指派給多個 Azure 資源，生命週期獨立管理 [20]。\n    *   **場景**：適合**多資源共享身分**，或者在建立 Azure DevOps Service Connection 與 Entra ID 聯邦信任關係時，作為持久且可重複使用的身分代理 [23, 24]。\n3.  **Azure DevOps 中的權限配置**\n    *   受控識別與 Service Principal 在 Entra ID 建立後，**不會自動在 Azure DevOps 中生效**，必須由 PCA（專案集合管理員）顯式加入至組織的使用者清單，給予 Basic 存取層級 [25, 26]，並在專案或資產層級（Repos、Feeds）指派最細粒度權限，遵循最小權限原則 [25, 27]。\n\n---\n\n### 三、 Service Principal 最小權限與精細化控管\n\n當應用程式需要呼叫 Microsoft Graph 等企業資源時，安全漏洞常源於「過度授權（Over-permissioned）」[28, 29]。\n\n1.  **委派權限 (Delegated) 優先於應用程式權限 (Application)**\n    *   **委派權限**：在有登入使用者時使用，權限是「使用者本身權限」與「App 被授予權限」的交集（取交集限制了實際能力） [30-32]。\n    *   **應用程式權限**：App 直接作為後端服務本身執行（無登入使用者），一旦被授予 `Mail.ReadWrite` 或 `Sites.ReadWrite.All` 等權限，即可存取**組織內所有信箱或所有網站 collection**，一旦憑證洩漏，攻擊者將獲得租戶級存取權 [30, 33-35]。\n2.  **特定資源特異性同意（Resource-Specific Scoping）防禦**\n    當業務流程迫不得已必須使用應用程式權限時，必須搭配特定 workload 進行範圍限制，嚴禁租戶級敞開：\n    *   **SharePoint 限制（Sites.Selected）**：\n        註冊 App 時不應授予全局的 `Sites.Read.All`，應**僅授予 `Sites.Selected` 應用程式權限** [36, 37]。接著，由 SharePoint 管理員透過 Graph/PowerShell 或 API 存取控制 UI，指派該 App 對**特定 Site Collection** 的唯讀 (Read) 或寫入 (Write) 角色 [36, 38, 39]。\n    *   **Exchange Mailbox 限制（Application Access Policies）**：\n        當 App 獲取 Graph Mail.Read 等應用程式權限時，Exchange 管理員必須執行 `New-ApplicationAccessPolicy` 指令，建立**應用程式存取原則**，將該 App 限制在特定安全組（Security Group）或指定信箱內 [40-42]，防止其窺探組織內高階主管或法務的機密信件 [43, 44]。\n    *   **Teams 限制（Resource-Specific Consent, RSC）**：\n        若要呼叫 Teams API，可透過 Teams App Manifest 宣告 RSC scopes [36, 41]。當團隊擁有者（Team Owner）在特定團隊中安裝此 App 時，代表該 App **僅被授權存取該特定團隊/頻道的資料**，無需全局管理員同意（Admin Consent）即可在細粒度範圍安全運作 [36, 41, 45]。\n    *   **DLP 安全原則整合限制（Purview Policy API）**：\n        當 AI 閘道（如 LiteLLM 代理）整合 Microsoft Purview DLP 來過濾 prompt 時，其註冊身分只需配置特定對象範圍的 `Content.Process.User`、`ProtectionScopes.Compute.User` 委派權限，以維護最低權限架構 [46-48]。\n\n---\n\n### 四、 條件式存取（Conditional Access, CA）\n\n條件式存取不只限制人，也可以**套用至服務主體與應用程式註冊** [3, 49, 50]。\n*   **進階上下文原則**：可以根據呼叫來源的地理位置、裝置合規狀態、來源網路（如限定受信任的企業 IP 範圍）以及即時的風險評估（Risk Factors）來實施防禦 [50]。\n*   **阻斷非合規註冊**：藉由 CA 策略，安全團隊可以強制規定只有符合租戶合規要求的 App 註冊才能取得 STS 的 Access Token，若不合規一律拒絕發放，從源頭阻斷未經授權的第三方 SaaS 存取 [18]。\n\n---\n\n💡 **建議的下一步**：\n為了協助您在組織內落實這些原則，我們是否可以使用 Bicep 或 Terraform，來為您建構一份包含「使用者指派受控識別（User-Assigned MI）」以及「無密碼工作負載同盟識別憑證（Federated Identity）」的 Azure DevOps IaC 部署範本？",
+    "citations": [
+      {
+        "source_id": "98895109-7347-453c-9ec0-d1e90a61824e",
+        "citation_number": 1,
+        "cited_text": "Why is this important? Copy link Service principals and managed identities provide an exciting new alternative to personal access tokens (PATs), one of our most widely used authentication methods that is tied to the user that created the token. Teams have traditionally relied on PATs to power applications, services, and automation tools to access organizational resources. However, using an authentication method tied to a single person also means relying on a single point-of-failure. When a user leaves the company, the PAT driving the team application will become inaccessible to all other team members."
+      },
+      {
+        "source_id": "98895109-7347-453c-9ec0-d1e90a61824e",
+        "citation_number": 2,
+        "cited_text": "Additionally, PATs are bearer tokens, which can be leaked easily and fall into the wrong hands. (Remember to always secure your secrets in a key management solution, like Azure Key Vault !) This leaked PAT can then be used to wreak havoc for the remaining duration of the PAT's lifetime, or until revoked. There is a time and place for when PATs make sense; but for many applications out there, we welcome you to explore service principals and managed identities instead. What are service principals and managed identities? Copy link This feature is available to Azure AD-backed organizations only."
+      },
+      {
+        "source_id": "c9ab3cbc-4039-4a0d-b637-56760a6776b9",
+        "citation_number": 3,
+        "cited_text": "Free Account Open Azure DevOps Table of contents Exit editor mode Learn Azure Azure DevOps Learn Azure Azure DevOps Ask Learn Ask Learn Reading mode Table of contents Read in English Add to Collections Add to Plans Edit Copy Markdown Print Note Access to this page requires authorization. You can try signing in or changing directories . Access to this page requires authorization. You can try changing directories . Managed Identities and Service Principal support Feedback Summarize this article for me In this article Today most application integration scenarios rely on Personal Access Tokens (PATs) to integrate with Azure DevOps. PATs can easily be leaked, potentially enabling malicious actors to authenticate as powerful users without the protections of Azure Active Directory security features like Conditional Access Policies. To prevent this, they may require time-consuming maintenance, including regular rotation."
+      },
+      {
+        "source_id": "d237e6f6-5645-4808-955d-22f30a418ee2",
+        "citation_number": 4,
+        "cited_text": "In this article Benefits Supported scenarios Prerequisites Step 1: Create a service connection within the same organization Step 2: Create the service connection Use the service connection in your pipeline Security best practices Troubleshooting Next steps Show 5 more Azure DevOps Services Note This feature is rolling out this week and next. If you don't see the feature yet on your Azure DevOps Services project, check back in a few days. An Azure DevOps service connection lets your pipelines authenticate to Azure DevOps without Personal Access Tokens (PATs) by using Microsoft Entra workload identities . Service principals and managed identities access Azure DevOps through workload identity federation , a zero-secret method that eliminates the need to manage and rotate secrets."
+      },
+      {
+        "source_id": "fca73546-4c59-46f1-adb3-1c22f3a121e5",
+        "citation_number": 5,
+        "cited_text": "Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 6,
+          "rows": [
+            [
+              "Method",
+              "Best for",
+              "Security posture",
+              "Credential management",
+              "Works with",
+              "Avoid when"
+            ],
+            [
+              "Managed identity",
+              "Azure-hosted automation, such as Azure Functions, App Service, or virtual machines",
+              "Strongest option for Azure-hosted workloads because tokens are short-lived and Azure manages the identity lifecycle",
+              "No client secret to store or rotate; Azure manages the identity and token acquisition",
+              "Azure DevOps Services; Azure-hosted workloads in the same Microsoft Entra tenant after you add the identity to Azure DevOps",
+              "The workload doesn't run on Azure, or you need a portable identity that isn't tied to an Azure resource"
+            ],
+            [
+              "Service principal",
+              "Automation that runs outside Azure, across multiple environments, or in external CI/CD systems",
+              "Strong option when you use certificate-based auth or federated approaches and apply least privilege",
+              "You manage the application identity and any client secret or certificate unless a federated flow removes the secret",
+              "Azure DevOps Services; apps, scripts, and services that need a Microsoft Entra application identity",
+              "You can use a managed identity instead for the same Azure-hosted workload, or the tool supports only PAT-based auth"
+            ],
+            [
+              "Azure DevOps service connection",
+              "Azure Pipelines access to Azure DevOps resources",
+              "Strong option for pipeline automation because it uses Microsoft Entra workload identity federation instead of long-lived tokens",
+              "Azure DevOps manages the service connection, and pipelines don't need to store PATs in variables",
+              "Azure DevOps Services; pipelines that access repos, feeds, or REST APIs across organizations",
+              "The scenario doesn't run through Azure Pipelines"
+            ],
+            [
+              "Personal access token (PAT)",
+              "Short-lived personal scripts, one-off testing, or legacy scenarios that can't yet use Microsoft Entra-based auth",
+              "Highest risk of the common choices because the token is a long-lived bearer secret tied to a user account",
+              "You must create, store, rotate, and revoke the token manually",
+              "Azure DevOps Services and Azure DevOps Server; CLI, REST calls, and legacy integrations that support PATs",
+              "The integration is a production service, shared automation, or any scenario where a service principal, managed identity, or service connection is available"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 6,
+        "cited_text": "Frequently Asked Questions Why Should You Use Federated Identity within Azure DevOps? For a long time, Service Principals have been the default way for Azure DevOps pipelines to authenticate with Azure. This method works but comes with long-term management headaches. Service Principals rely on secrets or certificates, which introduce security risks and operational overhead. These secrets need periodic rotation, and if they leak, they can grant unauthorized access. Federated Identity is a better approach. Instead of storing static credentials, it lets Azure DevOps authenticate directly with Entra ID using short-lived tokens. This eliminates the need to manage secrets, reduces security risks, and simplifies maintenance."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 7,
+        "cited_text": "In the next section, we will explore how this authentication method works and what happens behind the scenes when Azure DevOps requests access to Azure resources. How Federated Identity Works within Azure Federated Identity authentication in Azure is based on OpenID Connect (OIDC), a widely adopted authentication protocol that enables secure, token-based access without storing secrets. Instead of relying on static credentials, Azure DevOps pipelines authenticate dynamically by requesting a temporary token from Microsoft Entra ID (formerly Azure AD). This token allows access to Azure resources only for the duration of the pipeline execution, eliminating the risks associated with long-lived credentials."
+      },
+      {
+        "source_id": "d237e6f6-5645-4808-955d-22f30a418ee2",
+        "citation_number": 8,
+        "cited_text": "Benefits PAT-free authentication : Eliminate the need to create, store, and rotate Personal Access Tokens . Least privilege : Use per-pipeline permissions instead of shared build service account permissions . Improved security : Use Entra federated credentials with automatic token rotation. Cross-organization access : Access Azure DevOps resources in different organizations by using a single service connection. Audit trail : All authentication attempts are logged in Azure DevOps audit logs. Supported scenarios The Azure DevOps service connection supports these scenarios:"
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 9,
+        "cited_text": "How Federated Identity Solves These Issues Federated Identity eliminates these problems by using OpenID Connect (OIDC). When a pipeline runs, Azure DevOps requests authentication from Microsoft Entra ID. Instead of using a stored credential, Entra ID verifies the request and issues a short-lived token. This token is valid only for the duration of the pipeline run and grants access only to the resources specified in its permissions. Once the pipeline finishes, the token expires automatically, reducing the risk of credential misuse."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 10,
+        "cited_text": "Tip You can use AI to help with this task later in this article, or see Enable AI assistance with Azure DevOps MCP Server to get started. Benefits of service principals and managed identities Enhanced security Short-lived tokens : Microsoft Entra tokens expire every hour, which reduces exposure risk compared to PATs (which can last up to one year). Automatic rotation : Managed identities handle credential rotation automatically. No stored secrets : The need to store long-lived credentials in code or configuration is eliminated."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 11,
+        "cited_text": "Step 1: Create your identity Choose the appropriate identity type based on your deployment scenario. Option A: Create a service principal (application registration) Service principals work well for CI/CD pipelines, cross-cloud scenarios, and applications that need flexible deployment options. Register an application in the Microsoft Entra admin center . Go to App registrations > New registration . Configure the application: Name : Use a descriptive name for your application. Account types : Select appropriate tenant support. Redirect URI : Leave blank for service-to-service scenarios. Create authentication credentials: Recommended : Upload a certificate for enhanced security. Alternative : Create a client secret (requires regular rotation)."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 12,
+        "cited_text": "Use certificate authentication (recommended): C# Copy For managed identities From Azure resources: C# Copy"
+      },
+      {
+        "source_id": "788011ef-e813-426c-ae64-42bc5b08b240",
+        "citation_number": 13,
+        "cited_text": "And then for the vendor to state to make the client secret not expirable seems to be cherry on top here. You can't do that anymore, the maximum Entra app secret lifetime is now 2 years. Non-issue despite it being a weird ask from the vendor. it seems like Microsoft model makes it impossible to scale down for more of a least privilege model. I get I can monitor Entra ID sign in logs, but vendor says User.ReadBasic.All won't work and they need .all. Scope is the important part here -- Delegated permission of User.ReadBasic.All doesn't mean they can read all users, it means it can see what the logged in user has access to. Application permissions == the app is the \"credential\", so you've given that specified permission over all relevant objects in the tenant."
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 14,
+        "cited_text": "Your function logic typically does three things: generate or request a new credential from the source system (SQL Server, a storage account, an external SaaS API), write the new value as a fresh secret version with az keyvault secret set , and — critically — verify the new version works before the old one is invalidated. For service principal secrets, this pattern is well suited to Managed Identity plus the Microsoft Graph API to create a new client secret and remove the expired one in the same run."
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 15,
+        "cited_text": "Step 6: Enforce Least Privilege and Audit Trails — Azure Key Vault Secret Rotation Best Practices in Action Rotation only reduces risk if the rotation process itself is tightly scoped. Use Azure RBAC (or access policies on older vaults) so that only the automation identity and designated operators can write secret values:"
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 16,
+        "cited_text": "Get an overview of application registration activity using Graph API Activity Logs Another way to identify app registrations and the use of their permissions is through the Microsoft Graph Activity Logs. The Graph API's logging is not activated by default but can be easily enabled. To do this, you will want to send your logs to an Azure Log Analytics workspace so we can query them for investigation. Steps to Enable Graph API Activity Logs Enable Logging: Go to Entra > Monitoring & Health > Diagnostic Settings. If you don't have a diagnostic setting already, create a new one. If you do have one, verify that the \"MicrosoftGraphActivityLogs\" checkbox is enabled. Choose the Send to Log Analytics workspace option, as shown in the below screenshot:"
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 17,
+        "cited_text": "Figure 2: Enabling Microsoft Graph Activity logs in Entra ID Ensure your logs are sent to a Log Analytics workspace for querying and analysis. Enabling this logging allows you to verify which app registrations have permissions, provided they have shown activity within the time frame defined in your log search query. This means that using this method, you will be able to map the app registrations that are currently in use and have generated logs in your table. KQL (Kusto Query Language) is a query language used to retrieve and analyze large datasets stored in Azure Data Explorer and other Microsoft services like Azure Monitor and Microsoft Sentinel. We are going to use KQL to analyze the activity of the Graph API, allowing us to filter, sort, and transform data for detailed insights."
+      },
+      {
+        "source_id": "788011ef-e813-426c-ae64-42bc5b08b240",
+        "citation_number": 18,
+        "cited_text": "The thing that shifted the conversation for us was building a log of every consent grant with who approved it, what scopes were granted, and a 90-day review on anything with write or all permissions. Suddenly \"IT is too slow\" becomes \"here's what happens when we skip the review\" with actual examples. Cross-referencing Entra ID sign-in logs against the scopes granted shows you pretty fast which apps aren't even using half of what they asked for. Has your org given you any lever to enforce a conditional access policy that blocks non-compliant app registrations, or is it purely a people problem right now?"
+      },
+      {
+        "source_id": "98895109-7347-453c-9ec0-d1e90a61824e",
+        "citation_number": 19,
+        "cited_text": "Managed identities take it one step further. These identities also allow you to connect to resources that support Azure AD authentication, but they eliminate the need for developers to manage any credentials. All secrets, certificates, keys, are maintained and rotated for you, meaning you don't need to rely on Azure Key Vault to house critical keys or secrets. Managed identities are only available on top of Azure VMs and are restricted to a single Azure AD tenant. With service principals and managed identities comes all the additional security and management benefits available through Azure Active Directory today. Now, with support in Azure DevOps, you can use the same authentication available to other Azure resources."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 20,
+        "cited_text": "Types of managed identities System-assigned managed identity: Automatically created and tied to a specific Azure resource. Lifecycle managed by Azure (deleted when the resource is deleted). One-to-one relationship with the Azure resource. Best for applications deployed on a single Azure resource. User-assigned managed identity: Created as a standalone Azure resource. Can be assigned to multiple Azure resources. Lifecycle managed independently of associated resources. Best for applications that run on multiple resources or need shared identity."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 21,
+        "cited_text": "When to use each type: Service principals : Cross-cloud deployments, continuous integration and continuous delivery (CI/CD) pipelines, applications outside Azure. System-assigned managed identities : Single Azure resource applications (Azure Functions, Azure App Service). User-assigned managed identities : Multi-resource applications, shared identity scenarios. Implementation guide Follow these steps to implement service principals or managed identities for Azure DevOps authentication. For complete code examples, see our sample applications ."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 22,
+        "cited_text": "For system-assigned managed identity: Go to your Azure resource, such as App Service or an Azure Functions app. Go to Identity > System assigned . Switch the status to On . Select Save to save the configuration. For user-assigned managed identity: Create the managed identity in the Azure portal. Go to Create a resource > Managed Identity . Configure basic settings and create the resource. Assign to resources as needed. For more information, see the following articles: Managed identities overview Manage user-assigned managed identities"
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 23,
+        "cited_text": "User-Assigned Managed Identities, on the other hand, are independent of any single resource and can be assigned to multiple services. This makes them the preferred choice for Azure DevOps pipelines. A User-Assigned Managed Identity acts as a persistent, reusable identity that pipelines can use to authenticate to Azure without requiring stored credentials. By associating Federated Identity Credentials with a User-Assigned Managed Identity, Azure DevOps can authenticate dynamically whenever a pipeline runs."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 24,
+        "cited_text": "How to Set Up Federated Identity in Azure? Integrating Federated Identity with Azure DevOps allows pipelines to authenticate securely without storing secrets. Instead of using Service Principal credentials, authentication is handled dynamically through Microsoft Entra ID (formerly Azure AD). The first step in this setup is to create a User-Assigned Managed Identity (UAMI), assign Role-Based Access Control (RBAC) permissions, and configure Federated Credentials in Microsoft Entra ID. A User-Assigned Managed Identity is independent of any specific resource and can be assigned to multiple services, making it ideal for Azure DevOps pipelines. Unlike system-assigned identities, which are tied to a single resource, user-assigned identities persist even when a resource is deleted. This ensures continuous authentication for pipelines."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 25,
+        "cited_text": "Step 2: Add the identity to Azure DevOps After you create your identity in Microsoft Entra ID, add it to your Azure DevOps organization to grant access to resources. Important Service principals don't automatically appear in Azure DevOps. Adding a service principal to a Microsoft Entra security group doesn't grant access to your organization. A Project Collection Administrator (PCA) or Project Administrator (PA) must explicitly add the service principal to the organization and grant it the permissions required for its scenario. Follow least-privilege principles —assign the service principal only to the specific project, team, or security group it needs."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 26,
+        "cited_text": "Prerequisites Expand table <cited_table> Add the identity To add the identity through the Azure DevOps portal: Go to Organization Settings > Users . Select Add users . Enter the display name of your service principal or managed identity. Select the appropriate access level and project access. Send the invitation. Add the identity programmatically:",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Category",
+              "Requirement"
+            ],
+            [
+              "Permissions",
+              "Member of the"
+            ],
+            [
+              "Permissions",
+              "Project Administrator"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 27,
+        "cited_text": "Permission options: Direct assignment : Assign permissions directly to the identity. Group membership : Add to Azure DevOps or Microsoft Entra security groups. Access levels : Assign the appropriate license level (Basic, Basic + Test Plans, or Visual Studio subscriber). Best practices: Apply least privilege : Grant only the minimum permissions needed. Use groups : Manage permissions through groups for easier maintenance. Regular reviews : Audit permissions periodically. Permission management options: Azure DevOps portal : Select Organization settings > Permissions . REST APIs : Use Service Principal Graph APIs for programmatic management."
+      },
+      {
+        "source_id": "a3a3f730-e9b3-4bf2-bddf-6b46eab88938",
+        "citation_number": 28,
+        "cited_text": "Show more Service or daemon apps automate tasks, integrate systems, and secure interactions between apps. They're used for batch processing, data integration, resource provisioning, and managing cloud-based resources at scale. In DevOps, they can deploy infrastructure as code, test and assure quality, and monitor system performance. This article will cover some of the best practices to implement least privilege principle for this type of apps using Microsoft Azure Active Directory. Azure AD uses service principals to authenticate and access resources. Service principals enable an app to access specific resources in Azure, Microsoft Graph, or REST APIs. Over-permissioned service principals can lead to unauthorized access to resources. To avoid this, it's important to configure them carefully with appropriate, minimum required permissions, so they don't have too much access."
+      },
+      {
+        "source_id": "788011ef-e813-426c-ae64-42bc5b08b240",
+        "citation_number": 29,
+        "cited_text": "it seems like Microsoft model makes it impossible to scale down for more of a least privilege model. I get I can monitor Entra ID sign in logs, but vendor says User.ReadBasic.All won't work and they need .all. This isn't the first time this has come up and honestly, we need a dedicated legal/compliance/security committee to be the ones to make these decisions honestly. I've been lobbying for one for over a year, but I get a new ask almost every month to go forth with integrations and it just seems like a recurring trend in the SaaS works. Makes me wonder if I'm not cut out for this piece of my territory with how much I'm having to pause and push back."
+      },
+      {
+        "source_id": "2a6594bd-5579-4b90-9b51-c3e196e99a19",
+        "citation_number": 30,
+        "cited_text": "Here lies one of the problems when using the Graph. As it tries to cover quite diverse set of resources, the permissions model used by the Graph doesn't go into the peculiarities of each individual workload. Instead, the permission scopes introduced only cover the basic scenarios: access only your own resources, access resources shared with you, access all resources. For applications running in the scope of a given user, the so-called delegated permissions model, this is rarely a problem, as the workload can trim those permissions to cover just the resources the user has access to. For the so-called application permissions however, where the app runs without a signed in user, access is given to any and all resources."
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 31,
+        "cited_text": "Application permissions via App Registrations To interact with the Microsoft Graph API, applications must be registered in Entra ID. When you go through the process of creating an app registration with the necessary Graph API permissions, you encounter two types of application permissions: Delegated permissions These permissions are used by apps that have a signed-in user present. They allow the app to act on behalf of the user and access resources based on the user's permissions. Examples include reading the signed-in user's profile or accessing their mailbox."
+      },
+      {
+        "source_id": "5e15673c-d62e-4ef7-9f05-a1458d4e3011",
+        "citation_number": 32,
+        "cited_text": "Note In delegated scenarios, your app's access is also limited by the privileges of the signed-in user. These privileges are determined by the user's assigned roles and their relationship to the data being accessed. For example, if the signed-in user doesn't have the appropriate privileges to view a file, then the client app won't be able to read that file either, even if the app is granted the File.Read.All delegated permission. Microsoft accounts and work or school accounts Not all permissions are valid for both Microsoft accounts and work or school accounts. You can check the Microsoft Account Supported column for each permission group to determine whether a specific permission is valid for Microsoft accounts, work or school accounts, or both."
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 33,
+        "cited_text": "Application permissions: sending email messages As IT administrators or software vendors, we should always strive to follow the principle of least privilege. Suppose we examine the permission set of the Microsoft Graph API and look at the application permission Mail.Send, we can see that the description of this permission states, \"Send mail as any user.\" Figure 1: API permissions for an app registration in the Entra portal In this case, having permission to send emails as any user in my tenant is excessive. Imagine if this app gets compromised and adversaries can impersonate and send emails from our tenant. This could lead to potential misuse of our email system."
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 34,
+        "cited_text": "Test-ApplicationAccessPolicy -Identity  -AppId Figure 8: Example PowerShell command verifying that access is denied Figure 9: Example PS command verifying that access is granted You can see that the accessCheckResult value provides the result if your app registration has access to the mailbox. Conclusion There are major risks associated with application permissions that have broad access across all users in your tenant. With the goal of achieving the principle of least privilege, we began by identifying which applications have permission to send emails. Using the Graph API Activity Logs, we identified active app registrations with \"Mail.Send\" permissions and the corresponding email addresses they use to send email messages."
+      },
+      {
+        "source_id": "1fc53055-bc4d-4bcd-9443-81a868f3537e",
+        "citation_number": 35,
+        "cited_text": "ACS isn't however anymore the best option to manage application registration and security for SharePoint. You should rely on Microsoft Entra (formerly Azure Active Directory) application registration and OAuth. By default, when you register an application in Microsoft Entra, and you can configure Microsoft Graph application permissions like Sites.Read.All , Sites.ReadWrite.All , Sites.Manage.All , or Sites.FullControl.All , which are permission that targets all the site collections in the target tenant, as the All word implies in the name of the permission scopes."
+      },
+      {
+        "source_id": "97e6dd10-3e87-4ac1-a758-918a12e8fa72",
+        "citation_number": 36,
+        "cited_text": "If you want to avoid any admin-level PowerShell you can switch to delegated/user-consent flows and use built-in portal blades to scope who can sign in. Here's how: Use delegated mailbox access instead of app-only • In Azure AD Portal ➔ App registrations ➔ Your app ➔ API permissions, add a delegated Mail.* scope (e.g. Mail.Read.Shared) • Grant admin consent once (or enable user consent if your tenant allows it) • In Azure AD ➔ Enterprise applications ➔ Your service principal ➔ Users and groups, assign only that one mailbox user Result: Only that user account can sign in and grant the app access to their mailbox—no Exchange PS needed. Use delegated SharePoint access with the new Sites.Selected permission • In Azure AD ➔ App registrations ➔ API permissions, add Sites.Selected (application) and grant admin consent • In the SharePoint admin center ➔ Active sites ➔ Select your site ➔ Permissions ➔ API access, grant the app one of the site-level roles (Read, Write, or Full Control) Note: The “API access” UI for Sites.Selected is rolling out and may be in Preview. Otherwise you'd fall back to Graph/PowerShell. Leverage Teams Resource-Specific Consent in the Teams Admin Center • Build your Teams app package with RSC scopes in the manifest • In Teams Admin Center ➔ Teams apps ➔ Manage apps, upload it to your org's app catalog • In Teams Admin Center ➔ Teams apps ➔ Permission policies, ensure user/team owners are allowed to install custom apps • A Team owner then installs your app in that single team (including private channels) and implicitly consents for that team only This avoids Global-Admin PowerShell, since the Team owner is the resource admin in RSC."
+      },
+      {
+        "source_id": "1fc53055-bc4d-4bcd-9443-81a868f3537e",
+        "citation_number": 37,
+        "cited_text": "Registering an application with Resource Specific Consent permissions To register a Microsoft Entra application with RSC permission, you simply need to register a regular application in Microsoft Entra. However, when you configure the API permissions of the application, instead of selecting any of the Sites..All application permissions for Microsoft Graph, you need to choose the Sites.Selected application permission, as illustrated in the following screenshot. Then, a tenant admin, which can eventually still be you, will have to grant the Sites.Selected application permission to the application."
+      },
+      {
+        "source_id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+        "citation_number": 38,
+        "cited_text": "The Sites.ReadWrite.All delegated permission is available for consent in personal Microsoft accounts. Sites.Selected Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Category",
+              "Application",
+              "Delegated"
+            ],
+            [
+              "Identifier",
+              "883ea226-0bf2-4a8f-9f9d-92c9162a727d",
+              "f89c84ef-20d0-4b54-87e9-02e856d66d53"
+            ],
+            [
+              "DisplayText",
+              "Access selected site collections",
+              "Access selected Sites, on behalf of the signed-in user"
+            ],
+            [
+              "Description",
+              "Allow the application to access a subset of site collections without a signed in user. The specific site collections and the permissions granted will be configured in SharePoint Online.",
+              "Allow the application to access a subset of site collections on behalf of the signed-in user. The specific site collections and the permissions granted will be configured in SharePoint Online."
+            ],
+            [
+              "AdminConsentRequired",
+              "Yes",
+              "No"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "5e15673c-d62e-4ef7-9f05-a1458d4e3011",
+        "citation_number": 39,
+        "cited_text": "Application permissions <cited_table>",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Permission",
+              "Display String",
+              "Description",
+              "Admin Consent Required"
+            ],
+            [
+              "Sites.Read.All",
+              "Read items in all site collections",
+              "Allows the app to read documents and list items in all site collections without a signed in user.",
+              "Yes"
+            ],
+            [
+              "Sites.ReadWrite.All",
+              "Read and write items in all site collections",
+              "Allows the app to create, read, update, and delete documents and list items in all site collections without a signed in user.",
+              "Yes"
+            ],
+            [
+              "Sites.Manage.All",
+              "Create, edit, and delete items and lists in all site collections",
+              "Allows the app to manage and create lists, documents, and list items in all site collections without a signed-in user.",
+              "Yes"
+            ],
+            [
+              "Sites.FullControl.All",
+              "Have full control of all site collections",
+              "Allows the app to have full control to SharePoint sites in all site collections without a signed-in user.",
+              "Yes"
+            ],
+            [
+              "Sites.Selected",
+              "Access selected site collections",
+              "Allow the application to access a subset of site collections without a signed in user. The specific site collections and the permissions granted will be configured in SharePoint Online.",
+              "Yes"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "02e24bb9-2168-4633-bc2d-df61a02c77f2",
+        "citation_number": 40,
+        "cited_text": "Upvote 1 Downvote Reply Share Report Language and translations 1 more reply 1 more reply More replies More replies merillf â€¢ 1y ago Not everything supports it but you can limit application permissions for SharePoint, Exchange and Teams. See https://devblogs.microsoft.com/identity/azure-ad-app-permission-scoping/ Specifically the last section: Microsoft Graph least privilege Exchange Online permission scoping Exchange Online uses a mixed approach to scope the permissions to specific mailboxes. The Azure AD administrator still needs to grant application permissions using the app registration, then the Exchange Online administrator limits app access to specific mailboxes using an application access policy. The following Microsoft Graph permissions can be scoped:"
+      },
+      {
+        "source_id": "97e6dd10-3e87-4ac1-a758-918a12e8fa72",
+        "citation_number": 41,
+        "cited_text": "Sign in to comment Add comment en-nz Comment Use comments to ask for clarification, additional information, or improvements to the question. Discard draft Add comment 1 additional answer Sort by: Most helpful Most helpful Newest Oldest AI answer 11 May 2026, 12:21 am There is no purely graphical alternative in the Azure Portal or Microsoft 365 Admin Center that provides the same fine‑grained scoping as: Exchange Online application access policies for a single mailbox, or Teams Resource-Specific Consent (RSC) for a single team and its associated resources. For least‑privilege scoping, the supported approaches are exactly the ones already identified: Limit mailbox access Use Exchange application access policies to restrict an app with Mail.Read / Mail.ReadWrite / Calendars.Read / Calendars.ReadWrite to specific mailboxes. This is explicitly called out as the way to limit an app to particular mailboxes instead of tenant‑wide access. These policies are configured via PowerShell; the context does not describe an equivalent GUI path. Limit Teams/SharePoint access For Teams data, use resource-specific consent (RSC) so the app only has access to the specific team or chat where it is installed, instead of org‑wide Graph permissions. RSC permissions are: Declared in the Teams app manifest ( authorization section with RSC scopes, and webApplicationInfo for the Entra app ID). Granted when a team owner installs the app in that team. RSC is not configured in Microsoft Entra ID; it is managed via the Teams app manifest and Teams client/admin experiences, not via a central GUI equivalent to Exchange application policies. SharePoint site scoping For SharePoint, the equivalent to RSC is using Sites.Selected application permission and then granting the app access only to specific site collections. This is also an admin‑level configuration; the context describes it as part of an RSC‑style pattern, not as an end‑user GUI alternative. General guidance / alternatives Best practices recommend using RSC and other scoped permissions (Exchange application policies, Sites.Selected ) to implement least privilege and avoid tenant‑wide access. There is no alternative described in the context that would allow scoping to a single mailbox and a single team without using these admin‑level mechanisms. If internal admin skills are limited, the practical path is: Have a tenant admin register the app in Microsoft Entra ID and configure the required Graph permissions. For Teams, define RSC permissions in the Teams app manifest and have a team owner install the app in the specific team. For mailboxes and SharePoint, have an admin apply the appropriate application access policy and Sites.Selected configuration. Without those admin‑level steps (PowerShell or equivalent admin configuration), the app will either not get the required permissions or will have to use broader, less‑scoped permissions, which conflicts with the least‑privilege model described in the documentation. References: Develop application permissions strategy Understand the permissions and information accessed by Teams apps Overview of Microsoft Graph permissions Permissions in Teams app Best practices for using Microsoft Graph permissions Understanding Resource Specific Consent for Microsoft Graph and SharePoint Online Grant RSC permissions to your app AI-generated content may be incorrect. Read our transparency notes for more information. Was this answer helpful? Yes No Sign in to answer Your answer en-nz Answer Answers can be marked as 'Accepted' by the question author and 'Recommended' by moderators, which helps users know the answer solved the author's problem. Post answer Discard draft English (New Zealand) Your Privacy Choices Theme Light Dark High contrast AI Disclaimer Previous Versions Blog Contribute Privacy Consumer Health Privacy Terms of Use Code of Conduct Trademarks © Microsoft 2026"
+      },
+      {
+        "source_id": "788011ef-e813-426c-ae64-42bc5b08b240",
+        "citation_number": 42,
+        "cited_text": "If you have Graph permissions for Exchange that need to be application-based but you don't want the app to read every single mailbox in your org, you can limit it with an Exchange application access policy. SharePoint and other services should similar but different mechanisms to restrict application permissions for an Entra app to specific objects. https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-applicationaccesspolicy?view=exchange-ps Upvote 18 Downvote Reply Award Share"
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 43,
+        "cited_text": "Next, we implemented an application access policy to ensure that these app registrations only have access to the mailboxes they truly need. Implementing these steps will help you achieve the least privilege principle that we all strive so hard to attain and uphold. Do you know if your SaaS applications and app registration permissions within Entra ID are creating a security risk? The ENow AppGov Score is a free security assessment tool that will quantify your application security and governance state quickly. In addition to providing your AppGov Score, the tool will provide a comprehensive Application Governance Assessment report that includes each test, your result, and why the test matters. Sign up to get your score and assessment report in just a few minutes - Get Your AppGov Score today !"
+      },
+      {
+        "source_id": "788011ef-e813-426c-ae64-42bc5b08b240",
+        "citation_number": 44,
+        "cited_text": "They wanted Application permissions for Mail.ReadWrire and Calendar.ReadWrite. I flat out rejected it then wrote up a risk assessment explaining that those permissions grant full access to ALL mailboxes and calendars including Legals and Executive ones and sent it to the CISO who backed it. The vendor had to update their integration to use Delegated permissions. As for the client secret not expiring, we have a security requirement that credentials have to be rotated at least once a year, including secrets."
+      },
+      {
+        "source_id": "a3a3f730-e9b3-4bf2-bddf-6b46eab88938",
+        "citation_number": 45,
+        "cited_text": "Teams permission scoping In Teams, scoping is based on the Resource-specific consent (RSC) authorization framework. It allows fine-grained data access to Teams, chats, and meetings. An authorized user can give app access to specific resources without doing it for the entire tenant. Resource-specific consent for your Teams app Summary Copy link To mitigate app permission risks, it's important to follow best practices for securing service principals, such as implementing proper RBAC, using least privilege principles, securely managing credentials, monitoring and auditing service principal activity, and regularly reviewing and revoking unnecessary service principals."
+      },
+      {
+        "source_id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+        "citation_number": 46,
+        "cited_text": "ProtectionScopes.Compute.All Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Category",
+              "Application",
+              "Delegated"
+            ],
+            [
+              "Identifier",
+              "e5a76501-dbb0-492c-ab55-5d09e8837263",
+              "98f5a27a-539a-48bc-a597-f78e9e1e76bf"
+            ],
+            [
+              "DisplayText",
+              "Compute Purview policies at tenant scope",
+              "Compute Purview policies at tenant scope"
+            ],
+            [
+              "Description",
+              "Allows the app to identify Purview data protection, compliance and governance policy scopes defined for all users across tenant.",
+              "Allows the app to identify Purview data protection, compliance and governance policy scopes defined for all users across tenant."
+            ],
+            [
+              "AdminConsentRequired",
+              "Yes",
+              "Yes"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 47,
+        "cited_text": "Grant the app the delegated Microsoft Graph permissions  Content.Process.All  and  ProtectionScopes.Compute.All , and grant admin consent. These are in addition to the application permissions from Step 1 , which the gateway-level path uses. GRAPH_APP_ID = \"00000003-0000-0000-c000-000000000000\"   CONTENT_SCOPE_ID = $( az ad sp show --id  \" $GRAPH_APP_ID \"   \\   --query  \"oauth2PermissionScopes[?value=='Content.Process.All'].id | [0]\"  -o tsv )   SCOPES_SCOPE_ID = $( az ad sp show --id  \" $GRAPH_APP_ID \"   \\   --query  \"oauth2PermissionScopes[?value=='ProtectionScopes.Compute.All'].id | [0]\"  -o tsv )   az ad app permission add  \\   --id  \" $CLIENT_ID \"   \\   --api  \" $GRAPH_APP_ID \"   \\   --api-permissions  \" $CONTENT_SCOPE_ID =Scope\"   \" $SCOPES_SCOPE_ID =Scope\"   az ad app permission admin-consent --id  \" $CLIENT_ID \""
+      },
+      {
+        "source_id": "895a6646-ff84-4f61-9723-47d361bc049b",
+        "citation_number": 48,
+        "cited_text": "Prerequisites An Entra app registration with the following Microsoft Graph application permissions: InformationProtectionPolicy.Read.All ProtectionScopes.Compute.User Content.Process.User A DLP policy in Microsoft Purview targeting your app registration's client_id as a Protected App. Without an active policy, policyActions in the API response will always be empty. Entra user object IDs — each request must carry the Entra object ID of the end-user (not a username or email). The guardrail skips the DLP check and logs a warning when no user ID can be resolved."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 49,
+        "cited_text": "Modern authentication Standards based : Uses OAuth 2.0 and OpenID Connect protocols. Multifactor authentication support : Inherits organizational security policies. Conditional access : Applies advanced security policies based on context. Understand service principals and managed identities Service principals Service principals are Microsoft Entra objects that represent applications within a tenant. They define what an application can do, which resources it can access, and who can use it. Service principals are created automatically when you register an application in Microsoft Entra ID and provide a secure way for applications to authenticate and access resources."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 50,
+        "cited_text": "Operational benefits: Audit trail : Logs authentication and access patterns completely. Conditional access : Applies policies based on location, device, and risk factors. No service accounts : Eliminates dependency on individual user accounts for automation. For migration examples, see Replace PATs with Microsoft Entra tokens . Q. What are the rate limits on service principals and managed identities? A. Service principals and managed identities have the same rate limits as users. Q. Will using this feature cost more? A. Service principals and managed identities are priced like users based on access level. Key differences are:"
+      }
+    ]
+  },
+  {
+    "question": "API Key 如何安全儲存與輪替？Environment variable vs secret manager vs vault 的比較？",
+    "answer": "在企業級 API 與微服務架構中，API Key、連線字串等機密資訊的管理是資安防護的核心。以下結合資料來源，為您詳述 API Key 的安全儲存與輪替最佳實踐，並對環境變數、祕密管理器與 Key Vault 三種管理媒介進行深度比較：\n\n---\n\n### 一、 API Key 的安全儲存與自動輪替機制\n\n#### 1. 安全儲存原則\n*   **集中存放於專用保險箱**：API Key 絕不能寫死在程式碼或一般設定檔中，應集中存放於專用的金鑰管理服務（如 **Azure Key Vault**）[1]。\n*   **網關安全 Named Value 整合**：在部署 API 閘道（如 Azure APIM）時，可利用 **Named Value（名稱值）** 作為祕密容器安全地存儲與引用 API Key [2]。對於更高強度的資安需求，應將 Named Value 引用指向 **Azure Key Vault** [3]。APIM 原則（Policy）即可在執行階段動態自 Named Value 提取 Key，並自動注入後端 API 請求的 `api-key` 或 `Authorization` 標頭中，避免憑證洩露 [2, 4]。\n*   **開啟稽核軌跡 (Audit Trail)**：應針對儲存庫啟用診斷日誌，將所有的 `SecretGet`（讀取）、`SecretSet`（寫入）與 `SecretDelete`（刪除）事件送往 Log Analytics 或 SIEM，以供合規審計與異常偵測 [5]。\n\n#### 2. 自動輪替機制 (Rotation)\n*   **密鑰原生自動輪替 (Rotation Policy)**：對於加密金鑰（Cryptographic Keys），可直接在儲存庫中配置原生的 `rotationPolicy`。設定建立後幾天（如 `timeAfterCreate`）自動建立新版本金鑰，或在過期前（如 `timeBeforeExpiry`）自動輪轉並發送 Event Grid 通知 [6-8]。\n*   **事件驅動秘密輪替 (Event-Driven Secret Rotation)**：由於 API Key 或連線字串等「秘密（Secrets）」通常無法由 Key Vault 原生對目標 API 進行密碼變更，因此必須採用事件驅動架構 [9, 10]。\n    1.  **事件觸發**：當祕密接近過期時（例如到期前 30 天），Key Vault 會拋出 `SecretNearExpiry` 事件 [11]。\n    2.  **自動化串接**：利用 **Event Grid** 訂閱該事件，並自動觸發專門的 **Azure Functions** 或自動化工作串流 [10, 12]。\n    3.  **自訂輪轉邏輯**：Functions 內部的程式碼透過 Managed Identity 取得權限，呼叫目標服務的 Key 重置 API 生成新憑證，將新值寫回 Key Vault 作為新的祕密版本，並更新 Tag 中的中繼資料 [13, 14]。\n*   **雙憑證交替機制 (Dual-Credential)**：在進行輪轉時（例如 Azure Storage 金鑰），採用雙金鑰（Key1 與 Key2）設計，一次只輪轉其中一個，並確保用戶端先平滑切換，之後再將舊版本停用，以達到零中斷（Zero-downtime）輪轉 [14, 15]。\n*   **消費者無痛過渡設計**：\n    *   **使用無版本 URI (Versionless URI)**：應用程式引用祕密時，應省略 URI 的版本 Hash，使其始終自動解析至 Key Vault 最新有效（Active）的版本，避免因鎖定（pinning）特定版本而在輪替時造成中斷 [16, 17]。\n    *   **提供短暫的重疊視窗 (Overlap window)**：產生新祕密後，不應立刻將舊祕密設為 `disabled`。由於應用程式常有快取或連線池（Connection Pool）機制，應保留數分鐘到數小時的重疊期，讓消費者有時間更新 [18, 19]。\n    *   **即時事件快取失效**：應用程式可向 Event Grid 訂閱 `SecretNewVersionCreated` 事件 [19]。當偵測到新祕密發布時，應用程式（例如搭配 Dapr 元件）能即時觸發 Webhook，清除內部快取並非同步重構（Reconfigure）連線池，完全無需重新啟動應用程式或容器 [19-21]。\n\n---\n\n### 二、 Environment Variable vs Secret Manager vs Vault 比較\n\n依據系統架構與憑證生命週期管理，三者之定位與安全層級如下：\n\n| 比較維度 | 環境變數 (Environment Variable) | 祕密管理器 (Secret Manager / Named Value) | 金鑰保險箱 (Key Vault / Dedicated Vault) |\n| :--- | :--- | :--- | :--- |\n| **安全層級** | **最低** <br>（常明文存在配置中） [22, 23] | **中等** <br>（在平台端加密並遮蔽） [2, 24] | **最高** <br>（支援軟刪除、清除保護與 HSM） [1] |\n| **無祕密實踐 (Secret-Free)** | **無法實現** <br>（必須實體注入字串） [23, 25] | **部分支援** <br>（視平台原生配置而定） [24, 26] | **完全實現** <br>（結合 **Managed Identity**，程式不需持有任何憑證） [27, 28] |\n| **輪替管理 (Rotation)** | **極難維護** <br>（一旦 Key 複製到多個應用程式中，容易淪為永久憑證） [22] | **手動或依賴管線更新** <br>（金鑰到期時仍可能因忘記更新管線變數而中斷） [29-31] | **自動化/事件驅動** <br>（支援原生金鑰輪替政策，或與 Event Grid+Functions 整合自動輪轉） [6, 10, 12] |\n| **應用程式更新開銷** | **需重啟** <br>（通常需要 Pod 或應用程式重啟以載入新變數） [32] | **視平台而定** <br>（可能需透過部署管線重新發布以套用新變數） [30] | **動態載入（無痛）** <br>（可藉由 Versionless URI 動態獲取新版，或透過 Webhook 靜默重配置連線池） [16, 17, 21] |\n| **稽核與合規 (Audit)** | **無稽核軌跡** <br>（無法追蹤是誰在何時讀取了該環境變數） [23] | **基礎稽核** <br>（僅記錄平台層級的變更或管線執行紀錄） [33] | **細粒度稽核日誌** <br>（詳實記錄 `SecretGet`, `SecretSet` 等每一筆金鑰調用資訊） [5] |\n\n#### 深度解析：\n1.  **環境變數 (Environment Variable)**：\n    最大的痛點在於**「憑證散落（Secret Sprawl）」與「永久有效風險」** [22, 23]。當 API Key 被分散複製到多個應用程式設定中，不僅容易隨日誌、映像檔不慎外洩，當金鑰發生變更時，還需要逐一找出相依服務並重新啟動，維運開銷極大且合規風險最高 [22, 23, 32]。\n2.  **祕密管理器 / 加密變數 (Secret Manager / Named Value)**：\n    提供了「集中化遮蔽與管理」的第一步 [2, 24]。例如 APIM 中的 Named Values（秘密類型）或 CI/CD Pipeline 的 Secret Variables [2, 24]。它們解決了明文外洩的風險，但在輪替時，若是靜態的憑證，仍高度依賴手動介入或管線重跑，稍有不慎便會面臨憑證失效引發的故障 [29-31]。\n3.  **專用保險箱 (Key Vault)**：\n    屬於**零信任（Zero Trust）**架構下的終極首選 [1, 34]。透過與 **Managed Identity (受控識別)** 結合，應用程式運作時「不需要儲存或知道任何 Key Vault 密鑰」[27, 28]。所有的 API Key 的產生、設定過期時間、自動輪替政策、 Event Grid 整合與 Webhook 自行重新載入，均在安全隔離的生命週期內運作，並附帶完整的數據證據鏈（Evidence Trail），完美平衡了安全性、自動化與業務連續性 [5, 6, 12, 35]。\n\n---\n\n💡 **建議的下一步**：\n由於許多第三方服務（例如 OpenAI API Key 或外部 SaaS 憑證）不支援金鑰保險箱的原生直接輪替策略，我們是否可以為您建構一個基於 **Azure Functions** 與 **Event Grid** 的自訂 API Key 輪替實作流程或範例程式碼，讓您可以實現對外部 API Key 的無縫自動輪轉？",
+    "citations": [
+      {
+        "source_id": "98895109-7347-453c-9ec0-d1e90a61824e",
+        "citation_number": 1,
+        "cited_text": "Additionally, PATs are bearer tokens, which can be leaked easily and fall into the wrong hands. (Remember to always secure your secrets in a key management solution, like Azure Key Vault !) This leaked PAT can then be used to wreak havoc for the remaining duration of the PAT's lifetime, or until revoked. There is a time and place for when PATs make sense; but for many applications out there, we welcome you to explore service principals and managed identities instead. What are service principals and managed identities? Copy link This feature is available to Azure AD-backed organizations only."
+      },
+      {
+        "source_id": "d394e159-cc0b-4603-a526-e61b703a2dc2",
+        "citation_number": 2,
+        "cited_text": "Authenticate by using API key A default way to authenticate to an AI API is by using an API key. For this type of authentication, all API requests must include a valid API key in an HTTP header. The header name depends on the API. For example, Azure OpenAI in Microsoft Foundry APIs use the api-key header. API Management can manage the API key in a secure way by using a named value . You can reference the named value in an API policy to set the api-key header in requests to the API. The following two examples show how to do this: one uses the set-backend-service policy, and the other uses the set-header policy."
+      },
+      {
+        "source_id": "d394e159-cc0b-4603-a526-e61b703a2dc2",
+        "citation_number": 3,
+        "cited_text": "Store the API key in a named value Here's an example of how to store an Azure OpenAI API key in a named value in API Management: Get an API key from the AI model deployment. For an Azure OpenAI model deployment, find this information on the Home page for your project in the Microsoft Foundry portal. Go to your API Management instance, and select Named values in the left menu. Select + Add , and add the value as a secret. For more security, optionally use a key vault reference . Pass the API key in API requests - set-backend-service policy Create a backend that points to the Azure OpenAI API."
+      },
+      {
+        "source_id": "d394e159-cc0b-4603-a526-e61b703a2dc2",
+        "citation_number": 4,
+        "cited_text": "Pass the API key in API requests - set-header policy Alternatively, add the following set-header policy snippet in the inbound policy section to pass the API key in requests to the Azure OpenAI API. This policy snippet sets the api-key header with the named value that you set up. In this example, the named value in API Management is openai-api-key . XML Copy"
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 5,
+        "cited_text": "Enable diagnostic logging on every vault and route it to Log Analytics or a SIEM so every SecretSet , SecretGet , and SecretDelete is auditable: This gives you an evidence trail for compliance audits and lets you quickly spot anomalies — like a secret being read from an unfamiliar identity or region right after rotation."
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 6,
+        "cited_text": "Apply it with: This particular Key Vault rotation policy sets a 90-day expiry, triggers rotation at 60 days, and fires a notification event 10 days before expiry so you have a buffer even if automation fails. Standardize this policy across secret types where possible — a consistent 60/90-day cadence is far easier to reason about and audit than ad hoc expiration dates scattered across vaults."
+      },
+      {
+        "source_id": "535368bc-d7e0-4d57-976e-c5afc3312c9e",
+        "citation_number": 7,
+        "cited_text": "Note If you use the access policies permission model, set the 'Rotate', 'Set Rotation Policy', and 'Get Rotation Policy' key permissions to manage the rotation policy on keys. Key rotation policy The key rotation policy allows you to configure rotation and Event Grid notifications for near expiry notification. Key rotation policy settings: Expiry time: key expiration interval. It sets the expiration date on the newly rotated key. It doesn't affect the current key. Enabled/disabled: flag to enable or disable rotation for the key. Rotation types: Automatically renew at a given time after creation (default). Automatically renew at a given time before expiry. It requires 'Expiry Time' set on rotation policy and 'Expiration Date' set on the key. Rotation time: key rotation interval. The minimum value is seven days from creation and seven days from expiration time. Notification time: key near expiry event interval for Event Grid notification. It requires 'Expiry Time' set on rotation policy and 'Expiration Date' set on the key."
+      },
+      {
+        "source_id": "ec1fe4bd-b5b3-4055-8342-6f434e35cc46",
+        "citation_number": 8,
+        "cited_text": "Configuring Automatic Rotation in Azure Key Vault Set up a rotation policy in Azure Key Vault to automatically rotate secrets:"
+      },
+      {
+        "source_id": "808fc74b-cc5d-4731-bcc8-ac0f6649bede",
+        "citation_number": 9,
+        "cited_text": "In short, not directly — Key Vault does not natively support “rotating SAS tokens on schedule” in the same way it auto-rotates cryptographic keys. But you can build a pattern around it using Key Vault + automation to achieve your goal. Key Vault supports automatic rotation for keys (cryptographic keys) via rotation policies. Key Vault also supports storing secrets (including storage access keys or other credentials) and you can react to “secret is near expiry” events via Event Grid to trigger custom workflows. For Azure Storage, Key Vault has (or had) a feature called Key Vault–managed storage account keys. In this pattern, Key Vault is allowed to regenerate the storage account's keys periodically and manage them as secrets or storage objects. Key Vault also supports SAS definitions in the context of Key Vault–managed storage accounts. The SAS template (the “definition”) is stored in Key Vault, so clients request a SAS token from Key Vault according to that definition."
+      },
+      {
+        "source_id": "3c82e2f6-8c02-4a98-bfc6-cc90c475e75e",
+        "citation_number": 10,
+        "cited_text": "Secrets that never get rotated are a ticking time bomb. Database connection strings, API keys, storage account keys - if any of these are compromised and they have been the same for months or years, an attacker has a long window to exploit them. Azure Key Vault supports event-driven secret rotation through a combination of Event Grid notifications and Azure Functions. When a secret approaches its expiration date, Key Vault fires an event, an Azure Function catches it, rotates the secret with the target service, and stores the new value back in Key Vault."
+      },
+      {
+        "source_id": "3c82e2f6-8c02-4a98-bfc6-cc90c475e75e",
+        "citation_number": 11,
+        "cited_text": "Step 6: Configure the Near-Expiry Event Timing By default, Key Vault fires the SecretNearExpiry event 30 days before the secret expires. Key rotation policies can configure timing for key near-expiry events, but secret near-expiry Event Grid notifications are raised 30 days before expiration. If your secrets expire every 90 days and you want the rotation to happen 30 days before expiry, the secret will effectively be rotated every 60 days. Adjust the expiration interval based on your needs. Step 7: Test the Rotation You can test the rotation by temporarily setting a secret to expire soon:"
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 12,
+        "cited_text": "Step 3: Automate Secret Rotation with Event Grid and Azure Functions A rotation policy only defines when a secret should rotate — it doesn't rotate anything on its own for most secret types (this native auto-rotation currently applies to specific integrations like storage account keys). For everything else, you need to automate secret rotation in Azure using Event Grid to trigger a rotation function. Subscribe an Azure Function to the SecretNearExpiry and SecretExpired events:"
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 13,
+        "cited_text": "Your function logic typically does three things: generate or request a new credential from the source system (SQL Server, a storage account, an external SaaS API), write the new value as a fresh secret version with az keyvault secret set , and — critically — verify the new version works before the old one is invalidated. For service principal secrets, this pattern is well suited to Managed Identity plus the Microsoft Graph API to create a new client secret and remove the expired one in the same run."
+      },
+      {
+        "source_id": "3c82e2f6-8c02-4a98-bfc6-cc90c475e75e",
+        "citation_number": 14,
+        "cited_text": "Step 4: Write the Rotation Function Code Here is the Azure Function code that handles the rotation. This example rotates an Azure Storage Account key:"
+      },
+      {
+        "source_id": "808fc74b-cc5d-4731-bcc8-ac0f6649bede",
+        "citation_number": 15,
+        "cited_text": "Effectively, what you need is a custom orchestration that uses Key Vault + automation functions or event-driven logic to manage SAS token lifecycle. That orchestration would involve the following steps: Store the active SAS token (or its parameters) in Key Vault as a secret (or as part of a secret object). You can also store metadata (e.g. expiration, permissions, which storage account) as tags. Use the “secret near expiry” event (via Event Grid) to trigger rotation logic. Trigger a function or logic on “secret near expiry” (or schedule) Using Event Grid + Azure Functions (or Logic Apps), detect when the SAS secret is approaching expiration. The rotation logic should generate a new SAS token (using the storage account key, via SDK/API) with new validity. Save the new SAS token (or its definition) back into Key Vault (as a new version of the secret). Update metadata (expiry etc.). Optionally rotate the storage account key / use Key Vault-managed keys If you also want to rotate underlying storage account keys, you can use the dual-key approach: rotate the non-active key, then update clients to use the new key, then rotate the other, etc. Microsoft's “two-sets-of-credentials” tutorial describes exactly how to rotate storage account keys stored in Key Vault secrets in an automated fashion (alternating between primary/secondary). If you use Key Vault–managed storage account integration, Key Vault itself can regenerate storage account keys (according to a schedule) and manage the result. Client applications fetch the current SAS token from Key Vault Instead of hardcoding a SAS token, your clients should retrieve it from Key Vault (or via a secret cache) just-in-time, so they always use the latest token. Optionally include logic to re-fetch before expiration or detect 401s and re-request. Monitoring, failover, fallback Monitor failures in rotation / fetch. If rotation fails, you may need fallback logic to revert or roll forward. Use adequate retries, alerting, etc."
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 16,
+        "cited_text": "Step 5: Version Secrets Without Breaking Consumers The most common rotation failure isn't the rotation itself — it's an application that cached the old secret value or was pointed at a specific version instead of the latest one. Two practices prevent this: Reference secrets without pinning a version wherever your platform supports it. In App Configuration or App Service Key Vault references, omit the version suffix so the app always resolves to the current value:"
+      },
+      {
+        "source_id": "535368bc-d7e0-4d57-976e-c5afc3312c9e",
+        "citation_number": 17,
+        "cited_text": "Important Key rotation generates a new key version of an existing key with new key material. Target services should use versionless key URI to automatically refresh to the latest version of the key. Ensure that your data encryption solution stores versioned key URI with data to point to the same key material for decrypt/unwrap operations to avoid disruption to your services. All Azure services currently follow that pattern for data encryption. Key rotation re-wraps data encryption keys (DEKs) with the new key version � it does not re-encrypt the underlying data. Both old and new key versions must remain enabled until re-wrapping is complete, because existing data remains encrypted under DEKs wrapped by the old key version."
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 18,
+        "cited_text": "Overlap old and new versions briefly. Never disable the previous version immediately after creating a new one. Key Vault keeps prior versions accessible by default — use that. Give consumers a short overlap window (minutes to a few hours, depending on caching behavior) before you disable the old version: For services with in-memory caching of secret values (common with connection pools and SDK clients), make sure the app either restarts to pick up the new version or actively polls Key Vault on a TTL rather than caching indefinitely."
+      },
+      {
+        "source_id": "ec1fe4bd-b5b3-4055-8342-6f434e35cc46",
+        "citation_number": 19,
+        "cited_text": "Subscribing to Rotation Events via Azure Event Grid Create a webhook endpoint that Azure Event Grid calls when a secret rotates:"
+      },
+      {
+        "source_id": "ec1fe4bd-b5b3-4055-8342-6f434e35cc46",
+        "citation_number": 20,
+        "cited_text": "By @nawazdhandala • Mar 31, 2026 • Reading time 2 min read Dapr Secret Azure Key Vault Security Rotation On this page Azure Key Vault with Dapr Dapr Component Configuration Reading Secrets via Dapr Configuring Automatic Rotation in Azure Key Vault Subscribing to Rotation Events via Azure Event Grid Setting Up Event Grid Subscription Refreshing Secrets in Dapr Summary Azure Key Vault with Dapr Azure Key Vault provides built-in secret versioning and rotation events. Dapr's Azure Key Vault secret store component reads the latest active version of a secret automatically. Combine this with Azure Event Grid notifications to trigger application-side rotation when a secret changes."
+      },
+      {
+        "source_id": "ec1fe4bd-b5b3-4055-8342-6f434e35cc46",
+        "citation_number": 21,
+        "cited_text": "Setting Up Event Grid Subscription Refreshing Secrets in Dapr"
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 22,
+        "cited_text": "Share On this page Step 1: Inventory Every Secret and Its Consumers Step 2: Configure a Key Vault Rotation Policy Step 3: Automate Secret Rotation with Event Grid and Azure Functions Step 4: Set Up Key Vault Expiration Notifications Step 5: Version Secrets Without Breaking Consumers Step 6: Enforce Least Privilege and Audit Trails — Azure Key Vault Secret Rotation Best Practices in Action Verification and Troubleshooting How Safeguard Helps Secrets that never expire are one of the quietest risks in a cloud environment. A database connection string issued three years ago, a service principal secret nobody remembers creating, an API key copied into five different app settings — each one is a standing credential that, if leaked, gives an attacker a durable foothold. Following Azure Key Vault secret rotation best practices is how you close that window without breaking production every time a secret changes."
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 23,
+        "cited_text": "How Safeguard Helps Rotation policies and Event Grid automation solve the Key Vault side of the problem, but secrets don't stay inside Key Vault — they end up hardcoded in repos, leaked into CI/CD logs, embedded in container images, or copied into a teammate's local .env file. Safeguard is built to close that gap across the software supply chain. Safeguard continuously scans source repositories, build pipelines, and container images for hardcoded credentials and stale references to secrets that should have been rotated out of use, flagging them before they ship. It correlates findings against your actual Key Vault inventory, so you can see at a glance which secrets are enforced by a rotation policy and which have drifted outside of it — a service principal secret three teams still reference directly instead of through Key Vault, for example. Combined with SBOM-level visibility into dependencies and build artifacts, Safeguard gives security teams a single view of secret exposure that spans code, pipeline, and cloud configuration, so Azure Key Vault secret rotation best practices translate into fewer live, exploitable credentials anywhere in your environment — not just fewer expired ones in the vault."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 24,
+        "cited_text": "To learn more about Firefly's features, explore their docs and blogs , and try Firefly yourself to see how it enhances your DevOps workflows. Frequently Asked Questions How can I trigger an Azure DevOps pipeline automatically on code changes? Use CI triggers in azure-pipelines.yml with trigger: [branch-name] , or configure a GitHub webhook to start the pipeline on push events. How do I pass secrets securely in Azure DevOps pipelines? Store secrets in Azure Key Vault and link it to the pipeline, or use Pipeline Variables (secret scope) to keep them encrypted and hidden."
+      },
+      {
+        "source_id": "710aed19-f578-4dd8-a97b-956740a0f350",
+        "citation_number": 25,
+        "cited_text": "For each secret, document: Type — database credential, storage account key, API token, certificate password, service principal secret. Consumers — which apps, functions, pipelines, or scripts read it, and how (app setting, environment variable, direct SDK call). Current age and expiration — secrets with no expires attribute set are the highest-priority fix; they can live forever by default. Rotation difficulty — some secrets (like a service principal password) can be rotated with zero downtime; others (a hardcoded key baked into a config file at build time) require a code change."
+      },
+      {
+        "source_id": "fca73546-4c59-46f1-adb3-1c22f3a121e5",
+        "citation_number": 26,
+        "cited_text": "Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 6,
+          "rows": [
+            [
+              "Method",
+              "Best for",
+              "Security posture",
+              "Credential management",
+              "Works with",
+              "Avoid when"
+            ],
+            [
+              "Managed identity",
+              "Azure-hosted automation, such as Azure Functions, App Service, or virtual machines",
+              "Strongest option for Azure-hosted workloads because tokens are short-lived and Azure manages the identity lifecycle",
+              "No client secret to store or rotate; Azure manages the identity and token acquisition",
+              "Azure DevOps Services; Azure-hosted workloads in the same Microsoft Entra tenant after you add the identity to Azure DevOps",
+              "The workload doesn't run on Azure, or you need a portable identity that isn't tied to an Azure resource"
+            ],
+            [
+              "Service principal",
+              "Automation that runs outside Azure, across multiple environments, or in external CI/CD systems",
+              "Strong option when you use certificate-based auth or federated approaches and apply least privilege",
+              "You manage the application identity and any client secret or certificate unless a federated flow removes the secret",
+              "Azure DevOps Services; apps, scripts, and services that need a Microsoft Entra application identity",
+              "You can use a managed identity instead for the same Azure-hosted workload, or the tool supports only PAT-based auth"
+            ],
+            [
+              "Azure DevOps service connection",
+              "Azure Pipelines access to Azure DevOps resources",
+              "Strong option for pipeline automation because it uses Microsoft Entra workload identity federation instead of long-lived tokens",
+              "Azure DevOps manages the service connection, and pipelines don't need to store PATs in variables",
+              "Azure DevOps Services; pipelines that access repos, feeds, or REST APIs across organizations",
+              "The scenario doesn't run through Azure Pipelines"
+            ],
+            [
+              "Personal access token (PAT)",
+              "Short-lived personal scripts, one-off testing, or legacy scenarios that can't yet use Microsoft Entra-based auth",
+              "Highest risk of the common choices because the token is a long-lived bearer secret tied to a user account",
+              "You must create, store, rotate, and revoke the token manually",
+              "Azure DevOps Services and Azure DevOps Server; CLI, REST calls, and legacy integrations that support PATs",
+              "The integration is a production service, shared automation, or any scenario where a service principal, managed identity, or service connection is available"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "98895109-7347-453c-9ec0-d1e90a61824e",
+        "citation_number": 27,
+        "cited_text": "Managed identities take it one step further. These identities also allow you to connect to resources that support Azure AD authentication, but they eliminate the need for developers to manage any credentials. All secrets, certificates, keys, are maintained and rotated for you, meaning you don't need to rely on Azure Key Vault to house critical keys or secrets. Managed identities are only available on top of Azure VMs and are restricted to a single Azure AD tenant. With service principals and managed identities comes all the additional security and management benefits available through Azure Active Directory today. Now, with support in Azure DevOps, you can use the same authentication available to other Azure resources."
+      },
+      {
+        "source_id": "c9ab3cbc-4039-4a0d-b637-56760a6776b9",
+        "citation_number": 28,
+        "cited_text": "We are working on enabling applications to instead use Managed Identities and Service Principals to integrate with Azure DevOps through REST APIs and client libraries. This highly requested feature offers Azure DevOps customers a more secure alternative to PATs. And Managed Identities offer the ability for applications running on Azure resources to obtain Azure AD tokens without needing to manage any credentials at all. Managed Identities and Service Principals can be setup in Azure DevOps and given permissions to specific assets (projects, repos, pipelines), just like regular users. This allows applications that use Managed Identities or Service Principals to connect to Azure DevOps and perform actions on behalf of themselves, instead of on behalf of a user, as PATs do. This ensures that teams can better manage their services collectively, instead of relying on any one individual to provide a token for authentication."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 29,
+        "cited_text": "The Problem with Service Principals The main issue with Service Principals is that secrets must be stored somewhere. Whether they are kept in Azure DevOps, a key vault, or an external secrets manager, they still pose a risk. If someone with access - like an intern, a freelancer, or even an employee leaving the organization - copies a secret, they might still have access to Azure resources even after their official credentials are revoked. Organizations try to reduce this risk by enforcing secret rotation policies, but that adds more administrative overhead and can cause disruptions if a secret expires unexpectedly."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 30,
+        "cited_text": "Service Principal credentials also create challenges when scaling infrastructure automation. A single set of credentials is often shared across multiple pipelines, which increases the risk if it gets exposed. Managing these secrets properly is important - if a secret isn't updated in time, deployments can fail. To handle this, teams often use external tools to automate secret rotation and distribution, but that adds more dependencies and complexity. Ultimately, the problem isn't just with Service Principals - it's with relying on static secrets in general."
+      },
+      {
+        "source_id": "c9ab3cbc-4039-4a0d-b637-56760a6776b9",
+        "citation_number": 31,
+        "cited_text": "Free Account Open Azure DevOps Table of contents Exit editor mode Learn Azure Azure DevOps Learn Azure Azure DevOps Ask Learn Ask Learn Reading mode Table of contents Read in English Add to Collections Add to Plans Edit Copy Markdown Print Note Access to this page requires authorization. You can try signing in or changing directories . Access to this page requires authorization. You can try changing directories . Managed Identities and Service Principal support Feedback Summarize this article for me In this article Today most application integration scenarios rely on Personal Access Tokens (PATs) to integrate with Azure DevOps. PATs can easily be leaked, potentially enabling malicious actors to authenticate as powerful users without the protections of Azure Active Directory security features like Conditional Access Policies. To prevent this, they may require time-consuming maintenance, including regular rotation."
+      },
+      {
+        "source_id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+        "citation_number": 32,
+        "cited_text": "Create the  EnterpriseAgentgatewayParameters  resource that gives the data plane the STS connection details. The proxy pods restart automatically to pick up the new environment variables. kubectl apply -f - <<EOF   apiVersion :   enterpriseagentgateway.solo.io/v1alpha1   kind :   EnterpriseAgentgatewayParameters   metadata :   name :   agentgateway-params   namespace :   agentgateway-system   spec :   env :   -  name :   STS_URI   value :   http://enterprise-agentgateway.agentgateway-system.svc.cluster.local:7777/oauth2/token   -  name :   STS_AUTH_TOKEN   value :   ./var/run/secrets/xds-tokens/xds-token   EOF"
+      },
+      {
+        "source_id": "d237e6f6-5645-4808-955d-22f30a418ee2",
+        "citation_number": 33,
+        "cited_text": "Benefits PAT-free authentication : Eliminate the need to create, store, and rotate Personal Access Tokens . Least privilege : Use per-pipeline permissions instead of shared build service account permissions . Improved security : Use Entra federated credentials with automatic token rotation. Cross-organization access : Access Azure DevOps resources in different organizations by using a single service connection. Audit trail : All authentication attempts are logged in Azure DevOps audit logs. Supported scenarios The Azure DevOps service connection supports these scenarios:"
+      },
+      {
+        "source_id": "d237e6f6-5645-4808-955d-22f30a418ee2",
+        "citation_number": 34,
+        "cited_text": "In this article Benefits Supported scenarios Prerequisites Step 1: Create a service connection within the same organization Step 2: Create the service connection Use the service connection in your pipeline Security best practices Troubleshooting Next steps Show 5 more Azure DevOps Services Note This feature is rolling out this week and next. If you don't see the feature yet on your Azure DevOps Services project, check back in a few days. An Azure DevOps service connection lets your pipelines authenticate to Azure DevOps without Personal Access Tokens (PATs) by using Microsoft Entra workload identities . Service principals and managed identities access Azure DevOps through workload identity federation , a zero-secret method that eliminates the need to manage and rotate secrets."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 35,
+        "cited_text": "Beyond security improvements, this approach also helps organizations meet compliance requirements more easily. Many security frameworks recommend avoiding long-lived credentials, and Federated Identity aligns with best practices by enforcing short-lived, scoped authentication. With no secrets to manage, there is no need for secret rotation policies or manual credential updates. Governance becomes simpler, and audits are easier since authentication events can be tracked without worrying about managing stored credentials."
+      }
+    ]
+  },
+  {
+    "question": "企業環境中，AI Agent 存取 SharePoint/Outlook/ADO 的權限該如何設計？最小權限原則的實作方式？",
+    "answer": "在企業環境中，設計 AI Agent 的存取權限時，直接授予「租戶級的全局授權（Tenant-wide Access）」是極高風險的安全隱憂 [1]。為落實零信任（Zero Trust）與最小權限原則（Least Privilege）[2-4]，針對 **SharePoint、Outlook（Exchange Online）以及 Azure DevOps（ADO）** 這三大 Microsoft 生態系核心場景，必須分別透過 **特定資源特異性同意（Scoping）、應用程式存取原則、以及無秘密受控識別** 來設計。\n\n以下為您拆解各場景的精細化權限實作步驟：\n\n---\n\n### 一、 SharePoint Online 最小權限設計：實作 `Sites.Selected` 控制\n\n如果 AI Agent 只需要讀寫特定的 SharePoint 網站（例如：某個特定部門的知識庫），在 Entra ID App 註冊中絕不能授予全局的 `Sites.Read.All` 或 `Sites.ReadWrite.All` [5-7]。\n\n#### 1. 實作步驟：\n1. **Entra ID 權限宣告**：在 AI Agent 的 Entra ID 應用程式註冊中，僅宣告並同意 **`Sites.Selected` 應用程式權限（Application Permission）** [8-13]。\n2. **指定目標 Site 授權**：此時 AI Agent 還無法存取任何網站 [14]。必須由「租戶全域管理員」或擁有 `Sites.FullControl.All` 的管理員應用程式 [12, 14]，向特定的 Site Collection 發送 Graph API 請求進行顯式授權 [15]：\n   * **API 端點**：`POST https://graph.microsoft.com/v1.0/sites/{site-id}/permissions` [15]\n   * **Payload**：\n     ```json\n     {\n       \"roles\": [\"read\"], \n       \"grantedToIdentities\": [{\n         \"application\": {\n           \"id\": \"{AI-Agent-App-Client-ID}\",\n           \"displayName\": \"AI-Knowledge-Agent\"\n         }\n       }]\n     }\n     ```\n     *(角色 `{role}` 可根據需求指派 `read`、`write`、`manage` 或 `fullcontrol` [16, 17])*\n\n#### ⚠️ 關鍵安全盲點與防禦：\n* **Graph Search API 的繞過風險**：**Graph 搜尋 API（`/search/query`）在 App-only 模式下「不支援」且會直接忽略 `Sites.Selected` 的限制 [18, 19]**。如果 AI Agent 使用搜尋 API，它會檢索到租戶內所有網站的索引 [19]。\n* **解決方案**：AI Agent 在讀取或檢索特定 SharePoint 資料時，必須改用直接的 Drive 或 List APIs（例如 `/sites/{site-id}/drives/{drive-id}/root/children`）[20]，這些端點能確實被 `Sites.Selected` 安全地限制保護 [19, 20]。\n\n---\n\n### 二、 Outlook / 行事曆最小權限設計：配置 Exchange 應用程式存取原則\n\n若 AI Agent 需要存取組織內的行事曆或特定服務信箱（如：自動讀取團隊信箱並自動建立工作項目），在過去一旦授予了 Graph `Mail.Read` 或 `Mail.Send` 的應用程式權限，該 App 就能存取租戶內「所有使用者」的信箱 [21, 22]。\n\n#### 1. 實作步驟：\n1. **Entra ID 權限宣告**：在 App 註冊中加入對應的 Microsoft Graph 應用程式權限（如 `Mail.Read` 或 `Mail.Send`），並完成管理員同意 [23-25]。\n2. **建立郵件啟用安全群組（Mail-enabled Security Group）**：在 Exchange 管理中心或 Microsoft 365 管理中心，建立一個安全群組（例如：`AI-Allowed-Mailboxes`），並僅將 AI Agent 獲准存取的信箱/服務帳戶加入此群組中 [24, 26-28]。\n3. **建立應用程式存取原則（Application Access Policy）**：使用 Exchange Online PowerShell 執行限制 [26, 29, 30]：\n   ```powershell\n   New-ApplicationAccessPolicy -AppId \"{AI-Agent-App-Client-ID}\" -PolicyScopeGroupId \"AI-Allowed-Mailboxes@yourdomain.com\" -AccessRight RestrictAccess -Description \"限制 AI Agent 僅能存取特定群組內的信箱\"\n   ```\n   * 使用 **`RestrictAccess`** 參數代表「僅允許」存取該群組成員的信箱，而拒絕其他所有信箱的存取 [31-33]。\n4. **驗證與測試**：原則設定後，Exchange Online 約需要 **1 小時** 來進行快取同步 [34]。您可以使用以下指令即時測試原則是否生效 [1, 35, 36]：\n   ```powershell\n   Test-ApplicationAccessPolicy -Identity \"user@yourdomain.com\" -AppId \"{AI-Agent-App-Client-ID}\"\n   ```\n\n---\n\n### 三、 Azure DevOps (ADO) 最小權限設計：無秘密整合受控識別與具現化授權\n\nAI Agent 如果需要串接 Azure DevOps API（如：查詢 Boards 工作項、觸發 Pipelines），傳統上多依賴個人存取權杖（PAT）[37, 38]。然而 PAT 是與個人帳戶綁定的 Bearer 憑證，壽命長達一年，一旦洩漏將造成嚴重的供應鏈安全風險 [37-39]。\n\n#### 1. 實作步驟：\n1. **採用無密鑰身分驗證（PAT-Free）**：\n   * **Azure 託管環境**（如運行於 Azure VM、AKS 或 Azure Functions 上的 AI Agent）：啟用並使用 **受控識別（Managed Identity）** [39-42]。\n   * **非 Azure/多雲環境**：採用 **工作負載身分識別同盟（Workload Identity Federation）** [39, 43, 44]，透過 OIDC 短期權杖動態向 Entra ID 換取 Access Token [44-46]。\n2. **在 Azure DevOps 中「具現化（Materialize）」該身分**：\n   * 受控識別或服務主體（Service Principal）在 Entra ID 建立後，並不會自動存在於 Azure DevOps 中 [47, 48]。\n   * 專案集合管理員（PCA）必須手動進入 **Organization Settings > Users**，點選 **Add users**，輸入該**服務主體的名稱或 Object ID**（注意：必須使用 **Enterprise Applications** 刀鋒視窗中的 **Object ID**，而非 App 註冊的 Client ID [49, 50]），並指派授權層級（通常選擇標準存取權的 **Basic**）[51, 52]。\n3. **專屬權限隔離**：\n   * **Azure DevOps 不使用 Entra ID 的「應用程式權限」**，而是使用 ADO 自身的安全和授權體系 [50, 53]。\n   * 登入 ADO Portal，進入 **Project Settings > Permissions** [54]，將該服務主體/受控識別加入適當的 Project 安全群組（例如：僅加入特定專案的 Readers，或建立專屬的最小權限 Group [47, 51, 54]），徹底在專案、Repo 與 Pipeline 層級實施權限隔離 [47]。\n\n---\n\n### 四、 企業級 AI Agent 精細化防禦總結\n\n| 整合場景 | 傳統全局風險權限 | 最小權限最佳實踐 (Least Privilege) | 控制技術關鍵 |\n| :--- | :--- | :--- | :--- |\n| **SharePoint** | `Sites.ReadWrite.All` | **`Sites.Selected`** | 使用 Graph `/permissions` 端點精細授權個別網站，避免呼叫全局 Search API [15, 19]。 |\n| **Outlook / Exchange** | `Mail.ReadWrite` | **`RestrictAccess`** | Exchange `New-ApplicationAccessPolicy` + 郵件啟用安全群組隔離 [26, 29, 31]。 |\n| **Azure DevOps** | 個人長期 `PAT` | **受控識別 / 工作負載同盟** | 在 ADO Organization 中顯式註冊受控識別之 **Enterprise App Object ID**，並使用 ADO 內部 ACL 控管 [47, 49, 50]。 |\n\n---\n\n💡 **建議下一步**：\n我們是否可以針對您目前實施 AI Agent 的部署情境，為您產出一份對應的 **PowerShell 指令碼**，用於自動化配置 SharePoint 網站的 `Sites.Selected` 權限，或是 Exchange Online 的 `ApplicationAccessPolicy` 原則？",
+    "citations": [
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 1,
+        "cited_text": "Test-ApplicationAccessPolicy -Identity  -AppId Figure 8: Example PowerShell command verifying that access is denied Figure 9: Example PS command verifying that access is granted You can see that the accessCheckResult value provides the result if your app registration has access to the mailbox. Conclusion There are major risks associated with application permissions that have broad access across all users in your tenant. With the goal of achieving the principle of least privilege, we began by identifying which applications have permission to send emails. Using the Graph API Activity Logs, we identified active app registrations with \"Mail.Send\" permissions and the corresponding email addresses they use to send email messages."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 2,
+        "cited_text": "Best Practices for Integrating Federated Identity Credentials with Azure DevOps Now, Federated Identity removes credential management risks, but to strengthen the security and reliability of your workflow, here are some of the best practices that you should follow. Enforce Least Privilege Access with RBAC Granting excessive permissions to Managed Identities can lead to security risks. Instead of assigning broad roles like Owner or Contributor, use least privilege principles to grant only the necessary permissions. For example, if a pipeline only needs to deploy infrastructure, assign the Managed Identity Operator role instead of full subscription-level access. Use custom roles if built-in roles do not fit your access control needs."
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 3,
+        "cited_text": "Next, we implemented an application access policy to ensure that these app registrations only have access to the mailboxes they truly need. Implementing these steps will help you achieve the least privilege principle that we all strive so hard to attain and uphold. Do you know if your SaaS applications and app registration permissions within Entra ID are creating a security risk? The ENow AppGov Score is a free security assessment tool that will quantify your application security and governance state quickly. In addition to providing your AppGov Score, the tool will provide a comprehensive Application Governance Assessment report that includes each test, your result, and why the test matters. Sign up to get your score and assessment report in just a few minutes - Get Your AppGov Score today !"
+      },
+      {
+        "source_id": "a3a3f730-e9b3-4bf2-bddf-6b46eab88938",
+        "citation_number": 4,
+        "cited_text": "Show more Service or daemon apps automate tasks, integrate systems, and secure interactions between apps. They're used for batch processing, data integration, resource provisioning, and managing cloud-based resources at scale. In DevOps, they can deploy infrastructure as code, test and assure quality, and monitor system performance. This article will cover some of the best practices to implement least privilege principle for this type of apps using Microsoft Azure Active Directory. Azure AD uses service principals to authenticate and access resources. Service principals enable an app to access specific resources in Azure, Microsoft Graph, or REST APIs. Over-permissioned service principals can lead to unauthorized access to resources. To avoid this, it's important to configure them carefully with appropriate, minimum required permissions, so they don't have too much access."
+      },
+      {
+        "source_id": "e0aac10a-467b-4f73-9d3c-60a68b5da4c2",
+        "citation_number": 5,
+        "cited_text": "Crush11wiki: CrushTaskExample19 Home Download Overview Features Case Studies Docs Pricing Support G'day (anonymous guest) Log in CrushTaskExample19 Quick Navigation view edit clone find Quick search (type ahead) Recent Searches (Clear) Your trail: More... View Page Source V iew A ttach (18) I nfo Managing SharePoint Site Access for Applications Using Sites.Selected Permission # The Sites.Selected permission allows an app to access only the specific SharePoint sites you explicitly authorize. This wiki page provides guidance on how to grant SharePoint write access (required for SharePoint / SharePoint2 protocol see SharePoint Integration ) to an App Registration configured in the Azure Portal. Using Sites.Selected offers a much more secure alternative to granting full access across your entire tenant. See this: Granting access via Azure AD App-Only Link"
+      },
+      {
+        "source_id": "1fc53055-bc4d-4bcd-9443-81a868f3537e",
+        "citation_number": 6,
+        "cited_text": "ACS isn't however anymore the best option to manage application registration and security for SharePoint. You should rely on Microsoft Entra (formerly Azure Active Directory) application registration and OAuth. By default, when you register an application in Microsoft Entra, and you can configure Microsoft Graph application permissions like Sites.Read.All , Sites.ReadWrite.All , Sites.Manage.All , or Sites.FullControl.All , which are permission that targets all the site collections in the target tenant, as the All word implies in the name of the permission scopes."
+      },
+      {
+        "source_id": "8be106c4-3fd2-4ab9-a3b3-b8d0cae19609",
+        "citation_number": 7,
+        "cited_text": "Use Sites.Selected application permission in Microsoft Graph — Darwin Droll By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively. Accept Decline 0 Skip to Content Home My Story Blog Contact Open Menu Close Menu Home My Story Blog Contact Open Menu Close Menu Home My Story Blog Contact Use Sites.Selected application permission in Microsoft Graph Sharepoint Microsoft Graph permission 18 Aug Written By Darwin Droll You are building an application that accesses your Sharepoint trough the Microsoft Graph API. For a long time there was only the option to give your application access to “Sharepoint”. Meaning it has potential access to everything on there. Concerning security this is not good because suddenly all confidential data is accessible through one app."
+      },
+      {
+        "source_id": "02e24bb9-2168-4633-bc2d-df61a02c77f2",
+        "citation_number": 8,
+        "cited_text": "Mail MailboxSettings Calendars Contacts SharePoint Online permission scoping For SharePoint Online, a special permission was added to Microsoft Graph,Â Sites.Selected Â allows the application to access a subset of site collections without a signed in user. Additionally, the administrator uses the site permissions endpoint to grant Read, Write, or Read and Write permissions to the application. Teams permission scoping In Teams, scoping is based on the Resource-specific consent (RSC) authorization framework. It allows fine-grained data access to Teams, chats, and meetings. An authorized user can give app access to specific resources without doing it for the entire tenant"
+      },
+      {
+        "source_id": "97e6dd10-3e87-4ac1-a758-918a12e8fa72",
+        "citation_number": 9,
+        "cited_text": "If you want to avoid any admin-level PowerShell you can switch to delegated/user-consent flows and use built-in portal blades to scope who can sign in. Here's how: Use delegated mailbox access instead of app-only • In Azure AD Portal ➔ App registrations ➔ Your app ➔ API permissions, add a delegated Mail.* scope (e.g. Mail.Read.Shared) • Grant admin consent once (or enable user consent if your tenant allows it) • In Azure AD ➔ Enterprise applications ➔ Your service principal ➔ Users and groups, assign only that one mailbox user Result: Only that user account can sign in and grant the app access to their mailbox—no Exchange PS needed. Use delegated SharePoint access with the new Sites.Selected permission • In Azure AD ➔ App registrations ➔ API permissions, add Sites.Selected (application) and grant admin consent • In the SharePoint admin center ➔ Active sites ➔ Select your site ➔ Permissions ➔ API access, grant the app one of the site-level roles (Read, Write, or Full Control) Note: The “API access” UI for Sites.Selected is rolling out and may be in Preview. Otherwise you'd fall back to Graph/PowerShell. Leverage Teams Resource-Specific Consent in the Teams Admin Center • Build your Teams app package with RSC scopes in the manifest • In Teams Admin Center ➔ Teams apps ➔ Manage apps, upload it to your org's app catalog • In Teams Admin Center ➔ Teams apps ➔ Permission policies, ensure user/team owners are allowed to install custom apps • A Team owner then installs your app in that single team (including private channels) and implicitly consents for that team only This avoids Global-Admin PowerShell, since the Team owner is the resource admin in RSC."
+      },
+      {
+        "source_id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+        "citation_number": 10,
+        "cited_text": "The Sites.ReadWrite.All delegated permission is available for consent in personal Microsoft accounts. Sites.Selected Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Category",
+              "Application",
+              "Delegated"
+            ],
+            [
+              "Identifier",
+              "883ea226-0bf2-4a8f-9f9d-92c9162a727d",
+              "f89c84ef-20d0-4b54-87e9-02e856d66d53"
+            ],
+            [
+              "DisplayText",
+              "Access selected site collections",
+              "Access selected Sites, on behalf of the signed-in user"
+            ],
+            [
+              "Description",
+              "Allow the application to access a subset of site collections without a signed in user. The specific site collections and the permissions granted will be configured in SharePoint Online.",
+              "Allow the application to access a subset of site collections on behalf of the signed-in user. The specific site collections and the permissions granted will be configured in SharePoint Online."
+            ],
+            [
+              "AdminConsentRequired",
+              "Yes",
+              "No"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "a3a3f730-e9b3-4bf2-bddf-6b46eab88938",
+        "citation_number": 11,
+        "cited_text": "Mail MailboxSettings Calendars Contacts Limiting application permissions to specific Exchange Online mailboxes SharePoint Online permission scoping For SharePoint Online, a special permission was added to Microsoft Graph, Sites. Selected allows the application to access a subset of site collections without a signed in user. Additionally, the administrator uses the site permissions endpoint to grant Read, Write, or Read and Write permissions to the application. Controlling app access on a specific SharePoint site collections is now available in Microsoft Graph"
+      },
+      {
+        "source_id": "8be106c4-3fd2-4ab9-a3b3-b8d0cae19609",
+        "citation_number": 12,
+        "cited_text": "Then Microsoft released a new API permission that's called \"Sites.Selected”. This permission allows you to grant permissions on site collection level, but needs additional setup to work., that I will show you in this article. available api permission scopes for sites Prerequisites To do this, we need two app registration. One is associated with the application we are creating and the other one is solely used for permission administration. The admin app needs the following api permission scope: Sites.FullControl.All (as this permission is very powerful, be mindful about giving out credentials)"
+      },
+      {
+        "source_id": "5e15673c-d62e-4ef7-9f05-a1458d4e3011",
+        "citation_number": 13,
+        "cited_text": "Application permissions <cited_table>",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Permission",
+              "Display String",
+              "Description",
+              "Admin Consent Required"
+            ],
+            [
+              "Sites.Read.All",
+              "Read items in all site collections",
+              "Allows the app to read documents and list items in all site collections without a signed in user.",
+              "Yes"
+            ],
+            [
+              "Sites.ReadWrite.All",
+              "Read and write items in all site collections",
+              "Allows the app to create, read, update, and delete documents and list items in all site collections without a signed in user.",
+              "Yes"
+            ],
+            [
+              "Sites.Manage.All",
+              "Create, edit, and delete items and lists in all site collections",
+              "Allows the app to manage and create lists, documents, and list items in all site collections without a signed-in user.",
+              "Yes"
+            ],
+            [
+              "Sites.FullControl.All",
+              "Have full control of all site collections",
+              "Allows the app to have full control to SharePoint sites in all site collections without a signed-in user.",
+              "Yes"
+            ],
+            [
+              "Sites.Selected",
+              "Access selected site collections",
+              "Allow the application to access a subset of site collections without a signed in user. The specific site collections and the permissions granted will be configured in SharePoint Online.",
+              "Yes"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "1fc53055-bc4d-4bcd-9443-81a868f3537e",
+        "citation_number": 14,
+        "cited_text": "There's also a Sites.Selected application permission for SharePoint Online, in case you want to consume SharePoint Online via REST APIs, instead of consuming SharePoint Online via Microsoft Graph. In the following screenshot, you can see how the Sites.Selected permission for SharePoint Online looks like in Microsoft Entra. Granting permissions to a specific Site Collection Once the Sites.Selected application permission is assigned and granted, the application still can't access any target site collection. In order to be able to access any target site, you'll need a tenant global admin or an application with Sites.FullControl.All application permission to grant explicit permissions for the selected target sites."
+      },
+      {
+        "source_id": "1fc53055-bc4d-4bcd-9443-81a868f3537e",
+        "citation_number": 15,
+        "cited_text": "Granting permissions via Microsoft Graph To grant permissions to the selected target sites, you can use a Microsoft Graph API POST request, targeting the following URL: TEXT Copy Where the {siteId} is the Microsoft Graph unique ID of the target site collection, with a format like the following one: TEXT Copy The body of the HTTP POST request should have a structure like the following code excerpt."
+      },
+      {
+        "source_id": "1fc53055-bc4d-4bcd-9443-81a868f3537e",
+        "citation_number": 16,
+        "cited_text": "JSON Copy Where {role} can be any of the following values, or an array of any of the following values: read: provides the ability to read the metadata and contents of the item. write: provides the ability to read and modify the metadata and contents of the item. manage: provides the ability to read and modify the metadata and contents of the item and to manage the site. fullcontrol: provides full control on the site and its content."
+      },
+      {
+        "source_id": "1fc53055-bc4d-4bcd-9443-81a868f3537e",
+        "citation_number": 17,
+        "cited_text": "Read: provides the ability to read the metadata and contents of the item. Write: provides the ability to read and modify the metadata and contents of the item. Manage: provides the ability to read and modify the metadata and contents of the item and to manage the site. FullControl: provides full control on the site and its content. The {site-object} value can be a site object retrieved using the Get-PnPSite cmdlet, or can be omitted to target as the selected site the one to which you're connected with Connect-PnPOnline cmdlet."
+      },
+      {
+        "source_id": "ba720214-0c8a-4341-afc1-4bf3d88c7ffd",
+        "citation_number": 18,
+        "cited_text": "Teddie-D • Follow 19,760 Reputation points • Microsoft External Staff • Moderator Jan 21, 2026, 10:24 PM Hi @ Ali Jone Thank you for posting your question in the Microsoft Q&A forum. Based on this documentation Use the Microsoft Search API to query data - Microsoft Graph v1.0 | Microsoft Learn . Sites.Selected is not listed under the permission scopes. The documentation also notes that the Search API does not support the site-level search schema. Instead, it uses the tenant-level or default search schema."
+      },
+      {
+        "source_id": "ba720214-0c8a-4341-afc1-4bf3d88c7ffd",
+        "citation_number": 19,
+        "cited_text": "Therefore, the behavior you observed is expected. The Microsoft Graph Search API (/search/query) does not enforce Sites.Selected in app-only scenarios. Search always operates against the tenant-wide SharePoint search index, and Sites.Selected is not evaluated at query time. Sites.Selected applies only to SharePoint site APIs, such as: /sites/{id} /sites/{id}/drives /sites/{id}/lists /sites/{id}/permissions It does not apply to: /search/query (Graph Search) SharePoint legacy search API /_api/search/query"
+      },
+      {
+        "source_id": "ba720214-0c8a-4341-afc1-4bf3d88c7ffd",
+        "citation_number": 20,
+        "cited_text": "There is currently no supported way to enforce Sites.Selected restrictions on Microsoft Graph Search. You can use Drive or List APIs: GET /sites/{site-id}/drives/{drive-id}/root/children GET /sites/{site-id}/lists/{list-id}/items?$filter=... These endpoints respect Sites.Selected, but they do not support full-text search. I hope this information is helpful. If the answer is helpful, please click \" Accept Answer \" and kindly upvote it. If you have extra questions about this answer, please click \"Comment\"."
+      },
+      {
+        "source_id": "2a6594bd-5579-4b90-9b51-c3e196e99a19",
+        "citation_number": 21,
+        "cited_text": "Let's dig into some specifics. Consider an app registration in Azure AD for NewApp , to which I rather generously added the entire set of permissions available for Exchange Online, as illustrated on the screenshot below. Those include things like being able to access all items in all mailboxes in the tenant, change settings for any mailbox, being able to send messages as any user, etc. And since this is an web app type of application, it runs without a user context, and anyone that can run operations via this application will have practically unrestricted access to all mailboxes in the company, regardless of any roles he or she holds inside Office 365."
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 22,
+        "cited_text": "Application permissions: sending email messages As IT administrators or software vendors, we should always strive to follow the principle of least privilege. Suppose we examine the permission set of the Microsoft Graph API and look at the application permission Mail.Send, we can see that the description of this permission states, \"Send mail as any user.\" Figure 1: API permissions for an app registration in the Entra portal In this case, having permission to send emails as any user in my tenant is excessive. Imagine if this app gets compromised and adversaries can impersonate and send emails from our tenant. This could lead to potential misuse of our email system."
+      },
+      {
+        "source_id": "02e24bb9-2168-4633-bc2d-df61a02c77f2",
+        "citation_number": 23,
+        "cited_text": "Upvote 1 Downvote Reply Share Report Language and translations 1 more reply 1 more reply More replies More replies merillf â€¢ 1y ago Not everything supports it but you can limit application permissions for SharePoint, Exchange and Teams. See https://devblogs.microsoft.com/identity/azure-ad-app-permission-scoping/ Specifically the last section: Microsoft Graph least privilege Exchange Online permission scoping Exchange Online uses a mixed approach to scope the permissions to specific mailboxes. The Azure AD administrator still needs to grant application permissions using the app registration, then the Exchange Online administrator limits app access to specific mailboxes using an application access policy. The following Microsoft Graph permissions can be scoped:"
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 24,
+        "cited_text": "Application access policy Exchange Online allows us to create application access policies that restrict app registration access to predefined mailboxes. To achieve this, we need to create a new mail-enabled group. In that mail-enabled security group, we will add the email address from which our application will send emails. Note that you are required to set an owner for the mail-enabled security group. I use an account that has no mailbox configured. Now, use PowerShell to connect to Exchange Online, using the following commands, and create an Application Access policy."
+      },
+      {
+        "source_id": "a3a3f730-e9b3-4bf2-bddf-6b46eab88938",
+        "citation_number": 25,
+        "cited_text": "IMPORTANT: when using multiple authorization methods, the resulting set of permissions combines everything that is granted – the most permissive wins! Exchange Online permission scoping Exchange Online uses a mixed approach to scope the permissions to specific mailboxes. The Azure AD administrator still needs to grant application permissions using the app registration, then the Exchange Online administrator limits app access to specific mailboxes using an application access policy. The following Microsoft Graph permissions can be scoped:"
+      },
+      {
+        "source_id": "2a6594bd-5579-4b90-9b51-c3e196e99a19",
+        "citation_number": 26,
+        "cited_text": "As an example of the things one can do with access to said application, here's a PowerShell code snippet that gets a token for the NewApp application, then uses it to get a list of Inbox rules for one of the mailboxes in the company. The same example can be used against any mailbox thanks to the permissions granted on the app. So how do we go about restricting this? As mentioned above, Applications Access Policies enforce a list of objects against which we can use a given application. For this specific example, we can configure an Application Access Policy that limits the NewApp application to just a subset of the mailboxes in the tenant, or similarly, prevents it from running against the most sensitive ones. Apart from the application identifier, we need to specify a group object, members of which will populate the restricted access list. Once we have all the needed information, we can run the New- ApplicationAccessPolicy cmdlet:"
+      },
+      {
+        "source_id": "ccb15454-aab5-4823-9d14-d1598483e39e",
+        "citation_number": 27,
+        "cited_text": "This document will guide you on how Application access policies can restrict an application's access, for example, \"Group.Read.All\" to a subset of mail-enabled security groups in Exchange Online. To limit the scope of Group.Read.All permissions in Microsoft Graph to specific mail-enabled security groups, you can use the following approach 1- Ensure you have the necessary Exchange Online PowerShell module 2- Create a security group in Azure AD or use an existing mail-enabled security group. Ensure the group is mail-enabled and contains the users/groups you want the application to access."
+      },
+      {
+        "source_id": "ac22a3e1-4043-42ab-9a7a-a7504e60975d",
+        "citation_number": 28,
+        "cited_text": "https://learn.microsoft.com/en-us/graph/auth-limit-mailbox-access Create Mail-enabled Security Group Navigate to Exchange admin center > Recepients > Groups > Mail-enabled security https://admin.cloud.microsoft/exchange#/groups Add a new group EWSMailEnabled . Add all mailboxes you want to sync into this group. Copy the GroupObjectID from the address bar: Install/update ExchangeOnlineManagement module Check if it is already installed If it's listed, you might just need to update it. If it's not listed, you need to install it."
+      },
+      {
+        "source_id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+        "citation_number": 29,
+        "cited_text": "Connect-ExchangeOnline -UserPrincipalName <user principal name New-ApplicationAccessPolicy -AccessRight RestrictAccess -AppId \"fillin app id\" -PolicyScopeGroupId \"exampleGraphApiMailerApp@mastelinck.onmicrosoft.com\" -Description \"This policy makes sure that my app registration can only send via these email addresses assigned in the mail enabled security group\" The screenshot below shows an example: Figure 7: Example PowerShell command creating application policy Next, you can verify the result of your policy using this PowerShell command:"
+      },
+      {
+        "source_id": "97e6dd10-3e87-4ac1-a758-918a12e8fa72",
+        "citation_number": 30,
+        "cited_text": "Shubham Sharma • Follow 17,925 Reputation points • Microsoft External Staff • Moderator 11 May 2026, 12:57 am Hello MagiCapSss Thank you for reaching out to Microsoft Q&A. Thanks for the details—unfortunately, there's no full GUI path today in the Azure Portal or Microsoft 365 Admin Center to: • Create an Exchange Application Access Policy (that still requires Exchange Online PowerShell or Graph calls) • Turn on and scope Teams Resource-Specific Consent (you still need PowerShell or Graph to register the app for RSC and assign it to a team)"
+      },
+      {
+        "source_id": "2a6594bd-5579-4b90-9b51-c3e196e99a19",
+        "citation_number": 31,
+        "cited_text": "And there we have it – the “ Access to OData is disabled. ” error is thrown, as detailed in the documentation . In effect, the “NewApp” application is now restricted and cannot act against any of the mailboxes that are members of the “USG” group we specified when creating the policy. This is because we used the DenyAccess value for the – AccessRights parameter, which means that every request for accessing any of the members of the group will be denied. Alternatively, one can use RestrictAccess , which is an inclusion type of policy – the API calls will only be allowed to run against mailboxes that are members of the group."
+      },
+      {
+        "source_id": "a3d67d4b-0305-46f7-915c-9c9c7b09b525",
+        "citation_number": 32,
+        "cited_text": "Permissions There are two permission options that can be applied within the Application Access Policy, based on your requirements for granting or denying access to the mailboxes added to the mail-enabled security group: a) DenyAccess: This option denies access to mailboxes within the group while allowing access to all other mailboxes. b) RestrictAccess: This option allows access to mailboxes within the group while restricting access to all other mailboxes. By carefully configuring the Application Access Policy and Management Scope, you can ensure the appropriate level of access control for your organization's calendars."
+      },
+      {
+        "source_id": "a3d67d4b-0305-46f7-915c-9c9c7b09b525",
+        "citation_number": 33,
+        "cited_text": "Check that your Microsoft 365 Service account does not have full impersonation rights. Create a new mail-enabled security group to manage the mailboxes, which you will either allow or deny access to. 6 New-DistributionGroup -Name \"Enter the name of new security group\" -Alias \"Enter the Alias\" -Type security Create an Application Access Policy on the mail-enabled security group. 7 New-ApplicationAccessPolicy -AccessRight RestrictAccess -AppId \"Enter Token Provider AD App ID\" -PolicyScopeGroupId \"Enter Email Enabled Security Group Mailbox ID\" -Description \"Restricted Access Group Policy\""
+      },
+      {
+        "source_id": "2a6594bd-5579-4b90-9b51-c3e196e99a19",
+        "citation_number": 34,
+        "cited_text": "You might also experience some delays in applying the policies (about an hour), due to the caching mechanisms employed by Exchange Online for both the group membership and the policy objects. As the restrictions are applied at the Exchange server layer, obtaining a new token will not help speed things up, you have to wait for the policy changes to propagate. The Test – ApplicationAccessPolicy cmdlet will help you validate without having to wait. It's also important to understand that not all API calls are currently covered, just the ones included in the following scopes:"
+      },
+      {
+        "source_id": "2a6594bd-5579-4b90-9b51-c3e196e99a19",
+        "citation_number": 35,
+        "cited_text": "Let's also look at the other cmdlets used for working with Application Restriction Policies. The Get- ApplicationAccessPolicy cmdlet can be used to list the policies configured in the tenant. As shown below, the Identity of each policy is constituted of the tenant identifier followed by the “\\” char, the application id, a colon (“:”), the SID of the group, a semicolon (“;”) and the objectID of the group. Although a Set- ApplicationAccessPolicy cmdlet exists, it can only be used to change the Description of a policy, so it's mostly useless. Remove- ApplicationAccessPolicy can be used to delete any existing policies, and the Test- ApplicationAccessPolicy can be used to make sure the resultant set of policies configured for a given app will produce the desired outcome when applied to a given mailbox or group of mailboxes."
+      },
+      {
+        "source_id": "ac22a3e1-4043-42ab-9a7a-a7504e60975d",
+        "citation_number": 36,
+        "cited_text": "Here GroupObjectId is the ID you copied from the browser address bar on the first step. Create the Application Access Policy with the Group's Object ID Verify the Application Access Policy Test Access for a Specific Mailbox Expected output: Check Application Permissions in Azure AD Ensure your application has been granted the EWS.AccessAsUser.All permission with admin consent: https://portal.azure.com/#home Go to Azure Portal > Enterprise Applications > GrinMark Synchronizer Unde rPermissions, verify that EWS.AccessAsUser.All is listed. Ensure Admin consent has been granted. If not, click Grant admin consent. Contact Us Terms & Conditions • Privacy Copyright © 2007-2050, All Rights Reserved, GrinMark Ltd"
+      },
+      {
+        "source_id": "98895109-7347-453c-9ec0-d1e90a61824e",
+        "citation_number": 37,
+        "cited_text": "Why is this important? Copy link Service principals and managed identities provide an exciting new alternative to personal access tokens (PATs), one of our most widely used authentication methods that is tied to the user that created the token. Teams have traditionally relied on PATs to power applications, services, and automation tools to access organizational resources. However, using an authentication method tied to a single person also means relying on a single point-of-failure. When a user leaves the company, the PAT driving the team application will become inaccessible to all other team members."
+      },
+      {
+        "source_id": "c9ab3cbc-4039-4a0d-b637-56760a6776b9",
+        "citation_number": 38,
+        "cited_text": "Free Account Open Azure DevOps Table of contents Exit editor mode Learn Azure Azure DevOps Learn Azure Azure DevOps Ask Learn Ask Learn Reading mode Table of contents Read in English Add to Collections Add to Plans Edit Copy Markdown Print Note Access to this page requires authorization. You can try signing in or changing directories . Access to this page requires authorization. You can try changing directories . Managed Identities and Service Principal support Feedback Summarize this article for me In this article Today most application integration scenarios rely on Personal Access Tokens (PATs) to integrate with Azure DevOps. PATs can easily be leaked, potentially enabling malicious actors to authenticate as powerful users without the protections of Azure Active Directory security features like Conditional Access Policies. To prevent this, they may require time-consuming maintenance, including regular rotation."
+      },
+      {
+        "source_id": "fca73546-4c59-46f1-adb3-1c22f3a121e5",
+        "citation_number": 39,
+        "cited_text": "Expand table <cited_table>",
+        "cited_table": {
+          "num_columns": 6,
+          "rows": [
+            [
+              "Method",
+              "Best for",
+              "Security posture",
+              "Credential management",
+              "Works with",
+              "Avoid when"
+            ],
+            [
+              "Managed identity",
+              "Azure-hosted automation, such as Azure Functions, App Service, or virtual machines",
+              "Strongest option for Azure-hosted workloads because tokens are short-lived and Azure manages the identity lifecycle",
+              "No client secret to store or rotate; Azure manages the identity and token acquisition",
+              "Azure DevOps Services; Azure-hosted workloads in the same Microsoft Entra tenant after you add the identity to Azure DevOps",
+              "The workload doesn't run on Azure, or you need a portable identity that isn't tied to an Azure resource"
+            ],
+            [
+              "Service principal",
+              "Automation that runs outside Azure, across multiple environments, or in external CI/CD systems",
+              "Strong option when you use certificate-based auth or federated approaches and apply least privilege",
+              "You manage the application identity and any client secret or certificate unless a federated flow removes the secret",
+              "Azure DevOps Services; apps, scripts, and services that need a Microsoft Entra application identity",
+              "You can use a managed identity instead for the same Azure-hosted workload, or the tool supports only PAT-based auth"
+            ],
+            [
+              "Azure DevOps service connection",
+              "Azure Pipelines access to Azure DevOps resources",
+              "Strong option for pipeline automation because it uses Microsoft Entra workload identity federation instead of long-lived tokens",
+              "Azure DevOps manages the service connection, and pipelines don't need to store PATs in variables",
+              "Azure DevOps Services; pipelines that access repos, feeds, or REST APIs across organizations",
+              "The scenario doesn't run through Azure Pipelines"
+            ],
+            [
+              "Personal access token (PAT)",
+              "Short-lived personal scripts, one-off testing, or legacy scenarios that can't yet use Microsoft Entra-based auth",
+              "Highest risk of the common choices because the token is a long-lived bearer secret tied to a user account",
+              "You must create, store, rotate, and revoke the token manually",
+              "Azure DevOps Services and Azure DevOps Server; CLI, REST calls, and legacy integrations that support PATs",
+              "The integration is a production service, shared automation, or any scenario where a service principal, managed identity, or service connection is available"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "fca73546-4c59-46f1-adb3-1c22f3a121e5",
+        "citation_number": 40,
+        "cited_text": "Quick recommendations Choose managed identity first when the workload runs on Azure and Azure can own the identity lifecycle. Choose a service principal when you need an application identity but the workload doesn't run on Azure or must move across environments. Choose an Azure DevOps service connection when Azure Pipelines needs to access Azure DevOps resources without a PAT. Choose a PAT only for personal, temporary, legacy, or Azure DevOps Server scenarios where the more secure options don't apply."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 41,
+        "cited_text": "This process ensures that authentication is secure, automated, and does not depend on static secrets. Each time a pipeline runs, it generates a fresh authentication request, eliminating the need for manual secret rotation or storage. Since the token is short-lived, even if intercepted, it cannot be reused for long-term access. This approach significantly reduces the attack surface and aligns with best practices for cloud security. The Role of Managed Identities in Federated Authentication Federated Identity relies on Managed Identities to handle authentication. Azure provides two types of Managed Identities: System-Assigned and User-Assigned. A System-Assigned Managed Identity is tied to a specific Azure resource, such as a Virtual Machine, App Service, or Azure Kubernetes Service (AKS). When the resource is deleted, the identity is also removed. This type of identity is useful for workloads running within Azure but is not ideal for Azure DevOps pipelines that need a reusable authentication mechanism."
+      },
+      {
+        "source_id": "c9ab3cbc-4039-4a0d-b637-56760a6776b9",
+        "citation_number": 42,
+        "cited_text": "We are working on enabling applications to instead use Managed Identities and Service Principals to integrate with Azure DevOps through REST APIs and client libraries. This highly requested feature offers Azure DevOps customers a more secure alternative to PATs. And Managed Identities offer the ability for applications running on Azure resources to obtain Azure AD tokens without needing to manage any credentials at all. Managed Identities and Service Principals can be setup in Azure DevOps and given permissions to specific assets (projects, repos, pipelines), just like regular users. This allows applications that use Managed Identities or Service Principals to connect to Azure DevOps and perform actions on behalf of themselves, instead of on behalf of a user, as PATs do. This ensures that teams can better manage their services collectively, instead of relying on any one individual to provide a token for authentication."
+      },
+      {
+        "source_id": "d237e6f6-5645-4808-955d-22f30a418ee2",
+        "citation_number": 43,
+        "cited_text": "In this article Benefits Supported scenarios Prerequisites Step 1: Create a service connection within the same organization Step 2: Create the service connection Use the service connection in your pipeline Security best practices Troubleshooting Next steps Show 5 more Azure DevOps Services Note This feature is rolling out this week and next. If you don't see the feature yet on your Azure DevOps Services project, check back in a few days. An Azure DevOps service connection lets your pipelines authenticate to Azure DevOps without Personal Access Tokens (PATs) by using Microsoft Entra workload identities . Service principals and managed identities access Azure DevOps through workload identity federation , a zero-secret method that eliminates the need to manage and rotate secrets."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 44,
+        "cited_text": "In the next section, we will explore how this authentication method works and what happens behind the scenes when Azure DevOps requests access to Azure resources. How Federated Identity Works within Azure Federated Identity authentication in Azure is based on OpenID Connect (OIDC), a widely adopted authentication protocol that enables secure, token-based access without storing secrets. Instead of relying on static credentials, Azure DevOps pipelines authenticate dynamically by requesting a temporary token from Microsoft Entra ID (formerly Azure AD). This token allows access to Azure resources only for the duration of the pipeline execution, eliminating the risks associated with long-lived credentials."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 45,
+        "cited_text": "How Federated Identity Solves These Issues Federated Identity eliminates these problems by using OpenID Connect (OIDC). When a pipeline runs, Azure DevOps requests authentication from Microsoft Entra ID. Instead of using a stored credential, Entra ID verifies the request and issues a short-lived token. This token is valid only for the duration of the pipeline run and grants access only to the resources specified in its permissions. Once the pipeline finishes, the token expires automatically, reducing the risk of credential misuse."
+      },
+      {
+        "source_id": "467fa419-c42a-45c7-909e-00d818ed6230",
+        "citation_number": 46,
+        "cited_text": "How Azure DevOps Requests and Receives a Token For Azure DevOps to authenticate using Federated Identity, it follows a structured process: Pipeline Execution Begins The pipeline is triggered, requiring authentication to access Azure resources. Instead of using a stored secret, it initiates an authentication request to Microsoft Entra ID. Microsoft Entra ID Validates the Request The request includes metadata, including a signed OIDC token from Azure DevOps. Entra ID verifies the Issuer, Subject, and Audience values to ensure it comes from an authorized source. A Temporary Access Token is Issued If the validation succeeds, Microsoft Entra ID generates a short-lived access token. This token is scoped to allow access only to the required Azure resources. Azure DevOps Uses the Token to Authenticate The pipeline uses the token to access Azure services such as Virtual Machines, Storage Accounts, or Kubernetes clusters. The token expires automatically once the pipeline execution is completed. Token Expiry Enhances Security Since each token is generated on-demand, there are no long-lived secrets to manage. The next time the pipeline runs, a new authentication request is initiated."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 47,
+        "cited_text": "Step 2: Add the identity to Azure DevOps After you create your identity in Microsoft Entra ID, add it to your Azure DevOps organization to grant access to resources. Important Service principals don't automatically appear in Azure DevOps. Adding a service principal to a Microsoft Entra security group doesn't grant access to your organization. A Project Collection Administrator (PCA) or Project Administrator (PA) must explicitly add the service principal to the organization and grant it the permissions required for its scenario. Follow least-privilege principles —assign the service principal only to the specific project, team, or security group it needs."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 48,
+        "cited_text": "Materialization Must be explicitly added to organizations (no automatic materialization like users). Required because service principals can't sign in interactively. Key differences from user accounts Service principals and managed identities have specific limitations compared to regular users. Capabilities ✅ Generate Microsoft Entra tokens for API access. ✅ Access Azure DevOps resources with proper permissions. ✅ Join security groups and teams. ❌ Create PATs or Secure Shell keys. ❌ Sign in interactively or access via a web UI. ❌ Create or own organizations. ❌ Support Azure DevOps OAuth flows."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 49,
+        "cited_text": "Important When you register an application, Azure creates both an application object and a service principal object. Use the service principal's object ID (found on the Enterprise applications pane) when you add it to Azure DevOps, not the application's object ID. For more information, see the following articles: Application and service principal objects in Microsoft Entra ID Create a service principal Option B: Create a managed identity Managed identities provide the simplest authentication experience for Azure-hosted applications."
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 50,
+        "cited_text": "Use the ServicePrincipalEntitlements REST API to automate the process. Other considerations: Find the correct ID: Use the service principal's object ID on the Enterprise applications pane in the Microsoft Entra admin center, not the application registration's object ID. Tenant restrictions: You can add identities only from the same tenant to which your Azure DevOps organization is connected. For cross-tenant scenarios, see the FAQ workaround . Step 3: Configure permissions Configure granular permissions for your service principal or managed identity within Azure DevOps. Unlike other Azure services, Azure DevOps uses its own permission model rather than Microsoft Entra application permissions."
+      },
+      {
+        "source_id": "d237e6f6-5645-4808-955d-22f30a418ee2",
+        "citation_number": 51,
+        "cited_text": "Step 1: Create a service connection within the same organization If your service principal is in the same Azure DevOps organization as the service connection: Add the service principal to your organization In your Azure DevOps organization, go to Organization Settings > Users . Select Add users . Enter the service principal details: Name : The service principal or managed identity name or object ID Access level : Select the appropriate access level. Use Basic for standard access Assign the service principal or managed identity to the project where you'll create the service connection e.g. by adding it to the Readers group Select Add to confirm. Assign any additional resource level permissions to the service principal or managed identity"
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 52,
+        "cited_text": "Prerequisites Expand table <cited_table> Add the identity To add the identity through the Azure DevOps portal: Go to Organization Settings > Users . Select Add users . Enter the display name of your service principal or managed identity. Select the appropriate access level and project access. Send the invitation. Add the identity programmatically:",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Category",
+              "Requirement"
+            ],
+            [
+              "Permissions",
+              "Member of the"
+            ],
+            [
+              "Permissions",
+              "Project Administrator"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 53,
+        "cited_text": "Important Azure DevOps versus Microsoft Entra permissions: Azure DevOps doesn't use Microsoft Entra ID application permissions. All access control is managed through the Azure DevOps permission system, which allows for granular project and resource-level permissions. Step 4: Get Microsoft Entra ID tokens Get access tokens to authenticate your applications with Azure DevOps APIs and services. For service principals Use client credentials flow: HTTP Copy"
+      },
+      {
+        "source_id": "81f65878-0127-4e84-af81-5652d9e2700d",
+        "citation_number": 54,
+        "cited_text": "Permission options: Direct assignment : Assign permissions directly to the identity. Group membership : Add to Azure DevOps or Microsoft Entra security groups. Access levels : Assign the appropriate license level (Basic, Basic + Test Plans, or Visual Studio subscriber). Best practices: Apply least privilege : Grant only the minimum permissions needed. Use groups : Manage permissions through groups for easier maintenance. Regular reviews : Audit permissions periodically. Permission management options: Azure DevOps portal : Select Organization settings > Permissions . REST APIs : Use Service Principal Graph APIs for programmatic management."
+      }
+    ]
+  }
+]

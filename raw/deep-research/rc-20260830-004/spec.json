@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260830-004",
+  "query": "Skill Supply Chain Security：AI Agent Skill 的安全風險、Skill 供應鏈攻擊場景、Skill 權限控管機制、Sandbox 隔離策略、Skill 安全審查流程。以 Claude Code Skills / GitHub Copilot Extensions / Pi Extensions 為主要研究對象。",
+  "sub_questions": [
+    "AI Agent Skill 的供應鏈風險有哪些？Malicious skill、dependency confusion、typosquatting 在 Skill 生態系中的威脅？",
+    "Skill 權限控管如何設計？Tool permission、resource access、capability restriction 的實作方式？",
+    "Skill Sandbox 隔離策略？Process isolation、filesystem restriction、network control、resource limits 的比較？",
+    "現有 Skill 生態系（Claude Code Skills / Copilot Extensions / Pi Extensions）的安全機制比較？各自的審查流程與信任模型？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "1y",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "industry",
+    "output_format": "full"
+  }
+}

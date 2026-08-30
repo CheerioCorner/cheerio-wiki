@@ -1,0 +1,443 @@
+[
+  {
+    "id": "70780b73-6c4f-4d9d-b736-160a842fe6ed",
+    "title": "[Cerbos 官方] 部落格 - APIM 結合 Cerbos 落實 API 策略即程式碼架構",
+    "type": "web_page",
+    "url": "https://www.cerbos.dev/blog/policy-as-code-azure-api-management-cerbos",
+    "status": 2
+  },
+  {
+    "id": "e0aac10a-467b-4f73-9d3c-60a68b5da4c2",
+    "title": "[CrushFTP] 部落格 - 運用 Sites.Selected 權限在 SharePoint 中落實低權限原則",
+    "type": "web_page",
+    "url": "https://www.crushftp.com/crush11wiki/Wiki.jsp?page=CrushTaskExample19",
+    "status": 2
+  },
+  {
+    "id": "8be106c4-3fd2-4ab9-a3b3-b8d0cae19609",
+    "title": "[Darwin Droll] 部落格 - 實踐 Microsoft Graph 中的 Sites.Selected 權限精細限制網站存取",
+    "type": "web_page",
+    "url": "https://www.darwindroll.com/blog/use-sitesselected-application-permission-in-microsoft-graph",
+    "status": 2
+  },
+  {
+    "id": "54c6ce53-fe43-4343-bcdb-5d54b789bb3f",
+    "title": "[ENow] 部落格 - 限制 Microsoft Graph API 應用程式存取特定信箱之技術實務",
+    "type": "web_page",
+    "url": "https://www.appgovscore.com/blog/how-to-restrict-microsoft-graph-api-access-to-mailboxes",
+    "status": 2
+  },
+  {
+    "id": "467fa419-c42a-45c7-909e-00d818ed6230",
+    "title": "[Firefly AI] 部落格 - 在 Azure DevOps Pipelines 中設定工作階段同盟識別憑證",
+    "type": "web_page",
+    "url": "https://www.firefly.ai/academy/integrating-federated-identity-credentials",
+    "status": 2
+  },
+  {
+    "id": "5e15673c-d62e-4ef7-9f05-a1458d4e3011",
+    "title": "[GitHub] API 參考 - Microsoft Graph API 授權與權限參考文件 Markdown 來源",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/microsoft-graph-docs-1/blob/main/concepts/permissions-reference.md",
+    "status": 2
+  },
+  {
+    "id": "65e023ec-775b-430d-893d-daf554ec3389",
+    "title": "[GitHub] API 參考 - Microsoft Graph processContent API 機密資訊保護參考原始碼",
+    "type": "web_page",
+    "url": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib/blob/main/api-reference/v1.0/api/userdatasecurityandgovernance-processcontent.md",
+    "status": 2
+  },
+  {
+    "id": "ac22a3e1-4043-42ab-9a7a-a7504e60975d",
+    "title": "[GrinMark] 部落格 - 配置 Exchange Online 應用程式存取原則保護信箱安全",
+    "type": "web_page",
+    "url": "https://www.grinmark4u.com/kb/application-access-policy-exchange-online.html",
+    "status": 2
+  },
+  {
+    "id": "ccb15454-aab5-4823-9d14-d1598483e39e",
+    "title": "[Humly 知識庫] 知識庫文件 - Azure Application Access Policies 系統配置指引",
+    "type": "web_page",
+    "url": "https://support.humly.com/azure-application-access-policies",
+    "status": 2
+  },
+  {
+    "id": "874da382-cdf2-4422-8058-7861d1ef20ac",
+    "title": "[Kindo 官方] 產品文件 - 企業級應用程式 Microsoft Entra ID 授權機制",
+    "type": "web_page",
+    "url": "https://docs.kindo.ai/admin/enterprise-app-permissions/",
+    "status": 2
+  },
+  {
+    "id": "895a6646-ff84-4f61-9723-47d361bc049b",
+    "title": "[LiteLLM] 產品文件 - LiteLLM 整合 Microsoft Purview 安全護欄機制",
+    "type": "web_page",
+    "url": "https://docs.litellm.ai/docs/proxy/guardrails/microsoft_purview",
+    "status": 2
+  },
+  {
+    "id": "808fc74b-cc5d-4731-bcc8-ac0f6649bede",
+    "title": "[Microsoft Q&A] 社群問答 - Azure Key Vault 自動輪轉儲存體 SAS 權杖可行性分析",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/answers/questions/5565288/does-azure-key-vault-support-automatic-rotation-of",
+    "status": 2
+  },
+  {
+    "id": "0c6cd389-84e0-4b00-8843-53dba4f5ae7b",
+    "title": "[Microsoft Q&A] 社群問答 - 使用 APIM 原則控管 Azure OpenAI API 呼叫",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/answers/questions/2279864/apim-manages-azure-openai-policies",
+    "status": 2
+  },
+  {
+    "id": "43ba3be3-c9c9-41e6-bbc4-b7606fe1b19a",
+    "title": "[Microsoft Q&A] 社群問答 - 使用 Sites.Selected 權限整合 SharePoint 端點驗證",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/answers/questions/5626253/endpoint-access-with-sites-selected-permission-for",
+    "status": 2
+  },
+  {
+    "id": "0517ba13-e5df-4b5d-ba6e-f04469551392",
+    "title": "[Microsoft Q&A] 社群問答 - 偵錯 Purview DLP 策略與 Entra ID 整合中的行為不一致性",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/answers/questions/5883903/purview-dlp-and-entra-id-app-inconsistent-behavior",
+    "status": 2
+  },
+  {
+    "id": "3d9fbb0a-9c90-44fa-8d52-1d204355b55e",
+    "title": "[Microsoft Q&A] 社群問答 - 匯入 Azure Function App 至 APIM 時 JWT 策略應用之故障排除",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/answers/questions/5827298/trying-to-apply-jwt-policy-for-an-api-import-funct",
+    "status": 2
+  },
+  {
+    "id": "ba720214-0c8a-4341-afc1-4bf3d88c7ffd",
+    "title": "[Microsoft Q&A] 社群問答 - 解決 Graph Search API 忽略 Sites.Selected 限制之安全異常",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/answers/questions/5731476/graph-search-api-returns-all-sites-despite-sites-s",
+    "status": 2
+  },
+  {
+    "id": "2c58fd73-5a3b-4251-9c42-12bf7188a250",
+    "title": "[Microsoft 官方] API 參考 - APIM validate-jwt 權杖驗證原則說明",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy",
+    "status": 2
+  },
+  {
+    "id": "7bf55db8-443c-4f16-aae5-c637c976d191",
+    "title": "[Microsoft 官方] API 參考 - APIM 結構描述與內容驗證 validate-content 原則",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/validate-content-policy",
+    "status": 2
+  },
+  {
+    "id": "093e4991-e4ac-4d5e-a1b9-8360d3c239ef",
+    "title": "[Microsoft 官方] API 參考 - APIM 鍵值限流機制 rate-limit-by-key 策略",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/rate-limit-by-key-policy",
+    "status": 2
+  },
+  {
+    "id": "16c35d93-3535-49c7-9caa-21206902b578",
+    "title": "[Microsoft 官方] API 參考 - APIM 限流機制 rate-limit 策略參考",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/rate-limit-policy",
+    "status": 2
+  },
+  {
+    "id": "cc46a5eb-8661-43d6-91e7-e18f886bdc40",
+    "title": "[Microsoft 官方] API 參考 - APIM 驗證 Entra ID (Azure AD) 權杖策略",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/validate-azure-ad-token-policy",
+    "status": 2
+  },
+  {
+    "id": "4d70f236-529f-44b0-be41-71b588cac567",
+    "title": "[Microsoft 官方] API 參考 - Azure CLI az keyvault key rotation-policy 原則命令詳解",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/cli/azure/keyvault/key/rotation-policy?view=azure-cli-latest",
+    "status": 2
+  },
+  {
+    "id": "89ff1dca-ae8f-4734-8de8-36df0e2f53a9",
+    "title": "[Microsoft 官方] API 參考 - Azure Key Vault 金鑰 IaC 配置與自動輪轉原則定義",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/templates/microsoft.keyvault/2026-03-01-preview/vaults/keys",
+    "status": 2
+  },
+  {
+    "id": "4b0622b9-1489-4b43-a73a-c86b3bff83f1",
+    "title": "[Microsoft 官方] API 參考 - Microsoft Graph userDataSecurityAndGovernance processContent API 定義說明",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/graph/api/userdatasecurityandgovernance-processcontent?view=graph-rest-1.0",
+    "status": 2
+  },
+  {
+    "id": "cc850d42-a527-4d39-9911-655d0b8a1aa5",
+    "title": "[Microsoft 官方] API 參考 - Microsoft Graph 權限與範圍詳細參考對照表",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/graph/permissions-reference",
+    "status": 2
+  },
+  {
+    "id": "d394e159-cc0b-4603-a526-e61b703a2dc2",
+    "title": "[Microsoft 官方] 技術文件 - APIM 保護與驗證 LLM API 存取最佳實踐",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-authenticate-authorize-ai-apis",
+    "status": 2
+  },
+  {
+    "id": "cae50e46-117d-4ba6-b5c9-9be3ce7857dd",
+    "title": "[Microsoft 官方] 技術文件 - APIM 全域與 API 範圍 JWT 驗證策略配置",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/answers/questions/5789623/apim-policy-jwt-general-validation-on-global-scope",
+    "status": 2
+  },
+  {
+    "id": "c0223101-082e-41c6-9dea-1d1ac6e6723c",
+    "title": "[Microsoft 官方] 技術文件 - APIM 身分驗證與授權機制設計概述",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/authentication-authorization-overview",
+    "status": 2
+  },
+  {
+    "id": "c9ab3cbc-4039-4a0d-b637-56760a6776b9",
+    "title": "[Microsoft 官方] 技術文件 - Azure DevOps 整合 Entra ID 服務主體與受控識別",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/devops/release-notes/roadmap/support-azure-managed-identities",
+    "status": 2
+  },
+  {
+    "id": "fca73546-4c59-46f1-adb3-1c22f3a121e5",
+    "title": "[Microsoft 官方] 技術文件 - Azure DevOps 整合用身分驗證方法評估",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/authentication-guidance?view=azure-devops",
+    "status": 2
+  },
+  {
+    "id": "3229460a-221d-4c51-9caa-e292af9872a5",
+    "title": "[Microsoft 官方] 技術文件 - Microsoft Entra ID 上的 OAuth 2.0 授權協議實作",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/entra/architecture/auth-oauth2",
+    "status": 2
+  },
+  {
+    "id": "97e6dd10-3e87-4ac1-a758-918a12e8fa72",
+    "title": "[Microsoft 官方] 技術文件 - Microsoft Graph API 委派與應用程式權限管理",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-nz/answers/questions/5886574/microsoft-graph-api-permission",
+    "status": 2
+  },
+  {
+    "id": "11dc74be-d5cd-42fa-953b-0bc6f51e4c80",
+    "title": "[Microsoft 官方] 技術文件 - Microsoft Purview DLP 與 Power Automate 整合快速入門",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/purview/dlp-powerautomate-int-get-started",
+    "status": 2
+  },
+  {
+    "id": "7b03eb4b-3211-40aa-9e21-7a75b46700c7",
+    "title": "[Microsoft 官方] 技術文件 - Microsoft Purview 擴充性框架與第三方安全合作夥伴",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/purview/purview-extensibility",
+    "status": 2
+  },
+  {
+    "id": "0ce50c93-b5d0-4aa2-94aa-8ea0efafaa3b",
+    "title": "[Microsoft 官方] 技術文件 - Microsoft 識別平台中 Scopes 與委派權限的設計",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/entra/identity-platform/scopes-oidc",
+    "status": 2
+  },
+  {
+    "id": "af809d4d-cac5-4683-9b78-d05fd9a7187d",
+    "title": "[Microsoft 官方] 技術文件 - Power Platform 資料原則與 Microsoft Purview DLP 綜整比較",
+    "type": "web_page",
+    "url": "https://powerplatformengineer.com/power-platform-data-policies-vs-microsoft-purview-dlp/",
+    "status": 2
+  },
+  {
+    "id": "110afd82-f18c-4af2-9cc3-bece838f3797",
+    "title": "[Microsoft 官方] 技術文件 - 使用 APIM Validate-Jwt 原則驗證 az login 預設憑證",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/answers/questions/1504820/how-to-validate-an-azlogin-defaultcredential-jwt-t",
+    "status": 2
+  },
+  {
+    "id": "d237e6f6-5645-4808-955d-22f30a418ee2",
+    "title": "[Microsoft 官方] 技術文件 - 使用 Entra ID 工作負載身分識別存取 Azure DevOps",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/devops/pipelines/library/add-devops-entra-service-connection?view=azure-devops",
+    "status": 2
+  },
+  {
+    "id": "81f65878-0127-4e84-af81-5652d9e2700d",
+    "title": "[Microsoft 官方] 技術文件 - 在 Azure DevOps 中使用服務主體與受控識別存取資源",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops",
+    "status": 2
+  },
+  {
+    "id": "535368bc-d7e0-4d57-976e-c5afc3312c9e",
+    "title": "[Microsoft 官方] 技術文件 - 在 Azure Key Vault 中設定密碼金鑰自動輪轉",
+    "type": "web_page",
+    "url": "https://docs.azure.cn/en-us/key-vault/keys/how-to-configure-key-rotation",
+    "status": 2
+  },
+  {
+    "id": "6a5ca748-347b-46ba-ac56-065e2439fc67",
+    "title": "[Microsoft 官方] 技術文件 - 在自訂應用程式中整合 Microsoft Purview 原則 API",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/purview/developer/use-the-api",
+    "status": 2
+  },
+  {
+    "id": "50b7534c-da0b-4e63-b3d3-b00b26571a80",
+    "title": "[Microsoft 官方] 技術文件 - 基於 Microsoft 識別平台的 OIDC 身分驗證整合",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc",
+    "status": 2
+  },
+  {
+    "id": "3fb27f36-570f-4c9d-95cb-f3914f4482a7",
+    "title": "[Microsoft 官方] 技術文件 - 深入理解 Azure Key Vault 加密金鑰自動輪轉之實作細節",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/autorotation",
+    "status": 2
+  },
+  {
+    "id": "921a71d5-7f6d-46cf-a53a-42e23a9c308c",
+    "title": "[Microsoft 官方] 技術文件 - 深入解析 Entra ID OAuth 2.0 授權碼授權流程",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow",
+    "status": 2
+  },
+  {
+    "id": "1fc53055-bc4d-4bcd-9443-81a868f3537e",
+    "title": "[Microsoft 官方] 技術文件 - 理解 Microsoft Graph 及 SharePoint 的資源特異性同意 (RSC) 機制",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins-modernize/understanding-rsc-for-msgraph-and-sharepoint-online",
+    "status": 2
+  },
+  {
+    "id": "46f7b4cf-a0ee-4885-bdaf-90df6aa99391",
+    "title": "[Microsoft 官方] 技術文件 - 藉由 Microsoft Purview 審核 Power Platform 連接器活動稽核記錄",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/power-platform/admin/activity-logging-auditing/activity-logs-connectors",
+    "status": 2
+  },
+  {
+    "id": "913bcdca-639c-45ba-93be-4112f61374c7",
+    "title": "[Microsoft 官方] 技術文件 - 運用 Azure AD B2C 來保護及限制 APIM API 的存取",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/howto-protect-backend-frontend-azure-ad-b2c",
+    "status": 2
+  },
+  {
+    "id": "a3a3f730-e9b3-4bf2-bddf-6b46eab88938",
+    "title": "[Microsoft 官方] 技術文件 - 運用 Azure AD 限縮自動化整合中的應用程式權限範圍",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/identity/azure-ad-app-permission-scoping/",
+    "status": 2
+  },
+  {
+    "id": "98895109-7347-453c-9ec0-d1e90a61824e",
+    "title": "[Microsoft 官方] 部落格 - Azure DevOps 支援服務主體與受控識別安全性更新",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/devops/introducing-service-principal-and-managed-identity-support-on-azure-devops/",
+    "status": 2
+  },
+  {
+    "id": "3c82e2f6-8c02-4a98-bfc6-cc90c475e75e",
+    "title": "[OneUptime] 部落格 - 使用 Azure Functions 實作 Azure Key Vault 秘密自動輪轉",
+    "type": "web_page",
+    "url": "https://oneuptime.com/blog/post/2026-02-16-how-to-configure-azure-key-vault-secret-rotation-using-azure-functions-and-event-grid/view",
+    "status": 2
+  },
+  {
+    "id": "ec1fe4bd-b5b3-4055-8342-6f434e35cc46",
+    "title": "[OneUptime] 部落格 - 基於 Dapr 與 Azure Key Vault 實作微服務密碼輪轉",
+    "type": "web_page",
+    "url": "https://oneuptime.com/blog/post/2026-03-31-dapr-secret-rotation-azure-key-vault/view",
+    "status": 2
+  },
+  {
+    "id": "1c5fed27-8c0c-4894-a375-3409521ac8d0",
+    "title": "[Postman] API 參考 - 調用 Microsoft Purview API 列出所有租戶敏感度標籤",
+    "type": "web_page",
+    "url": "https://www.postman.com/api-evangelist/workspace/microsoft-purview/request/35240-b702c0ba-661d-40aa-98ac-e710203af4e1",
+    "status": 2
+  },
+  {
+    "id": "59222f82-2fac-4e8f-b40f-1254df48c0b4",
+    "title": "[Postman] API 參考 - 調用 Microsoft Purview API 取得租戶敏感度標籤",
+    "type": "web_page",
+    "url": "https://www.postman.com/api-evangelist/workspace/microsoft-purview/request/35240-b78ac0fe-5883-40a2-b98f-6eb7369ff0ed",
+    "status": 2
+  },
+  {
+    "id": "2a6594bd-5579-4b90-9b51-c3e196e99a19",
+    "title": "[Practical365] 部落格 - 在 Exchange Online 中設定應用程式存取原則",
+    "type": "web_page",
+    "url": "https://practical365.com/application-access-policies-in-exchange-online/",
+    "status": 2
+  },
+  {
+    "id": "d3e5597b-abee-4e8d-ae57-d839616d05e2",
+    "title": "[Pulumi 官方] 部落格 - 使用 Pulumi TypeScript 部署 APIM 自訂安全原則",
+    "type": "web_page",
+    "url": "https://oneuptime.com/blog/post/2026-02-16-deploy-azure-api-management-custom-policies-pulumi-typescript/view",
+    "status": 2
+  },
+  {
+    "id": "02e24bb9-2168-4633-bc2d-df61a02c77f2",
+    "title": "[Reddit] 社群討論 - MS Graph PowerShell 管理員同意權限授權實務",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/MsGraphPowerShell/comments/1jqb9iq/admin_consent/",
+    "status": 2
+  },
+  {
+    "id": "e5ad9969-f39c-48da-930e-70463fe10a61",
+    "title": "[Reddit] 社群討論 - 將 Purview DLP 與資訊保護延伸至非微軟第三方平台",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/microsoft365/comments/1vo1olk/expanding_purview_dlp_and_information_protection/",
+    "status": 2
+  },
+  {
+    "id": "788011ef-e813-426c-ae64-42bc5b08b240",
+    "title": "[Reddit] 社群討論 - 針對 SaaS 要求的過度授權進行 Entra ID 權限限縮的有效策略",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/sysadmin/comments/1rrx7uq/whats_up_with_all_these_saas_wanting_such_broad/",
+    "status": 2
+  },
+  {
+    "id": "710aed19-f578-4dd8-a97b-956740a0f350",
+    "title": "[Safeguard] 部落格 - Azure Key Vault 秘密輪轉最佳實踐與安全設計",
+    "type": "web_page",
+    "url": "https://safeguard.sh/resources/blog/best-practices-for-rotating-secrets-stored-in-azure-key-vault",
+    "status": 2
+  },
+  {
+    "id": "7a159ce5-ace4-410a-a060-a9aaa74cc28d",
+    "title": "[Solo Enterprise] 產品文件 - Microsoft Purview DLP 代理閘道整合與安全策略",
+    "type": "web_page",
+    "url": "https://docs.solo.io/agentgateway/2026.7.1/llm/guardrails/purview-dlp/",
+    "status": 2
+  },
+  {
+    "id": "fe17dc24-4bc5-4fb3-b8f6-a2c47961678e",
+    "title": "[Turbot] 技術文件 - 檢驗 Azure Key Vault 自動金鑰輪轉之 CIS v2.0 合規策略",
+    "type": "web_page",
+    "url": "https://hub.guardrails.turbot.com/mods/azure/policies/azure-cisv2-0/r0808Attestation",
+    "status": 2
+  },
+  {
+    "id": "a3d67d4b-0305-46f7-915c-9c9c7b09b525",
+    "title": "[deskbird 說明中心] 說明中心文件 - 使用存取原則限縮 Office 365 行事曆整合權限",
+    "type": "web_page",
+    "url": "https://help.deskbird.com/hc/en-us/articles/18024523296401-Control-access-to-Calendars-using-an-Application-Access-Policy",
+    "status": 2
+  }
+]

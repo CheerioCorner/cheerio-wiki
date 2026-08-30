@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260830-001",
+  "query": "Agent Security 基礎：Prompt Injection 防禦機制、Agent 權限邊界設計、多 Agent 系統的信任模型、Sandbox 隔離策略、Agent-to-Agent 通訊安全。以 AI Coding Agent（如 Pi/Claude Code/Codex）為主要研究對象，涵蓋開源與商業方案的安全實踐。",
+  "sub_questions": [
+    "Prompt Injection 的分類（direct/indirect）與各類防禦機制（input validation/output filtering/system prompt hardening）的效果比較？",
+    "Agent 權限邊界如何設計？Tool permission、resource access control、capability-based security 在 AI Agent 中的實作方式？",
+    "多 Agent 系統中，Agent 間的信任如何建立？Capability delegation、attestation、sandbox 隔離的最佳實踐？",
+    "現有 AI Coding Agent（Pi、Claude Code、Codex、Copilot）的安全架構比較？各自的安全機制與限制？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "1y",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "industry",
+    "output_format": "full"
+  }
+}

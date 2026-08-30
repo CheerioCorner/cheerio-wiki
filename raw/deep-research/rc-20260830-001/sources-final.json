@@ -1,0 +1,450 @@
+[
+  {
+    "id": "8176dc56-7292-4678-95a4-c30194bf078f",
+    "title": "Authenticated Delegation and Authorized AI Agents - arXiv",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/2501.09674v1",
+    "status": 2
+  },
+  {
+    "id": "48085894-9c0c-4f37-ba30-1b7c009de1af",
+    "title": "Preventing Prompt Injection with Type-Directed Privilege Separation - arXiv",
+    "type": "pdf",
+    "url": "https://arxiv.org/pdf/2509.25926",
+    "status": 2
+  },
+  {
+    "id": "0979c78c-a3b5-4642-93ce-76950a8bddc2",
+    "title": "Security Best Practices - What is the Model Context Protocol (MCP)?",
+    "type": "web_page",
+    "url": "https://modelcontextprotocol.io/docs/draft/tutorials/security/security_best_practices",
+    "status": 2
+  },
+  {
+    "id": "28948a2f-60f7-4a83-aac4-133533f82785",
+    "title": "[AFINE] 技術研究 - 使用 CaMeL 框架進行 LLM Prompt Injection 防禦",
+    "type": "web_page",
+    "url": "https://afine.com/llm-security-prompt-injection-camel",
+    "status": 2
+  },
+  {
+    "id": "ac6051d8-b14c-4348-8592-191d4a526ecf",
+    "title": "[AIThinkerLab] 技術指南 - 2026 年防禦 Prompt Injection 的五大實用策略",
+    "type": "web_page",
+    "url": "https://aithinkerlab.com/preventing-llm-prompt-injection-attacks/",
+    "status": 2
+  },
+  {
+    "id": "dd2ace58-8d6a-47d4-b8c2-2c2dc5bd579e",
+    "title": "[ARMO] 技術分析 - 防範 Prompt Injection 的設計模式與安全盲點",
+    "type": "web_page",
+    "url": "https://www.armosec.io/blog/design-patterns-for-securing-llm-agents/",
+    "status": 2
+  },
+  {
+    "id": "999ed0a6-d8da-4927-b2fb-dc6e6b6fa2c7",
+    "title": "[Anthropic 官方] 官方文件 - Claude Code 安全模型與防禦架構",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/security",
+    "status": 2
+  },
+  {
+    "id": "e8782d36-98ef-4350-84b6-cf23697ea71d",
+    "title": "[Anthropic 官方] 官方文件 - Claude Code 權限設定指引",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/permissions",
+    "status": 2
+  },
+  {
+    "id": "54bc6f8e-230f-4880-8c2c-0702379e860b",
+    "title": "[Anthropic 官方] 官方文件 - Claude Code 沙箱 Bash 工具配置指南",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/sandboxing",
+    "status": 2
+  },
+  {
+    "id": "3d5477e5-6f81-4c93-866b-92cfb26d8d01",
+    "title": "[Anthropic 官方] 官方文件 - Claude Code 沙箱環境選擇指南",
+    "type": "web_page",
+    "url": "https://code.claude.com/docs/en/sandbox-environments",
+    "status": 2
+  },
+  {
+    "id": "5cd1217f-c6c7-423a-b4f5-c1b7c9dd2144",
+    "title": "[Anthropic 官方] 官方文件 - Claude Platform 平台安全模型與信任界限",
+    "type": "web_page",
+    "url": "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security",
+    "status": 2
+  },
+  {
+    "id": "4e59ba12-a6a3-40f3-a790-4e5b54e51868",
+    "title": "[Archestra.AI] 技術概念解析 - 用 200 字搞懂雙 LLM 安全防禦模式",
+    "type": "web_page",
+    "url": "https://archestra.ai/blog/dual-llm-pattern-summary",
+    "status": 2
+  },
+  {
+    "id": "886cfc91-68fe-4295-9280-fcd0e0d2231d",
+    "title": "[Arnica.io] 技術指南 - 2026 年 Agentic AI 安全完整指引",
+    "type": "web_page",
+    "url": "https://www.arnica.io/blog/agentic-ai-security-complete-guide",
+    "status": 2
+  },
+  {
+    "id": "60e7a00f-1d82-4671-bc95-25d3cdfc4e59",
+    "title": "[Arthur AI] 技術概念解析 - Agent 之間信任與授權代理鏈",
+    "type": "web_page",
+    "url": "https://www.arthur.ai/column/agent-to-agent-trust-and-delegation-chains",
+    "status": 2
+  },
+  {
+    "id": "c261df6d-d491-448f-842f-f32205bbab3f",
+    "title": "[Atlan] 安全分析 - 2026 年 Prompt Injection 攻擊危害與防範措施",
+    "type": "web_page",
+    "url": "https://atlan.com/know/prompt-injection-attacks-ai-agents/",
+    "status": 2
+  },
+  {
+    "id": "d1effd8c-a9cd-46a2-8402-e7b877970c1b",
+    "title": "[Augment Code 官方] 技術概念解析 - 什麼是 Agent 執行沙箱及其隔離原理",
+    "type": "web_page",
+    "url": "https://www.augmentcode.com/guides/agent-execution-sandbox",
+    "status": 2
+  },
+  {
+    "id": "4ad9ef49-a3d2-49a7-a4b1-b0761f34e662",
+    "title": "[Autonomys Network] 產業分析 - AI 的歷史與資料追溯挑戰",
+    "type": "web_page",
+    "url": "https://www.autonomys.xyz/post/ai-has-a-history-problem",
+    "status": 2
+  },
+  {
+    "id": "4b69b2dd-1178-4deb-aff6-1c2eed2be940",
+    "title": "[Cognition 官方] 官方文件 - Devin 代碼執行沙箱隔離技術說明",
+    "type": "web_page",
+    "url": "https://docs.devin.ai/cli/sandbox",
+    "status": 2
+  },
+  {
+    "id": "c9f640e2-7188-489c-a10f-b936732c4c88",
+    "title": "[Cognition 官方] 官方文件 - Devin 平台權限控制與安全範圍說明",
+    "type": "web_page",
+    "url": "https://docs.devin.ai/cli/reference/permissions",
+    "status": 2
+  },
+  {
+    "id": "4f33e30f-728d-4069-a858-23f7252a60a9",
+    "title": "[Cognition 官方] 官方文件 - Devin 本地端 Agent 部署與安全機制",
+    "type": "web_page",
+    "url": "https://docs.devin.ai/desktop/devin-local",
+    "status": 2
+  },
+  {
+    "id": "ba8cfc13-dbda-4f37-8831-cb11db94c7c7",
+    "title": "[Cosmonic] 技術指南 - 2026 年 AI Agent 沙箱隔離策略指引",
+    "type": "web_page",
+    "url": "https://cosmonic.com/blog/ai-sandbox-guide/",
+    "status": 2
+  },
+  {
+    "id": "a8cdca68-1539-4ce7-86b2-6da7397820b8",
+    "title": "[DEV Community] 技術分享 - 兩行代碼防禦 90% 真實世界 Prompt Injection",
+    "type": "web_page",
+    "url": "https://dev.to/gabrielanhaia/the-2-line-defense-that-stops-90-of-real-world-prompt-injection-1c50",
+    "status": 2
+  },
+  {
+    "id": "632d7a84-75ee-4e93-9e72-8c74b831e73b",
+    "title": "[DataCamp] 技術教學 - Claude Code 安全指南與權限 MCP 機制",
+    "type": "web_page",
+    "url": "https://www.datacamp.com/tutorial/claude-code-security",
+    "status": 2
+  },
+  {
+    "id": "1733cf38-9e7b-43f6-b64f-cafd7aa45c9d",
+    "title": "[Department of War] 安全性設計指引 - MCP 模型上下文協定安全設計考量",
+    "type": "pdf",
+    "url": "https://media.defense.gov/2026/Jun/02/2003943289/-1/-1/0/CSI_MCP_SECURITY.PDF",
+    "status": 2
+  },
+  {
+    "id": "73f76721-a641-4000-8a4e-bfcdc754966a",
+    "title": "[Docker 官方] 官方文件 - E2B 沙箱架構與 Docker 整合指引",
+    "type": "web_page",
+    "url": "https://docs.docker.com/ai/mcp-catalog-and-toolkit/e2b-sandboxes/",
+    "status": 2
+  },
+  {
+    "id": "96123595-5d72-48e8-bd29-aa37eae6b308",
+    "title": "[Docker] 技術指南 - 安全執行 AI 生成程式碼的沙箱實務",
+    "type": "web_page",
+    "url": "https://www.vietanh.dev/blog/2026-02-02-agent-sandboxes",
+    "status": 2
+  },
+  {
+    "id": "74c1e429-47d9-45bc-a1ec-5a543b514615",
+    "title": "[E2B 官方] 官方文件 - Amp 沙箱架構與開發文件",
+    "type": "web_page",
+    "url": "https://e2b.dev/docs/agents/amp",
+    "status": 2
+  },
+  {
+    "id": "fc0ceb00-9b12-45a0-83e3-98962faef29b",
+    "title": "[Emergent Mind] 技術研究 - 最小權限大語言模型設計原則",
+    "type": "web_page",
+    "url": "https://www.emergentmind.com/topics/least-privilege-language-models",
+    "status": 2
+  },
+  {
+    "id": "b93212d5-41e5-4210-b64b-b52ee0d98f22",
+    "title": "[Fastio] 案例研究 - Devin AI 軟體工程師架構與沙箱工作流分析",
+    "type": "web_page",
+    "url": "https://fast.io/resources/devin-software-engineer/",
+    "status": 2
+  },
+  {
+    "id": "c5416f5b-1cf6-49c2-8227-41a1f08c5f7e",
+    "title": "[GS Consulting] 技術分析 - 多 Agent 系統的信任邊界與安全控制措施",
+    "type": "web_page",
+    "url": "https://gsconsultingllc.com/insights/multi-agent-ai-security",
+    "status": 2
+  },
+  {
+    "id": "cd256964-4735-43c6-89c2-4025b13ecc02",
+    "title": "[GitHub 專案] 安全性分析與測試 - Claude Code Prompt Injection 漏洞與測試集研究",
+    "type": "web_page",
+    "url": "https://github.com/liatrio-labs/claude-deep-review/blob/main/docs/research/artifacts/05-prompt-injection-vulnerabilities.md",
+    "status": 2
+  },
+  {
+    "id": "11c1c9a1-75bc-4dd6-96c9-95aae6c6e46d",
+    "title": "[GitHub 專案] 開源專案專頁 - dortort/agent-bound：基於 Android 樣式權限的 MCP 存取控制框架",
+    "type": "web_page",
+    "url": "https://github.com/dortort/agent-bound",
+    "status": 2
+  },
+  {
+    "id": "5120749e-4426-49fe-ac24-ff5754776186",
+    "title": "[GitHub 專案] 開源專案專頁 - gsiros/saga：SAGA 系統治理框架與開源實作",
+    "type": "web_page",
+    "url": "https://github.com/gsiros/saga",
+    "status": 2
+  },
+  {
+    "id": "80fbba1f-1431-4234-914f-f34846bce63c",
+    "title": "[IETF] 技術標準草案 - OAuth 2.0 多跳委派的身份傳播上下文規範",
+    "type": "web_page",
+    "url": "https://www.ietf.org/archive/id/draft-sharma-oauth-identity-propagation-context-00.html",
+    "status": 2
+  },
+  {
+    "id": "20025ad4-5fb9-48e2-bc58-741de5d4fa4f",
+    "title": "[LogionACE] 技術研究 - 基於 ACE 框架的非人身份安全認證",
+    "type": "web_page",
+    "url": "https://logionace.com/frontier-research/beyond-identity-emerging-authority-layer.html",
+    "status": 2
+  },
+  {
+    "id": "0d755c2e-7ae1-49b5-a814-712d5e1b98f0",
+    "title": "[Model Context Protocol 官方] 官方文件 - MCP 協議安全規範與標準描述",
+    "type": "web_page",
+    "url": "https://modelcontextprotocol.io/specification/2026-07-28",
+    "status": 2
+  },
+  {
+    "id": "550348ed-0015-463b-87bc-4a2f3225afa0",
+    "title": "[Model Context Protocol 官方] 官方文件 - MCP 安全最佳實踐指南",
+    "type": "web_page",
+    "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+    "status": 2
+  },
+  {
+    "id": "f19a53a5-c4b4-47fc-a328-3fa11c902009",
+    "title": "[Northflank] 比較分析 - E2B 與 Railway 代碼沙箱隔離機制評比",
+    "type": "web_page",
+    "url": "https://northflank.com/blog/e2b-vs-railway-sandboxes",
+    "status": 2
+  },
+  {
+    "id": "ee64d657-5e41-4369-9e98-79d0b0c11f8e",
+    "title": "[Northflank] 比較分析 - E2B 與 Sprites.dev 的 AI 代碼執行沙箱對比",
+    "type": "web_page",
+    "url": "https://northflank.com/blog/e2b-vs-sprites-dev",
+    "status": 2
+  },
+  {
+    "id": "b2cf6c76-bfd8-480c-a8b7-a2b58f4a707a",
+    "title": "[OWASP 官方] 技術標準 - OWASP LLM01:2025 提示注入漏洞詳解",
+    "type": "web_page",
+    "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+    "status": 2
+  },
+  {
+    "id": "7e691f85-870a-47dd-9995-0b8065ad0cdc",
+    "title": "[OWASP 官方] 技術標準 - OWASP 威脅建模核心方法論與安全實踐",
+    "type": "web_page",
+    "url": "https://owasp.org/www-community/Threat_Modeling",
+    "status": 2
+  },
+  {
+    "id": "45e34386-882f-4684-8752-19f7104b1178",
+    "title": "[OWASP 官方] 技術標準與指南 - 大語言模型 Prompt Injection 防禦速查表",
+    "type": "web_page",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+    "status": 2
+  },
+  {
+    "id": "cbffec7d-a856-4025-9e17-d6f4c6b63c4b",
+    "title": "[OpenHands 官方] 官方代碼文件 - openhands.sdk.security 安全 SDK 模組架構",
+    "type": "web_page",
+    "url": "https://docs.openhands.dev/sdk/api-reference/openhands.sdk.security",
+    "status": 2
+  },
+  {
+    "id": "59358c75-bee4-44a2-be74-4636e22d7e2f",
+    "title": "[OpenHands 官方] 官方文件 - 執行安全與高風險操作確認機制",
+    "type": "web_page",
+    "url": "https://docs.openhands.dev/sdk/guides/security",
+    "status": 2
+  },
+  {
+    "id": "b267760c-c38b-4765-8424-93fd78947fec",
+    "title": "[OpenHands 官方] 官方新聞 - OpenHands 加入開源安全 AI 聯盟推動代碼 Agent 安全",
+    "type": "web_page",
+    "url": "https://www.openhands.dev/blog/open-secure-ai-alliance",
+    "status": 2
+  },
+  {
+    "id": "79ff5c79-4fd6-4877-9629-41d85cac5977",
+    "title": "[Red Hat 官方] 技術指引 - 防禦 Prompt Injection 與不安全行為",
+    "type": "web_page",
+    "url": "https://www.redhat.com/en/blog/ai-security-defending-against-prompt-injection-and-unsafe-actions",
+    "status": 2
+  },
+  {
+    "id": "ba769494-4190-4175-bd67-0457de9c02e5",
+    "title": "[Ry Walker Research] 研究分析 - E2B 虛擬機沙箱技術與應用生態",
+    "type": "web_page",
+    "url": "https://rywalker.com/research/e2b",
+    "status": 2
+  },
+  {
+    "id": "2b092eaf-57c8-4073-b52e-7cca4bb2dfcf",
+    "title": "[SOC Prime] 安全性研究 - MCP 的安全風險與緩解對策",
+    "type": "web_page",
+    "url": "https://socprime.com/blog/mcp-security-risks-and-mitigations/",
+    "status": 2
+  },
+  {
+    "id": "f382171d-0420-4ae5-890f-3499d1c440c2",
+    "title": "[Semantic Scholar] 學術論文 - SAGA：管理 AI Agent 系統的安全治理架構",
+    "type": "web_page",
+    "url": "https://www.semanticscholar.org/paper/SAGA%3A-A-Security-Architecture-for-Governing-AI-Syros-Suri/643e64fd77cb9a2b2defd63769af75a92365a6c7",
+    "status": 2
+  },
+  {
+    "id": "9ddcdab9-608e-4e10-baaa-2f65fe13cee0",
+    "title": "[Snyk 官方] 技術分析 - 透過護欄機制（Guardrails）保障 AI Agent 未來安全",
+    "type": "web_page",
+    "url": "https://snyk.io/blog/future-of-ai-agent-security-guardrails/",
+    "status": 2
+  },
+  {
+    "id": "b2292b48-7f1b-4935-ac44-c25f542397c8",
+    "title": "[The New Stack] 產業分析 - WebAssembly 技術如何解決 AI Agent 沙箱隔離痛點",
+    "type": "web_page",
+    "url": "https://thenewstack.io/webassembly-sandboxing-ai-agents/",
+    "status": 2
+  },
+  {
+    "id": "59961774-e2dc-4302-8846-44109b43a717",
+    "title": "[WorkOS 官方] 技術指南 - AI Agent 代理授權與多 Agent 安全通訊實務",
+    "type": "web_page",
+    "url": "https://workos.com/blog/ai-agent-delegation-multi-agent-security",
+    "status": 2
+  },
+  {
+    "id": "750eea10-169b-4fd9-8ad6-e75da581371c",
+    "title": "[Zenity 官方] 安全指南 - 安全團隊在 Agent 大規模部署前必知的 MCP 風險",
+    "type": "web_page",
+    "url": "https://zenity.io/academy/model-context-protocol-explained",
+    "status": 2
+  },
+  {
+    "id": "2915e25a-0a15-42f1-b7e7-b50e798e839e",
+    "title": "[Zylos Research] 技術研究 - 跨組織 AI Agent 聯邦的信任與互操作性",
+    "type": "web_page",
+    "url": "https://zylos.ai/research/2026-03-01-cross-org-ai-agent-federation/",
+    "status": 2
+  },
+  {
+    "id": "2d1ff7df-43d1-4902-a7dd-a6a9424f749e",
+    "title": "[alphaXiv] 學術討論 - AgentBound 自主 Agent 的行為治理框架",
+    "type": "web_page",
+    "url": "https://www.alphaxiv.org/abs/2606.30970v2",
+    "status": 2
+  },
+  {
+    "id": "b6c2f22a-552c-4fd9-a04a-77bdf4886196",
+    "title": "[arXiv] 學術論文 - AgentBound 框架：自主 AI Agent 的行為治理",
+    "type": "web_page",
+    "url": "https://arxiv.org/abs/2606.30970",
+    "status": 2
+  },
+  {
+    "id": "495b9bd7-d2c9-497f-ab1e-c047c7018884",
+    "title": "[arXiv] 學術論文 - DualView 隔離架構防禦個人 AI Agent 間接提示注入",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/2607.03821v1",
+    "status": 2
+  },
+  {
+    "id": "255244c5-cfe5-4d4f-bc9f-9c8a49f93f29",
+    "title": "[arXiv] 學術論文 - SAGA：自主 AI Agent 系統安全治理架構",
+    "type": "pdf",
+    "url": "https://arxiv.org/pdf/2504.21034",
+    "status": 2
+  },
+  {
+    "id": "f97cd4b4-0193-4e07-82d5-e339bd4ba568",
+    "title": "[arXiv] 學術論文 - 具身驗證代理與授權 AI Agent 信任鏈",
+    "type": "pdf",
+    "url": "https://arxiv.org/pdf/2501.09674",
+    "status": 2
+  },
+  {
+    "id": "b63d7c06-eedf-485c-b25b-70ba7fa9667f",
+    "title": "[arXiv] 學術論文 - 基於類型導向特權隔離的 Prompt Injection 防禦機制",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/2509.25926v2",
+    "status": 2
+  },
+  {
+    "id": "20e77504-728e-447f-bf15-072f2c1086f5",
+    "title": "[arXiv] 學術論文 - 防禦間接 Prompt Injection 的系統級架構設計",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/2603.30016v1",
+    "status": 2
+  },
+  {
+    "id": "5bfd85f3-ad92-4bb7-9a89-469fdd99b58d",
+    "title": "[miniOrange 官方] 技術指南 - 雙向 TLS (mTLS) 與非人身份安全認證指南",
+    "type": "web_page",
+    "url": "https://www.miniorange.com/blog/mtls-for-ai-agents/",
+    "status": 2
+  },
+  {
+    "id": "ca537edb-01d8-489a-b319-25a18459fe22",
+    "title": "[sysid] 安全研究 - 執行代碼 Agent 的 Root 權限安全風險漏洞分析",
+    "type": "web_page",
+    "url": "https://sysid.github.io/your-agent-has-root/",
+    "status": 2
+  },
+  {
+    "id": "747e6b88-697d-4137-a3d3-842e57c4935f",
+    "title": "[東北大學] 學術研究 - LLM Agent 系統性安全威脅與防禦綜述",
+    "type": "web_page",
+    "url": "https://www.khoury.northeastern.edu/research_projects/security-of-llm-agents/",
+    "status": 2
+  }
+]

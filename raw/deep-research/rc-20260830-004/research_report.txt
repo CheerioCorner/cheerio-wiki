@@ -1,0 +1,154 @@
+✓ Created new notebook: Skill Supply Chain Security：AI Agent Skill 
+的安全風險、Skill 供應鏈攻擊場景、Skill 權限控管機制、Sand...
+✓ Research started
+  Query: Skill Supply Chain Security：AI Agent Skill 的安全風險、Skill 
+供應鏈攻擊場景、Skill 權限控管機制、Sandbox 隔離策略、Skill 安全審查流程。以 
+Claude Code Skills / GitHub Copilot Extensions / Pi Extensions 為主要研究對象。
+  Source: web
+  Mode: deep
+  Notebook ID: 7a49a488-1f82-44b0-b813-42cc345e6020
+  Task ID: ChBlMDQ0NDNhYjI5MGQwZTQ1EAgaBGM0NzEqA3Vzdw
+
+Waiting for research to complete...
+⠼ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 44b85f34-0dc2-423a-bcea-655e8bf7ca75
+  Sources found: 102
+
+Run 'nlm research import 7a49a488-1f82-44b0-b813-42cc345e6020 <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 96 sources.
+  • Claude Code Security: Top 6 Risks, Controls, and Best Practices - Checkmarx
+  • Caught in the Hook: RCE and API Token Exfiltration Through Claude Code 
+Project Files | CVE-2025-59536 | CVE-2026-21852
+  • Claude Code Permissions (2026): Allow Lists, Deny Rules, and Sandboxing 
+Explained
+  • Security · Documentation - Pi Coding Agent
+  • CVE-2026-21852: Claude Code Information Disclosure Flaw - SentinelOne
+  • Configure the sandboxed Bash tool - Claude Code Docs
+  • Claude Code Skills Security - HiddenLayer
+  • GitHub Copilot Trending Extensions: Transitioning to MCP - Fastio
+  • Claude Code security exposes the gap between permissions and data control
+  • Sunset notice: GitHub App-based Copilot Extensions
+  • gotgenes/pi-permission-system · Packages - Pi Coding Agent
+  • Prompt Injection Attacks on Agentic Coding Assistants: A Systematic Analysis
+of Vulnerabilities in Skills, Tools, and Protocol Ecosystems - arXiv
+  • Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent 
+Threats
+  • Securing Model Context Protocol (MCP) Authentication: Best Practices
+  • GitHub Copilot in 2026: Agent Mode, MCP, Usage-Based Pricing Explained - 
+ZigiWave
+  • Security - Claude Code Docs
+  • Extensions · Documentation - Pi Coding Agent
+  • [DOCS] Major Inconsistency in SKILL.md allowed-tools support between Claude 
+Code CLI and Agent SDK #18737 - GitHub
+  • Security Best Practices - What is the Model Context Protocol (MCP)?
+  • Pi.dev Review: The Pi Coding Agent Tested Hands-On - Petronella Technology 
+Group
+  • GitHub Copilot Extensions | Tiago Pascoal
+  • Claude Code CVE-2025-59536 & CVE-2026-21852: What Enterprise Teams Must Know
+| MintMCP Blog
+  • atiilla/CVE-2026-21852-PoC - GitHub
+  • Pi Coding Agent: Workflow, Extensions, and Limits - Verdent Guides
+  • pi/SECURITY.md at main · earendil-works/pi - GitHub
+  • Skill Issues: Compromising Claude Code with malicious skills & agents -- 
+Part 1
+  • CVE-2026-21852 - CVE Record
+  • CVE-2026-21852 Detail - NVD
+  • pi-permission-layers · Packages - Pi Coding Agent
+  • Claude Code Operator's Handbook | hidekazu-konishi.com
+  • MasuRii/pi-permission-system: Permission enforcement extension for the Pi 
+coding agent. - GitHub
+  • pi-lab/permissions · Packages - Pi Coding Agent
+  • Configure permissions - Claude Code Docs
+  • Choose a permission mode - Claude Code Docs
+  • When MCP Meets OAuth: Common Pitfalls Leading to One-Click Account Takeover
+  • Authorization Security Considerations - Model Context Protocol
+  • Understanding Authorization in MCP - Model Context Protocol
+  • Claude Code agents: the practical guide - schoettler.io
+  • Bug: allowed-tools in skill frontmatter not enforced · Issue #18837 · 
+anthropics/claude-code
+  • AgentAuditKit MCP Security Scan - GitHub Marketplace
+  • Best Claude Code setups for security (August 2026)
+  • MCP Server Published But Not Visible on github.com/mcp Registry · github 
+github-mcp-server · Discussion #1257 · GitHub
+  • MCP Server Registry · modelcontextprotocol · Discussion #159 - GitHub
+  • MCP Registry explained: why you need one and who should own It - Port.io
+  • MCP Adoption Week: Copilot Code Review Goes GA - Digital Applied
+  • mcp-security-best-practices-2025.md - GitHub
+  • Feature Request: Extension API for Community Plugins · Issue #1017 · 
+github/copilot-cli
+  • GitHub - copilot-extensions/preview-sdk.js: An SDK that streamlines 
+extension development by automating request verification, response formatting, 
+and API interactions
+  • Pi Coding Agent: The SDK Is the Real Reason to Care | Thomas Wiegold Blog
+  • Claude Code Components | Machine Learning Podcast - OCDevel
+  • wave/docs/guides/sandbox-setup.md at main - GitHub
+  • pasky/pi-gondolin: Pi coding agent extension - GitHub
+  • pi/packages/coding-agent/docs/containerization.md at main · 
+earendil-works/pi - GitHub
+  • Show HN: Clawk – Give coding agents a disposable Linux VM, not your laptop
+  • Claude Code changelog - Claude Code Docs
+  • What copilot canvas extensions y'all built · community · Discussion #197856 
+- GitHub
+  • Claude Code Complete User Handbook - arXiv
+  • Pi Coding Agent Review: Minimal, Hackable AI Coding CLI - Rost Glukhov
+  • Claude Code Security Guide: Permissions, MCP, Sandboxing - DataCamp
+  • Writing Custom Agents for GitHub Copilot — A Practical Guide | CodeToByte
+  • Resource archive, page 4 of 31 | Fastio
+  • Asking GitHub Copilot questions in GitHub Mobile - GitHub Enterprise Cloud 
+Docs
+  • teamcoltra/go-copilot-api: A high-performance Go proxy server that turns 
+GitHub Copilot's chat completion/embeddings capabilities into an 
+OpenAI-compatible API service, with Anthropic compatibility and robust security.
+  • Configure Glean in GitHub Copilot
+  • pi-skill-updates · Packages - Pi Coding Agent
+  • Top 10 Pi Agent Extensions Every Developers Must Install - Composio
+  • Agent Skills - Claude Platform Docs
+  • Top 9 Claude Skills for Cybersecurity, Hacking, and Vulnerability Scanning |
+Snyk
+  • partners - Awesome GitHub Copilot
+  • New Arm Extension for GitHub Copilot Simplifies and Accelerates Migration to
+Arm-based Servers - Arm Newsroom
+  • GitHub Copilot Extensions vs. Native Cursor Features: A Deep Dive - Engineer
+Master Labs
+  • GitHub Copilot - Microsoft Azure
+  • GitHub Copilot Extension Developer Policy
+  • Package Catalog - Pi Coding Agent
+  • Models disappeared after VS Code update — GitHub Education account · 
+community · Discussion #189398
+  • Announcing Telerik & Kendo UI AI Coding Assistants
+  • Claude Code CLI: Diagnostics & User Support and Permissions - Admantium
+  • Claude Code vs Codex: Which AI Coding Agent Should You Use in 2026? - 
+Firecrawl
+  • Scopes for OAuth apps - GitHub Docs
+  • AI security in VS Code
+  • GitHub Copilot Security Risks: 5 Issues + Fixes (2026) - Checkmarx
+  • Resources for getting approval of GitHub Copilot - GitHub Enterprise Cloud 
+Docs
+  • GitHub Copilot Security and Privacy Concerns: Understanding the Risks and 
+Best Practices
+  • Top 7 Claude skills for security, by install count. The top two are 373 
+installs apart. - Reddit
+  • Best Code Review Skills for Claude Code & OpenClaw (2026)… - Agensi
+  • Security Review Skill - everything-claude-code - GitHub
+  • Making frontier cybersecurity capabilities available to defenders - 
+Anthropic
+  • Automated Security Reviews in Claude Code | Anthropic Help Center
+  • Agent Skills Directory - Security Reviews & Install Guides
+  • awesome-openclaw-skills/categories/coding-agents-and-ides.md at main - 
+GitHub
+  • opencode-power-pack - AI Agents on GitHub | SkillsLLM - AI Skills 
+Marketplace
+  • OpenClaw security guide 2026: CVE-2026-25253, Moltbook breach & hardening - 
+Adversa AI
+  • Claude Jailbreak Risk Has Moved Beyond Chat - Penligent
+  • Secure way of running Pi? : r/PiCodingAgent - Reddit
+  • Pi-OS: an "operating system" managed by the Pi Coding Agent : 
+r/PiCodingAgent - Reddit
+  • Agent Skills: Explore security threats and controls | Red Hat Developer
+

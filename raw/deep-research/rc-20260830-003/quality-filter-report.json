@@ -1,0 +1,15 @@
+{
+  "job_id": "rc-20260830-003",
+  "notebook_id": "a4c1b3e2-f76d-4679-9bc0-d23c6c46a399",
+  "before_count": 54,
+  "after_count": 53,
+  "removed": [
+    {
+      "id": "fd9c62e0-b60e-4869-b4cc-aeda081cb78a",
+      "title": "Prompt injection attacks on tool-calling agents: A verification approach : r/aiagents - Reddit",
+      "reason": "該來源為 Reddit 社群討論貼文，屬於簡短且無具體結論的社群問答，缺乏有深度技術細節或具體論據支撐的實質內容。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-08-30T13:02:19.299Z"
+}

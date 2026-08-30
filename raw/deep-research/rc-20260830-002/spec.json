@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260830-002",
+  "query": "Enterprise API Security：OAuth 2.0 / OIDC 最佳實踐、Azure AD / Entra ID 權限管理、API Key 安全管理（rotation/rotation/scoping）、資料外洩防禦（DLP）、企業級 API Gateway 安全配置。以 Microsoft 生態系（Azure DevOps / SharePoint / Outlook）為主要場景。",
+  "sub_questions": [
+    "OAuth 2.0 在 AI Agent 場景下的安全考量？Token scope 設計、refresh token 管理、on-behalf-of flow 的風險？",
+    "Azure AD / Entra ID 的 App Registration 安全最佳實踐？Conditional Access、Managed Identity、Service Principal 權限最小化？",
+    "API Key 如何安全儲存與輪替？Environment variable vs secret manager vs vault 的比較？",
+    "企業環境中，AI Agent 存取 SharePoint/Outlook/ADO 的權限該如何設計？最小權限原則的實作方式？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "1y",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "industry",
+    "output_format": "full"
+  }
+}
