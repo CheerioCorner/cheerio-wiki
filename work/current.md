@@ -222,6 +222,16 @@
   - 品質說明：Codex 版本（gpt-5.6-luna）品質明顯優於 Gemini 版本——深連結 vs 根目錄 URL、來源數 20 vs 7、日期誠實標「未標示」。兩份事實衝突時優先採信 Codex。
   - QA 補記：Pi 執行 ingest 時自我報告不完整（漏報弄壞 26 個 wiki/topics/*.md 的 frontmatter、漏報 9 個無關 raw 檔案搬移），經 Claude 逐一讀 diff 驗證後抓到並修復。詳見 [[work/history/2026-08#坑 7：Pi ingest commit 弄壞 26 個 wiki 頁面 + 未揭露的檔案搬移（8/19）|work/history/2026-08.md 坑 7]]。
 
+- [ ] W-2026-08-085 AI 系統資安框架設計：Cheerio + 自建系統的完整資安檢測框架 🆕 #security #ai-agent #architecture
+  - next: **Phase 1 深度研究**：盘点 CIA 原則、Threat Modeling、OWASP Top 10、Agent-specific 風險（prompt injection、data exfiltration、privilege escalation）在 AI 系統中的應用。**Phase 2 框架設計**：產出一份可重複執行的資安檢測框架（Security Checklist），涵蓋：① 上線前（Assets 盤點、角色權限矩陣、Trust Boundary 圖、Security Invariant 定義）② 開發中（Secure Coding Guidelines、AI-specific 安全規則、PR review checklist）③ 上線後（Rate limiting、監控告警、Incident Response）。**Phase 3 工具整合**：評估 Codex Security Plugin / Claude Code Security Review / OWASP ZAP / Trivy 等工具，建立自動化掃描流程。**Phase 4 實作驗證**：用 Cheerio 助理 + ADO Agent 做真實案例驗證
+  - refs: [[wiki/sources/2026-08-30-dev-security-vibe-coding|Vibe Coding 資安基本功]]（CIA 原則、Threat Modeling 五問題、信任邊界、RLS）、[[wiki/entities/multi-agent-orchestration-patterns|Multi-Agent Orchestration 設計模式]]（Race Condition 防禦、原子化 Prompt）、[[wiki/entities/herdr|herdr]]（常駐背景 + 狀態偵測）、[[wiki/entities/opentelemetry|OpenTelemetry]]（分散式追蹤、Observability）
+  - 起因：看完 Vibe Coding 資安影片後，Cheer 提出「不該只依賴閉源工具的資安掃描，需要一套更完整的框架」。影片內容是基礎中的基礎，但 CIA 原則、Threat Modeling 五問題、信任邊界、RLS 這些概念是值得建立的底層知識。真正的資安框架應該涵蓋從設計到開發到部署到維運的全生命週期
+  - 無相依，可跟 W-074/W-080 平行進行
+  - **與其他任務的關聯**：
+    - W-074（Cheerio 架構）：架構設計時就要把資安框架內建，不是事後補
+    - W-080（ADO Agent）：企業系統的資安要求更高，需要更嚴格的 Threat Modeling
+    - W-056~059（Skill 建置自動化）：Skill 本身也需要安全審查（防止惡意 Skill、權限控管）
+
 - [ ] W-2026-08-057 Skill 建置自動化研究 ②共享驗證機制設計 🆕 #ai-agent #skill #enterprise #skill-automation-design
   - **圓桌共識（8/22）**：已卡 3 天，Codex 明確主張「立即 timebox 解 blocker，不能再用等更多研究延長」——今天直接列出卡住的具體假設，逐項指定決策人與截止時間，先接受最小方案，非必要爭議記成後續決策待議即可，不要再展開。見 [[.pi/round-table/20260822-161304/synthesis|會議紀要]]
   - **Session handoff（8/19）**：今天工作到此為止，下次 session 從這裡接續開始；完成 057 後要依序推進 [[work/current#W-2026-08-058|W-2026-08-058]] → [[work/current#W-2026-08-059|W-2026-08-059]]，不要漏掉後面兩個。

@@ -15,6 +15,13 @@
   - `wiki/index.md` — Concepts + Sources 新增條目
 - 特殊標記：Gemini CLI (agy) 因 headless mode 權限問題無法執行，僅 Claude 單方提案。無分歧需仲裁。
 
+## [2026-08-30] 新任務 | AI 系統資安框架設計（W-2026-08-085）
+
+- 新增 work/current.md 任務 W-2026-08-085：AI 系統資安框架設計
+- 四階段：深度研究 → 框架設計 → 工具整合 → 實作驗證
+- 涵蓋 Cheerio 助理 + ADO Agent + 自建系統的全生命週期資安
+- 關聯：W-074（架構）、W-080（ADO Agent）、W-056~059（Skill 自動化）
+
 ## [2026-08-30] ingest | Vibe Coding 資安基本功：給非技術人員的資安教學
 
 - 動作：YouTube 影片（字幕被關閉）→ 使用者手動提供 SRT 逐字稿 → 去重複（簡/繁）→ 合併段落 → raw transcript 建檔 → wiki ingest
