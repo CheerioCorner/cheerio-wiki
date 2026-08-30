@@ -2,7 +2,7 @@
 title: YouTube-to-Wiki Pipeline Timing
 type: discussion
 collection: discussions
-topics: [knowledge-mgmt, youtube, pipeline]
+topics: [knowledge-mgmt, pipeline]
 status: open
 created: 2026-08-02
 updated: 2026-08-02

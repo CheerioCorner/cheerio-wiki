@@ -2,7 +2,7 @@
 title: Canonicalization and Semantic Linking
 type: discussion
 collection: discussions
-topics: [knowledge-mgmt, linking, canonicalization]
+topics: [knowledge-mgmt]
 status: open
 created: 2026-08-02
 updated: 2026-08-02

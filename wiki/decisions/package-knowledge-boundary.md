@@ -2,7 +2,7 @@
 title: Package Knowledge Boundary
 type: decision
 collection: decisions
-topics: [pi-todo-journal, knowledge-mgmt, okf]
+topics: [knowledge-mgmt, okf]
 status: confirmed
 created: 2026-08-02
 updated: 2026-08-02

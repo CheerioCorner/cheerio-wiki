@@ -28,6 +28,10 @@ updated: 2026-08-23
 - [[wiki/sources/2026-08-15-round-table-pi-agent-v084-learning|圓桌會議：Pi Agent v0.84.x 更新中值得學習的設計模式]] — 日期：2026-08-15 | 參與者：Claude（深度分析）、Copilot（實作面）| 主持人：Pi 🛠️
 - [[wiki/sources/2026-08-19-pi-agent-github-copilot-provider-setup|Pi Agent GitHub Copilot Provider 設定指南]] — 整理自 Pi Agent 官方文件與 GitHub Issues，供 W-2026-08-028 參考使用。
 
+## Others
+
+- [[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]] 🛠️
+
 ## 相關 Topics
 
 - [[wiki/topics/ai-agent|AI Agent]] — AI Agent 總覽 hub

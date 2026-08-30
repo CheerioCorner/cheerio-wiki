@@ -2,7 +2,7 @@
 title: Notion Integration Architecture
 type: discussion
 collection: discussions
-topics: [knowledge-mgmt, notion, skill]
+topics: [knowledge-mgmt, skill]
 status: open
 created: 2026-08-03
 updated: 2026-08-03

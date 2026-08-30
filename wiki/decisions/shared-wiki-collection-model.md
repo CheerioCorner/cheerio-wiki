@@ -2,7 +2,7 @@
 title: Shared Wiki Collection Model
 type: decision
 collection: decisions
-topics: [knowledge-mgmt, wiki-architecture, okf]
+topics: [knowledge-mgmt, okf]
 status: confirmed
 created: 2026-08-02
 updated: 2026-08-02

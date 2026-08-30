@@ -2,7 +2,7 @@
 title: Raw Conversation Promotion Workflow
 type: decision
 collection: decisions
-topics: [knowledge-mgmt, provenance, annotator]
+topics: [knowledge-mgmt]
 status: confirmed
 created: 2026-08-02
 updated: 2026-08-02
