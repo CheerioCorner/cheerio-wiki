@@ -234,6 +234,16 @@
       "duration": "00:22:14",
       "created": "2026-08-30",
       "raw_path": "raw/youtube/dev-security-vibe-coding.md"
+    },
+    {
+      "video_id": "7tNIw_gHeSI",
+      "title": "從模型部署到 Agent Harness：Qwen 3.8 27B 與 DGX Spark 實機示範",
+      "slug": "2026-08-30-local-llm-agent-harness-dgx-spark",
+      "url": "https://www.youtube.com/watch?v=7tNIw_gHeSI",
+      "language": "zh-TW",
+      "auto_generated": false,
+      "segments": 2052,
+      "created": "2026-08-30"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

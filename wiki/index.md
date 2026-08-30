@@ -44,6 +44,7 @@
 
 - [[wiki/concepts/README.md|README]]
 - [[wiki/concepts/agent-durability-patterns.md|Agent Durability Patterns — 狀態持久化的三種路徑]]
+- [[wiki/concepts/agent-security-levels.md|Agent 安全等級 — 從 L1 到 L7 的防護層級]]
 - [[wiki/concepts/agent-extensibility-hierarchy.md|Agent 擴充架構層級 — 從 Skill、Hook 到 Extension 的能力邊界]]
 - [[wiki/concepts/agent-extension-installation.md|Agent Extension 安裝位置與方式]]
 - [[wiki/concepts/agent-skills-api-usage.md|Agent Skills API 使用方法]] — 生產：固定版本
@@ -88,6 +89,7 @@
 - [[wiki/concepts/knowledge-garden-skill-architecture.md|知識花園 Skill 架構]]
 - [[wiki/concepts/knowledge-management.md|Knowledge Management]]
 - [[wiki/concepts/knowledge-system-architecture.md|知識系統架構]]
+- [[wiki/concepts/local-llm-deployment.md|Local LLM 部署 — 從雲端到地端的基礎設施選擇]]
 - [[wiki/concepts/late-conversion.md|Late Conversion(最晚轉換)]]
 - [[wiki/concepts/legacy-code-modernization.md|Legacy Code Modernization with AI — 用 AI 現代化遺留系統的方法論]]
 - [[wiki/concepts/lint-ruleset.md|Lint 規則集]]
@@ -142,6 +144,8 @@
 - [[wiki/entities/coinbase-ai-engineering.md|Coinbase AI Engineering — 多模型基礎設施與成本工程實踐]]
 - [[wiki/entities/conardli-web-design-engineer-skill.md|ConardLi/garden-skills — web-design-engineer]]
 - [[wiki/entities/deepseek-harness.md|DeepSeek Harness — Cordis 微核心編碼 Agent 平台]] — cordis.patch.yml
+- [[wiki/entities/deepseek-v4.md|DeepSeek V4 — MoE 架構的中國開放權重模型]]
+- [[wiki/entities/dgx-spark.md|NVIDIA DGX Spark — 128GB Unified Memory 的地端 AI 工作站]]
 - [[wiki/entities/docling.md|Docling — IBM 文件解析與結構化框架]]
 - [[wiki/entities/dominikmartn-nothing-design-skill.md|dominikmartn/nothing-design-skill — Nothing 品牌風格皮膚]]
 - [[wiki/entities/github-copilot-sdk.md|GitHub Copilot SDK — Custom Agents 平台]]
@@ -194,6 +198,7 @@
 - [[wiki/entities/plannotator.md|Plannotator]] — macOS / Linux / WSL
 - [[wiki/entities/prime-agent.md|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]]
 - [[wiki/entities/qwenpaw.md|QwenPaw — Agent OS 架構的本地 AI 助理]]
+- [[wiki/entities/qwen-3-8-27b.md|Qwen 3.8 27B — 完全開源的 Dense 模型]]
 - [[wiki/entities/remotion.md|Remotion — 程式碼驅動的影片製作框架]]
 - [[wiki/entities/round-table.md|Round Table — 多 AI 圓桌會議]]
 - [[wiki/entities/skillopt.md|SkillOpt — 微軟技能優化器]]
@@ -332,6 +337,7 @@
 - [[wiki/sources/2026-08-25-multi-agent-orchestration-patterns.md|Multi-Agent Orchestration 設計模式深度研究]]
 - [[wiki/sources/2026-08-25-opentelemetry-observability.md|System Observability: Logs, Metrics, Traces & OpenTelemetry]]
 - [[wiki/sources/2026-08-30-dev-security-vibe-coding.md|Vibe Coding 資安基本功：給非技術人員的資安教學]]
+- [[wiki/sources/2026-08-30-local-llm-agent-harness-dgx-spark.md|從模型部署到 Agent Harness：Qwen 3.8 27B 與 DGX Spark 實機示範]]
 - [[wiki/sources/2026-08-25-four-types-memory-ai-agent.md|The Four Types of Memory Every AI Agent Needs]]
 - [[wiki/sources/2026-08-25-google-cloud-legacy-code-ai.md|How to modernize legacy codebases using AI coding agents]]
 - [[wiki/sources/2026-08-26-anthropics-claude-code-frontend-design.md|anthropics/claude-code — frontend-design plugin]]

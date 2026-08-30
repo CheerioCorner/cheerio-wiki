@@ -27,6 +27,8 @@ updated: 2026-08-23
 - [[wiki/entities/prime-agent|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]] — Prime Intellect 於 2026-08-05 發布的開源 self-improving coding harness，建構在 [[wiki/entities/pi-agent-core|pi-agent-core]] 之上，核心差異是給模型持久 IPython runtime 而非傳統 tool list，並用 [[wiki/concepts/continual-harness|Continual Harness]] 讓 agent 自己改寫自己的 harness 狀態。
 - [[wiki/entities/qwenpaw|QwenPaw — Agent OS 架構的本地 AI 助理]] — AgentScope 團隊開發的開源個人 AI 助理，以 Agent OS 架構為核心，強調本地部署、安全沙箱與多通道整合。
 - [[wiki/entities/skillopt|SkillOpt — 微軟技能優化器]] — 微軟提出的 SkillOpt 框架，將 SKILL.md 視為可訓練的外部參數，不修改閉源模型權重實現 Agent 自我進化。 🛠️
+- [[wiki/entities/deepseek-v4|DeepSeek V4 — MoE 架構的中國開放權重模型]] — DeepSeek V4 Pro/Flash，以受限硬體（H100、昇騰 910C）做出與頂級模型同一領先群的表現。MoE 架構跑過的參數約 Dense 的 1/4。 🛠️
+- [[wiki/entities/qwen-3-8-27b|Qwen 3.8 27B — 完全開源的 Dense 模型]] — 阿里巴巴千問系列，27B Dense 模型，地端部署的甜蜜點選擇。5090 可跑 FP8，比 DeepSeek 在地端的表現好很多。 🛠️
 - [[wiki/entities/tau|tau — Pi 的 Python 移植版]] — Tau 是 Pi 的 **Python port**，由 [Hugging Face](https://huggingface.co) 開發並開源（MIT license）。架構與 Pi 完全相同，差異只在 TUI 層使用 Textual 框架。
 - [[wiki/entities/waku-agent|waku-agent — Local-first personal AI agent with harness + loop + memory + eval]] — Waku agent 是一個 local-first 個人 AI 助理，以 readable code 展示 agent 系統的四大支柱：harness、loop、memory、eval/LLM-Ops。
 

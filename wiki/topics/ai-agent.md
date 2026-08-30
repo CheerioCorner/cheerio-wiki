@@ -19,6 +19,7 @@ updated: 2026-08-23
 
 ## Sources
 
+- [[wiki/sources/2026-08-30-local-llm-agent-harness-dgx-spark|從模型部署到 Agent Harness：Qwen 3.8 27B 與 DGX Spark 實機示範]] — 胡嘉璽（Josh）完整示範地端模型 + 開源 harness 的實機操作，涵蓋 Agent = Model + Harness、開源追上閉源、MoE vs Dense、量化、Inference Engine 比較、安全等級 L1-L7、Pi Agent 模組化設計。 🛠️
 - [[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory|AI Agent 長期記憶架構 — 以 Mem0 為例（Alejandro AO）]] — Alejandro AO 深入解析 Mem0 的長期記憶架構，涵蓋 entity memory 概念、entity boost 公式、retrieval pipeline 組裝、開源 embedding 模型推薦，以及 coreference resolution 實作。 🛠️
 - [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems|AI Agent Memory Systems — 5 種記憶架構設計方式（Sean's AI Stories）]] — Sean Chen（Sean's AI Stories 頻道）講解 AI agent 記憶系統的分析框架，涵蓋三支柱、五種存儲方式、四種檢索策略、六種維護機制，並實測比較 SQLite、mem0、LangMem、Zep 與無記憶控制組。 🛠️
 

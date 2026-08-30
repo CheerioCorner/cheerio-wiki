@@ -1,4 +1,22 @@
 
+## [2026-08-30] ingest | 從模型部署到 Agent Harness：Qwen 3.8 27B 與 DGX Spark 實機示範
+
+- 動作：YouTube 影片 → youtube_transcript_api 抓中文字幕（手動字幕 zh-TW，2052 segments → 193 paragraphs，2:20:16）→ raw transcript 建檔 → 關聯想法檔已存在 → 建立 wiki 頁面 + 更新既有頁面
+- 建立：
+  - `raw/youtube/2026-08-30-local-llm-agent-harness-dgx-spark.md` — raw transcript
+  - `wiki/sources/2026-08-30-local-llm-agent-harness-dgx-spark.md` — source note（16 大重點、陳述級溯源、Cheer 想法）
+  - `wiki/concepts/local-llm-deployment.md` — Local LLM 部署概念（硬體選擇、量化計算、安全考量）
+  - `wiki/concepts/agent-security-levels.md` — Agent 安全等級 L1-L7（model/harness 位置對照）
+  - `wiki/entities/qwen-3-8-27b.md` — Qwen 3.8 27B entity（規格、甜蜜點分析、量化版本）
+  - `wiki/entities/dgx-spark.md` — NVIDIA DGX Spark entity（規格、熱管理、使用場景）
+  - `wiki/entities/deepseek-v4.md` — DeepSeek V4 entity（MoE 架構、中國模型優勢、地端限制）
+- 更新：
+  - `wiki/topics/agent-infrastructure.md` — Entities + Concepts + Sources 新增條目
+  - `wiki/topics/ai-agent.md` — Sources 新增 source note
+  - `wiki/topics/agent-runtime-implementations.md` — Entities 新增 DeepSeek V4 + Qwen 3.8 27B
+  - `wiki/index.md` — Concepts + Entities + Sources 新增條目
+- 特殊標記：雙模型交叉驗證步驟因 worker 工具限制無法執行（無 chat-with-claude/chat-with-gemini skill），改為基於完整內容分析直接建立頁面。
+
 ## [2026-08-30] ingest | Graphify + Obsidian + Claude Code = CHEAT CODE
 
 - 動作：YouTube 影片 → youtube_transcript_api 抓英文字幕（auto-generated，496 segments → 52 paragraphs，16:37）→ raw transcript 建檔 → 雙模型交叉驗證（Claude 單方提案，Gemini 因 CLI 權限問題缺席）→ 建立 wiki 頁面 + 更新既有頁面
