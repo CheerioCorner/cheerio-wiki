@@ -22,6 +22,7 @@ updated: 2026-08-08
 - [[wiki/entities/mcp-registry|MCP Registry — 官方伺服器註冊表]] — MCP Registry 是官方的 MCP Server 註冊表，支援多種套件格式（npm、PyPI、Docker 等），提供伺服器發現、審查政策與自動化發佈流程。 🛠️
 - [[wiki/entities/tree-sitter|Tree-sitter]] — 高效能 Parser Generator，支援毫秒級增量解析，是現代 Code Intelligence 的核心基礎設施。 🛠️
 - [[wiki/entities/vllm|vLLM — 高吞吐量 LLM 推理引擎]] 🛠️
+- [[wiki/entities/opentelemetry|OpenTelemetry — 分散式系統觀測性標準]] — CNCF 開源標準，用於生成與傳輸 traces/metrics/logs。OTLP 協議、Collector 架構、Sampling 策略、SLO/SLA/Error Budget。 🛠️
 
 ## Concepts
 
@@ -49,6 +50,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-24-webmcp-youtube|Make your website agent ready with WebMCP]] — 來源：[YouTube — Make your website agent ready with WebMCP](https://www.youtube.com/watch?v=FARxSG_EY98) 🛠️
 - [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO — Agent 設計與成本實作]] — 之前已經看過 GPU 作為 LLM Server 如何進行 AI 運算的基礎原理，看完這兩支影片後，更能理解 Prompt Caching 和傳統應用系統的 Caching 不同之處，也更明白這在節省 Token 上背後的原理是什麼。 🛠️
 - [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology — 概念解說]] — 之前已經看過 GPU 作為 LLM Server 如何進行 AI 運算的基礎原理，看完這兩支影片後，更能理解 Prompt Caching 和傳統應用系統的 Caching 不同之處，也更明白這在節省 Token 上背後的原理是什麼。 🛠️
+- [[wiki/sources/2026-08-25-opentelemetry-observability|System Observability: Logs, Metrics, Traces & OpenTelemetry]] — YouTube 影片：從 ride-share 後端的演化過程完整介紹觀測性三大支柱、OpenTelemetry、SLO/SLA、alerting、eBPF、continuous profiling。 🛠️
 - [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — IBM Technology 出品，主講 Martin Keen。10 分鐘內拆解 front-end AI agent 底下的五個核心組件。 🛠️
 
 ## Others

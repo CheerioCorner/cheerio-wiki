@@ -1,4 +1,16 @@
 
+## [2026-08-25] ingest | System Observability: Logs, Metrics, Traces & OpenTelemetry
+
+- 動作：YouTube 影片 → youtube_transcript_api 抓英文字幕（auto-generated，764 segments → 223 paragraphs，35:51）→ raw transcript 建檔 → 雙模型交叉驗證（Pi 主持，Claude + Gemini Round 1 一致）→ 建立 wiki 頁面 + 更新既有頁面
+- 建立：
+  - `raw/youtube/observability-opentelemetry-logs-metrics-traces.md` — raw transcript
+  - `wiki/sources/2026-08-25-opentelemetry-observability.md` — source note（陳述級溯源 [MM:SS]）
+  - `wiki/entities/opentelemetry.md` — OpenTelemetry entity 頁（三大信號、OTel 架構、Sampling、SLO/SLA、eBPF、Continuous Profiling、Agent Observability 關聯）
+- 更新：
+  - `wiki/topics/agent-infrastructure.md` — Entities + Sources 加入 OpenTelemetry
+  - `wiki/index.md` — Entities + Sources 各新增條目
+- 特殊標記：Observability 概念直接適用於多 agent 系統的觀測性設計
+
 ## [2026-08-25] ingest | Multi-Agent Orchestration 設計模式深度研究
 
 - 動作：Gemini Notebook 深度研究（rc-20260825-003，65 筆來源）→ 研究報告產出 → wiki ingest
