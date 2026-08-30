@@ -1,4 +1,18 @@
 
+## [2026-08-30] query | Graphify vs codebase-memory-mcp 整合決策（技術查證 + Codex 意見）
+
+- 動作：使用者延續前次 round-table（Gemini 單方，Codex 因 pi 環境 PowerShell 權限問題缺席）討論，要求查證 Gemini 提出的「Graphify `.graphify.json` levels 過濾設定」是否存在，並改用直接 `codex exec`（非 round-table skill）取得 Codex 工程意見
+- 查證方法：`WebSearch` + `gh api` 直接讀取 [safishamsi/graphify](https://github.com/safishamsi/graphify) 原始碼（`graphify/export.py` 的 `to_obsidian()` 函式簽名）與 [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) README，非 LLM 記憶推論
+- 結論：**Gemini 的「層級過濾」前提不成立**（該功能不存在）；兩工具真正差異是「程式碼 runtime 查詢」vs「非程式碼素材知識圖譜化」，非顆粒度切分（Codex 判斷）；**大腦 wiki 本身不需要搭配任一工具**（wiki 已是手工策展 vault，非程式碼庫，已有更高品質的 raw→ingest→wiki 管線）；Cheerio 的程式碼專案預設只裝 codebase-memory-mcp，Graphify 僅在有明確 docs/PDF 需求時加裝
+- 建立：
+  - `wiki/decisions/graphify-vs-codebase-memory-mcp.md` — 完整決策過程與結論
+- 更新：
+  - `wiki/entities/graphify.md` — star 數更新（~10萬→112,459，查證日期 2026-08-30）、新增「技術查證」章節推翻 levels 過濾假設、補 `provenance_url`
+  - `wiki/entities/codebase-memory-mcp.md` — 「我們的判斷」章節修正 Graphify 定位（非重疊，是不同賽道）、補「本 wiki 不需要搭配」判斷、補 `provenance_url`
+  - `wiki/concepts/graphify-obsidian-export.md` — 新增「這個工作流適用於我們自己的 wiki 嗎」章節，明確判斷不適用
+  - `wiki/topics/knowledge-mgmt.md`、`wiki/index.md` — Decisions/Others 區塊加入新決策頁
+- 特殊標記：本次 Codex 意見透過獨立呼叫 `codex exec --sandbox read-only --skip-git-repo-check` 取得，非標準 round-table skill 流程（該 skill 在此環境讀取 `~/.agents/skills/round-table/SKILL.md` 時遭系統拒絕），格式上與 §3.1 雙模型共識機制略有出入，但 Claude（原始碼查證）+ Codex（工程判斷）結論收斂度高，予以採用
+
 ## [2026-08-30] ingest | 從模型部署到 Agent Harness：Qwen 3.8 27B 與 DGX Spark 實機示範
 
 - 動作：YouTube 影片 → youtube_transcript_api 抓中文字幕（手動字幕 zh-TW，2052 segments → 193 paragraphs，2:20:16）→ raw transcript 建檔 → 關聯想法檔已存在 → 建立 wiki 頁面 + 更新既有頁面

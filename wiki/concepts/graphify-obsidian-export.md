@@ -2,7 +2,7 @@
 title: "Graphify → Obsidian Export — 知識圖譜轉 Vault 工作流"
 type: concept
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-30
 sources: 1
 tags: [knowledge-graph, obsidian, vault-integration, export-workflow]
 collection: concepts
@@ -65,6 +65,10 @@ Source-doc wiring (獨立步驟：連結 node 到原始文件)
 | 人類可讀 | 低（embedding 空間） | 高（markdown + backlinks） |
 | 跨模組關聯 | 弱 | 強（community detection） |
 
+## 這個工作流適用於我們自己的 wiki 嗎？（2026-08-30 判斷）
+
+**不適用。** `C:/Cheerio/Obsidian` 本身已經是一個手工策展的 Obsidian vault（entity/concept/source 分類、provenance、雙模型共識品質把關），不是「還沒變成知識庫」的原始素材，套用這套匯出工作流只會製造大量自動節點稀釋既有結構的訊噪比。這套工作流的適用對象是 Cheerio 手上**另外的程式碼專案**（跟這個 wiki 是不同的 repo），而且要搭配 `--code-only` 或限定掃描範圍，輸出放獨立 sidecar，不直接匯入主 vault。完整判斷過程見 [[wiki/decisions/graphify-vs-codebase-memory-mcp|Graphify vs codebase-memory-mcp 整合決策]]。
+
 ## 與「軟體世界模型」的差距
 
 目前 KG → Obsidian Export 多為靜態語義拓撲圖，缺少：
@@ -81,6 +85,7 @@ Source-doc wiring (獨立步驟：連結 node 到原始文件)
 
 ## 相關頁面
 
+- [[wiki/decisions/graphify-vs-codebase-memory-mcp|Graphify vs codebase-memory-mcp 整合決策]] — 是否採用此工作流的完整查證與結論
 - [[wiki/entities/graphify|Graphify]] — 實作此工作流的工具
 - [[wiki/concepts/code-knowledge-graph|Code Knowledge Graph]] — 被匯出的上游知識
 - [[wiki/entities/obsidian|Obsidian]] — 匯入目標系統

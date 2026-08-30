@@ -2,12 +2,13 @@
 title: "codebase-memory-mcp — 高效能代碼知識圖譜 MCP Server"
 type: entity
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-30
 sources: 1
 tags: [knowledge-graph, code-analysis, tree-sitter, mcp-server, codebase-intelligence]
 collection: entities
 topics: [ai-development-tools, coding-agent]
 canonical: entities/codebase-memory-mcp
+provenance_url: "https://github.com/DeusData/codebase-memory-mcp"
 ---
 
 > DeusData 開源的高性能代碼知識圖譜 MCP server，基於 tree-sitter AST 分析將代碼庫索引為持久化知識圖譜，158 種語言、毫秒級查詢、99% Token 節省，零 API key。
@@ -116,16 +117,18 @@ pip install -U codebase-memory-mcp
 
 ## 我們的判斷
 
-- **安裝優先序**：OCR（W-030，ADO Agent 前置）→ **codebase-memory-mcp**（本項目）→ Graphify（建議跳過）
+- **安裝優先序**：OCR（W-030，ADO Agent 前置）→ **codebase-memory-mcp**（本項目）→ Graphify（預設跳過，見下方條件）
 - **理由**：ADO Agent PoC（W-080）需要先評估 OCR 做程式碼審查；codebase-memory-mcp 在開始寫 C#/.NET 程式碼後，能讓 Claude Code / Pi 瞬間理解 codebase 結構、省 99% token、零 API cost
-- **Graphify 不裝**：跟 codebase-memory-mcp 高度重疊，功能是其子集，裝兩個只增加維護成本
+- **Graphify 預設不裝，但不是「高度重疊」——是不同賽道**（2026-08-30 修正）：查證後確認 codebase-memory-mcp 完全沒有 PDF/docs ingestion 或 Obsidian 匯出功能（純程式碼 runtime 查詢），而 Graphify 官方定位包含「docs + SQL schemas + configs + PDFs → 知識圖譜」。若未來有明確、高頻的非程式碼文件知識圖譜化需求，Graphify 是加項而非替代品——但僅限掃描 `docs/`、`schemas/`、PDF，且輸出放獨立 sidecar，不跟本工具對同一批程式碼重疊索引。完整決策過程見 [[wiki/decisions/graphify-vs-codebase-memory-mcp|Graphify vs codebase-memory-mcp 整合決策]]
+- **本 wiki（C:/Cheerio/Obsidian）本身不需要裝任一工具**：wiki 已是手工策展的 Obsidian vault，不是程式碼庫，也已有 `raw/`→ingest→`wiki/` 的文件知識圖譜化管線，見上述決策頁
 - **待辦**：評估安裝（見 W-2026-08-087）
 
 ## 來源
 - [[raw/web/2026-08-25-DeusDatacodebase-memory-mcp High-performance code intelligence MCP server|GitHub README 原文]]
 
 ## 相關頁面
-- [[wiki/entities/graphify|Graphify]] — 同品類工具（tree-sitter 知識圖譜），建議跳過
+- [[wiki/decisions/graphify-vs-codebase-memory-mcp|Graphify vs codebase-memory-mcp 整合決策]] — 完整查證與決策過程
+- [[wiki/entities/graphify|Graphify]] — 不同賽道工具（程式碼 vs 非程式碼文件知識圖譜化），非簡單重疊
 - [[wiki/entities/codegraph|CodeGraph]] — 同品類工具，先驅者，框架路由優勢
 - [[wiki/entities/open-code-review|OpenCodeReview]] — Code review CLI，跟本工具零重疊（一個理解 code、一個審查 code）
 - [[wiki/topics/ai-development-tools|AI Development Tools]]

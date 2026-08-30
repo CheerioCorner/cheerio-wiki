@@ -362,6 +362,7 @@
 ## Decisions (全量列表)
 
 - [[wiki/decisions/README.md|README]]
+- [[wiki/decisions/graphify-vs-codebase-memory-mcp.md|Graphify vs codebase-memory-mcp 整合決策]] — 大腦 wiki 本身不搭配任一工具；程式碼專案預設只裝 codebase-memory-mcp
 - [[wiki/decisions/knowledge-system-architecture-decision.md|知識系統架構改進決策]] — 知識系統架構改進最終報告
 - [[wiki/decisions/package-knowledge-boundary.md|Package Knowledge Boundary]]
 - [[wiki/decisions/project-okf-bundle-boundary.md|Project OKF Bundle Boundary]]

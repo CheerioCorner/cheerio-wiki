@@ -48,6 +48,7 @@ updated: 2026-08-25
 
 ## Others
 
+- [[wiki/decisions/graphify-vs-codebase-memory-mcp|Graphify vs codebase-memory-mcp 整合決策]] — 大腦 wiki 本身不搭配任一工具；程式碼專案預設只裝 codebase-memory-mcp 🛠️
 - [[wiki/decisions/knowledge-system-architecture-decision|知識系統架構改進決策]] — 版本：v2.0
 - [[wiki/decisions/package-knowledge-boundary|Package Knowledge Boundary]] 🛠️
 - [[wiki/decisions/project-okf-bundle-boundary|Project OKF Bundle Boundary]] 🛠️
