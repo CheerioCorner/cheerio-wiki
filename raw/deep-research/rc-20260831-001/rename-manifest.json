@@ -1,0 +1,534 @@
+[
+  {
+    "original_title": "8 Best TypeScript AI Agent Frameworks: AI SDK vs Mastra - AY Automate",
+    "new_title": "[AY Automate] 比較分析 - TypeScript AI Agent 框架選型與 Mastra 對比",
+    "category": "比較分析",
+    "source_id": "8014971e-9aaa-4b3c-bb68-17b288115ea7",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI Agent Architecture: Patterns and Production Design - Mastra",
+    "new_title": "[Mastra 官方] 架構設計 - AI Agent 生產環境設計模式",
+    "category": "架構設計",
+    "source_id": "9ebdce6a-2cd6-41b3-8a02-ec51feed1179",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI Agent Framework: a Guide to Choosing the Right One - Mastra",
+    "new_title": "[Mastra 官方] 比較分析 - AI Agent 框架選型評估指南",
+    "category": "比較分析",
+    "source_id": "0873e756-e3a0-40a6-8787-6171735bd5dc",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI Agent Workflows: A Complete Guide for Developers - Mastra",
+    "new_title": "[Mastra 官方] 實作指南 - 開發者 AI Agent 工作流全方位手冊",
+    "category": "實作指南",
+    "source_id": "b84f9742-3251-4ce3-9870-2e12119b60f7",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI Agents in Semantic Kernel: ChatCompletionAgent, AgentGroupChat, and Orchestration",
+    "new_title": "[Microsoft 官方] 官方文件 - Semantic Kernel 代理與群聊編排機制",
+    "category": "官方文件",
+    "source_id": "35b4592e-ed67-4d00-b74b-511a705ab6be",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI Workflows: What They Are and How to Build Them - Mastra",
+    "new_title": "[Mastra 官方] 概念指南 - AI 工作流定義與構建方法",
+    "category": "概念指南",
+    "source_id": "d5c5902c-cae4-4938-92f0-beb812a80c7c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AI agent evaluation frameworks for production - Vercel",
+    "new_title": "[Vercel 官方] 技術部落格 - 生產環境 AI Agent 評估框架",
+    "category": "技術部落格",
+    "source_id": "1ef9308c-cde8-4f4e-ade1-17827fe5e84a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agent Memory in SmolAgents: Retain, Recall, and Reflect | Hindsight",
+    "new_title": "[Hindsight] 技術部落格 - smolagents 代理記憶機制的留存與反射",
+    "category": "技術部落格",
+    "source_id": "e5f6ea9f-d346-4c11-bbb2-e0a4847f316d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agent memory platform: how AI agents store, retrieve, and use context - Mastra",
+    "new_title": "[Mastra 官方] 架構設計 - AI Agent 記憶平台與上下文管理機制",
+    "category": "架構設計",
+    "source_id": "f9f2a84c-84d1-4c3d-8993-859bc820f0a4",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agentic AI with multi-model framework using Hugging Face smolagents on AWS",
+    "new_title": "[AWS 官方] 實作指南 - 在 AWS 部署 smolagents 多模型代理框架",
+    "category": "實作指南",
+    "source_id": "ca480d08-a2d5-4f99-94b3-e8b6c453461c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agentic RAG: Architectures, Tradeoffs, and How to Build It - Mastra",
+    "new_title": "[Mastra 官方] 架構設計 - 代理型 RAG 架構設計與折衷評估",
+    "category": "架構設計",
+    "source_id": "26f21ccc-4cf0-447a-8b49-3a2bdad71695",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agentic Workflows: How They Work, Key Components, and How to Build Them - Mastra",
+    "new_title": "[Mastra 官方] 概念指南 - 代理型工作流核心組件與建構",
+    "category": "概念指南",
+    "source_id": "e4ef5b95-7303-41f1-a389-a44492ec8533",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agents SDK | OpenAI API",
+    "new_title": "[OpenAI 官方] 官方文件 - Agents SDK 核心功能與開發指南",
+    "category": "官方文件",
+    "source_id": "be1c6734-d105-45dc-8774-f2350aac3891",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Agents | Pydantic Docs",
+    "new_title": "[Pydantic 官方] 官方文件 - Pydantic AI 代理程式設計",
+    "category": "官方文件",
+    "source_id": "7854b613-ef2f-44a6-801e-6b07a77d6395",
+    "status": "renamed"
+  },
+  {
+    "original_title": "AutoGen v0.4 (AG2) Crash Course: Build Event-Driven, Observable AI Agents That Scale",
+    "new_title": "[AG2 官方] 教學指南 - AutoGen v0.4 事件驅動與可觀測代理開發",
+    "category": "教學指南",
+    "source_id": "5d6702d3-ed8a-4df9-8c39-43efd80e280d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Autonomous AI Agents: A hidden Risk in Insecure smolagents “CodeAgent” Usage",
+    "new_title": "[安全研究] 安全分析 - smolagents CodeAgent 的程式碼執行安全風險",
+    "category": "安全分析",
+    "source_id": "877333f9-5916-492d-8caa-857087cb45da",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Build Reliable AI Agents with Durable Execution | Pydantic AI + DBOS",
+    "new_title": "[DBOS 官方] 實作指南 - 結合 Pydantic AI 與耐用執行構建可靠代理",
+    "category": "實作指南",
+    "source_id": "7d85a0ae-08a1-4365-b7a2-0a10d0b71018",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Build durable AI agents with LangGraph and Amazon DynamoDB | AWS Database Blog",
+    "new_title": "[AWS 官方] 實作指南 - 結合 LangGraph 與 DynamoDB 構建耐用代理",
+    "category": "實作指南",
+    "source_id": "4539d468-1d0e-4196-a11b-61542966deec",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Building AI Agent using Semantic Kernel Agent Framework | Systenics AI Blog",
+    "new_title": "[Systenics AI] 實作指南 - 使用 Semantic Kernel 代理框架建置 Agent",
+    "category": "實作指南",
+    "source_id": "e7172b2d-6e97-4b46-b6b1-f8245b7be4e1",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Building a production AI agent in TypeScript with Mastra: a 2026 step-by-step.",
+    "new_title": "[Mastra 官方] 實作指南 - TypeScript 生產生態 2026 逐步建置教學",
+    "category": "實作指南",
+    "source_id": "aa1cc792-e91a-45f0-9741-51ca00861d0d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Building agentic AI apps: A problem-first guide - Vercel",
+    "new_title": "[Vercel 官方] 設計指南 - 問題導向的代理型 AI 應用構建",
+    "category": "設計指南",
+    "source_id": "1e46005a-69d7-4b28-aee9-be007cb89f82",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Capabilities | Pydantic Docs",
+    "new_title": "[Pydantic 官方] 官方文件 - Pydantic AI 功能與核心能力規格",
+    "category": "官方文件",
+    "source_id": "2ed6faf9-2406-4832-8c46-69ec4f51df35",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Context Engineering - Short-Term Memory Management with Sessions - OpenAI Developers",
+    "new_title": "[OpenAI 官方] 架構設計 - 基於會話的短期記憶管理與上下文工程",
+    "category": "架構設計",
+    "source_id": "3ff55309-ac20-43e4-b2bb-ff8b6a7e9fa9",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Cordis: the paper behind the DeepSeek Harness architecture | Helmcode",
+    "new_title": "[Helmcode] 學術論文分析 - DeepSeek Harness 的底層 Cordis 框架設計",
+    "category": "學術論文分析",
+    "source_id": "9c528d17-6bbf-4ff6-8866-99f7157fc41d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Custom AI Agents: How to Build and Deploy Them - Mastra",
+    "new_title": "[Mastra 官方] 實作指南 - 自訂 AI Agent 構建與部署流程",
+    "category": "實作指南",
+    "source_id": "498028f0-108b-4585-b4ae-d48efbfeddbf",
+    "status": "renamed"
+  },
+  {
+    "original_title": "DeepSeek Harness Explained: What Is an Agent Harness? - Cloudsway",
+    "new_title": "[Cloudsway] 架構設計 - DeepSeek Harness 代理運行時概念解析",
+    "category": "架構設計",
+    "source_id": "3ccf5703-cc1d-4be8-9b79-ae456e646660",
+    "status": "renamed"
+  },
+  {
+    "original_title": "DeepSeek Harness Tutorial: Set Up the Open-Source Agent - DataCamp",
+    "new_title": "[DataCamp] 教學指南 - 開源 DeepSeek Harness 代理環境部署與實作",
+    "category": "教學指南",
+    "source_id": "ff75d234-83f9-45a2-9e73-4af60bb35f0a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "DeepSeek Harness: Everything is a Plugin. - GitHub",
+    "new_title": "[DeepSeek 開源] 開源專案 README - Harness 插件化代理運行時架構",
+    "category": "開源專案 README",
+    "source_id": "d8a7306f-4d02-488a-b3d4-07072fbee95a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "DeepSeek Harness: Open-Source Agent Runtime - Eigent AI",
+    "new_title": "[Eigent AI] 架構設計 - DeepSeek Harness 開源代理運行時深度解析",
+    "category": "架構設計",
+    "source_id": "63ed0f67-ffba-49e5-8af9-c4eeb59d5a9d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "DeepSeek Open-Sources Harness: Models, Tools, and Agent Loops All Become Plugins｜Trans-N - note",
+    "new_title": "[Trans-N 科技] 新聞分析 - DeepSeek Harness 插件化模型與代理迴圈",
+    "category": "新聞分析",
+    "source_id": "4af0bee3-5dad-4029-8ac3-8cb7b791733e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Do You Need an Agent Framework Yet? | The Road To Enterprise",
+    "new_title": "[The Road To Enterprise] 架構設計 - 企業級 Agent 框架選型必要性評估",
+    "category": "架構設計",
+    "source_id": "7d75f6e2-9091-48e3-bf9b-3c9118c7dda8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Eve (Vercel) - coleam00/cole-medin-knowledge-base - GitHub",
+    "new_title": "[GitHub 筆記] 技術筆記 - Vercel Eve 輕量級代理框架語法解析",
+    "category": "技術筆記",
+    "source_id": "7806e580-949f-41ac-8ec8-ebc82268f0c5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Exploring Agent Collaboration in AgentChat - Microsoft Learn",
+    "new_title": "[Microsoft 官方] 官方文件 - AutoGen AgentChat 多代理協作模式",
+    "category": "官方文件",
+    "source_id": "0de40bba-2c0c-4a3a-9a36-4d2870aa9c6c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Exploring the Semantic Kernel ChatCompletionAgent - Microsoft Learn",
+    "new_title": "[Microsoft 官方] 官方文件 - Semantic Kernel ChatCompletionAgent 運作原理",
+    "category": "官方文件",
+    "source_id": "909480ad-fd34-424e-bf33-84909c2fe330",
+    "status": "renamed"
+  },
+  {
+    "original_title": "From Single Agent to Hybrid Agent-Graph Architecture: Our Journey with Pydantic AI and Text to SQL - Vstorm",
+    "new_title": "[Vstorm] 案例研究 - 基於 Pydantic AI 的 Text-to-SQL 混合代理圖架構實踐",
+    "category": "案例研究",
+    "source_id": "ee79125f-d744-4a7c-b979-b557153bd96e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub - openai/swarm: Educational framework exploring ergonomic, lightweight multi-agent orchestration. Managed by OpenAI Solution team.",
+    "new_title": "[OpenAI 開源] 開源專案 README - Swarm 輕量級多代理編排教育框架",
+    "category": "開源專案 README",
+    "source_id": "3d41fadc-93a7-4f64-991c-448fa64bb63e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Handoffs - OpenAI Agents SDK",
+    "new_title": "[OpenAI 官方] 官方文件 - Agents SDK 的代理交接機制與控制權轉移",
+    "category": "官方文件",
+    "source_id": "d36d5342-999c-4c05-b6d0-6019ae15dff6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How to Build AI Agents: A Practical Guide for Developers",
+    "new_title": "[開發者社群] 實作指南 - 開發者 AI Agent 基礎構建實戰指南",
+    "category": "實作指南",
+    "source_id": "ab712b4b-1362-4243-96b6-844a12d86418",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How to use Vercel eve: The Next.js framework for AI agents - LogRocket Blog",
+    "new_title": "[LogRocket] 教學指南 - 使用 Vercel Eve 構建 Next.js AI 代理",
+    "category": "教學指南",
+    "source_id": "757a4294-99a0-4b52-a6b0-16f6aade3a94",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How to use the Microsoft Autogen framework to Build AI Agents? - ProjectPro",
+    "new_title": "[ProjectPro] 教學指南 - AutoGen 多代理協作框架入門與實作",
+    "category": "教學指南",
+    "source_id": "1e83537e-25a2-436a-afc0-8b4f9ecda995",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Introduction to smolagents - Hugging Face",
+    "new_title": "[Hugging Face 官方] 官方文件 - smolagents 極簡程式碼思維代理入門",
+    "category": "官方文件",
+    "source_id": "18545ee9-45c2-42ce-9c9a-dfe535173b0d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "LangGraph Memory and Persistence: Checkpointers & Threads | Crewship",
+    "new_title": "[Crewship] 技術部落格 - LangGraph 的記憶持久化與檢查點機制",
+    "category": "技術部落格",
+    "source_id": "a287b637-af7e-4196-b7da-78df31371bd8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Let's Create Our First Agent Using smolagents - Hugging Face",
+    "new_title": "[Hugging Face 官方] 教學指南 - smolagents 首個代理構建實戰",
+    "category": "教學指南",
+    "source_id": "e44f8303-a901-4473-bdf1-6165ee5d0c6a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Manage your agent's memory - Hugging Face",
+    "new_title": "[Hugging Face 官方] 官方文件 - Transformer Agents 記憶管理機制",
+    "category": "官方文件",
+    "source_id": "1051842a-acc8-4f3a-869e-ce1de01eff97",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Mastra Tutorial: How to Build AI Agents in TypeScript - Firecrawl",
+    "new_title": "[Firecrawl] 教學指南 - 使用 TypeScript 與 Mastra 打造網頁爬蟲代理",
+    "category": "教學指南",
+    "source_id": "921fe55f-cc16-44ab-abe0-6ecaf2609027",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Mastra is the modern TypeScript framework for AI-powered applications and agents. - GitHub",
+    "new_title": "[Mastra 開源] 開源專案 README - TypeScript AI 代理框架功能概述",
+    "category": "開源專案 README",
+    "source_id": "d219b4f7-c7c9-4470-aef2-6d64296ba146",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Mastra: Observational Memory: Human-Inspired Context Compression for Agent Systems - ZenML LLMOps Database",
+    "new_title": "[ZenML] 架構設計 - Mastra 觀察式記憶與人類啟發的上下文壓縮",
+    "category": "架構設計",
+    "source_id": "a70b27f8-89ce-4e5f-a1e7-9c051d02e245",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Mastra: TypeScript AI Agent Framework and Platform - AI Engineer",
+    "new_title": "[AI Engineer] 技術部落格 - Mastra TypeScript AI 代理開發框架評析",
+    "category": "技術部落格",
+    "source_id": "c393c2d7-0742-4c4d-9426-e46d09831ff8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Microsoft AutoGen & Agent Framework | Tutorial & Evolution - Scaler",
+    "new_title": "[Scaler] 教學指南 - Microsoft AutoGen 演進與代理架構教學",
+    "category": "教學指南",
+    "source_id": "db80c7b3-4263-417b-a3f5-7134c4d51574",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Multi-Agent Systems - Hugging Face",
+    "new_title": "[Hugging Face 官方] 官方文件 - 多代理系統協作與通信設計模式",
+    "category": "官方文件",
+    "source_id": "47437dc8-4ddd-463d-a558-53bd4fc3b011",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Observational Memory - Mastra Docs",
+    "new_title": "[Mastra 官方] 官方文件 - 觀察式記憶（Observational Memory）技術規格",
+    "category": "官方文件",
+    "source_id": "390ea5d6-7c4d-4ff4-96f3-04ea30af99f8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Observational Memory: 95% on LongMemEval | Mastra Research",
+    "new_title": "[Mastra 官方] 學術論文分析 - 觀察式記憶於 LongMemEval 的表現與壓縮研究",
+    "category": "學術論文分析",
+    "source_id": "788a05a6-630b-4ad4-bda5-955c61087bd2",
+    "status": "renamed"
+  },
+  {
+    "original_title": "OpenAI Agents SDK - GitHub Pages",
+    "new_title": "[OpenAI 官方] 官方文件 - Agents SDK 使用手冊與架構概覽",
+    "category": "官方文件",
+    "source_id": "3875c854-0b5d-493b-809c-336cd2adb8a4",
+    "status": "renamed"
+  },
+  {
+    "original_title": "OpenAI Agents SDK: Handoffs, Guardrails, Tracing - AI Engineering from Scratch",
+    "new_title": "[AI Engineering] 架構設計 - OpenAI Agents SDK 代理交接、防護欄與追蹤",
+    "category": "架構設計",
+    "source_id": "5a9edc8c-1271-4cc0-80de-db7a116954f5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "OpenAI Agents SDK: Tools, Handoffs, Guardrails, Sessions, and Tracing | Sid Bharath",
+    "new_title": "[Sid Bharath] 技術部落格 - OpenAI Agents SDK 生態與核心機制解析",
+    "category": "技術部落格",
+    "source_id": "eea91ce2-20b5-4c91-8c4f-b55cba70f1e6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "OpenAI Swarm Explained: Multi-Agent Orchestration - Arize AI",
+    "new_title": "[Arize AI] 架構設計 - OpenAI Swarm 輕量級多代理協作與編排解析",
+    "category": "架構設計",
+    "source_id": "13286671-b228-452e-b9cb-732876fef757",
+    "status": "renamed"
+  },
+  {
+    "original_title": "OpenAI Swarm Multi-Agent Framework in 2026: What It Is, How It Works, and How to Use It | Lexogrine Blog",
+    "new_title": "[Lexogrine] 教學指南 - 2026 年 OpenAI Swarm 輕量代理框架實戰手冊",
+    "category": "教學指南",
+    "source_id": "31964280-1f3e-41b7-8289-73635bf9cebc",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Orchestrate Multi-Step AI Processes - Mastra",
+    "new_title": "[Mastra 官方] 官方文件 - 多步驟 AI 流程與工作流編排",
+    "category": "官方文件",
+    "source_id": "ea288bc7-3657-4843-b785-b9dc2e9a40fe",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Persistence - Docs by LangChain",
+    "new_title": "[LangChain 官方] 官方文件 - LangGraph 狀態持久化與檢查點（Checkpoints）",
+    "category": "官方文件",
+    "source_id": "b837c73b-45bd-4fcc-bce4-83bb6f943e71",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Production Deep Agents for Pydantic AI | Vstorm",
+    "new_title": "[Vstorm] 架構設計 - Pydantic AI 在生產級深度代理的架構實踐",
+    "category": "架構設計",
+    "source_id": "a506224a-7bb5-4e1f-8618-59612f65d527",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Pydantic AI",
+    "new_title": "[Pydantic 官方] 技術部落格 - Pydantic AI 框架發布與設計哲學",
+    "category": "技術部落格",
+    "source_id": "fb704158-ee84-4205-98b3-72ba4b76e3cc",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Pydantic AI | Pydantic Docs",
+    "new_title": "[Pydantic 官方] 官方文件 - Pydantic AI 設計規格與開發指南",
+    "category": "官方文件",
+    "source_id": "dfc30680-208b-4cf1-94c1-b64af2d448fc",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Semantic Kernel vs AutoGen: Which Microsoft Framework Builds Better AI Agents - ZenML",
+    "new_title": "[ZenML] 比較分析 - Microsoft AutoGen 與 Semantic Kernel 選型對比",
+    "category": "比較分析",
+    "source_id": "242b7de5-8b11-4e63-9130-08f71db0c905",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Sessions | OpenAI Agents SDK - GitHub Pages",
+    "new_title": "[OpenAI 官方] 官方文件 - Agents SDK 的會話（Sessions）與狀態管理",
+    "category": "官方文件",
+    "source_id": "5ab37b27-f37f-4d7e-ba19-0850b7795153",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Smolagents - Arize AX Docs",
+    "new_title": "[Arize AI] 官方文件 - smolagents 整合可觀測性追蹤與評估",
+    "category": "官方文件",
+    "source_id": "4ef7c35e-e282-4ea7-b97f-77adc916fa68",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Smolagents framework: Building Multi-Agents, Tools, and Memory for Order Processing",
+    "new_title": "[開發者社群] 案例研究 - 基於 smolagents 的訂單處理多代理與記憶實作",
+    "category": "案例研究",
+    "source_id": "d7d145c6-4c67-4e1f-a190-0af8fd64f6d8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Swarm: The Agentic Framework from OpenAI - Composio",
+    "new_title": "[Composio] 技術部落格 - OpenAI Swarm 代理切換與協作機制探討",
+    "category": "技術部落格",
+    "source_id": "4f373d10-858d-438b-8bb9-970f870a25a8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Vercel AI SDK multi-agent support for complex agentic workflows",
+    "new_title": "[Vercel 官方] 官方文件 - AI SDK 多代理協作與複雜工作流支援",
+    "category": "官方文件",
+    "source_id": "cdce74c5-a75e-4839-897b-b4778dce3880",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Vercel eve: Open-Source TypeScript Agent Framework - Digital Applied",
+    "new_title": "[Digital Applied] 架構設計 - Vercel Eve 輕量級 TypeScript 代理框架分析",
+    "category": "架構設計",
+    "source_id": "90f8711f-77c1-4d34-9ab3-af2c83707510",
+    "status": "renamed"
+  },
+  {
+    "original_title": "What Is DeepSeek Harness? The Plug-In Coding Agent Explained | MindStudio",
+    "new_title": "[MindStudio] 新聞分析 - DeepSeek Harness 插件式程式碼代理架構解析",
+    "category": "新聞分析",
+    "source_id": "7ca65a97-06b0-45d2-ac6b-850e92e29472",
+    "status": "renamed"
+  },
+  {
+    "original_title": "What is an LLM agent? A developer's guide - Vercel",
+    "new_title": "[Vercel 官方] 概念指南 - 開發者的 LLM Agent 核心概念與要素",
+    "category": "概念指南",
+    "source_id": "cc877b9e-e0b6-43d4-8907-8bed019daffa",
+    "status": "renamed"
+  },
+  {
+    "original_title": "checkpoints | langgraph - LangChain Reference",
+    "new_title": "[LangChain 官方] API 參考 - LangGraph 的 Checkpointer 持久化接口說明",
+    "category": "API 參考",
+    "source_id": "14fe5608-eabd-4303-a845-1c06a4853e99",
+    "status": "renamed"
+  },
+  {
+    "original_title": "langgraph.checkpoint - LangChain Reference",
+    "new_title": "[LangChain 官方] API 參考 - langgraph.checkpoint 模組詳細類別與方法",
+    "category": "API 參考",
+    "source_id": "69409540-2ecb-4a50-a193-b731561c8e1e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "mastra-ai/mastra-observational-memory-workshop - GitHub",
+    "new_title": "[Mastra 開源] 開源工作坊 README - 觀察式記憶實作範例與工作坊指南",
+    "category": "開源工作坊 README",
+    "source_id": "2d2da528-2183-4bd0-9513-eeabdeac60fa",
+    "status": "renamed"
+  },
+  {
+    "original_title": "smolagents - Hugging Face",
+    "new_title": "[Hugging Face 開源] 開源專案 README - smolagents 框架結構與快速開始",
+    "category": "開源專案 README",
+    "source_id": "c8953274-7137-4b23-9c37-187a163137ef",
+    "status": "renamed"
+  },
+  {
+    "original_title": "smolagents: a barebones library for agents that think in code. - GitHub",
+    "new_title": "[Hugging Face 開源] 開源專案 README - smolagents 代碼執行代理詳細規格",
+    "category": "開源專案 README",
+    "source_id": "44e80f9b-316c-4cc1-8ac3-9f11767b5952",
+    "status": "renamed"
+  }
+]

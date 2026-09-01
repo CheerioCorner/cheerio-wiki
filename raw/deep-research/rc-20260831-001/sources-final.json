@@ -1,0 +1,1241 @@
+[
+  {
+    "id": "5d6702d3-ed8a-4df9-8c39-43efd80e280d",
+    "title": "[AG2 官方] 教學指南 - AutoGen v0.4 事件驅動與可觀測代理開發",
+    "type": "web_page",
+    "url": "https://cohorte.co/blog/autogen-v0-4-ag2-crash-course-build-event-driven-observable-ai-agents-that-scale",
+    "status": 2
+  },
+  {
+    "id": "c393c2d7-0742-4c4d-9426-e46d09831ff8",
+    "title": "[AI Engineer] 技術部落格 - Mastra TypeScript AI 代理開發框架評析",
+    "type": "web_page",
+    "url": "https://ai.engineer/orgs/mastra",
+    "status": 2
+  },
+  {
+    "id": "5a9edc8c-1271-4cc0-80de-db7a116954f5",
+    "title": "[AI Engineering] 架構設計 - OpenAI Agents SDK 代理交接、防護欄與追蹤",
+    "type": "web_page",
+    "url": "https://aiengineeringfromscratch.com/lesson?path=phases%2F14-agent-engineering%2F16-openai-agents-sdk",
+    "status": 2
+  },
+  {
+    "id": "ca480d08-a2d5-4f99-94b3-e8b6c453461c",
+    "title": "[AWS 官方] 實作指南 - 在 AWS 部署 smolagents 多模型代理框架",
+    "type": "web_page",
+    "url": "https://aws.amazon.com/blogs/machine-learning/agentic-ai-with-multi-model-framework-using-hugging-face-smolagents-on-aws/",
+    "status": 2
+  },
+  {
+    "id": "4539d468-1d0e-4196-a11b-61542966deec",
+    "title": "[AWS 官方] 實作指南 - 結合 LangGraph 與 DynamoDB 構建耐用代理",
+    "type": "web_page",
+    "url": "https://aws.amazon.com/blogs/database/build-durable-ai-agents-with-langgraph-and-amazon-dynamodb/",
+    "status": 2
+  },
+  {
+    "id": "8014971e-9aaa-4b3c-bb68-17b288115ea7",
+    "title": "[AY Automate] 比較分析 - TypeScript AI Agent 框架選型與 Mastra 對比",
+    "type": "web_page",
+    "url": "https://www.ayautomate.com/blog/best-typescript-ai-agent-frameworks",
+    "status": 2
+  },
+  {
+    "id": "4ef7c35e-e282-4ea7-b97f-77adc916fa68",
+    "title": "[Arize AI] 官方文件 - smolagents 整合可觀測性追蹤與評估",
+    "type": "web_page",
+    "url": "https://arize.com/docs/ax/integrations/python-agent-frameworks/hugging-face-smolagents/smolagents-tracing",
+    "status": 2
+  },
+  {
+    "id": "13286671-b228-452e-b9cb-732876fef757",
+    "title": "[Arize AI] 架構設計 - OpenAI Swarm 輕量級多代理協作與編排解析",
+    "type": "web_page",
+    "url": "https://arize.com/blog/comparing-openai-swarm",
+    "status": 2
+  },
+  {
+    "id": "3ccf5703-cc1d-4be8-9b79-ae456e646660",
+    "title": "[Cloudsway] 架構設計 - DeepSeek Harness 代理運行時概念解析",
+    "type": "web_page",
+    "url": "https://www.cloudsway.ai/resources/deepseek-harness-explained-what-is-an-agent-harness?id=21",
+    "status": 2
+  },
+  {
+    "id": "4f373d10-858d-438b-8bb9-970f870a25a8",
+    "title": "[Composio] 技術部落格 - OpenAI Swarm 代理切換與協作機制探討",
+    "type": "web_page",
+    "url": "https://composio.dev/content/swarm-the-agentic-framework-from-openai",
+    "status": 2
+  },
+  {
+    "id": "a287b637-af7e-4196-b7da-78df31371bd8",
+    "title": "[Crewship] 技術部落格 - LangGraph 的記憶持久化與檢查點機制",
+    "type": "web_page",
+    "url": "https://www.crewship.dev/learn/langgraph-memory",
+    "status": 2
+  },
+  {
+    "id": "7d85a0ae-08a1-4365-b7a2-0a10d0b71018",
+    "title": "[DBOS 官方] 實作指南 - 結合 Pydantic AI 與耐用執行構建可靠代理",
+    "type": "web_page",
+    "url": "https://pydantic.dev/articles/pydantic-ai-dbos",
+    "status": 2
+  },
+  {
+    "id": "ff75d234-83f9-45a2-9e73-4af60bb35f0a",
+    "title": "[DataCamp] 教學指南 - 開源 DeepSeek Harness 代理環境部署與實作",
+    "type": "web_page",
+    "url": "https://www.datacamp.com/tutorial/deepseek-harness",
+    "status": 2
+  },
+  {
+    "id": "d8a7306f-4d02-488a-b3d4-07072fbee95a",
+    "title": "[DeepSeek 開源] 開源專案 README - Harness 插件化代理運行時架構",
+    "type": "web_page",
+    "url": "https://github.com/deepseek-ai/deepseek-harness",
+    "status": 2
+  },
+  {
+    "id": "90f8711f-77c1-4d34-9ab3-af2c83707510",
+    "title": "[Digital Applied] 架構設計 - Vercel Eve 輕量級 TypeScript 代理框架分析",
+    "type": "web_page",
+    "url": "https://www.digitalapplied.com/blog/vercel-eve-open-source-typescript-agent-framework-launch",
+    "status": 2
+  },
+  {
+    "id": "63ed0f67-ffba-49e5-8af9-c4eeb59d5a9d",
+    "title": "[Eigent AI] 架構設計 - DeepSeek Harness 開源代理運行時深度解析",
+    "type": "web_page",
+    "url": "https://www.eigent.ai/blog/deepseek-harness-agent-runtime",
+    "status": 2
+  },
+  {
+    "id": "921fe55f-cc16-44ab-abe0-6ecaf2609027",
+    "title": "[Firecrawl] 教學指南 - 使用 TypeScript 與 Mastra 打造網頁爬蟲代理",
+    "type": "web_page",
+    "url": "https://www.firecrawl.dev/blog/mastra-tutorial",
+    "status": 2
+  },
+  {
+    "id": "7806e580-949f-41ac-8ec8-ebc82268f0c5",
+    "title": "[GitHub 筆記] 技術筆記 - Vercel Eve 輕量級代理框架語法解析",
+    "type": "web_page",
+    "url": "https://github.com/coleam00/cole-medin-knowledge-base/blob/main/entities/tools/eve.md",
+    "status": 2
+  },
+  {
+    "id": "9c528d17-6bbf-4ff6-8866-99f7157fc41d",
+    "title": "[Helmcode] 學術論文分析 - DeepSeek Harness 的底層 Cordis 框架設計",
+    "type": "web_page",
+    "url": "https://helmcode.com/posts/cordis-paper-spatiotemporal-composability",
+    "status": 2
+  },
+  {
+    "id": "e5f6ea9f-d346-4c11-bbb2-e0a4847f316d",
+    "title": "[Hindsight] 技術部落格 - smolagents 代理記憶機制的留存與反射",
+    "type": "web_page",
+    "url": "https://hindsight.vectorize.io/blog/2026/04/29/smolagents-memory-tools",
+    "status": 2
+  },
+  {
+    "id": "1051842a-acc8-4f3a-869e-ce1de01eff97",
+    "title": "[Hugging Face 官方] 官方文件 - Transformer Agents 記憶管理機制",
+    "type": "web_page",
+    "url": "https://huggingface.co/docs/smolagents/tutorials/memory",
+    "status": 2
+  },
+  {
+    "id": "18545ee9-45c2-42ce-9c9a-dfe535173b0d",
+    "title": "[Hugging Face 官方] 官方文件 - smolagents 極簡程式碼思維代理入門",
+    "type": "web_page",
+    "url": "https://huggingface.co/learn/agents-course/unit2/smolagents/introduction",
+    "status": 2
+  },
+  {
+    "id": "47437dc8-4ddd-463d-a558-53bd4fc3b011",
+    "title": "[Hugging Face 官方] 官方文件 - 多代理系統協作與通信設計模式",
+    "type": "web_page",
+    "url": "https://huggingface.co/learn/agents-course/unit2/smolagents/multi_agent_systems",
+    "status": 2
+  },
+  {
+    "id": "e44f8303-a901-4473-bdf1-6165ee5d0c6a",
+    "title": "[Hugging Face 官方] 教學指南 - smolagents 首個代理構建實戰",
+    "type": "web_page",
+    "url": "https://huggingface.co/learn/agents-course/unit1/tutorial",
+    "status": 2
+  },
+  {
+    "id": "44e80f9b-316c-4cc1-8ac3-9f11767b5952",
+    "title": "[Hugging Face 開源] 開源專案 README - smolagents 代碼執行代理詳細規格",
+    "type": "web_page",
+    "url": "https://github.com/huggingface/smolagents",
+    "status": 2
+  },
+  {
+    "id": "c8953274-7137-4b23-9c37-187a163137ef",
+    "title": "[Hugging Face 開源] 開源專案 README - smolagents 框架結構與快速開始",
+    "type": "web_page",
+    "url": "https://huggingface.co/docs/smolagents/index",
+    "status": 2
+  },
+  {
+    "id": "14fe5608-eabd-4303-a845-1c06a4853e99",
+    "title": "[LangChain 官方] API 參考 - LangGraph 的 Checkpointer 持久化接口說明",
+    "type": "web_page",
+    "url": "https://reference.langchain.com/python/langgraph/checkpoints",
+    "status": 2
+  },
+  {
+    "id": "69409540-2ecb-4a50-a193-b731561c8e1e",
+    "title": "[LangChain 官方] API 參考 - langgraph.checkpoint 模組詳細類別與方法",
+    "type": "web_page",
+    "url": "https://reference.langchain.com/python/langgraph.checkpoint",
+    "status": 2
+  },
+  {
+    "id": "b837c73b-45bd-4fcc-bce4-83bb6f943e71",
+    "title": "[LangChain 官方] 官方文件 - LangGraph 狀態持久化與檢查點（Checkpoints）",
+    "type": "web_page",
+    "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+    "status": 2
+  },
+  {
+    "id": "31964280-1f3e-41b7-8289-73635bf9cebc",
+    "title": "[Lexogrine] 教學指南 - 2026 年 OpenAI Swarm 輕量代理框架實戰手冊",
+    "type": "web_page",
+    "url": "https://lexogrine.com/blog/openai-swarm-multi-agent-framework-2026",
+    "status": 2
+  },
+  {
+    "id": "757a4294-99a0-4b52-a6b0-16f6aade3a94",
+    "title": "[LogRocket] 教學指南 - 使用 Vercel Eve 構建 Next.js AI 代理",
+    "type": "web_page",
+    "url": "https://blog.logrocket.com/vercel-eve-ai-agents/",
+    "status": 2
+  },
+  {
+    "id": "788a05a6-630b-4ad4-bda5-955c61087bd2",
+    "title": "[Mastra 官方] 學術論文分析 - 觀察式記憶於 LongMemEval 的表現與壓縮研究",
+    "type": "web_page",
+    "url": "https://mastra.ai/research/observational-memory",
+    "status": 2
+  },
+  {
+    "id": "ea288bc7-3657-4843-b785-b9dc2e9a40fe",
+    "title": "[Mastra 官方] 官方文件 - 多步驟 AI 流程與工作流編排",
+    "type": "web_page",
+    "url": "https://mastra.ai/ai-workflows",
+    "status": 2
+  },
+  {
+    "id": "390ea5d6-7c4d-4ff4-96f3-04ea30af99f8",
+    "title": "[Mastra 官方] 官方文件 - 觀察式記憶（Observational Memory）技術規格",
+    "type": "web_page",
+    "url": "https://mastra.ai/docs/memory/observational-memory",
+    "status": 2
+  },
+  {
+    "id": "aa1cc792-e91a-45f0-9741-51ca00861d0d",
+    "title": "[Mastra 官方] 實作指南 - TypeScript 生產生態 2026 逐步建置教學",
+    "type": "web_page",
+    "url": "https://dev.to/thegdsks/building-a-production-ai-agent-in-typescript-with-mastra-a-2026-step-by-step-37dc",
+    "status": 2
+  },
+  {
+    "id": "498028f0-108b-4585-b4ae-d48efbfeddbf",
+    "title": "[Mastra 官方] 實作指南 - 自訂 AI Agent 構建與部署流程",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/custom-ai-agents",
+    "status": 2
+  },
+  {
+    "id": "b84f9742-3251-4ce3-9870-2e12119b60f7",
+    "title": "[Mastra 官方] 實作指南 - 開發者 AI Agent 工作流全方位手冊",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/ai-agent-workflows",
+    "status": 2
+  },
+  {
+    "id": "9ebdce6a-2cd6-41b3-8a02-ec51feed1179",
+    "title": "[Mastra 官方] 架構設計 - AI Agent 生產環境設計模式",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/ai-agent-architecture",
+    "status": 2
+  },
+  {
+    "id": "f9f2a84c-84d1-4c3d-8993-859bc820f0a4",
+    "title": "[Mastra 官方] 架構設計 - AI Agent 記憶平台與上下文管理機制",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/agent-memory-platform",
+    "status": 2
+  },
+  {
+    "id": "26f21ccc-4cf0-447a-8b49-3a2bdad71695",
+    "title": "[Mastra 官方] 架構設計 - 代理型 RAG 架構設計與折衷評估",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/agentic-rag",
+    "status": 2
+  },
+  {
+    "id": "d5c5902c-cae4-4938-92f0-beb812a80c7c",
+    "title": "[Mastra 官方] 概念指南 - AI 工作流定義與構建方法",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/ai-workflows",
+    "status": 2
+  },
+  {
+    "id": "e4ef5b95-7303-41f1-a389-a44492ec8533",
+    "title": "[Mastra 官方] 概念指南 - 代理型工作流核心組件與建構",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/agentic-workflows",
+    "status": 2
+  },
+  {
+    "id": "0873e756-e3a0-40a6-8787-6171735bd5dc",
+    "title": "[Mastra 官方] 比較分析 - AI Agent 框架選型評估指南",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/ai-agent-framework",
+    "status": 2
+  },
+  {
+    "id": "d219b4f7-c7c9-4470-aef2-6d64296ba146",
+    "title": "[Mastra 開源] 開源專案 README - TypeScript AI 代理框架功能概述",
+    "type": "web_page",
+    "url": "https://github.com/mastra-ai/mastra",
+    "status": 2
+  },
+  {
+    "id": "2d2da528-2183-4bd0-9513-eeabdeac60fa",
+    "title": "[Mastra 開源] 開源工作坊 README - 觀察式記憶實作範例與工作坊指南",
+    "type": "web_page",
+    "url": "https://github.com/mastra-ai/mastra-observational-memory-workshop",
+    "status": 2
+  },
+  {
+    "id": "0de40bba-2c0c-4a3a-9a36-4d2870aa9c6c",
+    "title": "[Microsoft 官方] 官方文件 - AutoGen AgentChat 多代理協作模式",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/semantic-kernel/support/archive/agent-chat",
+    "status": 2
+  },
+  {
+    "id": "909480ad-fd34-424e-bf33-84909c2fe330",
+    "title": "[Microsoft 官方] 官方文件 - Semantic Kernel ChatCompletionAgent 運作原理",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-types/chat-completion-agent",
+    "status": 2
+  },
+  {
+    "id": "35b4592e-ed67-4d00-b74b-511a705ab6be",
+    "title": "[Microsoft 官方] 官方文件 - Semantic Kernel 代理與群聊編排機制",
+    "type": "web_page",
+    "url": "https://dev.to/bspann/ai-agents-in-semantic-kernel-chatcompletionagent-agentgroupchat-and-orchestration-50am",
+    "status": 2
+  },
+  {
+    "id": "7ca65a97-06b0-45d2-ac6b-850e92e29472",
+    "title": "[MindStudio] 新聞分析 - DeepSeek Harness 插件式程式碼代理架構解析",
+    "type": "web_page",
+    "url": "https://www.mindstudio.ai/blog/deepseek-harness-agentic-coding",
+    "status": 2
+  },
+  {
+    "id": "3875c854-0b5d-493b-809c-336cd2adb8a4",
+    "title": "[OpenAI 官方] 官方文件 - Agents SDK 使用手冊與架構概覽",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/",
+    "status": 2
+  },
+  {
+    "id": "be1c6734-d105-45dc-8774-f2350aac3891",
+    "title": "[OpenAI 官方] 官方文件 - Agents SDK 核心功能與開發指南",
+    "type": "web_page",
+    "url": "https://developers.openai.com/api/docs/guides/agents",
+    "status": 2
+  },
+  {
+    "id": "d36d5342-999c-4c05-b6d0-6019ae15dff6",
+    "title": "[OpenAI 官方] 官方文件 - Agents SDK 的代理交接機制與控制權轉移",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/handoffs/",
+    "status": 2
+  },
+  {
+    "id": "5ab37b27-f37f-4d7e-ba19-0850b7795153",
+    "title": "[OpenAI 官方] 官方文件 - Agents SDK 的會話（Sessions）與狀態管理",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-js/guides/sessions/",
+    "status": 2
+  },
+  {
+    "id": "3ff55309-ac20-43e4-b2bb-ff8b6a7e9fa9",
+    "title": "[OpenAI 官方] 架構設計 - 基於會話的短期記憶管理與上下文工程",
+    "type": "web_page",
+    "url": "https://developers.openai.com/cookbook/examples/agents_sdk/session_memory",
+    "status": 2
+  },
+  {
+    "id": "3d41fadc-93a7-4f64-991c-448fa64bb63e",
+    "title": "[OpenAI 開源] 開源專案 README - Swarm 輕量級多代理編排教育框架",
+    "type": "web_page",
+    "url": "https://github.com/openai/swarm",
+    "status": 2
+  },
+  {
+    "id": "1e83537e-25a2-436a-afc0-8b4f9ecda995",
+    "title": "[ProjectPro] 教學指南 - AutoGen 多代理協作框架入門與實作",
+    "type": "web_page",
+    "url": "https://www.projectpro.io/article/autogen/1139",
+    "status": 2
+  },
+  {
+    "id": "7854b613-ef2f-44a6-801e-6b07a77d6395",
+    "title": "[Pydantic 官方] 官方文件 - Pydantic AI 代理程式設計",
+    "type": "web_page",
+    "url": "https://pydantic.dev/docs/ai/core-concepts/agent/",
+    "status": 2
+  },
+  {
+    "id": "2ed6faf9-2406-4832-8c46-69ec4f51df35",
+    "title": "[Pydantic 官方] 官方文件 - Pydantic AI 功能與核心能力規格",
+    "type": "web_page",
+    "url": "https://pydantic.dev/docs/ai/capabilities/overview/",
+    "status": 2
+  },
+  {
+    "id": "dfc30680-208b-4cf1-94c1-b64af2d448fc",
+    "title": "[Pydantic 官方] 官方文件 - Pydantic AI 設計規格與開發指南",
+    "type": "web_page",
+    "url": "https://pydantic.dev/docs/ai/overview/",
+    "status": 2
+  },
+  {
+    "id": "fb704158-ee84-4205-98b3-72ba4b76e3cc",
+    "title": "[Pydantic 官方] 技術部落格 - Pydantic AI 框架發布與設計哲學",
+    "type": "web_page",
+    "url": "https://pydantic.dev/",
+    "status": 2
+  },
+  {
+    "id": "db80c7b3-4263-417b-a3f5-7134c4d51574",
+    "title": "[Scaler] 教學指南 - Microsoft AutoGen 演進與代理架構教學",
+    "type": "web_page",
+    "url": "https://www.scaler.com/topics/agentic-ai/microsoft-autogen-agent-framework/",
+    "status": 2
+  },
+  {
+    "id": "eea91ce2-20b5-4c91-8c4f-b55cba70f1e6",
+    "title": "[Sid Bharath] 技術部落格 - OpenAI Agents SDK 生態與核心機制解析",
+    "type": "web_page",
+    "url": "https://sidbharath.com/blog/openai-agents-sdk/",
+    "status": 2
+  },
+  {
+    "id": "e7172b2d-6e97-4b46-b6b1-f8245b7be4e1",
+    "title": "[Systenics AI] 實作指南 - 使用 Semantic Kernel 代理框架建置 Agent",
+    "type": "web_page",
+    "url": "https://systenics.ai/blog/2025-04-09-building-ai-agent-using-semantic-kernel-agent-framework",
+    "status": 2
+  },
+  {
+    "id": "7d75f6e2-9091-48e3-bf9b-3c9118c7dda8",
+    "title": "[The Road To Enterprise] 架構設計 - 企業級 Agent 框架選型必要性評估",
+    "type": "web_page",
+    "url": "https://theroadtoenterprise.com/blog/do-you-need-an-agent-framework",
+    "status": 2
+  },
+  {
+    "id": "4af0bee3-5dad-4029-8ac3-8cb7b791733e",
+    "title": "[Trans-N 科技] 新聞分析 - DeepSeek Harness 插件化模型與代理迴圈",
+    "type": "web_page",
+    "url": "https://note.com/trans_n_ai/n/nf4946f5847de?hl=en",
+    "status": 2
+  },
+  {
+    "id": "cdce74c5-a75e-4839-897b-b4778dce3880",
+    "title": "[Vercel 官方] 官方文件 - AI SDK 多代理協作與複雜工作流支援",
+    "type": "web_page",
+    "url": "https://community.vercel.com/t/vercel-ai-sdk-multi-agent-support-for-complex-agentic-workflows/35594",
+    "status": 2
+  },
+  {
+    "id": "1ef9308c-cde8-4f4e-ade1-17827fe5e84a",
+    "title": "[Vercel 官方] 技術部落格 - 生產環境 AI Agent 評估框架",
+    "type": "web_page",
+    "url": "https://vercel.com/i/ai-agent-evaluation-frameworks-production",
+    "status": 2
+  },
+  {
+    "id": "cc877b9e-e0b6-43d4-8907-8bed019daffa",
+    "title": "[Vercel 官方] 概念指南 - 開發者的 LLM Agent 核心概念與要素",
+    "type": "web_page",
+    "url": "https://vercel.com/i/llm-agent",
+    "status": 2
+  },
+  {
+    "id": "1e46005a-69d7-4b28-aee9-be007cb89f82",
+    "title": "[Vercel 官方] 設計指南 - 問題導向的代理型 AI 應用構建",
+    "type": "web_page",
+    "url": "https://vercel.com/i/building-agentic-ai-applications-with-a-problem-first-approach",
+    "status": 2
+  },
+  {
+    "id": "a506224a-7bb5-4e1f-8618-59612f65d527",
+    "title": "[Vstorm] 架構設計 - Pydantic AI 在生產級深度代理的架構實踐",
+    "type": "web_page",
+    "url": "https://pydantic.dev/articles/pydantic-deep-agents",
+    "status": 2
+  },
+  {
+    "id": "ee79125f-d744-4a7c-b979-b557153bd96e",
+    "title": "[Vstorm] 案例研究 - 基於 Pydantic AI 的 Text-to-SQL 混合代理圖架構實踐",
+    "type": "web_page",
+    "url": "https://vstorm.co/case-study/from-single-agent-to-hybrid-agent-graph-architecture-our-journey-with-pydantic-ai-and-text-to-sql/",
+    "status": 2
+  },
+  {
+    "id": "a70b27f8-89ce-4e5f-a1e7-9c051d02e245",
+    "title": "[ZenML] 架構設計 - Mastra 觀察式記憶與人類啟發的上下文壓縮",
+    "type": "web_page",
+    "url": "https://www.zenml.io/llmops-database/observational-memory-human-inspired-context-compression-for-agent-systems",
+    "status": 2
+  },
+  {
+    "id": "242b7de5-8b11-4e63-9130-08f71db0c905",
+    "title": "[ZenML] 比較分析 - Microsoft AutoGen 與 Semantic Kernel 選型對比",
+    "type": "web_page",
+    "url": "https://www.zenml.io/blog/semantic-kernel-vs-autogen",
+    "status": 2
+  },
+  {
+    "id": "877333f9-5916-492d-8caa-857087cb45da",
+    "title": "[安全研究] 安全分析 - smolagents CodeAgent 的程式碼執行安全風險",
+    "type": "web_page",
+    "url": "https://www.nccgroup.com/research/autonomous-ai-agents-a-hidden-risk-in-insecure-smolagents-codeagent-usage/",
+    "status": 2
+  },
+  {
+    "id": "ab712b4b-1362-4243-96b6-844a12d86418",
+    "title": "[開發者社群] 實作指南 - 開發者 AI Agent 基礎構建實戰指南",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/how-to-build-ai-agents",
+    "status": 2
+  },
+  {
+    "id": "d7d145c6-4c67-4e1f-a190-0af8fd64f6d8",
+    "title": "[開發者社群] 案例研究 - 基於 smolagents 的訂單處理多代理與記憶實作",
+    "type": "web_page",
+    "url": "https://ayotomiwasalau.com/work/blogs/smolagents-framework-building-multi-agents-tools-and-memory",
+    "status": 2
+  },
+  {
+    "id": "afdd7550-9601-4a87-8a7a-bde8fdcce531",
+    "title": "https://blckalpaca.at/en/knowledge-base/ai-agents/ai-agent-frameworks-comparison/autogen-vs-ag2",
+    "type": "web_page",
+    "url": "https://blckalpaca.at/en/knowledge-base/ai-agents/ai-agent-frameworks-comparison/autogen-vs-ag2",
+    "status": 3
+  },
+  {
+    "id": "81eb3285-f386-497a-8f0b-ceb3caae6647",
+    "title": "https://community.sap.com/t5/artificial-intelligence-blogs-posts/langgraph-checkpoint-saver-for-sap-hana-cloud/ba-p/14336448",
+    "type": "web_page",
+    "url": "https://community.sap.com/t5/artificial-intelligence-blogs-posts/langgraph-checkpoint-saver-for-sap-hana-cloud/ba-p/14336448",
+    "status": 3
+  },
+  {
+    "id": "10c20669-0bb3-477b-aa20-7c29c969a3f3",
+    "title": "https://medium.com/@bhargavkoya56/migrating-from-semantic-kernel-agents-to-microsoft-agent-framework-in-net-42f8236327dc",
+    "type": "web_page",
+    "url": "https://medium.com/@bhargavkoya56/migrating-from-semantic-kernel-agents-to-microsoft-agent-framework-in-net-42f8236327dc",
+    "status": 3
+  },
+  {
+    "id": "bb5dfa20-bbec-45c5-80fd-3dc1869bd4e2",
+    "title": "https://medium.com/@tahirbalarabe2/what-is-pydantic-ai-15cc81dea3c3",
+    "type": "web_page",
+    "url": "https://medium.com/@tahirbalarabe2/what-is-pydantic-ai-15cc81dea3c3",
+    "status": 3
+  },
+  {
+    "id": "ae215765-cd03-4c19-9a85-1f54862f077b",
+    "title": "https://medium.com/@vishwajeetv2003/building-multi-agent-ai-applications-with-autogen-complete-tutorial-2026-2fbd9af73a9c",
+    "type": "web_page",
+    "url": "https://medium.com/@vishwajeetv2003/building-multi-agent-ai-applications-with-autogen-complete-tutorial-2026-2fbd9af73a9c",
+    "status": 3
+  },
+  {
+    "id": "a7bbd363-5db1-4876-be78-70883ad383f0",
+    "title": "https://pub.towardsai.net/deepseek-harness-and-the-end-of-the-model-only-roadmap-badb4b38c302",
+    "type": "web_page",
+    "url": "https://pub.towardsai.net/deepseek-harness-and-the-end-of-the-model-only-roadmap-badb4b38c302",
+    "status": 3
+  },
+  {
+    "id": "6573507b-af69-4d0b-ad0d-cc9cfeb6a5aa",
+    "title": "https://saurabh-shukla.medium.com/adding-memory-to-ai-agents-e506dfb3e60e",
+    "type": "web_page",
+    "url": "https://saurabh-shukla.medium.com/adding-memory-to-ai-agents-e506dfb3e60e",
+    "status": 3
+  },
+  {
+    "id": "3d0cdfa5-deee-45c3-a06e-1a4aba6429e9",
+    "title": "https://venturebeat.com/data/observational-memory-cuts-ai-agent-costs-10x-and-outscores-rag-on-long",
+    "type": "web_page",
+    "url": "https://venturebeat.com/data/observational-memory-cuts-ai-agent-costs-10x-and-outscores-rag-on-long",
+    "status": 3
+  },
+  {
+    "id": "b1723e9e-da0c-4e58-b53b-741734451f5e",
+    "title": "6 Open-Source Tools to Reduce Your Token Usage - WeAreDevelopers",
+    "type": "web_page",
+    "url": "https://www.wearedevelopers.com/magazine/746-6-open-source-tools-to-reduce-your-token-usage",
+    "status": 2
+  },
+  {
+    "id": "738006e2-a558-4989-9ee7-e403aee3b732",
+    "title": "9 LLM Observability Tools for Production AI Agents - LangChain",
+    "type": "web_page",
+    "url": "https://www.langchain.com/resources/llm-observability-tools",
+    "status": 2
+  },
+  {
+    "id": "60d87a2d-8d5e-43ec-b042-e1a0c1c7d943",
+    "title": "A Python Library for Creating Swarm-Style Multi-Agent Systems Using LangGraph : r/machinelearningnews - Reddit",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/machinelearningnews/comments/1kntjcn/meet_langgraph_multiagent_swarm_a_python_library/",
+    "status": 2
+  },
+  {
+    "id": "a5e9297f-506c-4674-be29-772ee0221c44",
+    "title": "AI Agent Memory Architectures: From Context Windows to Persistent Knowledge | Zylos Research",
+    "type": "web_page",
+    "url": "https://zylos.ai/research/2026-04-05-ai-agent-memory-architectures-persistent-knowledge/",
+    "status": 2
+  },
+  {
+    "id": "22d047a9-c60e-4243-9987-0c2d32d1b0a8",
+    "title": "AI Observability metrics reference - Dynatrace Documentation",
+    "type": "web_page",
+    "url": "https://docs.dynatrace.com/docs/observe/dynatrace-for-ai-observability/metrics-reference",
+    "status": 2
+  },
+  {
+    "id": "2cff4400-7583-403a-adc3-6f8bcbfad38c",
+    "title": "Agent Memory: How to Build Agents That Learn and Remember - Letta",
+    "type": "web_page",
+    "url": "https://www.letta.com/blog/agent-memory/",
+    "status": 2
+  },
+  {
+    "id": "367da83a-bad8-4ca6-a00b-938dfa26c50f",
+    "title": "Agentic CLI Tools Compared: Claude Code vs Cline vs Aider - AIMultiple",
+    "type": "web_page",
+    "url": "https://aimultiple.com/agentic-cli",
+    "status": 2
+  },
+  {
+    "id": "ef2d7850-fb1b-4e26-ba22-1f3723c90483",
+    "title": "Agents SDK | OpenAI API",
+    "type": "web_page",
+    "url": "https://developers.openai.com/api/docs/guides/agents",
+    "status": 2
+  },
+  {
+    "id": "22ae2cd7-f105-46a0-9de3-71b4f6296fd8",
+    "title": "Aider Documentation",
+    "type": "web_page",
+    "url": "https://aider.chat/docs/",
+    "status": 2
+  },
+  {
+    "id": "ba61aa58-413b-4500-8261-ba20ad64b89a",
+    "title": "Aider Review: Terminal AI Coding Agent (2026) - Codegen",
+    "type": "web_page",
+    "url": "https://codegen.com/ai-tools/aider/",
+    "status": 2
+  },
+  {
+    "id": "27530581-052a-4b2a-961b-8dda5bf75f10",
+    "title": "Aider vs OpenCode : Meilleur CLI de Codage AI Open Source… | NxCode",
+    "type": "web_page",
+    "url": "https://www.nxcode.io/fr/resources/news/aider-vs-opencode-ai-coding-cli-2026",
+    "status": 2
+  },
+  {
+    "id": "88ae45d0-7d0d-4004-8d50-e1026cb95450",
+    "title": "Best AI Agent Memory Providers in 2026: Mem0 vs Zep vs Letta vs Cloudflare",
+    "type": "web_page",
+    "url": "https://www.developersdigest.tech/blog/best-ai-agent-memory-providers-2026",
+    "status": 2
+  },
+  {
+    "id": "fb932011-d954-440c-85e0-dbc7dbd24f60",
+    "title": "Build a coding agent with GPT 5.1 - OpenAI Developers",
+    "type": "web_page",
+    "url": "https://developers.openai.com/cookbook/examples/build_a_coding_agent_with_gpt-5.1",
+    "status": 2
+  },
+  {
+    "id": "1d8d68a4-cfe8-44a7-8d63-5795ad86f246",
+    "title": "Building Memory-First AI Reminder Agents with Mem0 and Claude Agent SDK",
+    "type": "web_page",
+    "url": "https://mem0.ai/blog/building-a-reminder-agent-that-actually-remembers",
+    "status": 2
+  },
+  {
+    "id": "e28d548e-c1ca-4679-8792-bd336487662d",
+    "title": "Building Multi-Agent Systems with LangGraph Swarm: A New Approach to Agent Collaboration - DEV Community",
+    "type": "web_page",
+    "url": "https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj",
+    "status": 2
+  },
+  {
+    "id": "a3dc0cc7-fd58-4b9a-b576-a03f32271ea8",
+    "title": "Capstone 01 — Terminal-Native Coding Agent - AI Engineering from Scratch",
+    "type": "web_page",
+    "url": "https://aiengineeringfromscratch.com/lesson?path=phases%2F19-capstone-projects%2F01-terminal-native-coding-agent",
+    "status": 2
+  },
+  {
+    "id": "95d57a8b-1531-4106-9084-6d9ee77a8010",
+    "title": "Chat modes | aider",
+    "type": "web_page",
+    "url": "https://aider.chat/docs/usage/modes.html",
+    "status": 2
+  },
+  {
+    "id": "9b92c2a5-8eb3-4c37-8326-bd655c594529",
+    "title": "Claude Code vs Aider: Terminal AI Coding Compared - Layer3Labs",
+    "type": "web_page",
+    "url": "https://www.layer3labs.io/comparisons/claude-code-vs-aider",
+    "status": 2
+  },
+  {
+    "id": "619f8230-0817-4dae-9b94-fad662cb83f0",
+    "title": "Claude Code vs Open Interpreter 2026 | LOW/CODE - LowCode Agency",
+    "type": "web_page",
+    "url": "https://www.lowcode.agency/blog/claude-code-vs-open-interpreter",
+    "status": 2
+  },
+  {
+    "id": "a5525bb7-85ce-4cbb-b767-1503336195bb",
+    "title": "Codebase Graphs Are the New Agent Map - Developers Digest",
+    "type": "web_page",
+    "url": "https://www.developersdigest.tech/blog/codebase-graphs-ai-coding-agents",
+    "status": 2
+  },
+  {
+    "id": "c0078642-780d-4005-8e03-ed65a89b5023",
+    "title": "Concepts - OpenAI Agents SDK - GitHub Pages",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/sandbox/guide/",
+    "status": 2
+  },
+  {
+    "id": "1de0b447-478e-4fa4-aed7-ea8fb4177e23",
+    "title": "Configure Telemetry: OTel GenAI Semantic Conventions - Rhesis AI",
+    "type": "web_page",
+    "url": "https://docs.rhesis.ai/guides/telemetry-configuration/genai-conventions",
+    "status": 2
+  },
+  {
+    "id": "90a2ba34-0f74-48d7-8d7e-85978d2bdffd",
+    "title": "Context Engineering - Repo Indexing and Code Graphs - InfraGap.com",
+    "type": "web_page",
+    "url": "https://infragap.com/context-engineering/",
+    "status": 2
+  },
+  {
+    "id": "785c0b46-6b75-4846-bb97-5bbed1c75cbf",
+    "title": "Context Engineering - Short-Term Memory Management with Sessions - OpenAI Developers",
+    "type": "web_page",
+    "url": "https://developers.openai.com/cookbook/examples/agents_sdk/session_memory",
+    "status": 2
+  },
+  {
+    "id": "323f4d27-3299-4f96-8baf-0505f1677515",
+    "title": "Enabling Long-Term Agent Memory with Oracle AI Agent Memory - OpenAI Developers",
+    "type": "web_page",
+    "url": "https://developers.openai.com/cookbook/examples/vector_databases/oracle_db/deep_research_openai_agents",
+    "status": 2
+  },
+  {
+    "id": "9842c5f1-0b83-4676-aab5-40df5d62717a",
+    "title": "Evaluate any agent framework with Amazon Bedrock AgentCore Evaluations - AWS",
+    "type": "web_page",
+    "url": "https://aws.amazon.com/blogs/machine-learning/evaluate-any-agent-framework-with-amazon-bedrock-agentcore-evaluations/",
+    "status": 2
+  },
+  {
+    "id": "18d39dbb-576a-4ff6-a9bc-084361ed4018",
+    "title": "Examples - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/examples/",
+    "status": 2
+  },
+  {
+    "id": "18bcd814-6013-433f-97d8-47e1b9915348",
+    "title": "Feature: Aider Coding Agent Skill — Lightweight Model-Agnostic Pair Programming Without PTY #534 - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/NousResearch/hermes-agent/issues/534",
+    "status": 2
+  },
+  {
+    "id": "2ec88dc5-389c-47e8-adc8-230c83a51a00",
+    "title": "Gen AI | OpenTelemetry",
+    "type": "web_page",
+    "url": "https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/",
+    "status": 2
+  },
+  {
+    "id": "7fdf1ed4-10a4-4e62-91d4-b1391026f33a",
+    "title": "GitHub - openai/swarm: Educational framework exploring ergonomic, lightweight multi-agent orchestration. Managed by OpenAI Solution team.",
+    "type": "web_page",
+    "url": "https://github.com/openai/swarm",
+    "status": 2
+  },
+  {
+    "id": "e90b7aff-e2f4-4e12-a31c-202bc30cd764",
+    "title": "Graft Review 2026: Agent Repo Maps in Git - Wavect",
+    "type": "web_page",
+    "url": "https://wavect.io/blog/graft-review-agent-repo-map/",
+    "status": 2
+  },
+  {
+    "id": "0bb437f8-b485-48a0-9afb-a3e2788c228b",
+    "title": "Guardrails - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/guardrails/",
+    "status": 2
+  },
+  {
+    "id": "5666d533-a553-4de7-9ae7-891f3c384d33",
+    "title": "Guardrails - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/ref/guardrail/",
+    "status": 2
+  },
+  {
+    "id": "a52d47e9-ea2e-4cd8-b888-2a35eb68f0da",
+    "title": "Guardrails | OpenAI Agents SDK - GitHub Pages",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-js/guides/guardrails/",
+    "status": 2
+  },
+  {
+    "id": "06e75149-459a-431a-a60c-433fd8f5f25a",
+    "title": "Handoffs - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/handoffs/",
+    "status": 2
+  },
+  {
+    "id": "c8469c64-c789-4127-b363-b0acc93013d9",
+    "title": "Handoffs | OpenAI Agents SDK - GitHub Pages",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-js/guides/handoffs/",
+    "status": 2
+  },
+  {
+    "id": "0b2251c2-1f95-4a6e-b527-2c8443546a9a",
+    "title": "Hindsight vs Letta (MemGPT): Agent Memory Compared (2026) - Vectorize.io",
+    "type": "web_page",
+    "url": "https://vectorize.io/articles/hindsight-vs-letta",
+    "status": 2
+  },
+  {
+    "id": "bcc200ae-0a36-4630-bd12-646a2ce0ddf5",
+    "title": "How Coding Agents Work: Inside the Agentic Loop - Dr. TMA Pai Endowment Chair - ITIS",
+    "type": "web_page",
+    "url": "https://blog.ecitis.org/coding-agents-explained/",
+    "status": 2
+  },
+  {
+    "id": "beeb951d-3701-4728-b0a8-0e6d45027717",
+    "title": "How OpenTelemetry Traces LLM Calls, Agent Reasoning, and MCP Tools - Reddit",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/OpenTelemetry/comments/1uy4gss/how_opentelemetry_traces_llm_calls_agent/",
+    "status": 2
+  },
+  {
+    "id": "f3ffd8a8-c28c-4889-a1f7-f5f97a9a6b50",
+    "title": "How OpenTelemetry Traces LLM Calls, Agent Reasoning, and MCP Tools | Greptime",
+    "type": "web_page",
+    "url": "https://greptime.com/blogs/2026-05-09-opentelemetry-genai-semantic-conventions",
+    "status": 2
+  },
+  {
+    "id": "ec06cea4-55b3-40c3-b2dd-4a74743b9afe",
+    "title": "How to build an agent harness from scratch - Tair Asim",
+    "type": "web_page",
+    "url": "https://tairasim.com/blog/build-agent-harness-from-scratch/",
+    "status": 2
+  },
+  {
+    "id": "bab70e01-63ce-4193-ba8e-9f09f1881ffa",
+    "title": "Instrument the OpenAI Agents SDK with OpenTelemetry (2026) - OpenObserve",
+    "type": "web_page",
+    "url": "https://openobserve.ai/blog/instrument-openai-agents-sdk-opentelemetry/",
+    "status": 2
+  },
+  {
+    "id": "eddd2b9f-7d09-4737-8b2d-e1c72ce56df4",
+    "title": "Instrumenting AI Agents - Honeycomb Docs",
+    "type": "web_page",
+    "url": "https://docs.honeycomb.io/send-data/use-cases/agents",
+    "status": 2
+  },
+  {
+    "id": "0c301035-0f5e-4f8e-bb3e-6efd963bebe8",
+    "title": "Instrumenting AI Agents for the Agent Timeline: A Practical OpenTelemetry Guide",
+    "type": "web_page",
+    "url": "https://www.honeycomb.io/blog/instrumenting-ai-agents-agent-timeline-opentelemetry-guide",
+    "status": 2
+  },
+  {
+    "id": "2dc1d5b0-8ab4-4ce2-8605-cbeaa4901328",
+    "title": "Introducing the Agent Development Environment - Letta",
+    "type": "web_page",
+    "url": "https://www.letta.com/blog/introducing-the-agent-development-environment/",
+    "status": 2
+  },
+  {
+    "id": "43d1bc23-f28e-43d4-85c2-1cde5277096f",
+    "title": "LLM Observability in Production: Comparison of Langfuse, LangSmith, and OpenTelemetry",
+    "type": "web_page",
+    "url": "https://explore.n1n.ai/blog/llm-observability-langfuse-langsmith-opentelemetry-2026-05-17",
+    "status": 2
+  },
+  {
+    "id": "731258c8-29fd-4c80-af45-0aa09fb23fad",
+    "title": "LangGraph Multi-Agent Swarm - LangChain Reference",
+    "type": "web_page",
+    "url": "https://reference.langchain.com/python/langgraph-swarm",
+    "status": 2
+  },
+  {
+    "id": "996eca3b-7fa7-417b-ac29-6e3374e8b7c1",
+    "title": "LangSmith vs. Langfuse - LangChain",
+    "type": "web_page",
+    "url": "https://www.langchain.com/resources/langsmith-vs-langfuse",
+    "status": 2
+  },
+  {
+    "id": "aba42a49-4baf-41b9-832b-69300027cce2",
+    "title": "LangSmith: Agent & LLM Observability Platform - LangChain",
+    "type": "web_page",
+    "url": "https://www.langchain.com/langsmith/observability",
+    "status": 2
+  },
+  {
+    "id": "be07d9a9-1875-4a4f-a3a7-9485f56f4db6",
+    "title": "Langfuse vs. LangSmith: Comparing LLM Observability Platforms | DataCamp",
+    "type": "web_page",
+    "url": "https://www.datacamp.com/blog/langfuse-vs-langsmith",
+    "status": 2
+  },
+  {
+    "id": "ed6eb68d-38d5-47a2-98ec-58c0ba305d2f",
+    "title": "Mastering LangGraph's Multi-Agent Swarm - Build Fast with AI",
+    "type": "web_page",
+    "url": "https://www.buildfastwithai.com/blogs/mastering-langgraph",
+    "status": 2
+  },
+  {
+    "id": "4161d1ad-85eb-4dc9-94a4-5fb0f076c8dc",
+    "title": "Memory - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/ref/memory/",
+    "status": 2
+  },
+  {
+    "id": "773f2e38-95a1-4c46-8e1d-dbbe17bd3377",
+    "title": "Multi-Agent Systems Don't Fail at Reasoning. They Fail at Handoff. | Chanl Blog",
+    "type": "web_page",
+    "url": "https://www.channel.tel/blog/handoff-is-the-new-prompt",
+    "status": 2
+  },
+  {
+    "id": "de6691cb-3ea1-4da3-a92e-daef034cbba1",
+    "title": "Multi-agent swarms with LangGraph - YouTube",
+    "type": "web_page",
+    "url": "https://www.youtube.com/watch?v=JeyDrn1dSUQ",
+    "status": 2
+  },
+  {
+    "id": "5e23c353-28ca-49c4-b57c-725497c6b071",
+    "title": "Open Interpreter Agent Security Risks – AIRQ Framework",
+    "type": "web_page",
+    "url": "https://airq.adversa.ai/agent/open-interpreter",
+    "status": 2
+  },
+  {
+    "id": "17cf5f04-fafe-4f98-8ba0-af6b306ef27a",
+    "title": "Open Programming Language Interpreters - arXiv",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/1703.10873v1",
+    "status": 2
+  },
+  {
+    "id": "824a739b-99b2-4d20-9289-62c654552e9d",
+    "title": "OpenAI Agents SDK - Braintrust",
+    "type": "web_page",
+    "url": "https://www.braintrust.dev/docs/integrations/agent-frameworks/openai-agents-sdk",
+    "status": 2
+  },
+  {
+    "id": "7f114178-c2f8-46de-b45b-0b66f212ad3a",
+    "title": "OpenAI Agents SDK - GitHub Pages",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/agents/",
+    "status": 2
+  },
+  {
+    "id": "f2dc7d9d-0823-438b-a621-8c76ae39698f",
+    "title": "OpenAI Agents SDK - GitHub Pages",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/",
+    "status": 2
+  },
+  {
+    "id": "06304c7f-2de9-4745-8ac7-7e7ae3ebe9c3",
+    "title": "OpenAI Swarm Multi-Agent Framework in 2026: What It Is, How It Works, and How to Use It | Lexogrine Blog",
+    "type": "web_page",
+    "url": "https://lexogrine.com/blog/openai-swarm-multi-agent-framework-2026",
+    "status": 2
+  },
+  {
+    "id": "0157738f-074b-4f76-a6cd-5c55aa536d34",
+    "title": "OpenClaw vs Open Interpreter: The Ultimate Guide to Local AI Agents - Skywork",
+    "type": "web_page",
+    "url": "https://skywork.ai/skypage/en/openclaw-open-interpreter-local-ai-agents/2053006736888983552",
+    "status": 2
+  },
+  {
+    "id": "278ac806-0406-4792-a2e6-f62bf81c92dc",
+    "title": "OpenInference vs OpenTelemetry GenAI for Agent Tracing - Arthur AI",
+    "type": "web_page",
+    "url": "https://www.arthur.ai/column/openinference-vs-opentelemetry-genai-conventions-agent-tracing",
+    "status": 2
+  },
+  {
+    "id": "aa61a3ef-8ff7-44eb-88f2-43b9246cd190",
+    "title": "OpenTelemetry (OTEL) for LLM Observability - Langfuse",
+    "type": "web_page",
+    "url": "https://langfuse.com/integrations/native/opentelemetry",
+    "status": 2
+  },
+  {
+    "id": "4db3b566-083d-48d5-8601-2b83bce954a0",
+    "title": "OpenTelemetry Instrumentation - Datadog Docs",
+    "type": "web_page",
+    "url": "https://docs.datadoghq.com/llm_observability/instrument/otel_instrumentation/",
+    "status": 2
+  },
+  {
+    "id": "48b34996-59de-4948-8133-4e9286e8c486",
+    "title": "Openai-agents handoff implementation - API",
+    "type": "web_page",
+    "url": "https://community.openai.com/t/openai-agents-handoff-implementation/1370797",
+    "status": 2
+  },
+  {
+    "id": "884edbce-0a52-442c-9dfd-86fa7a4e631f",
+    "title": "Overview - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/sessions/",
+    "status": 2
+  },
+  {
+    "id": "b6dff750-833f-4b19-9c1b-93f620a50dbf",
+    "title": "Quickstart - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/sandbox_agents/",
+    "status": 2
+  },
+  {
+    "id": "c3e5ce48-8a2d-4a55-aef7-814cca9e4c42",
+    "title": "Sandbox Agents | OpenAI API",
+    "type": "web_page",
+    "url": "https://developers.openai.com/api/docs/guides/agents/sandboxes",
+    "status": 2
+  },
+  {
+    "id": "febb6220-caff-4b5c-89fb-dcad5832b1d4",
+    "title": "SandboxAgent - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/ref/sandbox/sandbox_agent/",
+    "status": 2
+  },
+  {
+    "id": "fe0b2843-ef4b-4c09-86f0-fa6933893339",
+    "title": "Sentra vs Letta (2026): Which Agent Memory Actually Scales to a Team",
+    "type": "web_page",
+    "url": "https://www.sentra.app/articles/sentra-vs-letta",
+    "status": 2
+  },
+  {
+    "id": "7f75b918-527e-4e57-836b-6fef8655dede",
+    "title": "Swarm Architecture — AI Glossary | Superteams.ai",
+    "type": "web_page",
+    "url": "https://www.superteams.ai/glossary/swarm-architecture/",
+    "status": 2
+  },
+  {
+    "id": "cb7e575e-e35e-4b4c-a1a7-81ad87bcc061",
+    "title": "Swarm vs. Supervisor: Multi-Agent Architecture Guide - Augment Code",
+    "type": "web_page",
+    "url": "https://www.augmentcode.com/guides/swarm-vs-supervisor",
+    "status": 2
+  },
+  {
+    "id": "53fa2805-a304-47dd-9fa8-74a6c897b172",
+    "title": "The AI Agent Memory Architecture Deep Dive: Building Agents That Remember Across Sessions, Devices, and Tools - AI Magicx",
+    "type": "web_page",
+    "url": "https://www.aimagicx.com/blog/ai-agent-memory-architecture-developer-guide-2026",
+    "status": 2
+  },
+  {
+    "id": "4e1e1457-b5b6-418a-a0c6-5cfe89ba5982",
+    "title": "The Adapter Pattern: Unified Tracing Across AI SDK, LangChain, and OpenAI Agents",
+    "type": "web_page",
+    "url": "https://dev.to/raju_dandigam/the-adapter-pattern-unified-tracing-across-ai-sdk-langchain-and-openai-agents-4d3b",
+    "status": 2
+  },
+  {
+    "id": "ba61c3e1-84c4-42e5-91d1-55e449731d12",
+    "title": "The Warp Agent CLI - Enaxt: Sunil Khobragade",
+    "type": "web_page",
+    "url": "https://enaxt.vercel.app/articles/artificial-intelligence/the-warp-agent-cli",
+    "status": 2
+  },
+  {
+    "id": "fdbd91cb-c554-424e-a900-db6c2149f378",
+    "title": "Tracing - OpenAI Agents SDK",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/tracing/",
+    "status": 2
+  },
+  {
+    "id": "02995e98-4775-4087-93e1-c5ffcddfa4d6",
+    "title": "Tracing | OpenAI Agents SDK - GitHub Pages",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-js/guides/tracing/",
+    "status": 2
+  },
+  {
+    "id": "a9a58fd4-088c-41b4-9be9-2d50a5190510",
+    "title": "Tutorial on building agent with memory using Letta : r/AI_Agents - Reddit",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/AI_Agents/comments/1glzob6/tutorial_on_building_agent_with_memory_using_letta/",
+    "status": 2
+  },
+  {
+    "id": "c7da8bd4-e75a-4937-a00d-1fc710481961",
+    "title": "Use Agents in Railway Sandboxes | Railway Guides",
+    "type": "web_page",
+    "url": "https://docs.railway.com/guides/agents-in-sandboxes",
+    "status": 2
+  },
+  {
+    "id": "430840e0-888d-4c7b-9d4c-acab9e8fdb85",
+    "title": "What is the best way to handle long-term memory in the OpenAI Agents SDK? - iCertGlobal",
+    "type": "web_page",
+    "url": "https://www.icertglobal.com/community/long-term-memory-strategies-in-openai-agents-sdk",
+    "status": 2
+  },
+  {
+    "id": "411faeb6-cb87-4a22-9ab0-6c94617dba68",
+    "title": "Which LLM memory for AI Agents? - Tech blog",
+    "type": "web_page",
+    "url": "https://grigio.org/w/",
+    "status": 2
+  },
+  {
+    "id": "dad6690b-80e1-41c0-bfdc-0cc561ed65cd",
+    "title": "https://lablab.ai/ai-articles/understanding-openai-swarm-a-framework-for-multi-agent-systems",
+    "type": "web_page",
+    "url": "https://lablab.ai/ai-articles/understanding-openai-swarm-a-framework-for-multi-agent-systems",
+    "status": 3
+  },
+  {
+    "id": "194672c7-4cd9-4a4d-a7ca-1f172c574547",
+    "title": "https://medium.com/@abdulkabirlive1/mastering-handoff-agents-in-the-openai-agents-sdk-complete-guide-6103bd85217a",
+    "type": "web_page",
+    "url": "https://medium.com/@abdulkabirlive1/mastering-handoff-agents-in-the-openai-agents-sdk-complete-guide-6103bd85217a",
+    "status": 3
+  },
+  {
+    "id": "688a3324-a00d-4a13-9d69-238bf28a579e",
+    "title": "https://medium.com/@shreyas.arjun007/open-interpreter-revolutionising-code-generation-and-execution-60bbd282368a",
+    "type": "web_page",
+    "url": "https://medium.com/@shreyas.arjun007/open-interpreter-revolutionising-code-generation-and-execution-60bbd282368a",
+    "status": 3
+  },
+  {
+    "id": "cb9ef289-0232-45d1-9416-062e58362d8e",
+    "title": "https://medium.com/@srivastava.anubhav/the-end-of-digital-amnesia-and-the-rise-of-the-letta-protocol-9636b7212aad",
+    "type": "web_page",
+    "url": "https://medium.com/@srivastava.anubhav/the-end-of-digital-amnesia-and-the-rise-of-the-letta-protocol-9636b7212aad",
+    "status": 3
+  },
+  {
+    "id": "4dd3b717-3fb1-4b58-89fa-dbc84b634197",
+    "title": "https://medium.com/@visrow/ai-context-cruncher-4-ways-to-shrink-a-repo-for-ai-agents-be277d98b905",
+    "type": "web_page",
+    "url": "https://medium.com/@visrow/ai-context-cruncher-4-ways-to-shrink-a-repo-for-ai-agents-be277d98b905",
+    "status": 3
+  },
+  {
+    "id": "8401d64e-1fd0-49b6-a84c-dd74c957ac63",
+    "title": "https://realpython.com/ref/ai-coding-tools/open-interpreter/",
+    "type": "web_page",
+    "url": "https://realpython.com/ref/ai-coding-tools/open-interpreter/",
+    "status": 3
+  },
+  {
+    "id": "bcdf48e2-f411-4974-8637-2764d6281c25",
+    "title": "https://towardsdatascience.com/hands-on-with-agents-sdk-safeguarding-input-and-output-with-guardrails/",
+    "type": "web_page",
+    "url": "https://towardsdatascience.com/hands-on-with-agents-sdk-safeguarding-input-and-output-with-guardrails/",
+    "status": 3
+  },
+  {
+    "id": "392172a2-5d88-4842-ab48-2641a0bd6bb1",
+    "title": "https://www.morphllm.com/agent-tracing",
+    "type": "web_page",
+    "url": "https://www.morphllm.com/agent-tracing",
+    "status": 3
+  },
+  {
+    "id": "1c35cfca-0642-47b3-b609-8ea6c280b071",
+    "title": "langchain/langgraph-swarm",
+    "type": "web_page",
+    "url": "https://reference.langchain.com/javascript/langchain-langgraph-swarm",
+    "status": 2
+  },
+  {
+    "id": "0bf4caf9-780c-4e8e-9070-cfcae95bb109",
+    "title": "mem01session - PyPI",
+    "type": "web_page",
+    "url": "https://pypi.org/project/mem01session/",
+    "status": 2
+  },
+  {
+    "id": "df80a201-3959-4a86-9746-841ef4adbd88",
+    "title": "memorywire: A Vendor-Neutral Wire Format for Agent Memory Operations - arXiv",
+    "type": "web_page",
+    "url": "https://arxiv.org/html/2606.01138",
+    "status": 2
+  },
+  {
+    "id": "fb2a8cbc-00b3-4018-9a52-c2db353ee334",
+    "title": "openai/openai-agents-python: A lightweight, powerful framework for multi-agent workflows - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/openai/openai-agents-python",
+    "status": 2
+  }
+]

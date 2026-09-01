@@ -1,0 +1,36 @@
+{
+  "job_id": "rc-20260831-001",
+  "notebook_id": "15f04046-8dd2-479a-8a08-2766dd1aebbb",
+  "status": "applied",
+  "before_count": 90,
+  "after_count": 84,
+  "removed": [
+    {
+      "id": "24524057-7dfc-4af1-ad22-bdb86feb4eac",
+      "title": "Agent Skills - Vercel",
+      "reason": "此來源為 Vercel 官方的 Skill（技能）目錄列表，主要列出 React 效能最佳化、瀏覽器自動化、專案部署等獨立的實用工具包（如 next-cache-components、next-upgrade、cra-to-next-migration 等），內容與 Vercel AI SDK 的 Agent 架構設計、記憶機制、多 Agent 協作或可觀測性等核心技術問題完全無關。"
+    },
+    {
+      "id": "79eb62f7-a1ab-4b74-a09f-44d5369c57bc",
+      "title": "pydantic_graph.basenode | Pydantic Docs",
+      "reason": "此頁面在爬取時僅擷取到側邊欄導覽選單（Sidebar Navigation）與目錄結構，完全沒有任何關於 Pydantic AI BaseNode 的實質技術內容、程式碼或架構說明，對回答任何問題皆無實質貢獻。"
+    },
+    {
+      "id": "5ecfa5d6-2410-47d3-8c5f-08fbe9fa6722",
+      "title": "pydantic_graph.graph_builder | Pydantic Docs",
+      "reason": "此頁面僅包含 Pydantic 文件的側邊導覽選單與結構索引，缺乏任何有關 Pydantic Graph 實作、編排或狀態機設計的實質技術細節。"
+    },
+    {
+      "id": "8babe8fe-27cf-4786-9e63-4e008f840d87",
+      "title": "Graph Builder API | Pydantic Docs",
+      "reason": "此來源純屬 Pydantic Docs 的導覽側邊欄與 API 目錄，沒有任何實際的 API 說明、技術規格或 Pydantic Graph 實作程式碼。"
+    },
+    {
+      "id": "68a52d49-77ab-48c9-8922-0a8a6da896c7",
+      "title": "Graphs | Pydantic Docs",
+      "reason": "此頁面同樣僅包含 Pydantic AI 官方文件的側邊導覽選單與結構索引，完全缺乏關於 Graph 架構與工作流編排的任何實質技術內容。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-08-31T02:04:04.339Z"
+}

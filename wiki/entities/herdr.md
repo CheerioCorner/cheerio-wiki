@@ -123,6 +123,7 @@ command = "node on-worktree.js"
 
 - [[wiki/sources/2026-08-25-herdr-deep-research|2026-08-25 Herdr 深度研究（Gemini Research）]]
 - [[raw/youtube/herdr-runtime-for-coding-agents|YouTube: Herdr 影片逐字稿]]
+- [[wiki/sources/2026-09-02-dhh-ai-workflow-practices|DHH：AI 工作流的實踐經驗]] — Herdr 作為 DHH 16 條並行工作流的可觀測性工具被提及
 
 ## 相關頁面
 
@@ -130,3 +131,4 @@ command = "node on-worktree.js"
 - [[wiki/entities/pi-mono|pi-mono]] — Pi 核心，可與 Herdr 整合
 - [[wiki/concepts/agent-durability-patterns|agent-durability-patterns]] — 狀態持久化模式
 - [[wiki/concepts/sub-agents-pattern|sub-agents-pattern]] — 子 agent 委派模式
+- [[wiki/entities/dhh|DHH]] — 使用 Herdr 作為可觀測性工具的實踐者

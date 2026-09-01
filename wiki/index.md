@@ -1,6 +1,6 @@
 # Wiki Index
 
-> 自動全量重建，last rebuilt: 2026-08-30 (UTC+8)
+> 自動全量重建，last rebuilt: 2026-09-02 (UTC+8)
 
 ## Topics
 
@@ -138,6 +138,7 @@
 - [[wiki/entities/anthropics-claude-code-frontend-design.md|anthropics/claude-code — frontend-design plugin]]
 - [[wiki/entities/area-l.md|AReaL — 開源 Agent 強化學習基礎設施]]
 - [[wiki/entities/axway-amplify-ai-gateway.md|Axway Amplify AI Gateway — 企業 AI 治理層]]
+- [[wiki/entities/dhh.md|DHH — Ruby on Rails 作者、AI 工作流實踐者]]
 - [[wiki/entities/claude-code.md|Claude Code — Anthropic AI Coding Agent]] — 安裝（原生安裝器為主推，npm deprecated）
 - [[wiki/entities/claude-design.md|Claude Design]]
 - [[wiki/entities/codebase-memory-mcp.md|codebase-memory-mcp — 高效能代碼知識圖譜 MCP Server]] — macOS / Linux
@@ -343,6 +344,7 @@
 - [[wiki/sources/2026-08-30-agent-security-basics.md|Agent Security 基礎深度研究]]
 - [[wiki/sources/2026-08-30-enterprise-api-security.md|Enterprise API Security 深度研究]]
 - [[wiki/sources/2026-08-30-ai-threat-modeling.md|AI Threat Modeling 深度研究]]
+- [[wiki/sources/2026-09-02-dhh-ai-workflow-practices.md|DHH：AI 工作流的實踐經驗 — 16 條並行工作流與瓶頸遷移]]
 - [[wiki/sources/2026-08-30-skill-supply-chain-security.md|Skill Supply Chain Security 深度研究]]
 - [[wiki/sources/2026-08-30-local-llm-agent-harness-dgx-spark.md|從模型部署到 Agent Harness：Qwen 3.8 27B 與 DGX Spark 實機示範]]
 - [[wiki/sources/2026-08-25-four-types-memory-ai-agent.md|The Four Types of Memory Every AI Agent Needs]]

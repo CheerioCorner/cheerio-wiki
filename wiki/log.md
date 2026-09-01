@@ -1,4 +1,18 @@
 
+## [2026-09-02] ingest | DHH：AI 工作流的實踐經驗 — 16 條並行工作流與瓶頸遷移
+
+- 動作：YouTube 影片 → youtube_transcript_api 抓中文字幕（手動 zh-Hans，196 segments → 11 paragraphs，8:40）→ raw transcript 建檔 → wiki ingest（直接分析，無雙模型交叉驗證）
+- 來源：`raw/youtube/dhh-ai-workflow-practices.md`
+- 建立：
+  - `wiki/sources/2026-09-02-dhh-ai-workflow-practices.md` — source note（瓶頸遷移四階段、Herdr 可觀測性、Amabot 協調者層、失敗案例）
+  - `wiki/entities/dhh.md` — DHH entity（AI 工作流實踐者、工具棧、核心哲學）
+- 更新：
+  - `wiki/entities/herdr.md` — 新增 DHH 使用情境來源連結、相關頁面加入 DHH
+  - `wiki/topics/coding-agent.md` — Entities + Sources 新增 DHH 相關條目
+  - `wiki/topics/agent-architecture.md` — Sources 新增 DHH 來源
+  - `wiki/index.md` — Entities + Sources 新增條目
+- 關鍵判斷：影片內容**不是** herdr 新功能介紹（herdr 僅作為可觀測性工具被提及），也**不是** Meta-Harness（未在影片中出現），是全新的 DHH AI 工作流實踐案例
+
 ## [2026-09-01] ingest | Local LLM 在 Intel UHD 770 + 32GB RAM 環境下的選擇研究 + 圓桌會議
 
 - 動作：Gemini Notebook 深度研究（200 筆來源）→ 圓桌會議（Claude + Gemini + Codex，2 輪）→ wiki ingest

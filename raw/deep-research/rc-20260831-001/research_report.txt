@@ -1,0 +1,138 @@
+✓ Created new notebook: 現有 AI Agent Harness/Framework 
+全貌盤點：以四大廠牌路線（OpenAI Codex、DeepSeek Harness、Vercel ...
+✓ Research started
+  Query: 現有 AI Agent Harness/Framework 全貌盤點：以四大廠牌路線（OpenAI 
+Codex、DeepSeek Harness、Vercel AI SDK、Microsoft AutoGen/Semantic 
+Kernel）為核心，並涵蓋 Python 與 TypeScript 兩大語言生態圈的主流 Agent 
+Framework（如 LangChain/LangGraph、CrewAI、OpenAI Agents 
+SDK、smolagents、Pydantic AI、Mastra、LangChain.js 
+等），重點比較各框架的架構設計與可觀測性能力（能否取得完整過程與工具呼叫紀錄、記
+憶機制設計），以及多 Agent 協作能力（角色分工、狀態機/工作流編排方式）。此研究是
+W-074（Cheerio 個人 AI 助理架構，傾向自建 
+harness）開工前的業界現況盤點，用於評估與對照，非決定要採用哪一個框架。
+  Source: web
+  Mode: deep
+  Notebook ID: 15f04046-8dd2-479a-8a08-2766dd1aebbb
+  Task ID: ChBmMzI3MjhiMGZiOGJiN2FmEAgaBGJhNzcqA3Vzdw
+
+Waiting for research to complete...
+⠴ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 592f4b30-b196-4953-a3d4-428971df99b3
+  Sources found: 99
+
+Run 'nlm research import 15f04046-8dd2-479a-8a08-2766dd1aebbb <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 90 sources.
+  • DeepSeek Harness Explained: What Is an Agent Harness? - Cloudsway
+  • DeepSeek Open-Sources Harness: Models, Tools, and Agent Loops All Become 
+Plugins｜Trans-N - note
+  • DeepSeek Harness developer preview: Everything is a plugin
+  • OpenAI Agents SDK - GitHub Pages
+  • How to use Vercel eve: The Next.js framework for AI agents - LogRocket Blog
+  • AI Agent Framework: a Guide to Choosing the Right One - Mastra
+  • Pydantic AI | Pydantic Docs
+  • smolagents - Hugging Face
+  • Persistence - Docs by LangChain
+  • From Single Agent to Hybrid Agent-Graph Architecture: Our Journey with 
+Pydantic AI and Text to SQL - Vstorm
+  • OpenAI Swarm Multi-Agent Framework in 2026: What It Is, How It Works, and 
+How to Use It | Lexogrine Blog
+  • What Is DeepSeek Harness? The Plug-In Coding Agent Explained | MindStudio
+  • OpenAI Agents SDK: Tools, Handoffs, Guardrails, Sessions, and Tracing | Sid 
+Bharath
+  • OpenAI Agents SDK: Handoffs, Guardrails, Tracing - AI Engineering from 
+Scratch
+  • Handoffs - OpenAI Agents SDK
+  • Sessions | OpenAI Agents SDK - GitHub Pages
+  • DeepSeek Harness: Open-Source Agent Runtime - Eigent AI
+  • DeepSeek Harness Tutorial: Set Up the Open-Source Agent - DataCamp
+  • DeepSeek Harness: Everything is a Plugin. - GitHub
+  • Cordis: the paper behind the DeepSeek Harness architecture | Helmcode
+  • walkinglabs/awesome-deepseek-harness-plugins - GitHub
+  • Do You Need an Agent Framework Yet? | The Road To Enterprise
+  • AI SDK - Vercel
+  • Eve (Vercel) - coleam00/cole-medin-knowledge-base - GitHub
+  • Vercel eve: Open-Source TypeScript Agent Framework - Digital Applied
+  • Microsoft AutoGen & Agent Framework | Tutorial & Evolution - Scaler
+  • AutoGen v0.4 (AG2) Crash Course: Build Event-Driven, Observable AI Agents 
+That Scale
+  • What is AutoGen? - IBM
+  • Semantic Kernel vs AutoGen: Which Microsoft Framework Builds Better AI 
+Agents - ZenML
+  • 8 Best TypeScript AI Agent Frameworks: AI SDK vs Mastra - AY Automate
+  • LangGraph Memory and Persistence: Checkpointers & Threads | Crewship
+  • Graphs | Pydantic Docs
+  • checkpoints | langgraph - LangChain Reference
+  • langgraph.checkpoint - LangChain Reference
+  • OpenAI Swarm Explained: Multi-Agent Orchestration - Arize AI
+  • Orchestrate Multi-Step AI Processes - Mastra
+  • Multi-Agent Systems - Hugging Face
+  • How to use the Microsoft Autogen framework to Build AI Agents? - ProjectPro
+  • Smolagents - Arize AX Docs
+  • Introduction to smolagents - Hugging Face
+  • Autonomous AI Agents: A hidden Risk in Insecure smolagents “CodeAgent” Usage
+  • Agentic AI with multi-model framework using Hugging Face smolagents on AWS
+  • Agents | Pydantic Docs
+  • pydantic_graph.basenode | Pydantic Docs
+  • Build Reliable AI Agents with Durable Execution | Pydantic AI + DBOS
+  • Capabilities | Pydantic Docs
+  • Mastra is the modern TypeScript framework for AI-powered applications and 
+agents. - GitHub
+  • Mastra Tutorial: How to Build AI Agents in TypeScript - Firecrawl
+  • Mastra: TypeScript AI Framework for Agents and Apps
+  • Mastra: TypeScript AI Agent Framework and Platform - AI Engineer
+  • Mastra: Observational Memory: Human-Inspired Context Compression for Agent 
+Systems - ZenML LLMOps Database
+  • Observational Memory - Mastra Docs
+  • AI agent evaluation frameworks for production - Vercel
+  • Pydantic AI
+  • Manage your agent's memory - Hugging Face
+  • Internal AI Agents - Mastra
+  • Context Engineering - Short-Term Memory Management with Sessions - OpenAI 
+Developers
+  • Agent memory platform: how AI agents store, retrieve, and use context - 
+Mastra
+  • Observational Memory: 95% on LongMemEval | Mastra Research
+  • Gateway with Observational Memory | Mastra
+  • Agentic Workflows: How They Work, Key Components, and How to Build Them - 
+Mastra
+  • AI Agent Architecture: Patterns and Production Design - Mastra
+  • Building agentic AI apps: A problem-first guide - Vercel
+  • Production Deep Agents for Pydantic AI | Vstorm
+  • Build durable AI agents with LangGraph and Amazon DynamoDB | AWS Database 
+Blog
+  • Agent Skills - Vercel
+  • GitHub - openai/swarm: Educational framework exploring ergonomic, 
+lightweight multi-agent orchestration. Managed by OpenAI Solution team.
+  • Agents SDK | OpenAI API
+  • smolagents: a barebones library for agents that think in code. - GitHub
+  • Building a production AI agent in TypeScript with Mastra: a 2026 
+step-by-step.
+  • Smolagents framework: Building Multi-Agents, Tools, and Memory for Order 
+Processing
+  • AI Workflows: What They Are and How to Build Them - Mastra
+  • Swarm: The Agentic Framework from OpenAI - Composio
+  • Deepseek Harness Preview link - DGX Spark / GB10 - NVIDIA Developer Forums
+  • Let's Create Our First Agent Using smolagents - Hugging Face
+  • AI Agent Workflows: A Complete Guide for Developers - Mastra
+  • Vercel AI SDK multi-agent support for complex agentic workflows
+  • What is an LLM agent? A developer's guide - Vercel
+  • Deepseek Harness - Best of JS
+  • Exploring Agent Collaboration in AgentChat - Microsoft Learn
+  • Exploring the Semantic Kernel ChatCompletionAgent - Microsoft Learn
+  • AI Agents in Semantic Kernel: ChatCompletionAgent, AgentGroupChat, and 
+Orchestration
+  • Building AI Agent using Semantic Kernel Agent Framework | Systenics AI Blog
+  • Agent Memory in SmolAgents: Retain, Recall, and Reflect | Hindsight
+  • mastra-ai/mastra-observational-memory-workshop - GitHub
+  • pydantic_graph.graph_builder | Pydantic Docs
+  • Graph Builder API | Pydantic Docs
+  • Custom AI Agents: How to Build and Deploy Them - Mastra
+  • How to Build AI Agents: A Practical Guide for Developers
+  • Agentic RAG: Architectures, Tradeoffs, and How to Build It - Mastra
+

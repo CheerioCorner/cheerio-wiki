@@ -1,0 +1,590 @@
+[
+  {
+    "id": "5d6702d3-ed8a-4df9-8c39-43efd80e280d",
+    "title": "[AG2 官方] 教學指南 - AutoGen v0.4 事件驅動與可觀測代理開發",
+    "type": "web_page",
+    "url": "https://cohorte.co/blog/autogen-v0-4-ag2-crash-course-build-event-driven-observable-ai-agents-that-scale",
+    "status": 2
+  },
+  {
+    "id": "c393c2d7-0742-4c4d-9426-e46d09831ff8",
+    "title": "[AI Engineer] 技術部落格 - Mastra TypeScript AI 代理開發框架評析",
+    "type": "web_page",
+    "url": "https://ai.engineer/orgs/mastra",
+    "status": 2
+  },
+  {
+    "id": "5a9edc8c-1271-4cc0-80de-db7a116954f5",
+    "title": "[AI Engineering] 架構設計 - OpenAI Agents SDK 代理交接、防護欄與追蹤",
+    "type": "web_page",
+    "url": "https://aiengineeringfromscratch.com/lesson?path=phases%2F14-agent-engineering%2F16-openai-agents-sdk",
+    "status": 2
+  },
+  {
+    "id": "ca480d08-a2d5-4f99-94b3-e8b6c453461c",
+    "title": "[AWS 官方] 實作指南 - 在 AWS 部署 smolagents 多模型代理框架",
+    "type": "web_page",
+    "url": "https://aws.amazon.com/blogs/machine-learning/agentic-ai-with-multi-model-framework-using-hugging-face-smolagents-on-aws/",
+    "status": 2
+  },
+  {
+    "id": "4539d468-1d0e-4196-a11b-61542966deec",
+    "title": "[AWS 官方] 實作指南 - 結合 LangGraph 與 DynamoDB 構建耐用代理",
+    "type": "web_page",
+    "url": "https://aws.amazon.com/blogs/database/build-durable-ai-agents-with-langgraph-and-amazon-dynamodb/",
+    "status": 2
+  },
+  {
+    "id": "8014971e-9aaa-4b3c-bb68-17b288115ea7",
+    "title": "[AY Automate] 比較分析 - TypeScript AI Agent 框架選型與 Mastra 對比",
+    "type": "web_page",
+    "url": "https://www.ayautomate.com/blog/best-typescript-ai-agent-frameworks",
+    "status": 2
+  },
+  {
+    "id": "4ef7c35e-e282-4ea7-b97f-77adc916fa68",
+    "title": "[Arize AI] 官方文件 - smolagents 整合可觀測性追蹤與評估",
+    "type": "web_page",
+    "url": "https://arize.com/docs/ax/integrations/python-agent-frameworks/hugging-face-smolagents/smolagents-tracing",
+    "status": 2
+  },
+  {
+    "id": "13286671-b228-452e-b9cb-732876fef757",
+    "title": "[Arize AI] 架構設計 - OpenAI Swarm 輕量級多代理協作與編排解析",
+    "type": "web_page",
+    "url": "https://arize.com/blog/comparing-openai-swarm",
+    "status": 2
+  },
+  {
+    "id": "3ccf5703-cc1d-4be8-9b79-ae456e646660",
+    "title": "[Cloudsway] 架構設計 - DeepSeek Harness 代理運行時概念解析",
+    "type": "web_page",
+    "url": "https://www.cloudsway.ai/resources/deepseek-harness-explained-what-is-an-agent-harness?id=21",
+    "status": 2
+  },
+  {
+    "id": "4f373d10-858d-438b-8bb9-970f870a25a8",
+    "title": "[Composio] 技術部落格 - OpenAI Swarm 代理切換與協作機制探討",
+    "type": "web_page",
+    "url": "https://composio.dev/content/swarm-the-agentic-framework-from-openai",
+    "status": 2
+  },
+  {
+    "id": "a287b637-af7e-4196-b7da-78df31371bd8",
+    "title": "[Crewship] 技術部落格 - LangGraph 的記憶持久化與檢查點機制",
+    "type": "web_page",
+    "url": "https://www.crewship.dev/learn/langgraph-memory",
+    "status": 2
+  },
+  {
+    "id": "7d85a0ae-08a1-4365-b7a2-0a10d0b71018",
+    "title": "[DBOS 官方] 實作指南 - 結合 Pydantic AI 與耐用執行構建可靠代理",
+    "type": "web_page",
+    "url": "https://pydantic.dev/articles/pydantic-ai-dbos",
+    "status": 2
+  },
+  {
+    "id": "ff75d234-83f9-45a2-9e73-4af60bb35f0a",
+    "title": "[DataCamp] 教學指南 - 開源 DeepSeek Harness 代理環境部署與實作",
+    "type": "web_page",
+    "url": "https://www.datacamp.com/tutorial/deepseek-harness",
+    "status": 2
+  },
+  {
+    "id": "d8a7306f-4d02-488a-b3d4-07072fbee95a",
+    "title": "[DeepSeek 開源] 開源專案 README - Harness 插件化代理運行時架構",
+    "type": "web_page",
+    "url": "https://github.com/deepseek-ai/deepseek-harness",
+    "status": 2
+  },
+  {
+    "id": "90f8711f-77c1-4d34-9ab3-af2c83707510",
+    "title": "[Digital Applied] 架構設計 - Vercel Eve 輕量級 TypeScript 代理框架分析",
+    "type": "web_page",
+    "url": "https://www.digitalapplied.com/blog/vercel-eve-open-source-typescript-agent-framework-launch",
+    "status": 2
+  },
+  {
+    "id": "63ed0f67-ffba-49e5-8af9-c4eeb59d5a9d",
+    "title": "[Eigent AI] 架構設計 - DeepSeek Harness 開源代理運行時深度解析",
+    "type": "web_page",
+    "url": "https://www.eigent.ai/blog/deepseek-harness-agent-runtime",
+    "status": 2
+  },
+  {
+    "id": "921fe55f-cc16-44ab-abe0-6ecaf2609027",
+    "title": "[Firecrawl] 教學指南 - 使用 TypeScript 與 Mastra 打造網頁爬蟲代理",
+    "type": "web_page",
+    "url": "https://www.firecrawl.dev/blog/mastra-tutorial",
+    "status": 2
+  },
+  {
+    "id": "7806e580-949f-41ac-8ec8-ebc82268f0c5",
+    "title": "[GitHub 筆記] 技術筆記 - Vercel Eve 輕量級代理框架語法解析",
+    "type": "web_page",
+    "url": "https://github.com/coleam00/cole-medin-knowledge-base/blob/main/entities/tools/eve.md",
+    "status": 2
+  },
+  {
+    "id": "9c528d17-6bbf-4ff6-8866-99f7157fc41d",
+    "title": "[Helmcode] 學術論文分析 - DeepSeek Harness 的底層 Cordis 框架設計",
+    "type": "web_page",
+    "url": "https://helmcode.com/posts/cordis-paper-spatiotemporal-composability",
+    "status": 2
+  },
+  {
+    "id": "e5f6ea9f-d346-4c11-bbb2-e0a4847f316d",
+    "title": "[Hindsight] 技術部落格 - smolagents 代理記憶機制的留存與反射",
+    "type": "web_page",
+    "url": "https://hindsight.vectorize.io/blog/2026/04/29/smolagents-memory-tools",
+    "status": 2
+  },
+  {
+    "id": "1051842a-acc8-4f3a-869e-ce1de01eff97",
+    "title": "[Hugging Face 官方] 官方文件 - Transformer Agents 記憶管理機制",
+    "type": "web_page",
+    "url": "https://huggingface.co/docs/smolagents/tutorials/memory",
+    "status": 2
+  },
+  {
+    "id": "18545ee9-45c2-42ce-9c9a-dfe535173b0d",
+    "title": "[Hugging Face 官方] 官方文件 - smolagents 極簡程式碼思維代理入門",
+    "type": "web_page",
+    "url": "https://huggingface.co/learn/agents-course/unit2/smolagents/introduction",
+    "status": 2
+  },
+  {
+    "id": "47437dc8-4ddd-463d-a558-53bd4fc3b011",
+    "title": "[Hugging Face 官方] 官方文件 - 多代理系統協作與通信設計模式",
+    "type": "web_page",
+    "url": "https://huggingface.co/learn/agents-course/unit2/smolagents/multi_agent_systems",
+    "status": 2
+  },
+  {
+    "id": "e44f8303-a901-4473-bdf1-6165ee5d0c6a",
+    "title": "[Hugging Face 官方] 教學指南 - smolagents 首個代理構建實戰",
+    "type": "web_page",
+    "url": "https://huggingface.co/learn/agents-course/unit1/tutorial",
+    "status": 2
+  },
+  {
+    "id": "44e80f9b-316c-4cc1-8ac3-9f11767b5952",
+    "title": "[Hugging Face 開源] 開源專案 README - smolagents 代碼執行代理詳細規格",
+    "type": "web_page",
+    "url": "https://github.com/huggingface/smolagents",
+    "status": 2
+  },
+  {
+    "id": "c8953274-7137-4b23-9c37-187a163137ef",
+    "title": "[Hugging Face 開源] 開源專案 README - smolagents 框架結構與快速開始",
+    "type": "web_page",
+    "url": "https://huggingface.co/docs/smolagents/index",
+    "status": 2
+  },
+  {
+    "id": "14fe5608-eabd-4303-a845-1c06a4853e99",
+    "title": "[LangChain 官方] API 參考 - LangGraph 的 Checkpointer 持久化接口說明",
+    "type": "web_page",
+    "url": "https://reference.langchain.com/python/langgraph/checkpoints",
+    "status": 2
+  },
+  {
+    "id": "69409540-2ecb-4a50-a193-b731561c8e1e",
+    "title": "[LangChain 官方] API 參考 - langgraph.checkpoint 模組詳細類別與方法",
+    "type": "web_page",
+    "url": "https://reference.langchain.com/python/langgraph.checkpoint",
+    "status": 2
+  },
+  {
+    "id": "b837c73b-45bd-4fcc-bce4-83bb6f943e71",
+    "title": "[LangChain 官方] 官方文件 - LangGraph 狀態持久化與檢查點（Checkpoints）",
+    "type": "web_page",
+    "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+    "status": 2
+  },
+  {
+    "id": "31964280-1f3e-41b7-8289-73635bf9cebc",
+    "title": "[Lexogrine] 教學指南 - 2026 年 OpenAI Swarm 輕量代理框架實戰手冊",
+    "type": "web_page",
+    "url": "https://lexogrine.com/blog/openai-swarm-multi-agent-framework-2026",
+    "status": 2
+  },
+  {
+    "id": "757a4294-99a0-4b52-a6b0-16f6aade3a94",
+    "title": "[LogRocket] 教學指南 - 使用 Vercel Eve 構建 Next.js AI 代理",
+    "type": "web_page",
+    "url": "https://blog.logrocket.com/vercel-eve-ai-agents/",
+    "status": 2
+  },
+  {
+    "id": "788a05a6-630b-4ad4-bda5-955c61087bd2",
+    "title": "[Mastra 官方] 學術論文分析 - 觀察式記憶於 LongMemEval 的表現與壓縮研究",
+    "type": "web_page",
+    "url": "https://mastra.ai/research/observational-memory",
+    "status": 2
+  },
+  {
+    "id": "ea288bc7-3657-4843-b785-b9dc2e9a40fe",
+    "title": "[Mastra 官方] 官方文件 - 多步驟 AI 流程與工作流編排",
+    "type": "web_page",
+    "url": "https://mastra.ai/ai-workflows",
+    "status": 2
+  },
+  {
+    "id": "390ea5d6-7c4d-4ff4-96f3-04ea30af99f8",
+    "title": "[Mastra 官方] 官方文件 - 觀察式記憶（Observational Memory）技術規格",
+    "type": "web_page",
+    "url": "https://mastra.ai/docs/memory/observational-memory",
+    "status": 2
+  },
+  {
+    "id": "aa1cc792-e91a-45f0-9741-51ca00861d0d",
+    "title": "[Mastra 官方] 實作指南 - TypeScript 生產生態 2026 逐步建置教學",
+    "type": "web_page",
+    "url": "https://dev.to/thegdsks/building-a-production-ai-agent-in-typescript-with-mastra-a-2026-step-by-step-37dc",
+    "status": 2
+  },
+  {
+    "id": "498028f0-108b-4585-b4ae-d48efbfeddbf",
+    "title": "[Mastra 官方] 實作指南 - 自訂 AI Agent 構建與部署流程",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/custom-ai-agents",
+    "status": 2
+  },
+  {
+    "id": "b84f9742-3251-4ce3-9870-2e12119b60f7",
+    "title": "[Mastra 官方] 實作指南 - 開發者 AI Agent 工作流全方位手冊",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/ai-agent-workflows",
+    "status": 2
+  },
+  {
+    "id": "9ebdce6a-2cd6-41b3-8a02-ec51feed1179",
+    "title": "[Mastra 官方] 架構設計 - AI Agent 生產環境設計模式",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/ai-agent-architecture",
+    "status": 2
+  },
+  {
+    "id": "f9f2a84c-84d1-4c3d-8993-859bc820f0a4",
+    "title": "[Mastra 官方] 架構設計 - AI Agent 記憶平台與上下文管理機制",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/agent-memory-platform",
+    "status": 2
+  },
+  {
+    "id": "26f21ccc-4cf0-447a-8b49-3a2bdad71695",
+    "title": "[Mastra 官方] 架構設計 - 代理型 RAG 架構設計與折衷評估",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/agentic-rag",
+    "status": 2
+  },
+  {
+    "id": "d5c5902c-cae4-4938-92f0-beb812a80c7c",
+    "title": "[Mastra 官方] 概念指南 - AI 工作流定義與構建方法",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/ai-workflows",
+    "status": 2
+  },
+  {
+    "id": "e4ef5b95-7303-41f1-a389-a44492ec8533",
+    "title": "[Mastra 官方] 概念指南 - 代理型工作流核心組件與建構",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/agentic-workflows",
+    "status": 2
+  },
+  {
+    "id": "0873e756-e3a0-40a6-8787-6171735bd5dc",
+    "title": "[Mastra 官方] 比較分析 - AI Agent 框架選型評估指南",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/ai-agent-framework",
+    "status": 2
+  },
+  {
+    "id": "d219b4f7-c7c9-4470-aef2-6d64296ba146",
+    "title": "[Mastra 開源] 開源專案 README - TypeScript AI 代理框架功能概述",
+    "type": "web_page",
+    "url": "https://github.com/mastra-ai/mastra",
+    "status": 2
+  },
+  {
+    "id": "2d2da528-2183-4bd0-9513-eeabdeac60fa",
+    "title": "[Mastra 開源] 開源工作坊 README - 觀察式記憶實作範例與工作坊指南",
+    "type": "web_page",
+    "url": "https://github.com/mastra-ai/mastra-observational-memory-workshop",
+    "status": 2
+  },
+  {
+    "id": "0de40bba-2c0c-4a3a-9a36-4d2870aa9c6c",
+    "title": "[Microsoft 官方] 官方文件 - AutoGen AgentChat 多代理協作模式",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/semantic-kernel/support/archive/agent-chat",
+    "status": 2
+  },
+  {
+    "id": "909480ad-fd34-424e-bf33-84909c2fe330",
+    "title": "[Microsoft 官方] 官方文件 - Semantic Kernel ChatCompletionAgent 運作原理",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-types/chat-completion-agent",
+    "status": 2
+  },
+  {
+    "id": "35b4592e-ed67-4d00-b74b-511a705ab6be",
+    "title": "[Microsoft 官方] 官方文件 - Semantic Kernel 代理與群聊編排機制",
+    "type": "web_page",
+    "url": "https://dev.to/bspann/ai-agents-in-semantic-kernel-chatcompletionagent-agentgroupchat-and-orchestration-50am",
+    "status": 2
+  },
+  {
+    "id": "7ca65a97-06b0-45d2-ac6b-850e92e29472",
+    "title": "[MindStudio] 新聞分析 - DeepSeek Harness 插件式程式碼代理架構解析",
+    "type": "web_page",
+    "url": "https://www.mindstudio.ai/blog/deepseek-harness-agentic-coding",
+    "status": 2
+  },
+  {
+    "id": "3875c854-0b5d-493b-809c-336cd2adb8a4",
+    "title": "[OpenAI 官方] 官方文件 - Agents SDK 使用手冊與架構概覽",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/",
+    "status": 2
+  },
+  {
+    "id": "be1c6734-d105-45dc-8774-f2350aac3891",
+    "title": "[OpenAI 官方] 官方文件 - Agents SDK 核心功能與開發指南",
+    "type": "web_page",
+    "url": "https://developers.openai.com/api/docs/guides/agents",
+    "status": 2
+  },
+  {
+    "id": "d36d5342-999c-4c05-b6d0-6019ae15dff6",
+    "title": "[OpenAI 官方] 官方文件 - Agents SDK 的代理交接機制與控制權轉移",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-python/handoffs/",
+    "status": 2
+  },
+  {
+    "id": "5ab37b27-f37f-4d7e-ba19-0850b7795153",
+    "title": "[OpenAI 官方] 官方文件 - Agents SDK 的會話（Sessions）與狀態管理",
+    "type": "web_page",
+    "url": "https://openai.github.io/openai-agents-js/guides/sessions/",
+    "status": 2
+  },
+  {
+    "id": "3ff55309-ac20-43e4-b2bb-ff8b6a7e9fa9",
+    "title": "[OpenAI 官方] 架構設計 - 基於會話的短期記憶管理與上下文工程",
+    "type": "web_page",
+    "url": "https://developers.openai.com/cookbook/examples/agents_sdk/session_memory",
+    "status": 2
+  },
+  {
+    "id": "3d41fadc-93a7-4f64-991c-448fa64bb63e",
+    "title": "[OpenAI 開源] 開源專案 README - Swarm 輕量級多代理編排教育框架",
+    "type": "web_page",
+    "url": "https://github.com/openai/swarm",
+    "status": 2
+  },
+  {
+    "id": "1e83537e-25a2-436a-afc0-8b4f9ecda995",
+    "title": "[ProjectPro] 教學指南 - AutoGen 多代理協作框架入門與實作",
+    "type": "web_page",
+    "url": "https://www.projectpro.io/article/autogen/1139",
+    "status": 2
+  },
+  {
+    "id": "7854b613-ef2f-44a6-801e-6b07a77d6395",
+    "title": "[Pydantic 官方] 官方文件 - Pydantic AI 代理程式設計",
+    "type": "web_page",
+    "url": "https://pydantic.dev/docs/ai/core-concepts/agent/",
+    "status": 2
+  },
+  {
+    "id": "2ed6faf9-2406-4832-8c46-69ec4f51df35",
+    "title": "[Pydantic 官方] 官方文件 - Pydantic AI 功能與核心能力規格",
+    "type": "web_page",
+    "url": "https://pydantic.dev/docs/ai/capabilities/overview/",
+    "status": 2
+  },
+  {
+    "id": "dfc30680-208b-4cf1-94c1-b64af2d448fc",
+    "title": "[Pydantic 官方] 官方文件 - Pydantic AI 設計規格與開發指南",
+    "type": "web_page",
+    "url": "https://pydantic.dev/docs/ai/overview/",
+    "status": 2
+  },
+  {
+    "id": "fb704158-ee84-4205-98b3-72ba4b76e3cc",
+    "title": "[Pydantic 官方] 技術部落格 - Pydantic AI 框架發布與設計哲學",
+    "type": "web_page",
+    "url": "https://pydantic.dev/",
+    "status": 2
+  },
+  {
+    "id": "db80c7b3-4263-417b-a3f5-7134c4d51574",
+    "title": "[Scaler] 教學指南 - Microsoft AutoGen 演進與代理架構教學",
+    "type": "web_page",
+    "url": "https://www.scaler.com/topics/agentic-ai/microsoft-autogen-agent-framework/",
+    "status": 2
+  },
+  {
+    "id": "eea91ce2-20b5-4c91-8c4f-b55cba70f1e6",
+    "title": "[Sid Bharath] 技術部落格 - OpenAI Agents SDK 生態與核心機制解析",
+    "type": "web_page",
+    "url": "https://sidbharath.com/blog/openai-agents-sdk/",
+    "status": 2
+  },
+  {
+    "id": "e7172b2d-6e97-4b46-b6b1-f8245b7be4e1",
+    "title": "[Systenics AI] 實作指南 - 使用 Semantic Kernel 代理框架建置 Agent",
+    "type": "web_page",
+    "url": "https://systenics.ai/blog/2025-04-09-building-ai-agent-using-semantic-kernel-agent-framework",
+    "status": 2
+  },
+  {
+    "id": "7d75f6e2-9091-48e3-bf9b-3c9118c7dda8",
+    "title": "[The Road To Enterprise] 架構設計 - 企業級 Agent 框架選型必要性評估",
+    "type": "web_page",
+    "url": "https://theroadtoenterprise.com/blog/do-you-need-an-agent-framework",
+    "status": 2
+  },
+  {
+    "id": "4af0bee3-5dad-4029-8ac3-8cb7b791733e",
+    "title": "[Trans-N 科技] 新聞分析 - DeepSeek Harness 插件化模型與代理迴圈",
+    "type": "web_page",
+    "url": "https://note.com/trans_n_ai/n/nf4946f5847de?hl=en",
+    "status": 2
+  },
+  {
+    "id": "cdce74c5-a75e-4839-897b-b4778dce3880",
+    "title": "[Vercel 官方] 官方文件 - AI SDK 多代理協作與複雜工作流支援",
+    "type": "web_page",
+    "url": "https://community.vercel.com/t/vercel-ai-sdk-multi-agent-support-for-complex-agentic-workflows/35594",
+    "status": 2
+  },
+  {
+    "id": "1ef9308c-cde8-4f4e-ade1-17827fe5e84a",
+    "title": "[Vercel 官方] 技術部落格 - 生產環境 AI Agent 評估框架",
+    "type": "web_page",
+    "url": "https://vercel.com/i/ai-agent-evaluation-frameworks-production",
+    "status": 2
+  },
+  {
+    "id": "cc877b9e-e0b6-43d4-8907-8bed019daffa",
+    "title": "[Vercel 官方] 概念指南 - 開發者的 LLM Agent 核心概念與要素",
+    "type": "web_page",
+    "url": "https://vercel.com/i/llm-agent",
+    "status": 2
+  },
+  {
+    "id": "1e46005a-69d7-4b28-aee9-be007cb89f82",
+    "title": "[Vercel 官方] 設計指南 - 問題導向的代理型 AI 應用構建",
+    "type": "web_page",
+    "url": "https://vercel.com/i/building-agentic-ai-applications-with-a-problem-first-approach",
+    "status": 2
+  },
+  {
+    "id": "a506224a-7bb5-4e1f-8618-59612f65d527",
+    "title": "[Vstorm] 架構設計 - Pydantic AI 在生產級深度代理的架構實踐",
+    "type": "web_page",
+    "url": "https://pydantic.dev/articles/pydantic-deep-agents",
+    "status": 2
+  },
+  {
+    "id": "ee79125f-d744-4a7c-b979-b557153bd96e",
+    "title": "[Vstorm] 案例研究 - 基於 Pydantic AI 的 Text-to-SQL 混合代理圖架構實踐",
+    "type": "web_page",
+    "url": "https://vstorm.co/case-study/from-single-agent-to-hybrid-agent-graph-architecture-our-journey-with-pydantic-ai-and-text-to-sql/",
+    "status": 2
+  },
+  {
+    "id": "a70b27f8-89ce-4e5f-a1e7-9c051d02e245",
+    "title": "[ZenML] 架構設計 - Mastra 觀察式記憶與人類啟發的上下文壓縮",
+    "type": "web_page",
+    "url": "https://www.zenml.io/llmops-database/observational-memory-human-inspired-context-compression-for-agent-systems",
+    "status": 2
+  },
+  {
+    "id": "242b7de5-8b11-4e63-9130-08f71db0c905",
+    "title": "[ZenML] 比較分析 - Microsoft AutoGen 與 Semantic Kernel 選型對比",
+    "type": "web_page",
+    "url": "https://www.zenml.io/blog/semantic-kernel-vs-autogen",
+    "status": 2
+  },
+  {
+    "id": "877333f9-5916-492d-8caa-857087cb45da",
+    "title": "[安全研究] 安全分析 - smolagents CodeAgent 的程式碼執行安全風險",
+    "type": "web_page",
+    "url": "https://www.nccgroup.com/research/autonomous-ai-agents-a-hidden-risk-in-insecure-smolagents-codeagent-usage/",
+    "status": 2
+  },
+  {
+    "id": "ab712b4b-1362-4243-96b6-844a12d86418",
+    "title": "[開發者社群] 實作指南 - 開發者 AI Agent 基礎構建實戰指南",
+    "type": "web_page",
+    "url": "https://mastra.ai/articles/how-to-build-ai-agents",
+    "status": 2
+  },
+  {
+    "id": "d7d145c6-4c67-4e1f-a190-0af8fd64f6d8",
+    "title": "[開發者社群] 案例研究 - 基於 smolagents 的訂單處理多代理與記憶實作",
+    "type": "web_page",
+    "url": "https://ayotomiwasalau.com/work/blogs/smolagents-framework-building-multi-agents-tools-and-memory",
+    "status": 2
+  },
+  {
+    "id": "afdd7550-9601-4a87-8a7a-bde8fdcce531",
+    "title": "https://blckalpaca.at/en/knowledge-base/ai-agents/ai-agent-frameworks-comparison/autogen-vs-ag2",
+    "type": "web_page",
+    "url": "https://blckalpaca.at/en/knowledge-base/ai-agents/ai-agent-frameworks-comparison/autogen-vs-ag2",
+    "status": 3
+  },
+  {
+    "id": "81eb3285-f386-497a-8f0b-ceb3caae6647",
+    "title": "https://community.sap.com/t5/artificial-intelligence-blogs-posts/langgraph-checkpoint-saver-for-sap-hana-cloud/ba-p/14336448",
+    "type": "web_page",
+    "url": "https://community.sap.com/t5/artificial-intelligence-blogs-posts/langgraph-checkpoint-saver-for-sap-hana-cloud/ba-p/14336448",
+    "status": 3
+  },
+  {
+    "id": "10c20669-0bb3-477b-aa20-7c29c969a3f3",
+    "title": "https://medium.com/@bhargavkoya56/migrating-from-semantic-kernel-agents-to-microsoft-agent-framework-in-net-42f8236327dc",
+    "type": "web_page",
+    "url": "https://medium.com/@bhargavkoya56/migrating-from-semantic-kernel-agents-to-microsoft-agent-framework-in-net-42f8236327dc",
+    "status": 3
+  },
+  {
+    "id": "bb5dfa20-bbec-45c5-80fd-3dc1869bd4e2",
+    "title": "https://medium.com/@tahirbalarabe2/what-is-pydantic-ai-15cc81dea3c3",
+    "type": "web_page",
+    "url": "https://medium.com/@tahirbalarabe2/what-is-pydantic-ai-15cc81dea3c3",
+    "status": 3
+  },
+  {
+    "id": "ae215765-cd03-4c19-9a85-1f54862f077b",
+    "title": "https://medium.com/@vishwajeetv2003/building-multi-agent-ai-applications-with-autogen-complete-tutorial-2026-2fbd9af73a9c",
+    "type": "web_page",
+    "url": "https://medium.com/@vishwajeetv2003/building-multi-agent-ai-applications-with-autogen-complete-tutorial-2026-2fbd9af73a9c",
+    "status": 3
+  },
+  {
+    "id": "a7bbd363-5db1-4876-be78-70883ad383f0",
+    "title": "https://pub.towardsai.net/deepseek-harness-and-the-end-of-the-model-only-roadmap-badb4b38c302",
+    "type": "web_page",
+    "url": "https://pub.towardsai.net/deepseek-harness-and-the-end-of-the-model-only-roadmap-badb4b38c302",
+    "status": 3
+  },
+  {
+    "id": "6573507b-af69-4d0b-ad0d-cc9cfeb6a5aa",
+    "title": "https://saurabh-shukla.medium.com/adding-memory-to-ai-agents-e506dfb3e60e",
+    "type": "web_page",
+    "url": "https://saurabh-shukla.medium.com/adding-memory-to-ai-agents-e506dfb3e60e",
+    "status": 3
+  },
+  {
+    "id": "3d0cdfa5-deee-45c3-a06e-1a4aba6429e9",
+    "title": "https://venturebeat.com/data/observational-memory-cuts-ai-agent-costs-10x-and-outscores-rag-on-long",
+    "type": "web_page",
+    "url": "https://venturebeat.com/data/observational-memory-cuts-ai-agent-costs-10x-and-outscores-rag-on-long",
+    "status": 3
+  }
+]

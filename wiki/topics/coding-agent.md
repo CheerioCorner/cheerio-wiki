@@ -22,6 +22,7 @@ updated: 2026-08-19
 
 ## Sources
 
+- [[wiki/sources/2026-09-02-dhh-ai-workflow-practices|DHH：AI 工作流的實踐經驗]] — 16 條並行工作流、瓶頸遷移四階段、Herdr 可觀測性、Amabot 協調者層。
 - [[wiki/sources/2026-07-23-plannotator-copilot-setup|Plannotator IT 安裝手冊：GitHub Copilot CLI 整合]] — 來源：PDF 安裝手冊（2026-07-23），描述 Plannotator 與 GitHub Copilot CLI 在 Windows 上的整合安裝流程。 🛠️
 - [[wiki/sources/2026-08-25-codebase-memory-mcp-vs-codegraph|深入拆解 Codebase-Memory-MCP vs CodeGraph：兩種代碼知識圖譜的路線之爭]] — YouTube 影片：深入拆解 codebase-memory-mcp 與 CodeGraph 的技術差異、設計哲學與定位分析。 🛠️
 - [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]] — 2026 年 AI 編碼 Agent／IDE 開發工具 Harness 的生命週期擴充機制（Hook）盤點與比較，涵蓋 GitHub Copilot、Claude Code、OpenAI Codex CLI、Pi Coding Agent、DeepSeek Harness 五大工具。 🛠️
@@ -31,6 +32,10 @@ updated: 2026-08-19
 ## Entities
 
 - [[wiki/entities/herdr|herdr — Coding Agent 的 Terminal Runtime]] — 基於 Rust 的終端機代理人執行期與多路複用器，專為 AI coding agent 設計。Client-Server 架構、四語義狀態偵測、Socket API 三大編排原語（Spawn/Inject/Wait）、Plugin 系統。
+
+## Entities
+
+- [[wiki/entities/dhh|DHH — Ruby on Rails 作者、AI 工作流實踐者]] — 2026 年公開其 16 條並行 Agent 工作流實踐，提出瓶頸遷移四階段框架。
 
 ## Others
 

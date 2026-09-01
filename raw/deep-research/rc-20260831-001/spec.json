@@ -1,0 +1,28 @@
+{
+  "job_id": "rc-20260831-001",
+  "query": "現有 AI Agent Harness/Framework 全貌盤點：以四大廠牌路線（OpenAI Codex、DeepSeek Harness、Vercel AI SDK、Microsoft AutoGen/Semantic Kernel）為核心，並涵蓋 Python 與 TypeScript 兩大語言生態圈的主流 Agent Framework（如 LangChain/LangGraph、CrewAI、OpenAI Agents SDK、smolagents、Pydantic AI、Mastra、LangChain.js 等），重點比較各框架的架構設計與可觀測性能力（能否取得完整過程與工具呼叫紀錄、記憶機制設計），以及多 Agent 協作能力（角色分工、狀態機/工作流編排方式）。此研究是 W-074（Cheerio 個人 AI 助理架構，傾向自建 harness）開工前的業界現況盤點，用於評估與對照，非決定要採用哪一個框架。",
+  "sub_questions": [
+    "OpenAI Codex CLI/Agent 的架構設計是什麼？提供哪些可觀測性機制（工具呼叫紀錄、推理過程、記憶存取）？是否支援多 Agent 協作？",
+    "DeepSeek 官方 Harness（https://deepseek.com/harness/en/）的架構設計、可觀測性能力、多 Agent 協作支援為何？",
+    "Vercel AI SDK 的 Agent 架構設計、可觀測性能力（tracing/logging）、多 Agent 協作支援（Agent 交接、工作流編排）為何？",
+    "Microsoft 陣營（AutoGen、Semantic Kernel）的架構設計、可觀測性能力、多 Agent 協作模式（角色分工、群聊/工作流編排）為何？兩者定位差異是什麼？",
+    "Python 生態圈主流 Agent Framework（LangChain/LangGraph、CrewAI、OpenAI Agents SDK、smolagents、Pydantic AI 等）在架構設計、可觀測性、多 Agent 協作能力上的比較？",
+    "TypeScript 生態圈主流 Agent Framework（Vercel AI SDK、LangChain.js、Mastra、OpenAI Agents SDK for TS 等）在架構設計、可觀測性、多 Agent 協作能力上的比較？",
+    "綜合以上，這些框架在可觀測性分級（完整過程可稽核／只能拿到工具呼叫／完全黑盒）上可以怎麼歸類？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "1y",
+    "preferred_language": "zh-TW",
+    "citation_required": true,
+    "source_bias": "mixed",
+    "output_format": "full"
+  }
+}

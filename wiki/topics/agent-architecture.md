@@ -34,6 +34,7 @@ updated: 2026-08-23
 
 ## Sources
 
+- [[wiki/sources/2026-09-02-dhh-ai-workflow-practices|DHH：AI 工作流的實踐經驗]] — 瓶頸遷移四階段、異步任務工具、並行故障模式、Amabot 協調者架構。
 - [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering — AI Agent Concepts Demystified]] — 來源：[YouTube — Loop vs Graph Engineering — AI Agent Concepts Demystified](https://youtu.be/IMLwvK08JVc)
 - [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|企業界 Agentic Pipeline / Orchestration 解決方案調研（Codex）]] — OpenAI Codex CLI（gpt-5.6-luna）針對長榮航空 IT 系統架構課「Skill 建置自動化」流程進行的企業級 Agentic Pipeline / Orchestration 解決方案調研。20 個 Tier 1 來源，12 個不同網站，引用以深連結為主。 🛠️
 - [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-gemini|企業界 Agentic Pipeline / Orchestration 解決方案調研（Gemini）]] — Gemini 2.5-pro 針對長榮航空 IT 系統架構課「Skill 建置自動化」流程（分析→設計→開發→測試四階段）進行的企業級 Agentic Pipeline / Orchestration 解決方案調研。 🛠️

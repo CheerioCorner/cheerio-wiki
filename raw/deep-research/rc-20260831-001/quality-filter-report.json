@@ -1,0 +1,50 @@
+{
+  "job_id": "rc-20260831-001",
+  "notebook_id": "15f04046-8dd2-479a-8a08-2766dd1aebbb",
+  "before_count": 98,
+  "after_count": 90,
+  "removed": [
+    {
+      "id": "02e37b35-0bd9-4375-b7ba-b34ffbc091ba",
+      "title": "Deepseek Harness Preview link - DGX Spark / GB10 - NVIDIA Developer Forums",
+      "reason": "此來源為 NVIDIA 社群論壇上的簡短討論串，僅包含一個預覽連結與不具實質技術分析的兩句話主觀心得，屬於缺乏技術深度與具體結論的膚淺社群問答。"
+    },
+    {
+      "id": "16b17cc5-d56a-4cde-8af0-af08fe95fd2e",
+      "title": "Gateway with Observational Memory | Mastra",
+      "reason": "此頁面為 Mastra 旗下「Gateway」產品的官方行銷推廣與銷售頁，內容主要為功能宣傳、訂價方案與「聯絡銷售」按鈕，缺乏具體技術實作細節與程式碼。"
+    },
+    {
+      "id": "087bb28c-959d-43d8-a258-4923db20eb42",
+      "title": "Internal AI Agents - Mastra",
+      "reason": "此頁面為 Mastra 官網上有關內部 AI Agent 的解決方案宣傳頁，內容僅做高層次的功能特點介紹與案例宣傳，無具體實作細節與技術深度。"
+    },
+    {
+      "id": "e391ec71-5d2c-466e-997d-a9f23c333c0a",
+      "title": "DeepSeek Harness developer preview: Everything is a plugin",
+      "reason": "此頁面為 DeepSeek Harness 官方產品行銷首頁，僅包含高層次的設計理念宣傳與單行 CLI 安裝命令，缺乏實質的技術實作深度或程式碼範例。"
+    },
+    {
+      "id": "75121d0c-913c-4aa9-9051-b6ab7e18c1ac",
+      "title": "AI SDK - Vercel",
+      "reason": "此頁面為 Vercel 官網對 AI SDK 的行銷與產品推廣首頁，頁面充斥大量引導至 Vercel 商業服務的導覽連結與極度簡化的程式碼片段，缺乏具體的技術細節與實作深度。"
+    },
+    {
+      "id": "61473783-d21e-4f11-9b84-a5b27cebc95a",
+      "title": "What is AutoGen? - IBM",
+      "reason": "此來源為 IBM Think 專欄針對一般商業大眾撰寫的高階觀念科普文章，內容著重於概念介紹與 real-world 案例，並穿插 watsonx 產品推廣，完全沒有任何具體程式碼實作與開發技術細節。"
+    },
+    {
+      "id": "75d33a68-de6b-4d8d-a590-d387f44fd953",
+      "title": "Deepseek Harness - Best of JS",
+      "reason": "此頁面為 Best of JS 網站上的開源專案數據展示與 README 簡單複製，僅呈現星數、下載量與依賴項等統計數據，屬於缺乏技術深度的專案目錄展示頁。"
+    },
+    {
+      "id": "8386ff8e-6054-41d2-aa92-1f9492be1f38",
+      "title": "Mastra: TypeScript AI Framework for Agents and Apps",
+      "reason": "此頁面為 Mastra 專案的官方宣傳與產品首頁，包含功能亮點總覽、定價模式與訂閱電子報，屬於缺乏具體技術實作細節的官網行銷推廣頁。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-08-31T02:00:09.418Z"
+}
