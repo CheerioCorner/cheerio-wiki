@@ -1,4 +1,18 @@
 
+## [2026-09-01] ingest | Local LLM 在 Intel UHD 770 + 32GB RAM 環境下的選擇研究 + 圓桌會議
+
+- 動作：Gemini Notebook 深度研究（200 筆來源）→ 圓桌會議（Claude + Gemini + Codex，2 輪）→ wiki ingest
+- 來源：`raw/deep-research/rc-20260901-001/research-report.md`、`.pi/round-table/20260901-221918/synthesis.md`
+- 建立：
+  - `wiki/sources/2026-09-01-local-llm-uhd770-research.md` — 研究報告 source note（量化策略、TTFT、Copilot 整合、方案比較）
+  - `wiki/sources/2026-09-01-local-llm-round-table-synthesis.md` — 圓桌會議紀要（三方共識、架構決策、PoC 路線圖）
+  - `wiki/concepts/hybrid-intent-router.md` — 混合式意圖路由器四層架構（確定性路由 + LLM 輔助）
+- 更新：
+  - `wiki/concepts/local-llm-deployment.md` — 新增「低階硬體實務：UHD 770 + 32GB RAM」章節（圓桌共識修正）
+  - `wiki/index.md` — Concepts + Sources 區塊新增條目
+- 圓桌共識：模型從 14B/32B 降級為 7B 起步、Aider 分數不適用於 DevOps 編排、混合式四層架構、LLM 定位為副駕駛
+- 特殊標記：本次 deep-research-execute 的 recheck 補研究因 nlm CLI 確認提示問題需手動介入（`echo y |`），已手動推進 checkpoint
+
 ## [2026-08-30] query | Graphify vs codebase-memory-mcp 整合決策（技術查證 + Codex 意見）
 
 - 動作：使用者延續前次 round-table（Gemini 單方，Codex 因 pi 環境 PowerShell 權限問題缺席）討論，要求查證 Gemini 提出的「Graphify `.graphify.json` levels 過濾設定」是否存在，並改用直接 `codex exec`（非 round-table skill）取得 Codex 工程意見

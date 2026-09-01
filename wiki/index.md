@@ -90,6 +90,7 @@
 - [[wiki/concepts/knowledge-management.md|Knowledge Management]]
 - [[wiki/concepts/knowledge-system-architecture.md|知識系統架構]]
 - [[wiki/concepts/local-llm-deployment.md|Local LLM 部署 — 從雲端到地端的基礎設施選擇]]
+- [[wiki/concepts/hybrid-intent-router.md|混合式意圖路由器 — 確定性邏輯 + LLM 輔助的四層架構]]
 - [[wiki/concepts/late-conversion.md|Late Conversion(最晚轉換)]]
 - [[wiki/concepts/legacy-code-modernization.md|Legacy Code Modernization with AI — 用 AI 現代化遺留系統的方法論]]
 - [[wiki/concepts/lint-ruleset.md|Lint 規則集]]
@@ -358,6 +359,8 @@
 - [[wiki/sources/2026-08-26-vercel-labs-web-interface-guidelines.md|vercel-labs/web-interface-guidelines — Web UI 合規稽核清單]] — vercel-labs/web-interface-guidelines
 - [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching.md|Prompt Caching Explained — Alejandro AO — Agent 設計與成本實作]] — Prompt Caching Explained — Alejandro AO
 - [[wiki/sources/2026-08-27-ibm-technology-prompt-caching.md|What is Prompt Caching? | IBM Technology — 概念解說]] — What is Prompt Caching? | IBM Technology
+- [[wiki/sources/2026-09-01-local-llm-uhd770-research.md|Local LLM 在 Intel UHD 770 + 32GB RAM 環境下的選擇研究]]
+- [[wiki/sources/2026-09-01-local-llm-round-table-synthesis.md|圓桌會議紀要：Local LLM DevOps Skill 執行可行性]]
 - [[wiki/sources/2026-09-01-ibm-youtube-skill-best-practices-supplement-draft.md|IBM YouTube 影片 Skill 五項最佳實踐 — 補充草稿]]
 - [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms.md|5 Terms You Need to Know About Agentic AI — IBM Technology]]
 - [[wiki/sources/mcp-official-docs-42.md|MCP 官方文件彙整（42 篇）]]

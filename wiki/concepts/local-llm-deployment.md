@@ -2,8 +2,8 @@
 title: "Local LLM 部署 — 從雲端到地端的基礎設施選擇"
 type: concept
 created: 2026-08-30
-updated: 2026-08-30
-sources: 1
+updated: 2026-09-01
+sources: 3
 tags: [local-llm, open-weight-model, deployment, hardware, security]
 topics: [agent-infrastructure, ai-agent]
 canonical: concepts/local-llm-deployment
@@ -53,8 +53,27 @@ canonical: concepts/local-llm-deployment
 | DeepSeek V4 Flash | ~236B（MoE, ~21B active）| ~236GB | 多張 GPU 或 DGX Spark（Q2）|
 | Kimi K3 | 2.8T（MoE）| ~2.8TB | 4× GB300 |
 
+## 低階硬體實務：Intel UHD 770 + 32GB RAM
+
+> 詳見 [[wiki/sources/2026-09-01-local-llm-uhd770-research|研究報告]] 與 [[wiki/sources/2026-09-01-local-llm-round-table-synthesis|圓桌共識]]
+
+### 硬體限制
+- UHD 770（32 EU）：共享記憶體上限 16GB（Windows 11 預設 50%），i5-14500T 不支援 Override
+- i5-14500T：不支援 AVX-512（Alder Lake 之後已熔斷），但完整支援 AVX2
+- Mini PC 散熱限制：35W T 系列 CPU，長時間滿載會熱節流
+
+### 量化策略
+- **GPU 全卸載**：14B Q4_K_M (~9GB) 可 100% 裝入 16GB GPU（甜點選擇）
+- **CPU-only**：32B Q4_K_M (~20.5GB) 可跑但 ~8-12 t/s，不建議日常使用
+
+### 圓桌共識修正
+- 報告推薦的 14B/32B 降級為 **7B 起步**（Qwen2.5-Coder-7B-Instruct Q4_K_M）
+- Aider 分數不適用於 DevOps skill 編排能力評估
+- 應採用 [[wiki/concepts/hybrid-intent-router|混合式四層架構]]（確定性路由 + LLM 輔助）
+
 ## 與其他概念的關係
 
 - 站在 [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] 之上——了解硬體限制後才能選擇部署方案
 - 為 [[wiki/concepts/agent-security-levels|Agent 安全等級]] 提供 model 端的安全基礎
 - 與 [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] 互補——前者講架構原理，本頁講實務部署選擇
+- 新增 [[wiki/concepts/hybrid-intent-router|混合式意圖路由器]]：低階硬體上的務實架構選擇

@@ -1,0 +1,101 @@
+✓ Created new notebook: Intel UHD 770 + 32GB RAM 環境下的 Local LLM 
+選擇：量化策略、TTFT 效能、模型篩選與 GitHub Copilot 整合—...
+✓ Research started
+  Query: Intel UHD 770 + 32GB RAM 環境下的 Local LLM 選擇：量化策略、TTFT 
+效能、模型篩選與 GitHub Copilot 整合——聚焦多步驟 DevOps skill 執行能力
+  Source: web
+  Mode: deep
+  Notebook ID: b8e1d221-6784-454f-a20d-cb536253134f
+  Task ID: ChA3NjFhMTQ0MzY5OGRjMTRlEAgaBGI2OWEqA3Vzdw
+
+Waiting for research to complete...
+⠏ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 73d836dc-2cff-4162-ba77-f64b6b442ba3
+  Sources found: 64
+
+Run 'nlm research import b8e1d221-6784-454f-a20d-cb536253134f <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 57 sources.
+  • LocalAI OpenVINO inference on Intel iGPU UHD 770 of Starling LM Beta with 
+int8 quantization. Fully offloaded. No CPUs nor dGPUs were harmed in the making 
+of this film. - Reddit
+  • Optimum Intel OpenVino Performance : r/LocalLLaMA - Reddit
+  • Run LLMs on Intel® GPUs Using llama.cpp
+  • Intel B70: LLama.ccp SYCL vs LLama.cpp OpenVino vs LLM-Scaler : r/LocalLLaMA
+- Reddit
+  • Best Local LLMs for Continue.dev (2026 Tier List) - ModelFit
+  • [Tutorial] Mastering Host-Memory Prompt Caching in llama-server · ggml-org 
+llama.cpp · Discussion #20574 - GitHub
+  • Why Your Local LLM Is Slow — llama.cpp Config Guide | OmniForge Blog
+  • llama.cpp for SYCL - benchmarks - GitHub
+  • Performance of llama.cpp on Intel GPU with SYCL backend #23313 - GitHub
+  • PSA for Intel Arc llama.cpp users: speculative decoding is finally worth 
+turning on (merged ~40–90% speedup) - Reddit
+  • Shared GPU Memory Override Feature and Requirements - Intel
+  • llama.cpp VRAM Requirements: Complete 2026 Guide to GPU Memory for Local 
+LLMs
+  • Allocating RAM for GPU performance on self hosted LLM systems with 
+integrated System & GPU RAM - PatrickMcCanna.net
+  • Accelerating Multimodal RAG with Intel Xeon and OpenVINO: When Vision Meets 
+Language
+  • Continue Autocomplete Setup and Configuration Guide
+  • qwen2.5-coder:14b-instruct - Ollama
+  • Qwen2.5 14B Instruct vs Qwen2.5-Coder 7B Instruct: Benchmarks, Pricing & 
+Which Is Better in 2026 - LLM Stats
+  • Ollama Performance Tuning: Batching, KV Cache, and OOM - Easton Dev
+  • Autocomplete Role in Continue Models
+  • Ollama + qwen2.5-coder:14b for local development - Reddit
+  • How to setup qwen coder 2.5 LLM for local dev on Windows in four steps
+  • Frequently Asked Questions for Intel® Graphics Memory on Windows® 10
+  • Urgent Request: Ability to Reduce Shared GPU Memory Allocation Beyond 50%
+  • Performance Guide — LlamaCppEx v0.8.45 - Hexdocs
+  • Has anyone gotten Llama.cpp (or other) working using Intel iGPU (arrowlake) 
+where it actually improves anything? - Reddit
+  • What should i change to optimize local hosted AI - Beginners - Hugging Face 
+Forums
+  • Getting started with Qwen2.5-14B - SecondState.io
+  • Qwen/Qwen2.5-Coder-14B-Instruct - Hugging Face
+  • Qwen2.5-Coder Technical Report - arXiv
+  • Continue.dev Review 2026: Is the Open Source Copilot Worth It? - Pristren
+  • FAQ - Ollama documentation
+  • Linux users with Intel graphics can now worry less about RAM restrictions, 
+thanks to new patch - Reddit
+  • How to Adjust Dedicated Video Memory for Intel Graphics
+  • For Intel, there's DVMT that can be set to different values; with setup_var 
+I ca... | Hacker News
+  • Models | Continue Docs
+  • LLM Inference Speed Explained: TTFT, Throughput, and What Actually Matters -
+Infercom
+  • What is IGD Aperture Size? - Intel
+  • Qwen/Qwen2.5-14B-Instruct - Hugging Face
+  • qwen2.5-coder:14b-base - Ollama
+  • Qwen2.5 Coder 14B Instruct · Benchmarks, Pricing & Performance | BenchGecko
+  • Intel iGPU Using Both i915 and xe Kernel Modules, Is This an Issue? How to 
+Resolve?
+  • Xe – Merge Acceptance Plan — The Linux Kernel documentation
+  • Ollama Running Slow? Every Fix, Step by Step - Serverman
+  • Intel Arc Pro B70 (32GB) for Local LLMs: llama.cpp (SYCL/Vulkan), vLLM 
+(Intel LLM Scaler) Benchmarks : r/IntelArc - Reddit
+  • Intel's Latest Drivers Let's Users Allocate Up To 93% of System Memory To 
+Arc iGPUs For Wider AI LLM Support - Wccftech
+  •  High raw TPS but poor real-world performance : r/IntelArc - Reddit
+  • [SYCL][Intel GPU] Long Term Features & Issues Tracking · ggml-org llama.cpp 
+· Discussion #5277 - GitHub
+  • Performance Benchmarks — OpenVINO™ documentation — Version(2026)
+  • Qwen2.5 Coder Instruct 7B Intelligence, Performance & Price Analysis
+  • Qwen/Qwen2.5-Coder-7B-Instruct · 14B in the future? - Hugging Face
+  • Recommended Models for Autocomplete in Continue
+  • Qwen2.5_Coder_(14B)-Conversational.ipynb - Google Colab
+  • Qwen2.5-Coder 14B Instruct API & Playground - Fireworks AI
+  • Run Qwen2.5-Coder-14B Instruct API (Easy Deployment & Flat-Rate Pricing) - 
+Featherless
+  • Maybe KV cache offload to RAM isn't bad : r/LocalLLaMA - Reddit
+  • Ollama vs. vLLM: A deep dive into performance benchmarking | Red Hat 
+Developer
+  • Ollama Installation - Documentation & FAQ - HOSTKEY
+

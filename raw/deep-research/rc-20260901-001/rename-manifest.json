@@ -1,0 +1,471 @@
+[
+  {
+    "original_title": "10 Best GitHub Copilot Alternatives to Run Locally (2026) | Free & Private | LocalAlternative",
+    "new_title": "[LocalAlternative 媒體] 比較分析 - 本地 AI 補全工具與 Copilot 替代方案",
+    "category": "本地開發與工具整合",
+    "source_id": "a06d17bf-6219-4b23-bce5-8d63ff42f3f8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Accelerating Multimodal RAG with Intel Xeon and OpenVINO: When Vision Meets Language",
+    "new_title": "[Intel 官方] 技術指南 - Xeon 與 OpenVINO 多模態 RAG 加速架構",
+    "category": "推理框架與效能優化",
+    "source_id": "129f952a-a5a5-422a-ab9f-4416e0fbfb1b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Add ability to use local LLMs in Copilot · community · Discussion #190067 - GitHub",
+    "new_title": "[GitHub 官方論壇] 社群問答 - Copilot 支援本地模型終端點討論",
+    "category": "本地開發與工具整合",
+    "source_id": "e84d1b7a-4d05-4f10-8f30-b15fef505dec",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Allocating RAM for GPU performance on self hosted LLM systems with integrated System & GPU RAM - PatrickMcCanna.net",
+    "new_title": "[PatrickMcCanna 部落格] 技術指南 - 系統記憶體共享與內顯 VRAM 分配優化",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "d6baca83-a7cd-4e41-af6c-1f242b82807d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Autocomplete Role in Continue Models",
+    "new_title": "[Continue 官方] 架構文件 - 程式碼自動補全的模型定位與機制",
+    "category": "本地開發與工具整合",
+    "source_id": "bdbd3b8e-15cf-4446-873c-be09826ce9df",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Best Local LLMs for Continue.dev (2026 Tier List) - ModelFit",
+    "new_title": "[ModelFit 媒體] 比較分析 - Continue 本地程式碼模型評級推薦",
+    "category": "本地開發與工具整合",
+    "source_id": "f0efc8e2-8d35-4086-9069-9bb839c207dc",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Continue Autocomplete Setup and Configuration Guide",
+    "new_title": "[Continue 官方] 操作手冊 - 自動補全設定與模型初始化流程",
+    "category": "本地開發與工具整合",
+    "source_id": "3e985363-9e82-4db8-a168-2ee6f2156e15",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Continue.dev Review 2026: Is the Open Source Copilot Worth It? - Pristren",
+    "new_title": "[Pristren 部落格] 比較分析 - Continue 地端整合功能與實用性測評",
+    "category": "本地開發與工具整合",
+    "source_id": "fb94e8ea-d2e4-4f83-859a-1904045264e2",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Copilot Custom Provider - Visual Studio Marketplace",
+    "new_title": "[VS Marketplace 官方] 產品規格 - Copilot 擴充套件自訂 API 供應商介面",
+    "category": "本地開發與工具整合",
+    "source_id": "e74566ad-5402-469a-a64b-e2a56d220487",
+    "status": "renamed"
+  },
+  {
+    "original_title": "FAQ - Ollama documentation",
+    "new_title": "[Ollama 官方] 常見問題 - Windows 記憶體限制與 GPU 加速疑難排解",
+    "category": "推理框架與效能優化",
+    "source_id": "7f5dad3c-b016-4153-bba0-61e162f68a3b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "For Intel, there's DVMT that can be set to different values; with setup_var I ca... | Hacker News",
+    "new_title": "[Hacker News 社群] 案例研究 - 利用 BIOS 鎖與 DVMT 調整內顯共享記憶體",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "a0495e72-b28a-496e-a325-fe87fa94ad25",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Frequently Asked Questions for Intel® Graphics Memory on Windows® 10",
+    "new_title": "[Intel 官方] 產品規格 - Windows 10/11 內顯共享顯示記憶體機制問答",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "c7d0ead3-f495-4734-b83f-937cfcb68cdb",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Getting started with Qwen2.5-14B - SecondState.io",
+    "new_title": "[SecondState 官方] 技術指南 - Qwen2.5-14B 輕量化地端運行與 API 部署",
+    "category": "模型篩選與技術規格",
+    "source_id": "ab2dd354-5af7-4ece-9d8b-e10c5722bd6a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub - jjleng/copilot-proxy: Make GH Copilot extension work with any LLM models",
+    "new_title": "[jjleng GitHub] 開源專案 - 自訂 Copilot 反向代理伺服器實作",
+    "category": "本地開發與工具整合",
+    "source_id": "b19c9f8b-5cd7-4409-b5bd-6d6cd44a4bbf",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub Copilot - LiteLLM",
+    "new_title": "[LiteLLM 官方] 開源專案 - LiteLLM 代理與 GitHub Copilot 自訂端點對接",
+    "category": "本地開發與工具整合",
+    "source_id": "bb1ee923-c8bb-404d-81ad-95a300f77b09",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub Copilot with Ollama: Run Local AI Models in VS Code (Offline & Free) - YouTube",
+    "new_title": "[YouTube 頻道] 教學影片 - 地端 Ollama 模型串接 GitHub Copilot 實作引導",
+    "category": "本地開發與工具整合",
+    "source_id": "c4292922-e0fe-4cdc-b343-7929256b0de5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "GitHub Copilot 串接Ollama：地端自託管LLM，守護企業程式碼資安的AI 補全解決方案",
+    "new_title": "[部落格 專欄] 教學指南 - 企業專屬 Ollama 與 Copilot 本地對接安全性部署",
+    "category": "本地開發與工具整合",
+    "source_id": "739778dd-a679-4de2-b4c8-93c6993edd3f",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Has anyone gotten Llama.cpp (or other) working using Intel iGPU (arrowlake) where it actually improves anything? - Reddit",
+    "new_title": "[Reddit 社群] 討論問答 - Arrow Lake 與 iGPU 在 llama.cpp 推理效能反饋",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "69773ce1-1ac7-453d-a3fb-bde8522f3881",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How to Adjust Dedicated Video Memory for Intel Graphics",
+    "new_title": "[Intel 官方] 技術指南 - BIOS 與系統設定調整內顯專用記憶體步驟",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "9bd21804-48e7-4279-a97b-d3996945967b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "How to setup qwen coder 2.5 LLM for local dev on Windows in four steps",
+    "new_title": "[部落格 專欄] 教學指南 - Windows 11 下四步驟極簡部署 Qwen2.5-Coder",
+    "category": "模型篩選與技術規格",
+    "source_id": "d5fe74ab-5cd8-4b5c-a27b-dba763f0c5af",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Intel Arc Pro B70 (32GB) for Local LLMs: llama.cpp (SYCL/Vulkan), vLLM (Intel LLM Scaler) Benchmarks : r/IntelArc - Reddit",
+    "new_title": "[Reddit 社群] 效能評測 - Arc 顯示卡在 SYCL/Vulkan 推理架喚基準測試",
+    "category": "推理框架與效能優化",
+    "source_id": "ff80f694-db38-4526-bf62-626630283170",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Intel B70: LLama.ccp SYCL vs LLama.cpp OpenVino vs LLM-Scaler : r/LocalLLaMA - Reddit",
+    "new_title": "[Reddit 社群] 比較分析 - Intel GPU 平台上 SYCL、OpenVINO 與 Scaler 效能對比",
+    "category": "推理框架與效能優化",
+    "source_id": "969ce851-6777-4e1d-8415-e4b4dc909430",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Intel iGPU Using Both i915 and xe Kernel Modules, Is This an Issue? How to Resolve?",
+    "new_title": "[Intel 官方論壇] 技術討論 - Linux 下 i915 與 xe 核心模組衝突排障",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "0a13cfb0-c262-4707-9cdc-c9af4a9fc308",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Intel's Latest Drivers Let's Users Allocate Up To 93% of System Memory To Arc iGPUs For Wider AI LLM Support - Wccftech",
+    "new_title": "[Wccftech 媒體] 新聞報導 - Intel 最新驅動開放 93% 記憶體分配給 iGPU 運行 LLM",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "cb8a3dfd-66ef-465d-afe4-b1ba0ff8e9d6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "LLM Inference Speed Explained: TTFT, Throughput, and What Actually Matters - Infercom",
+    "new_title": "[Infercom 媒體] 技術指南 - 深入探討 TTFT、吞吐量與硬體瓶頸關鍵指標",
+    "category": "推理框架與效能優化",
+    "source_id": "d3bc4399-efe6-43c4-9768-a758e01bb0ac",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Linux users with Intel graphics can now worry less about RAM restrictions, thanks to new patch - Reddit",
+    "new_title": "[Reddit 社群] 新聞討論 - Linux 下 Intel 顯示晶片記憶體限制修正 patch",
+    "category": "推理框架與效能優化",
+    "source_id": "af5aed7a-0863-49de-8d96-095072cc2521",
+    "status": "renamed"
+  },
+  {
+    "original_title": "LocalAI OpenVINO inference on Intel iGPU UHD 770 of Starling LM Beta with int8 quantization. Fully offloaded. No CPUs nor dGPUs were harmed in the making of this film. - Reddit",
+    "new_title": "[Reddit 社群] 案例研究 - UHD 770 內顯以 OpenVINO 與 int8 量化完全卸載推理實測",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "f7da8a61-870c-4727-8efe-3656261989bb",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Maybe KV cache offload to RAM isn't bad : r/LocalLLaMA - Reddit",
+    "new_title": "[Reddit 社群] 技術討論 - LLM 推理之 KV Cache 卸載至系統記憶體可行性",
+    "category": "推理框架與效能優化",
+    "source_id": "5bd98d46-c948-4f68-9e5e-4933eeb568db",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Models | Continue Docs",
+    "new_title": "[Continue 官方] 產品規格 - 開源程式碼助手支援的本地模型對照表",
+    "category": "本地開發與工具整合",
+    "source_id": "86fce83b-ddd4-4c7c-a702-e4493dbcd28d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Ollama + qwen2.5-coder:14b for local development - Reddit",
+    "new_title": "[Reddit 社群] 案例研究 - 地端 Ollama 與 Qwen2.5-Coder 14B 開發實務感受",
+    "category": "推理框架與效能優化",
+    "source_id": "912d0f21-3ce7-47c7-aa66-bb60a1d683ff",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Ollama Installation - Documentation & FAQ - HOSTKEY",
+    "new_title": "[HOSTKEY 官方] 操作手冊 - 本地 Ollama 安裝配置與常見問題疑難解答",
+    "category": "推理框架與效能優化",
+    "source_id": "5538ed02-f4ae-40f8-8d92-68845620520a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Ollama Performance Tuning: Batching, KV Cache, and OOM - Easton Dev",
+    "new_title": "[Easton Dev 部落格] 技術指南 - Ollama 批次處理、KV Cache 與 OOM 錯誤優化",
+    "category": "推理框架與效能優化",
+    "source_id": "69ab2c92-81d9-40f8-aadb-b015abd6e1ee",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Ollama Running Slow? Every Fix, Step by Step - Serverman",
+    "new_title": "[Serverman 部落格] 排障手冊 - Ollama 推理速度緩慢的逐步排查與優化指引",
+    "category": "推理框架與效能優化",
+    "source_id": "ebdc22fa-6f6c-4ae6-9010-a246ba56ffbd",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Ollama vs. vLLM: A deep dive into performance benchmarking | Red Hat Developer",
+    "new_title": "[Red Hat 官方] 比較分析 - Ollama 與 vLLM 在大規模推理下的架構與效能對比",
+    "category": "推理框架與效能優化",
+    "source_id": "9d989fd4-2bc9-4ce1-9e77-62d133b28f9a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Optimum Intel OpenVino Performance : r/LocalLLaMA - Reddit",
+    "new_title": "[Reddit 社群] 技術討論 - 最佳化 Intel OpenVINO 推理引擎性能配置技巧",
+    "category": "推理框架與效能優化",
+    "source_id": "fd9f72a6-5d86-4cde-bdba-8313079f80d8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "PSA for Intel Arc llama.cpp users: speculative decoding is finally worth turning on (merged ~40–90% speedup) - Reddit",
+    "new_title": "[Reddit 社群] 技術討論 - Intel 平台 speculative decoding 投機解碼效能翻倍實測",
+    "category": "推理框架與效能優化",
+    "source_id": "ecf90a54-682c-4497-9eba-e4443f9c58b6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Performance Benchmarks — OpenVINO™ documentation — Version(2026)",
+    "new_title": "[Intel 官方] 效能評測 - OpenVINO 2026 年版本推理效能官方基準測試",
+    "category": "推理框架與效能優化",
+    "source_id": "cc12000f-6888-4663-8a40-5999f170615f",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Performance Guide — LlamaCppEx v0.8.45 - Hexdocs",
+    "new_title": "[Hexdocs 官方] 技術指南 - LlamaCppEx 推理加速與參數調整優化指南",
+    "category": "推理框架與效能優化",
+    "source_id": "fd6cfb1d-0568-4acb-b0b0-31b47073a9df",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Performance of llama.cpp on Intel GPU with SYCL backend #23313 - GitHub",
+    "new_title": "[llama.cpp GitHub] 技術論壇 - Intel SYCL 後端架構效能回報與優化議題",
+    "category": "推理框架與效能優化",
+    "source_id": "fb9a0071-85cd-48d5-bad2-37fab8f544cb",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen/Qwen2.5-14B-Instruct - Hugging Face",
+    "new_title": "[Hugging Face 官方] 模型規格 - Qwen2.5-14B 指令微調模型權重與部署資訊",
+    "category": "模型篩選與技術規格",
+    "source_id": "68990a7f-cdfd-460d-8817-a744fa96ae41",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen/Qwen2.5-Coder-14B-Instruct - Hugging Face",
+    "new_title": "[Hugging Face 官方] 模型規格 - Qwen2.5-Coder-14B 專業代碼指導模型說明頁",
+    "category": "模型篩選與技術規格",
+    "source_id": "b5e2d156-ef92-4530-ad4d-45c4f782bb31",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen/Qwen2.5-Coder-7B-Instruct · 14B in the future? - Hugging Face",
+    "new_title": "[Hugging Face 論壇] 社群討論 - Qwen2.5-Coder 14B 發布規劃探討",
+    "category": "模型篩選與技術規格",
+    "source_id": "baef619c-4025-42eb-bf3b-48b0a42aadc4",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen2.5 14B Instruct vs Qwen2.5-Coder 7B Instruct: Benchmarks, Pricing & Which Is Better in 2026 - LLM Stats",
+    "new_title": "[LLM Stats 媒體] 比較分析 - 14B 指令模型與 7B 專業代碼模型效能與資源對比",
+    "category": "模型篩選與技術規格",
+    "source_id": "e206b87e-4b2c-4767-8c24-706f1c6f5d2e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen2.5 Coder 14B Instruct · Benchmarks, Pricing & Performance | BenchGecko",
+    "new_title": "[BenchGecko 媒體] 效能評測 - Qwen2.5-Coder-14B-Instruct 程式能力與速度基準",
+    "category": "推理框架與效能優化",
+    "source_id": "bcc5eb72-0002-4876-a443-e8461a074d78",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen2.5 Coder Instruct 7B Intelligence, Performance & Price Analysis",
+    "new_title": "[媒體 專欄] 比較分析 - Qwen2.5-Coder-7B 資源佔用與推理效能評估",
+    "category": "推理框架與效能優化",
+    "source_id": "c0bb3ae4-194d-49d8-ad23-f68f108ff57b",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen2.5-Coder 14B Instruct API & Playground - Fireworks AI",
+    "new_title": "[Fireworks AI 官方] 產品規格 - Qwen2.5-Coder-14B 託管端點與線上測試環境",
+    "category": "模型篩選與技術規格",
+    "source_id": "2193d1da-ebc5-49bb-b62a-5531c40b5e26",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen2.5-Coder Technical Report - arXiv",
+    "new_title": "[Alibaba Qwen 團隊] 學術論文 - Qwen2.5-Coder 系列模型技術報告與能力評測",
+    "category": "模型篩選與技術規格",
+    "source_id": "66cffcf2-8f9e-49ca-9fa3-c54b6fe91766",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Qwen2.5_Coder_(14B)-Conversational.ipynb - Google Colab",
+    "new_title": "[Google Colab 範例] 技術指南 - 使用 Jupyter Notebook 運行 Qwen2.5-Coder-14B",
+    "category": "模型篩選與技術規格",
+    "source_id": "a2408322-de38-4e8b-80d4-2da4dfeeccfe",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Recommended Models for Autocomplete in Continue",
+    "new_title": "[Continue 官方] 技術指南 - 編輯器內自動補全的推薦模型 Tier List",
+    "category": "本地開發與工具整合",
+    "source_id": "b35ceb37-fa47-4ad1-9324-8ac52eca9f0e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Run LLMs on Intel® GPUs Using llama.cpp",
+    "new_title": "[Intel 官方] 技術指南 - 基於 SYCL 在 Intel GPU 上運行 llama.cpp 部署指引",
+    "category": "推理框架與效能優化",
+    "source_id": "e0a8a77d-07a6-4f85-b8f3-eff8b287356e",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Run Qwen2.5-Coder-14B Instruct API (Easy Deployment & Flat-Rate Pricing) - Featherless",
+    "new_title": "[Featherless 官方] 產品規格 - 14B 模型雲端 API 行銷與託管收費頁面",
+    "category": "模型篩選與技術規格",
+    "source_id": "669b9fda-5d66-4b17-b143-8327e48bd4f0",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Shared GPU Memory Override Feature and Requirements - Intel",
+    "new_title": "[Intel 官方] 產品規格 - Windows 驅動中共享顯示記憶體覆寫功能與限制",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "fc708904-7fb8-4434-8003-9333051a5dd8",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Tune GitHub Copilot Settings in VS Code - DEV Community",
+    "new_title": "[DEV Community 專欄] 技術指南 - VS Code 內細部調整 Copilot 行為與自訂端點",
+    "category": "本地開發與工具整合",
+    "source_id": "c5353538-30a6-452c-9a7c-7edc6a6cc6e5",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Urgent Request: Ability to Reduce Shared GPU Memory Allocation Beyond 50%",
+    "new_title": "[Intel 官方論壇] 技術討論 - 請求提供自訂降低共享顯示記憶體分配之反饋",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "c5142ae2-f765-420c-a5d9-5a843f08c5d7",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Using GitHub Copilot CLI with Local Models (LM Studio) - DEV Community",
+    "new_title": "[DEV Community 專欄] 技術指南 - Copilot CLI 本地串接 LM Studio 實戰指南",
+    "category": "本地開發與工具整合",
+    "source_id": "cc3d9570-b831-484b-8fce-6c8ed6af9417",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Using your own LLM models in GitHub Copilot CLI",
+    "new_title": "[部落格 專欄] 技術指南 - 於 GitHub Copilot CLI 串接自託管 LLM 的具體步驟",
+    "category": "本地開發與工具整合",
+    "source_id": "6bbf61b5-1944-474e-87e7-4fdff62d7fe6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "What is IGD Aperture Size? - Intel",
+    "new_title": "[Intel 官方] 架構文件 - BIOS 中 IGD 顯示開口大小 (Aperture Size) 機制說明",
+    "category": "顯示卡與硬體記憶體配置",
+    "source_id": "b3eebea7-bb0b-47f8-a975-1aeb649f13b6",
+    "status": "renamed"
+  },
+  {
+    "original_title": "What should i change to optimize local hosted AI - Beginners - Hugging Face Forums",
+    "new_title": "[Hugging Face 論壇] 社群問答 - 初學者地端運行 LLM 的硬體與軟體優化建議",
+    "category": "推理框架與效能優化",
+    "source_id": "a07febdc-d584-41e2-981d-f3e69c1e2260",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Why Your Local LLM Is Slow — llama.cpp Config Guide | OmniForge Blog",
+    "new_title": "[OmniForge Blog] 技術指南 - 解決本地 LLM 推理緩慢的 llama.cpp 最佳設定指引",
+    "category": "推理框架與效能優化",
+    "source_id": "68c6314b-a255-407f-9db6-34160d77074c",
+    "status": "renamed"
+  },
+  {
+    "original_title": "Xe – Merge Acceptance Plan — The Linux Kernel documentation",
+    "new_title": "[Linux Kernel 官方] 架構文件 - Intel Xe 顯示核心驅動程式併入主線技術規範",
+    "category": "推理框架與效能優化",
+    "source_id": "4fa05197-053b-4064-8cbc-3d4ef6d76371",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[SYCL][Intel GPU] Long Term Features & Issues Tracking · ggml-org llama.cpp · Discussion #5277 - GitHub",
+    "new_title": "[llama.cpp GitHub] 技術論壇 - Intel SYCL 後端硬體相容與效能優化長期追踪",
+    "category": "推理框架與效能優化",
+    "source_id": "af6e2e4d-63ca-4483-a37f-ba920273279a",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[Tutorial] Mastering Host-Memory Prompt Caching in llama-server · ggml-org llama.cpp · Discussion #20574 - GitHub",
+    "new_title": "[llama.cpp GitHub] 教學指南 - 主機記憶體提示快取 (Prompt Caching) 設定技巧",
+    "category": "推理框架與效能優化",
+    "source_id": "e5cd102c-5c26-4bd3-89e1-558c3f87f513",
+    "status": "renamed"
+  },
+  {
+    "original_title": "[llama.cpp vs vLLM] High raw TPS but poor real-world performance : r/IntelArc - Reddit",
+    "new_title": "[Reddit 社群] 比較分析 - 深入對比 llama.cpp 與 vLLM 在實際併發下的效能表現",
+    "category": "推理框架與效能優化",
+    "source_id": "d2b52d53-f7fb-413c-bbfe-4953e11b24c3",
+    "status": "renamed"
+  },
+  {
+    "original_title": "llama.cpp VRAM Requirements: Complete 2026 Guide to GPU Memory for Local LLMs",
+    "new_title": "[OmniForge Blog] 技術指南 - 2026 最新 llama.cpp 的 GGUF 量化規格與記憶體需求表",
+    "category": "推理框架與效能優化",
+    "source_id": "d6293901-7cf1-4fea-944e-c73e6cd017f3",
+    "status": "renamed"
+  },
+  {
+    "original_title": "llama.cpp for SYCL - benchmarks - GitHub",
+    "new_title": "[llama.cpp GitHub] 效能評測 - SYCL 後端在 Intel 顯示晶片上的基準性能測試數據",
+    "category": "推理框架與效能優化",
+    "source_id": "ad3e529a-2d8c-49fb-ae0a-bc1b9a4d387d",
+    "status": "renamed"
+  },
+  {
+    "original_title": "qwen2.5-coder:14b-base - Ollama",
+    "new_title": "[Ollama 官方] 模型規格 - Qwen2.5-Coder 14B 基礎程式模型權重規格",
+    "category": "推理框架與效能優化",
+    "source_id": "e3bd75b5-ecdd-439b-aa03-abbe76bbe760",
+    "status": "renamed"
+  },
+  {
+    "original_title": "qwen2.5-coder:14b-instruct - Ollama",
+    "new_title": "[Ollama 官方] 模型規格 - Qwen2.5-Coder 14B 對話指令程式模型權重規格",
+    "category": "推理框架與效能優化",
+    "source_id": "b3334a36-41a0-4ecd-b912-e50488c473db",
+    "status": "renamed"
+  }
+]

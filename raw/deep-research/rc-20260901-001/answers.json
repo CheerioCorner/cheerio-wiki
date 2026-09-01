@@ -1,0 +1,2078 @@
+[
+  {
+    "question": "在 Intel UHD 770 + 32GB RAM + i5-14500T 的 Windows 11 環境下，量化（GGUF Q4/Q5/Q6/Q8）如何改變模型選擇範圍？哪些原本太大的模型量化後能在 32GB RAM 內運行且保持多步驟流程編排能力？",
+    "answer": "在 **Intel UHD 770 + 32GB RAM + i5-14500T** 的 Windows 11 環境下，量化技術（GGUF 格式）是決定本機 LLM 能否運作的關鍵鑰匙。在這種特定硬體下，存在著兩條關鍵的記憶體界線，它們深度地改變了模型的選擇範圍。\n\n---\n\n### 一、 系統記憶體架構與「16GB 共享記憶體」的絕對邊界\n\n1. **Windows 11 的 50% 顯存分配硬性限制**：\n   * **Intel UHD 770** 作為核芯顯示卡（iGPU），本身沒有獨立顯存（Dedicated VRAM）[1]。在 Windows 11 的 WDDM 驅動架構下，系統會預設將**系統記憶體的一半（50%）**作為「共享 GPU 記憶體（Shared GPU Memory）」[2-4]。\n   * 意即在 32GB RAM 的系統中，**UHD 770 可調用的最高動態顯存上限為 16GB** [2, 3]。\n   * 由於用戶的處理器為 **i5-14500T（14代核顯，非 Core Ultra 系列 2）**，並不支援最新的 \"Shared GPU Memory Override\" 驅動設定（該功能要求 Core Ultra Series 2 或更高硬體，可調高至 57%~93%）[5, 6]，因此 **16GB 的顯存上限在 Windows 11 下是無法突破的硬限制**。\n2. **記憶體頻寬的物理瓶頸**：\n   * 在本機 LLM 的運行中，**Token 生成（Token Generation）階段是典型的記憶體頻寬受限（Memory-bound）任務** [7, 8]。\n   * 由於 iGPU 與 CPU 共享相同的系統主機記憶體（DDR5 或 DDR4 雙通道），iGPU 無法繞過系統記憶體頻寬的物理限制 [7]。UHD 770 只能在 **Prompt 預載（Prefill）階段**提供算力加速，而生成速度（Decode）本質上仍被系統記憶體頻寬所卡死 [7, 9]。\n\n---\n\n### 二、 量化如何改變模型選擇範圍？\n\nGGUF 格式的記憶體映射技術（mmap）允許模型按需讀取 [10]，而量化（Q4/Q5/Q6/Q8）則將模型檔案體積進行大幅壓縮，從而將 32GB 的本機環境劃分為兩條截然不同的部署路線：\n\n#### 1. GPU 全卸載（Fully Offloaded）路線：上限 16GB VRAM \n在此路線下，模型權重與 KV Cache 完全放入 UHD 770 的 16GB 共享記憶體中。\n* **7B 級模型（例如 Qwen2.5-Coder-7B-Instruct）**：\n  * **Q4_K_M**（約 4.13 GB）[11] 到 **Q8_0**（約 8.0 GB）[12] 均能 **100% 裝入 16GB 的 GPU 共享記憶體中**。這意味著您在運行 7B 模型時，還擁有極為充裕的顯存空間來設定超大的上下文視窗（Context Window），完全不用擔心溢出。\n* **14B 級模型（例如 Qwen2.5-Coder-14B-Instruct）**：\n  * **Q4_K_M** 量化模型檔案約 **9.0 GB** [13, 14]。在載入 llama.cpp/Ollama 後端基礎佔用（約 0.75 GB）後，約佔用 10-11 GB 顯存，**可完全裝入 16GB 顯存中運行** [12]。\n  * **Q5_K_M**（約 10.2 GB）與 **Q6_K**（約 11.5 - 12.0 GB）在上下文視窗設定適中（例如 8K 以內）的情況下，也能完全裝入 16GB 的動態顯存中，並利用 iGPU 加速 [12]。\n  * **Q8_0**（約 15 - 16 GB）會直接耗盡 16GB 的顯存上限，這時將完全沒有空間分配給 KV Cache，會導致執行時直接觸發記憶體溢出（OOM）或強制退回慢速的系統分頁交換（Swap） [15, 16]。\n\n#### 2. CPU-only 推理 / 混合卸載路線：上限 32GB 系統 RAM\n當模型體積超出 16GB VRAM 上限時，必須回到 32GB 的系統 RAM 中跑 CPU-only 或將部分層數卸載至 GPU [17, 18]。\n* **32B / 35B 級模型（例如 Qwen2.5-Coder-32B-Instruct）**：\n  * **Q4_K_M** 的模型檔案大小通常為 **20.5 GB 左右** [19, 20]。這意味著它**超出了 16GB GPU 共享記憶體的承載極限，無法完全交給核顯跑**。\n  * 但因為 32GB RAM 的系統，扣除 Windows 11 系統與背景一般程序（約需 4GB-8GB 記憶體[21]）後，仍能提供約 24GB 的可用主機記憶體。因此，藉由 **Q4_K_M** 壓縮後的 20.5GB 模型，**可以完全裝入主系統記憶體中，以 CPU 推理（或部分層數混合卸載）的方式運行** [17, 22]。\n  * **警告：Q5_K_M（約 24GB）或更高量化等級則不適合在此環境運行**，因為載入後剩餘的主機記憶體過少，在 Agent 工具載入上下文時會立即崩潰或發生嚴重的 Windows Swap 卡頓 [23, 24]。\n\n---\n\n### 三、 哪些原超大模型在量化後能在 32GB 內運行，且保持多步驟編排能力？\n\n在 Aider、Cline、Roo Code 等本機編程 Agent 系統中，**多步驟流程編排能力（如工具調用、自動除錯與複雜邏輯編排）**是檢驗本機模型的黃金標準 [25, 26]。7B 級模型（即使是 Qwen2.5-Coder-7B）在面對複雜的多步驟 Agent 任務時，容易因為上下文拉長而丟失格式或陷入無限循環 [27]。\n\n以下兩款模型在量化壓縮後，能在 32GB RAM 環境下運行，並保留完整的 Agentic 能力：\n\n#### 1. 🌟 智能與速度的「甜點平衡」：Qwen2.5-Coder-14B-Instruct (`Q4_K_M` 或 `Q5_K_M`) [12, 14]\n* **推薦量化**：`Q4_K_M`（檔案大小約 9.0GB）或 `Q5_K_M`（檔案大小約 10.2GB）[12, 14]。\n* **本機運行表現**：\n  * 可以 **100% 卸載（Fully Offloaded）至 UHD 770 的 16GB 共享記憶體中**，充分發揮 GPU 對 Prompt Prefill 的加速 [12, 28]。\n  * 由於無需跨 CPU-GPU 總線進行頻繁的層數據調度，其運行穩定性最佳，回應延遲極低。\n* **Agent 多步驟編排能力**：\n  * Qwen2.5-Coder-14B 的邏輯推理與代碼修復能力十分強大，能夠順暢執行 Cline 的工具調用與 MCP 協議，不會因上下文增加而輕易格式崩潰 [13, 25]。\n\n#### 2. 👑 智能的「極限天花板」：Qwen2.5-Coder-32B-Instruct (`Q4_K_M` 或 `IQ4_XS`) [13, 14]\n* **推薦量化**：`Q4_K_M`（約 20.5GB）[19] 或 `IQ4_XS`（更輕量化，約 18GB 左右）。\n* **本機運行表現**：\n  * **無法全卸載至 GPU**，必須在 32GB 的主系統 RAM 中跑 **CPU 推理** [22]。\n  * 受限於 i5-14500T（6P+8E 核心，20 執行緒）本機系統記憶體頻寬，其生成速度約為 **8 到 12 tokens/sec** [9, 29]，雖然慢，但已達本機實用門檻。\n* **Agent 多步驟編排能力**：\n  * 這是您在 32GB RAM 本機系統中能跑的 **最強 Agentic 核心**。該模型在代碼修復 benchmark (Aider 評分高達 73.7) 上的表現，已經與 GPT-4o 平起平坐 [13, 26]。\n  * 雖然速度不如 14B 模型，但其工具調用的準確度、錯誤自我修正、長序列思考與複雜 codebase 的宏觀理解能力是 14B 所無法比擬的 [26]，能夠完美駕馭最複雜的跨檔案 Agent 自動化編程任務。\n\n---\n\n### 四、 本機部署的關鍵優化建議\n\n為了讓 Qwen2.5-Coder 14B/32B 在此環境中運行得更好，建議手動配置以下參數：\n\n1. **配置 KV Cache 量化 (`q8_0`)**：\n   * 由於 14B/32B 的記憶體預算非常吃緊（尤其 32B 在主記憶體中），請務必開啟 KV Cache 量化（Ollama 環境變數設定 `OLLAMA_KV_CACHE_TYPE=q8_0`；llama.cpp 使用參數 `--cache-type-k q8_0 --cache-type-v q8_0`）[30, 31]。這能將 KV 緩衝區佔用的記憶體減半，直接降低長對話時 OOM 的機率 [32, 33]。\n2. **強制開啟 Flash Attention**：\n   * 設定環境變數 `OLLAMA_FLASH_ATTENTION=1`（或 llama-server 加入 `--flash-attn`），這能顯著降低注意力機制在長 context 下的 VRAM/RAM 佔用 [34, 35]。\n3. **BIOS 調整 IGD Aperture Size**：\n   * 請進入主機板 BIOS，將 **IGD Aperture Size** 調整到最大值（例如 1GB 或 2GB，而非預設的 128MB 或 256MB）[1, 36]。這可以擴大 PCIe BAR 的視窗大小，避免 iGPU 在調度 14B 模型的大張量數據時發生驅動崩潰 [37, 38]。\n\n⚙️ 您是否需要為本機 Agent（如 Continue 或 Aider）對接 Ollama / llama.cpp 提供具體的設定檔（`config.json`）範例，以優化您的自動補全與對話表現？",
+    "citations": [
+      {
+        "source_id": "9bd21804-48e7-4279-a97b-d3996945967b",
+        "citation_number": 1,
+        "cited_text": "Resolution There is no way to preset your VRAM to a specific value, you can only limit the maximum memory that it can take. The Graphics Processing Unit (GPU) does not have a dedicated memory; it uses shared memory that will be allocated automatically depending on various factors. The option to adjust the maximum memory is usually available in the BIOS but the setting may not be available for all systems. The setting is typically listed under VRAM or Dynamic Video Memory Technology (DVMT). The settings values can typically be adjusted to 128 MB, 256 MB and maximum DVMT. Setting other values depends on the motherboard manufacturer and the amount of RAM installed on the computer."
+      },
+      {
+        "source_id": "26c25e44-f436-4650-80b9-326478f7e08f",
+        "citation_number": 2,
+        "cited_text": "<cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Intel® Processor",
+              "Maximum Graphics Memory 1 on Windows® 10 and Windows 11"
+            ],
+            [
+              "Intel® Graphics for Intel® Core™ Ultra Processors (Series 2)",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Built-in Intel® Arc™ Pro GPUs with select Intel® Core™ Ultra H-series Processors",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Arc™ Graphics for Intel® Core™ Ultra Processors (Series 1)",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Graphics for Intel® Core™ Ultra Processors (Series 1)",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Iris® Xe Graphics",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics 710",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics 730",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics 750",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics 770",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics for 11th Gen Intel® Processors",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics for 10th Gen Intel® Processors",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Iris® Plus Graphics",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics 620/630",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® UHD Graphics 600/605",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Iris® Plus Graphics 640/650/655",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® HD Graphics 610/615/620/630",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Iris® Pro Graphics 580",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Iris® Graphics 550/540",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® HD Graphics 530/520",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® HD Graphics 515",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Iris® Graphics 6200/6100",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® HD Graphics 6000/5500",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® HD Graphics 5300",
+              "Limited by OS to one-half of System Memory"
+            ],
+            [
+              "Intel® Iris® Pro Graphics 5200",
+              "Up to 2048 MB"
+            ],
+            [
+              "Intel® Iris® Graphics 5100",
+              "Up to 2048 MB"
+            ],
+            [
+              "Intel® HD Graphics 5000/4600/4400/4200",
+              "Up to 2048 MB"
+            ],
+            [
+              "Intel® HD Graphics 4000/2500",
+              "Up to 1792 MB"
+            ],
+            [
+              "Intel® Celeron® Processors 900/1000/G1000/2000/J1000/N2000/N3540/N2940/ N2840/N2808/N3000/N3050/N3150 Series with Intel® HD Graphics",
+              "Up to 1792 MB"
+            ],
+            [
+              "Intel® Pentium® Processors 2000/G2000/G2100/3000/G3000/J2000/N3000/G3460/ G3450T/G3250/G3250/G3250T/N3700 Series with Intel® HD Graphics",
+              "Up to 1792 MB"
+            ],
+            [
+              "Intel Atom® Processor Z2700/E3800/Z3700/N3000/N3050/N3150/N3700",
+              "Up to 748.5 MB"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "bec7a4a8-d530-443d-abee-96e89342175d",
+        "citation_number": 3,
+        "cited_text": "🛑 The Core Issue Windows automatically allocates up to 50% of system RAM as shared GPU memory, regardless of actual usage superuser.com . Even when the GPU isn't heavily utilized, this memory remains disallowed for system use, affecting application performance. I've examined BIOS/UEFI configurations—there is no option to adjust or cap allocation. I've tried registry tweaks (e.g., DedicatedSegmentSize under HKLM\\Software\\Intel\\GMM ) but they only falsely report value changes , with no real effect superuser.com+1reddit.com+1 superuser.com+1superuser.com+1 ."
+      },
+      {
+        "source_id": "c5142ae2-f765-420c-a5d9-5a843f08c5d7",
+        "citation_number": 4,
+        "cited_text": "Simon _ 0 Reputation points Mar 7, 2026, 5:39 AM This is a repost of a previous question which was left unresolved: Dear Microsoft Support Team, I hope you're doing well. I'm reaching out to express a pressing concern regarding Windows 11's management of shared GPU memory, specifically the way it allocates 50% of system RAM to integrated graphics by default. In my case, this means that 24 GB out of my 48 GB RAM is reserved as shared GPU memory , even when I'm running standard productivity and web applications. This default behavior has led to persistent memory contention between GPU needs and background or non-graphics-related processes."
+      },
+      {
+        "source_id": "1c665f79-5fcd-437b-8806-bca080c6b075",
+        "citation_number": 5,
+        "cited_text": "Support Knowledge Base Shared GPU Memory Override Feature and Requirements Content Type: Install & Setup | Article ID: 000101789 | Last Reviewed: 11/03/2025 Environment Intel Core Ultra Series 2 Processors and later Starting with Intel® Graphics Software (IGS) version 25.26.1602.2 and Intel Graphics Driver version 32.0.101.6974, a new setting \"Shared GPU Memory Override\" was introduced to IGS. This setting is exclusive to integrated GPU and allows the user to balance the memory needs of the GPU with the needs of the rest of the system. Applications with high GPU memory needs may benefit from increasing this limit, while those with high CPU memory needs may benefit from reducing it. Memory not currently in use by the GPU remains available to the system."
+      },
+      {
+        "source_id": "1c665f79-5fcd-437b-8806-bca080c6b075",
+        "citation_number": 6,
+        "cited_text": "The default value is 57%, and the maximum limit depends on the size of the system RAM (the higher the total system RAM, the higher the maximum percentage that can be set). Once you set the memory limit and restart your system, the changes to the GPU memory will take effect. The minimum requirements are as follows: CPU Requirement: Intel Core Ultra Processors Series 2 or later System Memory : At least 10GB Note Enabling this feature may affect system performance. If system performance drops after changing this setting, it may need adjusting or disabling to better suit your needs."
+      },
+      {
+        "source_id": "43e9cac6-3574-43cf-ac68-b9abd5151cae",
+        "citation_number": 7,
+        "cited_text": "If it's memory bandwidth, this is on ddr5 running at 5200 so should be a significant difference over yours. Upvote 1 Downvote Reply Award Share Report Award Share tmvr â€¢ 2mo ago What is the llama-server command and parameters you are using? Also, what are your RAM specs (speed and channels)? The MTP related parameters I'm using are: --spec-autotune --spec-type mtp:n_max=5 Upvote 1 Downvote Reply Award Share Report Award Share 6 more replies 11 more replies Kooky-Ad-4124 â€¢ 2mo ago the thing the whole thread is circling: for token generation (tg), the iGPU and the CPU pull from theÂ sameÂ system RAM, so they hit the same bandwidth ceiling. tg is memory-bound â€” each token reads the active weights once â€” so the bus is the wall, and the iGPU can't get around a wall the CPU is already standing at. the iGPU only helps prefill (pp), which is compute-bound."
+      },
+      {
+        "source_id": "ebdc22fa-6f6c-4ae6-9010-a246ba56ffbd",
+        "citation_number": 8,
+        "cited_text": "CPU Compare Developer Tools Get Language Courses Why Is Ollama Running Slow? The Core Causes Ollama inference speed comes down to one fundamental bottleneck in the vast majority of cases: memory bandwidth. Large language models need to load billions of parameters from storage into working memory and then shuttle those parameters through a processor at high speed for every single token generated. When that pipeline is constrained, generation slows to a crawl regardless of how fast your CPU clock speed appears on paper."
+      },
+      {
+        "source_id": "0dfd73f6-eb09-48ea-b9ce-934d8cde4551",
+        "citation_number": 9,
+        "cited_text": "Qwen3.6 35B A3B Q4_K_XL with MTP enabled gets 15 tok/s and about 10 tok/s without MTP using ik_llama. Qwen3 Coder 30B A3B Q4_K_XL gets 12-13 tok/s with mainstream llamacpp and 14-15 tok/s with ik_llama. As for the whole iGPU discussion - what you gain there in performance would be on the prefill (pp) side, the decode (tg) is limited by your memory bandwidth if you are not hapering your CPU with layer formats it has problems with and stick to k-quants. Upvote 1 Downvote Reply Award Share Report Award Share"
+      },
+      {
+        "source_id": "0dae0743-8128-4a19-b39c-bb0fc66ae0b0",
+        "citation_number": 10,
+        "cited_text": "Sound & Video Cards GGUF became the dominant format for two reasons: simplicity. It's a format designed by the llama.cpp team specifically for this purpose, supporting memory mapping (mmap). Models don't need to be fully loaded into memory—instead, they're read on-demand. This means your 16GB RAM machine can run a 13B model—something unthinkable with traditional formats. 1.2 Quantization Types Compared: Q4_0, Q4_K_M, Q5_K_M, Q8_0 This is where many people get confused: Q4_0, Q4_1, Q4_K_M, Q5_K_M, Q8_0… which one should you choose?"
+      },
+      {
+        "source_id": "fb9a0071-85cd-48d5-bad2-37fab8f544cb",
+        "citation_number": 11,
+        "cited_text": "-m ~/models/Qwen2.5-7B-Instruct-Q4_0.gguf -fa 1 -p 1024,4096 -n 128,512 OpenVINO: using device GPU <cited_table> specs https://www.asrockind.com/en-gb/NUC%20BOX-358H Crucial 5600 SO-DIMMS 1 You must be logged in to vote All reactions 0 replies Comment options Uh oh! There was an error while loading. Please reload this page .",
+        "cited_table": {
+          "num_columns": 8,
+          "rows": [
+            [
+              "model",
+              "size",
+              "params",
+              "backend",
+              "ngl",
+              "fa",
+              "test",
+              "t/s"
+            ],
+            [
+              "qwen2 7B Q4_0",
+              "4.13 GiB",
+              "7.62 B",
+              "OPENVINO",
+              "-1",
+              "1",
+              "pp1024",
+              "2988.73 ± 8.18"
+            ],
+            [
+              "qwen2 7B Q4_0",
+              "4.13 GiB",
+              "7.62 B",
+              "OPENVINO",
+              "-1",
+              "1",
+              "pp4096",
+              "2551.74 ± 6.83"
+            ],
+            [
+              "qwen2 7B Q4_0",
+              "4.13 GiB",
+              "7.62 B",
+              "OPENVINO",
+              "-1",
+              "1",
+              "tg128",
+              "17.51 ± 0.08"
+            ],
+            [
+              "qwen2 7B Q4_0",
+              "4.13 GiB",
+              "7.62 B",
+              "OPENVINO",
+              "-1",
+              "1",
+              "tg512",
+              "16.80 ± 0.02"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "0dae0743-8128-4a19-b39c-bb0fc66ae0b0",
+        "citation_number": 12,
+        "cited_text": "Software Utilities Q5_K_M is suitable when you have extra VRAM and are particular about quality. Q8_0? Only consider it if you have 24GB+ VRAM—and if you have that, why not run a larger parameter model instead? 1.3 Quantization Selection Decision Tree Here's a simple decision framework: Step 1: Check Your VRAM VRAM ≤ 8GB: Q4_K_M only; 7B models are a stretch, 14B requires CPU offload VRAM 12-16GB: Q4_K_M handles 14B fine; 7B can use Q5_K_M VRAM ≥ 24GB: Your choice—Q5_K_M or Q8_0, even 70B models are possible"
+      },
+      {
+        "source_id": "201294c0-ca20-4096-882e-8c13bbca34cc",
+        "citation_number": 13,
+        "cited_text": "Details Updated 1 year ago 1 year ago 8221e52a9c29 · 9.0GB · model arch qwen2 · parameters 14.8B · quantization Q4_K_M 9.0GB license Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR US 11kB template {{- if .Suffix }}<|fim_prefix|>{{ .Prompt }}<|fim_suffix|>{{ .Suffix }}<|fim_middle|>{{ else }}{{ .P 117B Readme Qwen 2.5 Coder series of models are now updated in 6 sizes: 0.5B, 1.5B, 3B, 7B, 14B and 32B . There are significant improvements in code generation , code reasoning and code fixing . The 32B model has competitive performance with OpenAI's GPT-4o."
+      },
+      {
+        "source_id": "a597afd3-1438-4a80-aea0-a419ed75ca61",
+        "citation_number": 14,
+        "cited_text": "Details Updated 1 year ago 1 year ago 9ec8897f747e · 9.0GB · model arch qwen2 · parameters 14.8B · quantization Q4_K_M 9.0GB system You are Qwen, created by Alibaba Cloud. You are a helpful assistant. 68B license Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR US 11kB template {{- if .Suffix }}<|fim_prefix|>{{ .Prompt }}<|fim_suffix|>{{ .Suffix }}<|fim_middle|> {{- else if .M 1.6kB Readme Qwen 2.5 Coder series of models are now updated in 6 sizes: 0.5B, 1.5B, 3B, 7B, 14B and 32B ."
+      },
+      {
+        "source_id": "1280cdb0-d5be-408b-ad22-dc052842b45e",
+        "citation_number": 15,
+        "cited_text": "Computers & Electronics Updated 2026-06-08: env vars rechecked against Ollama's official docs — GPU layers are set via the num_gpu model option (there is no OLLAMA_GPU_LAYERS); reserve VRAM with OLLAMA_GPU_OVERHEAD (bytes); KV-cache quantization uses OLLAMA_KV_CACHE_TYPE. Benchmarks are reference values that vary by version and hardware. Your 14B model runs, but only ~10 tokens/s—or it OOMs and the GPU fan screams until the screen goes black. A familiar story: you pull llama3 8B, run ollama run , and VRAM is not enough. Either it crashes or crawls. You switch to a Q4 build—it works, but you wonder how much quality you lost."
+      },
+      {
+        "source_id": "1280cdb0-d5be-408b-ad22-dc052842b45e",
+        "citation_number": 16,
+        "cited_text": "Copy bash Performance Comparison Data (RTX 3080, 7B Q4_K_M): <cited_table> As you can see, increasing num_batch from 512 to 1024 boosted throughput by 60%, while only adding less than 1GB VRAM. That's a great trade-off. Computer Memory 3. Memory Tuning — Three Strategies to Solve OOM 3.1 GPU Memory Allocation Mechanism Ollama's GPU memory management is actually pretty smart. It automatically determines: Is there enough VRAM for the model? If yes, load everything into GPU If no, automatically offload some layers to CPU",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "num_batch",
+              "Throughput (tokens/s)",
+              "VRAM Usage"
+            ],
+            [
+              "512",
+              "45",
+              "5.2GB"
+            ],
+            [
+              "1024",
+              "72",
+              "6.1GB"
+            ],
+            [
+              "2048",
+              "98",
+              "7.4GB"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "69ab2c92-81d9-40f8-aadb-b015abd6e1ee",
+        "citation_number": 17,
+        "cited_text": "Computer Memory 3. Memory Tuning — Three Strategies to Solve OOM 3.1 GPU Memory Allocation Mechanism Ollama's GPU memory management is actually pretty smart. It automatically determines: Is there enough VRAM for the model? If yes, load everything into GPU If no, automatically offload some layers to CPU But “smart” doesn't mean perfect. Sometimes it misjudges, or handles edge cases poorly, triggering OOM. Computers & Electronics Core parameter: num_gpu . This controls how many model layers go to GPU. Default -1 means automatic detection. You can manually specify, like num_gpu: 20 , meaning only the first 20 layers go to GPU, the rest use CPU."
+      },
+      {
+        "source_id": "ebdc22fa-6f6c-4ae6-9010-a246ba56ffbd",
+        "citation_number": 18,
+        "cited_text": "Step 1: Match Your Model Size to Your Available RAM The single most impactful change most users can make is choosing a model size that fits comfortably within their available memory. Running a model that exceeds your VRAM forces Ollama to offload layers to system RAM, and if that also overflows, layers go to your storage drive. NVME SSD to RAM bandwidth is roughly ten to twenty times slower than RAM to GPU bandwidth. Disk to RAM is worse still. The performance cliff is severe. As a rule of thumb, the model weights in gigabytes need to fit inside your GPU VRAM for fast inference. A Q4 quantised 7B model requires roughly 4 to 5 GB of VRAM. A Q4 13B model needs approximately 8 to 9 GB. A Q4 34B model wants around 20 GB. Our detailed guide on how much RAM you need to run Ollama models covers this in full, including which model families are most memory-efficient for given tasks."
+      },
+      {
+        "source_id": "3417acb3-eada-45ec-a1e5-8dfebffac5d1",
+        "citation_number": 19,
+        "cited_text": "3. Maximum Consumer Capacity (35B Scale) Pushing the limits of a traditional single 24GB consumer GPU. Model Tested: Qwen3.5-35B-A3B (Q4_K_M) File Size: 20.50 GB Backend Baseline: 0.75 GB Weights Only: 21.06 GB KV Cache (32K Context): 0.61 GB (Total: 21.67 GB ) (Advanced routing drastically reduces KV footprint relative to parameter size) KV Cache (64K Context): 1.24 GB (Total: 22.29 GB ) Hardware Fit: Operating dangerously close to the 24GB ceiling. This setup sits perfectly inside a multi-GPU array or cleanly on a headless 24GB GPU setup. Note that running your computer's display concurrently may occupy enough VRAM to push a 64K context slightly over the 24GB limit, bringing your system to a halt or forcing partial CPU offloading."
+      },
+      {
+        "source_id": "d6293901-7cf1-4fea-944e-c73e6cd017f3",
+        "citation_number": 20,
+        "cited_text": "3. Maximum Consumer Capacity (35B Scale) Pushing the limits of a traditional single 24GB consumer GPU. Model Tested: Qwen3.5-35B-A3B (Q4_K_M) File Size: 20.50 GB Backend Baseline: 0.75 GB Weights Only: 21.06 GB KV Cache (32K Context): 0.61 GB (Total: 21.67 GB ) (Advanced routing drastically reduces KV footprint relative to parameter size) KV Cache (64K Context): 1.24 GB (Total: 22.29 GB ) Hardware Fit: Operating dangerously close to the 24GB ceiling. This setup sits perfectly inside a multi-GPU array or cleanly on a headless 24GB GPU setup. Note that running your computer's display concurrently may occupy enough VRAM to push a 64K context slightly over the 24GB limit, bringing your system to a halt or forcing partial CPU offloading."
+      },
+      {
+        "source_id": "461cf3c2-4753-4c6c-be9d-89f466369b49",
+        "citation_number": 21,
+        "cited_text": "I reached out to GMKTec to clarify if there was a hardware problem. They indicated that the default config assigns 64 gigabytes to graphics and 64 gigabytes to the system. To fix this inefficient configuration, I needed to get into the BIOS and adjust the split. Adjusting memory allocated to GPUs That raised a practical question: how much memory should I allocate to the Host OS versus the GPU? My system has Docker containers handling most of the system workload: a search engine, a workflow automation platform, a CMS, a kanban board, a chat interface for local models and the databases backing all of them. My Gnome/COSMIC desktop session was also running, plus a couple of terminal processes consuming their share of memory. Total system memory use hovered around 12 gigabytes. Fifty gigabytes of allocated system RAM sat idle."
+      },
+      {
+        "source_id": "1ad5ac2b-64f6-4424-8bda-e91001dc128f",
+        "citation_number": 22,
+        "cited_text": "Qwen3.5 35B-A3B Instruct 35B · 32GB RAM Newest large Qwen MoE, desktop-class speed with big-model quality for chat/edit. qwen3.5:35b-a3b A A: Strong, reliable Qwen2.5 Coder 7B 7B · 8GB RAM Continue's explicitly recommended local chat + code-gen model; light enough for 16GB. qwen2.5-coder:7b Qwen3 30B 30B · 32GB RAM Named in Continue docs as a recommended Ollama chat model. qwen3:30b Qwen3.5 27B Instruct 27B · 24GB RAM Dense high-quality Qwen for strong chat/edit when RAM allows. qwen3.5:27b Mistral Small 22B 22B"
+      },
+      {
+        "source_id": "e70e8747-2ee4-4141-b910-b3e8fdcf4695",
+        "citation_number": 23,
+        "cited_text": "Step 1: Match Your Model Size to Your Available RAM The single most impactful change most users can make is choosing a model size that fits comfortably within their available memory. Running a model that exceeds your VRAM forces Ollama to offload layers to system RAM, and if that also overflows, layers go to your storage drive. NVME SSD to RAM bandwidth is roughly ten to twenty times slower than RAM to GPU bandwidth. Disk to RAM is worse still. The performance cliff is severe. As a rule of thumb, the model weights in gigabytes need to fit inside your GPU VRAM for fast inference. A Q4 quantised 7B model requires roughly 4 to 5 GB of VRAM. A Q4 13B model needs approximately 8 to 9 GB. A Q4 34B model wants around 20 GB. Our detailed guide on how much RAM you need to run Ollama models covers this in full, including which model families are most memory-efficient for given tasks."
+      },
+      {
+        "source_id": "9e42c7a5-5a0a-47be-acb2-d90c4d3d5e8c",
+        "citation_number": 24,
+        "cited_text": "Step 1: Match Your Model Size to Your Available RAM Discover more Get Language Courses Choose Cloud Servers Upgrade Mesh Routers Upgrade Desktop RAM Download Reference Apps Explore AI Tools The single most impactful change most users can make is choosing a model size that fits comfortably within their available memory. Running a model that exceeds your VRAM forces Ollama to offload layers to system RAM, and if that also overflows, layers go to your storage drive. NVME SSD to RAM bandwidth is roughly ten to twenty times slower than RAM to GPU bandwidth. Disk to RAM is worse still. The performance cliff is severe."
+      },
+      {
+        "source_id": "8c601feb-9398-4969-9ed5-eb489bccb872",
+        "citation_number": 25,
+        "cited_text": "[A> Aider Terminal AI pair-programmer with its own edit-format leaderboard](https://modelfit.io/tools/aider/) [{} Cline Autonomous coding agent for VS Code (formerly Claude Dev)](https://modelfit.io/tools/cline/) [#> Roo Code Autonomous VS Code agent with modes (a Cline fork)](https://modelfit.io/tools/roo-code/) [~> Goose Block's open-source autonomous developer agent (MCP-driven)](https://modelfit.io/tools/goose/) [<> Open Claude Code Open-source Claude Code CLI reimplementation, with an undocumented endpoint override for local models](https://modelfit.io/tools/open-claude-code/)"
+      },
+      {
+        "source_id": "201294c0-ca20-4096-882e-8c13bbca34cc",
+        "citation_number": 26,
+        "cited_text": "Code Repair: Code repair is an important programming skill. Qwen2.5 Coder 32B Instruct can help users fix errors in their code, making programming more efficient. Aider is a popular benchmark for code repair, and Qwen2.5 Coder 32B Instruct scored 73.7, performing comparably to GPT-4o on Aider. Code Reasoning: Code reasoning refers to the model's ability to learn the process of code execution and accurately predict the model's inputs and outputs. The recently released Qwen2.5 Coder 7B Instruct has already shown impressive performance in code reasoning, and this 32B model takes it a step further."
+      },
+      {
+        "source_id": "70177533-435e-46df-8156-90b738c1f0ad",
+        "citation_number": 27,
+        "cited_text": "Aider This tool is a CLI based pair programmer and is also a quick single step to connect to local LLM with a basic but surprisingly powerful surgical editing flow. This tool uses differential comparisons for edits which can reduce your average context usage and while this requires more of your attention, this works well with a small low memory model. I followed this guide on their website to setup on Windows along with LiteLLM proxy: https://aider.chat/docs/llms/openai-compat.html and installed with a simple one liner in powershell: powershell -ExecutionPolicy ByPass -c \"irm https://aider.chat/install.ps1 | iex\""
+      },
+      {
+        "source_id": "18b25cee-8ecd-415e-9d0f-312776197508",
+        "citation_number": 28,
+        "cited_text": "Support Knowledge Base How to Adjust Dedicated Video Memory for Intel Graphics Content Type: Product Information & Documentation | Article ID: 000041253 | Last Reviewed: 05/23/2025 Description Resolution Additional information Description Resolution Additional information Environment Operating System Windows 7 family*, Windows 8.1 family*, Windows 8 family*, Windows® 10 family Description How to adjust the maximum Video RAM (VRAM) available for Intel Graphics. Be advised that this involves understanding the shared memory allocation and BIOS settings that may affect VRAM limits."
+      },
+      {
+        "source_id": "9e42c7a5-5a0a-47be-acb2-d90c4d3d5e8c",
+        "citation_number": 29,
+        "cited_text": "As a rule of thumb, the model weights in gigabytes need to fit inside your GPU VRAM for fast inference. A Q4 quantised 7B model requires roughly 4 to 5 GB of VRAM. A Q4 13B model needs approximately 8 to 9 GB. A Q4 34B model wants around 20 GB. Our detailed guide on how much RAM you need to run Ollama models covers this in full, including which model families are most memory-efficient for given tasks. Host Linux Servers <cited_table>",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Model Size",
+              "Quantisation",
+              "",
+              "Expected Speed (GPU)"
+            ],
+            [
+              "7B",
+              "Q4_K_M",
+              "~5 GB",
+              "40 to 80 tokens/sec"
+            ],
+            [
+              "13B",
+              "Q4_K_M",
+              "~8 GB",
+              "25 to 50 tokens/sec"
+            ],
+            [
+              "34B",
+              "Q4_K_M",
+              "~20 GB",
+              "10 to 25 tokens/sec"
+            ],
+            [
+              "70B",
+              "Q4_K_M",
+              "~40 GB",
+              "5 to 15 tokens/sec"
+            ],
+            [
+              "7B",
+              "Q4_K_M (CPU only)",
+              "~5 GB RAM",
+              "5 to 15 tokens/sec"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "68c6314b-a255-407f-9db6-34160d77074c",
+        "citation_number": 30,
+        "cited_text": "For Ollama: If you're running Gemma models or notice unexpected slowdowns, drop the KV cache type back to FP16 and see if speed improves. The memory cost is higher, but the dequantization overhead on some architectures makes FP16 the faster option in practice. Then adjust num_ctx per model based on your available memory. Start conservative, check the startup logs for KV buffer allocation sizes, and increase from there."
+      },
+      {
+        "source_id": "37f59a3d-c6db-4608-aac1-d78cea4f4104",
+        "citation_number": 31,
+        "cited_text": "For Ollama: If you're running Gemma models or notice unexpected slowdowns, drop the KV cache type back to FP16 and see if speed improves. The memory cost is higher, but the dequantization overhead on some architectures makes FP16 the faster option in practice. Then adjust num_ctx per model based on your available memory. Start conservative, check the startup logs for KV buffer allocation sizes, and increase from there."
+      },
+      {
+        "source_id": "fd6cfb1d-0568-4acb-b0b0-31b47073a9df",
+        "citation_number": 32,
+        "cited_text": "Run the regression tests yourself: GGML_METAL_NO_RESIDENCY=1 LLAMA_SMOKE_GEN_MODEL=model.gguf \\   mix test test/kv_quantization_test.exs --include slow When to Use Each Type Interactive chat :  :q8_0  — saves memory with no perceptible quality loss Long document processing :  :q8_0  or  :q5_1  — fit more context Many concurrent users :  :q8_0  — double the slots with same memory Research / precision-critical :  :f16  (default) — maximum precision Maximum context length :  :q4_0  — 4x memory savings, test quality for your use case"
+      },
+      {
+        "source_id": "68c6314b-a255-407f-9db6-34160d77074c",
+        "citation_number": 33,
+        "cited_text": "# Context size is a memory reservation The --ctx-size flag in llama.cpp (or num_ctx in Ollama) controls how many tokens the model can consider in a single session. What's easy to miss: the KV cache for that entire window is pre-allocated at startup, even if your actual prompt is only 200 tokens. Set --ctx-size 65536 and you're reserving KV cache memory for 65,536 tokens immediately. On a MacBook with 16GB of unified memory running an 8B model, that reservation alone can push you into swap. The flip side is also a problem. Ollama defaults num_ctx to 2,048 tokens. That's low enough that the model silently discards earlier context in longer conversations. You get answers that ignore what you said five messages ago, and the only symptom is that the model seems forgetful."
+      },
+      {
+        "source_id": "ebdc22fa-6f6c-4ae6-9010-a246ba56ffbd",
+        "citation_number": 34,
+        "cited_text": "Step 3: Tune Ollama Configuration for Your Hardware Ollama exposes several environment variables that can meaningfully improve performance once your hardware is correctly configured. These are often overlooked because the default settings work acceptably in testing but do not reflect real production workloads. Compare Developer Tools OLLAMA_NUM_PARALLEL: Controls how many requests Ollama processes simultaneously. Defaults to 1. Increasing this to 2 or 4 can improve throughput when multiple users hit the server concurrently, though it splits available VRAM between contexts. OLLAMA_MAX_LOADED_MODELS: Sets how many models stay loaded in memory at once. Keeping this at 1 when you only use one model avoids unnecessary VRAM consumption. OLLAMA_NUM_GPU: Specifies how many GPU layers to offload. Setting this explicitly rather than relying on auto-detection can prevent partial CPU fallback on some configurations. OLLAMA_FLASH_ATTENTION: Setting this to 1 enables Flash Attention, which reduces memory usage and can speed up inference on supported hardware. Available in recent Ollama versions. OLLAMA_KEEP_ALIVE: Determines how long a model stays loaded between requests. Setting to a high value (e.g., 30m or -1 for always loaded) eliminates the cold-load penalty on the first request after a period of inactivity."
+      },
+      {
+        "source_id": "ebdc22fa-6f6c-4ae6-9010-a246ba56ffbd",
+        "citation_number": 35,
+        "cited_text": "Does more RAM always mean faster Ollama inference? Not necessarily. More RAM helps if your model was previously overflowing into swap or disk, which would be causing a severe bottleneck. But once your model fits comfortably in memory, additional RAM does not increase tokens per second. The limiting factor then becomes memory bandwidth and compute throughput, which is why GPU VRAM with its much higher bandwidth is so much more effective than adding system RAM. RAM What is the fastest free way to speed up Ollama without new hardware? The fastest free improvements are: switching to a Q4_K_M quantised model variant if you are not already using one, reducing the context window size using num_ctx in your Modelfile to match your actual prompt lengths, setting OLLAMA_KEEP_ALIVE to a high value to eliminate cold-load delays, and enabling Flash Attention via the OLLAMA_FLASH_ATTENTION environment variable if your Ollama version supports it. Together these changes can noticeably improve responsiveness without spending anything."
+      },
+      {
+        "source_id": "a0495e72-b28a-496e-a325-fe87fa94ad25",
+        "citation_number": 36,
+        "cited_text": "For Intel, some BIOS setting names that control memory usage are \"DVMT Pre-Allocated\", \"DVMT Total Gfx Mem\", \"Above 4GB MMIO BIOS assignment\", and \"Aperture Size\". If I had a platform I could re-flash the BIOS easily and had any idea what I was doing with a hex editor, I'd see if \"DVMT Pre-Allocated\" or \"DVMT Total Gfx Mem\" had an obvious memory limit number, raise it, and check lspci in Linux to see if anything happened. andrewstuart on Aug 11, 2023 [–] 1GB seems low. Espionage724 on Aug 12, 2023 | parent [–] I actually increase to 2GB my mistake. It's still not generally that much but seems fine as long as resolution isn't too high for games (720p seems most ideal for performance). Guidelines | FAQ | Lists | API | Security | Legal | Apply to YC | Contact Search:"
+      },
+      {
+        "source_id": "4644c131-8c27-4fc1-9419-8bcbf23cdc42",
+        "citation_number": 37,
+        "cited_text": "Support Knowledge Base What is IGD Aperture Size? Content Type: Product Information & Documentation | Article ID: 000028294 | Last Reviewed: 02/12/2025 Environment Operating System Windows 7 family*, Windows 8.1 family*, Windows 8 family*, Windows® 10 family Caution Changing IGD Aperture Size settings in BIOS may result in varied system performance. Most BIOS or Unified Extensible Firmware Interfaces (UEFI) define the Graphics Video Max Memory as the maximum amount of system memory dedicated to integrated graphics solely for an Integrated Graphics Device (IGD). This memory is never available for regular system memory, instead it's utilized for:"
+      },
+      {
+        "source_id": "4644c131-8c27-4fc1-9419-8bcbf23cdc42",
+        "citation_number": 38,
+        "cited_text": "Pre-driver load frame buffer(s) Device internal usages Any not used for the above two is used as Video Memory (VRAM) Note Total IGD graphics memory is based on the operating system and not equal to Graphics Video Max Memory . See more information at Frequently Asked Questions for Intel® Graphics Memory on Windows® 10 . Some BIOS or UEFIs also allow users to define IGD Aperture Size , which provides the size of Peripheral Component Interconnect Express (PCIe) Base Address Registers (BAR)/Window for integrated graphics. The PCIe BAR/Window for integrated graphics is provided in two cases:"
+      }
+    ]
+  },
+  {
+    "question": "不同量化等級的 TTFT（Time To First Token）在 CPU-only 推理下表現如何？互動式多輪對話（每次等待回應）的可接受 TTFT 閾值在哪？i5-14500T（14 核 20 緒）有哪些 CPU 加速手段（AVX-512、DLL 等）能改善 TTFT？",
+    "answer": "### 不同量化等級的 TTFT 在 CPU-only 推理下的表現\n\n在 **CPU-only（純 CPU）** 推理環境下，**TTFT（Time To First Token，首字延遲）** 主要是由 **Prefill（預填充，亦即 Prompt 處理）** 階段的計算速度來決定 [1, 2]。此階段屬於**計算密集型（Compute-Bound）**任務 [2, 3]，模型必須將輸入的 Prompt 一次性全部處理完畢，才能輸出第一個 Token [2]。因此，量化等級對其 TTFT 的影響表現在以下幾個核心維度：\n\n1. **模型容量與記憶體載入開銷**：\n   量化等級越低（例如從 FP16 壓縮至 Q8_0，再到 Q4_K_M、Q2_K），模型權重的體積會大幅縮小（以 7B 模型為例，FP16 約需 14GB，而 Q4_K_M 僅需 4.7GB） [4]。這能顯著降低冷啟動時的硬碟與記憶體載入延遲，避免因記憶體不足而迫使系統與虛擬記憶體進行頁面交換（Swap）進而拖慢 TTFT [5]。\n2. **CPU 解量化計算（Dequantization）開銷**：\n   雖然低量化模型（如 Q4_K_M）減少了必須從記憶體讀取的權重數據總量 [6]，但 CPU 在運算時必須進行即時的「解量化」將其還原為浮點數，這會為 CPU 帶來額外的計算負載 [7]。\n   * 近期的 `llama.cpp` 版本針對 x86 CPU（支援 AVX2 平台）優化了低位元量化（如 Q2_0、Q4_0）的計算內核，使這些低位元模型在 CPU 推理下的運行效率顯著提高 [8, 9]。\n3. **主流選擇的表現**：\n   * **Q4_K_M（推薦「性價比最高」）**：在純 CPU 推理下，Q4_K_M 能將模型體積壓縮至約 30% [10]，且與 FP16 相比，其輸出品質在日常對話中幾乎察覺不到差異 [4]，是能在 CPU 運算資源與記憶體載入時間之間取得最佳平衡的配置 [4, 11]。\n   * **中大型模型限制**：若在 CPU-only 平台運行 14B 或 27B 等 dense（密集）中大型模型，即便量化至 Q4 [3]，TTFT 在處理稍長 Prompt 時仍很容易拉長至數秒甚至十秒以上，這是受限於 CPU 向量運算單元能力與系統記憶體頻寬的物理瓶頸 [3, 12]。\n\n---\n\n### 互動式多輪對話的可接受 TTFT 閾值\n\n**首字延遲（TTFT）**是用戶在螢幕前等待系統回應時，「 perceived responsiveness（感知響應速度）」最關鍵的指標 [2, 13]。對於多輪互動式對話（如 IDE 內的 AI 編碼助手、Chatbot 界面），業界對其 TTFT 的可接受閾值定義如下 [13]：\n\n* **極佳（Excellent）：< 300 ms** [13]。在此範圍內，首字回傳幾乎是瞬時的，用戶體驗最流暢、最無斷點。\n* **可接受（Acceptable）：300 ms ~ 600 ms** [13]。此區間是用戶能保持自然對話、不會感到中斷的理想閾值，也是多數互動式應用所要求的標準。\n* **可察覺延遲（Noticeable Delay）：600 ms ~ 1000 ms** [13]。用戶會開始注意到生成有一瞬間的停頓，但仍能接受。\n* **糟糕/體驗中斷（Broken）：> 1000 ms（超過 1 秒）** [13]。一旦首字延遲超過 1 到 2 秒，用戶就會直覺懷疑系統是否出錯、卡死或網路異常 [13]。\n\n> **重要提示**：TTFT 隨 **Prompt 的輸入長度（Input length）** 呈現正比關係 [12, 14]。100 個 token 的 prompt TTFT 可能只有 200ms；但若不進行優化，當 prompt 達到 10K 甚至 100K token 時，即便在極快的伺服器上，預填充也可能需要數秒甚至十秒以上 [12, 15]。\n\n---\n\n### i5-14500T (14核 20緒) 可用的 CPU 加速與 TTFT 優化手段\n\nIntel i5-14500T 屬於第 14 代 Raptor Lake Refresh 架構（採用 6 個 P-Core 與 8 個 E-Core 的混合設計），以下為其核心加速手段與優化建議：\n\n#### 1. 硬體指令集說明：AVX2 與 AVX-512 狀況\n* **i5-14500T 並不支援 AVX-512 指令集** [16]。Intel 已在 Alder Lake 與之後的消費級混合架構處理器上，將 AVX-512 指令集熔斷關閉 [16]。\n* 幸好，該處理器**完全支援 AVX2（Advanced Vector Extensions 2）指令集** [17]。這是 `llama.cpp` 在 x86 CPU 上加速權重矩陣乘法的最主要硬體基礎 [8, 17]，能直接提供數倍於通用 CPU 計算的運算效能 [8, 17]。\n\n#### 2. 合理配置執行緒與 P-Core 綁定（避開 E-Core 瓶頸）\n在 i5-14500T（14 核 20 緒，包含 6P + 8E）上，**盲目將緒數設為最大執行緒數（如 `--threads 20`）通常會導致性能嚴重衰退** [18]。\n* **優化建議**：通常應將主要生成執行緒 **`--threads`** 設定為**實體大核（P-Core）的數量（設為 6）** [19, 20]，最多設為 8 [18]。這可避免因慢速 E-Core 參與計算，或過多執行緒所帶來的調度與線程切換開銷（Scheduling overhead） [18]。\n* **Prefill 專用執行緒優化**：`llama.cpp` 提供分開的配置引數 **`--threads-batch`**（專用於預填充/批次處理階段） [18]。在 Prompt 長度較長時，可以將此引數設定為較高核心數（如 8 或 12），這能有效加快 Prefill 運算，進一步縮短 TTFT [18]。\n\n#### 3. 採用 Intel 官方 OpenVINO 推理後端與內顯分流\n* 相比於通用後端，使用 **Intel OpenVINO** 能深度壓榨該 CPU 的 AVX2 指令集並優化記憶體調度 [21, 22]。\n* **iGPU UHD 770 混合分流（Offload）**：雖然 UHD 770 效能有限，但仍可利用 OpenVINO 將 Prefill 的一部分矩陣運算（如 KQV attention 運算）卸載到這顆 UHD 770 內顯上執行 [21, 23]。內顯能提供比 CPU 更好的向量並行計算能力，這對縮短長 Context 下的 TTFT 尤其有幫助 [6]。\n\n#### 4. 啟用「提示快取（Prompt Caching / Prefix Caching）」\n在多輪互動式對話中，這是**改善 TTFT 最具決定性的一招** [24]：\n* 通過啟用 **`--cache-prompt`**（或在 LlamaCppEx 中配置 `cache_prompt: true`） [23]，模型會直接快取並複用前幾輪對話的 **KV Cache** [23]。當用戶輸入新一輪對話時，系統不需重複計算整段對話歷史（跳過冗餘的預填充） [24]，能將後續對話的 TTFT 直接降至毫秒級，是用戶體驗的「神速救星」 [24]。\n\n#### 5. 啟用 KV Cache 量化\n* 在 `llama.cpp` / `Ollama` 中開啟 **`--cache-type-k q8_0` 與 `--cache-type-v q8_0`**（或設定環境變數 `OLLAMA_KV_CACHE_TYPE=q8_0`） [7]。\n* 這能將 KV Cache 記憶體佔用直接減半 [24]，降低 CPU 推理過程中反覆讀寫記憶體頻寬的負擔，有效釋放頻寬瓶頸（純 CPU 推理最大的瓶頸通常在記憶體頻寬，而非核心計算本身） [25, 26]。\n\n#### 6. 使用投機解碼（Speculative Decoding / MTP）\n* 在 CPU 面臨物理頻寬壁壘（Memory Wall）時，可以使用 Speculative Decoding 技術 [6, 27]。\n* 這能使系統加載一個微型草稿模型（Draft Model），並在每一步權重讀取中一次性驗證並確認多個 Token [6, 27]。在 CPU-only 下，這也是繞過系統記憶體頻寬瓶頸、極致提升輸出響應性能的物理級逃生口 [6, 27]。\n\n#### 7. 確保雙通道 DDR5 記憶體頻寬\n* 既然記憶體頻寬是 CPU 推理的第一瓶頸 [25, 26]，請務必確認你的 i5-14500T 平台已插滿**雙通道（Dual-Channel）DDR5 記憶體**，這相比單通道能提供物理性翻倍的頻寬加速，會直接投射在 Prefill 階段的 TTFT 提升上 [6, 28]。\n\n---\n\n💡 **想進一步探討？** \n您可以告訴我您目前計畫運行的模型大小（例如 7B、14B 還是 32B 等），我可以協助您估算該模型在您的 i5-14500T (6P大核) 平台與 32GB RAM 下，調整上述優化引數後大概能達到多少的 token 處理速率！",
+    "citations": [
+      {
+        "source_id": "129f952a-a5a5-422a-ab9f-4416e0fbfb1b",
+        "citation_number": 1,
+        "cited_text": "We are focusing on the performance metrics that matter for production RAG: TTFT (Time to First Token) (s): interactive latency; lower is better. It captures the delay before the system acknowledges a user request and begins producing the first output. TPOT(Time Per Output Token) (ms): average time to generate each individual output token after first token, also known as inter-token latency; lower is better. It dominates the total response time for long-form outputs, where hundreds of tokens may be generated. Therefore, inter-token latency becomes the key."
+      },
+      {
+        "source_id": "3e64df37-3304-403f-885b-37c48edd96ad",
+        "citation_number": 2,
+        "cited_text": "Three factors drive TTFT: Prefill compute - the model must process your entire input before generating output, so longer prompts mean longer TTFT. Queue time - if the provider is overloaded, your request waits before processing even starts. Network latency - an EU user hitting a US provider adds 100-150ms before inference begins. Physics adds latency you can't optimize away, which is why data residency matters for performance, not just compliance. TTFT matters most for interactive applications where a human is watching the screen: chat interfaces, coding assistants in IDEs, voice AI, anything real-time."
+      },
+      {
+        "source_id": "43e9cac6-3574-43cf-ac68-b9abd5151cae",
+        "citation_number": 3,
+        "cited_text": "your 285HX is DDR5-5200 dual channel â‰ˆ 83 GB/s. Qwen3.6-35B-A3B is MoE, so decode only reads the ~3B active params, not all 35B â€” at Q4 that's ~1.6GB/token, so the ceiling is ~50 tok/s. you're getting 14-25, i.e. a third to half of the bus, and switching CPUâ†”iGPU barely moves it because they share that bus. (it's also why the model's usable at all â€” a dense 35B would be ~18GB/token and ~4 tok/s.) Bird476Shed's numbers are the perfect illustration: Vulkan gave 4x on pp (207 vs 47) but basically tied on tg (14.3 vs 12.5). compute help where it's compute-bound, memory wall where it's memory-bound."
+      },
+      {
+        "source_id": "1280cdb0-d5be-408b-ad22-dc052842b45e",
+        "citation_number": 4,
+        "cited_text": "Computer Memory Here's a comparison table of common quantization types: <cited_table> Bottom line: Q4_K_M is the best value choice . The quality loss is almost imperceptible, and memory usage is minimal. I've tested this extensively—the difference between Q4_K_M and FP16 responses is undetectable in daily conversation unless you're scrutinizing with a microscope.",
+        "cited_table": {
+          "num_columns": 5,
+          "rows": [
+            [
+              "Quantization",
+              "Compression",
+              "VRAM (7B Model)",
+              "Quality Loss",
+              "Use Case"
+            ],
+            [
+              "Q4_0",
+              "~4.5x",
+              "~4.0GB",
+              "Significant",
+              "Extremely limited VRAM, quality not critical"
+            ],
+            [
+              "Q4_K_M",
+              "~4.5x",
+              "~4.7GB",
+              "Minimal",
+              "Best value"
+            ],
+            [
+              "Q5_K_M",
+              "~3.5x",
+              "~5.8GB",
+              "Negligible",
+              "Quality-first, ample VRAM"
+            ],
+            [
+              "Q8_0",
+              "~2x",
+              "~7.2GB",
+              "Almost none",
+              "Maximum quality, large VRAM"
+            ],
+            [
+              "FP16",
+              "1x",
+              "~14GB",
+              "Lossless",
+              "Academic research, enthusiast GPUs"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "68c6314b-a255-407f-9db6-34160d77074c",
+        "citation_number": 5,
+        "cited_text": "Probably your runtime configuration. The parameters you set (or don't set) when launching llama.cpp or Ollama often matter more for real-world performance than the model or quantization format you chose. Here's the short version: <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Parameter",
+              "What it controls",
+              "Why it matters"
+            ],
+            [
+              "--ctx-size",
+              "KV cache memory budget",
+              "Pre-allocated at startup. Too high and you swap. Too low and the model forgets."
+            ],
+            [
+              "--cache-type-k/v",
+              "KV cache precision",
+              "Q8_0 halves cache memory with near-zero quality loss. Not all architectures benefit equally."
+            ],
+            [
+              "--flash-attn",
+              "Attention memory layout",
+              "Drops attention memory from O(n²) to O(n). No downside."
+            ],
+            [
+              "-b",
+              "Prompt processing speed",
+              "Larger batches = 2-3x faster prompt eval."
+            ],
+            [
+              "--parallel",
+              "Concurrent request slots",
+              "Slots share the context budget. More slots = less context each."
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "43e9cac6-3574-43cf-ac68-b9abd5151cae",
+        "citation_number": 6,
+        "cited_text": "so practically, the only levers for tg on this box are (a) faster/more RAM channels, (b) a smaller active-param model or quant, or (c) speculative decoding / MTP â€” which is the one trick that actually beats the memory wall, since it verifies several tokens per weight-read instead of one (that's why tmvr's MTP numbers jump). the iGPU is worth turning on for prefill at long context, it just won't touch your tg. so you're not set up wrong â€” you're bandwidth-bound, and that's mostly physics, not config."
+      },
+      {
+        "source_id": "68c6314b-a255-407f-9db6-34160d77074c",
+        "citation_number": 7,
+        "cited_text": "For Ollama: If you're running Gemma models or notice unexpected slowdowns, drop the KV cache type back to FP16 and see if speed improves. The memory cost is higher, but the dequantization overhead on some architectures makes FP16 the faster option in practice. Then adjust num_ctx per model based on your available memory. Start conservative, check the startup logs for KV buffer allocation sizes, and increase from there."
+      },
+      {
+        "source_id": "2601886a-621a-4bbf-a8d7-51ea0264557c",
+        "citation_number": 8,
+        "cited_text": "LLama.cpp performance on Intel GPUs Ollama performance with SYCL Best practices for hosting LLaMA locally Top tools for optimizing AI model performance More posts you may like Related posts Thanks to the Intel team for OpenVINO backend in llama.cpp r/LocalLLaMA â€¢ 6mo ago [ Thanks to the Intel team for OpenVINO backend in llama.cpp ](https://www.reddit.com/r/LocalLLaMA/comments/1rte9m7/thanks_to_the_intel_team_for_openvino_backend_in/) 99 upvotes Â· 18 comments A llama.cpp PR makes Q2_0 3.0â€“3.6x faster on x86 CPUs, 8B decode goes 2.39 â†' 8.20 tok/s r/LocalLLaMA â€¢ 25d ago ["
+      },
+      {
+        "source_id": "2601886a-621a-4bbf-a8d7-51ea0264557c",
+        "citation_number": 9,
+        "cited_text": "A llama.cpp PR makes Q2_0 3.0â€“3.6x faster on x86 CPUs, 8B decode goes 2.39 â†' 8.20 tok/s ](https://www.reddit.com/r/LocalLLaMA/comments/1vhz989/a_llamacpp_pr_makes_q2_0_3036x_faster_on_x86_cpus/) 254 upvotes Â· 41 comments Dual Radeon AI PRO R9700 server much slower than RTX 5090 for LLM inference, Ollama bottleneck? vLLM / llama.cpp / other recommendations? r/LocalLLaMA â€¢ 23d ago [ Dual Radeon AI PRO R9700 server much slower than RTX 5090 for LLM inference, Ollama bottleneck? vLLM / llama.cpp / other recommendations? ](https://www.reddit.com/r/LocalLLaMA/comments/1vjtokl/dual_radeon_ai_pro_r9700_server_much_slower_than/) 46 comments"
+      },
+      {
+        "source_id": "9e42c7a5-5a0a-47be-acb2-d90c4d3d5e8c",
+        "citation_number": 10,
+        "cited_text": "Host Linux Servers <cited_table> For teams doing summarisation, email drafting, FAQ generation, or basic data extraction, Q4_K_M on a well-chosen 7B or 8B model will be nearly indistinguishable from FP16 in day-to-day use. Dropping to Q2_K is only advisable when you genuinely cannot fit a Q4 model and cannot upgrade your hardware.",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Quantisation",
+              "Relative Size",
+              "Quality vs FP16",
+              "Best Use Case"
+            ],
+            [
+              "FP16",
+              "100%",
+              "Reference",
+              "Research, maximum quality"
+            ],
+            [
+              "Q8_0",
+              "~53%",
+              "Near-identical",
+              "High-end GPU with spare VRAM"
+            ],
+            [
+              "Q4_K_M",
+              "~30%",
+              "Very good",
+              "Most business workloads"
+            ],
+            [
+              "Q4_0",
+              "~28%",
+              "Good",
+              "Memory-constrained systems"
+            ],
+            [
+              "Q2_K",
+              "~18%",
+              "Acceptable",
+              "Very low VRAM, simple tasks"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "0dae0743-8128-4a19-b39c-bb0fc66ae0b0",
+        "citation_number": 11,
+        "cited_text": "Copy yaml CPUs Save the above configuration as docker-compose.yml , then: Computers & Electronics Copy bash Related Reading Complete Ollama GPU acceleration guide Local embeddings and RAG with Ollama Llama 70B local hardware guide Summary After all that, here's a three-step optimization process: Step 1: Choose Quantization First check VRAM size, pick appropriate quantization. Q4_K_M is the best value—sufficient for most cases. Consider Q5_K_M if VRAM allows. Open Source Step 2: Tune Batch Processing"
+      },
+      {
+        "source_id": "3e64df37-3304-403f-885b-37c48edd96ad",
+        "citation_number": 12,
+        "cited_text": "But TTFT scales with input length, and this is where benchmarks get misleading. A 100-token prompt might return in 200ms. A 10K-token prompt takes longer to prefill - expect 400-800ms even on fast infrastructure. A 100K-token prompt? Multiple seconds is normal. TTFT benchmarks without input length are meaningless. \"300ms TTFT\" on a short prompt is unremarkable. \"300ms TTFT\" on 10K tokens is impressive. On Infercom's EU infrastructure with 10K input tokens, gpt-oss-120b achieves 388ms TTFT and MiniMax-M2.5 achieves 619ms TTFT."
+      },
+      {
+        "source_id": "3e64df37-3304-403f-885b-37c48edd96ad",
+        "citation_number": 13,
+        "cited_text": "Time to First Token (TTFT) TTFT measures the latency from when you send a request to when the first token starts streaming back. It determines perceived responsiveness. A 200ms TTFT feels instant. A 2-second blank screen feels broken, even if the total response time ends up the same. For short-to-medium prompts around 1K tokens, anything under 300ms feels excellent for interactive chat. Between 300-600ms is acceptable for most applications. Once you cross 600ms, users start noticing the delay. Over a second and they'll assume something is wrong."
+      },
+      {
+        "source_id": "538e2aff-b118-4d51-aa94-a74117dbc142",
+        "citation_number": 14,
+        "cited_text": "Three factors drive TTFT: Prefill compute - the model must process your entire input before generating output, so longer prompts mean longer TTFT. Queue time - if the provider is overloaded, your request waits before processing even starts. Network latency - an EU user hitting a US provider adds 100-150ms before inference begins. Physics adds latency you can't optimize away, which is why data residency matters for performance, not just compliance. TTFT matters most for interactive applications where a human is watching the screen: chat interfaces, coding assistants in IDEs, voice AI, anything real-time."
+      },
+      {
+        "source_id": "538e2aff-b118-4d51-aa94-a74117dbc142",
+        "citation_number": 15,
+        "cited_text": "But TTFT scales with input length, and this is where benchmarks get misleading. A 100-token prompt might return in 200ms. A 10K-token prompt takes longer to prefill - expect 400-800ms even on fast infrastructure. A 100K-token prompt? Multiple seconds is normal. TTFT benchmarks without input length are meaningless. \"300ms TTFT\" on a short prompt is unremarkable. \"300ms TTFT\" on 10K tokens is impressive. On Infercom's EU infrastructure with 10K input tokens, gpt-oss-120b achieves 388ms TTFT and MiniMax-M2.5 achieves 619ms TTFT."
+      },
+      {
+        "source_id": "23a02f67-c3f9-4815-a902-ab6b32ce93e8",
+        "citation_number": 16,
+        "cited_text": "Very nice! Does it utilize the CPU's AVX512 instructions? What are OpenVINO's requirements for the iGPU - latest Intel only? Upvote 2 Downvote Reply Award Share Report Award Share fakezeta OP â€¢ 2y ago i5 12600 sadly does not have AVX512 support. from https://docs.openvino.ai/2024/about-openvino/system-requirements.html also Intel HD is supported: IntelÂ® HD Graphics IntelÂ® UHD Graphics IntelÂ® IrisÂ® Pro Graphics IntelÂ® IrisÂ® Xe Graphics IntelÂ® IrisÂ® Xe Max Graphics IntelÂ® Arcâ„¢ GPU Series IntelÂ® Data Center GPU Flex Series IntelÂ® Data Center GPU Max Series"
+      },
+      {
+        "source_id": "43e9cac6-3574-43cf-ac68-b9abd5151cae",
+        "citation_number": 17,
+        "cited_text": "If you got AVX(2) Iâ€™m sure itâ€™ll be much faster on CPU. Upvote 1 Downvote Reply Award Share Report Award Share dai_app â€¢ 1mo ago Yes check here: https://github.com/Helldez/BigMoeOnEdge Upvote 1 Downvote Reply Award Share Report Award Share People also ask about section People also ask about Llama.cpp performance with Intel iGPU Llama.cpp Vulkan performance issues Best alternatives to IPEX-LLM LM Studio versus Llama.cpp comparison Llama.cpp documentation for Vulkan backend More posts you may like Related posts"
+      },
+      {
+        "source_id": "0bf9089b-3e66-484d-bbf5-349c4944b03c",
+        "citation_number": 18,
+        "cited_text": "--threads and --threads-batch are separate llama.cpp server knobs. --threads is more relevant to generation-side CPU work, while --threads-batch matters for batch/prompt processing. See the official server option docs . With most layers on GPU, more CPU threads are not always better. Too many threads can add scheduling overhead or just not help. For coding agents, --threads-batch can matter more because large prompt ingestion is common. 4. Remove --numa distribute unless this is really a NUMA machine If this is a normal single-socket desktop/workstation system, I would remove:"
+      },
+      {
+        "source_id": "dff93d9a-02f1-427d-bc13-2f369c7558ce",
+        "citation_number": 19,
+        "cited_text": "Performance bartowski/Qwen3.8-27B-GGUF:IQ3_XXS on SYCL 16 <cited_table> build: d7a2074 (10644) bartowski/Qwen3.8-27B-GGUF:Q4_0 on SYCL 16 <cited_table>",
+        "cited_table": {
+          "num_columns": 8,
+          "rows": [
+            [
+              "model",
+              "size",
+              "params",
+              "backend",
+              "threads",
+              "fa",
+              "test",
+              "t/s"
+            ],
+            [
+              "qwen35 27B IQ3_XXS - 3.0625 bpw",
+              "11.75 GiB",
+              "27.32 B",
+              "SYCL,BLAS",
+              "6",
+              "0",
+              "pp512",
+              "445.32 ± 0.53"
+            ],
+            [
+              "qwen35 27B IQ3_XXS - 3.0625 bpw",
+              "11.75 GiB",
+              "27.32 B",
+              "SYCL,BLAS",
+              "6",
+              "0",
+              "tg128",
+              "10.28 ± 0.01"
+            ],
+            [
+              "qwen35 27B IQ3_XXS - 3.0625 bpw",
+              "11.75 GiB",
+              "27.32 B",
+              "SYCL,BLAS",
+              "6",
+              "1",
+              "pp512",
+              "436.31 ± 0.21"
+            ],
+            [
+              "qwen35 27B IQ3_XXS - 3.0625 bpw",
+              "11.75 GiB",
+              "27.32 B",
+              "SYCL,BLAS",
+              "6",
+              "1",
+              "tg128",
+              "10.23 ± 0.03"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "5e891f24-62b8-48ce-a8ed-42e147052204",
+        "citation_number": 20,
+        "cited_text": "Performance bartowski/Qwen3.8-27B-GGUF:IQ3_XXS on SYCL 16 <cited_table> build: d7a2074 (10644) bartowski/Qwen3.8-27B-GGUF:Q4_0 on SYCL 16 <cited_table>",
+        "cited_table": {
+          "num_columns": 8,
+          "rows": [
+            [
+              "model",
+              "size",
+              "params",
+              "backend",
+              "threads",
+              "fa",
+              "test",
+              "t/s"
+            ],
+            [
+              "qwen35 27B IQ3_XXS - 3.0625 bpw",
+              "11.75 GiB",
+              "27.32 B",
+              "SYCL,BLAS",
+              "6",
+              "0",
+              "pp512",
+              "445.32 ± 0.53"
+            ],
+            [
+              "qwen35 27B IQ3_XXS - 3.0625 bpw",
+              "11.75 GiB",
+              "27.32 B",
+              "SYCL,BLAS",
+              "6",
+              "0",
+              "tg128",
+              "10.28 ± 0.01"
+            ],
+            [
+              "qwen35 27B IQ3_XXS - 3.0625 bpw",
+              "11.75 GiB",
+              "27.32 B",
+              "SYCL,BLAS",
+              "6",
+              "1",
+              "pp512",
+              "436.31 ± 0.21"
+            ],
+            [
+              "qwen35 27B IQ3_XXS - 3.0625 bpw",
+              "11.75 GiB",
+              "27.32 B",
+              "SYCL,BLAS",
+              "6",
+              "1",
+              "tg128",
+              "10.23 ± 0.03"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "5bd98d46-c948-4f68-9e5e-4933eeb568db",
+        "citation_number": 21,
+        "cited_text": "MoE will be different, I think but I haven't test it that much. Will show some number when i get a chance. Upvote 1 Downvote Reply Award Share Report Award Share 1 more reply PatienceSweaty33 â€¢ 3mo ago IQ4_XS is usable!? Thought the rule of thumb was stick to at least Q4_K_M quant and below that suffers too much of quality loss Upvote 1 Downvote Reply Award Share Report Award Share bobaburger OP â€¢ 3mo ago pretty much usable and not far from Q4_K_M. you can see more in my benchmark post a while ago https://www.reddit.com/r/LocalLLaMA/s/zuUzp9Vz3G"
+      },
+      {
+        "source_id": "26d4fb4d-5591-4fe6-b8ea-a8a3f0f5d596",
+        "citation_number": 22,
+        "cited_text": "1 You must be logged in to vote All reactions 1 reply Comment options Uh oh! There was an error while loading. Please reload this page . Quote reply NeoZhangJianyu on May 27, 2025 I have tested it. It can't bring performance improvement. Disable to support it will avoid reorder the weights for additional cost. The detection devices doesn't cover all existed Intel GPUs. Set it as default for unknow GPU, will enable it in older GPUs too. I suggest using white list for this feature enable. It includes all GPUs verified to get plus."
+      },
+      {
+        "source_id": "fd6cfb1d-0568-4acb-b0b0-31b47073a9df",
+        "citation_number": 23,
+        "cited_text": "Performance Guide Copy Markdown View Source This guide covers llama.cpp optimization parameters, server tuning, prefix caching, batching strategies, and optimization patterns for llama_cpp_ex. Server Configuration The LlamaCppEx.Server manages a pool of concurrent inference slots with continuous batching. Key configuration options: Option Default Description n_parallel 4 Number of concurrent inference slots n_ctx 8192 Total KV cache size shared across all slots n_batch min(n_ctx, 2048) Maximum tokens per forward pass chunk_size 512 Maximum prefill tokens per slot per tick cache_prompt true Enable same-slot KV cache reuse max_queue 64 Requests allowed to queue for a slot before  {:error, :queue_full}  ( 0  = unlimited) batch_strategy DecodeMaximal Batch building strategy module type_k :f16 KV cache K quantization type type_v :f16 KV cache V quantization type flash_attn :auto Flash Attention mode offload_kqv true Offload KQV ops to GPU op_offload true Offload host tensor ops to device"
+      },
+      {
+        "source_id": "fd6cfb1d-0568-4acb-b0b0-31b47073a9df",
+        "citation_number": 24,
+        "cited_text": "Complete Optimization Example Here's a production-ready server configuration combining multiple optimizations: { :ok ,   server }   =   LlamaCppEx.Server . start_link (   model_path :   \"model.gguf\" ,   n_gpu_layers :   - 1 ,   # Concurrency   n_parallel :   8 ,   n_ctx :   32768 ,   # KV cache quantization — 2x memory savings   type_k :   :q8_0 ,   type_v :   :q8_0 ,   # Flash attention — faster prefill   flash_attn :   :enabled ,   # Prefix caching — skip redundant prefill for multi-turn chat   cache_prompt :   true ,   # Strategy — latency-optimized for interactive use   batch_strategy :   LlamaCppEx.Server.Strategy.DecodeMaximal ,   # Sampling   temp :   0.7 ,   top_p :   0.9   )"
+      },
+      {
+        "source_id": "e70e8747-2ee4-4141-b910-b3e8fdcf4695",
+        "citation_number": 25,
+        "cited_text": "Key Takeaways Ollama running slow is most commonly caused by model layers spilling out of VRAM into system RAM or disk, not CPU speed Always verify GPU acceleration is actually active using monitoring tools before assuming it works Matching model size to available VRAM using Q4_K_M quantisation is the most impactful single change for most users Environment variables such as OLLAMA_KEEP_ALIVE, OLLAMA_FLASH_ATTENTION, and reduced num_ctx offer free performance gains For CPU-only inference, memory bandwidth matters more than core count; Apple Silicon and AMD EPYC offer advantages here A single mid-range NVIDIA RTX GPU upgrade can deliver five to ten times speed improvement for teams currently on CPU inference Thermal management and background process interference are common real-world causes of inconsistent speeds Reducing context window size when large contexts are unnecessary frees VRAM for model layers and reduces computation"
+      },
+      {
+        "source_id": "ebdc22fa-6f6c-4ae6-9010-a246ba56ffbd",
+        "citation_number": 26,
+        "cited_text": "CPU Compare Developer Tools Get Language Courses Why Is Ollama Running Slow? The Core Causes Ollama inference speed comes down to one fundamental bottleneck in the vast majority of cases: memory bandwidth. Large language models need to load billions of parameters from storage into working memory and then shuttle those parameters through a processor at high speed for every single token generated. When that pipeline is constrained, generation slows to a crawl regardless of how fast your CPU clock speed appears on paper."
+      },
+      {
+        "source_id": "43e9cac6-3574-43cf-ac68-b9abd5151cae",
+        "citation_number": 27,
+        "cited_text": "and yeah, MTP is the one thing that beats the wall outright â€” 24â†'30 on the 8700G means you're getting >1 token per weight-read, so you stop paying the full memory tax every token. that's the actual escape hatch here, not the iGPU. Upvote 1 Downvote Reply Award Share Report Award Share noctrex â€¢ 2mo ago On my i5-14500, I get x2-x3 times faster inference using the CPU instead of its iGPU. The iGPU on those Intel's is more for display out, and hardware video decoding. maybe even very light gaming. very light."
+      },
+      {
+        "source_id": "43e9cac6-3574-43cf-ac68-b9abd5151cae",
+        "citation_number": 28,
+        "cited_text": "Upvote 1 Downvote Reply Award Share Report Award Share 4 more replies tmvr â€¢ 2mo ago â€¢ Edited 2mo ago Cpu-only: Qwen3.6-35B-A3B-Q4_K_S-4.22bpw.gguf Â =Â 14 tk/s Qwen3.6-35B-A3B-IQ4_XS-3.93bpw.gguf Â =Â 14 tk/s gemma-4-26B-A4B-it-MXFP4_MOE.ggufÂ = Â 8 tk/s I wrote you in the previous thread that your \"CPU only\" numbers are too low. I get better results with better quants on an ancient i5-8500T with dual-channel DDR4-2666 RAM and ik_llama:: Gemma4 26B A4B Q6_K with MTP enabled and spec-draft-n-max=3 gets 11 tok/s, without MTP it still gets 7-8 tok/s which matches your result even though your system should be significantly faster."
+      }
+    ]
+  },
+  {
+    "question": "Local LLM 與 GitHub Copilot（App / VS Code extension / CLI）的整合方式？是否支援自訂 model endpoint？OpenAI-compatible API 串接可行性？",
+    "answer": "### VS Code Extension (編輯器插件) 的整合方式與自訂端點\n\n自 **VS Code v1.99** 起，官方推出了 **Bring Your Own Key (BYOK) Preview** 功能，讓 GitHub Copilot 能夠直接連接本地地端的 **Ollama** 服務 [1]。\n\n*   **整合與設定步驟**：\n    1.  於本地安裝 Ollama，執行 `ollama serve` 啟動服務，並透過 `ollama pull` 下載適合代碼補全或對話的模型（例如 `phi4-mini` 或 `codellama`）[2-4]。\n    2.  打開 VS Code，在 GitHub Copilot 的對話視窗下方，點選 **Manage Models…** [2, 4, 5]。\n    3.  勾選 **Ollama**，系統便會自動偵測並列出本地端可用的 Ollama 模型 [2, 4, 5]。\n    4.  回到 Copilot 對話框，即可自由切換至下載的地端模型，此時 AI 的運算與原始碼資料流將完全保留在本地或內網中，不會流向外部雲端 [3, 4]。\n*   **自訂遠端端點**：如果企業或團隊擁有統一的 GPU 伺服器，可以透過 VS Code 設定搜尋 `Ollama Endpoint`（位於 `GitHub Copilot Chat -> Preview -> Ollama Endpoint` 中）來指定自訂的 Ollama 遠端伺服器 URL [3, 4]。\n*   **局限**：目前 VS Code Extension 的本地端整合仍有安全過濾或功能限制，且**必須登入 GitHub 帳號並驗證 Copilot 訂閱身份**才能正常啟用選單與面板功能 [6]。\n\n---\n\n### GitHub Copilot CLI 的整合與離線/地端配置 (BYOK)\n\n**GitHub Copilot CLI** 具備更靈活的 **BYOK (Bring Your Own Key)** 原生整合，允許開發者透過環境變數，直接覆寫其後端預設的雲端模型 [7, 8]：\n\n*   **關鍵環境變數設定** [9]：\n    *   **`COPILOT_PROVIDER_BASE_URL`**：設定自訂模型供應商的端點 URL（例如本地 Ollama 設為 `http://localhost:11434`，LM Studio 設為 `http://localhost:1234/v1`）[7, 10, 11]。\n    *   **`COPILOT_PROVIDER_TYPE`**：設定為 **`openai`**（預設）、`azure` 或 `anthropic` [12, 13]。\n    *   **`COPILOT_MODEL`**：填入欲呼叫的地端模型識別名稱（如 `llama3.2` 或 `gemma-3-1b`）[7, 10, 11]。\n    *   **`COPILOT_PROVIDER_API_KEY`**：若使用本地端免驗證服務（如 Ollama）則不需填寫 [9, 14]；若使用遠端 OpenAI-compatible API，則填入對應密鑰。\n    *   **`COPILOT_OFFLINE`**：設定為 **`true`**，可以開啟**離線模式 (Offline Mode)**，這能強制防止 CLI 回傳或聯繫 GitHub 伺服器，非常適合在完全物理隔離（Air-Gapped）的環境中開發 [7, 15-17]。\n*   **地端模型要求** [14]：\n    *   模型必須支援 **Tool Calling (工具/函數呼叫)** 與 **Streaming (串流)**，否則 CLI 運作時會回傳錯誤。\n    *   為了在複雜的 CLI 代碼生成與多輪對話中取得良好效果，建議使用**上下文窗口 (Context Window) 至少在 128k tokens 以上**的模型 [14]。\n\n---\n\n### OpenAI-compatible API 串接可行性與代理方案\n\n**OpenAI-compatible API 串接的可行性極高**。除了 CLI 預設的 `openai` 供應商類型外 [12, 13]，目前主要的進階代理及整合手段包含：\n\n1.  **LiteLLM Proxy 統一轉接**：\n    *   如果希望在 VS Code 中使用更豐富的自訂模型（如 Anthropic Claude、地端自建的 vLLM 等），可使用本機架設的 LiteLLM Proxy [18, 19]。\n    *   設定時，只需在 VS Code 的 `settings.json` 中配置進階代理複寫：\n        ```json\n        {\n          \"github.copilot.advanced\": {\n            \"debug.overrideProxyUrl\": \"http://localhost:4000\",\n            \"debug.testOverrideProxyUrl\": \"http://localhost:4000\"\n          }\n        }\n        ``` [20]\n    *   這可以將 Copilot 的請求全部導向本地 LiteLLM（預設 port 4000），再由 LiteLLM 透過 unified 介面轉發、進行負載平衡、額度控制與日誌追蹤 [19, 21, 22]。\n2.  **VS Code 擴充套件「Copilot Custom Provider」**：\n    *   這是一個利用 VS Code 的公用 `LanguageModelChatProvider` API 所開發的套件 [23]。\n    *   它能在 Copilot Chat 的模型選擇器中加入一個自訂的 Custom OpenAI Responses 管道，讓你配置自訂的 `baseUrl` 與 API 金鑰，流暢地對接符合 OpenAI Responses API 標準的地端或雲端服務 [23-25]。\n3.  **極簡的開源替代方案 (Continue.dev)**：\n    *   如果需要一個完全零成本、無登入驗證、且完美相容 OpenAI-compatible API (如 Ollama, LM Studio, LocalAI) 的 Copilot 級代碼助手，**Continue.dev** 是目前社群公認最優秀的開源方案 [26, 27]。\n    *   它提供完整的 Tab 自動補全（需 FIM 格式模型）與 Chat 側邊欄，所有設定都由本機的 YAML/JSON 檔完全掌控 [26, 28-30]，是確保完全隱私、不受雲端限制與連線卡關的首選 fallback [26, 31, 32]。\n\n💻 想要我為你詳細寫一份在 Windows 或 Linux 下使用 Ollama 串接 Copilot CLI，並啟用離線模式的完整環境變數配置腳本嗎？",
+    "citations": [
+      {
+        "source_id": "5c7fd959-ddda-4717-9a2c-dd002bf71e52",
+        "citation_number": 1,
+        "cited_text": "傳統 Copilot 只能連接雲端 LLM，所以之前筆者找到 CodeGeex (北京的公司) 及 Continue 的 IDE 插件，都有支援地端 LLM，但使用起來，筆者個人而言，還是 GitHub Copilot 比較順手一點。 但隨著 VSCode 到了 1.99 版增加 Bring Your Own Key (BYOK) Preview 功能，現在 Copilot 終於能連接本地地端 Ollama 的 LLM ，讓企業可以完全掌控推理資料流， 原始碼不離開本地／內網，兼顧效率與資安 。 Copilot 串接地端 Ollama LLM"
+      },
+      {
+        "source_id": "5c7fd959-ddda-4717-9a2c-dd002bf71e52",
+        "citation_number": 2,
+        "cited_text": "設定 Ollama 安裝好 Ollama 後，開啟命令視窗，執行 ollama serve 把服務跑起來，開啟網頁連到 [http://localhost:11434/](http://localhost:11434/) 會顯示 Ollama is running 。 再另開一個命令視窗，執行 ollama pull phi4-mini ，下載要使用的 Model（這裡以 phi4-mini 為例）。 設定 GitHub Copilot 下載好模型後，打開 VSCode，於 GitHub Copilot 對話視窗最下方的模型切換選單中，點選 Manage Models… ，如下圖: 然後選擇 Ollama ，如下圖:"
+      },
+      {
+        "source_id": "5c7fd959-ddda-4717-9a2c-dd002bf71e52",
+        "citation_number": 3,
+        "cited_text": "然後就會列出可以使用的 Model，如下圖: 接下來回到 GitHub Copilot 對話視窗，將模型切換為 phi4-mini 或 codellama，即可開始使用 AI 助手。此時 Copilot 補全將透過本地 LLM 運算，程式碼資料只會流向你自己的電腦／內網，不會外洩到外部雲端。如下圖： 設定遠端 Ollama LLM 如果你有遠端 Ollama 服務(例如公司有統一的 GPU Server)，可以設定 GitHub Copilot 遠端 Ollama 的 URL，如下圖: 在設定中，輸入 copilot 在 GitHub Copilot Chat -> Preview -> Ollama Endpoint"
+      },
+      {
+        "source_id": "739778dd-a679-4de2-b4c8-93c6993edd3f",
+        "citation_number": 4,
+        "cited_text": "然後就會列出可以使用的 Model，如下圖: 接下來回到 GitHub Copilot 對話視窗，將模型切換為 phi4-mini 或 codellama，即可開始使用 AI 助手。此時 Copilot 補全將透過本地 LLM 運算，程式碼資料只會流向你自己的電腦／內網，不會外洩到外部雲端。如下圖： 設定遠端 Ollama LLM 如果你有遠端 Ollama 服務(例如公司有統一的 GPU Server)，可以設定 GitHub Copilot 遠端 Ollama 的 URL，如下圖: 在設定中，輸入 copilot 在 GitHub Copilot Chat -> Preview -> Ollama Endpoint"
+      },
+      {
+        "source_id": "739778dd-a679-4de2-b4c8-93c6993edd3f",
+        "citation_number": 5,
+        "cited_text": "設定 Ollama 安裝好 Ollama 後，開啟命令視窗，執行 ollama serve 把服務跑起來，開啟網頁連到 [http://localhost:11434/](http://localhost:11434/) 會顯示 Ollama is running 。 再另開一個命令視窗，執行 ollama pull phi4-mini ，下載要使用的 Model（這裡以 phi4-mini 為例）。 設定 GitHub Copilot 下載好模型後，打開 VSCode，於 GitHub Copilot 對話視窗最下方的模型切換選單中，點選 Manage Models… ，如下圖: 然後選擇 Ollama ，如下圖:"
+      },
+      {
+        "source_id": "475ceb04-6127-4464-b9f7-6ff814a49fd4",
+        "citation_number": 6,
+        "cited_text": "Current state in 2026 (from recent updates & community feedback) GitHub Copilot does support \"bring your own model\" (BYOM) / custom LLMs in VS Code (and expanding to other IDEs): You can connect to providers like Ollama (local!), OpenAI-compatible endpoints, Anthropic, Gemini, etc., via the model picker in Copilot Chat. Setup: In VS Code → Copilot settings → Language Models → Add your Ollama/local endpoint (localhost:11434 usually works). This lets you use local models (e.g., DeepSeek-Coder, CodeLlama, Phi-4, Llama 3.1/4 variants fine-tuned for code) for completions/chat/agent tasks. But — there's still a catch for full offline/local-only: GitHub login is required to activate Copilot features (even when using local models). Some data (prompts/responses) may route through GitHub/Microsoft for filtering/safety (even with local backend). Full agentic features (like Workspace agents, memory, multi-turn refactoring) are optimized for cloud models and may not work as seamlessly with local ones yet."
+      },
+      {
+        "source_id": "69b33ba4-f3ad-4bd7-a210-951f1a1b93c7",
+        "citation_number": 7,
+        "cited_text": "Connecting Copilot CLI to LM Studio This is the part most people get wrong. Copilot CLI is not designed primarily for local models. You are using a BYOK (Bring Your Own Key/Model) path that is still evolving. It works, but you need to be precise. Reference: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/use-byok-models 1. Set the Environment Variables You must override the default Copilot provider. In PowerShell:"
+      },
+      {
+        "source_id": "6bbf61b5-1944-474e-87e7-4fdff62d7fe6",
+        "citation_number": 8,
+        "cited_text": "Using your own LLM models in GitHub Copilot CLI Use a model from an external provider of your choice in Copilot by supplying your own API key. Copy as Markdown In this article Prerequisites Supported providers Model requirements Configuring your provider Connecting to an OpenAI-compatible endpoint Connecting to Azure OpenAI Connecting to Anthropic Running in offline mode You can configure Copilot CLI to use your own LLM provider, also called BYOK (Bring Your Own Key), instead of GitHub-hosted models. This lets you connect to OpenAI-compatible endpoints, Azure OpenAI, or Anthropic, including locally running models such as Ollama."
+      },
+      {
+        "source_id": "6bbf61b5-1944-474e-87e7-4fdff62d7fe6",
+        "citation_number": 9,
+        "cited_text": "For additional examples, run copilot help providers in your terminal. Model requirements Models must support tool calling (also called function calling) and streaming . If a model does not support either capability, Copilot CLI returns an error. For best results, use a model with a context window of at least 128k tokens. Configuring your provider You configure your model provider by setting environment variables before starting Copilot CLI. <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Environment variable",
+              "Required",
+              "Description"
+            ],
+            [
+              "COPILOT_PROVIDER_BASE_URL",
+              "Yes",
+              "The base URL of your model provider's API endpoint."
+            ],
+            [
+              "COPILOT_PROVIDER_TYPE",
+              "No",
+              "The provider type:"
+            ],
+            [
+              "COPILOT_PROVIDER_API_KEY",
+              "No",
+              "Your API key for the provider. Not required for providers that do not use authentication, such as a local Ollama instance."
+            ],
+            [
+              "COPILOT_MODEL",
+              "Yes",
+              "The model identifier to use. You can also set this with the"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "6bbf61b5-1944-474e-87e7-4fdff62d7fe6",
+        "citation_number": 10,
+        "cited_text": "Connecting to an OpenAI-compatible endpoint Use the following steps if you are connecting to OpenAI, Ollama, vLLM, Foundry Local, or any other endpoint that is compatible with the OpenAI Chat Completions API. Set environment variables for your provider. For example, for a local Ollama instance: Replace YOUR-MODEL-NAME with the name of the model you have pulled in Ollama (for example, llama3.2 ). 2. For a remote OpenAI endpoint, also set your API key."
+      },
+      {
+        "source_id": "63864715-5868-4974-9556-946202eff949",
+        "citation_number": 11,
+        "cited_text": "Connecting to an OpenAI-compatible endpoint Use the following steps if you are connecting to OpenAI, Ollama, vLLM, Foundry Local, or any other endpoint that is compatible with the OpenAI Chat Completions API. Set environment variables for your provider. For example, for a local Ollama instance: Replace YOUR-MODEL-NAME with the name of the model you have pulled in Ollama (for example, llama3.2 ). 2. For a remote OpenAI endpoint, also set your API key."
+      },
+      {
+        "source_id": "6bbf61b5-1944-474e-87e7-4fdff62d7fe6",
+        "citation_number": 12,
+        "cited_text": "Note This article is for users who want to configure their own LLM provider API key on their local machine. To set up custom models for users in an enterprise, see Enabling custom models for GitHub Copilot in your enterprise . Prerequisites Copilot CLI is installed. See Installing GitHub Copilot CLI . You have an API key from a supported LLM provider, or you have a local model running (such as Ollama). Supported providers Copilot CLI supports three provider types: <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Provider type",
+              "Compatible services"
+            ],
+            [
+              "openai",
+              "OpenAI, Ollama, vLLM, Foundry Local, and any other OpenAI Chat Completions API-compatible endpoint. This is the default provider type."
+            ],
+            [
+              "azure",
+              "Azure OpenAI Service."
+            ],
+            [
+              "anthropic",
+              "Anthropic (Claude models)."
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "63864715-5868-4974-9556-946202eff949",
+        "citation_number": 13,
+        "cited_text": "Note This article is for users who want to configure their own LLM provider API key on their local machine. To set up custom models for users in an enterprise, see Enabling custom models for GitHub Copilot in your enterprise . Prerequisites Copilot CLI is installed. See Installing GitHub Copilot CLI . You have an API key from a supported LLM provider, or you have a local model running (such as Ollama). Supported providers Copilot CLI supports three provider types: <cited_table>",
+        "cited_table": {
+          "num_columns": 2,
+          "rows": [
+            [
+              "Provider type",
+              "Compatible services"
+            ],
+            [
+              "openai",
+              "OpenAI, Ollama, vLLM, Foundry Local, and any other OpenAI Chat Completions API-compatible endpoint. This is the default provider type."
+            ],
+            [
+              "azure",
+              "Azure OpenAI Service."
+            ],
+            [
+              "anthropic",
+              "Anthropic (Claude models)."
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "63864715-5868-4974-9556-946202eff949",
+        "citation_number": 14,
+        "cited_text": "For additional examples, run copilot help providers in your terminal. Model requirements Models must support tool calling (also called function calling) and streaming . If a model does not support either capability, Copilot CLI returns an error. For best results, use a model with a context window of at least 128k tokens. Configuring your provider You configure your model provider by setting environment variables before starting Copilot CLI. <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Environment variable",
+              "Required",
+              "Description"
+            ],
+            [
+              "COPILOT_PROVIDER_BASE_URL",
+              "Yes",
+              "The base URL of your model provider's API endpoint."
+            ],
+            [
+              "COPILOT_PROVIDER_TYPE",
+              "No",
+              "The provider type:"
+            ],
+            [
+              "COPILOT_PROVIDER_API_KEY",
+              "No",
+              "Your API key for the provider. Not required for providers that do not use authentication, such as a local Ollama instance."
+            ],
+            [
+              "COPILOT_MODEL",
+              "Yes",
+              "The model identifier to use. You can also set this with the"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "cc3d9570-b831-484b-8fce-6c8ed6af9417",
+        "citation_number": 15,
+        "cited_text": "Connecting Copilot CLI to LM Studio This is the part most people get wrong. Copilot CLI is not designed primarily for local models. You are using a BYOK (Bring Your Own Key/Model) path that is still evolving. It works, but you need to be precise. Reference: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/use-byok-models 1. Set the Environment Variables You must override the default Copilot provider. In PowerShell:"
+      },
+      {
+        "source_id": "6bbf61b5-1944-474e-87e7-4fdff62d7fe6",
+        "citation_number": 16,
+        "cited_text": "Running in offline mode You can run Copilot CLI in offline mode to prevent it from contacting GitHub's servers. This is designed for isolated environments where the CLI should communicate only with your local or on-premises model provider. Important Offline mode only guarantees full network isolation if your provider is also local or within the same isolated environment. If COPILOT_PROVIDER_BASE_URL points to a remote endpoint, your prompts and code context are still sent over the network to that provider."
+      },
+      {
+        "source_id": "63864715-5868-4974-9556-946202eff949",
+        "citation_number": 17,
+        "cited_text": "Running in offline mode You can run Copilot CLI in offline mode to prevent it from contacting GitHub's servers. This is designed for isolated environments where the CLI should communicate only with your local or on-premises model provider. Important Offline mode only guarantees full network isolation if your provider is also local or within the same isolated environment. If COPILOT_PROVIDER_BASE_URL points to a remote endpoint, your prompts and code context are still sent over the network to that provider."
+      },
+      {
+        "source_id": "bb1ee923-c8bb-404d-81ad-95a300f77b09",
+        "citation_number": 18,
+        "cited_text": "Search for anything... Ctrl` `K Overview Be an Integration Partner Observability Guardrail Providers Alerting & Monitoring Cost Optimization [Beta] Prompt Management AI Tools Open WebUI Claude Code Claude Desktop (Cowork) Integration OpenCode Quickstart OpenClaw Cursor Integration GitHub Copilot Gemini CLI Qwen Code CLI OpenAI Codex Retool Assist Track Usage for Coding Tools Agent SDKs Manage with AI Agents AI Tools GitHub Copilot On this page Copy as Markdown GitHub Copilot This tutorial shows you how to integrate GitHub Copilot with LiteLLM Proxy, allowing you to route requests through LiteLLM's unified interface."
+      },
+      {
+        "source_id": "bb1ee923-c8bb-404d-81ad-95a300f77b09",
+        "citation_number": 19,
+        "cited_text": "info This tutorial is based on Sergio Pino's excellent guide for calling GitHub Copilot models through LiteLLM Proxy. This integration allows you to use any LiteLLM supported model through GitHub Copilot's interface. Benefits of using GitHub Copilot with LiteLLM When you use GitHub Copilot with LiteLLM you get the following benefits: Developer Benefits: Universal Model Access: Use any LiteLLM supported model (Anthropic, OpenAI, Vertex AI, Bedrock, etc.) through the GitHub Copilot interface. Higher Rate Limits & Reliability: Load balance across multiple models and providers to avoid hitting individual provider limits, with fallbacks to ensure you get responses even if one provider fails."
+      },
+      {
+        "source_id": "bb1ee923-c8bb-404d-81ad-95a300f77b09",
+        "citation_number": 20,
+        "cited_text": "Request/response logging Rate limiting Cost tracking Model routing and fallbacks Advanced Use Anthropic, OpenAI, Bedrock, etc. models with GitHub Copilot You can route GitHub Copilot requests to any provider by configuring different models in your LiteLLM Proxy config: Anthropic OpenAI Bedrock Multi-Provider Load Balancing Route requests to Claude Sonnet: config.yaml"
+      },
+      {
+        "source_id": "590e9eb6-2f04-4b72-99e9-9420a14f2683",
+        "citation_number": 21,
+        "cited_text": "Step 3: Start LiteLLM Proxy Start the proxy server: Step 4: Configure GitHub Copilot Configure GitHub Copilot to use your LiteLLM proxy. Add the following to your VS Code settings.json : Step 5: Test the Integration Restart VS Code and test GitHub Copilot. Your requests will now be routed through LiteLLM Proxy, giving you access to LiteLLM's features like:"
+      },
+      {
+        "source_id": "e74566ad-5402-469a-a64b-e2a56d220487",
+        "citation_number": 22,
+        "cited_text": "Overview Version History Q & A Rating & Review Copilot Custom Provider Adds a VS Code language model provider named Custom OpenAI Responses for OpenAI Responses API compatible services. This extension uses VS Code's public LanguageModelChatProvider extension API. It does not replace or proxy GitHub Copilot's built-in models, and it is not the built-in Custom Endpoint provider. It adds separate custom models to the VS Code/Copilot model picker and sends requests to the endpoints you configure. VS Code also documents a built-in Custom Endpoint/BYOK path for compatible third-party endpoints. This extension does not target that implementation or require the built-in Custom Endpoint UI. Those docs are used only as a reference for common model capability names and Responses API conventions."
+      },
+      {
+        "source_id": "871c5a22-b4ed-4d74-8815-4d4e8cf7a29b",
+        "citation_number": 23,
+        "cited_text": "Overview Version History Q & A Rating & Review Copilot Custom Provider Adds a VS Code language model provider named Custom OpenAI Responses for OpenAI Responses API compatible services. This extension uses VS Code's public LanguageModelChatProvider extension API. It does not replace or proxy GitHub Copilot's built-in models, and it is not the built-in Custom Endpoint provider. It adds separate custom models to the VS Code/Copilot model picker and sends requests to the endpoints you configure. VS Code also documents a built-in Custom Endpoint/BYOK path for compatible third-party endpoints. This extension does not target that implementation or require the built-in Custom Endpoint UI. Those docs are used only as a reference for common model capability names and Responses API conventions."
+      },
+      {
+        "source_id": "871c5a22-b4ed-4d74-8815-4d4e8cf7a29b",
+        "citation_number": 24,
+        "cited_text": "Then run this command for each profile that requires a key: This step is important. settings.json defines the profiles and models, but the key is normally stored separately in VS Code SecretStorage. The command asks which profile to update. Custom models can appear in the Copilot/Chat model picker before a key is set, but a request will fail until the selected profile has a key or requireApiKey is false . Base URL baseUrl is resolved to a Responses API URL: https://host-a.example.com : requests are sent to https://host-a.example.com/v1/responses . https://host-a.example.com/v1 : requests are sent to https://host-a.example.com/v1/responses . https://host-a.example.com/proxy : requests are sent to https://host-a.example.com/proxy/v1/responses . URLs already containing /responses , /chat/completions , or /messages are treated as explicit endpoint URLs and used as configured."
+      },
+      {
+        "source_id": "1ee99fd0-580e-45ba-9e27-797ccf5a5901",
+        "citation_number": 25,
+        "cited_text": "The 10 Best Local GitHub Copilot Alternatives After testing dozens of tools, here are the 10 best local Copilot alternatives in 2026: 1. Continue.dev — Best Overall ⭐ 28K+ GitHub Stars 💰 Free & Open Source (Apache 2.0) 🖥 VSCode, JetBrains, Neovim Continue is the leading open-source AI code assistant. It's designed as a true Copilot replacement with local LLM support baked in. Why Continue is #1 Works with any LLM: Ollama, LM Studio, OpenAI API, Anthropic, or custom endpoints Tab autocomplete: Fast inline suggestions like Copilot Chat sidebar: Ask questions, refactor code, generate tests Codebase awareness: Understands your entire project context Multi-IDE: VSCode, all JetBrains IDEs, and Neovim support Active development: Weekly updates, responsive maintainers"
+      },
+      {
+        "source_id": "475ceb04-6127-4464-b9f7-6ff814a49fd4",
+        "citation_number": 26,
+        "cited_text": "Workarounds while we wait Use BYOM in Copilot (as above) — set Ollama as fallback for chat/completions when rate-limited. Continue.dev extension (free, excellent) — full Copilot-like UI, native local LLM support (Ollama, LM Studio, etc.), context-aware, agents. Many switch here during heavy sessions. Cline or Tabby — similar local-first agents, but Continue is closest to Copilot's feel. Monitor GitHub feedback — similar requests exist (e.g., full offline/local without login, configurable Ollama URLs, self-hosted custom models). Upvote/comment on them: https://github.com/orgs/community/discussions/150243 (self-hosted custom LLMs) Use copilot with local models completely offline microsoft/vscode#246551 (offline local models) Search \"local LLM\" or \"Ollama\" in Copilot discussions."
+      },
+      {
+        "source_id": "fb94e8ea-d2e4-4f83-859a-1904045264e2",
+        "citation_number": 27,
+        "cited_text": "How Does Continue.dev Work? Continue.dev operates as a local client that communicates with LLM providers via API. When you type in your editor, the extension sends context (surrounding code, file contents, and optionally your indexed codebase) to the configured model and receives completions or chat responses. The extension handles prompt construction, context window management, and response rendering. The architecture is straightforward: VS Code extension or JetBrains plugin as the UI layer Configuration file ( ~/.continue/config.json ) that defines models, providers, and behavior Indexing engine that creates embeddings of your codebase for semantic search Provider adapters for each LLM (OpenAI, Anthropic, Ollama, etc.)"
+      },
+      {
+        "source_id": "fb94e8ea-d2e4-4f83-859a-1904045264e2",
+        "citation_number": 28,
+        "cited_text": "Team workspace Ship faster with chat, meetings, and projects in one place — Zlyqor. Start free Setup Guide Step 1: Install the extension In VS Code, search for \"Continue\" in the Extensions panel and install it. For JetBrains, go to Plugins and search \"Continue.\" Step 2: Configure your LLM provider After installation, Continue opens a configuration file ( ~/.continue/config.json ). Here is a working configuration for Anthropic Claude:"
+      },
+      {
+        "source_id": "9d295ba0-bb6f-4362-8785-699b40b3c9c8",
+        "citation_number": 29,
+        "cited_text": "I'm not sure why Cursor made it difficult to use a LocalLLM, but there may be security or other reasons, hard to say. In either case their development proceeds rapidly and perhaps this will change in the future, maybe by the time you read this! If not Cursor but you prefer a visual IDE over CLI then never fear, Continue is here. (and many other options) Continue (VS Code) The plugin “Continue” in VS Code is a simple drop-in chat interface for connecting to remote or local LLMs. Older versions had a JSON config and at the time of writing you can go into the plugin settings and update a simple YAML config with the values for your local server:"
+      },
+      {
+        "source_id": "475ceb04-6127-4464-b9f7-6ff814a49fd4",
+        "citation_number": 30,
+        "cited_text": "So you're halfway there: local models are supported, but not a seamless \"switch to local when rate-limited\" toggle in the UI, and not 100% offline/no-login. Why this feature request is spot-on Solves rate limits fairly (cloud for premium/fast, local for unlimited/heavy lifts). Privacy boost: Local models keep sensitive code fully on-device. Cost: $10/mo is fair for cloud access, but local fallback reduces cloud burn. Ecosystem fit: Many devs already run Ollama/LM Studio/Tabby for privacy/speed — integrating tighter would rock."
+      },
+      {
+        "source_id": "fb94e8ea-d2e4-4f83-859a-1904045264e2",
+        "citation_number": 31,
+        "cited_text": "Privacy Considerations For teams with sensitive codebases, Continue with local Ollama models means your code never leaves your machine. No cloud API calls, no training data concerns, no vendor access to your code. This is a meaningful advantage for regulated industries or proprietary codebases. Copilot, even with content exclusions, still sends code to GitHub's servers. Continue with Ollama does not. Pricing Continue.dev itself is free and open source (Apache 2.0). What you pay: Using Ollama (local models): $0 Using Anthropic Claude API: roughly $0 to $5/month at moderate development usage Using OpenAI API: similar cost range Using Mistral Codestral for autocomplete: Mistral has a free tier for Codestral specifically"
+      }
+    ]
+  },
+  {
+    "question": "除了 Ollama 之外，Windows 11 上還有哪些適合的方案（llama.cpp、LM Studio、Jan、GPT4All 等）？各自在 TTFT 與易用性上的差異？",
+    "answer": "在 Windows 11 系統，特別是針對您目前 **Intel UHD 770 內顯（擁有 32 EUs）與 32GB 記憶體（共用系統記憶體 UMA 架構）**的硬體環境下 [1-5]，除了 Ollama 之外，還有幾種非常適合的主流 local LLM 方案。\n\n由於內顯的運算單元（EUs）數量較少，且需要與系統共用記憶體頻寬，選擇合適的推理引擎和硬體加速後端，會對 **TTFT（Time to First Token，首字延遲/ Prompt 處理速度）** 以及**易用性**產生極大影響 [4, 6-8]。以下為您深入對比各方案的差異：\n\n---\n\n### 一、 Windows 11 本地 LLM 方案詳細對比\n\n#### 1. LM Studio\n*   **易用性：極高（最適合模型探索）** [9, 10]\n    提供極為精美的圖形化介面（GUI），用戶可以直接在軟體內搜尋、一鍵下載 Hug開 Hugging Face 上的 GGUF 模型，並自動啟用本地伺服器，提供 OpenAI 相容的 API 接口（預設為 `http://localhost:1234/v1`）[11, 12]。\n*   **TTFT 與效能：中等**\n    雖然底層基於 llama.cpp，但因為 GUI 外殼封裝以及開箱即用的預設參數，在 Intel 平台上的硬體優化程度較低。**在相同設定下，LM Studio 的推理速度經常比純 llama.cpp 慢 2 到 3 倍** [13-15]。在 UHD 770 上，它常會因為無法良好偵測或驅動 OpenVINO 性能而退回 CPU 運算，導致處理長 prompt 時的 TTFT 明顯變慢。\n\n#### 2. Jan\n*   **易用性：極高（最適合新手日常對話）** [9, 10]\n    Jan 是一款開源、本地優先且介面極簡的 ChatGPT 替代品 [9, 10]。同樣具備 GUI，下載模型與載入對話的流程非常直覺，對硬體偵測的自動化做得很好。\n*   **TTFT 與效能：中下**\n    與 LM Studio 類似，Jan 的優勢在於精緻的 UI 體驗 [9, 10]，但由於缺乏對 Intel 專屬推理後端（如 OpenVINO）的深度客製化支援，在 UHD 770 上的 TTFT 表現較普通。若無法順利啟用 Vulkan 加速，系統會主要依賴 CPU（AVX2 指令集）進行 Prefill，在處理長 context 時會有明顯的卡頓感 [16, 17]。\n\n#### 3. GPT4All\n*   **易用性：高** [9, 10]\n    由 Nomic AI 開發，同樣提供安裝即可用的 GUI [9, 10]。\n*   **TTFT 與效能：普通（專門針對低配/純 CPU 優化）** [9, 10]\n    GPT4All 的核心特色是針對**低階硬體與純 CPU（CPU-Only）環境進行了極度優化** [9, 10]。如果您的 UHD 770 驅動在其他平台遇到相容性問題，GPT4All 依靠 CPU 運算（AVX/AVX2）仍能提供極為穩定的解碼表現 [16, 17]。然而，因為它不強求調用 GPU 推理加速，其 **TTFT（Prompt Processing）上限較低**，當輸入文字較長時，等待模型反應的時間會拉長 [16-18]。\n\n#### 4. 原生 llama.cpp（命令行/ `llama-server.exe`）\n*   **易用性：極低（陡峭的學習曲線）** [17-19]\n    沒有預設的 GUI。您需要自行到 GitHub 下載對應編譯版本的 zip 壓縮包，手動下載 GGUF 模型，並在 Windows PowerShell 中輸入複雜的指令與參數（例如 `--flash-attn`, `-ngl`, `-b` 等）來啟動伺服器 [20-25]。\n*   **TTFT 與效能：無庸置疑的最強（硬體極限速度）** [13-15]\n    由於沒有 GUI 額外的資源消耗，且您可以自由微調所有參數（如 Flash Attention 記憶體配置、連續批次處理大小 `-b`、KV Cache 量化等），**效能和 TTFT 表現都是所有方案中最頂尖的** [23-27]。更重要的是，它能讓您自由選擇最適合 Intel 硬體的加速後端。\n\n---\n\n### 二、 UHD 770 內顯下的關鍵效能瓶頸：後端選擇（Backend）\n\n若您選擇使用原生 **llama.cpp**，在 Windows 11 下針對 Intel GPU 主要有以下三種硬體加速後端，這會直接決定您的 TTFT 體驗：\n\n1.  **OpenVINO 後端（TTFT 的絕對王者）** [28, 29]\n    *   **效能：** OpenVINO 是 Intel 官方主力開發的推理加速引擎，**在 Prompt 處理（Prefill/TTFT）速度上徹底碾壓 SYCL 與 Vulkan** [6-8]。\n    *   **數據：** 根據官方與社群在 7B 模型（Q4_0 量化）的測試，**OpenVINO 後端能跑出高達 ~1497 t/s 的 Prompt 處理速度**，而同硬體下 Vulkan 僅有 ~259 t/s，SYCL 則僅有 ~220 t/s [30-32]。（在最新 Intel 處理器上，OpenVINO 的 Prefill 還能衝上將近 3000 t/s [33-35]）。\n    *   **結論：** 如果您需要處理長文本、程式碼補全（需要讀取大量上下文），**llama.cpp + OpenVINO 是唯一能提供秒級 TTFT 回應的方案**。\n2.  **Vulkan 後端（最推薦的折衷方案：好設定、效能穩）** [36-38]\n    *   **效能：** 雖然 Prompt 處理（TTFT）速度落後於 OpenVINO [33-35]，但 Token 生成速度（TG/Decode）非常優秀且穩定 [36-38]。\n    *   **易用性：** 這是 Windows 11 用戶最省心的硬體加速方式。llama.cpp 官方釋出的 Windows 預編譯版本中已整合了 Vulkan 執行環境 [39-42]。您**不需要安裝任何額外的 SDK**，解壓縮即可在 2 分鐘內直接調用內顯進行運算 [36-38, 40, 42]。\n3.  **SYCL 後端（極高折騰成本，效能不穩定）** [17, 19, 36, 37, 43]\n    *   要在 Windows 上編譯與執行 SYCL，您必須下載高達 3GB 的 Intel oneAPI SDK 工具包以及 Visual Studio C++ 編譯環境，過程極為痛苦 [19, 43, 44]。且在 consumer/舊型內顯上，許多編譯優化尚未到位，甚至在許多 release 版本中出現效能低下或不穩定的反饋，不建議在 UHD 770 上強行折騰 [45-47]。\n\n---\n\n### 三、 綜合評估與實選建議\n\n| 方案 | 易用性評級 | 核心特色 | 在 UHD 770 上的 TTFT 表現 | 適合使用場景 |\n| :--- | :--- | :--- | :--- | :--- |\n| **LM Studio** [9, 10] | ⭐⭐⭐⭐⭐ | 精美 GUI、OpenAI 相容 API、一鍵下模型 [9-11] | 🐌 **慢** (通常預設 CPU 運算或無優化 Vulkan) | 純對話、探索測試各種新模型 [9, 10] |\n| **Jan** [9, 10] | ⭐⭐⭐⭐⭐ | 本地優先、介面如 ChatGPT、開源乾淨 [9, 10] | 🐌 **慢** (易退回 CPU) | 日常助理、隱私對話 [9, 10] |\n| **GPT4All** [9, 10] | ⭐⭐⭐⭐ | 針對中低配 CPU 優化、運作極度穩定 [9, 10] | ⏳ **中下** (穩定但純依賴 CPU AVX 限制了上限) | 舊電腦、無獨立顯示卡且驅動難搞的系統 [9, 10] |\n| **原生 llama.cpp (OpenVINO 後端)** [28, 29] | ⭐ | 命令行運作、全手動配置參數 [17-19] | ⚡ **極快** (~1400+ t/s 的超速 prompt 吞吐) [30-32] | 開發整合、IDE 程式碼補全（最在乎 TTFT 延遲） |\n| **原生 llama.cpp (Vulkan 後端)** [36-38] | ⭐⭐ | 預編譯 zip 開箱即用，免裝 3GB SDK [36-38, 40, 42] | 🚄 **中等** (TG 解碼速度優秀，Prefill 較慢) [33-38] | 想省去設定麻煩又想體驗 GPU 加速的玩家 [36-38] |\n\n💡 **針對您的 UHD 770 (32 EUs) + 32GB RAM 環境的最終實踐建議：**\n由於 UHD 770 的圖形運算單元較小 [1-3]，在模型選擇上請堅守 **7B 到 14B 之間且經過 Q4_K_M 等中度量化的模型**（如 `Qwen2.5-Coder-7B-Instruct-Q4_K_M` 或 14B 版本）[21, 22, 48-50]，這樣才能在 32GB 記憶體共享頻寬下得到兼顧品質與輸出流暢度的本地體驗 [4, 21, 49, 50]。\n\n如果您希望深入了解如何快速利用 PowerShell 命令列載入預編譯的 llama.cpp (Vulkan) 來測試模型速度，或者想知道如何將其接口串接到 VS Code 的 Continue 插件中，請隨時告訴我！",
+    "citations": [
+      {
+        "source_id": "f7da8a61-870c-4727-8efe-3656261989bb",
+        "citation_number": 1,
+        "cited_text": "So even very old HW should work, for comparison consider that the example is on a 32 EU silicon. Upvote 2 Downvote Reply Award Share Report Award Share 2 more replies Dr_Warrior â€¢ 2y ago Can you tell me how U did it please. Upvote 1 Downvote Reply Award Share Report Award Share fakezeta OP â€¢ 2y ago LocalAI with AnythingLLM frontend. For Intel GPU acceleration Sycl image of LocalAI is needed. Upvote 1 Downvote Reply Award Share Report Award Share 4 more replies lemon07r â€¢ 2y ago How does this compare to CPU inference performance?"
+      },
+      {
+        "source_id": "48e401c2-e574-400e-9f5f-ab93df5a4be4",
+        "citation_number": 2,
+        "cited_text": "So even very old HW should work, for comparison consider that the example is on a 32 EU silicon. Upvote 2 Downvote Reply Award Share Report Award Share 2 more replies Dr_Warrior â€¢ 2y ago Can you tell me how U did it please. Upvote 1 Downvote Reply Award Share Report Award Share fakezeta OP â€¢ 2y ago LocalAI with AnythingLLM frontend. For Intel GPU acceleration Sycl image of LocalAI is needed. Upvote 1 Downvote Reply Award Share Report Award Share 4 more replies lemon07r â€¢ 2y ago How does this compare to CPU inference performance?"
+      },
+      {
+        "source_id": "23a02f67-c3f9-4815-a902-ab6b32ce93e8",
+        "citation_number": 3,
+        "cited_text": "So even very old HW should work, for comparison consider that the example is on a 32 EU silicon. Upvote 2 Downvote Reply Award Share Report Award Share 2 more replies Dr_Warrior â€¢ 2y ago Can you tell me how U did it please. Upvote 1 Downvote Reply Award Share Report Award Share fakezeta OP â€¢ 2y ago LocalAI with AnythingLLM frontend. For Intel GPU acceleration Sycl image of LocalAI is needed. Upvote 1 Downvote Reply Award Share Report Award Share 4 more replies lemon07r â€¢ 2y ago How does this compare to CPU inference performance?"
+      },
+      {
+        "source_id": "e0a8a77d-07a6-4f85-b8f3-eff8b287356e",
+        "citation_number": 4,
+        "cited_text": "Run LLM on Intel GPU Using the SYCL Backend A detailed guide is available in llama.cpp for SYCL . It can run on all Intel GPUs supported by SYCL and oneAPI. Server and cloud users can run on Intel Data Center GPU Max and Flex Series GPUs. Client users can try it out on their Intel Arc GPU or iGPU on Intel Core CPUs. We have tested the iGPUs of 11th Gen Core and newer. The older iGPU works but with poor performance. The only limitation is memory. The iGPU uses the host shared memory. The dGPU uses its own memory. We recommend using the iGPU with 80+ EUs (11th Gen Core and newer) and shared memory is more than 4.5 GB for llama2–7b-Q4 model (total host memory is 16 GB and more, and half memory could be allocated to iGPU)."
+      },
+      {
+        "source_id": "fb9a0071-85cd-48d5-bad2-37fab8f544cb",
+        "citation_number": 5,
+        "cited_text": "Quote reply edited Uh oh! There was an error while loading. Please reload this page . bobguns on Jun 1 📊 Intel Panther Lake Xe3 iGPU (12 EU) Benchmark Matrix: OpenVINO vs. Vulkan vs. SYCL Benchmarking sweep across all three major acceleration backends available in llama.cpp for Intel hardware: OpenVINO , Vulkan , and SYCL (oneAPI) . Environment Hardware: Intel Panther Lake mobile processor with Xe3 Graphics (12 Execution Units) OS: Ubuntu Linux 26.04 Memory Architecture: Unified Memory Architecture (UMA) sharing system RAM directly with the iGPU. llama.cpp Build: 55ac0909e (9458)"
+      },
+      {
+        "source_id": "2601886a-621a-4bbf-a8d7-51ea0264557c",
+        "citation_number": 6,
+        "cited_text": "In case anyone is interested, I decided to test out LLama.cpp's new OpenVino backend to see how it compares on Intel GPUs. At first glance, it stomps all over the previous best-case, SYCL, but lags behind LLM-Scaler (Intel's VLLM fork), likely just due to the hardware optimizations against GPTQ/Int4. Interestingly tg512 was fastest on SYCL, but in real world, the prompt processing always seems the be the indicator on this card. As usual with Intel, model selection is... poor. It took a while to even find a model that was in the validated OpenVino list that would not only run properly, but also have a counterpart that was \"close enough\" for LLM Scaler."
+      },
+      {
+        "source_id": "969ce851-6777-4e1d-8415-e4b4dc909430",
+        "citation_number": 7,
+        "cited_text": "In case anyone is interested, I decided to test out LLama.cpp's new OpenVino backend to see how it compares on Intel GPUs. At first glance, it stomps all over the previous best-case, SYCL, but lags behind LLM-Scaler (Intel's VLLM fork), likely just due to the hardware optimizations against GPTQ/Int4. Interestingly tg512 was fastest on SYCL, but in real world, the prompt processing always seems the be the indicator on this card. As usual with Intel, model selection is... poor. It took a while to even find a model that was in the validated OpenVino list that would not only run properly, but also have a counterpart that was \"close enough\" for LLM Scaler."
+      },
+      {
+        "source_id": "538274aa-0874-47d5-8773-5092b936d5af",
+        "citation_number": 8,
+        "cited_text": "In case anyone is interested, I decided to test out LLama.cpp's new OpenVino backend to see how it compares on Intel GPUs. At first glance, it stomps all over the previous best-case, SYCL, but lags behind LLM-Scaler (Intel's VLLM fork), likely just due to the hardware optimizations against GPTQ/Int4. Interestingly tg512 was fastest on SYCL, but in real world, the prompt processing always seems the be the indicator on this card. As usual with Intel, model selection is... poor. It took a while to even find a model that was in the validated OpenVino list that would not only run properly, but also have a counterpart that was \"close enough\" for LLM Scaler."
+      },
+      {
+        "source_id": "a06d17bf-6219-4b23-bce5-8d63ff42f3f8",
+        "citation_number": 9,
+        "cited_text": "Offline Coding Code on airplanes, in secure facilities, or during internet outages. Once models are downloaded, you're completely independent. Compliance-Ready GDPR, HIPAA, SOC 2, ISO 27001 — local AI makes compliance simpler since data never leaves your infrastructure. Sponsored Hapi 100% local AI transcription for Mac No cloud, no subscriptions — dictation and meeting notes that never leave your Mac. Try Hapi Quick Comparison: Top 5 Local ChatGPT Alternatives <cited_table>",
+        "cited_table": {
+          "num_columns": 6,
+          "rows": [
+            [
+              "Tool",
+              "Open Source",
+              "Has GUI",
+              "API",
+              "CPU-Only OK",
+              "Best For"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Developers"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Beginners"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Model exploration"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Low-end hardware"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Teams"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "1ee99fd0-580e-45ba-9e27-797ccf5a5901",
+        "citation_number": 10,
+        "cited_text": "Offline Coding Code on airplanes, in secure facilities, or during internet outages. Once models are downloaded, you're completely independent. Compliance-Ready GDPR, HIPAA, SOC 2, ISO 27001 — local AI makes compliance simpler since data never leaves your infrastructure. Sponsored Hapi 100% local AI transcription for Mac No cloud, no subscriptions — dictation and meeting notes that never leave your Mac. Try Hapi Quick Comparison: Top 5 Local ChatGPT Alternatives <cited_table>",
+        "cited_table": {
+          "num_columns": 6,
+          "rows": [
+            [
+              "Tool",
+              "Open Source",
+              "Has GUI",
+              "API",
+              "CPU-Only OK",
+              "Best For"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Developers"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Beginners"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Model exploration"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Low-end hardware"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "Teams"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "cc3d9570-b831-484b-8fce-6c8ed6af9417",
+        "citation_number": 11,
+        "cited_text": "LM Studio LM Studio is the simplest way to run local LLMs without dealing with raw model tooling. What it gives you: A UI to download and run models A local server that exposes an OpenAI-compatible API No need to manually manage inference engines Once running, it exposes an endpoint like (OpenAI compatible): This is the key piece. Copilot CLI will talk to this endpoint instead of the cloud. A Local Model (Be Realistic) Not all models are equal. And your hardware matters. For this guide, a small model like:"
+      },
+      {
+        "source_id": "69b33ba4-f3ad-4bd7-a210-951f1a1b93c7",
+        "citation_number": 12,
+        "cited_text": "LM Studio LM Studio is the simplest way to run local LLMs without dealing with raw model tooling. What it gives you: A UI to download and run models A local server that exposes an OpenAI-compatible API No need to manually manage inference engines Once running, it exposes an endpoint like (OpenAI compatible): This is the key piece. Copilot CLI will talk to this endpoint instead of the cloud. A Local Model (Be Realistic) Not all models are equal. And your hardware matters. For this guide, a small model like:"
+      },
+      {
+        "source_id": "42052147-aa1b-4caf-b61a-a6f8ec8b4e88",
+        "citation_number": 13,
+        "cited_text": "Anyone able to get 1 Million context working using llama.cpp for qwen 3.6 35B A3B? ](https://www.reddit.com/r/LocalLLM/comments/1t6qhwn/anyone_able_to_get_1_million_context_working/) 10 upvotes · 15 comments Llama CPP is giving me 2x to 3x speed of LMStudio on same settings r/LocalLLM • 20d ago [ Llama CPP is giving me 2x to 3x speed of LMStudio on same settings ](https://www.reddit.com/r/LocalLLM/comments/1vmjq48/llama_cpp_is_giving_me_2x_to_3x_speed_of_lmstudio/) 16 upvotes · 16 comments Intel Arc Pro B70 + llama.cpp (Vulkan) benchmarks with Qwen3.6-27B and Qwen3.6-35B-A3B r/LocalLLM • 2mo ago ["
+      },
+      {
+        "source_id": "ecf90a54-682c-4497-9eba-e4443f9c58b6",
+        "citation_number": 14,
+        "cited_text": "Llama CPP is giving me 2x to 3x speed of LMStudio on same settings r/LocalLLM • 20d ago [ Llama CPP is giving me 2x to 3x speed of LMStudio on same settings ](https://www.reddit.com/r/LocalLLM/comments/1vmjq48/llama_cpp_is_giving_me_2x_to_3x_speed_of_lmstudio/) 16 upvotes · 16 comments Need support for llama.cpp with multi GPU r/LocalLLaMA • 10d ago [ Need support for llama.cpp with multi GPU ](https://www.reddit.com/r/LocalLLaMA/comments/1vv76b7/need_support_for_llamacpp_with_multi_gpu/) 8 upvotes · 7 comments"
+      },
+      {
+        "source_id": "57c45db8-2a18-49ec-b751-47a2dd2f96b9",
+        "citation_number": 15,
+        "cited_text": "Anyone able to get 1 Million context working using llama.cpp for qwen 3.6 35B A3B? ](https://www.reddit.com/r/LocalLLM/comments/1t6qhwn/anyone_able_to_get_1_million_context_working/) 10 upvotes · 15 comments Llama CPP is giving me 2x to 3x speed of LMStudio on same settings r/LocalLLM • 20d ago [ Llama CPP is giving me 2x to 3x speed of LMStudio on same settings ](https://www.reddit.com/r/LocalLLM/comments/1vmjq48/llama_cpp_is_giving_me_2x_to_3x_speed_of_lmstudio/) 16 upvotes · 16 comments Intel Arc Pro B70 + llama.cpp (Vulkan) benchmarks with Qwen3.6-27B and Qwen3.6-35B-A3B r/LocalLLM • 2mo ago ["
+      },
+      {
+        "source_id": "69773ce1-1ac7-453d-a3fb-bde8522f3881",
+        "citation_number": 16,
+        "cited_text": "I build from llama.cpp source: install 3 additional Vulkan dev libraries and the usual C compiler stuff, git clone llama.cpp sources, compile with Vulkan enabled I tried SYCL once, and I got it to run, but it was such a mess of libraries so I stayed with Vulkan - it's good enough Upvote 1 Downvote Reply Award Share Report Award Share 3 more replies henk717 â€¢ 2mo ago I have only heard bad things about them, the moment someone says intel igpu I assume they are better off just using the cpu directly. On KoboldCpp we don't even default to iGPU's, the user has to specify they want to use vulkan manually. Because for some of the strix halo's are a dozen like these where its worse."
+      },
+      {
+        "source_id": "43e9cac6-3574-43cf-ac68-b9abd5151cae",
+        "citation_number": 17,
+        "cited_text": "I build from llama.cpp source: install 3 additional Vulkan dev libraries and the usual C compiler stuff, git clone llama.cpp sources, compile with Vulkan enabled I tried SYCL once, and I got it to run, but it was such a mess of libraries so I stayed with Vulkan - it's good enough Upvote 1 Downvote Reply Award Share Report Award Share 3 more replies henk717 â€¢ 2mo ago I have only heard bad things about them, the moment someone says intel igpu I assume they are better off just using the cpu directly. On KoboldCpp we don't even default to iGPU's, the user has to specify they want to use vulkan manually. Because for some of the strix halo's are a dozen like these where its worse."
+      },
+      {
+        "source_id": "0dfd73f6-eb09-48ea-b9ce-934d8cde4551",
+        "citation_number": 18,
+        "cited_text": "I build from llama.cpp source: install 3 additional Vulkan dev libraries and the usual C compiler stuff, git clone llama.cpp sources, compile with Vulkan enabled I tried SYCL once, and I got it to run, but it was such a mess of libraries so I stayed with Vulkan - it's good enough Upvote 1 Downvote Reply Award Share Report Award Share 3 more replies henk717 â€¢ 2mo ago I have only heard bad things about them, the moment someone says intel igpu I assume they are better off just using the cpu directly. On KoboldCpp we don't even default to iGPU's, the user has to specify they want to use vulkan manually. Because for some of the strix halo's are a dozen like these where its worse."
+      },
+      {
+        "source_id": "42052147-aa1b-4caf-b61a-a6f8ec8b4e88",
+        "citation_number": 19,
+        "cited_text": "Then docker compose build and docker compose up Upvote 1 Downvote Reply Award Share Report Award Share g1ccross • 3mo ago • Edited 3mo ago Make sure you have the oneapi stuff available. source /opt/intel/oneapi/setvars.sh; cmake -B build -DGGML_SYCL=1 -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx; cmake --build build --config Release -j$(nproc) Upvote 1 Downvote Reply Award Share Report Award Share CoolConfusion434 • 3mo ago On Windows you mean? If so, no, it isn't that straightforward to compile llama for Windows. You will need about 3.0Gb worth of sh*t from Intel, the entire VS2022+ with C++ IDE/compiler, and ancillary packages for Windows like Ninja, etc. Since I was cursing most of the time while doing this, I probably didn't write every detail of what you need but I do have a procedure to compile llama/SYCL on Windows if you need it."
+      },
+      {
+        "source_id": "70177533-435e-46df-8156-90b738c1f0ad",
+        "citation_number": 20,
+        "cited_text": "How to setup qwen coder 2.5 LLM for local dev on Windows in four steps – {handshake sound} Skip to content {handshake sound} About Blog Posts February 19, 2026 How to setup qwen coder 2.5 LLM for local dev on Windows in four steps Install llama.cpp, X64 Cuda 12 in my case (4070 Super 12GB)( https://github.com/ggml-org/llama.cpp/releases ) NOTE: there are two download links, don't forget the DLLs or you'll run in CPU mode! Download a GGUF model file off hugging face that will fit in your GPU VRAM (IMO iterative performance > slow thinking windows) https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct-GGUF/resolve/main/qwen2.5-coder-14b-instruct-q4_k_m.gguf?download=true Run the server. Example with params: allocate to GPU, context window, cpu threads, flash-attn, localhost, port, chat template for the selected model and alias to use with your IDE/client/agent: .\\llama-server.exe -m models\\Qwen2.5-Coder-14B-Instruct-Q4_K_M.gguf -ngl 99 -c 16384 --flash-attn on -t 8 --host 127.0.0.1 --port 8888 --chat-template chatml --alias johnnyfive Verify it works with curl http://127.0.0.1:8888/v1/models and note the alias should match your param which you'll need to call from your IDE of choice! IDE specific notes below."
+      },
+      {
+        "source_id": "d5fe74ab-5cd8-4b5c-a27b-dba763f0c5af",
+        "citation_number": 21,
+        "cited_text": "How to setup qwen coder 2.5 LLM for local dev on Windows in four steps – {handshake sound} Skip to content {handshake sound} About Blog Posts February 19, 2026 How to setup qwen coder 2.5 LLM for local dev on Windows in four steps Install llama.cpp, X64 Cuda 12 in my case (4070 Super 12GB)( https://github.com/ggml-org/llama.cpp/releases ) NOTE: there are two download links, don't forget the DLLs or you'll run in CPU mode! Download a GGUF model file off hugging face that will fit in your GPU VRAM (IMO iterative performance > slow thinking windows) https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct-GGUF/resolve/main/qwen2.5-coder-14b-instruct-q4_k_m.gguf?download=true Run the server. Example with params: allocate to GPU, context window, cpu threads, flash-attn, localhost, port, chat template for the selected model and alias to use with your IDE/client/agent: .\\llama-server.exe -m models\\Qwen2.5-Coder-14B-Instruct-Q4_K_M.gguf -ngl 99 -c 16384 --flash-attn on -t 8 --host 127.0.0.1 --port 8888 --chat-template chatml --alias johnnyfive Verify it works with curl http://127.0.0.1:8888/v1/models and note the alias should match your param which you'll need to call from your IDE of choice! IDE specific notes below."
+      },
+      {
+        "source_id": "9d295ba0-bb6f-4362-8785-699b40b3c9c8",
+        "citation_number": 22,
+        "cited_text": "How to setup qwen coder 2.5 LLM for local dev on Windows in four steps – {handshake sound} Skip to content {handshake sound} About Blog Posts February 19, 2026 How to setup qwen coder 2.5 LLM for local dev on Windows in four steps Install llama.cpp, X64 Cuda 12 in my case (4070 Super 12GB)( https://github.com/ggml-org/llama.cpp/releases ) NOTE: there are two download links, don't forget the DLLs or you'll run in CPU mode! Download a GGUF model file off hugging face that will fit in your GPU VRAM (IMO iterative performance > slow thinking windows) https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct-GGUF/resolve/main/qwen2.5-coder-14b-instruct-q4_k_m.gguf?download=true Run the server. Example with params: allocate to GPU, context window, cpu threads, flash-attn, localhost, port, chat template for the selected model and alias to use with your IDE/client/agent: .\\llama-server.exe -m models\\Qwen2.5-Coder-14B-Instruct-Q4_K_M.gguf -ngl 99 -c 16384 --flash-attn on -t 8 --host 127.0.0.1 --port 8888 --chat-template chatml --alias johnnyfive Verify it works with curl http://127.0.0.1:8888/v1/models and note the alias should match your param which you'll need to call from your IDE of choice! IDE specific notes below."
+      },
+      {
+        "source_id": "3e0529ae-015c-4ace-9f34-99dbdd6f979c",
+        "citation_number": 23,
+        "cited_text": "Probably your runtime configuration. The parameters you set (or don't set) when launching llama.cpp or Ollama often matter more for real-world performance than the model or quantization format you chose. Here's the short version: <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Parameter",
+              "What it controls",
+              "Why it matters"
+            ],
+            [
+              "--ctx-size",
+              "KV cache memory budget",
+              "Pre-allocated at startup. Too high and you swap. Too low and the model forgets."
+            ],
+            [
+              "--cache-type-k/v",
+              "KV cache precision",
+              "Q8_0 halves cache memory with near-zero quality loss. Not all architectures benefit equally."
+            ],
+            [
+              "--flash-attn",
+              "Attention memory layout",
+              "Drops attention memory from O(n²) to O(n). No downside."
+            ],
+            [
+              "-b",
+              "Prompt processing speed",
+              "Larger batches = 2-3x faster prompt eval."
+            ],
+            [
+              "--parallel",
+              "Concurrent request slots",
+              "Slots share the context budget. More slots = less context each."
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "68c6314b-a255-407f-9db6-34160d77074c",
+        "citation_number": 24,
+        "cited_text": "Probably your runtime configuration. The parameters you set (or don't set) when launching llama.cpp or Ollama often matter more for real-world performance than the model or quantization format you chose. Here's the short version: <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Parameter",
+              "What it controls",
+              "Why it matters"
+            ],
+            [
+              "--ctx-size",
+              "KV cache memory budget",
+              "Pre-allocated at startup. Too high and you swap. Too low and the model forgets."
+            ],
+            [
+              "--cache-type-k/v",
+              "KV cache precision",
+              "Q8_0 halves cache memory with near-zero quality loss. Not all architectures benefit equally."
+            ],
+            [
+              "--flash-attn",
+              "Attention memory layout",
+              "Drops attention memory from O(n²) to O(n). No downside."
+            ],
+            [
+              "-b",
+              "Prompt processing speed",
+              "Larger batches = 2-3x faster prompt eval."
+            ],
+            [
+              "--parallel",
+              "Concurrent request slots",
+              "Slots share the context budget. More slots = less context each."
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "37f59a3d-c6db-4608-aac1-d78cea4f4104",
+        "citation_number": 25,
+        "cited_text": "Probably your runtime configuration. The parameters you set (or don't set) when launching llama.cpp or Ollama often matter more for real-world performance than the model or quantization format you chose. Here's the short version: <cited_table>",
+        "cited_table": {
+          "num_columns": 3,
+          "rows": [
+            [
+              "Parameter",
+              "What it controls",
+              "Why it matters"
+            ],
+            [
+              "--ctx-size",
+              "KV cache memory budget",
+              "Pre-allocated at startup. Too high and you swap. Too low and the model forgets."
+            ],
+            [
+              "--cache-type-k/v",
+              "KV cache precision",
+              "Q8_0 halves cache memory with near-zero quality loss. Not all architectures benefit equally."
+            ],
+            [
+              "--flash-attn",
+              "Attention memory layout",
+              "Drops attention memory from O(n²) to O(n). No downside."
+            ],
+            [
+              "-b",
+              "Prompt processing speed",
+              "Larger batches = 2-3x faster prompt eval."
+            ],
+            [
+              "--parallel",
+              "Concurrent request slots",
+              "Slots share the context budget. More slots = less context each."
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "969ce851-6777-4e1d-8415-e4b4dc909430",
+        "citation_number": 26,
+        "cited_text": "â€¢ 4mo ago ipex-llm is still by far the best LLM acceleration lib on Intel GPU (for the models it supports, such as DeepSeek-R1-Distill-Llama-8B-GGUF) Upvote 1 Downvote Reply Award Share Report Award Share reps_up â€¢ 1mo ago Hey, you seem to know what you're talking about, have you seen this? https://reddit.com/r/IntelArc/comments/1uvbckq/welcome_to_rstratum_lets_talk_intel_arc_inference/ Upvote 1 Downvote Reply Award Share Report Award Share Fmstrat OP â€¢ 24d ago A closed source app where you curl an installer? And the binaries just look like a Go wrapper around llama.cpp? No thanks."
+      },
+      {
+        "source_id": "ecf90a54-682c-4497-9eba-e4443f9c58b6",
+        "citation_number": 27,
+        "cited_text": "Optimizing llama.cpp with MTP, Dflash, etc? r/LocalLLaMA • 19d ago [ Optimizing llama.cpp with MTP, Dflash, etc? ](https://www.reddit.com/r/LocalLLaMA/comments/1vntg1n/optimizing_llamacpp_with_mtp_dflash_etc/) 9 upvotes · 28 comments Are these the best llama.cpp settings for Qwen 3.8 on a 24 GB RTX 4090? r/LocalLLM • 12d ago [ Are these the best llama.cpp settings for Qwen 3.8 on a 24 GB RTX 4090? ](https://www.reddit.com/r/LocalLLM/comments/1vtvqu9/are_these_the_best_llamacpp_settings_for_qwen_38/) 7 upvotes · 10 comments"
+      },
+      {
+        "source_id": "42052147-aa1b-4caf-b61a-a6f8ec8b4e88",
+        "citation_number": 28,
+        "cited_text": "Upvote 11 Downvote Reply Award Share Report Award Share Hytht • 3mo ago It's like Intel doesn't care about the sycl backend in llama.cpp, except ipex-llm which was discontinued and not upstreamed. They develop OpenVINO instead. Their AI playground on Windows uses the vulkan backend for llama.cpp. llama.cpp even disabled sycl prebuilts for new releases. Upvote 4 Downvote Reply Award Share Report Award Share 5 more replies Thistlemanizzle • 3mo ago Ah, the B70 Pro. What models run well for you? (Other than Qwen 3.6)"
+      },
+      {
+        "source_id": "57c45db8-2a18-49ec-b751-47a2dd2f96b9",
+        "citation_number": 29,
+        "cited_text": "Upvote 11 Downvote Reply Award Share Report Award Share Hytht • 3mo ago It's like Intel doesn't care about the sycl backend in llama.cpp, except ipex-llm which was discontinued and not upstreamed. They develop OpenVINO instead. Their AI playground on Windows uses the vulkan backend for llama.cpp. llama.cpp even disabled sycl prebuilts for new releases. Upvote 4 Downvote Reply Award Share Report Award Share 5 more replies Thistlemanizzle • 3mo ago Ah, the B70 Pro. What models run well for you? (Other than Qwen 3.6)"
+      },
+      {
+        "source_id": "fb9a0071-85cd-48d5-bad2-37fab8f544cb",
+        "citation_number": 30,
+        "cited_text": "load_backend: loaded Vulkan backend from /app/libggml-vulkan.so load_backend: loaded CPU backend from /app/libggml-cpu-haswell.so <cited_table> Openvino OpenVINO: using device GPU <cited_table>",
+        "cited_table": {
+          "num_columns": 8,
+          "rows": [
+            [
+              "model",
+              "size",
+              "params",
+              "backend",
+              "ngl",
+              "fa",
+              "test",
+              "t/s"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "1",
+              "pp512",
+              "259.51 ± 0.42"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "1",
+              "tg128",
+              "17.57 ± 0.02"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "0",
+              "pp512",
+              "247.03 ± 0.24"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "0",
+              "tg128",
+              "17.25 ± 0.02"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "5e891f24-62b8-48ce-a8ed-42e147052204",
+        "citation_number": 31,
+        "cited_text": "load_backend: loaded Vulkan backend from /app/libggml-vulkan.so load_backend: loaded CPU backend from /app/libggml-cpu-haswell.so <cited_table> Openvino OpenVINO: using device GPU <cited_table>",
+        "cited_table": {
+          "num_columns": 8,
+          "rows": [
+            [
+              "model",
+              "size",
+              "params",
+              "backend",
+              "ngl",
+              "fa",
+              "test",
+              "t/s"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "1",
+              "pp512",
+              "259.51 ± 0.42"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "1",
+              "tg128",
+              "17.57 ± 0.02"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "0",
+              "pp512",
+              "247.03 ± 0.24"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "0",
+              "tg128",
+              "17.25 ± 0.02"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "dff93d9a-02f1-427d-bc13-2f369c7558ce",
+        "citation_number": 32,
+        "cited_text": "load_backend: loaded Vulkan backend from /app/libggml-vulkan.so load_backend: loaded CPU backend from /app/libggml-cpu-haswell.so <cited_table> Openvino OpenVINO: using device GPU <cited_table>",
+        "cited_table": {
+          "num_columns": 8,
+          "rows": [
+            [
+              "model",
+              "size",
+              "params",
+              "backend",
+              "ngl",
+              "fa",
+              "test",
+              "t/s"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "1",
+              "pp512",
+              "259.51 ± 0.42"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "1",
+              "tg128",
+              "17.57 ± 0.02"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "0",
+              "pp512",
+              "247.03 ± 0.24"
+            ],
+            [
+              "llama 7B Q4_0",
+              "3.56 GiB",
+              "6.74 B",
+              "Vulkan",
+              "99",
+              "0",
+              "tg128",
+              "17.25 ± 0.02"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "fb9a0071-85cd-48d5-bad2-37fab8f544cb",
+        "citation_number": 33,
+        "cited_text": "Models Tested Qwen2.5-7B-Instruct-Q4_0 (Dense, 4.13 GiB) Qwen3-Coder-Next-Q4_K_M (80B MoE, 45.15 GiB) — Note: Leverages UMA to allocate the entire 45 GB model file entirely within system-shared VRAM. 📈 Performance Summary Matrix <cited_table>",
+        "cited_table": {
+          "num_columns": 7,
+          "rows": [
+            [
+              "Model",
+              "Backend",
+              "Prompt Processing 1024 (t/s)",
+              "Prompt Processing 4096 (t/s)",
+              "Token Gen 128 (t/s)",
+              "Token Gen 512 (t/s)",
+              "Status / Observation"
+            ],
+            [
+              "Qwen 2.5 7B",
+              "OpenVINO",
+              "2988.73",
+              "2551.74",
+              "17.51",
+              "16.80",
+              "Champion prompt processing"
+            ],
+            [
+              "",
+              "Vulkan",
+              "769.85",
+              "502.20",
+              "14.62",
+              "14.55",
+              "Strong ingestion, trailing generation"
+            ],
+            [
+              "",
+              "SYCL",
+              "305.08",
+              "269.69",
+              "17.55",
+              "17.50",
+              "Maximum generation throughput"
+            ],
+            [
+              "Qwen3 80B",
+              "OpenVINO",
+              "—",
+              "—",
+              "—",
+              "—",
+              "CRASH"
+            ],
+            [
+              "",
+              "Vulkan",
+              "341.48",
+              "295.77",
+              "16.39",
+              "16.37",
+              "Fully stable, superior ingestion"
+            ],
+            [
+              "",
+              "SYCL",
+              "166.85",
+              "172.98",
+              "17.53",
+              "17.32",
+              "Fully stable, maximum generation"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "5e891f24-62b8-48ce-a8ed-42e147052204",
+        "citation_number": 34,
+        "cited_text": "Models Tested Qwen2.5-7B-Instruct-Q4_0 (Dense, 4.13 GiB) Qwen3-Coder-Next-Q4_K_M (80B MoE, 45.15 GiB) — Note: Leverages UMA to allocate the entire 45 GB model file entirely within system-shared VRAM. 📈 Performance Summary Matrix <cited_table>",
+        "cited_table": {
+          "num_columns": 7,
+          "rows": [
+            [
+              "Model",
+              "Backend",
+              "Prompt Processing 1024 (t/s)",
+              "Prompt Processing 4096 (t/s)",
+              "Token Gen 128 (t/s)",
+              "Token Gen 512 (t/s)",
+              "Status / Observation"
+            ],
+            [
+              "Qwen 2.5 7B",
+              "OpenVINO",
+              "2988.73",
+              "2551.74",
+              "17.51",
+              "16.80",
+              "Champion prompt processing"
+            ],
+            [
+              "",
+              "Vulkan",
+              "769.85",
+              "502.20",
+              "14.62",
+              "14.55",
+              "Strong ingestion, trailing generation"
+            ],
+            [
+              "",
+              "SYCL",
+              "305.08",
+              "269.69",
+              "17.55",
+              "17.50",
+              "Maximum generation throughput"
+            ],
+            [
+              "Qwen3 80B",
+              "OpenVINO",
+              "—",
+              "—",
+              "—",
+              "—",
+              "CRASH"
+            ],
+            [
+              "",
+              "Vulkan",
+              "341.48",
+              "295.77",
+              "16.39",
+              "16.37",
+              "Fully stable, superior ingestion"
+            ],
+            [
+              "",
+              "SYCL",
+              "166.85",
+              "172.98",
+              "17.53",
+              "17.32",
+              "Fully stable, maximum generation"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "dff93d9a-02f1-427d-bc13-2f369c7558ce",
+        "citation_number": 35,
+        "cited_text": "Models Tested Qwen2.5-7B-Instruct-Q4_0 (Dense, 4.13 GiB) Qwen3-Coder-Next-Q4_K_M (80B MoE, 45.15 GiB) — Note: Leverages UMA to allocate the entire 45 GB model file entirely within system-shared VRAM. 📈 Performance Summary Matrix <cited_table>",
+        "cited_table": {
+          "num_columns": 7,
+          "rows": [
+            [
+              "Model",
+              "Backend",
+              "Prompt Processing 1024 (t/s)",
+              "Prompt Processing 4096 (t/s)",
+              "Token Gen 128 (t/s)",
+              "Token Gen 512 (t/s)",
+              "Status / Observation"
+            ],
+            [
+              "Qwen 2.5 7B",
+              "OpenVINO",
+              "2988.73",
+              "2551.74",
+              "17.51",
+              "16.80",
+              "Champion prompt processing"
+            ],
+            [
+              "",
+              "Vulkan",
+              "769.85",
+              "502.20",
+              "14.62",
+              "14.55",
+              "Strong ingestion, trailing generation"
+            ],
+            [
+              "",
+              "SYCL",
+              "305.08",
+              "269.69",
+              "17.55",
+              "17.50",
+              "Maximum generation throughput"
+            ],
+            [
+              "Qwen3 80B",
+              "OpenVINO",
+              "—",
+              "—",
+              "—",
+              "—",
+              "CRASH"
+            ],
+            [
+              "",
+              "Vulkan",
+              "341.48",
+              "295.77",
+              "16.39",
+              "16.37",
+              "Fully stable, superior ingestion"
+            ],
+            [
+              "",
+              "SYCL",
+              "166.85",
+              "172.98",
+              "17.53",
+              "17.32",
+              "Fully stable, maximum generation"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "42052147-aa1b-4caf-b61a-a6f8ec8b4e88",
+        "citation_number": 36,
+        "cited_text": "FWIW, I get twice the performance (both processing and generation) on Windows (yep) using Vulkan than SYCL on Linux or Win. Llama releases are still compiling binaries for Vulkan/Win so it's a literal 2 mins ops to try the latest build. Upvote 1 Downvote Reply Award Share Report Award Share daddywookie • 3mo ago Yes, I thought it was more involved than others were saying. Since I'm on an Arc A750 as well the benefits of SYCL are even smaller, but maybe this recent version will make it worthwhile. Thanks for taking the time to write this up, I'll give it a go and see if I can get it running."
+      },
+      {
+        "source_id": "57c45db8-2a18-49ec-b751-47a2dd2f96b9",
+        "citation_number": 37,
+        "cited_text": "FWIW, I get twice the performance (both processing and generation) on Windows (yep) using Vulkan than SYCL on Linux or Win. Llama releases are still compiling binaries for Vulkan/Win so it's a literal 2 mins ops to try the latest build. Upvote 1 Downvote Reply Award Share Report Award Share daddywookie • 3mo ago Yes, I thought it was more involved than others were saying. Since I'm on an Arc A750 as well the benefits of SYCL are even smaller, but maybe this recent version will make it worthwhile. Thanks for taking the time to write this up, I'll give it a go and see if I can get it running."
+      },
+      {
+        "source_id": "ecf90a54-682c-4497-9eba-e4443f9c58b6",
+        "citation_number": 38,
+        "cited_text": "FWIW, I get twice the performance (both processing and generation) on Windows (yep) using Vulkan than SYCL on Linux or Win. Llama releases are still compiling binaries for Vulkan/Win so it's a literal 2 mins ops to try the latest build. Upvote 1 Downvote Reply Award Share Report Award Share daddywookie • 3mo ago Yes, I thought it was more involved than others were saying. Since I'm on an Arc A750 as well the benefits of SYCL are even smaller, but maybe this recent version will make it worthwhile. Thanks for taking the time to write this up, I'll give it a go and see if I can get it running."
+      },
+      {
+        "source_id": "17371e51-e5ef-4462-b653-f143e6faa719",
+        "citation_number": 39,
+        "cited_text": "Llama.cpp + SYCL The llama.cpp SYCL backend is primarily designed for Intel GPUs . SYCL cross-platform capabilities enable support for other vendor GPUs as well. Recommended Release Windows The following releases are verified and recommended: <cited_table>",
+        "cited_table": {
+          "num_columns": 5,
+          "rows": [
+            [
+              "Commit ID",
+              "Tag",
+              "Release",
+              "Verified Platform",
+              "Update date"
+            ],
+            [
+              "24e86cae7219b0f3ede1d5abdf5bf3ad515cccb8",
+              "b5377",
+              "llama-b5377-bin-win-sycl-x64.zip",
+              "Arc B580/Linux/oneAPI 2025.1 LNL Arc GPU/Windows 11/oneAPI 2025.1.1",
+              "2025-05-15"
+            ],
+            [
+              "3bcd40b3c593d14261fb2abfabad3c0fb5b9e318",
+              "b4040",
+              "llama-b4040-bin-win-sycl-x64.zip",
+              "Arc A770/Linux/oneAPI 2024.1 MTL Arc GPU/Windows 11/oneAPI 2024.1",
+              "2024-11-19"
+            ],
+            [
+              "fb76ec31a9914b7761c1727303ab30380fd4f05c",
+              "b3038",
+              "llama-b3038-bin-win-sycl-x64.zip",
+              "Arc A770/Linux/oneAPI 2024.1 MTL Arc GPU/Windows 11/oneAPI 2024.1",
+              ""
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "17371e51-e5ef-4462-b653-f143e6faa719",
+        "citation_number": 40,
+        "cited_text": "Option 1: download the binary package directly Download the binary package for Windows from: https://github.com/ggml-org/llama.cpp/releases . Extract the package to local folder, run the llama tools directly. Refer to Run the inference . Note, the package includes the SYCL running time and all depended dll files, no need to install oneAPI package and activte them. Option 2: build locally from the source code. I. Setup environment Install Visual Studio If you already have a recent version of Microsoft Visual Studio, you can skip this step. Otherwise, please refer to the official download page for Microsoft Visual Studio ."
+      },
+      {
+        "source_id": "8fa987a5-82c4-48e6-8285-e01895cf2902",
+        "citation_number": 41,
+        "cited_text": "Llama.cpp + SYCL The llama.cpp SYCL backend is primarily designed for Intel GPUs . SYCL cross-platform capabilities enable support for other vendor GPUs as well. Recommended Release Windows The following releases are verified and recommended: <cited_table>",
+        "cited_table": {
+          "num_columns": 5,
+          "rows": [
+            [
+              "Commit ID",
+              "Tag",
+              "Release",
+              "Verified Platform",
+              "Update date"
+            ],
+            [
+              "24e86cae7219b0f3ede1d5abdf5bf3ad515cccb8",
+              "b5377",
+              "llama-b5377-bin-win-sycl-x64.zip",
+              "Arc B580/Linux/oneAPI 2025.1 LNL Arc GPU/Windows 11/oneAPI 2025.1.1",
+              "2025-05-15"
+            ],
+            [
+              "3bcd40b3c593d14261fb2abfabad3c0fb5b9e318",
+              "b4040",
+              "llama-b4040-bin-win-sycl-x64.zip",
+              "Arc A770/Linux/oneAPI 2024.1 MTL Arc GPU/Windows 11/oneAPI 2024.1",
+              "2024-11-19"
+            ],
+            [
+              "fb76ec31a9914b7761c1727303ab30380fd4f05c",
+              "b3038",
+              "llama-b3038-bin-win-sycl-x64.zip",
+              "Arc A770/Linux/oneAPI 2024.1 MTL Arc GPU/Windows 11/oneAPI 2024.1",
+              ""
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "8fa987a5-82c4-48e6-8285-e01895cf2902",
+        "citation_number": 42,
+        "cited_text": "Option 1: download the binary package directly Download the binary package for Windows from: https://github.com/ggml-org/llama.cpp/releases . Extract the package to local folder, run the llama tools directly. Refer to Run the inference . Note, the package includes the SYCL running time and all depended dll files, no need to install oneAPI package and activte them. Option 2: build locally from the source code. I. Setup environment Install Visual Studio If you already have a recent version of Microsoft Visual Studio, you can skip this step. Otherwise, please refer to the official download page for Microsoft Visual Studio ."
+      },
+      {
+        "source_id": "57c45db8-2a18-49ec-b751-47a2dd2f96b9",
+        "citation_number": 43,
+        "cited_text": "Then docker compose build and docker compose up Upvote 1 Downvote Reply Award Share Report Award Share g1ccross • 3mo ago • Edited 3mo ago Make sure you have the oneapi stuff available. source /opt/intel/oneapi/setvars.sh; cmake -B build -DGGML_SYCL=1 -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx; cmake --build build --config Release -j$(nproc) Upvote 1 Downvote Reply Award Share Report Award Share CoolConfusion434 • 3mo ago On Windows you mean? If so, no, it isn't that straightforward to compile llama for Windows. You will need about 3.0Gb worth of sh*t from Intel, the entire VS2022+ with C++ IDE/compiler, and ancillary packages for Windows like Ninja, etc. Since I was cursing most of the time while doing this, I probably didn't write every detail of what you need but I do have a procedure to compile llama/SYCL on Windows if you need it."
+      },
+      {
+        "source_id": "ecf90a54-682c-4497-9eba-e4443f9c58b6",
+        "citation_number": 44,
+        "cited_text": "Then docker compose build and docker compose up Upvote 1 Downvote Reply Award Share Report Award Share g1ccross • 3mo ago • Edited 3mo ago Make sure you have the oneapi stuff available. source /opt/intel/oneapi/setvars.sh; cmake -B build -DGGML_SYCL=1 -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx; cmake --build build --config Release -j$(nproc) Upvote 1 Downvote Reply Award Share Report Award Share CoolConfusion434 • 3mo ago On Windows you mean? If so, no, it isn't that straightforward to compile llama for Windows. You will need about 3.0Gb worth of sh*t from Intel, the entire VS2022+ with C++ IDE/compiler, and ancillary packages for Windows like Ninja, etc. Since I was cursing most of the time while doing this, I probably didn't write every detail of what you need but I do have a procedure to compile llama/SYCL on Windows if you need it."
+      },
+      {
+        "source_id": "ff80f694-db38-4526-bf62-626630283170",
+        "citation_number": 45,
+        "cited_text": "Archived post Award this post Report Intel Arc Pro B70 (32GB) for Local LLMs: llama.cpp (SYCL/Vulkan), vLLM (Intel LLM Scaler) Benchmarks News r/LocalLLM â€¢ 3 mo. ago Intel Arc Pro B70 (32GB) for Local LLMs: llama.cpp (SYCL/Vulkan), vLLM (Intel LLM Scaler) Benchmarks Play 28 upvotes Â· 14 comments Upvote 36 Downvote 10 Go to comments Share Sort by: Best Open comment sort options Best Top New Controversial Old Q&A Search Comments Expand comment search Cancel Comments Section UDaManFunks â€¢ 3mo ago SYCL is garbage when used with llama.cpp, as the video noted - a lot of optimizations are not implemented and barely anyone is making any commits to that backend in llama.cpp"
+      },
+      {
+        "source_id": "63ffecc0-3a78-4f2f-9a5c-335d9d298d77",
+        "citation_number": 46,
+        "cited_text": "Archived post Award this post Report Intel Arc Pro B70 (32GB) for Local LLMs: llama.cpp (SYCL/Vulkan), vLLM (Intel LLM Scaler) Benchmarks News r/LocalLLM â€¢ 3 mo. ago Intel Arc Pro B70 (32GB) for Local LLMs: llama.cpp (SYCL/Vulkan), vLLM (Intel LLM Scaler) Benchmarks Play 28 upvotes Â· 14 comments Upvote 36 Downvote 10 Go to comments Share Sort by: Best Open comment sort options Best Top New Controversial Old Q&A Search Comments Expand comment search Cancel Comments Section UDaManFunks â€¢ 3mo ago SYCL is garbage when used with llama.cpp, as the video noted - a lot of optimizations are not implemented and barely anyone is making any commits to that backend in llama.cpp"
+      },
+      {
+        "source_id": "d071bba8-c815-46bf-b3e4-3e4206d7a8d7",
+        "citation_number": 47,
+        "cited_text": "Archived post Award this post Report Intel Arc Pro B70 (32GB) for Local LLMs: llama.cpp (SYCL/Vulkan), vLLM (Intel LLM Scaler) Benchmarks News r/LocalLLM â€¢ 3 mo. ago Intel Arc Pro B70 (32GB) for Local LLMs: llama.cpp (SYCL/Vulkan), vLLM (Intel LLM Scaler) Benchmarks Play 28 upvotes Â· 14 comments Upvote 36 Downvote 10 Go to comments Share Sort by: Best Open comment sort options Best Top New Controversial Old Q&A Search Comments Expand comment search Cancel Comments Section UDaManFunks â€¢ 3mo ago SYCL is garbage when used with llama.cpp, as the video noted - a lot of optimizations are not implemented and barely anyone is making any commits to that backend in llama.cpp"
+      },
+      {
+        "source_id": "07e8752b-ea48-4810-b81b-d2207db5ec29",
+        "citation_number": 48,
+        "cited_text": "spark Gemini keyboard_arrow_down GGUF / llama.cpp Conversion To save to GGUF / llama.cpp , we support it natively now! We clone llama.cpp and we default save it to q8_0 . We allow all methods like q4_k_m . Use save_pretrained_gguf for local saving and push_to_hub_gguf for uploading to HF. Some supported quant methods (full list on our docs page ): q8_0 - Fast conversion. High resource use, but generally acceptable. q4_k_m - Recommended. Uses Q6_K for half of the attention.wv and feed_forward.w2 tensors, else Q4_K. q5_k_m - Recommended. Uses Q6_K for half of the attention.wv and feed_forward.w2 tensors, else Q5_K."
+      },
+      {
+        "source_id": "ebdc22fa-6f6c-4ae6-9010-a246ba56ffbd",
+        "citation_number": 49,
+        "cited_text": "Compare Developer Tools <cited_table> For teams doing summarisation, email drafting, FAQ generation, or basic data extraction, Q4_K_M on a well-chosen 7B or 8B model will be nearly indistinguishable from FP16 in day-to-day use. Dropping to Q2_K is only advisable when you genuinely cannot fit a Q4 model and cannot upgrade your hardware.",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Quantisation",
+              "Relative Size",
+              "Quality vs FP16",
+              "Best Use Case"
+            ],
+            [
+              "FP16",
+              "100%",
+              "Reference",
+              "Research, maximum quality"
+            ],
+            [
+              "Q8_0",
+              "~53%",
+              "Near-identical",
+              "High-end GPU with spare VRAM"
+            ],
+            [
+              "Q4_K_M",
+              "~30%",
+              "Very good",
+              "Most business workloads"
+            ],
+            [
+              "Q4_0",
+              "~28%",
+              "Good",
+              "Memory-constrained systems"
+            ],
+            [
+              "Q2_K",
+              "~18%",
+              "Acceptable",
+              "Very low VRAM, simple tasks"
+            ]
+          ]
+        }
+      },
+      {
+        "source_id": "e70e8747-2ee4-4141-b910-b3e8fdcf4695",
+        "citation_number": 50,
+        "cited_text": "Development Tools <cited_table> For teams doing summarisation, email drafting, FAQ generation, or basic data extraction, Q4_K_M on a well-chosen 7B or 8B model will be nearly indistinguishable from FP16 in day-to-day use. Dropping to Q2_K is only advisable when you genuinely cannot fit a Q4 model and cannot upgrade your hardware.",
+        "cited_table": {
+          "num_columns": 4,
+          "rows": [
+            [
+              "Quantisation",
+              "Relative Size",
+              "Quality vs FP16",
+              "Best Use Case"
+            ],
+            [
+              "FP16",
+              "100%",
+              "Reference",
+              "Research, maximum quality"
+            ],
+            [
+              "Q8_0",
+              "~53%",
+              "Near-identical",
+              "High-end GPU with spare VRAM"
+            ],
+            [
+              "Q4_K_M",
+              "~30%",
+              "Very good",
+              "Most business workloads"
+            ],
+            [
+              "Q4_0",
+              "~28%",
+              "Good",
+              "Memory-constrained systems"
+            ],
+            [
+              "Q2_K",
+              "~18%",
+              "Acceptable",
+              "Very low VRAM, simple tasks"
+            ]
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260901-001",
+  "notebook_id": "b8e1d221-6784-454f-a20d-cb536253134f",
+  "before_count": 63,
+  "after_count": 61,
+  "removed": [
+    {
+      "id": "07ea44e1-9152-46f7-a193-c72c69fa74da",
+      "title": "Qwen2.5-Coder 14B Instruct API & Playground - Fireworks AI",
+      "reason": "該來源為 Fireworks AI 的商業 API 服務與 Playground 產品推廣頁面，主要提供定價、託管服務與企業解決方案等行銷資訊，缺乏與 Local LLM 本地部署、量化或本機整合相關的具體技術實作細節。"
+    },
+    {
+      "id": "5570c89c-dc7e-4732-bccf-be8183aeced5",
+      "title": "Run Qwen2.5-Coder-14B Instruct API (Easy Deployment & Flat-Rate Pricing) - Featherless",
+      "reason": "該來源為 Featherless AI 的雲端 API 託管平台行銷與定價頁面，其內容聚焦於 SaaS 平台的付費方案、專用 GPU 成本計算及與競爭對手的價格對比，不包含任何本地運行、量化策略或開發工具整合的實質技術細節。"
+    }
+  ],
+  "unmatched_flags": [
+    {
+      "title": "Qwen/Qwen2.5-Coder-7B-Instruct · 14B in the future?",
+      "reason": "此來源為 2024 年底的社群討論頁面，討論 Qwen2.5-Coder 14B 是否會推出。目前該模型早已正式發布，且 Notebook 中已有多個 14B 模型實際效能與本地部署的具體來源，故此預測性舊討論屬於過期且已被後續更新取代的資訊。"
+    }
+  ],
+  "checked_at": "2026-09-01T13:29:21.687Z"
+}

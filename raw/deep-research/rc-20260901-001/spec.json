@@ -1,0 +1,25 @@
+{
+  "job_id": "rc-20260901-001",
+  "query": "Intel UHD 770 + 32GB RAM 環境下的 Local LLM 選擇：量化策略、TTFT 效能、模型篩選與 GitHub Copilot 整合——聚焦多步驟 DevOps skill 執行能力",
+  "sub_questions": [
+    "在 Intel UHD 770 + 32GB RAM + i5-14500T 的 Windows 11 環境下，量化（GGUF Q4/Q5/Q6/Q8）如何改變模型選擇範圍？哪些原本太大的模型量化後能在 32GB RAM 內運行且保持多步驟流程編排能力？",
+    "不同量化等級的 TTFT（Time To First Token）在 CPU-only 推理下表現如何？互動式多輪對話（每次等待回應）的可接受 TTFT 閾值在哪？i5-14500T（14 核 20 緒）有哪些 CPU 加速手段（AVX-512、DLL 等）能改善 TTFT？",
+    "Local LLM 與 GitHub Copilot（App / VS Code extension / CLI）的整合方式？是否支援自訂 model endpoint？OpenAI-compatible API 串接可行性？",
+    "除了 Ollama 之外，Windows 11 上還有哪些適合的方案（llama.cpp、LM Studio、Jan、GPT4All 等）？各自在 TTFT 與易用性上的差異？"
+  ],
+  "budget": {
+    "max_sources": 40,
+    "max_duration_seconds": 600,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "standard",
+    "timeframe": "past_year",
+    "preferred_language": "zh-TW",
+    "citation_required": true,
+    "source_bias": "mixed",
+    "output_format": "full"
+  },
+  "profile": "personal",
+  "notebook_id": null
+}
