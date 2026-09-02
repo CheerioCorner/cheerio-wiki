@@ -139,8 +139,10 @@
 - [[wiki/entities/area-l.md|AReaL — 開源 Agent 強化學習基礎設施]]
 - [[wiki/entities/axway-amplify-ai-gateway.md|Axway Amplify AI Gateway — 企業 AI 治理層]]
 - [[wiki/entities/dhh.md|DHH — Ruby on Rails 作者、AI 工作流實踐者]]
+- [[wiki/entities/autogen.md|AutoGen — 微軟多代理框架（v0.4 / AG2 / MAF）]]
 - [[wiki/entities/claude-code.md|Claude Code — Anthropic AI Coding Agent]] — 安裝（原生安裝器為主推，npm deprecated）
 - [[wiki/entities/claude-design.md|Claude Design]]
+- [[wiki/entities/crewai.md|CrewAI — 角色扮演與任務管道的多 Agent 框架]]
 - [[wiki/entities/codebase-memory-mcp.md|codebase-memory-mcp — 高效能代碼知識圖譜 MCP Server]] — macOS / Linux
 - [[wiki/entities/codegraph.md|CodeGraph — 代碼知識圖譜 MCP Server（colbymchenry/codegraph）]]
 - [[wiki/entities/coinbase-ai-engineering.md|Coinbase AI Engineering — 多模型基礎設施與成本工程實踐]]
@@ -162,6 +164,7 @@
 - [[wiki/entities/agent-security.md|Agent Security — AI Agent 安全基礎]]
 - [[wiki/entities/ai-threat-modeling.md|AI System Threat Modeling — AI 系統威脅建模]]
 - [[wiki/entities/hermes-agent.md|hermes-agent — 開源 AI Agent 框架]]
+- [[wiki/entities/mastra.md|Mastra — TypeScript 全包式 Agent 框架與觀察式記憶]]
 - [[wiki/entities/huashu-design.md|huashu-design — HTML 原生設計技能]]
 - [[wiki/entities/hyperframes.md|hyperframes — HTML 轉影片的 Agent 工具]]
 - [[wiki/entities/james-martin.md|James Martin]]
@@ -190,6 +193,7 @@
 - [[wiki/entities/nutlope-hallmark.md|nutlope/hallmark — Anti-AI-Slop Design Skill]]
 - [[wiki/entities/obsidian.md|Obsidian — AI Agent 時代的知識管理基礎設施]]
 - [[wiki/entities/omnigent.md|Omnigent]]
+- [[wiki/entities/openai-agents-sdk.md|OpenAI Agents SDK — 極低抽象的多 Agent 協作框架]]
 - [[wiki/entities/open-code-review.md|OpenCodeReview]] — OpenCodeReview (OCR)
 - [[wiki/entities/openai-codex.md|OpenAI Codex]] — 安裝 Codex CLI
 - [[wiki/entities/pbakaus-impeccable.md|pbakaus/impeccable — 35 Playbooks + 59 Deterministic Detectors]]
@@ -201,10 +205,13 @@
 - [[wiki/entities/pixel2motion.md|pixel2motion — AI Logo 動畫 Skill]]
 - [[wiki/entities/plannotator.md|Plannotator]] — macOS / Linux / WSL
 - [[wiki/entities/prime-agent.md|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]]
+- [[wiki/entities/pydantic-ai.md|Pydantic AI — 型別安全的 Python Agent 框架]]
 - [[wiki/entities/qwenpaw.md|QwenPaw — Agent OS 架構的本地 AI 助理]]
 - [[wiki/entities/qwen-3-8-27b.md|Qwen 3.8 27B — 完全開源的 Dense 模型]]
 - [[wiki/entities/remotion.md|Remotion — 程式碼驅動的影片製作框架]]
 - [[wiki/entities/round-table.md|Round Table — 多 AI 圓桌會議]]
+- [[wiki/entities/semantic-kernel.md|Semantic Kernel — 微軟企業級 Plugin SDK]]
+- [[wiki/entities/smolagents.md|smolagents — Hugging Face 的 Code-first Agent 框架]]
 - [[wiki/entities/skillopt.md|SkillOpt — 微軟技能優化器]]
 - [[wiki/entities/story-to-handdrawn-video.md|story-to-handdrawn-video — 中文故事轉手繪動畫 Skill]]
 - [[wiki/entities/tau.md|tau — Pi 的 Python 移植版]]
@@ -214,6 +221,7 @@
 - [[wiki/entities/vercel-labs-web-interface-guidelines.md|vercel-labs/web-interface-guidelines — Web UI 合規稽核清單]]
 - [[wiki/entities/video-shotcraft.md|video-shotcraft — AI 影片電影運鏡 Skill]]
 - [[wiki/entities/vllm.md|vLLM — 高吞吐量 LLM 推理引擎]] — vLLM
+- [[wiki/entities/vercel-eve.md|Vercel Eve — 檔案系統即 Agent 的耐用型框架]]
 - [[wiki/entities/waku-agent.md|waku-agent — Local-first personal AI agent with harness + loop + memory + eval]]
 - [[wiki/entities/wiki-knowledge.md|wiki-knowledge — Obsidian 知識庫操作 Skill（已刪除）]]
 
@@ -344,6 +352,7 @@
 - [[wiki/sources/2026-08-30-agent-security-basics.md|Agent Security 基礎深度研究]]
 - [[wiki/sources/2026-08-30-enterprise-api-security.md|Enterprise API Security 深度研究]]
 - [[wiki/sources/2026-08-30-ai-threat-modeling.md|AI Threat Modeling 深度研究]]
+- [[wiki/sources/2026-09-02-agent-harness-framework-landscape.md|AI Agent Harness/Framework 全貌盤點 — 四大廠路線 + Python/TS 生態圈主流框架深度比較]]
 - [[wiki/sources/2026-09-02-dhh-ai-workflow-practices.md|DHH：AI 工作流的實踐經驗 — 16 條並行工作流與瓶頸遷移]]
 - [[wiki/sources/2026-08-30-skill-supply-chain-security.md|Skill Supply Chain Security 深度研究]]
 - [[wiki/sources/2026-08-30-local-llm-agent-harness-dgx-spark.md|從模型部署到 Agent Harness：Qwen 3.8 27B 與 DGX Spark 實機示範]]

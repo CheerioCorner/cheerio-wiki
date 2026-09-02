@@ -89,6 +89,7 @@ codex "建立一個 REST API 使用 Express"
 
 - [[wiki/sources/2026-08-04-okf-lsp-codegraph-ai-agent-research|OKF+LSP+CodeGraph AI Agent 研究]]
 - [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]]
+- [[wiki/sources/2026-09-02-agent-harness-framework-landscape|AI Agent Harness/Framework 全貌盤點]] — Codex CLI/Agent 架構、OTel 追蹤、Handoff 多 agent 協作機制
 - [OpenAI Codex](https://openai.com/research/codex)
 - [Codex CLI](https://github.com/openai/codex)
 

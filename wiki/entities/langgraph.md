@@ -178,6 +178,7 @@ TypeScript/JavaScript 版本，提供同等級功能：
 
 ## 來源
 - [[wiki/sources/2026-08-21-langgraph-in-10-minutes|LangGraph in 10 Minutes — YouTube]]
+- [[wiki/sources/2026-09-02-agent-harness-framework-landscape|AI Agent Harness/Framework 全貌盤點]] — LangGraph 在可觀測性分級中列為「第一級：完整過程可稽核」
 - Notion 種子：[[https://app.notion.com/p/3bb5979e3a8c81d187eee8b3c55cdd4b|LangGraph — Graph-based Agent Runtime]]
 
 ## 相關頁面

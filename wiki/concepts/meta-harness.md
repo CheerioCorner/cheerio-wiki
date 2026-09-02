@@ -120,6 +120,29 @@ canonical: concepts/meta-harness
 | `OmniAgent` | MindStudio | 最早提出 meta-harness 作為多 agent orchestration 的概念；尚未建立 Wiki entity 頁 |
 | [[wiki/entities/omnigent]] | Databricks | 開源（Apache 2.0），強調 security policies + 即時協作，roadmap 包含 GEPA 整合 |
 
+---
+
+### 業界實作案例盤點（2026-09 補充）
+
+> 來源：[[wiki/sources/2026-09-02-agent-harness-framework-landscape|AI Agent Harness/Framework 全貌盤點]]（177 筆來源）
+
+以下框架直接展示了定義 B 中 orchestration layer 的六項核心功能（agent selection / context management / session continuity / parallel execution / failure handling / output normalization）的業界實作方式：
+
+| 框架 | Agent Selection | Context Management | Parallel Execution | Failure Handling | 觀測性分級 |
+|---|---|---|---|---|---|
+| [[wiki/entities/openai-agents-sdk\|OpenAI Agents SDK]] | Handoff 工具化（`transfer_to_<agent_name>`） | Session History 無縫移轉 + ResponsesCompaction | 去中心化 Handoff + 經理委託雙軌 | Hop Counter 安全熔斷 | 第一級 |
+| [[wiki/entities/deepseek-harness\|DeepSeek Harness]] | Hierarchical Supervisor-Worker | Append-Only 日誌 + Event Stream | Spawn/Fork + Ralph Mode + 並行 DAG | Replay/Fork 重放 | 第一級 |
+| [[wiki/entities/langgraph\|LangGraph]] | StateGraph 拓撲硬性約束 | Reducer 函數合併 State Channels + Checkpointer | 嵌套子圖 | Time Travel + Resume | 第一級 |
+| [[wiki/entities/vercel-eve\|Vercel Eve]] | Subagent 目錄結構定義 | Event Log + 確定性重放 | Hierarchical Subagents | Suspend/Resume（零計算成本） | 第一級 |
+| [[wiki/entities/mastra\|Mastra]] | Workflow-as-Tool 包裝 | 觀察式記憶（OM）5x-40x 壓縮 | 併行 DAG + Handoff + Hierarchical | Workflow suspend/resume | 第一級 |
+| [[wiki/entities/pydantic-ai\|Pydantic AI]] | FunctionTool 委託 | DBOS Transaction Checkpoints | 耐用子工作流 | DBOS 重播 Resume | 第一級 |
+| [[wiki/entities/autogen\|AutoGen]] | Swarm（LLM 驅動動態分派） | 非同步 Actor Mailbox | Swarm + GraphFlow + Debate | UserProxyAgent 人機協同 | 第二級 |
+| [[wiki/entities/semantic-kernel\|Semantic Kernel]] | SelectionStrategy（LLM 判斷下一位發言者） | ChatHistory 強型別 | AgentGroupChat | TerminationStrategy + MaximumIterations | 第二級 |
+| [[wiki/entities/crewai\|CrewAI]] | Role-Play Persona 分派 | 自動化 Embedding + 向量 RAG | Sequential/Hierarchical Process | 有限（依賴第三方 OTel） | 第三級 |
+| [[wiki/entities/smolagents\|smolagents]] | Orchestrator-Worker 中樞調度 | Private History 隔離 | 多 Specialist 子代理並行 | 沙箱隔離 | 第一級 |
+
+**觀察：** 業界已從「無狀態單 agent」演進到「多 agent orchestration」的完整光譜。第一級觀測性框架（LangGraph、OpenAI SDK、DeepSeek Harness）已將 OTel 追蹤 + 耐用執行視為生產級必備，而非可選功能。這印證了 Meta-Harness 定義 B 的核心論點：orchestration layer 不只是「加一層路由」，而是需要完整的可觀測性、狀態持久化與失敗恢復基礎設施。
+
 ## 相關頁面
 
 - `harness-concept` — 傳統測試 harness 與 model harness 的基本概念（尚未建立 Wiki concept 頁）
@@ -135,12 +158,22 @@ canonical: concepts/meta-harness
 | 樹苗 | 來源 | 成長階段 | 備註 |
 |------|------|---------|------|
 | [[wiki/entities/omnigent]] | Databricks | 🌱 種子期 | 開源 meta-harness，但目前不支援 Windows |
+| [[wiki/entities/openai-agents-sdk]] | OpenAI | 🌳 成熟 | 極低抽象，Handoff 工具化是最輕量的多 agent 協作 |
+| [[wiki/entities/deepseek-harness]] | DeepSeek | 🌱 開發者預覽 | 一切皆插件，支援跨框架連接器 |
+| [[wiki/entities/langgraph]] | LangChain | 🌳 成熟 | 顯式狀態圖，Checkpointer 端到端耐用 |
+| [[wiki/entities/vercel-eve]] | Vercel | 🌱 開源 Beta | 檔案系統即 Agent，Slack 審批門禁 |
+| [[wiki/entities/mastra]] | Mastra (Gatsby) | 🌳 成熟 | 觀察式記憶（OM）SOTA，Workflow-as-Tool |
+| [[wiki/entities/pydantic-ai]] | Pydantic | 🌳 成熟 | 型別安全 + DBOS 耐用執行 |
+| [[wiki/entities/autogen]] | Microsoft | 🌳 成熟（→MAF） | Swarm/GraphFlow/Debate 多模式 |
+| [[wiki/entities/semantic-kernel]] | Microsoft | 🌳 成熟 | 企業級 Plugin SDK，.NET/Python/Java |
+| [[wiki/entities/crewai]] | CrewAI | 🌳 成熟 | 角色扮演高階抽象，可觀測性較弱 |
+| [[wiki/entities/smolagents]] | Hugging Face | 🌳 成熟 | Code-first，AST 執行壓縮多步驟 |
+| [[wiki/entities/herdr]] | herdr | 🌳 成熟 | 可觀測性工具（非 orchestration），DHH 使用 |
 
 ### 未來可能的樹苗
 
 - Stanford IRIS Lab 的 Meta-Harness 論文實作（定義 A）
 - MindStudio OmniAgent（定義 B）
-- 其他 multi-agent orchestration 工具
 
 ### 研究方向
 
@@ -158,3 +191,4 @@ canonical: concepts/meta-harness
 - Yoonho Lee 的說明頁：https://yoonholee.com/meta-harness/
 - MindStudio 部落格：What is Meta-Harness for AI Agents（https://www.mindstudio.ai/blog/what-is-meta-harness-ai-agents-omniagent）
 - Databricks Blog：Introducing Omnigent（https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents）
+- [[wiki/sources/2026-09-02-agent-harness-framework-landscape|AI Agent Harness/Framework 全貌盤點]]（177 筆來源）— 定義 B 業界實作案例盤點

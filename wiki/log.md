@@ -1,4 +1,26 @@
 
+## [2026-09-02] ingest | AI Agent Harness/Framework 全貌盤點（177 筆來源）
+
+- 動作：Gemini Deep Research 報告（NotebookLM）→ wiki ingest（直接分析，無雙模型交叉驗證）
+- 來源：`raw/deep-research/rc-20260831-001/research-report.md`
+- 建立：
+  - `wiki/sources/2026-09-02-agent-harness-framework-landscape.md` — source note（四大廠路線 + Python/TS 五大框架 + 可觀測性三級分類）
+  - `wiki/entities/pydantic-ai.md` — 型別安全 + DBOS 耐用執行
+  - `wiki/entities/openai-agents-sdk.md` — 極低抽象，Handoff 工具化多 agent 協作
+  - `wiki/entities/crewai.md` — 角色扮演 + 任務管道
+  - `wiki/entities/mastra.md` — 觀察式記憶（OM）SOTA + Workflow-as-Tool
+  - `wiki/entities/vercel-eve.md` — 檔案系統即 Agent + Slack 審批門禁
+  - `wiki/entities/semantic-kernel.md` — 微軟企業級 Plugin SDK
+  - `wiki/entities/autogen.md` — 微軟多代理框架（→MAF 統一）
+  - `wiki/entities/smolagents.md` — HuggingFace Code-first AST 執行
+- 更新：
+  - `wiki/concepts/meta-harness.md` — 新增「業界實作案例盤點」表格（10 框架 × 6 功能維度）+ 已收集樹苗從 1 筆擴充至 12 筆
+  - `wiki/entities/langgraph.md` — 新增來源連結
+  - `wiki/entities/openai-codex.md` — 新增來源連結
+  - `wiki/entities/deepseek-harness.md` — 新增來源連結
+  - `wiki/index.md` — Entities + Sources 新增 9 條條目
+- 關鍵判斷：本研究直接對應 Meta-Harness 定義 B（Multi-Agent Orchestration Layer），提供了 10 個框架的六項核心功能比較
+
 ## [2026-09-02] ingest | DHH：AI 工作流的實踐經驗 — 16 條並行工作流與瓶頸遷移
 
 - 動作：YouTube 影片 → youtube_transcript_api 抓中文字幕（手動 zh-Hans，196 segments → 11 paragraphs，8:40）→ raw transcript 建檔 → wiki ingest（直接分析，無雙模型交叉驗證）

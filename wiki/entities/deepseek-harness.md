@@ -86,6 +86,7 @@ plugins:
 ## 來源
 
 - [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]]
+- [[wiki/sources/2026-09-02-agent-harness-framework-landscape|AI Agent Harness/Framework 全貌盤點]] — Cordis 微內核架構、四種運行模式、Append-Only 日誌 + Replay/Fork 可觀測性
 
 ## 相關頁面
 
