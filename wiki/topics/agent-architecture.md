@@ -3,7 +3,7 @@ type: topic
 title: Agent Architecture
 topic: agent-architecture
 created: 2026-08-23
-updated: 2026-08-23
+updated: 2026-09-02
 ---
 
 # Agent Architecture
@@ -16,6 +16,7 @@ updated: 2026-08-23
 
 ## Concepts
 
+- [[wiki/concepts/context-engineering|Context Engineering（脈絡工程）— 決定模型這一次看到什麼]] — Harness 五職責中 Context Management 的設計面；釐清 Prompt / Context / Memory / Harness Engineering 的分工。 🛠️
 - [[wiki/concepts/agent-durability-patterns|Agent Durability Patterns — 狀態持久化的三種路徑]] — Agent 需要「記住自己做到哪裡」的程度不同，對應三種持久化路徑。選錯路徑的代價：要么 crash 後重來，要么 complexity tax 太重。
 - [[wiki/concepts/agent-extensibility-hierarchy|Agent 擴充架構層級 — 從 Skill、Hook 到 Extension 的能力邊界]] — 當 Skill 不足以控制流程，下一層是什麼？系統化比較 Skill / Hook / Extension 的能力光譜與適用場景。**屬於 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 的擴充層。** 🛠️
 - [[wiki/concepts/agent-skills-enterprise-governance|Agent Skills 企業治理]] — 企業大規模導入 Agent Skills 的安全審查、部署評估、生命週期管理與組織策略。**屬於 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 的基礎層。** 🛠️

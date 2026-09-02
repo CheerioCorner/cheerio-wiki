@@ -2,7 +2,7 @@
 title: "Mem0 vs Decision-Ledger 對 W-074 架構的適用性"
 type: discussion
 created: 2026-08-22
-updated: 2026-08-22
+updated: 2026-09-02
 sources: 2
 tags: [mem0, decision-ledger, memory-architecture, w-074]
 topics: [agent-memory-context]
@@ -33,8 +33,8 @@ topics: [agent-memory-context]
 |---|---|---|
 | **Semantic Memory** | Mem0 | 事實偏好、使用者設定、已驗證知識 |
 | **Procedural Memory** | Decision-Ledger | 每個決策的完整推論鏈（intent/rationale/action/outcome） |
-| **Episodic Memory** | 待定 | 需要更深入研究（可能結合兩者或獨立機制） |
-| **Artifact Memory** | 待定 | 版本化文件/輸出物的儲存與檢索 |
+| **Episodic Memory** | 事件流封存 ＋ 結案摘要（不用向量） | 2026-09-02 定案：查詢形狀是「哪個案子、什麼時候」，屬精確查詢，向量化回收價值低 |
+| **Artifact Memory** | 檔案系統為真相 ＋ 索引表（不切塊） | 2026-09-02 定案：產出物多為結構完整的 markdown，切塊會毀掉結構，走 [[wiki/concepts/chunkless-rag|Chunkless RAG]] 路線 |
 
 ### 實證支持
 
@@ -47,6 +47,14 @@ Sakana AI（Stefania Druga）在 X-Bench long-horizon task 上的實驗發現：
 - 本結論為推論（`[INFERRED]`），基於 Sakana AI 實驗 + Mem0 架構分析的交叉推導，非任一單一來源的直接陳述
 - Mem0 本身並非「不好」，而是其設計哲學（事實原子化、扁平化提煉）跟 Procedural Memory 的需求（保留推論脈絡）不匹配
 - 兩者疊加時，需要一個 orchestration 層決定查詢時該走哪條路徑
+
+## 2026-09-02 更新：Episodic / Artifact 已定案
+
+原本標記「待定」的兩層已在 [[work/designs/w074-memory-architecture|W-074 記憶架構設計]] 定案（見上表）。同時補上一個本頁原本沒點出的推論：
+
+> **W-074 的一級紀錄（意圖紀錄 → 任務契約 → 事件流 → 驗收 verdict）本身就是 decision-ledger 的形狀**，`intent → rationale → action → outcome` 逐欄對得上。
+
+因此 Procedural Memory 不需要另外導入一套 decision-ledger 系統——它是從既有一級紀錄投影出來的。本頁「疊加而非二選一」的結論不變，但成本評估要修正：**decision-ledger 這一半是免費的**（治理需求的副產品），要另外花力氣的只有 Semantic 那一半。
 
 ## 相關來源
 

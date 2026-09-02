@@ -3,7 +3,7 @@ type: topic
 title: Agent Memory & Context
 topic: agent-memory-context
 created: 2026-08-23
-updated: 2026-08-23
+updated: 2026-09-02
 ---
 
 # Agent Memory Context
@@ -23,6 +23,7 @@ updated: 2026-08-23
 - [[wiki/concepts/coala-four-memory-types|CoALA 四種記憶類型 — AI Agent 的功能分類框架]] — AI Agent 記憶架構的**功能分類**框架：從「記憶做什麼」的角度切分四種類型。與 [[wiki/concepts/ai-agent-memory-systems|AI Agent Memory Systems]] 的**存儲機制**分類（五種存儲 × 四種檢索 × 六種維護）互補，不衝突。
 - [[wiki/concepts/consumer-ai-memory-personalization|Consumer AI Memory Personalization — 消費級 AI 產品的記憶設計]] — ChatGPT 和 Claude 從相反設計出發，2026 年中收斂到相同模式（running profile + on-demand retrieval），但實作仍然不同。核心結論：memory is a function of compute。
 - [[wiki/concepts/context-decay|Context Decay（脈絡衰減）]] — 決策脈絡在跨模型交接時逐漸遺失的問題，是多 AI 協作流程中比模型能力差異更大的風險。
+- [[wiki/concepts/context-engineering|Context Engineering（脈絡工程）— 決定模型這一次看到什麼]] — 把 context-rot / context-decay 兩個病症的對策收在一起：Write / Read / Handoff / Maintain 四個對策族。 🛠️
 - [[wiki/concepts/context-rot|Context Rot（脈絡惡化）— 長任務中的記憶腐化]] — 單一 agent 在長時間單一 session 內，因 context 累積導致模型自相矛盾、重複工作、偏離原問題的現象。與 [[wiki/concepts/context-decay|Context Decay]] 觸發條件不同但後果類似。
 - [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder — 記憶檢索策略的效果階梯]] — 四階記憶檢索策略（no recall → vector RAG → decision-ledger → oracle）在長時任務中的實測效果排名。核心發現：好的 recall policy 不只更準，還更省 token。
 

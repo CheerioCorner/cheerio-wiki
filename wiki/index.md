@@ -71,6 +71,7 @@
 - [[wiki/concepts/content-redesign.md|Content 設計 Redesign]]
 - [[wiki/concepts/context-cot.md|Context-CoT — 上下文思維鏈]]
 - [[wiki/concepts/context-decay.md|Context Decay（脈絡衰減）]]
+- [[wiki/concepts/context-engineering.md|Context Engineering（脈絡工程）— 決定模型這一次看到什麼]]
 - [[wiki/concepts/context-rot.md|Context Rot（脈絡惡化）— 長任務中的記憶腐化]]
 - [[wiki/concepts/continual-harness.md|Continual Harness]]
 - [[wiki/concepts/contract-driven-development.md|Contract-Driven Development（契約驅動開發）]]

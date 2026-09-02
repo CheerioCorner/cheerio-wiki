@@ -1491,3 +1491,19 @@
 - **新舊規範比較**：位於 `wiki/entities/mcp-model-context-protocol.md` §「⚠️ 舊版頁面規範演進比較」，涵蓋 6 項過期論述的逐項比對
 - refs: [[wiki/sources/mcp-official-docs-42|MCP 官方文件彙整]]、[[wiki/entities/mcp-model-context-protocol|MCP 主頁]]
 - 完成時間：2026-08-23 17:20 (CST)
+
+## [2026-09-02] update | 補 W-074 三個架構缺口：Context Engineering / 記憶定案 / 自我改進迴路
+
+- **觸發**：Cheer 檢視 W-074 架構圖時提問「Cheerio 會包含 Prompt/Context/Harness/Loop/Graph Engineering 嗎？大腦收集的 Agent Memory、RAG、Self-Improving 有接進來嗎？」盤點後確認大腦資料齊全但三處未收斂，Cheer 指示「把缺的都補起來先」
+- **新增**：
+  - `wiki/concepts/context-engineering.md` — 原本只有 [[wiki/concepts/context-rot|Context Rot]]、[[wiki/concepts/context-decay|Context Decay]] 兩個**病症**頁，缺**對策**頁。本頁依 context 生命週期收斂四個對策族（Write / Read / Handoff / Maintain），並釐清 Prompt / Context / Memory / Harness Engineering 的分工邊界。綜整既有頁面，未新增外部 raw 來源
+  - `work/designs/w074-memory-architecture.md` — Episodic / Artifact 兩層記憶定案（皆不走向量：前者查詢形狀是精確查詢，後者切塊會毀掉 markdown 結構）
+  - `work/designs/w074-self-improvement-loop.md` — 五階迴路 Trace → Eval → Diagnose → Gate → Release，含可改／不可改紅線
+- **關鍵推論（跨頁）**：W-074 的一級紀錄（意圖紀錄 → 任務契約 → 事件流 → 驗收 verdict）**本身就是 decision-ledger 的形狀**，`intent → rationale → action → outcome` 逐欄對得上。因此 [[wiki/concepts/recall-policy-ladder|Recall Policy Ladder]] 實測最強的那一階，在 Cheerio 是治理需求的免費副產品，不是額外成本
+- **更新**：
+  - `wiki/discussions/mem0-vs-decision-ledger-for-w074.md` — 兩列「待定」改為已定案，補上上述推論
+  - `wiki/topics/agent-memory-context.md`、`wiki/topics/agent-architecture.md` — 加入 context-engineering
+  - `wiki/index.md` — Concepts 區塊加入 context-engineering
+  - `work/current.md` — W-074 新增決策 #18～#20
+- refs: [[wiki/concepts/context-engineering|Context Engineering]]、[[wiki/discussions/mem0-vs-decision-ledger-for-w074|Mem0 vs Decision-Ledger]]、[[wiki/concepts/continual-harness|Continual Harness]]、[[wiki/concepts/skillopt-meta-skill|SkillOpt]]
+- 完成時間：2026-09-02 22:10 (CST)
