@@ -1,0 +1,64 @@
+✓ Created new notebook: Context Engineering 是什麼、在實際 AI Agent 
+開發中扮演什麼角色、關鍵任務有哪些、有什麼坑要避免
+✓ Research started
+  Query: Context Engineering 是什麼、在實際 AI Agent 
+開發中扮演什麼角色、關鍵任務有哪些、有什麼坑要避免
+  Source: web
+  Mode: deep
+  Notebook ID: 3ee340a4-88e4-4c1e-be74-846268e28e1d
+  Task ID: ChA2MWVjNzMzMTA3M2VlMmViEAgaBDg1NmMqA3Vzdw
+
+Waiting for research to complete...
+⠇ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 1e3e97ae-97e5-435a-b4e5-26335309fc33
+  Sources found: 35
+
+Run 'nlm research import 3ee340a4-88e4-4c1e-be74-846268e28e1d <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 31 sources.
+  • What is context engineering in AI agents? A practical guide - Neo4j
+  • Context Engineering for AI Agents - Microsoft Open Source
+  • Effective context engineering for AI agents - Anthropic
+  • What Is Context Engineering? - IBM
+  • Context Engineering vs Prompt Engineering for AI Agents - Firecrawl
+  • Context Engineering - LangChain
+  • [2507.13334] A Survey of Context Engineering for Large Language Models - 
+arXiv
+  • Quality Context: Why AI Agents Need Better Info, Not More - Redis
+  • Context Engineering for Observability and LLMs - Mezmo
+  • What is Context Engineering? Architecting Reliable AI | Elastic
+  • Working Memory in LLMs: The Context Window as Cognitive Architecture - Atlan
+  • Context Engineering - LLM Memory and Retrieval for AI Agents | Weaviate
+  • Best tools for context engineering in agentic AI systems - Neo4j
+  • Context Engineering Techniques: Why AI Gets It Wrong (2026) - OvalEdge
+  • Context Engineering & Model Context Protocol: Conversational AI in 2026 - 
+Indigo.ai
+  • How Long Contexts Fail
+  • Context Engineering: How to Give AI the Right Information at the Right Time 
+- PrompTessor
+  • What is context engineering? Components, techniques, and best practices | 
+Elasticsearch Labs
+  • The role of MCP in context engineering | InfoWorld
+  • A Survey of Context Engineering for Large Language Models - Semantic Scholar
+  • A Survey of Context Engineering for Large Language Models - alphaXiv
+  • What is the Model Context Protocol (MCP)?
+  • The New Model Context Protocol for AI Agents - Insight Global
+  • Model Context Protocol - Wikipedia
+  • Batch Calibration: Rethinking Calibration for In-Context Learning and Prompt
+Engineering - arXiv
+  • Batch Calibration: Rethinking Calibration for In-Context Learning and Prompt
+Engineering
+  • Batch Calibration: Rethinking Calibration for In-Context Learning and Prompt
+Engineering
+  • Han Zhou
+  • Batch Calibration: Rethinking Calibration for In-Context Learning and Prompt
+Engineering - arXiv
+  • A Survey of Context Engineering for Large Language Models - arXiv
+  • Building effective AI agents with Model Context Protocol (MCP) - Red Hat 
+Developer
+

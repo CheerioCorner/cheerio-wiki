@@ -1,0 +1,156 @@
+[
+  {
+    "id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+    "title": "Anthropic: Effective Context Engineering for AI Agents",
+    "type": "web_page",
+    "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "status": 2
+  },
+  {
+    "id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+    "title": "Atlan: Working Memory in LLMs & The Context Window as Cognitive Architecture",
+    "type": "web_page",
+    "url": "https://atlan.com/know/working-memory-llms/",
+    "status": 2
+  },
+  {
+    "id": "5bbd72ad-a67d-4ffc-b3fb-24cc6df4ff1e",
+    "title": "Batch Calibration: Rethinking Calibration for In-Context Learning and Prompt Engineering",
+    "type": "pdf",
+    "url": "https://arxiv.org/pdf/2309.17249",
+    "status": 2
+  },
+  {
+    "id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+    "title": "DeepLearning.AI: How Long Contexts Fail",
+    "type": "web_page",
+    "url": "https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html",
+    "status": 2
+  },
+  {
+    "id": "30fdfcd3-d300-4536-af3f-997cadc38b30",
+    "title": "Elastic: Architecting Reliable AI with Context Engineering",
+    "type": "web_page",
+    "url": "https://www.elastic.co/what-is/context-engineering",
+    "status": 2
+  },
+  {
+    "id": "4b1a9be8-43c0-4c77-b9be-fbae2a82b46a",
+    "title": "Elasticsearch Labs: Components, Techniques, and Best Practices",
+    "type": "web_page",
+    "url": "https://www.elastic.co/search-labs/blog/context-engineering-overview",
+    "status": 2
+  },
+  {
+    "id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+    "title": "Firecrawl: Context Engineering vs Prompt Engineering for AI Agents",
+    "type": "web_page",
+    "url": "https://www.firecrawl.dev/blog/context-engineering",
+    "status": 2
+  },
+  {
+    "id": "078f8fa7-2eb7-4f2e-98ee-e6a8b8aaba26",
+    "title": "IBM: What Is Context Engineering?",
+    "type": "web_page",
+    "url": "https://www.ibm.com/think/topics/context-engineering",
+    "status": 2
+  },
+  {
+    "id": "7b26995b-d597-453d-8d1d-d674ca8bb7ad",
+    "title": "InfoWorld: The Role of MCP in Context Engineering",
+    "type": "web_page",
+    "url": "https://www.infoworld.com/article/4175336/the-role-of-mcp-in-context-engineering.html",
+    "status": 2
+  },
+  {
+    "id": "34ba376e-441f-45e7-8df1-829366a0af76",
+    "title": "Introduction to Model Context Protocol (MCP)",
+    "type": "web_page",
+    "url": "https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro",
+    "status": 2
+  },
+  {
+    "id": "eee1500e-a35d-46d7-a985-0600c5a0a263",
+    "title": "LangChain: Context Engineering",
+    "type": "web_page",
+    "url": "https://www.langchain.com/blog/context-engineering-for-agents",
+    "status": 2
+  },
+  {
+    "id": "a7c63454-95bd-4316-bc00-75b8ea579065",
+    "title": "Mezmo: Context Engineering for Observability and LLMs",
+    "type": "web_page",
+    "url": "https://www.mezmo.com/learn/context-engineering-for-observability-how-to-deliver-the-right-data-to-llms",
+    "status": 2
+  },
+  {
+    "id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+    "title": "Microsoft Open Source: Context Engineering for AI Agents",
+    "type": "web_page",
+    "url": "https://microsoft.github.io/ai-agents-for-beginners/12-context-engineering/",
+    "status": 2
+  },
+  {
+    "id": "5c82dfc2-9a1c-4236-a0c9-7c8fb18b3e61",
+    "title": "Neo4j: Best Tools for Context Engineering in Agentic AI Systems",
+    "type": "web_page",
+    "url": "https://neo4j.com/blog/agentic-ai/context-engineering-tools/",
+    "status": 2
+  },
+  {
+    "id": "ba1dc3db-3af9-41a4-9a0f-b513ebbae952",
+    "title": "Neo4j: Context Engineering in AI Agents (A Practical Guide)",
+    "type": "web_page",
+    "url": "https://neo4j.com/blog/agentic-ai/what-is-context-engineering/",
+    "status": 2
+  },
+  {
+    "id": "def94060-778e-4628-9121-1c7bddc75130",
+    "title": "OvalEdge: Context Engineering Techniques & Why AI Gets It Wrong",
+    "type": "web_page",
+    "url": "https://www.ovaledge.com/blog/context-engineering-techniques",
+    "status": 2
+  },
+  {
+    "id": "82999820-e611-484e-907a-0abb80a800c9",
+    "title": "PrompTessor: How to Give AI the Right Information at the Right Time",
+    "type": "web_page",
+    "url": "https://promptessor.com/blog/context-engineering-how-to-give-ai-the-right-information-at-the-right-time",
+    "status": 2
+  },
+  {
+    "id": "38238f88-ee3e-4e14-800b-8ec85944e72c",
+    "title": "Red Hat Developer: Building Effective AI Agents with Model Context Protocol (MCP)",
+    "type": "web_page",
+    "url": "https://developers.redhat.com/articles/2026/01/08/building-effective-ai-agents-mcp",
+    "status": 2
+  },
+  {
+    "id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+    "title": "Redis: Why AI Agents Need Better Info, Not More",
+    "type": "web_page",
+    "url": "https://redis.io/blog/quality-context-ai-agents/",
+    "status": 2
+  },
+  {
+    "id": "a20dd17f-326c-4ba7-b953-94a44be5aea0",
+    "title": "Weaviate: LLM Memory and Retrieval for AI Agents",
+    "type": "web_page",
+    "url": "https://weaviate.io/blog/context-engineering",
+    "status": 2
+  },
+  {
+    "id": "096fdfa6-62e5-4b43-9223-d63ed3d0ab15",
+    "title": "Wikipedia: Model Context Protocol (MCP)",
+    "type": "web_page",
+    "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+    "status": 2
+  },
+  {
+    "id": "b803808d-1883-4729-8194-f52b5a5394fd",
+    "title": "[arXiv:2507.13334] A Survey of Context Engineering for Large Language Models",
+    "type": "web_page",
+    "url": "https://arxiv.org/abs/2507.13334",
+    "status": 2
+  }
+]

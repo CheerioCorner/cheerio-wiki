@@ -1,0 +1,24 @@
+{
+  "job_id": "rc-20260902-001",
+  "query": "Context Engineering 是什麼、在實際 AI Agent 開發中扮演什麼角色、關鍵任務有哪些、有什麼坑要避免",
+  "sub_questions": [
+    "實際開發時，Context Engineering 扮演什麼角色？",
+    "關鍵任務是什麼？",
+    "要避免的坑又是什麼？"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 80,
+    "max_duration_seconds": 1800,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "2024-2026",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "industry",
+    "output_format": "full"
+  }
+}

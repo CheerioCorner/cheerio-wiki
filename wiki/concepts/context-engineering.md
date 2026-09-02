@@ -3,7 +3,7 @@ title: "Context Engineering（脈絡工程）— 決定模型這一次看到什�
 type: concept
 created: 2026-09-02
 updated: 2026-09-02
-sources: 4
+sources: 5
 tags: [context-engineering, context-rot, context-decay, memory, harness, agent-reliability]
 topics: [agent-memory-context, agent-architecture]
 canonical: concepts/context-engineering
@@ -80,6 +80,40 @@ Harness Engineering  → 以上三件事由誰執行、什麼時候執行（驅�
 | 自相矛盾、重複做同一件事、偏離原問題 `[00:42][00:47][00:50]` | 單 agent 長 session | ① Write（開新 session）＋② Read（decision-ledger） |
 | 被否決的方案重複嘗試、設計意圖流失 | 跨模型／跨 harness 交接 | ③ Handoff（契約 ＋ rejected_alternatives） |
 | 記憶越多反而越不準、成本上升 | 記憶庫長大 | ② Read（ranked recall）＋④ Maintain（retire） |
+| Context Poisoning / Distraction / Confusion / Clash | 見下方失效模式表 | 見下方對策欄 |
+
+## 四大核心失效模式（深度研究補充，2026-09-02）
+
+來自 22 筆英文產業來源的深度研究（[[wiki/sources/2026-09-02-context-engineering-deep-research|詳細報告]]），整理出業界公認的四大 Context 失效模式：
+
+| 失效模式 | 成因 | 實例 | 對策 |
+|---------|------|------|------|
+| **Context Poisoning**（污染） | 錯誤/幻覺被寫入 context 並被後續步驟重複引用 | Gemini 玩寶可夢：一旦幻覺寫入目標欄位，Agent 執著於不可能的任務 | 外部資訊寫入前先經 API/schema 檢驗，驗證失敗直接隔離 |
+| **Context Distraction**（分心） | 上下文過長，注意力被攤薄，忽略系統指令 | Lost in the Middle：中段資訊檢索準確度暴跌 30%+；超過 100k token 後 Agent 開始重複歷史行為 | 壓縮（Compaction）+ 剪枝（Trimming）+ 位置感知重排 |
+| **Context Confusion**（混淆） | 過量工具定義或不相關參考文檔干擾推理 | Berkeley 研究：任何模型獲得超過 1 個工具時表現下滑；46 個工具全部給 Llama 3.1 8b 會失敗 | 動態工具加載（RAG-MCP），單次 ≤20-30 個工具 |
+| **Context Clash**（衝突） | 多源矛盾資訊或早期錯誤假設殘留 | Microsoft+Salesforce 研究：將提示切片到多輪對話，平均表現暴跌 39% | 主動剪枝與覆蓋，區分靜態/動態上下文 |
+
+與四個對策族的映射：
+- Poisoning → ① Write（寫入前驗證）
+- Distraction → ② Read（壓縮 + 位置重排）
+- Confusion → ② Read（動態工具篩選）
+- Clash → ① Write（主動覆蓋舊資訊）＋③ Handoff（拒絕方案記錄）
+
+## 六大系統級關鍵任務（深度研究補充，2026-09-02）
+
+1. **脈絡檢索與優化**：混合檢索（向量 + BM25）＋ 位置感知重排序 ＋ 時效性元數據過濾
+2. **脈絡處理與結構化**：語意分塊（Semantic Chunking）＋ 資訊與指令的清晰隔離
+3. **Prompt 與系統指令規範**：結構化 Prompt Specs（Objective/Constraints/Output Contract）＋ 防範行為漂移
+4. **記憶系統層級規劃**：熱/溫/冷記憶分層 ＋ 記憶更新與衰退機制
+5. **工具與 API 動態裝載**：RAG-MCP（僅裝載 3-5 個最相關工具，準確率提升 3 倍）＋ 工具輸出預處理 ＋ MCP 標準化
+6. **治理、驗證與可觀測性**：脈絡驗證與隔離 ＋ 消融測試（Ablation Tests）衡量各組件貢獻
+
+## 常見工程誤區（深度研究補充，2026-09-02）
+
+1. **盲目依賴大窗口**：百萬 token 不等於不用篩選。企業 Agent pre-reasoning 就要 50k-100k tokens
+2. **時效性缺口（Freshness Gap）**：向量檢索不考慮時間，兩年前舊政策因語意相似被提取
+3. **缺乏企業語境的原始數據**：欄位名 `rev_adj` 需要業務詞彙表才能被正確理解
+4. **快取優於相關性**：context 篩選沒做好就做 Prompt Caching，是「用極有效率的方式快取垃圾」
 
 ## 實務檢查清單
 
@@ -111,7 +145,7 @@ Harness Engineering  → 以上三件事由誰執行、什麼時候執行（驅�
 
 ## 來源
 
-本頁為既有 wiki 頁面的綜整，未新增外部原始資料。支撐論點的來源筆記：
+本頁為既有 wiki 頁面的綜整，並於 2026-09-02 透過深度研究補充失效模式、關鍵任務與工程誤區。支撐論點的來源筆記：
 
 - [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|Memory Harnesses for Long-Running Research Agents（Sakana AI）]] — ① Write、② Read 全部論點與時間戳
 - [[wiki/sources/2026-08-17-frontend-ai-roundtable|前端 AI 圓桌]] — ③ Handoff 的 context decay 場景與契約解方

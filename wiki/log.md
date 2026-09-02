@@ -1,4 +1,15 @@
 
+## [2026-09-02] ingest | Context Engineering 深度研究（22 筆來源）
+
+- 動作：深度研究 Job `rc-20260902-001` → wiki ingest（直接分析，無雙模型交叉驗證）
+- 來源：`raw/deep-research/rc-20260902-001/research-report.md`
+- 建立：
+  - `wiki/sources/2026-09-02-context-engineering-deep-research.md` — source note（四大失效模式、六大關鍵任務、常見誤區）
+- 更新：
+  - `wiki/concepts/context-engineering.md` — 新增四大核心失效模式、六大系統級關鍵任務、常見工程誤區（深度研究補充）
+  - `wiki/index.md` — 新增 source note 連結
+- 目的：為 W-074 AGENT 開發提供 Context Engineering 的實務對照基準
+
 ## [2026-09-02] ingest | AI Agent Harness/Framework 全貌盤點（177 筆來源）
 
 - 動作：Gemini Deep Research 報告（NotebookLM）→ wiki ingest（直接分析，無雙模型交叉驗證）

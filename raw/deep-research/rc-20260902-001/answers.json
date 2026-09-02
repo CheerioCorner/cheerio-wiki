@@ -1,0 +1,820 @@
+[
+  {
+    "question": "實際開發時，Context Engineering 扮演什麼角色？",
+    "answer": "在實際的 AI Agent 開發中，**Context Engineering（上下文工程）扮演著決定「Flashy Demo（炫酷原型）」能否成功落地為「Production-ready System（生產級系統）」的關鍵架構角色** [1]。\n\n隨著 LLM 發展至 agentic（智能體）時代，業界（如 Cognition AI）甚至指出，**Context Engineering 實際上已經成為開發 AI Agent 工程師的「第一要務（#1 job）」** [2]。\n\n在實際開發中，它主要扮演以下三個核心角色：\n\n### 1. 扮演 LLM 有限「工作記憶（RAM）」的資源守門人\nAndrej Karpathy 曾提出一個著名的比喻：LLM 就像是新型作業系統的 CPU，而其 **Context Window（上下文視窗）則是 RAM（工作記憶）** [3]。\n*   **對抗「Context Rot（上下文腐爛）」**：雖然現代模型動輒宣稱擁有百萬 Token 的超大上下文視窗，但「直接把所有資料塞進去」在實務上會導致災難 [4, 5]。研究顯示，隨著上下文拉長，模型會出現 **Lost in the Middle（迷失在中間）**、注意力渙散、成本暴增及延遲變長的問題 [4, 5]。\n*   **避免行為鬼打牆**：在實際評估中（例如 Gemini 玩寶可夢的案例），當上下文超過 100k Token 時，Agent 就會開始傾向於「重複過去歷史中做過的動作」，失去規劃新策略的能力 [6, 7]。\n*   **尋找 Minimum Viable Context（最小可行上下文）**：Context Engineering 的首要開發任務，就是**精準控制與篩選進入這塊「RAM」的 token**，只留下高訊號、高價值的資訊 [8, 9]。\n\n---\n\n### 2. 構建「四大核心操作」以實現複雜的多步推理\n與一次性問答（Single-turn Q&A）不同，AI Agent 需要自主運行並調用工具。Context Engineering 透過以下 **四大核心運作** 撐起整個 Agent 系統的骨架 [10-12]：\n\n*   **Write（寫入）**：當 Agent 進行長期任務時，會將中間規劃、驗證後的資訊儲存在上下文視窗之外（例如：**Scratchpad 便簽**、**Memory 記憶層** 或狀態文件）[13, 14]。\n*   **Select（選擇）**：Agent 無法一次看完整個企業資料庫或工具庫。開發者需要設計動態檢索系統（如 **GraphRAG**）來精準撈取實體與關係 [15, 16]；並在工具庫過於龐大時，利用 **RAG-MCP** 技術，根據目前的任務僅動態推薦 3~5 個工具，以防止工具過多造成模型混淆（Context Confusion）[17, 18]。\n*   **Compress（壓縮）**：當 Agent 的軌跡（Trajectory）和 tool 回傳的原始結果佔用太多 Token 時，開發者需要實施**自動緊湊（Auto-compact）**、遞迴摘要，或者在調用結束後**清除冗餘的 Tool 結果** [19-21]。\n*   **Isolate（隔離）**：當單一 Agent 資訊過載時，在架構上將其拆分為**多 Agent 協同（Multi-agent）** [22, 23]。每個子 Agent 只分配到與其職責相關、最乾淨的上下文，藉此提升執行精準度 [22, 24]。\n\n---\n\n### 3. 充當標準化、可審計的「企業系統對接管道」\nAgent 必須與外部環境（API、資料庫、文件夾）互動。過去，開發者得為每個工具編寫客製化的 Adapter，陷入複雜的對接地獄 [25]。\n*   **標準化對接標準（AI 的 USB-C）**：在實際開發中，Context Engineering 透過 **Model Context Protocol (MCP)** 這種開放標準，建立起主機（Host）與伺服器之間的標準協議 [26]。這使得 Agent 可以在執行期（Runtime）動態發現、理解並安全地調用外部工具，大幅簡化對接複雜度 [27, 28]。\n*   **提供可審計與治理（Governance）的上下文**：在企業級開發中，安全性與合規性至關重要。Context Engineering 允許在檢索和調用工具時，直接嵌入權限管控（RBAC）、敏感資訊遮蔽（Redaction），並在 Graph 資料庫中留下完整的「決策鏈（Decision Traces）」，讓 Agent 的每一次推理都有據可查 [29-31]。\n\n---\n\n### 💡 總結：Prompt vs. Context Engineering\n\n我們可以這樣區分這兩者：\n> **Prompt Engineering（提示工程）** 關注的是「在上下文視窗**內**」如何寫出完美的指令，就像是寫出**好食譜** [32]；\n> **Context Engineering（上下文工程）** 則是系統級的學問，它決定了「**什麼東西能進入**」這個視窗，像是**備齊乾淨的食材、挑選好廚具、並規劃好廚房的運作動線** [33]。\n\n在 Agent 實際開發中，與其花幾十個小時微調 Promp 詞，不如建立一套穩定、乾淨、可自我修復的 Context 管道，後者才是決定 AI Agent 能否商用的分水嶺 [34, 35]。\n\n---\n\n⚙️ **接下來，您想深入了解這四大核心操作（Write/Select/Compress/Isolate）在代碼上的具體實現方式，還是想看一些常見的 Context 失敗案例（如 Context Poisoning）與解決方案呢？**",
+    "citations": [
+      {
+        "source_id": "a20dd17f-326c-4ba7-b953-94a44be5aea0",
+        "citation_number": 1,
+        "cited_text": "What looks like “forgetting” is really a memory limitation. By default, an LLM only has short-term memory—the current context window. To build reliable agents, you need a system that combines the context window with long-term memory (retrieval from external stores like vector databases) and selectively decides what to include at each step. The difference between a flashy demo and a dependable production system isn't about switching to a \"smarter\" model. It's about how information is selected, structured, and delivered to the model at each step of a task. In other words, the difference is context ."
+      },
+      {
+        "source_id": "eee1500e-a35d-46d7-a985-0600c5a0a263",
+        "citation_number": 2,
+        "cited_text": "Context Poisoning: When a hallucination makes it into the context Context Distraction: When the context overwhelms the training Context Confusion: When superfluous context influences the response Context Clash: When parts of the context disagree Context from tool calls accumulates over multiple agent turns With this in mind, Cognition called out the importance of context engineering: “Context engineering” … is effectively the #1 job of engineers building AI agents. Anthropic also laid it out clearly:"
+      },
+      {
+        "source_id": "eee1500e-a35d-46d7-a985-0600c5a0a263",
+        "citation_number": 3,
+        "cited_text": "Also, see our video on context engineering here . General categories of context engineering Context Engineering As Andrej Karpathy puts it, LLMs are like a new kind of operating system . The LLM is like the CPU and its context window is like the RAM, serving as the model's working memory. Just like RAM, the LLM context window has limited capacity to handle various sources of context. And just as an operating system curates what fits into a CPU's RAM, we can think about “context engineering” playing a similar role. Karpathy summarizes this well :"
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 4,
+        "cited_text": "This is where Context Engineering comes in: the emerging discipline of designing, monitoring, and maintaining context pipelines for production AI systems. Just like DevOps transformed how we deploy software and MLOps transformed how we train models, Context Engineering is transforming how we build reliable agents. TL;DR Context engineering is the new meta-skill - Writing prompts is table stakes; curating what fills the context window is what separates demos from production Models suffer from \"context rot\" - Research shows LLM accuracy degrades as input length increases, even on simple tasks Context fails in four distinct ways - Poisoning, distraction, confusion, and clash each require different fixes Bigger windows don't solve the problem - A Databricks study found accuracy drops around 32K tokens, long before million-token limits Context engineering is a system, not a string - It's dynamic, format-aware, and runs before every LLM call Real-time web data keeps agents current - Firecrawl gives agents access to live web data so they don't rely on stale training knowledge"
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 5,
+        "cited_text": "Prompt engineering gets you the first good output. Context engineering makes sure the 1,000th output is still good. Why context engineering matters: the research The arrival of million-token context windows felt transformative. \"Just dump everything in,\" they said. \"Gemini has 2 million tokens.\" This is lazy engineering. And the research proves it doesn't work. Lost in the middle The foundational Stanford research on \"lost in the middle\" proved that LLM performance degrades significantly when relevant information is placed in the middle of long contexts. Models perform best when key information appears at the very beginning or end of the input. This isn't just about total length. It's about position ."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 6,
+        "cited_text": "If models start to misbehave long before their context windows are filled, what's the point of super large context windows? Summarization and fact retrieval. If you're not doing those specific tasks, be wary of your chosen model's distraction ceiling. The Gemini 2.5 technical report documented this while building a Pokémon-playing agent: As the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 7,
+        "cited_text": "While Gemini 2.5 Pro supports 1M+ token context, making effective use of it for agents presents a new research frontier. In this agentic setup, it was observed that as the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans. This phenomenon, albeit anecdotal, highlights an important distinction between long-context for retrieval and long-context for multi-step, generative reasoning."
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 8,
+        "cited_text": "These realities mean that thoughtful context engineering is essential for building capable agents. The anatomy of effective context Given that LLMs are constrained by a finite attention budget, good context engineering means finding the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome. Implementing this practice is much easier said than done, but in the following section, we outline what this guiding principle means in practice across the different components of context."
+      },
+      {
+        "source_id": "ba1dc3db-3af9-41a4-9a0f-b513ebbae952",
+        "citation_number": 9,
+        "cited_text": "Minimum Viable Context (MVC) and the context pyramid It's critical to organize context optimally and provide it at the right time. The following techniques will help you do so. Minimum viable context (MVC): Think of MVC as the smallest set of inputs the model needs to complete the current task. It typically includes clear instructions and goals, the specific user request, a few targeted examples, a minimal set of enabled tools, and the core facts tied to this request. Leaving out filler and oversized tool dumps keeps the signal high and prevents the model from chasing irrelevant details. Context pyramid: Organize what the model sees into three layers. The persistent base holds stable material, such as the system prompt, safety policies, and canonical facts; cache this so it rarely changes. Above that sits the dynamic layer (examples, recent memory, and metadata), which you rotate per task or step. At the top is the ephemeral layer (the user query and tool outputs), which you keep small and short‑lived. Caching the base while refreshing the top layers controls token cost and helps the model attend to what matters."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 10,
+        "cited_text": "Book a demo Book a demo Blog › 8 Context Engineering Techniques for Better AI Context Engineering 8 Context Engineering Techniques for Better AI OvalEdge Team Jun 25, 2026 • 22 min read Share in X ✉ Book a Demo ✦ Key Takeaways Context engineering techniques control what enters an AI model's limited context window, organized around four core operations: write, select, compress, and isolate. Retrieving more rarely helps, so hybrid retrieval paired with contextual compression keeps only the highest-signal information inside a finite token budget. Selective memory management and per-agent context isolation stop AI systems from drowning in stale notes or bleeding unrelated information between concurrent workflows. Metadata, business definitions, and lineage decide which retrieved source ranks first, and a final validation step grounds answers in certified data before they reach the model."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 11,
+        "cited_text": "Unlike prompt engineering, which focuses on writing instructions, context engineering manages the entire flow of information that influences model outputs. Most context engineering methods are built around four core operations: write, select, compress, and isolate. What goes into the context window? Every AI model operates within a limited context window. The information competing for that space typically includes: System prompts and instructions: Define the model's behavior, constraints, and objectives. User input: Provides the immediate task, question, or request. Short-term memory: Captures relevant information from the current conversation. Long-term memory: Retrieves stored knowledge from previous interactions. Retrieved knowledge: Supplies external information through RAG systems. Tool outputs: Includes results returned from APIs, databases, applications, or code execution."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 12,
+        "cited_text": "Each component competes for the same finite token budget. Context engineering determines which information deserves space in the context window and which information should be compressed, prioritized, or excluded. The quality of these decisions often depends on strong data quality management practices that ensure information entering the context window is accurate, complete, and trustworthy. The 4 core operations of context engineering: write, select, compress, and isolate ** ** Every context engineering technique ultimately serves one purpose: ensuring the model sees the right information at the right time. Most modern frameworks organize this challenge into four core operations that control how information is stored, retrieved, optimized, and separated throughout an AI workflow."
+      },
+      {
+        "source_id": "eee1500e-a35d-46d7-a985-0600c5a0a263",
+        "citation_number": 13,
+        "cited_text": "Scratchpads When humans solve tasks, we take notes and remember things for future, related tasks. Agents are also gaining these capabilities! Note-taking via a “ scratchpad ” is one approach to persist information while an agent is performing a task. The idea is to save information outside of the context window so that it's available to the agent. Anthropic's multi-agent researcher illustrates a clear example of this: The LeadResearcher begins by thinking through the approach and saving its plan to Memory to persist the context, since if the context window exceeds 200,000 tokens it will be truncated and it is important to retain the plan."
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 14,
+        "cited_text": "Practical Strategies Planning is important but once the information starts to flow into our agent's context window, we need to have practical strategies to manage it: Managing Context While some information will be added to the context window automatically, context engineering is about taking a more active role of this information which can be done by a few strategies: Agent Scratchpad This allows for an AI Agent to takes notes of relevant information about the current tasks and user interactions during a single session. This should exist outside of the context window in a file or runtime object that the agent can later retrieve during this session if needed. Memories Scratchpads are good for managing information outside of the context window of a single session. Memories enable agents to store and retrieve relevant information across multiple sessions. This could include summaries, user preferences and feedback for improvements in the future. Compressing Context Once the context window grows and is nearing its limit, techniques such as summarization and trimming can be used. This includes either keeping only the most relevant information or removing older messages. Multi-Agent Systems Developing multi-agent system is a form of context engineering because each agent has its own context window. How that context is shared and passed to different agents is another thing to plan out when building these systems. Sandbox Environments If an agent needs to run some code or process large amounts of information in a document, this can take a large amount of tokens to process the results. Instead of having this all stored in the context window, the agent can use a sandbox environment that is able to run this code and only read the results and other relevant information. Runtime State Objects This is done by creating containers of information to manage situations when the Agent needs to have access to certain information. For a complex task, this would enable an Agent to store the results of each subtask step by step, allowing the context to remain connected only to that specific subtask."
+      },
+      {
+        "source_id": "5c82dfc2-9a1c-4236-a0c9-7c8fb18b3e61",
+        "citation_number": 15,
+        "cited_text": "In many agentic systems, this memory works best when represented as a knowledge graph of entities and relationships rather than vectors alone. Vectors capture semantic similarity. Knowledge graphs capture meaning and structure. With both, agents can retrieve not just similar text but hop through relationships to discover connected context. This drastically reduces the risks of hallucination. Neo4j provides the world's leading knowledge graphs for your long-term memory with built-in vector index capabilities and integration with LangChain. Agents retrieve information from knowledge graphs using GraphRAG by traversing the graph to pull richer, connected facts and their relationships. Alternatively, hybrid retrieval combines GraphRAG and vector RAG to retrieve both semantically similar and contextually relevant information."
+      },
+      {
+        "source_id": "ba1dc3db-3af9-41a4-9a0f-b513ebbae952",
+        "citation_number": 16,
+        "cited_text": "Knowledge graphs for structured context Knowledge graphs provide the structured memory and reasoning backbone for context engineering. Instead of leaving important facts buried in tickets, logs, and documents, you model your domain as nodes (customers, products, policies, services, incidents, changes, etc.) and relationships, which show how nodes depend on or affect one another. Your graph becomes a living representation of the environment your agents operate in. Where a vector index tells you “These passages look similar to the query,” a knowledge graph can answer “What is this thing connected to, and along which paths?” With GraphRAG, you use the graph as a retrieval and organization layer: start from an identifier in the question (a customer ID, incident number, or service name); traverse the graph to collect related entities, events, and documents; and then pass both the content and the connecting paths into the model. The LLM sees not just isolated snippets, but the structure that links them together."
+      },
+      {
+        "source_id": "4b1a9be8-43c0-4c77-b9be-fbae2a82b46a",
+        "citation_number": 17,
+        "cited_text": "Optimizing Tool Selection If an LLM supports tool calling, it can choose to call (potentially) one or many tools to solve the problem. I have discussed my experiences of model choice before while building my own multi-tool AI agent . It's important when choosing a model to investigate the level of tool calling support using resources such as the Hugging Face Open LLM Leaderboard or Berkeley Function-Calling Leaderboard . The problem is that given the LLM decides which tools are relevant to the objective, it is possible that it can be confused by a tool many tools and call irrelevant tools as discussed by Drew Breunig . This idea of tool confusion is also discussed in the 2024 paper by Paramanayakam et al. where they found the performance of Llama 3.1 8b improved when provided with less tools (19 compared with 46)."
+      },
+      {
+        "source_id": "4b1a9be8-43c0-4c77-b9be-fbae2a82b46a",
+        "citation_number": 18,
+        "cited_text": "Optimizing the number of tools available is an open area of research. One possible mechanism is to leverage the RAG-MCP pattern. This involves storing tool metadata, such as name and description into a vector database, like Elasticsearch, and returning the top-N relevant descriptions at invocation time using the user prompt. In their paper, the authors found that RAG-MCP tripled tool-calling accuracy and reduced prompt token usage by over 50%. However, it is worth noting that engineers should ensure they choose accurate and unambiguous names and descriptions for their tools for this approach. We know that naming is hard!"
+      },
+      {
+        "source_id": "eee1500e-a35d-46d7-a985-0600c5a0a263",
+        "citation_number": 19,
+        "cited_text": "Context Summarization Agent interactions can span hundreds of turns and use token-heavy tool calls. Summarization is one common way to manage these challenges. If you've used Claude Code, you've seen this in action. Claude Code runs “ auto-compact ” after you exceed 95% of the context window and it will summarize the full trajectory of user-agent interactions. This type of compression across an agent trajectory can use various strategies such as recursive or hierarchical summarization. A few places where summarization can be applied"
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 20,
+        "cited_text": "Compaction Compaction is the practice of taking a conversation nearing the context window limit, summarizing its contents, and reinitiating a new context window with the summary. Compaction typically serves as the first lever in context engineering to drive better long-term coherence. At its core, compaction distills the contents of a context window in a high-fidelity manner, enabling the agent to continue with minimal performance degradation. In Claude Code, for example, we implement this by passing the message history to the model to summarize and compress the most critical details. The model preserves architectural decisions, unresolved bugs, and implementation details while discarding redundant tool outputs or messages. The agent can then continue with this compressed context plus the five most recently accessed files. Users get continuity without worrying about context window limitations."
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 21,
+        "cited_text": "An example of low-hanging superfluous content is clearing tool calls and results – once a tool has been called deep in the message history, why would the agent need to see the raw result again? One of the safest lightest touch forms of compaction is tool result clearing, most recently launched as a feature on the Claude Developer Platform . Structured note-taking Structured note-taking, or agentic memory, is a technique where the agent regularly writes notes persisted to memory outside of the context window. These notes get pulled back into the context window at later times."
+      },
+      {
+        "source_id": "eee1500e-a35d-46d7-a985-0600c5a0a263",
+        "citation_number": 22,
+        "cited_text": "Whereas summarization typically uses an LLM to distill the most relevant pieces of context, trimming can often filter or, as Drew Breunig points out, “ prune ” context. This can use hard-coded heuristics like removing older messages from a list. Drew also mentions Provence , a trained context pruner for Question-Answering. Isolating Context Isolating context involves splitting it up to help an agent perform a task. Multi-agent One of the most popular ways to isolate context is to split it across sub-agents. A motivation for the OpenAI Swarm library was separation of concerns , where a team of agents can handle specific sub-tasks. Each agent has a specific set of tools, instructions, and its own context window."
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 23,
+        "cited_text": "Sub-agent architectures Sub-agent architectures provide another way around context limitations. Rather than one agent attempting to maintain state across an entire project, specialized sub-agents can handle focused tasks with clean context windows. The main agent coordinates with a high-level plan while subagents perform deep technical work or use tools to find relevant information. Each subagent might explore extensively, using tens of thousands of tokens or more, but returns only a condensed, distilled summary of its work (often 1,000-2,000 tokens)."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 24,
+        "cited_text": "Why isolation fails in practice A common design mistake is passing large amounts of shared context between agents. When agents receive information unrelated to their responsibilities, they spend resources processing unnecessary data and become more susceptible to errors. Scoping context per agent role Each agent should receive only the information required for its specific function. An extraction agent needs source content and extraction rules. It does not need workflow history, user preferences, or outputs generated by unrelated agents."
+      },
+      {
+        "source_id": "096fdfa6-62e5-4b43-9223-d63ed3d0ab15",
+        "citation_number": 25,
+        "cited_text": "Background [ edit ] MCP was announced by Anthropic in November 2024 as an open standard [5] for connecting AI assistants to data systems such as content repositories , business management tools , and development environments . [6] The protocol was created at Anthropic by engineers David Soria Parra and Justin Spahr-Summers. [6] It aims to address the challenge of information silos and legacy systems . [6] Before MCP, developers often had to build custom connectors for each data source or tool, resulting in what Anthropic described as an \"N×M\" data integration problem. [6] [7]"
+      },
+      {
+        "source_id": "34ba376e-441f-45e7-8df1-829366a0af76",
+        "citation_number": 26,
+        "cited_text": "About MCP Architecture Servers Clients Versioning Develop with MCP Connect to local MCP servers Connect to remote MCP Servers Build with Agent Skills Build an MCP server Clients SDKs Security Developer tools Inspector Debugging Examples Example Servers On this page What can MCP enable? Why does MCP matter? Broad ecosystem support Start Building Learn more Get started What is the Model Context Protocol (MCP)? Copy page Copy page Copy page Copy page MCP (Model Context Protocol) is an open-source standard for connecting AI applications to external systems. Using MCP, AI applications like Claude or ChatGPT can connect to data sources (e.g. local files, databases), tools (e.g. search engines, calculators) and workflows (e.g. specialized prompts)—enabling them to access key information and perform tasks. Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect electronic devices, MCP provides a standardized way to connect AI applications to external systems."
+      },
+      {
+        "source_id": "5c82dfc2-9a1c-4236-a0c9-7c8fb18b3e61",
+        "citation_number": 27,
+        "cited_text": "Imagine a renewal agent proposes a 20-percent discount. But the policy only allows up to a 10-percent discount unless an exception is approved. A renewal agent may retrieve recent cases at risk of churn and surface a prior case where a similar exception was approved. It then routes the exception request to finance, which approves it. The context graph preserves the decision-making process, making it explainable, auditable, and reusable for similar cases. Connect to tools with Model Context Protocol Model Context Protocol (MCP) is the standard protocol that helps agents connect to external tools, providing the tool definitions and instructions to reduce ambiguity. Anthropic introduced MCP as a standard and uses a client-server model in which MCP hosts connect to MCP servers via MCP clients. It allows you to consistently pass tools and the necessary context to agents, so they understand the instructions and capabilities and use the tools correctly."
+      },
+      {
+        "source_id": "7b26995b-d597-453d-8d1d-d674ca8bb7ad",
+        "citation_number": 28,
+        "cited_text": "Another common context-gathering example is retrieving institutional knowledge. “Instead of hardcoding that knowledge into the model, the agent uses MCP to retrieve relevant documents or data at runtime,” says Ebrahim Alareqi , principal machine learning engineer at Incorta , a data and analytics platform provider. “This keeps the agent lightweight while still giving it access to enterprise-specific context when needed.” Others praise MCP for its role in bringing common standards to agentic data retrieval. “MCP provides the plumbing that makes context engineering practical,” says Gil Feig , co-founder and CTO at Merge , an API platform provider. Without standards, teams end up building fragile custom data pipelines that break often, he adds."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 29,
+        "cited_text": "When governance rules become part of the context engineering process, agents are better equipped to make safe and compliant decisions. Actionable takeaway: Before optimising retrieval, ensure the underlying information is documented, governed, and trustworthy. Technique 7: Structured outputs and schema enforcement Structured outputs improve reliability by constraining how models generate responses."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 30,
+        "cited_text": "Context Engineering Improves Observability When context is deliberately assembled, failures become easier to diagnose. If an answer is wrong, you can ask: Was the instruction wrong? Was the relevant document not retrieved? Was stale memory injected? Did the tool return incorrect or outdated state? Was relevant context pruned? Did the summary lose a critical constraint? Was too much irrelevant context included? Without context architecture, all of those causes can look like “the model failed.” Context Engineering vs. Prompt Engineering Prompt engineering and context engineering overlap, but they focus on different layers of the problem."
+      },
+      {
+        "source_id": "7b26995b-d597-453d-8d1d-d674ca8bb7ad",
+        "citation_number": 31,
+        "cited_text": "Then, there are MCP-related security concerns . The security model for the MCP protocol itself has matured quite a bit , but it's incumbent upon implementers to enforce the correct permissions. “MCP, when implemented the right way, lets you enforce policy-driven access controls,” says Merge's Feig. This should prevent a junior engineer, for instance, from accessing logs they're not authorized to access, even if the agent has broader permissions, he adds. To boost confidence using MCP within enterprise development settings, many experts recommend using an MCP registry that houses vetted, governed MCP servers approved for internal use. Other tools and practices, including agent skills , code mode , and emerging specifications for deterministic AI also promise to play a role in establishing context for agents."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 32,
+        "cited_text": "Context engineering is the craft of curating all of these for every single inference call. Context engineering vs prompt engineering This is the question everyone asks. Here's the simplest way to think about it: Prompt engineering is what you do inside the context window. It's crafting instructions for a single task: \"You are an expert X. Do Y like Z.\" Context engineering is how you decide what fills the window. It's designing the entire mental world the model operates in: memory, retrieval, tools, history, and yes, the prompt."
+      },
+      {
+        "source_id": "a7c63454-95bd-4316-bc00-75b8ea579065",
+        "citation_number": 33,
+        "cited_text": "Prompt Engineering: Focuses on one-off instructions or templates. Example: “Summarize this text in three bullet points.” Context Engineering: Governs the entire information ecosystem feeding into the model: prompts, retrieved docs, memory, policies, and constraints. Example: Designing a pipeline where the model always sees: System role definition Latest customer data from a CRM Relevant product FAQs Safety guardrails To think about it slightly differently, prompt engineering writes the recipe, while context engineering stocks the kitchen, chooses the ingredients and sets the rules for cooking."
+      },
+      {
+        "source_id": "5c82dfc2-9a1c-4236-a0c9-7c8fb18b3e61",
+        "citation_number": 34,
+        "cited_text": "Build agentic systems with reliable context Context engineering is foundational for agentic AI systems because every step depends on the system supplying the right facts, constraints, and state at the right moment. Without it, tool use becomes brittle, retrieval drifts, and quality degrades as the application evolves. Reliable agentic systems are built on reliable frameworks that orchestrate memory and tool use to maintain consistent context across multi-step reasoning and workflows. That includes selecting the right data at the right time, preserving state between actions, and ensuring every decision is grounded in evidence. It's also important to keep context lean through compression and chunking, and evaluate for performance and hallucination."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 35,
+        "cited_text": "Here's your checklist: Audit your current context - What's actually entering your prompts? Is it high-signal? Identify your failure modes - Which of the four failure types are hitting you? Implement dynamic retrieval - Move from \"dump everything\" to just-in-time loading Separate static and dynamic context - Enable prompt caching, leverage recency bias Automate ingestion - Use Firecrawl to keep context fresh Measure and iterate - Track success rates across context configurations The agents that win won't be the ones with the biggest context windows. They'll be the ones with the most carefully engineered context."
+      }
+    ]
+  },
+  {
+    "question": "關鍵任務是什麼？",
+    "answer": "Andrej Karpathy 曾將 **Context Engineering (脈絡工程)** 貼切地定義為「**在每一步中，用恰到好處的資訊填滿上下文窗口的精妙藝術與科學**」[1-4]。\n\n這項學科的核心目標是將有限的上下文窗口 (Context Window) 視為稀缺資源，對其進行主動且系統性的最佳化，使模型能以最精簡、高訊號的 Token 做出最準確的決策 [5-7]。在實際的 AI 系統或 AI Agent 開發中，Context Engineering 的**關鍵任務**主要圍繞在**四大核心操作** [8-10] 以及**系統級脈絡管道 (Pipeline) 的建構步驟** [11, 12]。\n\n以下為 Context Engineering 的關鍵任務拆解：\n\n### 一、 脈絡工程的四大核心操作任務\n根據系統框架，脈絡工程最基礎的任務包含以下四項基本操作的設計與落實 [8-10]：\n\n1. **寫入 (Write) — 儲存狀態與工作筆記** [13, 14]：\n   * 當 Agent 執行的任務超出單次對話時，需要將中間步驟、推理決策與用戶偏好儲存在上下文窗口之外（例如：**Scratchpad**、運行時狀態、記憶庫中） [14, 15]。這樣能避免在後續步驟中重複載入冗長歷史，釋放窗口空間 [14]。\n2. **選擇 (Select) — 精準拉取相關資訊** [13, 14]：\n   * 評估所有可用資訊，基於相關性、新鮮度與必要性，僅拉取當前步驟真正需要的資訊進入窗口 [14, 16]。此操作旨在最大化**降低雜訊**，讓模型專注於核心任務 [17, 18]。\n3. **壓縮 (Compress) — 提升資訊密度** [13, 17]：\n   * 針對冗長的對話、大型文檔或工具輸出進行壓縮（如自動運行 **Auto-Compact** 運算），保留事實、決策和推理軌跡，但大幅減少所佔用的 Token 數量 [19-21]。\n4. **隔離 (Isolate) — 劃分脈絡邊界** [13, 17]：\n   * 確保不同的 Agent、 concurrent 工作流或沙盒環境 (Sandbox) 之間有清晰的脈絡邊界，防止資訊交叉污染 (Context Bleeding) 與無謂的 Token 浪費 [15, 22]。\n\n---\n\n### 二、 系統級脈絡管道 (Pipeline) 的關鍵任務\n在架構可靠的 Agent 系統時，開發者必須透過以下關鍵任務來維護整個脈絡管道 [11, 12]：\n\n#### 1. 脈絡檢索與優化 (Context Retrieval & Optimization)\n檢索品質直接決定了脈絡的品質（即「垃圾進，垃圾出」） [23, 24]。\n* **實施混合檢索 (Hybrid Search)**：結合能理解語意的**向量檢索**與能精準匹配關鍵字的**詞彙檢索 (BM25)** [25, 26]。\n* **位置感知的重排序 (Reranking)**：利用重排序模型，將最高相關性的片段置於窗口的「最前端」或「最末端」，以對抗現代大模型因旋轉位置嵌入 (RoPE) 導致的**「遺忘中段」(Lost in the Middle)** 架構限制 [27-30]。\n* **維護脈絡新鮮度 (Freshness)**：定義時間戳元數據與同步機制，過濾掉過時的資訊（例如兩年前的舊政策），避免模型依據過期資料自信地給出錯誤答案 [31, 32]。\n\n#### 2. 脈絡處理與結構化 (Context Processing & Structuring)\n* **語意分塊 (Semantic Chunking)**：打破生硬的固定字數分塊，改以語意邏輯（如段落、函數、表格）來切分數據，保留上下文的完整性 [26, 33]。\n* **資訊與指令的清晰隔離**：使用 XML 標籤、Markdown 或明確的定界符結構化組織輸入，明確區分「大模型的系統指令」與「外部檢索到的參考數據」，降低模型產生混淆的機率 [34, 35]。\n\n#### 3. 提示詞與系統指令規範 (Prompt & Instruction Specifying)\n* **設計結構化的提示詞規範 (Prompt Specs)**：用規格書般明確的 Objective (目標)、Constraints (硬性邊界限制) 與 Output Contract (輸出格式合約) 取代自由格式的文本 [36, 37]。\n* **防範行為漂移 (Behavioral Drift)**：隨着對話歷史與工具輸出增加，System Prompt 容易在窗口中被邊緣化。任務之一是策略性地放置關鍵限制，使模型始終遵循核心規範 [35]。\n\n#### 4. 記憶系統層級規劃 (Memory Layer Management)\n* **冷、溫、熱記憶分層**：規劃**熱記憶**（當前 Session 狀態與對話歷史 [15, 38]）、**溫記憶**（近期交互與常用事實 [38]）以及**長期/冷記憶**（基於知識圖譜 GraphRAG 的持久化實體與關係 [38, 39]）。\n* **記憶更新與衰退機制 (Decay)**：設計定期清理與主動更新機制，將完成的計畫、已解決的爭論予以剪枝或封存，避免窗口飽和與**脈絡腐敗 (Context Rot)** [40-42]。\n\n#### 5. 工具與 API 的動態裝載 (Tool Context Management)\n* **動態工具檢索 (RAG-MCP)**：當 Agent 可用工具太多時，會造成工具描述佔用大量空間並干擾模型 [43, 44]。關鍵任務是透過語意檢索，在當前步驟中僅動態裝載最相關的 3-5 個工具，研究指出這可將**工具調用準確率提升 3 倍** [44-46]。\n* **工具輸出預處理 (Tool Output Filtering)**：API 返回的原始 JSON 往往包含大量模型不需要的贅字，必須在代碼中先行過濾、整合或轉為 typed 緊湊格式，再送入大模型 [47-49]。\n* **標準化連接 (Model Context Protocol - MCP)**：利用 open-source 的通用標準 MCP 協定，解除 AI 與各種資料庫、第三方工具之間的專屬耦合，使 context 傳遞更為穩定、可重複且易維護 [50-52]。\n\n#### 6. 治理、驗證與可觀測性評估 (Governance, Validation & Evaluation)\n* **脈絡驗證與防毒隔離 (Quarantine)**：在外部輸入或不可信數據進入上下文窗口之前進行質量、安全、合規檢查，並主動遮蔽敏感資訊 (PII) [53, 54]。\n* **可觀測性與評估 (Evaluation & Auditing)**：記錄每一次推論所輸入的完整 Context（包含考慮了多少片段、哪些規則被過濾等） [55, 56]。使用**消融測試 (Ablation Tests)** 來衡量不同脈絡組件（如移除歷史對話、減少檢索片段數）對最後輸出品質與 token 成本的真實貢獻 [57, 58]。\n\n---\n\n💡 既然大模型在面對多個工具、冗長歷史與多重資料來源時容易產生「脈絡混淆」或「 lost-in-the-middle 」，也許我們可以深入聊聊你的 AI Agent 主要使用哪些工具與資料源？這樣我們就能針對你的實際場景，規劃最適合的 **Minimum Viable Context (MVC)** 篩選策略。",
+    "citations": [
+      {
+        "source_id": "eee1500e-a35d-46d7-a985-0600c5a0a263",
+        "citation_number": 1,
+        "cited_text": "Also, see our video on context engineering here . General categories of context engineering Context Engineering As Andrej Karpathy puts it, LLMs are like a new kind of operating system . The LLM is like the CPU and its context window is like the RAM, serving as the model's working memory. Just like RAM, the LLM context window has limited capacity to handle various sources of context. And just as an operating system curates what fits into a CPU's RAM, we can think about “context engineering” playing a similar role. Karpathy summarizes this well :"
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 2,
+        "cited_text": "What is Context Engineering? Let's start with a definition. Andrej Karpathy put it simply : People associate prompts with short task descriptions you'd give an LLM in your day-to-day use. When in every industrial-strength LLM app, context engineering is the delicate art and science of filling the context window with just the right information for the next step. Tobi Lutke , CEO of Shopify, describes it as \"the art of providing all the context for the task to be plausibly solvable by the LLM.\" Here's my working definition:"
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 3,
+        "cited_text": "An agent running in a loop generates more and more data that could be relevant for the next turn of inference, and this information must be cyclically refined. Context engineering is the art and science of curating what will go into the limited context window from that constantly evolving universe of possible information. In contrast to the discrete task of writing a prompt, context engineering is iterative and the curation phase happens each time we decide what to pass to the model. Why context engineering is important to building capable agents Despite their speed and ability to manage larger and larger volumes of data, we've observed that LLMs, like humans, lose focus or experience confusion at a certain point. Studies on needle-in-a-haystack style benchmarking have uncovered the concept of context rot : as the number of tokens in the context window increases, the model's ability to accurately recall information from that context decreases."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 4,
+        "cited_text": "This framing gave us the term “context engineering” in 2025, Karpathy's phrase for “the delicate art and science of filling the context window with just the right information for the next step.” The framing elevates context management from a workaround to a core engineering discipline. Understanding the context window as RAM is the prerequisite for understanding why it degrades. The context layer, built live The Context Layer Series runs live sessions with the people building this layer: graph foundations, governed definitions, and what enterprise AI needs to act reliably. Pick the sessions you want and save your spot."
+      },
+      {
+        "source_id": "a20dd17f-326c-4ba7-b953-94a44be5aea0",
+        "citation_number": 5,
+        "cited_text": "All LLMs are constrained by finite context windows that force hard trade‑offs about what the model can \"see\" at once. Context engineering is all about treating that window as a scarce resource and designing everything around it (retrieval, memory systems, tool integrations, prompts, etc.) so that the model spends its limited attention budget only on high‑signal tokens. But What Is a Context Window? The context window is the model's active workspace, where it holds instructions and information for a current task. Every word, number, and piece of punctuation consumes space in this window. Think of it like a whiteboard: once it fills up, older information must be erased to make room for the new, causing important past details to be lost. In more technical terms, a context window refers to the maximum amount of input data a language model can consider at one time when generating responses, measured in tokens . This window includes all your inputs, model's outputs, tool calls, and retrieved documents, acting as the model's short-term memory. Every token placed in the context window directly influences what the model can \"see\" and how it responds."
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 6,
+        "cited_text": "These realities mean that thoughtful context engineering is essential for building capable agents. The anatomy of effective context Given that LLMs are constrained by a finite attention budget, good context engineering means finding the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome. Implementing this practice is much easier said than done, but in the following section, we outline what this guiding principle means in practice across the different components of context."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 7,
+        "cited_text": "Context quality, the degree to which information in an LLM's context window is relevant, accurate, and structured for the task at hand, is emerging as a major constraint on agent performance . Context engineering, the practice of curating what goes into that window, is becoming a core skill for teams building LLM apps. This article covers what separates good context from bad, the failure modes that degrade it, why precision beats volume, and how retrieval quality shapes everything downstream. What separates good context from bad Good context pulls its weight; bad context just crowds the window. That distinction matters because LLMs process every token through transformer attention, where tokens interact across the entire window. n tokens produce n² pairwise attention relationships, so every token you add doesn't just take up space, it multiplies the number of relationships the model needs to resolve."
+      },
+      {
+        "source_id": "eee1500e-a35d-46d7-a985-0600c5a0a263",
+        "citation_number": 8,
+        "cited_text": "Compressing Context Isolating Context Context Engineering with LangSmith / LangGraph Conclusion Share TL;DR Agents need context to perform tasks. Context engineering is the art and science of filling the context window with just the right information at each step of an agent's trajectory. In this post, we break down some common strategies — write, select, compress, and isolate — for context engineering by reviewing various popular agents and papers. We then explain how LangGraph is designed to support them!"
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 9,
+        "cited_text": "Book a demo Book a demo Blog › 8 Context Engineering Techniques for Better AI Context Engineering 8 Context Engineering Techniques for Better AI OvalEdge Team Jun 25, 2026 • 22 min read Share in X ✉ Book a Demo ✦ Key Takeaways Context engineering techniques control what enters an AI model's limited context window, organized around four core operations: write, select, compress, and isolate. Retrieving more rarely helps, so hybrid retrieval paired with contextual compression keeps only the highest-signal information inside a finite token budget. Selective memory management and per-agent context isolation stop AI systems from drowning in stale notes or bleeding unrelated information between concurrent workflows. Metadata, business definitions, and lineage decide which retrieved source ranks first, and a final validation step grounds answers in certified data before they reach the model."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 10,
+        "cited_text": "Unlike prompt engineering, which focuses on writing instructions, context engineering manages the entire flow of information that influences model outputs. Most context engineering methods are built around four core operations: write, select, compress, and isolate. What goes into the context window? Every AI model operates within a limited context window. The information competing for that space typically includes: System prompts and instructions: Define the model's behavior, constraints, and objectives. User input: Provides the immediate task, question, or request. Short-term memory: Captures relevant information from the current conversation. Long-term memory: Retrieves stored knowledge from previous interactions. Retrieved knowledge: Supplies external information through RAG systems. Tool outputs: Includes results returned from APIs, databases, applications, or code execution."
+      },
+      {
+        "source_id": "078f8fa7-2eb7-4f2e-98ee-e6a8b8aaba26",
+        "citation_number": 11,
+        "cited_text": "Explore IBM watsonx.data What are the key context engineering steps? The core steps of the context engineering process are as follows: Context selection Context structuring Prompt design and engineering Context compression Context sequencing Tool and memory integration 1. Context selection Choosing what information to include in the context. It includes filtering out irrelevant or redundant data and either reranking or reducing the context window to better fit the current task. This step also includes preventing context poisoning , when inaccurate or malicious information enters the context window."
+      },
+      {
+        "source_id": "30fdfcd3-d300-4536-af3f-997cadc38b30",
+        "citation_number": 12,
+        "cited_text": "Structured output Structured output refers to information that an AI needs to format in a specific way, such as JSON, XML, or a table. By defining a structured output, AI responses can be consistent and easily used by other programs or systems. For a more in-depth exploration of these concepts, read the full blog post: Context engineering overview . The context engineering pipeline The practice of context engineering is best understood as the design of a systematic pipeline built to support the LLM. Rather than just combining various components ad-hoc, this pipeline is tailored to a specific task and is designed to manage the entire flow of information to and from the model at every stage of the loop. This pipeline is typically broken down into three core stages:"
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 13,
+        "cited_text": "Each component competes for the same finite token budget. Context engineering determines which information deserves space in the context window and which information should be compressed, prioritized, or excluded. The quality of these decisions often depends on strong data quality management practices that ensure information entering the context window is accurate, complete, and trustworthy. The 4 core operations of context engineering: write, select, compress, and isolate ** ** Every context engineering technique ultimately serves one purpose: ensuring the model sees the right information at the right time. Most modern frameworks organize this challenge into four core operations that control how information is stored, retrieved, optimized, and separated throughout an AI workflow."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 14,
+        "cited_text": "1. Write: Persisting state and working notes AI agents often perform tasks that extend beyond a single interaction. The write operation allows them to store important information outside the active context window through scratchpads, memory stores, or task states. This helps preserve progress, user preferences, and intermediate results without repeatedly consuming context space. 2. Select: Pulling only what's relevant Not every piece of available information deserves a place in the context window. The select operation determines what information should be retrieved based on relevance, recency, and importance."
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 15,
+        "cited_text": "Practical Strategies Planning is important but once the information starts to flow into our agent's context window, we need to have practical strategies to manage it: Managing Context While some information will be added to the context window automatically, context engineering is about taking a more active role of this information which can be done by a few strategies: Agent Scratchpad This allows for an AI Agent to takes notes of relevant information about the current tasks and user interactions during a single session. This should exist outside of the context window in a file or runtime object that the agent can later retrieve during this session if needed. Memories Scratchpads are good for managing information outside of the context window of a single session. Memories enable agents to store and retrieve relevant information across multiple sessions. This could include summaries, user preferences and feedback for improvements in the future. Compressing Context Once the context window grows and is nearing its limit, techniques such as summarization and trimming can be used. This includes either keeping only the most relevant information or removing older messages. Multi-Agent Systems Developing multi-agent system is a form of context engineering because each agent has its own context window. How that context is shared and passed to different agents is another thing to plan out when building these systems. Sandbox Environments If an agent needs to run some code or process large amounts of information in a document, this can take a large amount of tokens to process the results. Instead of having this all stored in the context window, the agent can use a sandbox environment that is able to run this code and only read the results and other relevant information. Runtime State Objects This is done by creating containers of information to manage situations when the Agent needs to have access to certain information. For a complex task, this would enable an Agent to store the results of each subtask step by step, allowing the context to remain connected only to that specific subtask."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 16,
+        "cited_text": "A question about changing the user's current password may require only: the current authentication policy, the account's authentication method, one or two account tools, and the current user question. That is not incomplete context. It is task-appropriate context. Optimize Useful Information per Context Budget A helpful principle is: This is not a mathematical metric, but it is a useful design heuristic."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 17,
+        "cited_text": "Effective selection reduces noise and ensures the model focuses only on information that supports the current task. 3. Compress: Reducing context without losing value Large documents, lengthy conversations, and detailed tool outputs can quickly consume available context. Compression condenses this information into shorter representations while preserving the facts and reasoning needed for accurate responses. The goal is to maximize information density, not simply reduce tokens. 4. Isolate: Keeping context purpose-built Different agents and workflows often require different information. Isolation ensures that each agent receives only the context relevant to its role."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 18,
+        "cited_text": "So what does \"good\" actually look like? It comes down to a few measurable properties: Relevance: Retrieved information directly addresses the query. Completeness: The context contains enough information to produce a correct answer. Faithfulness: The model's response stays grounded in the retrieved evidence. High signal-to-noise ratio: Every passage contributes useful signal, not filler. Freshness: The information reflects the current state of the world, not a snapshot from six months ago. When those properties hold up together, the model has a much better shot at producing a correct answer. Bad context violates one or more of them, and the consequences aren't subtle."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 19,
+        "cited_text": "Technique 2: Context compression As AI systems interact with more data, context windows quickly become crowded. Long conversations, large documents, and detailed tool outputs can consume valuable tokens and reduce model efficiency. Context compression helps preserve important information while minimizing unnecessary content. Summarisation-based compression Summarisation is the most common compression technique. Long conversations, reports, and tool outputs are condensed into shorter representations before being added to the context window."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 20,
+        "cited_text": "7. Use compaction for long-horizon tasks For tasks spanning tens of minutes to hours, you'll exceed the context window. Compaction distills the contents while preserving critical details. Example from Claude Code: Pass message history to the model for summarization Preserve architectural decisions, unresolved bugs, implementation details Discard redundant tool outputs Continue with compressed context plus five most recently accessed files The art is knowing what to keep versus discard. Overly aggressive compaction loses subtle but critical context."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 21,
+        "cited_text": "A useful pruning question is: If this item disappears from the context, can the model still complete the current task correctly? If yes, the item may be a candidate for removal or external storage. Context Compression Compression reduces a larger body of history or state into a smaller representation."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 22,
+        "cited_text": "Clear boundaries improve both efficiency and accuracy. Preventing context bleeding between workflows Concurrent workflows require strict separation mechanisms. Memory, retrieval queries, and stored context should be partitioned by workflow, task, or session identifiers. Isolation must be enforced intentionally rather than assumed. Actionable takeaway: Design context boundaries as part of the architecture, not as an afterthought. Technique 6: Building trusted context with metadata and governance ** **"
+      },
+      {
+        "source_id": "a20dd17f-326c-4ba7-b953-94a44be5aea0",
+        "citation_number": 23,
+        "cited_text": "The Weaviate Query Agent is a great example of how query augmentation can easily be built into any AI app. It works by taking a user's prompt in natural language and deciding the best way to structure the query for the database based on its knowledge of the cluster's data structure and Weaviate itself. Retrieval A common saying when building with AI: garbage in, garbage out . Your Retrieval Augmented Generation (RAG) system-often described as an LLM RAG pipeline-is only as good as the information it retrieves. A well-written prompt and a robust model are useless if they're working with irrelevant context. This is why the first, and most important step, is optimizing your retrieval ."
+      },
+      {
+        "source_id": "4b1a9be8-43c0-4c77-b9be-fbae2a82b46a",
+        "citation_number": 24,
+        "cited_text": "Tap to unmute Your browser can't play this video. Learn more Why do LLMs need context engineering? It's important to ensure that the LLMs we use in agents and MCP tools have the right information sources to ensure they provide accurate results, and don't hallucinate or fail to give the desired answer. My high school maths teacher always talked about the notion of \"rubbish in, rubbish out\" in terms of the inputs we provided to our calculations and proofs. The same goes for LLMs. We can't expect LLMs to provide the answers and automations we need accurately without providing them with the right information. As you can see from the above example, leveraging ChatGPT, it can only pick up information on which it was trained, or that is provided in the context via the components discussed in subsequent sections."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 25,
+        "cited_text": "Re-ranking is the fix. A cross-encoder re-orders candidate documents by relevance before they enter the context window: retrieve broadly for recall, then re-rank tightly for precision. Hybrid search closes retrieval gaps Pure vector and pure keyword retrieval each miss what the other catches. Dense retrieval captures semantic meaning but can miss exact terminology. Best Matching 25 (BM25) matches keywords precisely but misses paraphrases. Hybrid search combines both using Reciprocal Rank Fusion (RRF), which reconciles scores across incompatible ranking scales."
+      },
+      {
+        "source_id": "30fdfcd3-d300-4536-af3f-997cadc38b30",
+        "citation_number": 26,
+        "cited_text": "Semantic chunking Semantic chunking improves retrieval by structuring information logically. Instead of breaking text into arbitrary, fixed-size pieces, semantic chunking groups related concepts together (e.g., by paragraphs, functions, or logical sections). When a relevant chunk is retrieved, its immediate surroundings are also included. This provides the LLM with more coherent, complete context, which helps it reason more effectively and mitigates issues from fragmented information. Hybrid search Hybrid search is critical for context engineering because relying on a single retrieval method often fails. Vector search excels at finding conceptually similar information (e.g., \"summer clothes\" finds \"warm-weather outfits\"), but it can miss specific, precise terms. Keyword search (like BM25) excels at finding exact matches (e.g., \"SKU-123AB\") but fails with synonyms. By combining both in a single, unified query, hybrid search ensures the LLM receives the most accurate, balanced context possible, capturing both the user's conceptual intent and any critical keywords."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 27,
+        "cited_text": "Prompt engineering gets you the first good output. Context engineering makes sure the 1,000th output is still good. Why context engineering matters: the research The arrival of million-token context windows felt transformative. \"Just dump everything in,\" they said. \"Gemini has 2 million tokens.\" This is lazy engineering. And the research proves it doesn't work. Lost in the middle The foundational Stanford research on \"lost in the middle\" proved that LLM performance degrades significantly when relevant information is placed in the middle of long contexts. Models perform best when key information appears at the very beginning or end of the input. This isn't just about total length. It's about position ."
+      },
+      {
+        "source_id": "30fdfcd3-d300-4536-af3f-997cadc38b30",
+        "citation_number": 28,
+        "cited_text": "Reranking Reranking solves the \"speed vs. accuracy\" trade-off inherent in large-scale retrieval. The initial search (like hybrid search) is optimized to quickly retrieve a large set of potentially relevant documents (e.g., the top 100). A reranking model — which is typically more computationally expensive but far more accurate — is then used to re-score only this smaller subset. For context engineering, this is vital because it ensures the absolute best, most relevant snippets are placed at the very top of the context window, which is essential for mitigating the \" lost in the middle \" problem and focusing the LLM's attention on the highest-quality information."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 29,
+        "cited_text": "The architectural cause is Rotary Position Embedding. RoPE introduces a long-term decay effect that causes models to prioritize beginning and end tokens while progressively de-emphasizing middle and early-context content as length grows. This is a structural property of the positional encoding scheme used by most modern LLMs, not a training failure and not fixable by fine-tuning alone. For agents running multi-hour, multi-turn tasks, context rot is compounding. Earlier retrieved memories lose accuracy weight even while remaining in the window. Coding agent success rates decline after 35 minutes of task time, and doubling task duration quadruples failure rate. For in-context vs. external memory tradeoffs in agent design, this means longer in-context histories are not always better; they may actively degrade performance for earlier content."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 30,
+        "cited_text": "The lost-in-the-middle problem Permalink to “The lost-in-the-middle problem” # Liu et al. (Stanford/TACL 2024, arXiv:2307.03172 ) documented the U-shaped accuracy pattern across context positions with empirical precision. In a 20-document multi-document QA setting, content at positions 5–15 was significantly less likely to be used correctly than content at the beginning or end. The practical implication for RAG system design: naive pipelines that inject retrieved chunks sequentially doom the most relevant content to the middle of the context, exactly where attention is weakest. Three mitigations apply: position-aware re-ranking (placing the highest-relevance chunks at the beginning or end), compression to reduce total context length so relevant content stays closer to the edges, and selective retention to prune tangential chunks before injection."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 31,
+        "cited_text": "Get started Metadata filtering scopes the search space Metadata filtering helps before ranking even starts: it narrows the candidate pool ahead of vector search, so embedding comparison runs against fewer documents. Restricting search to engineering documents when an engineering user asks about deployment processes produces a smaller, more relevant set. Freshness keeps stale context out Even on-topic, precisely ranked context breaks decisions when it's stale, and those failures produce confident wrong answers rather than visible errors: a compliance breach, a failed transaction, a recommendation for a discontinued product. Vector retrieval has no built-in recency signal. Similarity scoring is independent of when a document was written, so a shipping policy from two years ago can outrank the current one."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 32,
+        "cited_text": "Freshness is better treated as a design constraint: timestamp metadata for time-bounded retrieval, re-embedding triggers when source documents change, and freshness service-level agreements (SLAs) for features serving real-time decisions. Together, precision-focused re-ranking, hybrid retrieval, metadata filtering, and freshness constraints shape whether context quality holds up downstream. Everything that reaches the model flows through this layer. Where a real-time context engine fits Context problems usually trace back to the retrieval layer, so it has to be fast and current enough to trust. It works best when it provides three properties to keep context clean: speed, freshness, and precision. That means returning results fast enough for real-time agent interactions, staying synchronized with source data as it changes, and combining vector similarity with metadata filtering and hybrid search to surface the documents that actually answer the query."
+      },
+      {
+        "source_id": "4b1a9be8-43c0-4c77-b9be-fbae2a82b46a",
+        "citation_number": 33,
+        "cited_text": "Context engineering techniques Each component has its own particular set of methods. In general terms, consider adopting the following techniques when controlling the context for your agents: Determine your sources of information that are required by the LLM, and identify how you will provide them. Commonly, they will be exposed as part of the prompt, through invoking available tools, or potentially through memory (semantic or otherwise). Try to optimize the amount of information in your context to ensure you don't blow the context window. Similarly, consider what is the minimum amount of information required of an agent to prevent leaking of irrelevant or sensitive data. Consider where long-term context should live. For production web applications handling large volumes of users and requests every day, a static file store is unlikely to scale in terms of retrieval efforts. It may be the case that using a database or search engine is most appropriate. Furthermore, when comparing based on semantic similarity, vector databases will be the right technology to store past messages. Provide the appropriate metadata and input and output schemas for tools to ensure LLMs can understand their purpose, along with expected inputs and outputs. For complex multi-agent flows, plan your workflows carefully and consider providing relevant examples. Evaluate system prompts using techniques such as testing and metaprompting both pre-production and as part of ongoing production evaluation, to ensure agents are able to complete tasks with the context they are receiving. Consider the number of tools exposed to your agents, or use selection techniques such as RAG-MCP. Be mindful of tool explosion."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 34,
+        "cited_text": "Separate Retrieved Data From Instructions Retrieved content may contain text that looks instructional. For many applications, a useful rule is: This separation reduces the chance that untrusted external content changes the intended behavior of the application. Context Engineering for Tools Tool definitions are also context."
+      },
+      {
+        "source_id": "30fdfcd3-d300-4536-af3f-997cadc38b30",
+        "citation_number": 35,
+        "cited_text": "Defining the agent's role explicitly (\"You are a financial analyst assistant ...\") Providing concrete examples of desired behavior rather than abstract rules Using structured delimiters (XML tags, markdown sections) to organize instructions for better model comprehension Placing critical constraints (safety rules, output format requirements) at prominent positions since models exhibit positional bias Advanced techniques include conditional instructions that activate based on runtime context (e.g., \"If the user asks about personal information, redirect to privacy policy\") and meta-instructions that guide the agent's reasoning process (e.g., \"Think step-by-step before providing analysis\"). The system prompt is particularly vulnerable to context window competition; as conversation history, tool outputs, and retrieved data accumulate, poorly designed system prompts get pushed out of the model's effective attention span, causing behavioral drift where the agent gradually \"forgets\" its core instructions."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 36,
+        "cited_text": "The fix: Context pruning and offloading. Remove outdated or conflicting information as new details arrive. Use techniques like Anthropic's \"think\" tool that give models a separate workspace to process information without cluttering the main context. How to do context engineering: practical techniques Now that we understand the problems, let's talk solutions. These techniques come from production systems at companies like Anthropic, Google, and the teams building Claude Code . 1. Structure your prompts as specs, not prose The most effective approach for agent prompts isn't free-form text. It's a structured \"prompt spec\" that clearly defines:"
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 37,
+        "cited_text": "Objective : What the agent should accomplish Constraints : Hard boundaries (budget limits, forbidden actions, style requirements) Tools available : What capabilities the agent can use Output contract : The exact format expected back This structure helps both you and the model. You're forced to think through edge cases. The model gets unambiguous boundaries instead of vague instructions it might misinterpret. 2. Use JSON contracts for structured outputs When your agent needs to produce structured data, define a schema upfront. JSON contracts prevent the model from improvising field names or formats that break downstream code."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 38,
+        "cited_text": "Hot memory contains active session information and the current context. Warm memory stores frequently accessed facts and recent interactions. Cold memory preserves historical information that may still be useful but is rarely accessed. This approach balances performance, cost, and retrieval depth. Actionable takeaway: Store information selectively. A smaller collection of high-quality memories often outperforms a large repository filled with low-value data. Technique 4: Tool selection and context-aware tool use Tools extend what AI agents can do, but they also consume context space. Many organizations focus on adding more tools when the bigger challenge is determining which tools should be available at any given moment."
+      },
+      {
+        "source_id": "5c82dfc2-9a1c-4236-a0c9-7c8fb18b3e61",
+        "citation_number": 39,
+        "cited_text": "In many agentic systems, this memory works best when represented as a knowledge graph of entities and relationships rather than vectors alone. Vectors capture semantic similarity. Knowledge graphs capture meaning and structure. With both, agents can retrieve not just similar text but hop through relationships to discover connected context. This drastically reduces the risks of hallucination. Neo4j provides the world's leading knowledge graphs for your long-term memory with built-in vector index capabilities and integration with LangChain. Agents retrieve information from knowledge graphs using GraphRAG by traversing the graph to pull richer, connected facts and their relationships. Alternatively, hybrid retrieval combines GraphRAG and vector RAG to retrieve both semantically similar and contextually relevant information."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 40,
+        "cited_text": "Actionable takeaway: Treat context space as a limited resource. Allocate token budgets intentionally rather than allowing individual components to grow unchecked. Technique 3: Memory management Many AI systems can answer questions effectively but struggle to maintain continuity over time. They forget user preferences, repeat previously resolved issues, or lose track of long-running objectives. Memory management addresses this challenge by determining what information should be stored, how it should be maintained, and when it should be retrieved."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 41,
+        "cited_text": "Preferences change, business rules evolve, and completed tasks lose relevance. Memory decay mechanisms help remove or archive information that no longer contributes value. Regular maintenance improves retrieval precision and reduces context pollution. Pro tip: OvalEdge's Data Lineage and Data Catalog capabilities can help teams understand how information changes over time, making it easier to maintain trusted memory stores and prevent outdated information from influencing AI decisions. Hot, warm, and cold memory hierarchies Many enterprise systems organise memory into tiers."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 42,
+        "cited_text": "Context engineering must decide what remains active. Useful Agent State Low-Value Agent State Anthropic's long-running agent work discusses compaction, structured handoffs, and context resets as ways to maintain coherence when tasks span multiple context windows."
+      },
+      {
+        "source_id": "30fdfcd3-d300-4536-af3f-997cadc38b30",
+        "citation_number": 43,
+        "cited_text": "Available tools Tools extend an agent's capabilities beyond text generation by enabling interaction with external systems: executing code, querying databases, calling APIs, or manipulating files. From a context engineering perspective, tools create a unique challenge: each tool requires a description (name, purpose, parameters, usage examples) that consumes context window space. As tool libraries grow, this \"tool context overhead\" becomes significant. A 100-tool agent might spend 30%–40% of its context window just describing available capabilities before the user's actual task begins."
+      },
+      {
+        "source_id": "4b1a9be8-43c0-4c77-b9be-fbae2a82b46a",
+        "citation_number": 44,
+        "cited_text": "Optimizing the number of tools available is an open area of research. One possible mechanism is to leverage the RAG-MCP pattern. This involves storing tool metadata, such as name and description into a vector database, like Elasticsearch, and returning the top-N relevant descriptions at invocation time using the user prompt. In their paper, the authors found that RAG-MCP tripled tool-calling accuracy and reduced prompt token usage by over 50%. However, it is worth noting that engineers should ensure they choose accurate and unambiguous names and descriptions for their tools for this approach. We know that naming is hard!"
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 45,
+        "cited_text": "Why do too many tools pollute the context Every tool definition occupies part of the context window. As the number of available tools increases, the model must spend more effort evaluating options before completing a task. This often reduces tool-selection accuracy and increases token consumption. RAG-MCP for dynamic tool selection Rather than loading every available tool into context, many systems now retrieve tools dynamically. Tool descriptions are indexed and searched in the same way documents are retrieved in RAG systems, a pattern that shows up across any modern AI agent platform . Only the most relevant tools are provided to the model based on the current task."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 46,
+        "cited_text": "A recent study gave a quantized Llama 3.1 8b a query with 46 tools. It failed, even within the 16k context window. With only 19 tools, it succeeded. The fix: Tool loadout management using RAG. Research shows that applying RAG to tool descriptions and keeping selections under 30 tools gives 3x better tool selection accuracy. 4. Context clash What it is: Different parts of your context directly contradict each other. Real example: When connecting to MCP tools you didn't create, their descriptions might clash with the rest of your prompt. Or information gathered in stages disagrees with earlier assumptions."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 47,
+        "cited_text": "Pre-processing tool outputs allow systems to extract relevant fields before inserting them into the context window. This improves clarity and reduces unnecessary token usage. Actionable takeaway: Focus on delivering the right tools at the right time rather than making every tool available for every task. Technique 5: Context isolation for multi-agent systems As organisations adopt multi-agent architectures, context management becomes significantly more complex. Without clear boundaries, agents can unintentionally influence one another, leading to inconsistent reasoning and unpredictable outcomes."
+      },
+      {
+        "source_id": "30fdfcd3-d300-4536-af3f-997cadc38b30",
+        "citation_number": 48,
+        "cited_text": "Effective tool engineering follows several principles: Keep tool descriptions concise but unambiguous: Include the tool's purpose, required parameters with types, and one canonical example. Design tools to be composable: Smaller, focused tools (e.g., \"search_documents,\" \"summarize_text\") combine more flexibly than monolithic tools trying to handle multiple scenarios. Implement tool categories or namespaces to enable selective loading: An agent working on financial analysis doesn't need tools for image processing. Use tool result filtering: Return only essential information to the agent, not raw API responses. A database query tool should return \"Found 3 relevant transactions totaling $4,532\" rather than complete SQL result sets."
+      },
+      {
+        "source_id": "ba1dc3db-3af9-41a4-9a0f-b513ebbae952",
+        "citation_number": 49,
+        "cited_text": "4. Tool use and function calls as context levers Each tool call is a chance to write clean facts into your context so later steps can reason over them, and auditors can verify what happened. Treat each tool call as a way to author context. Return small, typed records (for example, {ticket_id, component, policy_id} ) instead of raw text so the model can chain steps predictably. Validate inputs at the edge and standardize units and formats. Log the source and any assumptions so that later steps and reviewers can audit what happened."
+      },
+      {
+        "source_id": "5bbd72ad-a67d-4ffc-b3fb-24cc6df4ff1e",
+        "citation_number": 50,
+        "cited_text": "Aakanksha Chowdhery, Sharan Narang, Jacob Devlin, Maarten Bosma, Gaurav Mishra, Adam Roberts, Paul Barham, Hyung Won Chung, Charles Sutton, Sebastian Gehrmann, et al. Palm: Scaling language modeling with pathways. arXiv preprint arXiv:2204.02311, 2022. Mircea Cimpoi, Subhransu Maji, Iasonas Kokkinos, Sammy Mohamed, and Andrea Vedaldi. Describing textures in the wild. In 2014 IEEE Conference on Computer Vision and Pattern Recognition, CVPR 2014, Columbus, OH, USA, June 23-28, 2014, pp. 3606–3613, 2014."
+      },
+      {
+        "source_id": "5c82dfc2-9a1c-4236-a0c9-7c8fb18b3e61",
+        "citation_number": 51,
+        "cited_text": "Imagine a renewal agent proposes a 20-percent discount. But the policy only allows up to a 10-percent discount unless an exception is approved. A renewal agent may retrieve recent cases at risk of churn and surface a prior case where a similar exception was approved. It then routes the exception request to finance, which approves it. The context graph preserves the decision-making process, making it explainable, auditable, and reusable for similar cases. Connect to tools with Model Context Protocol Model Context Protocol (MCP) is the standard protocol that helps agents connect to external tools, providing the tool definitions and instructions to reduce ambiguity. Anthropic introduced MCP as a standard and uses a client-server model in which MCP hosts connect to MCP servers via MCP clients. It allows you to consistently pass tools and the necessary context to agents, so they understand the instructions and capabilities and use the tools correctly."
+      },
+      {
+        "source_id": "5c82dfc2-9a1c-4236-a0c9-7c8fb18b3e61",
+        "citation_number": 52,
+        "cited_text": "MCP matters for context engineering because agent reliability improves when: An agent can “see” what tools exist and what each expects. Each tool has clear instructions for inputs and outputs, reducing ambiguous calls. Swapping a tool implementation doesn't require rewriting the whole agent. MCP aligns with how agentic AI systems work in practice: planning and executing multi-step tool usage while carrying forward context between steps. That makes it a practical foundation for agentic systems that depend on consistent, reliable access to tools."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 53,
+        "cited_text": "Actionable takeaway: If AI-generated outputs will be reused by another system or agent, enforce a schema from the beginning. Technique 8: Context validation and hallucination prevention Even the most sophisticated context engineering strategy can fail if unreliable information enters the context window. Context validation acts as the final quality-control layer before information influences model reasoning. A practical validation workflow follows five steps: retrieve information → validate the source → check data quality → generate the response → audit the outcome."
+      },
+      {
+        "source_id": "a7c63454-95bd-4316-bc00-75b8ea579065",
+        "citation_number": 54,
+        "cited_text": "Guardrails and compliance: Observability data often contains sensitive information (e.g., PII in logs). Context engineering enforces guardrails: Redacts sensitive fields before they enter the model's context. Applies role-based visibility (what an on-call engineer vs. a customer-support agent can see). Without context engineering, observability is just “data hoarding.” With it, observability becomes actionable intelligence that drives reliability. Context Failures vs. Model Failures The distinction between context failures and model failures is essential when thinking about why AI systems succeed or fail. Many teams blame the model when in fact the real issue is the context ."
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 55,
+        "cited_text": "Inspecting Context After you apply one of these strategies, it is worth checking what the next model call actually received. A useful debugging question is: Did the agent load too much context, the wrong context, or miss context it needed? You do not need to log raw prompts, tool outputs, or memory contents to answer that question. In production, prefer small context inspection records that capture counts, ids, hashes, and policy labels: Selection: Track how many candidate chunks, tools, or memories were considered, how many were selected, and which rule or score caused the others to be filtered out. Compression: Record the source range or trace id, the summary id, an estimated token count before and after compression, and whether the raw content was excluded from the next call. Isolation: Note which subtask ran in a separate agent, session, or sandbox, what bounded summary was returned, and whether large tool output stayed outside the parent agent context. Memory and RAG: Store retrieval document ids, memory ids, scores, selected ids, and redaction status instead of full retrieved text. Safety and privacy: Prefer hashes, ids, token buckets, and policy labels over sensitive prompt text, tool arguments, tool results, or user memory bodies."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 56,
+        "cited_text": "5. Evaluate State Continuity For long-running workflows: Did the model preserve the current goal? Were previous decisions remembered? Did resolved tasks remain incorrectly active? Did a summary change an important fact? 6. Evaluate Tool Context Measure: correct tool selection, correct parameters, unnecessary tool exposure, large results injected unnecessarily, and whether current tool state overrode stale history where appropriate. 7. Measure Cost and Latency Track context size alongside: input tokens, cache effectiveness, retrieval latency, tool-discovery overhead, end-to-end latency, and model-call cost."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 57,
+        "cited_text": "8. Run Ablation Tests Ablation testing removes or changes one context component and measures the result. This helps identify which context components actually contribute to quality. 9. Test Context Failure Cases Include cases with: stale memory, contradictory documents, retrieval misses, tool failures, very long histories, duplicated evidence, missing state, and context that contains misleading embedded instructions."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 58,
+        "cited_text": "What is an ablation test for context? An ablation test removes or changes one context component—such as chat history, retrieved chunks, memory, or tool definitions—and compares model performance. It helps reveal which context elements actually contribute to the outcome. How can PrompTessor help with context engineering? PrompTessor can help analyze and improve the prompt-design layer by making goals, required context, constraints, structure, and output requirements clearer. Runtime retrieval, memory, permissions, tool loading, context assembly, pruning, and state management remain application responsibilities."
+      }
+    ]
+  },
+  {
+    "question": "要避免的坑又是什麼？",
+    "answer": "在實際開發 AI Agent 時，上下文工程（Context Engineering）要避免的「坑」（失效模式）主要可以歸納為學術界與業界公認的**四大核心失效模式**，以及數個常見的**工程與數據管理誤區**。\n\n---\n\n### 一、 四大核心上下文失效模式 (Core Context Failures)\n\n1. **上下文污染 (Context Poisoning)**\n   - **坑在哪裡**：當 Agent 在多輪對話或任務執行中產生了**幻覺（Hallucination）或錯誤資訊**，這些錯誤被寫入上下文（例如 Goals 區域、任務摘要或短期記憶）並被後續步驟不斷重複引用 [1-4]。這會導致錯誤像滾雪球一樣不斷累積，使 Agent 陷入死循環，執著於無法實現或無意義的目標 [1, 5, 6]。\n   - **實例**：Google DeepMind 的 Gemini 2.5 玩神奇寶貝（Pokémon）的實驗中，Agent 一旦對遊戲狀態產生幻覺並寫入目標欄位，就會制定出荒謬的策略，花費大量時間執著於不可能達成的任務 [2, 5]。\n   - **避坑指南**：引入**上下文驗證與隔離（Context Validation & Quarantine）**機制 [1, 7, 8]。在將外部資訊或工具執行結果寫入長期記憶/上下文之前，必須先經由確定性的 API、數據庫或 schema 進行檢驗，驗證失敗的資訊直接隔離 [8-10]。\n\n2. **上下文分心 (Context Distraction) 與「迷失中段」 (Lost in the Middle)**\n   - **坑在哪裡**：當上下文累積得過長，即使裡面的資訊 100% 正確，模型也會因為「注意力預算」被攤薄，開始過度專注於累積的對話歷史或工具輸出，反而**忽略了原有的系統指令或推理邏輯** [6, 11-13]。\n   - **實例與數據**：\n     - Stanford 研究指出，LLM 具有 **\"Lost in the Middle\"（迷失中段）** 的現象，模型對位於上下文最前與最後的資訊記憶最深，而位於中段（如 20 個文檔中的第 5-15 個）的資訊，其檢索與利用準確度會**暴跌 30% 以上** [14, 15]。\n     - 即使是百萬 token 級別的 frontier 模型，其「注意力衰退」也是從第一個 token 就開始的（Chroma 測試 18 款模型的 Context Rot 研究） [16-18]。\n     - 在玩 Pokémon 的實驗中，當 context 超過 100k token，Agent 開始傾向於**一味重複歷史行為**，而不是根據當前狀態規劃新策略 [6, 19, 20]。Databricks 研究也發現，模型在 context 僅達到 **32k token** 左右時，正確率就開始明顯下滑 [21, 22]。\n   - **避坑指南**：\n     - 實施**上下文壓縮（Compaction）與剪枝（Trimming）** [23, 24]。定期將冗長對話歷史進行結構化摘要，並清理深埋在歷史中且已執行完畢的 raw tool 執行結果 [25-28]。\n     - 實施**位置感知重排（Position-aware Re-ranking）**：確保最重要的關鍵事實與核心指令被放置在 context 的最前或最後（例如 Gemini 官方推薦將大量參考文檔放前面，具體任務與指令放最後） [29-32]。\n\n3. **上下文混淆 (Context Confusion)**\n   - **坑在哪裡**：當 context 中充斥著太多不相關的參考文檔或**過量的工具定義（Tool Definitions）**時，模型會受到干擾，做出錯誤的推理或誤調用不相關的工具（工具過載） [11, 33-35]。\n   - **實例與數據**：Berkeley Function-Calling Leaderboard 的數據指出，**任何模型在被給予超過一個工具時，其表現都會有所下滑** [36, 37]。一項研究中，給予輕量化的 Llama 3.1 8b 模型全部 46 個工具時任務失敗，但將工具載入量精簡至 19 個時即順利成功 [34, 37, 38]。\n   - **避坑指南**：實施**動態工具加載（RAG-MCP）** [38, 39]。將工具的 metadata 向量化，根據用戶當前的任務動態檢索並僅向 LLM 暴露最相關的少數工具（建議單次對話保持在 20-30 個工具以下），這能使工具調用準確率提升 3 倍並減少 50% 以上的 token 浪費 [40, 41]。\n\n4. **上下文衝突 (Context Clash)**\n   - **坑在哪裡**：多個數據源導入了相互矛盾的資訊，或者 Agent 在多輪交互中，**早期的錯誤假設、已過期的使用者偏好仍保留在 context 裡**，與後續新獲得的正確事實發生衝突，導致模型推理中斷或任意偏袒其中一方 [11, 42-44]。\n   - **實例與數據**：Microsoft 與 Salesforce 的聯合研究發現，將同一個 benchmark 提示詞「切片（sharded）」到多輪對話中（模擬人類邊聊邊補充細節的習慣），模型的平均表現**暴跌了 39%**（連 OpenAI o3 的分數也從 98.1 跌至 64.1） [45, 46]。主因就是模型在前面幾輪因資訊不足做出的錯誤假設，殘留在 context 內，嚴重毒化了後續的最終推理 [2, 46]。\n   - **避坑指南**：\n     - **主動剪枝（Pruning）與覆蓋**：當新的指示或偏好產生時，必須在 context 內顯式覆蓋或剔除舊的衝突事實（例如：當使用者說「改訂商務艙」，就必須把之前 context 中的「經濟艙」剔除） [47, 48]。\n     - 區分**決策（靜態）上下文**與**操作（動態）上下文**，動態上下文放最後利用近因效應 [49]。\n\n---\n\n### 二、 其他常見的工程與數據管理「深坑」\n\n1. **「盲目依賴大窗口」的誤區**\n   - **坑在哪裡**：認為百萬級 token 的大 context window 可以解決一切，因而把所有企業文件、程式庫、對話歷史不加過濾地塞給模型 [50, 51]。\n   - **代價**：除了上述的 Context Rot 之外，這會帶來極高的**延遲與成本** [12, 52, 53]。Factory AI 的研究指出，企業級 Agent 的 pre-reasoning 階段往往就要燒掉 50k - 100k 的 tokens（包含架構定義、血緣關係、政策等） [54, 55]，這導致一次簡單查詢在 API 費用上就可能花費高昂，每天一萬次查詢將演變成每年 30 萬至 60 萬美元的固定開銷 [54, 56]。\n   - **避坑指南**：落實 **Minimum Viable Context (MVC，最小可行上下文)** 原則 [57]，只提供 Agent 執行當前步驟所需的最小高信號 token 集 [57, 58]。\n\n2. **時效性缺口 (Freshness Gap)**\n   - **坑在哪裡**：傳統向量檢索（RAG）在計算相似度時，**並不會考慮文檔的時間屬性** [59]。兩年前的報價單與昨天的更新政策在語意上可能非常相似，模型很容易因為相似度高而提取了過期數據，導致 Agent 做出違反合規或錯誤的業務決策 [59, 60]。\n   - **避坑指南**：在數據源與檢索層建立強制性的**時效性元數據過濾（Metadata Filtering & Freshness SLAs）**，對具有時間限制的業務 Fact 進行生命週期管理，過期即標記失效 [59, 61]。\n\n3. **缺乏企業語境的原始數據 (Raw Data without Metadata)**\n   - **坑在哪裡**：直接將數據庫表格、Jira ticket 或 logs 倒給 Agent [62, 63]。例如把一個欄位名稱為 `\"rev_adj\"` 的表格丟給 Agent，Agent 即使懂英文也無法得知其背後的特定業務含義（例如它是代表調整後營收還是某個特定的退款機制） [63, 64]。\n   - **避坑指南**：建立**業務詞彙表（Business Glossary）**與元數據映射 [64]。這能作為 Context 的錨點，確保 Agent 在檢索數據時，能夠精確對齊企業內經認證（certified）的定義 [64, 65]。\n\n4. **緩存優化 (Caching) 優先於相關性優化**\n   - **坑在哪裡**：本末倒置。在還沒有做好 Context 篩選、去噪和精簡之前，就盲目實施 Prompt Caching 去節省 API 成本 [66, 67]。這無異於「用極有效率的方式去快取一堆垃圾資訊」，根本無法提升推理品質 [66, 67]。\n   - **避坑指南**：嚴格遵循「先挑選最相關 context、再設計邏輯結構、最後才對靜態 prefixes（如穩定不變的 system instructions）實施 Prompt Caching」的優化順序 [66]。\n\n---\n\n🛠️ 想看看如何為您的 AI Agent 實施 **動態工具檢索 (RAG-MCP)** 或 **上下文壓縮合約 (Compaction)** 來避開工具過載與 Context Rot 的坑嗎？我可以提供具體的實作架構或範例合約！",
+    "citations": [
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 1,
+        "cited_text": "Common Context Failures Context Poisoning What it is: When a hallucination (false information generated by the LLM) or an error enters the context and is repeatedly referenced, causing the agent to pursue impossible goals or develop nonsense strategies. What to do: Implement context validation and quarantine . Validate information before it's added to long-term memory. If potential poisoning is detected, start fresh context threads to prevent the bad information from spreading. Travel Booking Example: Your agent hallucinates a direct flight from a small local airport to a distant international city that doesn't actually offer international flights. This non-existent flight detail gets saved into the context. Later, when you ask the agent to book, it keeps trying to find tickets for this impossible route, leading to repeated errors."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 2,
+        "cited_text": "Why? The assembled context contains early attempts by the model to answer before it has all the information. These incorrect answers remain in context and poison subsequent reasoning. The four ways context fails Based on research from Drew Breunig and the Gemini team, context fails in four distinct ways. Each requires a different fix. 1. Context poisoning What it is: A hallucination or error makes it into the context, where it's repeatedly referenced. Real example: The Gemini Pokémon agent would occasionally hallucinate about the game state, poisoning its \"goals\" section. The agent then developed nonsensical strategies pursuing impossible objectives for a long time."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 3,
+        "cited_text": "Let's run through the ways contexts can get out of hand, then review methods to mitigate or entirely avoid context fails. Context Fails Context Poisoning: When a hallucination makes it into the context Context Distraction: When the context overwhelms the training Context Confusion: When superfluous context influences the response Context Clash: When parts of the context disagree Context Poisoning Context Poisoning is when a hallucination or other error makes it into the context, where it is repeatedly referenced."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 4,
+        "cited_text": "Try for free Context failure modes: poisoning, distraction, confusion, clash & rot Context doesn't degrade in one uniform way. It breaks through distinct failure modes, and knowing what they look like is the first step to keeping them out of your agent's window. Context poisoning Context poisoning happens when incorrect, hallucinated, or adversarially injected information enters the context and the model treats it as ground truth. In retrieval-augmented generation (RAG), one paper on multi-hop retrieval found that LLMs often struggled to reject irrelevant content once it was already in the context window."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 5,
+        "cited_text": "The Deep Mind team called out context poisoning in the Gemini 2.5 technical report , which we broke down last week . When playing Pokémon, the Gemini agent would occasionally hallucinate while playing, poisoning its context: An especially egregious form of this issue can take place with “context poisoning” – where many parts of the context (goals, summary) are “poisoned” with misinformation about the game state, which can often take a very long time to undo. As a result, the model can become fixated on achieving impossible or irrelevant goals."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 6,
+        "cited_text": "This gets worse in multi-step agent workflows, where an error early in the process becomes an established fact later on. The output sounds coherent and confident while the underlying data is wrong. Context distraction Context distraction happens when accumulated history, tool outputs, and summaries overwhelm fresh reasoning. The content doesn't need to be false to cause damage. One evaluation saw this after 100,000 tokens in an agent playing Pokémon, where the agent fell into behavioral loops rather than exploring new strategies."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 7,
+        "cited_text": "Actionable takeaway: If AI-generated outputs will be reused by another system or agent, enforce a schema from the beginning. Technique 8: Context validation and hallucination prevention Even the most sophisticated context engineering strategy can fail if unreliable information enters the context window. Context validation acts as the final quality-control layer before information influences model reasoning. A practical validation workflow follows five steps: retrieve information → validate the source → check data quality → generate the response → audit the outcome."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 8,
+        "cited_text": "The fix: Context validation and quarantine. Isolate different context types in separate threads. Validate information before it enters long-term memory. Start fresh threads when you detect poisoning. 2. Context distraction What it is: Context grows so large that the model over-focuses on accumulated history, neglecting what it learned during training. Real example: Models start repeating past actions instead of developing new strategies. They lean heavily on their context history rather than reasoning from first principles."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 9,
+        "cited_text": "Grounding against certified data sources Not all information sources should be treated equally. Certified and governed repositories should be prioritized, while unverified sources should be restricted from high-stakes workflows. Data quality signals as context filters After retrieval, data quality indicators can help determine whether information deserves inclusion in context. Common validation criteria map to the core data quality dimensions : accuracy, completeness, freshness, and consistency. Content that fails quality thresholds can be excluded automatically."
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 10,
+        "cited_text": "Solution: Implement a step that validates flight existence and routes with a real-time API before adding the flight detail to the agent's working context. If the validation fails, the erroneous information is “quarantined” and not used further. Context Distraction What it is: When the context becomes so large that the model focuses too much on the accumulated history instead of using what it learned during training, leading to repetitive or unhelpful actions. Models may begin making mistakes even before the context window is full."
+      },
+      {
+        "source_id": "a20dd17f-326c-4ba7-b953-94a44be5aea0",
+        "citation_number": 11,
+        "cited_text": "Here are the critical failure modes that emerge as context grows: Context Poisoning : Incorrect or hallucinated information enters the context. Because agents reuse and build upon that context, these errors continue and compound. Context Distraction : The agent becomes burdened by too much past information; history, tool outputs, summaries, and over-relies on repeating past behavior rather than reasoning fresh. Context Confusion : Irrelevant tools or documents crowd the context, distracting the model and causing it to use the wrong tool or instructions. Context Clash : Contradictory information within the context misleads the agent, leaving it stuck between conflicting assumptions."
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 12,
+        "cited_text": "While some models exhibit more gentle degradation than others, this characteristic emerges across all models. Context, therefore, must be treated as a finite resource with diminishing marginal returns. Like humans, who have limited working memory capacity , LLMs have an “attention budget” that they draw on when parsing large volumes of context. Every new token introduced depletes this budget by some amount, increasing the need to carefully curate the tokens available to the LLM. This attention scarcity stems from architectural constraints of LLMs. LLMs are based on the transformer architecture , which enables every token to attend to every other token across the entire context. This results in n² pairwise relationships for n tokens."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 13,
+        "cited_text": "If the “goals” section of its context was poisoned, the agent would develop nonsensical strategies and repeat behaviors in pursuit of a goal that cannot be met. Context Distraction Context Distraction is when a context grows so long that the model over-focuses on the context, neglecting what it learned during training. As context grows during an agentic workflow—as the model gathers more information and builds up history—this accumulated context can become distracting rather than helpful. The Pokémon-playing Gemini agent demonstrated this problem clearly:"
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 14,
+        "cited_text": "Capacity and the context window Permalink to “Capacity and the context window” # Context window sizes have expanded dramatically. As of April 2026: Llama 4 reports 10M tokens; Gemini 2.5 Pro operates at 2M; GPT-4.1 and Claude Sonnet 4 each reach 1M; GPT-3.5-Turbo at 128K serves as the cost comparison baseline. This is roughly a 1,000x expansion in three years. But size does not solve the quality problem. Three compounding findings establish why. “Lost in the Middle” (Liu et al., Stanford/TACL 2024): Models show a U-shaped accuracy curve across context positions. Content at the beginning gets roughly 75% accuracy; content in the middle (positions 5–15 in a 20-document setting) gets 45–55%; content at the end recovers to around 72%. Accuracy dropped more than 30 percentage points when relevant information was placed in the middle. This affected all models tested, including those explicitly trained for long contexts. The architectural cause is Rotary Position Embedding (RoPE), which introduces a long-term decay that structurally deprioritizes middle and early-context tokens. This is design, not defect."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 15,
+        "cited_text": "5. What is the “lost in the middle” problem in LLMs? Permalink to “5. What is the “lost in the middle” problem in LLMs?” # The lost-in-the-middle problem (Liu et al., Stanford/TACL 2024) refers to a U-shaped accuracy pattern across context positions. Models reliably attend to information at the beginning and end of the context window, but accuracy drops by more than 30 percentage points for information placed in the middle, positions 5–15 in a 20-document QA setting. Naive RAG pipelines that inject chunks sequentially structurally bury the most relevant content in the worst attention zone."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 16,
+        "cited_text": "This is why context engineering obsesses over structure, not just content. Where you place information matters as much as what information you include. Context rot is real Chroma Research published a comprehensive study in July 2025 testing 18 LLMs, including Claude 4, GPT-4.1, Gemini 2.5, and Qwen3. Their findings are stark: Models do not use their context uniformly; instead, their performance grows increasingly unreliable as input length grows. Even on trivially simple tasks (like replicating a sequence of repeated words) models failed as context grew. This isn't a reasoning failure. It's a fundamental limitation of attention mechanisms."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 17,
+        "cited_text": "Context rot (Chroma, 2025): Chroma tested 18 frontier models including GPT-4.1, Claude Opus 4, and Gemini 2.5 Pro. Every single model showed continuous performance degradation as input length increased , not a cliff at the context limit, but a slope from token one. No model was immune. Effective context gap (Paulsen, 2025): Effective context often falls far below advertised limits. On complex tasks, it can fall 99% below the advertised ceiling . GPT-4.1 performs best at around 98% efficiency; Grok 3 ranges 75–87%. A “1M-token context window” may deliver effective reasoning over only around 10K tokens on complex multi-document tasks."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 18,
+        "cited_text": "Treat the context window as a governed, curated, high-density workspace, not a dump for everything that might be relevant. Working memory limits in production AI agents Permalink to “Working memory limits in production AI agents” # Context rot: what happens as agents run longer Permalink to “Context rot: what happens as agents run longer” # The Chroma (2025) study established something practitioners had suspected but not quantified: degradation is not an event that happens when you hit the context limit. It is a continuous process that begins at token one."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 19,
+        "cited_text": "If models start to misbehave long before their context windows are filled, what's the point of super large context windows? Summarization and fact retrieval. If you're not doing those specific tasks, be wary of your chosen model's distraction ceiling. The Gemini 2.5 technical report documented this while building a Pokémon-playing agent: As the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 20,
+        "cited_text": "While Gemini 2.5 Pro supports 1M+ token context, making effective use of it for agents presents a new research frontier. In this agentic setup, it was observed that as the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans. This phenomenon, albeit anecdotal, highlights an important distinction between long-context for retrieval and long-context for multi-step, generative reasoning."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 21,
+        "cited_text": "Performance degrades non-uniformly as context length increases, even on simple retrieval tasks. The study found that: Lower similarity needle-question pairs degraded faster with length Distractors have non-uniform impact that amplifies with context size Even haystack structure affects performance (shuffled content performed better than logically structured content) The distraction ceiling hits early A Databricks study found that model correctness begins dropping around 32,000 tokens for Llama 3.1 405b, and earlier for smaller models."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 22,
+        "cited_text": "Instead of using its training to develop new strategies, the agent became fixated on repeating past actions from its extensive context history. For smaller models, the distraction ceiling is much lower. A Databricks study found that model correctness began to fall around 32k for Llama 3.1 405b and earlier for smaller models. If models start to misbehave long before their context windows are filled, what's the point of super large context windows? In a nutshell: summarization 3 and fact retrieval. If you're not doing either of those, be wary of your chosen model's distraction ceiling."
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 23,
+        "cited_text": "Practical Strategies Planning is important but once the information starts to flow into our agent's context window, we need to have practical strategies to manage it: Managing Context While some information will be added to the context window automatically, context engineering is about taking a more active role of this information which can be done by a few strategies: Agent Scratchpad This allows for an AI Agent to takes notes of relevant information about the current tasks and user interactions during a single session. This should exist outside of the context window in a file or runtime object that the agent can later retrieve during this session if needed. Memories Scratchpads are good for managing information outside of the context window of a single session. Memories enable agents to store and retrieve relevant information across multiple sessions. This could include summaries, user preferences and feedback for improvements in the future. Compressing Context Once the context window grows and is nearing its limit, techniques such as summarization and trimming can be used. This includes either keeping only the most relevant information or removing older messages. Multi-Agent Systems Developing multi-agent system is a form of context engineering because each agent has its own context window. How that context is shared and passed to different agents is another thing to plan out when building these systems. Sandbox Environments If an agent needs to run some code or process large amounts of information in a document, this can take a large amount of tokens to process the results. Instead of having this all stored in the context window, the agent can use a sandbox environment that is able to run this code and only read the results and other relevant information. Runtime State Objects This is done by creating containers of information to manage situations when the Agent needs to have access to certain information. For a complex task, this would enable an Agent to store the results of each subtask step by step, allowing the context to remain connected only to that specific subtask."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 24,
+        "cited_text": "The fix: Context summarization. Compress accumulated information into shorter summaries that preserve important details while removing redundant history. This is what compaction techniques achieve. 3. Context confusion What it is: Superfluous content in the context influences the response, even when irrelevant. Real example: The Berkeley Function-Calling Leaderboard shows that every model performs worse when given more than one tool. Models will occasionally call tools that aren't relevant to the task."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 25,
+        "cited_text": "This means ruthlessly curating what enters the context. AI data preparation is half the battle: Don't dump entire docs - Retrieve only the relevant sections Summarize when possible - A 100-token summary often beats 10,000 raw tokens Remove stale information - Old conversation turns might be hurting, not helping Use tool result clearing - Once a tool has been called deep in history, clear the raw result 4. Embrace tool-augmented prompting (ReAct) Instead of stuffing all possible information into the prompt upfront, give agents tools to retrieve context on demand. This is the ReAct (Reasoning + Acting) pattern: the model reasons about what information it needs, acts to retrieve it, then reasons again with the new context."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 26,
+        "cited_text": "7. Use compaction for long-horizon tasks For tasks spanning tens of minutes to hours, you'll exceed the context window. Compaction distills the contents while preserving critical details. Example from Claude Code: Pass message history to the model for summarization Preserve architectural decisions, unresolved bugs, implementation details Discard redundant tool outputs Continue with compressed context plus five most recently accessed files The art is knowing what to keep versus discard. Overly aggressive compaction loses subtle but critical context."
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 27,
+        "cited_text": "Compaction Compaction is the practice of taking a conversation nearing the context window limit, summarizing its contents, and reinitiating a new context window with the summary. Compaction typically serves as the first lever in context engineering to drive better long-term coherence. At its core, compaction distills the contents of a context window in a high-fidelity manner, enabling the agent to continue with minimal performance degradation. In Claude Code, for example, we implement this by passing the message history to the model to summarize and compress the most critical details. The model preserves architectural decisions, unresolved bugs, and implementation details while discarding redundant tool outputs or messages. The agent can then continue with this compressed context plus the five most recently accessed files. Users get continuity without worrying about context window limitations."
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 28,
+        "cited_text": "An example of low-hanging superfluous content is clearing tool calls and results – once a tool has been called deep in the message history, why would the agent need to see the raw result again? One of the safest lightest touch forms of compaction is tool result clearing, most recently launched as a feature on the Claude Developer Platform . Structured note-taking Structured note-taking, or agentic memory, is a technique where the agent regularly writes notes persisted to memory outside of the context window. These notes get pulled back into the context window at later times."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 29,
+        "cited_text": "Retrieval and context quality Use hybrid retrieval (dense + sparse) unless there is a clear reason to use only one approach. Apply data quality checks such as accuracy, completeness, freshness, and consistency before retrieval. Never allow raw, undocumented, or ungoverned data into the context window for high-stakes decisions. Place the most important retrieved fact near the end of the context where models are more likely to retain it. Memory and context management Build memory maintenance into the architecture from day one by tracking recency, frequency, and relevance."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 30,
+        "cited_text": "Prioritize Current State Where It Matters For time-sensitive or mutable facts, prefer current authoritative sources over old conversation text or cached assumptions. Examples include: account status, inventory, prices, calendar availability, deployment state, open incidents, and current policy versions. Context Ordering and Structure The content of context matters, but its organization can also matter. There is no single ordering rule that should be treated as universal across every provider and model. Google's current Gemini prompting guidance, for example, recommends placing critical behavioral constraints, role definitions, and output requirements in the system instruction or near the beginning. For large-context prompts containing documents or code, Google recommends supplying the large context first and placing the specific question or instruction at the end, with a clear transition back to the task."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 31,
+        "cited_text": "That means a useful Gemini long-context pattern can look like: Do not convert this into a universal rule for every model. Instead: follow the target provider's current guidance, keep logical sections clearly separated, place critical application constraints where the model is expected to prioritize them, make the current task easy to locate, and evaluate alternative layouts on representative examples."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 32,
+        "cited_text": "The lost-in-the-middle problem Permalink to “The lost-in-the-middle problem” # Liu et al. (Stanford/TACL 2024, arXiv:2307.03172 ) documented the U-shaped accuracy pattern across context positions with empirical precision. In a 20-document multi-document QA setting, content at positions 5–15 was significantly less likely to be used correctly than content at the beginning or end. The practical implication for RAG system design: naive pipelines that inject retrieved chunks sequentially doom the most relevant content to the middle of the context, exactly where attention is weakest. Three mitigations apply: position-aware re-ranking (placing the highest-relevance chunks at the beginning or end), compression to reduce total context length so relevant content stays closer to the edges, and selective retention to prune tangential chunks before injection."
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 33,
+        "cited_text": "Solution: After a certain number of turns or when the context grows too large, the agent should summarize the most recent and relevant parts of the conversation – focusing on your current travel dates and destination – and use that condensed summary for the next LLM call, discarding the less relevant historical chat. Context Confusion What it is: When unnecessary context, often in the form of too many available tools, causes the model to generate bad responses or call irrelevant tools. Smaller models are especially prone to this."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 34,
+        "cited_text": "Browsing the function-calling leaderboard, you can see the problem get worse as the models get smaller: A striking example of context confusion can be seen in a recent paper which evaluated small model performance on the GeoEngine benchmark , a trial that features 46 different tools . When the team gave a quantized (compressed) Llama 3.1 8b a query with all 46 tools it failed, even though the context was well within the 16k context window. But when they only gave the model 19 tools, it succeeded. The problem is: if you put something in the context the model has to pay attention to it. It may be irrelevant information or needless tool definitions, but the model will take it into account. Large models, especially reasoning models, are getting better at ignoring or discarding superfluous context, but we continually see worthless information trip up agents. Longer contexts let us stuff in more info, but this ability comes with downsides."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 35,
+        "cited_text": "Even with 100% perfect retrieval, performance drops as input length increases, ranging from 13.9% to 85% depending on the setup in that evaluation. Length alone can become a performance liability. Context confusion Context confusion is a narrower version of distraction: irrelevant tools and documents clutter the window, causing the model to pick the wrong tool or blend unrelated sources. Registering every available tool definition instead of filtering to the task-relevant ones is a common trigger."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 36,
+        "cited_text": "But even if consolidation and competition don't slow MCPs , Context Confusion will. It turns out there can be such a thing as too many tools. The Berkeley Function-Calling Leaderboard is a tool-use benchmark that evaluates the ability of models to effectively use tools to respond to prompts. Now on its 3rd version, the leaderboard shows that every model performs worse when provided with more than one tool 4 . Further, the Berkeley team, “designed scenarios where none of the provided functions are relevant…we expect the model's output to be no function call.” Yet, all models will occasionally call tools that aren't relevant."
+      },
+      {
+        "source_id": "4b1a9be8-43c0-4c77-b9be-fbae2a82b46a",
+        "citation_number": 37,
+        "cited_text": "Optimizing Tool Selection If an LLM supports tool calling, it can choose to call (potentially) one or many tools to solve the problem. I have discussed my experiences of model choice before while building my own multi-tool AI agent . It's important when choosing a model to investigate the level of tool calling support using resources such as the Hugging Face Open LLM Leaderboard or Berkeley Function-Calling Leaderboard . The problem is that given the LLM decides which tools are relevant to the objective, it is possible that it can be confused by a tool many tools and call irrelevant tools as discussed by Drew Breunig . This idea of tool confusion is also discussed in the 2024 paper by Paramanayakam et al. where they found the performance of Llama 3.1 8b improved when provided with less tools (19 compared with 46)."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 38,
+        "cited_text": "A recent study gave a quantized Llama 3.1 8b a query with 46 tools. It failed, even within the 16k context window. With only 19 tools, it succeeded. The fix: Tool loadout management using RAG. Research shows that applying RAG to tool descriptions and keeping selections under 30 tools gives 3x better tool selection accuracy. 4. Context clash What it is: Different parts of your context directly contradict each other. Real example: When connecting to MCP tools you didn't create, their descriptions might clash with the rest of your prompt. Or information gathered in stages disagrees with earlier assumptions."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 39,
+        "cited_text": "Why do too many tools pollute the context Every tool definition occupies part of the context window. As the number of available tools increases, the model must spend more effort evaluating options before completing a task. This often reduces tool-selection accuracy and increases token consumption. RAG-MCP for dynamic tool selection Rather than loading every available tool into context, many systems now retrieve tools dynamically. Tool descriptions are indexed and searched in the same way documents are retrieved in RAG systems, a pattern that shows up across any modern AI agent platform . Only the most relevant tools are provided to the model based on the current task."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 40,
+        "cited_text": "Use recursive summarization for long-running conversations and agent workflows. Implement context isolation boundaries at both the storage and retrieval layers. Agent performance and efficiency Set explicit token budgets for instructions, memory, retrieved content, and tool outputs before deployment. Place the most critical instruction at the beginning of the system prompt. Keep tool manifests under 20–30 tools per agent step and use RAG-MCP for larger tool libraries. Prefix-cache stable context elements such as governance policies, system prompts, and reference schemas to reduce token costs. Use structured outputs to make responses machine-readable and reusable in downstream workflows."
+      },
+      {
+        "source_id": "4b1a9be8-43c0-4c77-b9be-fbae2a82b46a",
+        "citation_number": 41,
+        "cited_text": "Optimizing the number of tools available is an open area of research. One possible mechanism is to leverage the RAG-MCP pattern. This involves storing tool metadata, such as name and description into a vector database, like Elasticsearch, and returning the top-N relevant descriptions at invocation time using the user prompt. In their paper, the authors found that RAG-MCP tripled tool-calling accuracy and reduced prompt token usage by over 50%. However, it is worth noting that engineers should ensure they choose accurate and unambiguous names and descriptions for their tools for this approach. We know that naming is hard!"
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 42,
+        "cited_text": "Solution: Use RAG over tool descriptions . When you ask about getting around Paris, the system dynamically retrieves only the most relevant tools like rent_car or public_transport_info based on your query, presenting a focused “loadout” of tools to the LLM. Context Clash What it is: When conflicting information exists within the context, leading to inconsistent reasoning or bad final responses. This often happens when information arrives in stages, and early, incorrect assumptions remain in the context."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 43,
+        "cited_text": "Context Clash Context Clash is when you accrue new information and tools in your context that conflicts with other information in the context. This is a more problematic version of Context Confusion : the bad context here isn't irrelevant, it directly conflicts with other information in the prompt. A Microsoft and Salesforce team documented this brilliantly in a recent paper . The team took prompts from multiple benchmarks and 'sharded' their information across multiple prompts. Think of it this way: sometimes, you might sit down and type paragraphs into ChatGPT or Claude before you hit enter, considering every necessary detail. Other times, you might start with a simple prompt, then add further details when the chatbot's answer isn't satisfactory. The Microsoft/Salesforce team modified benchmark prompts to look like these multistep exchanges:"
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 44,
+        "cited_text": "Context clash Context clash happens when contradictory information lands in the same window, which is hard for a model to resolve. Work on evidence conflicts found that performance declines as misinformation increases, with greater conflicting evidence producing more uncertainty. The model may arbitrarily pick one source, or hallucinate a synthesis of both. Context rot Taken together, these failure modes accumulate into a broader problem: context rot. As context fills across an agent's lifespan, recall can degrade even when the total token count stays within technical limits. Context rot is the umbrella under which poisoning, distraction, confusion, and clash operate together."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 45,
+        "cited_text": "Instead of developing new strategies, the agent became fixated on repeating past actions from its extensive history. Long context hurts, even when relevant Research on long context utilization found something counterintuitive: adding more relevant context can actually hurt performance. Models struggle to synthesize information spread across many locations. The optimal context isn't \"all the relevant information.\" It's the minimum relevant information, structured for attention. Sharded prompts cause massive drops A study on multi-turn conversations took benchmark prompts and \"sharded\" them across multiple conversation turns, mimicking how real conversations unfold. The results were devastating: an average performance drop of 39% across all tested models, including frontier reasoning models."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 46,
+        "cited_text": "All the information from the prompt on the left side is contained within the several messages on the right side, which would be played out in multiple chat rounds. The sharded prompts yielded dramatically worse results, with an average drop of 39%. And the team tested a range of models – OpenAI's vaunted o3's score dropped from 98.1 to 64.1. What's going on? Why are models performing worse if information is gathered in stages rather than all at once? The answer is Context Confusion : the assembled context, containing the entirety of the chat exchange, contains early attempts by the model to answer the challenge before it has all the information . These incorrect answers remain present in the context and influence the model when it generates its final answer. The team writes:"
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 47,
+        "cited_text": "What to do: Use context pruning and offloading . Pruning means removing outdated or conflicting information as new details arrive. Offloading gives the model a separate “scratchpad” workspace to process information without cluttering the main context. Travel Booking Example: You initially tell your agent, “I want to fly economy class.” Later in the conversation, you change your mind and say, “Actually, for this trip, let's go business class.” If both instructions remain in the context, the agent might receive conflicting search results or get confused about which preference to prioritize."
+      },
+      {
+        "source_id": "930aa2c1-932c-481f-a3f9-3e7d28375aee",
+        "citation_number": 48,
+        "cited_text": "Solution: Implement context pruning . When a new instruction contradicts an old one, the older instruction is removed or explicitly overridden in the context. Alternatively, the agent can use a scratchpad to reconcile conflicting preferences before deciding, ensuring only the final, consistent instruction guides its actions. Got More Questions About Context Engineering? Join the Microsoft Foundry Discord to meet with other learners, attend office hours and get your AI Agents questions answered. Previous Lesson Agentic Protocols Next Lesson Memory for AI Agents This site is open source. Improve this page ."
+      },
+      {
+        "source_id": "2cbf98c5-c96a-4c20-9750-d8e05ddd101a",
+        "citation_number": 49,
+        "cited_text": "6. Separate static and dynamic context As we covered in the Context Layer article , rigorously separate your context: Decision Context (Static) - Goes at the beginning of your prompt: Coding standards Business rules API specifications Brand guidelines This enables prompt caching that can save up to 90% of token costs. Operational Context (Dynamic) - Goes at the end of your prompt: Current user state Error logs Session variables Real-time data Placing dynamic context last leverages recency bias so the model attends to it strongly."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 50,
+        "cited_text": "The distinction is: A larger context window gives you more capacity. It does not automatically determine: which documents are relevant, which old messages are stale, which memory should be recalled, which tools are useful, which sources are authoritative, or which information should be excluded. This is why a million-token context window does not eliminate the need for context engineering. Why More Context Is Not Always Better It is tempting to think that if a model can accept a large context window, the safest strategy is to send everything."
+      },
+      {
+        "source_id": "6dd5892d-e5ec-4ec9-9484-36c912fd290a",
+        "citation_number": 51,
+        "cited_text": "How Long Contexts Fail dbreunig.com Contact Jun 22, 2025 AGENTS LLM AI PROMPTING CONTEXT MANAGEMENT How Long Contexts Fail Managing Your Context is the Key to Successful Agents As frontier model context windows continue to grow 1 , with many supporting up to 1 million tokens, I see many excited discussions about how long context windows will unlock the agents of our dreams. After all, with a large enough window, you can simply throw everything into a prompt you might need – tools, documents, instructions, and more – and let the model take care of the rest."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 52,
+        "cited_text": "4. Larger Context Can Increase Cost and Latency More input tokens can mean more processing, higher cost, and slower requests depending on the model and provider. 5. Debugging Becomes Harder When every possible source is included, it can be difficult to identify which source influenced an incorrect answer. 6. Important Information Can Become Harder to Find Anthropic's context-engineering guidance discusses research showing that retrieval from long contexts can degrade as token counts increase, a phenomenon often described as context rot."
+      },
+      {
+        "source_id": "30fdfcd3-d300-4536-af3f-997cadc38b30",
+        "citation_number": 53,
+        "cited_text": "Simply expanding the window introduces significant challenges: Increased cost and latency: The computational complexity of the Transformer architecture's attention mechanism grows quadratically ($O(n^2)$) with sequence length, making larger contexts exponentially more expensive and slower. Performance degradation (\"lost in the middle\"): LLMs show strong recall for information at the very beginning or end of a long context window but suffer a significant drop in performance for information located in the middle. Noise and distraction: A larger context window increases the likelihood of including irrelevant \"noisy\" information, which can distract the model and degrade the quality of the output. This is often called the \"needle in a haystack\" problem."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 54,
+        "cited_text": "This creates a competition for working memory tokens. In an enterprise agent, the system prompt consumes tokens first (persona, tools, governance rules). RAG retrieval adds more. Conversation history adds more. By the time the model reaches the actual task, the working memory may already be full of lower-value content. The numbers show how severe this is in practice. Factory AI's production research found that enterprise queries consume 50,000 to 100,000 tokens before the model begins reasoning, pulling from schema definitions, lineage graphs, governance policies, and conversation history simultaneously. At GPT-4.1 pricing ($2 per million input tokens), a single complex enterprise query costs $0.10–$0.20 in context tokens alone. At 10,000 queries per day, context waste is a $300K–$600K annual line item, not a footnote."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 55,
+        "cited_text": "System prompt bloat is the first drain: enterprise agents carry 3,000–8,000 tokens of governance rules, tool schemas, persona definitions, and formatting instructions in their system prompts. At 50K effective context tokens (accounting for degradation), that is 6–16% of the reasoning budget consumed before any user message. Unfiltered RAG retrieval is the second: standard pipelines retrieve top-K chunks without deep relevance filtering. Five chunks at 500 tokens each is 2,500 tokens. If three are tangential, 1,500 tokens of working memory are wasted on noise. At enterprise scale, metadata schemas, column descriptions, lineage graphs, and policy documents are often verbose, duplicative, and stale."
+      },
+      {
+        "source_id": "49e351be-a18f-446a-8bec-dcc98ec52abf",
+        "citation_number": 56,
+        "cited_text": "Redundancy is the third: the same metric definition appears in 12 different schema files. A naive retrieval pipeline injects all 12. A governed context layer injects one canonical, certified definition. Staleness is the fourth, and the most insidious: six-month-old column descriptions in the context window are not neutral. They actively mislead the model while consuming tokens. Stale context degrades answer quality and wastes the reasoning budget simultaneously. The arithmetic at scale: Factory AI's 50K–100K pre-reasoning token burn means context waste is a $300K–$600K annual line item at 10K queries per day. This is not a technical detail. It is a cost center with a governance solution."
+      },
+      {
+        "source_id": "ba1dc3db-3af9-41a4-9a0f-b513ebbae952",
+        "citation_number": 57,
+        "cited_text": "Minimum Viable Context (MVC) and the context pyramid It's critical to organize context optimally and provide it at the right time. The following techniques will help you do so. Minimum viable context (MVC): Think of MVC as the smallest set of inputs the model needs to complete the current task. It typically includes clear instructions and goals, the specific user request, a few targeted examples, a minimal set of enabled tools, and the core facts tied to this request. Leaving out filler and oversized tool dumps keeps the signal high and prevents the model from chasing irrelevant details. Context pyramid: Organize what the model sees into three layers. The persistent base holds stable material, such as the system prompt, safety policies, and canonical facts; cache this so it rarely changes. Above that sits the dynamic layer (examples, recent memory, and metadata), which you rotate per task or step. At the top is the ephemeral layer (the user query and tool outputs), which you keep small and short‑lived. Caching the base while refreshing the top layers controls token cost and helps the model attend to what matters."
+      },
+      {
+        "source_id": "45fb5395-9091-43ca-aab0-6f56691a38f2",
+        "citation_number": 58,
+        "cited_text": "These realities mean that thoughtful context engineering is essential for building capable agents. The anatomy of effective context Given that LLMs are constrained by a finite attention budget, good context engineering means finding the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome. Implementing this practice is much easier said than done, but in the following section, we outline what this guiding principle means in practice across the different components of context."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 59,
+        "cited_text": "Get started Metadata filtering scopes the search space Metadata filtering helps before ranking even starts: it narrows the candidate pool ahead of vector search, so embedding comparison runs against fewer documents. Restricting search to engineering documents when an engineering user asks about deployment processes produces a smaller, more relevant set. Freshness keeps stale context out Even on-topic, precisely ranked context breaks decisions when it's stale, and those failures produce confident wrong answers rather than visible errors: a compliance breach, a failed transaction, a recommendation for a discontinued product. Vector retrieval has no built-in recency signal. Similarity scoring is independent of when a document was written, so a shipping policy from two years ago can outrank the current one."
+      },
+      {
+        "source_id": "5c82dfc2-9a1c-4236-a0c9-7c8fb18b3e61",
+        "citation_number": 60,
+        "cited_text": "Blog home Close Blog home Developer GenAI News Agentic AI Best tools for context engineering in agentic AI systems Enzo Htet Blog Editor, Neo4j March 30, 2026 11 min read Context engineering selects, shapes, and delivers the information and tools an agent needs the moment they're needed. Agentic AI systems depend on this work because multi-step plans only hold together when facts, constraints, and states stay consistent from one action to the next. Bad context shows up quickly in practice. An agent might pull outdated pricing data (hallucination), include irrelevant documents (token inefficiency), or lose track of prior tool outputs mid-workflow (context rot). In a real system, that could mean issuing the wrong refund, violating compliance rules, or triggering incorrect downstream actions."
+      },
+      {
+        "source_id": "14907ac0-8e60-4084-ad9f-1922e1546947",
+        "citation_number": 61,
+        "cited_text": "Freshness is better treated as a design constraint: timestamp metadata for time-bounded retrieval, re-embedding triggers when source documents change, and freshness service-level agreements (SLAs) for features serving real-time decisions. Together, precision-focused re-ranking, hybrid retrieval, metadata filtering, and freshness constraints shape whether context quality holds up downstream. Everything that reaches the model flows through this layer. Where a real-time context engine fits Context problems usually trace back to the retrieval layer, so it has to be fast and current enough to trust. It works best when it provides three properties to keep context clean: speed, freshness, and precision. That means returning results fast enough for real-time agent interactions, staying synchronized with source data as it changes, and combining vector similarity with metadata filtering and hybrid search to surface the documents that actually answer the query."
+      },
+      {
+        "source_id": "38238f88-ee3e-4e14-800b-8ec85944e72c",
+        "citation_number": 62,
+        "cited_text": "Figure 2: Typical interactions with an LLM answering solely based on its training data. That limitation quickly became obvious. Enterprise data—from design documents and Jira tickets to meeting transcripts and product wikis—lived outside the model's reach. Without that context, responses were generic and often incomplete. Developers began exploring ways to bring private knowledge into the model's reasoning process and context window (the amount of information it can \"see\" at once). Chatting with your documents: RAG as a first step The first major breakthrough was retrieval-augmented generation (RAG) . RAG connects models to vector or graph databases so they can perform semantic search and retrieve information relevant to a query."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 63,
+        "cited_text": "Many discussions about context engineering focus on retrieval algorithms and vector databases. In enterprise environments, however, the biggest challenge is often much simpler: the information being retrieved lacks business context. Metadata, lineage, governance policies, and business definitions provide the foundation that makes every other context engineering technique more effective. 1. Raw data without metadata lacks context A field named \"rev_adj\" may be meaningful to a finance analyst but meaningless to an AI system without supporting documentation."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 64,
+        "cited_text": "Metadata provides the descriptions, ownership details, classifications, and business definitions needed to transform raw data into usable context. 2. Business glossaries and data definitions as context anchors Business glossaries provide authoritative definitions for organisational terms. If a company defines an \"active customer\" as someone who completed a transaction within the last 90 days, that definition should guide agent reasoning instead of assumptions derived from model training. OvalEdge would push this one step further. The question is not whether the AI can understand the word 'customer.' The question is whether the enterprise has told the AI which customer to use. A model can retrieve four different definitions from four different systems and still pick the wrong one silently. That is the gap a business glossary is designed to close."
+      },
+      {
+        "source_id": "def94060-778e-4628-9121-1c7bddc75130",
+        "citation_number": 65,
+        "cited_text": "When an AI agent searches for a revenue definition, retrieval may return several documents. Metadata such as certification status, ownership, and freshness can help prioritize the approved finance definition over outdated or unofficial sources. Metadata, therefore, influences not only how information is documented but also what information reaches the context window. 4. Governance policies as a system prompt constraints Policies governing data access, privacy, retention, and compliance can be injected directly into context."
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 66,
+        "cited_text": "For example: But caching does not make irrelevant context relevant. If you repeatedly cache 100 pages that the model does not need, you have optimized the cost of a poor context architecture. Context Selection Comes First A useful sequence is:"
+      },
+      {
+        "source_id": "82999820-e611-484e-907a-0abb80a800c9",
+        "citation_number": 67,
+        "cited_text": "23. Assuming a Larger Context Window Fixes Retrieval A model cannot benefit from evidence that was never retrieved, or from current state that the application never supplied. 24. Ignoring Context Ordering Large prompts should be structured intentionally and tested on the target model instead of assuming one layout works everywhere. 25. Optimizing Only Token Count The smallest context is not necessarily the best context. Measure task quality, failure rates, cost, and latency together. 26. Optimizing Caching Before Relevance Caching repeated input efficiently does not improve the quality of irrelevant input."
+      }
+    ]
+  }
+]

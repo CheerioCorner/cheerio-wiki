@@ -353,6 +353,7 @@
 - [[wiki/sources/2026-08-30-agent-security-basics.md|Agent Security 基礎深度研究]]
 - [[wiki/sources/2026-08-30-enterprise-api-security.md|Enterprise API Security 深度研究]]
 - [[wiki/sources/2026-08-30-ai-threat-modeling.md|AI Threat Modeling 深度研究]]
+- [[wiki/sources/2026-09-02-context-engineering-deep-research.md|Context Engineering 深度研究：角色、關鍵任務與陷阱 — 22 筆產業來源]]
 - [[wiki/sources/2026-09-02-agent-harness-framework-landscape.md|AI Agent Harness/Framework 全貌盤點 — 四大廠路線 + Python/TS 生態圈主流框架深度比較]]
 - [[wiki/sources/2026-09-02-dhh-ai-workflow-practices.md|DHH：AI 工作流的實踐經驗 — 16 條並行工作流與瓶頸遷移]]
 - [[wiki/sources/2026-08-30-skill-supply-chain-security.md|Skill Supply Chain Security 深度研究]]
