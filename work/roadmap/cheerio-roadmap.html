@@ -396,7 +396,7 @@
 <div class="wrap">
 
   <header class="page">
-    <span class="eyebrow">2026-09-02 更新 · W-074 架構收斂完成：20 項決策、4 份 schema、核心語言拍板 TypeScript</span>
+    <span class="eyebrow">2026-09-02 更新 · W-074 架構全部定案：20 項決策、4 份 schema、monorepo 四層 package 圓桌共識</span>
     <h1>Cheerio 路線圖</h1>
     <p class="subtitle">目前手上六條工作軌道，哪些今天可以平行起跑、哪些互相依賴、哪些只是在等一句話。垂直虛線標的是「今天」。</p>
   </header>
@@ -474,7 +474,7 @@
     today: {
       x: 300, y1: 55, y2: 1080,
       label: "📍 2026-09-02 今天", labelY: 36,
-      sub: "W-074 架構收斂完成 → 待拍板 2 處 schema 欄位 → 畫實作架構第三欄 → 寫零號專家 wrapper", subY: 1100
+      sub: "W-074 架構全部定案（20 決策 + 4 份 schema + 圓桌軟體架構共識）→ 下一步直接 pnpm init 開工寫零號專家 wrapper", subY: 1100
     },
 
     tracks: [
@@ -746,7 +746,7 @@
             id: "w074", x: 300, y: 540, hitR: 27, shape: "ready", r: 14,
             labels: [
               { cls: "lbl-id", x: 300, y: 516, text: "W-074", fill: "var(--ink)" },
-              { cls: "lbl-sub", x: 300, y: 570, text: "20 決策・4 份 schema・今天" }
+              { cls: "lbl-sub", x: 300, y: 570, text: "架構定案・可開工" }
             ],
             aria: "W-074 個人 AI 助理架構全貌與 MVP，查看詳情",
             popover: {
@@ -756,7 +756,9 @@
                 "四份 schema 初版已寫：意圖紀錄／任務契約／四態轉換規則／事件流（work/designs/schemas/）",
                 "核心本體語言拍板 TypeScript：Zod（schema 即 validator）＋ XState（guarded 狀態機）＋ 官方 Agent/MCP SDK 首發語言",
                 "8/31 開工前置研究完成：業界 Agent Harness/Framework 全貌盤點，177 筆來源",
-                "9/2 三個架構缺口補完：Context Engineering 對策頁、Episodic/Artifact 記憶定案、自我改進迴路"
+                "9/2 三個架構缺口補完：Context Engineering 對策頁（Pi 補做 22 筆來源深度研究）、Episodic/Artifact 記憶定案、自我改進迴路",
+                "9/2 三方圓桌（Claude+Gemini+Copilot，2 輪無未解分歧）拍板軟體架構：pnpm monorepo 四層 package、單一 Node process、SQLite+Drizzle、ExpertHarness 統一介面、與 Pi 的物理隔離",
+                "Excalidraw 已加第三欄「軟體架構（實作視角）」(v0.8)：邊界劃在契約不劃在進程、核心是 Graph 專家才是 Loop"
               ]
             }
           },
@@ -764,16 +766,17 @@
             id: "vslice", x: 520, y: 540, hitR: 22, shape: "ready", r: 12,
             labels: [
               { cls: "lbl-sub", x: 520, y: 512, text: "MVP 最小閉環" },
-              { cls: "lbl-sub", x: 520, y: 570, text: "零號專家 wrapper（TS）" }
+              { cls: "lbl-sub", x: 520, y: 570, text: "零號專家 wrapper・開工" }
             ],
             aria: "MVP 最小閉環，查看詳情",
             popover: {
-              title: "MVP 最小閉環", status: "待拍板 2 欄位後開工", pill: "today", card: "card-vslice",
+              title: "MVP 最小閉環", status: "可以開工了", pill: "today", card: "card-vslice",
               bullets: [
                 "一個案子、一位專家、不開分身、只跑全自動模式",
                 "意圖紀錄 → 任務契約派工 → 專家標「待驗收」→ 主 Cheerio 比對意圖 vs 產出 → 完成／退回／上呈",
-                "四份 schema 已寫完；剩兩處欄位待拍板：TaskContract.rejected_alternatives、StateTransitionEvent 的 verdict／human_override 結構化",
-                "接著把「Cheerio 軟體架構（實作視角）」畫成 Excalidraw 第三欄，然後動手寫零號專家 wrapper（TypeScript，Tier C）"
+                "四份 schema 已寫完，兩處欄位 9/2 拍板寫入：TaskContract.rejected_alternatives、StateTransitionEvent 的 verdict／human_override 結構化",
+                "開工六步：pnpm workspace → core（Zod schema）→ events（Drizzle+SQLite）→ orchestration（XState+Guard）→ experts（ChildProcessRunner+零號專家）→ vitest 跑四條測試路徑",
+                "四條驗收路徑：A 正常流／B 逾時重試（SIGKILL+指數退避）／C 毒藥訊息（不重試）／D 越權防護（Pi 偽造 COMPLETED → Guard 攔截）"
               ]
             }
           },
@@ -1169,7 +1172,7 @@
             foot: "全貌圖：Obsidian/excalidraw/Cheerio 核心架構.excalidraw.md（v0.7）｜設計文件：work/designs/schemas/（4 份）、w074-memory-architecture.md、w074-self-improvement-loop.md｜下一步：待拍板 2 處欄位 → 畫實作架構第三欄 → 寫零號專家 wrapper"
           },
           {
-            id: "card-vslice", idText: "MVP 最小閉環", pill: "today", pillText: "待拍板 2 欄位後開工",
+            id: "card-vslice", idText: "MVP 最小閉環", pill: "today", pillText: "可以開工了",
             name: "一個案子、一位專家、不開分身、只跑全自動",
             bullets: [
               "① 我講一句話 → 主 Cheerio 翻成「意圖紀錄」寫下來　② 依意圖產生「任務契約」派給一位專家",
