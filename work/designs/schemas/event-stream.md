@@ -45,9 +45,9 @@ Event:
 | `expert.progress` | 專家執行中的進度更新 | `{ progress_pct, current_step }` |
 | `expert.tool_call` | 專家呼叫工具 | `{ tool_name, input, output, latency_ms }` |
 | `expert.completed` | 專家完成任務 | `{ deliverables }` |
-| `state.transition` | 狀態轉換 | `{ from_state, to_state, trigger }` |
+| `state.transition` | 狀態轉換 | `{ from_state, to_state, trigger, verdict?, verdict_reason?, verdict_confidence?, human_override, overrides_span_id?, override_kind? }`（★ 9/2 起驗收結果為結構化欄位，見 `state-transition-rules.md`） |
 | `review.started` | 主 Cheerio 開始比對 | `{ contract_id }` |
-| `review.result` | 主 Cheerio 比對結果 | `{ match, reason, confidence }` |
+| `review.result` | 主 Cheerio 比對結果 | `{ verdict, verdict_reason, verdict_confidence }`（★ 9/2 欄位名對齊 `state.transition`，原 `match/reason/confidence` 廢止） |
 | `case.completed` | 案子完成 | `{ final_status }` |
 | `case.escalated` | 上呈人類 | `{ reason }` |
 

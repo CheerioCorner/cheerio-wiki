@@ -396,7 +396,7 @@
 <div class="wrap">
 
   <header class="page">
-    <span class="eyebrow">2026-08-30 更新 · Cheerio 架構全貌已畫、MVP 已圈定（W-074）</span>
+    <span class="eyebrow">2026-09-02 更新 · W-074 架構收斂完成：20 項決策、4 份 schema、核心語言拍板 TypeScript</span>
     <h1>Cheerio 路線圖</h1>
     <p class="subtitle">目前手上六條工作軌道，哪些今天可以平行起跑、哪些互相依賴、哪些只是在等一句話。垂直虛線標的是「今天」。</p>
   </header>
@@ -411,7 +411,7 @@
     </div>
     <figure>
       <div class="zoom-scroll">
-      <svg id="map-svg" viewBox="0 0 1820 1180" role="img" aria-label="六條工作軌道的路線圖：知識花園線、基礎設施線、企業 Skill 自動化線、個人 AI 助理線、ADO 領域專家 Agent 線、自建 Agent 學習線。個人 AI 助理線的 W-074 最小規格站之後分兩路，一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。第五條 ADO 領域專家 Agent 線是同日第二場圓桌會議加碼開的，Cheer 兩輪事後訂正後改成「先驗證連通性、再設計 Tool、再驗證 Agent 架構，最後才決定 Plugin 定位與開發 Publish View」的順序；Block 1 的 ADO／SharePoint／Outlook 三項連通性驗證各自有獨立 work ID 且可並行，因此畫成三條分支後再匯合，不擠在同一個節點。第六條自建 Agent 學習線把原本埋在 Phase 1-4 backlog 裡、完全沒露臉的研究待辦（含 3 項 MCP 相關研究）集中呈現。一條紅色虛線標出 2026-08-23 可以同時起跑的站：W-057、W-074、W-080、W-029、W-030。每個站點可點擊查看詳情。">
+      <svg id="map-svg" viewBox="0 0 1820 1180" role="img" aria-label="六條工作軌道的路線圖：知識花園線、基礎設施線、企業 Skill 自動化線、個人 AI 助理線、ADO 領域專家 Agent 線、自建 Agent 學習線。個人 AI 助理線的 W-074 最小規格站之後分兩路，一路做垂直切片再展開三個 plugin，另一路把六個零散研究待辦重新框定範圍。第五條 ADO 領域專家 Agent 線是同日第二場圓桌會議加碼開的，Cheer 兩輪事後訂正後改成「先驗證連通性、再設計 Tool、再驗證 Agent 架構，最後才決定 Plugin 定位與開發 Publish View」的順序；Block 1 的 ADO／SharePoint／Outlook 三項連通性驗證各自有獨立 work ID 且可並行，因此畫成三條分支後再匯合，不擠在同一個節點。第六條自建 Agent 學習線把原本埋在 Phase 1-4 backlog 裡、完全沒露臉的研究待辦（含 3 項 MCP 相關研究）集中呈現。一條紅色虛線標出 2026-09-02 可以同時起跑的站：W-057、W-074、W-080、W-029、W-030。每個站點可點擊查看詳情。">
       </svg>
       </div>
       <figcaption>六條工作軌道：知識花園線的 W-073 已完成並經 Cheer 確認（wiki＋Notion 花園頁雙寫，過程中發現的可用性登記表誤鎖 bug 已獨立拆成 W-086）；W-082（8/23 排到 W-069 之前）已完成——兩支共用 skill（deep-research-intake／deep-research-execute）寫好、經 Codex 兩輪審查與 Pi 兩輪修正、格式對齊、已推送 cheerio-skills repo，端到端實測留待之後用 W-069 主題跑；W-069 等 Gemini 深度研究背景跑完，同時也是上述端到端實測的候選題目。基礎設施線已全數完成（W-083／W-076／W-072／W-070），僅剩 W-064（Docker 化，有空再做）與新拆出的 W-086（可用性登記表誤鎖 bug，backlog）；企業 Skill 自動化線今天解開卡 3 天的 W-057；個人 AI 助理線 8/30 有重大進展：Cheer × Claude 五輪對談把整個架構全貌畫成 Excalidraw 圖（v0.6），15 項架構決策拍板、五個互相衝突處全部釐清，並圈定第一版 MVP＝「一個案子、一位專家、不開分身、只跑全自動」的最小閉環，下一步是寫三份 schema（意圖紀錄／任務契約／四態轉換規則）就動工；原本欽點的搜尋能力改列後續 Plugin(a)，第一條切片換成核心閉環本身；ADO 領域專家 Agent 線今天先評估 OCR 能否輔助開發，再開始 ADO／SharePoint／Outlook 三條並行支線各自的溝通可行性驗證（各有獨立 work ID，不擠在同一節點），三線全過才匯合去設計 Tool 介面、驗證 Agent 架構、最後才決定 Plugin 定位與開發 Publish View；自建 Agent 學習線是原本埋在 work/current.md Phase 1-4 backlog 裡完全沒上圖的研究待辦，今天可直接動手的是學習系統與 OCR 安裝，MCP 相關研究單獨集中成一站（含 Server 架構、Registry 企業管理、官方文件 ingest 三項）。W-070 是浮動的獨立小決策，不屬於任何一條軌道。</figcaption>
@@ -473,8 +473,8 @@
   var ROADMAP = {
     today: {
       x: 300, y1: 55, y2: 1080,
-      label: "📍 2026-08-30 今天", labelY: 36,
-      sub: "W-074 全貌已畫、MVP 已圈定 → 下一步寫三份 schema 開工", subY: 1100
+      label: "📍 2026-09-02 今天", labelY: 36,
+      sub: "W-074 架構收斂完成 → 待拍板 2 處 schema 欄位 → 畫實作架構第三欄 → 寫零號專家 wrapper", subY: 1100
     },
 
     tracks: [
@@ -746,16 +746,17 @@
             id: "w074", x: 300, y: 540, hitR: 27, shape: "ready", r: 14,
             labels: [
               { cls: "lbl-id", x: 300, y: 516, text: "W-074", fill: "var(--ink)" },
-              { cls: "lbl-sub", x: 300, y: 570, text: "MVP 已圈定・今天" }
+              { cls: "lbl-sub", x: 300, y: 570, text: "20 決策・4 份 schema・今天" }
             ],
             aria: "W-074 個人 AI 助理架構全貌與 MVP，查看詳情",
             popover: {
-              title: "W-074 · 全貌已畫，MVP 已圈定", status: "今天", pill: "today", card: "card-w074",
+              title: "W-074 · 架構收斂完成，準備開工", status: "今天", pill: "today", card: "card-w074",
               bullets: [
-                "8/30 Cheer × Claude 五輪對談：全貌畫成 Excalidraw 圖（v0.6），15 項架構決策拍板",
-                "方法論：先畫全貌 → 找出互相衝突處 → 釐清後才圈 MVP → 逐片實作，核心路徑不會被移動",
-                "主 Cheerio 核心職責定調：判斷「人類要的」跟「實際做出來的」是不是同一件事",
-                "五個衝突已全部釐清（記憶/Context 邊界/專家隔離/誰能標完成/插話怎麼走）"
+                "20 項架構決策拍板（8/30 十七項；9/2 補三項：記憶四層定案、一級紀錄＝decision-ledger、自我改進五階迴路）",
+                "四份 schema 初版已寫：意圖紀錄／任務契約／四態轉換規則／事件流（work/designs/schemas/）",
+                "核心本體語言拍板 TypeScript：Zod（schema 即 validator）＋ XState（guarded 狀態機）＋ 官方 Agent/MCP SDK 首發語言",
+                "8/31 開工前置研究完成：業界 Agent Harness/Framework 全貌盤點，177 筆來源",
+                "9/2 三個架構缺口補完：Context Engineering 對策頁、Episodic/Artifact 記憶定案、自我改進迴路"
               ]
             }
           },
@@ -763,16 +764,16 @@
             id: "vslice", x: 520, y: 540, hitR: 22, shape: "ready", r: 12,
             labels: [
               { cls: "lbl-sub", x: 520, y: 512, text: "MVP 最小閉環" },
-              { cls: "lbl-sub", x: 520, y: 570, text: "先寫 3 份 schema" }
+              { cls: "lbl-sub", x: 520, y: 570, text: "零號專家 wrapper（TS）" }
             ],
             aria: "MVP 最小閉環，查看詳情",
             popover: {
-              title: "MVP 最小閉環", status: "下一步就動手", pill: "today", card: "card-vslice",
+              title: "MVP 最小閉環", status: "待拍板 2 欄位後開工", pill: "today", card: "card-vslice",
               bullets: [
                 "一個案子、一位專家、不開分身、只跑全自動模式",
                 "意圖紀錄 → 任務契約派工 → 專家標「待驗收」→ 主 Cheerio 比對意圖 vs 產出 → 完成／退回／上呈",
-                "先寫三份 schema：意圖紀錄／任務契約／四態轉換規則（只定已知大欄位）",
-                "第一個案子＝造出第一個正式專家；需先有一位「零號專家」（Tier C/B 外部 harness 粗暴包裝）來執行它"
+                "四份 schema 已寫完；剩兩處欄位待拍板：TaskContract.rejected_alternatives、StateTransitionEvent 的 verdict／human_override 結構化",
+                "接著把「Cheerio 軟體架構（實作視角）」畫成 Excalidraw 第三欄，然後動手寫零號專家 wrapper（TypeScript，Tier C）"
               ]
             }
           },
@@ -1151,28 +1152,33 @@
         cards: [
           {
             id: "card-w074", idText: "W-2026-08-074", pill: "today", pillText: "今天",
-            name: "全貌已畫，MVP 已圈定",
+            name: "架構收斂完成（20 項決策 · 4 份 schema · 語言拍板）",
             bullets: [
               "方法論（Cheer 定調）：先把全貌畫出來 → 找出互相衝突的地方 → 釐清後才圈 MVP → 從最核心處逐片實作。這樣核心路徑不會在擴增過程中被移動",
               "主 Cheerio ＝ 總 PM／秘書，核心職責是判斷「人類要的」跟「實際做出來的」是不是同一件事；「不背記憶」≠ 沒記憶，是全記在外面、要用才調，所以意圖必須被寫下來成一級紀錄",
               "兩種模式是同一套系統的兩個檔位，且是案件級可切換：全自動（主 Cheerio ＝ 唯一翻譯官）／互動（＝ 主持人，意圖廣播、它負責統整解讀分歧）。插話 ＝ 把該案切成互動，決策完切回",
               "專家 ＝ 可實例化的角色，跨案共用「角色定義」而非實例；分身繼承 PM 的 Context 且不能再生分身；合體 ＝ 分身邊做邊寫進案件共享工作區，真身直接讀",
               "狀態基本四態（不是三態）：待辦 → 進行中 → 待驗收 → 完成。專家只能推到「待驗收」，只有主 Cheerio 能推到「完成」",
-              "Harness 可觀測性分 Tier A/B/C，是「專家 × harness 綁定」的屬性且可升級；Tier A 定義成一份可觀測性契約而非某個實作，自建 harness 刻意用不同 Agent Framework 打造"
+              "Harness 可觀測性分 Tier A/B/C，是「專家 × harness 綁定」的屬性且可升級；Tier A 定義成一份可觀測性契約而非某個實作，自建 harness 刻意用不同 Agent Framework 打造",
+              "核心本體語言（9/2）＝ TypeScript：Zod 讓 schema 定義本身就是 runtime validator、XState 直接對應「誰能觸發哪個轉換」、Anthropic 官方 Agent/MCP SDK 首發語言。W-080（ADO Agent）維持 C#/.NET 10 不受影響",
+              "記憶四層定案（9/2 決策 #18）：Episodic＝事件流封存＋結案摘要、Artifact＝檔案系統為真相＋索引表，兩者都不走向量；Semantic 先用純文字；Procedural 不新建系統",
+              "關鍵推論（9/2 決策 #19）：一級紀錄本身就是 decision-ledger——實測勝過 vector RAG 的取回策略，在 Cheerio 是治理需求的免費副產品",
+              "自我改進五階迴路（9/2 決策 #20）：Trace → Eval → Diagnose → Gate → Release。eval 資料免費（每次驗收就產一筆帶標籤資料，人類推翻＝黃金標籤）；紅線是不准改四態狀態機、一級紀錄必填欄位、驗收基準來源",
+              "五種 Engineering 落點：核心是 Graph（確定性 guarded 狀態機），專家內部才是 Loop（自主迭代）——跟「理解交給 LLM、權限交給規則引擎」是同一條線"
             ],
-            foot: "全貌圖：Obsidian/excalidraw/Cheerio 核心架構.excalidraw.md（v0.6）｜五個衝突已全部釐清，照方法論即收手動工"
+            foot: "全貌圖：Obsidian/excalidraw/Cheerio 核心架構.excalidraw.md（v0.7）｜設計文件：work/designs/schemas/（4 份）、w074-memory-architecture.md、w074-self-improvement-loop.md｜下一步：待拍板 2 處欄位 → 畫實作架構第三欄 → 寫零號專家 wrapper"
           },
           {
-            id: "card-vslice", idText: "MVP 最小閉環", pill: "today", pillText: "下一步就動手",
+            id: "card-vslice", idText: "MVP 最小閉環", pill: "today", pillText: "待拍板 2 欄位後開工",
             name: "一個案子、一位專家、不開分身、只跑全自動",
             bullets: [
               "① 我講一句話 → 主 Cheerio 翻成「意圖紀錄」寫下來　② 依意圖產生「任務契約」派給一位專家",
               "③ 專家執行、做完標「待驗收」（不能自己標完成）　④ 主 Cheerio 調出意圖紀錄跟產出比對　⑤ 相符→完成／不符→退回或上呈　⑥ 全程進事件流、狀態面可查",
-              "先寫三份 schema：意圖紀錄／任務契約／四態轉換規則，只定已知大欄位（契約欄位等做出來才會清楚）。事件流沿用 8/22 MUST 欄位、狀態面沿用 current.md 概念，不用重新設計",
+              "四份 schema 已於 8/30 寫完（意圖紀錄／任務契約／四態轉換規則／事件流）。9/2 新增兩處欄位待 Cheer 拍板：TaskContract 加 rejected_alternatives（對治跨 harness 交接的 context decay）、StateTransitionEvent 把 verdict／verdict_reason／human_override 從 metadata 自由文字升成結構化欄位（否則之後算指標得用 LLM 讀 metadata）",
               "刻意不做：分身、共享工作區、互動模式/主持人、跨案 Context 共享、多專家仲裁——都疊在這閉環之上，之後補不用動核心",
               "第一個案子＝「造出第一個正式專家」；需先有一位零號專家（Tier C/B 外部 harness 粗暴包裝）執行它，否則派工那段沒被驗證。從最弱 tier 起步是刻意的：逼核心只靠「意圖＋最終產出」驗收，不偷看過程"
             ],
-            foot: "搜尋能力仍是後續 Plugin(a)，但第一條切片改成核心閉環本身"
+            foot: "搜尋能力仍是後續 Plugin(a)，但第一條切片改成核心閉環本身｜語言：TypeScript（9/2 拍板）"
           },
           {
             id: "card-backlog6", idText: "六個 Phase 1 研究", pill: "dim", pillText: "待重新框定",

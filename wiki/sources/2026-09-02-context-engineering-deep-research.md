@@ -7,6 +7,7 @@ sources: 22
 tags: [context-engineering, ai-agent, prompt-engineering, mcp, memory, pitfalls]
 topics: [agent-memory-context, agent-architecture]
 canonical: sources/2026-09-02-context-engineering-deep-research
+provenance_raw: "raw/deep-research/rc-20260902-001/research-report.md"
 provenance:
   - kind: raw
     path: raw/deep-research/rc-20260902-001/research-report.md
@@ -98,7 +99,19 @@ Andrej Karpathy 的定義：「在每一步中，用恰到好處的資訊填滿�
 4. Neo4j: Context Engineering in AI Agents (A Practical Guide)
 5. Elasticsearch Labs: Components, Techniques, and Best Practices
 6. Microsoft Open Source: Context Engineering for AI Agents
-7. DeepLearning.AI: How Long Contexts Fail
+7. Drew Breunig: How Long Contexts Fail（`dbreunig.com`，四大失效模式的原始出處；研究報告原本誤標為 DeepLearning.AI，2026-09-02 訂正）
 8. Elastic: Architecting Reliable AI with Context Engineering
-9. [arXiv:2507.13334] A Survey of Context Engineering for Large Language Models
+9. [arXiv:2507.13334] A Survey of Context Engineering for Large Language Models（Mei et al.，分析 1400+ 篇論文）
 10. Weaviate: LLM Memory and Retrieval for AI Agents
+
+## 引用抽查紀錄（2026-09-02，Claude）
+
+依既有規則（深度研究的引用一律抽查，不採信自報），逐一 WebFetch 核對：
+
+| 來源 | 核對結果 |
+|---|---|
+| `dbreunig.com` How Contexts Fail | ✅ 四大失效模式命名一致；Gemini 寶可夢幻覺、Berkeley「超過 1 個工具就變差」、Llama 3.1 8b 給 46 工具失敗／19 工具成功、Microsoft+Salesforce 切片提示平均掉 39%（o3 從 98.1 掉到 64.1）全部屬實 |
+| Anthropic: Effective Context Engineering | ✅ 真實文章（2025-09-29），compaction／結構化筆記／sub-agent 隔離三項技術皆在文中 |
+| arXiv:2507.13334 | ✅ 論文存在，標題與作者相符（Mei et al.） |
+
+未發現捏造引用。唯一訂正是第 7 項的作者歸屬（原標 DeepLearning.AI，實為 Drew Breunig 個人網站文章）。

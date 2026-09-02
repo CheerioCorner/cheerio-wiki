@@ -103,5 +103,32 @@ StateTransitionEvent:
   latency_ms: integer        # 從觸發到轉換完成的延遲
   status: enum               # "success" | "error"
   error: string?             # 錯誤訊息（如有）
-  metadata: object           # 額外資訊（例：退回原因、LLM 比對的信心度）
+
+  # === ★ 9/2 新增：驗收結果結構化（Cheer 拍板）===
+  verdict: enum?             # "match" | "mismatch"，步驟⑤ LLM 比對的判定結果
+  verdict_reason: string?    # 判定理由（自由文字，給人看）
+  verdict_confidence: float? # LLM 比對的信心度 0.0-1.0
+  human_override: bool       # 這次轉換是否為人類推翻主 Cheerio 的判定（預設 false）
+  overrides_span_id: string? # human_override=true 時，指向被推翻的那次判定事件
+  override_kind: enum?       # "misjudged"（主 Cheerio 判錯）| "changed_mind"（人類改變主意）
+                             # 先留欄位，MVP 可不填（見設計說明）
+
+  metadata: object           # 其餘額外資訊（不再放 verdict / 退回原因）
 ```
+
+### 為什麼這幾欄要從 `metadata` 拉出來（9/2 新增，Cheer 拍板）
+
+原本 `verdict`、退回原因、信心度都塞在 `metadata` 的自由文字裡。問題在於**自我改進迴路的兩個指標都要靠它們計算**：
+
+| 指標 | 算法 | 需要的欄位 |
+|---|---|---|
+| **驗收準確率** | 1 −（`human_override=true` 次數 ÷ 主 Cheerio 判定次數） | `human_override` |
+| **一次過率** | 第一次送驗就 `verdict="match"` 的契約數 ÷ 契約總數 | `verdict` |
+
+如果這些值埋在自由文字裡，之後要算指標就得**用 LLM 去讀 metadata**——變成用 LLM 評估 LLM，指標的可信度整個垮掉。結構化之後是純 SQL/程式計算，確定性的。
+
+這也呼應核心迴路的 LLM／規則切分：⑤的判定由 LLM 產生，但**判定結果一旦落地就是結構化資料**，⑥的規則引擎與事後的指標計算都只讀結構化欄位，不再回頭解讀自然語言。
+
+`override_kind` 的用途：人類推翻主 Cheerio 有兩種原因——**它判錯了**，或**我改變主意了**。只有前者代表品質問題；不分開的話，驗收準確率會被「人類改主意的次數」汙染。MVP 階段可以先不填（單一使用者記得住），欄位先留著。
+
+詳見 [[work/designs/w074-self-improvement-loop|W-074 自我改進迴路設計]]。

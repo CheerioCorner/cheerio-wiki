@@ -23,6 +23,10 @@ TaskContract:
   # === 任務內容 ===
   task_description: string   # 主 Cheerio 翻譯的具體任務描述
   assumptions: string[]      # 主 Cheerio 依據的假設（例："假設資料來源是 raw/"）
+  rejected_alternatives:     # ★ 9/2 新增：被否決的替代方案（對治 context decay）
+    - option: string         #   考慮過但沒選的做法
+      why_rejected: string   #   為什麼放棄
+      consequence: string?   #   放棄後預期的後果（選填）
   deliverables: string[]     # 預期產出物（例："一份 markdown 報告"、"更新 wiki 頁面"）
   deliverable_format: enum   # "text" | "file" | "structured"（結構化資料如 JSON）
   
@@ -60,6 +64,20 @@ TaskContract:
 - 人類說的話本來就模糊（「做一份專業的報告」），拆成 pass/fail 條列會遺漏真實意圖
 - 主 Cheerio 在步驟⑤做 LLM 語意比對（「你要的」vs「做出來的」），自由文字更適合
 - 步驟⑥的狀態轉換（通過/退回/上呈）仍然是規則引擎判定，不讓 LLM 自由發揮
+
+### `rejected_alternatives` 為什麼要有（9/2 新增，Cheer 拍板）
+
+決策依據：[[wiki/concepts/context-engineering|Context Engineering]] 的 ③ Handoff 對策族 ＋ [[wiki/concepts/context-decay|Context Decay]]。
+
+派工是一次**跨 harness 交接**：主 Cheerio 決定「派給誰、怎麼做」的推論過程，只有結果會進契約，理由留在原本那次對話裡。這正是 context decay 的定義——「做了什麼」傳下去了，「為什麼」沒有。後果是：
+
+- 同一類任務下次派工時，已經被驗證行不通的做法會被重新提一次
+- 專家在執行中遇到岔路，無從知道某條路早就被排除過
+- 退回重做時，主 Cheerio 自己也想不起當初為何不選 B 方案
+
+**Tier C 黑盒專家的風險最高**：它只拿得到契約文字，拿不到任何脈絡；而 MVP 的零號專家正是 Tier C。
+
+實作上這欄可以留空陣列（多數簡單任務本來就沒有被否決的方案），只有主 Cheerio 真的在多個做法之間做過選擇時才填。成本是一個陣列欄位，但事後補要動歷史資料格式——跟決策 #16 加 `model` 欄位是同一個理由。
 
 ### `observable_tier` vs `execution_constraint` 是正交的
 

@@ -2,7 +2,7 @@
 
 > 補完決策 #14 留下的缺口：原本只寫了「完整可觀測性是自我成長的前提」，沒有寫前提成立之後迴路怎麼跑。
 >
-> 建立：2026-09-02　｜　狀態：待 Cheer 拍板三個開放點（見文末）
+> 建立：2026-09-02　｜　狀態：驗收欄位結構化已於 2026-09-02 拍板並寫入 schema；Eval 觸發頻率待 MVP 跑起來再定
 > 上游：[[wiki/concepts/continual-harness|Continual Harness]]、[[wiki/concepts/skillopt-meta-skill|SkillOpt Meta-skill]]、[[wiki/concepts/meta-harness|Meta-Harness]]
 
 ---
@@ -106,11 +106,11 @@ Cheerio 不用。因為決策 #1 就規定主 Cheerio 每個案子都要做一�
 
 其餘②③④⑤全部延後，等 MVP 六條驗收條件全過再說。
 
-## 7. 待 Cheer 拍板
+## 7. 拍板紀錄
 
-1. **`verdict` 那五個欄位現在就升成結構化欄位嗎？** 建議要——這是本文唯一影響 MVP 的改動
-2. **Eval 的觸發頻率**：每 N 案（建議 N=10）還是固定週期？MVP 期間案件量少，建議按案數
-3. **人類推翻算不算「主 Cheerio 失敗」？** 建議算，而且刻意讓這個數字難看——它是唯一誠實的品質訊號。但要留一個 `override_kind` 區分「判錯」與「我改變主意了」，否則指標會被人類改主意的次數汙染
+1. ✅ **驗收欄位結構化**（2026-09-02 Cheer 同意）——`verdict` / `verdict_reason` / `verdict_confidence` / `human_override` / `overrides_span_id` 已從 `metadata` 自由文字升成 `StateTransitionEvent` 的正式欄位；`event-stream.md` 的 `state.transition` 與 `review.result` payload 同步對齊（原 `match/reason/confidence` 欄位名廢止）
+2. ✅ **人類推翻算主 Cheerio 失敗，且刻意讓數字難看**——它是唯一誠實的品質訊號。`override_kind`（`misjudged` vs `changed_mind`）欄位已一併留下，MVP 可不填，避免驗收準確率被「人類改變主意」的次數汙染
+3. ⏳ **Eval 觸發頻率**：建議每 N 案（N=10）而非固定週期，MVP 案件量少。等 MVP 真的跑起來、看得到案件節奏再定
 
 ---
 

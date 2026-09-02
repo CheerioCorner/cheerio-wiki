@@ -2,7 +2,7 @@
 
 > 補完決策 #3 留下的缺口：Episodic / Artifact 兩層記憶原本標記「待定」，本文定案。
 >
-> 建立：2026-09-02　｜　狀態：待 Cheer 拍板兩個開放點（見文末）
+> 建立：2026-09-02　｜　狀態：`rejected_alternatives` 已於 2026-09-02 拍板並寫入 schema；`ArtifactRecord` 仍待實作時確認
 > 上游：[[wiki/discussions/mem0-vs-decision-ledger-for-w074|Mem0 vs Decision-Ledger 對 W-074 架構的適用性]]、[[wiki/concepts/coala-four-memory-types|CoALA 四種記憶類型]]、[[wiki/concepts/recall-policy-ladder|Recall Policy Ladder]]、[[wiki/concepts/context-engineering|Context Engineering]]
 
 ---
@@ -108,10 +108,10 @@ ArtifactRecord:
 
 ---
 
-## 7. 待 Cheer 拍板
+## 7. 拍板紀錄
 
-1. **`rejected_alternatives` 現在就加進 TaskContract 嗎？** 建議加——成本是一個陣列欄位，但事後補要動歷史資料格式（跟決策 #16 加 `model` 欄位的理由完全一樣）
-2. **ArtifactRecord 要獨立成第五份 schema，還是塞進 TaskContract 的 deliverables？** 建議獨立——artifact 有自己的生命週期（會被新版取代），塞進契約會讓契約變成可變物件，違反一級紀錄不可變的原則
+1. ✅ **`rejected_alternatives` 加進 TaskContract**（2026-09-02 Cheer 同意）——已寫入 `work/designs/schemas/task-contract.md`，含 `option` / `why_rejected` / `consequence?` 三個子欄位。理由：派工本身就是一次跨 harness 交接，Tier C 黑盒專家（MVP 的零號專家正是）拿不到任何脈絡，沒有這欄下次會重踩同一個坑
+2. ⏳ **ArtifactRecord 獨立成第五份 schema**——建議獨立（artifact 有自己的生命週期，會被新版取代；塞進契約會讓契約變成可變物件，違反一級紀錄不可變）。尚未動筆，等寫零號專家 wrapper 時一併落地
 
 ---
 
