@@ -16,6 +16,7 @@ updated: 2026-08-08
 - [[wiki/entities/agentskills-io-standard|agentskills.io — AI Agent Skill 開放標準]] — 一個包含**指令、腳本、資源**的可移植工作流模塊。 🛠️
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway — 企業 AI 治理層]] — 企業級 AI 閘道，在前端應用程式、AI Agents 與企業後端 IT 生態系之間搭建安全、受控且靈活的橋樑。
 - [[wiki/entities/dgx-spark|NVIDIA DGX Spark — 128GB Unified Memory 的地端 AI 工作站]] — NVIDIA 推出的平價地端 AI 工作站，128GB Unified Memory，讓地端模型從「玩具」變「可用工具」。 🛠️
+- [[wiki/entities/spark-x25-4b|Spark-X2.5-4B — 華為 Ascend 訓練的 On-Device Agentic 模型]] — 4.1B Dense 模型，Hybrid Attention 架構，原生 1M context，Agent/Code/Math benchmark 同量級領先。 🛠️
 - [[wiki/entities/llm-d|LLM-D — Kubernetes 上的 AI 推理智慧路由器]] 🛠️
 - [[wiki/entities/lsp|LSP (Language Server Protocol)]] — 微軟提出的語言伺服器協定，將程式語言語意分析從編輯器中解耦，實現 $M \times N \rightarrow M + N$ 的架構革新。 🛠️
 - [[wiki/entities/mcp-authorization|MCP Authorization — OAuth 2.1 授權框架]] — MCP 使用標準化的 OAuth 2.1 授權流程保護伺服器上的敏感資源與操作，支援一般 OAuth、Client Credentials 與企業託管授權三種模式。 🛠️
@@ -61,6 +62,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-30-enterprise-api-security|Enterprise API Security 深度研究]] — OAuth 2.0、Azure AD、API Key 管理、DLP。 🛠️
 - [[wiki/sources/2026-08-30-ai-threat-modeling|AI Threat Modeling 深度研究]] — STRIDE × AI Agent、Attack Surface 分類、威脅建模工具。 🛠️
 - [[wiki/sources/2026-08-30-skill-supply-chain-security|Skill Supply Chain Security 深度研究]] — Skill 供應鏈風險、權限控管、Sandbox 隔離、生態系安全比較。 🛠️
+- [[wiki/sources/2026-09-04-huggingface-spark-x25-4b|HuggingFace: Spark-X2.5-4B Model Card 查證]] — 從 HuggingFace API、README、config.json、GitHub repo 實際抓取的完整查證資料。 🛠️
 - [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — IBM Technology 出品，主講 Martin Keen。10 分鐘內拆解 front-end AI agent 底下的五個核心組件。 🛠️
 
 ## Others

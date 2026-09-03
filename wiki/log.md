@@ -1,4 +1,17 @@
 
+## [2026-09-04] ingest | Spark-X2.5-4B 模型查證與整理
+
+- 動作：從 HuggingFace API / README / config.json / GitHub repo 實際抓取資料，四個面向整理（硬體限制、LLM 限制、與主流差異、定位場景）
+- 來源：`raw/web/2026-09-04-huggingface-spark-x25-4b.md`
+- 建立：
+  - `wiki/sources/2026-09-04-huggingface-spark-x25-4b.md` — source note（原始查證資料彙整）
+  - `wiki/entities/spark-x25-4b.md` — entity page（架構、benchmark、硬體需求、適用場景）
+- 更新：
+  - `wiki/topics/agent-infrastructure.md` — 新增 entity + source 連結
+  - `wiki/index.md` — 新增 entity + source 連結
+- 無雙模型交叉驗證（直接研究型 ingest，非 raw intake）
+- 分類理由：Spark-X2.5-4B 是 agent-oriented on-device LLM，歸入 agent-infrastructure topic，與 Qwen 3.8 27B、DeepSeek V4 等模型 entity 同級
+
 ## [2026-09-02] ingest | Context Engineering 深度研究（22 筆來源）
 
 - 動作：深度研究 Job `rc-20260902-001` → wiki ingest（直接分析，無雙模型交叉驗證）

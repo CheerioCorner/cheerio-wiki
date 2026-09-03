@@ -214,6 +214,7 @@
 - [[wiki/entities/semantic-kernel.md|Semantic Kernel — 微軟企業級 Plugin SDK]]
 - [[wiki/entities/smolagents.md|smolagents — Hugging Face 的 Code-first Agent 框架]]
 - [[wiki/entities/skillopt.md|SkillOpt — 微軟技能優化器]]
+- [[wiki/entities/spark-x25-4b.md|Spark-X2.5-4B — 華為 Ascend 訓練的 On-Device Agentic 模型]] — 4.1B Dense 模型，Hybrid Attention，原生 1M context，Agent/Code/Math 同量級領先 🛠️
 - [[wiki/entities/story-to-handdrawn-video.md|story-to-handdrawn-video — 中文故事轉手繪動畫 Skill]]
 - [[wiki/entities/tau.md|tau — Pi 的 Python 移植版]]
 - [[wiki/entities/theo-t3gg.md|Theo (t3gg) — 程式碼重要性光譜與驗證方法論倡導者]]
@@ -375,6 +376,7 @@
 - [[wiki/sources/2026-09-01-local-llm-uhd770-research.md|Local LLM 在 Intel UHD 770 + 32GB RAM 環境下的選擇研究]]
 - [[wiki/sources/2026-09-01-local-llm-round-table-synthesis.md|圓桌會議紀要：Local LLM DevOps Skill 執行可行性]]
 - [[wiki/sources/2026-09-01-ibm-youtube-skill-best-practices-supplement-draft.md|IBM YouTube 影片 Skill 五項最佳實踐 — 補充草稿]]
+- [[wiki/sources/2026-09-04-huggingface-spark-x25-4b.md|HuggingFace: Spark-X2.5-4B Model Card 查證]] — HuggingFace API / README / config.json / GitHub repo 實際抓取 🛠️
 - [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms.md|5 Terms You Need to Know About Agentic AI — IBM Technology]]
 - [[wiki/sources/mcp-official-docs-42.md|MCP 官方文件彙整（42 篇）]]
 - [[wiki/sources/mcp-sdks-and-tooling.md|MCP SDKs & Development Tooling]]
