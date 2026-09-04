@@ -2,9 +2,9 @@
 title: "Local LLM 部署 — 從雲端到地端的基礎設施選擇"
 type: concept
 created: 2026-08-30
-updated: 2026-09-01
-sources: 3
-tags: [local-llm, open-weight-model, deployment, hardware, security]
+updated: 2026-09-04
+sources: 4
+tags: [local-llm, open-weight-model, deployment, hardware, security, temperature]
 topics: [agent-infrastructure, ai-agent]
 canonical: concepts/local-llm-deployment
 ---
@@ -71,9 +71,24 @@ canonical: concepts/local-llm-deployment
 - Aider 分數不適用於 DevOps skill 編排能力評估
 - 應採用 [[wiki/concepts/hybrid-intent-router|混合式四層架構]]（確定性路由 + LLM 輔助）
 
+## 推論參數調校：Temperature 與任務型態
+
+地端 LLM 部署時，**Temperature（溫度）**是影響輸出品質最直接的推論參數之一。不同任務型態對溫度的容忍度不同：
+
+| 任務型態 | 建議溫度 | 說明 |
+|---------|---------|------|
+| 結構化查詢 / 工具呼叫 | 0.1–0.3 | 低溫確保 token 生成穩定、Schema 遵從度高 |
+| 一般對話 | 0.7 | Hugging Face 熱門模型預設基線 |
+| 創意生成 / 發想 | 0.9–1.0 | 高溫激發多樣性，但增加不確定性 |
+
+**地端特有考量：** 小模型（7B/8B Q4_K_M）在高溫下的幻覺率顯著高於雲端超大模型，因此地端執行嚴謹任務時溫度通常需更保守（0.0–0.2）。選型時應把「模型參數量 + 量化位元 + 溫度容忍度」一起評估。
+
+> 詳見 [[wiki/concepts/llm-temperature|LLM Temperature — 推論參數調校]] 與 [[wiki/sources/2026-09-04-llm-temperature-explained-kodekloud|KodeKloud LLM Temperature Explained]]
+
 ## 與其他概念的關係
 
 - 站在 [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference]] 之上——了解硬體限制後才能選擇部署方案
 - 為 [[wiki/concepts/agent-security-levels|Agent 安全等級]] 提供 model 端的安全基礎
 - 與 [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] 互補——前者講架構原理，本頁講實務部署選擇
 - 新增 [[wiki/concepts/hybrid-intent-router|混合式意圖路由器]]：低階硬體上的務實架構選擇
+- 新增 [[wiki/concepts/llm-temperature|LLM Temperature]]：推論參數調校維度

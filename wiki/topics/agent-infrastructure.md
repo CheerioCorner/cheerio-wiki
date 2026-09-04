@@ -38,6 +38,7 @@ updated: 2026-08-08
 - [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference — 為什麼 AI 需要 GPU 而不是 CPU]] 🛠️
 - [[wiki/concepts/local-llm-deployment|Local LLM 部署 — 從雲端到地端的基礎設施選擇]] — 將開放權重模型安裝在自有硬體上執行的基礎設施策略，涵蓋硬體選擇、量化計算、安全考量。 🛠️
 - [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture — 從 Token 到 KV Cache 的完整推理流程]] — 💡 這就是為什麼短問題回應快、長 Prompt 要等很久才蹦出第一個字——長 Prompt 的 Prefill 階段需要更多時間。 🛠️
+- [[wiki/concepts/llm-temperature|LLM Temperature — 推論參數調校]] — Temperature 是控制 LLM token 生成隨機性的推論參數，地端選型時應把「模型參數量 + 量化位元 + 溫度容忍度」一起評估。 🛠️
 - [[wiki/concepts/mcp-clients|MCP Clients — 建置與操作]] — MCP Client 是維持與 MCP Server 連線的元件，負責為 MCP Host 取得上下文。每個 Client 維持與對應 Server 的專用連線。 🛠️
 - [[wiki/concepts/mcp-protocol-versioning|MCP Protocol Versioning — 版本控制與演進]] — MCP 使用 `YYYY-MM-DD` 格式的字串版本識別碼，表示最後一次向後不相容變更的日期，並透過功能生命週期管理 deprecation。 🛠️
 - [[wiki/concepts/mcp-servers|MCP Servers — 建置與操作]] — MCP Server 是向 MCP Client 提供上下文的程式，透過暴露 tools、resources、prompts 三種原語讓 AI 應用程式存取外部系統。 🛠️
@@ -64,6 +65,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-30-skill-supply-chain-security|Skill Supply Chain Security 深度研究]] — Skill 供應鏈風險、權限控管、Sandbox 隔離、生態系安全比較。 🛠️
 - [[wiki/sources/2026-09-04-huggingface-spark-x25-4b|HuggingFace: Spark-X2.5-4B Model Card 查證]] — 從 HuggingFace API、README、config.json、GitHub repo 實際抓取的完整查證資料。 🛠️
 - [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — IBM Technology 出品，主講 Martin Keen。10 分鐘內拆解 front-end AI agent 底下的五個核心組件。 🛠️
+- [[wiki/sources/2026-09-04-llm-temperature-explained-kodekloud|LLM Temperature Explained — KodeKloud]] — KodeKloud 白板解說影片（5:05），以 flight scanner 為例，定義 Temperature 的隨機性/創造力控制機制與任務型態對應的溫度設定。 🛠️
 
 ## Others
 

@@ -244,6 +244,19 @@
       "auto_generated": false,
       "segments": 2052,
       "created": "2026-08-30"
+    },
+    {
+      "slug": "kodkloud-llm-temperature-explained",
+      "title": "LLM Temperature Explained — KodeKloud",
+      "video_id": "IWSutLJbURU",
+      "url": "https://www.youtube.com/watch?v=IWSutLJbURU",
+      "duration": "00:05:05",
+      "segments": 23,
+      "language": "en",
+      "auto_generated": true,
+      "source_api": "youtube_transcript_api",
+      "created": "2026-09-07",
+      "raw_path": "raw/youtube/kodkloud-llm-temperature-explained.md"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

@@ -1,6 +1,6 @@
 # Wiki Index
 
-> 自動全量重建，last rebuilt: 2026-09-02 (UTC+8)
+> 自動全量重建，last rebuilt: 2026-09-04 (UTC+8)
 
 ## Topics
 
@@ -87,15 +87,16 @@
 - [[wiki/concepts/gpu-architecture-for-ai-inference.md|GPU Architecture for AI Inference — 為什麼 AI 需要 GPU 而不是 CPU]] — GPU Architecture for AI Inference
 - [[wiki/concepts/harness.md|Harness — LLM 的驅動層]]
 - [[wiki/concepts/html-slide-deck-workflow.md|HTML Slide Deck 製作工作流]]
+- [[wiki/concepts/hybrid-intent-router.md|混合式意圖路由器 — 確定性邏輯 + LLM 輔助的四層架構]]
 - [[wiki/concepts/knowledge-garden-skill-architecture.md|知識花園 Skill 架構]]
 - [[wiki/concepts/knowledge-management.md|Knowledge Management]]
 - [[wiki/concepts/knowledge-system-architecture.md|知識系統架構]]
-- [[wiki/concepts/local-llm-deployment.md|Local LLM 部署 — 從雲端到地端的基礎設施選擇]]
-- [[wiki/concepts/hybrid-intent-router.md|混合式意圖路由器 — 確定性邏輯 + LLM 輔助的四層架構]]
 - [[wiki/concepts/late-conversion.md|Late Conversion(最晚轉換)]]
 - [[wiki/concepts/legacy-code-modernization.md|Legacy Code Modernization with AI — 用 AI 現代化遺留系統的方法論]]
 - [[wiki/concepts/lint-ruleset.md|Lint 規則集]]
+- [[wiki/concepts/local-llm-deployment.md|Local LLM 部署 — 從雲端到地端的基礎設施選擇]]
 - [[wiki/concepts/llm-serving-architecture.md|LLM Serving Architecture — 從 Token 到 KV Cache 的完整推理流程]] — LLM Serving Architecture
+- [[wiki/concepts/llm-temperature.md|LLM Temperature — 推論參數調校]]
 - [[wiki/concepts/loop-vs-graph-engineering.md|Loop vs Graph Engineering — AI Agent 兩種核心工作流模式]]
 - [[wiki/concepts/mcp-agent-skills-integration.md|MCP + Agent Skills 整合]]
 - [[wiki/concepts/mcp-client-types.md|MCP Client Types — 類型與連線模式]]
@@ -158,7 +159,7 @@
 - [[wiki/entities/google-labs-code-stitch-skills.md|google-labs-code/stitch-skills — Stitch UI MCP Skill Library]]
 - [[wiki/entities/graphify.md|Graphify — 開源代碼知識圖譜工具]]
 - [[wiki/entities/gsap.md|gsap-skills — GSAP 官方 AI 技能包]]
-- [[wiki/entities/guizang-ppt-skill.md|guizang-ppt-skill — AI Agent HTML PPT 技能]]
+- [[wiki/entities/guizang-ppt-skill.md|guizang-ppt-skill — 歸藏 HTML PPT 技能]]
 - [[wiki/entities/herdr.md|herdr — Coding Agent 的 Terminal Runtime]]
 - [[wiki/entities/multi-agent-orchestration-patterns.md|Multi-Agent Orchestration 設計模式]]
 - [[wiki/entities/opentelemetry.md|OpenTelemetry — 分散式系統觀測性標準]]
@@ -166,7 +167,7 @@
 - [[wiki/entities/ai-threat-modeling.md|AI System Threat Modeling — AI 系統威脅建模]]
 - [[wiki/entities/hermes-agent.md|hermes-agent — 開源 AI Agent 框架]]
 - [[wiki/entities/mastra.md|Mastra — TypeScript 全包式 Agent 框架與觀察式記憶]]
-- [[wiki/entities/huashu-design.md|huashu-design — HTML 原生設計技能]]
+- [[wiki/entities/huashu-design.md|huashu-design — 花叔 HTML 原生設計技能]]
 - [[wiki/entities/hyperframes.md|hyperframes — HTML 轉影片的 Agent 工具]]
 - [[wiki/entities/james-martin.md|James Martin]]
 - [[wiki/entities/knowledge-garden-to-raw.md|knowledge-garden-to-raw — Notion → Raw 抓取 Skill]]
@@ -378,6 +379,7 @@
 - [[wiki/sources/2026-09-01-ibm-youtube-skill-best-practices-supplement-draft.md|IBM YouTube 影片 Skill 五項最佳實踐 — 補充草稿]]
 - [[wiki/sources/2026-09-04-huggingface-spark-x25-4b.md|HuggingFace: Spark-X2.5-4B Model Card 查證]] — HuggingFace API / README / config.json / GitHub repo 實際抓取 🛠️
 - [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms.md|5 Terms You Need to Know About Agentic AI — IBM Technology]]
+- [[wiki/sources/2026-09-04-llm-temperature-explained-kodekloud.md|LLM Temperature Explained — KodeKloud (YouTube)]] — KodeKloud 白板解說影片，以 flight scanner 為例，定義 Temperature 的隨機性/創造力控制機制。 🛠️
 - [[wiki/sources/mcp-official-docs-42.md|MCP 官方文件彙整（42 篇）]]
 - [[wiki/sources/mcp-sdks-and-tooling.md|MCP SDKs & Development Tooling]]
 
@@ -413,5 +415,3 @@
 - [[wiki/visualizations/README.md|README]]
 - [[wiki/visualizations/harness-seed-map.md|Harness 視覺地圖 — 種子內部結構]] — 🗺️ Harness 視覺地圖
 - [[wiki/visualizations/obsidian-seed-map.md|Obsidian 視覺地圖 — 功能與延伸應用]] — 🗺️ Obsidian 視覺地圖 — 功能與延伸應用
-
----

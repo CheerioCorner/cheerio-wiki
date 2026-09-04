@@ -1,3 +1,19 @@
+## [2026-09-04] ingest | LLM Temperature Explained — KodeKloud (YouTube)
+
+- 動作：YouTube ingest — 從 KodeKloud 白板解說影片（5:05）抓取英文字幕（auto-generated），分段合併為 23 段，輸出 raw transcript 後交給 wiki-ingest 處理
+- 來源：（video_id: IWSutLJbURU）
+- 雙模型交叉驗證：Claude + Gemini 各自提案，核心判斷一致（新建 1 concept + 1 source，更新 3 個既有頁面），無需 Round 2
+- 建立：
+  -  — source note（陳述級溯源，inline [MM:SS] 標註，含應用脈絡段落）
+  -  — concept page（Temperature 定義、數值區間階梯、地端選型考量、Agent 多階工作流調參、常見反模式）
+- 更新：
+  -  — 新增「推論參數調校：Temperature 與任務型態」章節（sources +1，updated）
+  -  — 新增「參數級分流：Temperature 與意圖的搭配」章節（sources +1，updated）
+  -  — 新增「動態參數覆寫」章節（sources +1，updated）
+  -  — 新增 concept + source 導航連結
+  -  — 全量重建
+- 連結關係：source note → concept page → local-llm-deployment / hybrid-intent-router / llm-serving-architecture（雙向 wikilink）
+
 
 ## [2026-09-04] ingest | Spark-X2.5-4B 模型查證與整理
 

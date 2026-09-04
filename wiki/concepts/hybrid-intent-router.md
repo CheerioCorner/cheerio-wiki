@@ -2,9 +2,9 @@
 title: "混合式意圖路由器 — 確定性邏輯 + LLM 輔助的四層架構"
 type: concept
 created: 2026-09-01
-updated: 2026-09-01
-sources: 3
-tags: [hybrid-architecture, intent-router, llm, deterministic, devops]
+updated: 2026-09-04
+sources: 4
+tags: [hybrid-architecture, intent-router, llm, deterministic, devops, temperature]
 topics: [agent-infrastructure, ai-agent]
 canonical: concepts/hybrid-intent-router
 ---
@@ -85,11 +85,25 @@ canonical: concepts/hybrid-intent-router
 - 變更操作強制 dry-run → 人類確認 → 執行 → 讀回驗證
 - 全程記入 audit log
 
+## 參數級分流：Temperature 與意圖的搭配
+
+意圖路由器除了分流模型本體（大小模型分流）外，也可依意圖性質自動附加對應的 Temperature 參數配置：
+
+| 意圖類型 | 溫度設定 | 說明 |
+|---------|---------|------|
+| 確定性查詢（如航班檢索） | T=0.1–0.3 | 低溫確保精確回應，避免「繞經雪梨」式的發散 |
+| 工具呼叫 / Schema 呼叫 | T=0.0–0.2 | 最低溫確保 JSON Schema 遵從度 |
+| 一般對話 | T=0.7 | 平衡基線 |
+| 創意生成（如圖像提示詞） | T=0.9–1.0 | 高溫激發多樣性 |
+
+> 這在地端 LLM 部署尤其重要——小模型在高溫下幻覺率更高，路由層的參數注入能有效抑制。詳見 [[wiki/concepts/llm-temperature|LLM Temperature]] 與 [[wiki/sources/2026-09-04-llm-temperature-explained-kodekloud|KodeKloud 來源]]。
+
 ## 與其他概念的關係
 
 - 站在 [[wiki/concepts/local-llm-deployment|Local LLM 部署]] 之上——了解硬體限制後選擇模型
 - 為 [[wiki/concepts/agent-security-levels|Agent 安全等級]] 提供架構層面的實現
 - 與 [[wiki/concepts/copilot-agent-loop|Copilot Agent Loop]] 互補——Copilot 是 UI 層，本架構是後端邏輯層
+- 新增 [[wiki/concepts/llm-temperature|LLM Temperature]]：參數級分流的具體實作
 
 ## 來源
 

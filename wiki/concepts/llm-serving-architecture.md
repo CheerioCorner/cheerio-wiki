@@ -2,9 +2,9 @@
 title: "LLM Serving Architecture — 從 Token 到 KV Cache 的完整推理流程"
 type: concept
 created: 2026-08-21
-updated: 2026-08-21
-sources: 1
-tags: [llm, inference, kv-cache, prefix-caching, batching, tokens]
+updated: 2026-09-04
+sources: 2
+tags: [llm, inference, kv-cache, prefix-caching, batching, tokens, sampling-parameters]
 topics: [backend-systems, agent-infrastructure]
 ---
 
@@ -52,13 +52,26 @@ Prefill 完成後，計算結果存入 GPU 記憶體的 KV Cache `[25:53]`。後
 
 **瓶頸是記憶體：** 每個用戶需要自己的 KV Cache，模型權重已佔據大部分 VRAM `[29:43]`。Cache 佔滿就滿了，新用戶要排隊 `[30:21]`。這就是 ChatGPT 顯示 "at capacity" 的原因。
 
+## 動態參數覆寫：Temperature 與 Sampling Parameters
+
+推論引擎（如 vLLM、Ollama）應將 Temperature、Top-P 等採樣參數暴露為可動態設定的參數，供上層 Agent/Router 依任務即時注入最佳值，而非採用全域固定靜態值。
+
+實務場景：
+- **工具呼叫階段**：Router 傳入 T=0.0–0.2，確保 Schema 遵從
+- **內容生成階段**：Router 動態切換為 T=0.7–1.0，允許創造力
+- **地端小模型**：更需要低溫保護，避免量化誤差在高溫下放大為幻覺
+
+> 詳見 [[wiki/concepts/llm-temperature|LLM Temperature — 推論參數調校]]
+
 ## Agent 設計啟示
 
 理解 Prefill/Decode 兩階段後，設計 AI Agent 時應思考：
 - **如何給 AI 資訊**：Prompt 長度直接影響 TTFT，精簡輸入可加速首回應
 - **哪些資訊該給 AI**：不是所有上下文都值得放入 Prompt，要權衡 Token 成本與回答品質
 - **KV Cache 的利用**：系統提示可以被快取重用，設計好 System Prompt 能節省成本
+- **動態參數注入**：採樣參數（Temperature、Top-P）應由上層路由動態設定，而非全域固定
 
 ## 來源
 
 - [[wiki/sources/2026-08-21-understanding-ai-infrastructure-gpus-vllm-kubernetes|Understanding AI Infrastructure: GPUs, vLLM, and Kubernetes]]
+- [[wiki/sources/2026-09-04-llm-temperature-explained-kodekloud|KodeKloud LLM Temperature Explained]]
