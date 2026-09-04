@@ -257,6 +257,19 @@
       "source_api": "youtube_transcript_api",
       "created": "2026-09-07",
       "raw_path": "raw/youtube/kodkloud-llm-temperature-explained.md"
+    },
+    {
+      "slug": "kodekloud-ai-agent-memory-context-window",
+      "title": "AI Agent Memory: Why Context Window Expansion Is Not Enough",
+      "video_id": "0P-ACuHyu-0",
+      "url": "https://www.youtube.com/watch?v=0P-ACuHyu-0",
+      "duration": "00:04:56",
+      "segments": 16,
+      "language": "en",
+      "auto_generated": true,
+      "source_api": "youtube_transcript_api",
+      "created": "2026-09-04",
+      "raw_path": "raw/youtube/2026-09-04-kodekloud-ai-agent-memory-context-window.md"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {

@@ -1,3 +1,17 @@
+## [2026-09-04] ingest | AI Agent Memory: Why Context Window Expansion Is Not Enough — KodeKloud (YouTube)
+
+- 動作：YouTube ingest — 從 KodeKloud 入門講解影片（4:56）抓取英文字幕（auto-generated），分段合併為 16 段，輸出 raw transcript 後交給 wiki-ingest 處理
+- 來源：（video_id: 0P-ACuHyu-0）
+- 雙模型交叉驗證：Claude + Gemini 各自提案，關鍵欄位完全一致（新建 1 source，更新 1 concept），Round 1 通過
+- 建立：
+  - `wiki/sources/2026-09-04-kodekloud-ai-agent-memory-context-window.md` — source note（陳述級溯源，inline [MM:SS] 標註，含「三種早期權宜之計」與既有知識關係分析）
+- 更新：
+  - `wiki/concepts/ai-agent-memory-systems.md` — 新增「記憶系統出現前的三種權宜之計」章節（RAG/Summary/Profile 各自失效模式，sources +1，updated）
+  - `wiki/topics/agent-memory-context.md` — Sources 列表新增 KodeKloud 來源筆記導航連結
+  - `wiki/index.md` — 全量重建（85 concepts, 93 entities, 150 sources）
+- 連結關係：source note → ai-agent-memory-systems / context-engineering / recall-policy-ladder / context-rot / coala-four-memory-types（雙向 wikilink）
+- 關聯性結論：本片為入門教學（KodeKloud 5 分鐘量級），核心論點（context≠memory、RAM/disk 類比、write+use 迴圈、記住經驗）全部可在既有 wiki 找到對應或更深入版本。唯一增量價值是「三種早期權宜之計（RAG/Summary/Profile）及其各自失效模式」——既有頁面講了記憶系統本身的設計，但沒有交代「沒有專用記憶系統之前大家怎麼將就」這段動機脈絡。不推翻任何既有結論。
+
 ## [2026-09-04] ingest | LLM Temperature Explained — KodeKloud (YouTube)
 
 - 動作：YouTube ingest — 從 KodeKloud 白板解說影片（5:05）抓取英文字幕（auto-generated），分段合併為 23 段，輸出 raw transcript 後交給 wiki-ingest 處理

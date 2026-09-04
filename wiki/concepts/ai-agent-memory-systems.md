@@ -2,8 +2,8 @@
 title: "AI Agent Memory Systems — 記憶架構設計的三支柱與五種存儲方式"
 type: concept
 created: 2026-08-17
-updated: 2026-08-17
-sources: 1
+updated: 2026-09-04
+sources: 2
 tags: [memory-system, rag, vector-store, graph-rag]
 topics: [agent-memory-context, knowledge-mgmt]
 canonical: concepts/ai-agent-memory-systems
@@ -18,6 +18,18 @@ canonical: concepts/ai-agent-memory-systems
 ## 為什麼需要記憶？
 
 任何 LLM 呼叫都不會長期攜帶記憶權重。ChatGPT 和 Claude Code 之所以能記住對話，是因為它們在底層構建了記憶系統。記憶是 AI agent harness 最有價值的資產。
+
+## 記憶系統出現前的三種權宜之計（2026-09-04 新增）
+
+在 agent 有專用記憶系統之前，業界主要用三種方式繞過 context window 的限制 `≈[02:00]`（來源：[[wiki/sources/2026-09-04-kodekloud-ai-agent-memory-context-window|KodeKloud 影片]]）：
+
+| 方式 | 作用 | 失效模式 |
+|------|------|----------|
+| **RAG** | 檢索相關 chunks，不用把整個文件塞進 prompt `≈[02:00]` | 可能檢索到錯誤資訊；設定門檻比看起來高——需要 chunk、embed、index、正確排序 `≈[02:33]` |
+| **Summaries** | 壓縮長對話，保留重點 `≈[02:00]` | 有損——依賴 LLM 判斷哪些細節值得保留；一旦摘要丟掉某個後來重要的細節，agent 無法恢復 `≈[02:53]` |
+| **Profiles** | 儲存使用者事實（偏好、寫作風格、進行中的專案）`≈[02:00]` | 容易過時且自相矛盾——使用者行為會變，上個月是真的東西今天可能不是 `≈[02:53]` |
+
+這三種方式的共同弱點：**記憶不只是存更多 token，更深層的問題是記憶管理** `≈[03:25]`。即使 context window 擴大，也無法完全解決問題——這就是為什麼需要專門的記憶系統層 `≈[03:25]`。
 
 ## 三支柱分析框架
 
@@ -144,3 +156,4 @@ w_memory = 1 / (1 + 0.001 × (n_linked - 1)²)
 - [[wiki/entities/hermes-agent|hermes-agent]] — 同類 local-first agent
 - [[wiki/sources/2026-08-17-ai-agent-memory-systems-5-ways|來源筆記 — 5 種記憶架構]]
 - [[wiki/sources/2026-08-20-memory-harnesses-long-running-research-agents|來源筆記 — Memory Harnesses]]
+- [[wiki/sources/2026-09-04-kodekloud-ai-agent-memory-context-window|來源筆記 — KodeKloud AI Agent Memory]]

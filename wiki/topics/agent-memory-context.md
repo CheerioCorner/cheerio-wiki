@@ -3,7 +3,7 @@ type: topic
 title: Agent Memory & Context
 topic: agent-memory-context
 created: 2026-08-23
-updated: 2026-09-02
+updated: 2026-09-04
 ---
 
 # Agent Memory Context
@@ -37,6 +37,7 @@ updated: 2026-09-02
 - [[wiki/sources/2026-08-22-mem0-deep-research-comparison|Mem0 深度研究——比較、限制、Decision-Ledger 適用性、授權定價]] — 來自已查證版 Gemini 深度研究報告，涵蓋四個角度：跟其他記憶系統比較、生產環境限制、decision-ledger 適用性、授權定價。原始 Gemini 輸出經 Claude WebFetch 逐一查證後修正，**只有本檔案的內容可進 wiki**。
 - [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems|AI Agent Memory Systems — 5 種記憶架構設計方式（Sean's AI Stories）]] — Sean Chen（Sean's AI Stories 頻道）講解 AI agent 記憶系統的分析框架，涵蓋三支柱、五種存儲方式、四種檢索策略、六種維護機制，並實測比較 SQLite、mem0、LangMem、Zep 與無記憶控制組。 🛠️
 - [[wiki/sources/2026-08-25-four-types-memory-ai-agent|The Four Types of Memory Every AI Agent Needs]] — 來源：[YouTube](https://www.youtube.com/watch?v=BacJ6sEhqMo) | Duration: 10:41 | Language: en
+- [[wiki/sources/2026-09-04-kodekloud-ai-agent-memory-context-window|AI Agent Memory: Why Context Window Expansion Is Not Enough（KodeKloud）]] — KodeKloud 入門講解：context vs memory 差異、三種早期權宜之計（RAG/Summary/Profile）的失效模式、記憶 write+use 迴圈。補充「記憶系統出現前的動機脈絡」。
 
 ## Others
 
