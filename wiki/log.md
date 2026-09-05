@@ -1,3 +1,13 @@
+## [2026-09-05] fix | 修復 index.md 全量重建造成的 378 個連結損壞
+
+- **問題**：commit `d970294` 的 index.md 全量重建產生了三種格式損壞——① 路徑分隔符從 `/` 變成 `\`（Obsidian wikilink 不接受反斜線）② 收尾 `]]` 少一個變成 `]` ③ 部分行尾多出一個 `]`。損壞 378 個連結，只剩 24 個正常
+- **偵測方式**：Claude 在 ingest 後複查 diff 時比對前後版本的連結數（HEAD~1: 381 forward / 0 backslash → HEAD: 24 forward / 378 backslash）
+- **範圍**：只有 `wiki/index.md` 受影響，其他頁面正常
+- **修法**：不逐行修（損壞模式不一致，385 行中僅 206 行有多餘 `]`，風險高），改用確定性做法——還原到損壞前版本（`git checkout 982b557 -- wiki/index.md`），再手動補上本次 4 個新頁面
+- **驗證**：修復後 `git diff 982b557 -- wiki/index.md` 僅 5 行新增、1 行刪除（4 個新條目 + last rebuilt 日期），連結數 381 → 385，反斜線連結 0
+- **⚠️ 根因未修**：產生 index.md 的流程仍會重現此問題，下次全量重建前需先確認。建議 ingest 後固定檢查 `grep -c '\[\[wiki/[a-z]*[\]' wiki/index.md` 應為 0
+- 完成時間：2026-09-05 23:05 (CST)
+
 ## [2026-09-05] fix | 補建 llama-cpp entity + 修復 4 斷鏈（commit d970294 遺漏）
 
 - 動作：補完上次 ingest 遺漏的 entity 頁面建立，修復 4 個斷掉的 wikilink
