@@ -2,8 +2,8 @@
 title: "Harness — LLM 的驅動層"
 type: concept
 created: 2026-08-14
-updated: 2026-08-14
-sources: 1
+updated: 2026-09-05
+sources: 3
 tags: [harness, agent, agentic-loop, tool-calling, context-management, orchestration]
 topics: [agent-architecture, meta-systems]
 canonical: concepts/harness
@@ -106,6 +106,23 @@ notion: "https://app.notion.com/p/Harness-LLM-3bc5979e3a8c81f98e54eea5a2deeeea"
 - OpenAI Codex CLI 的完整沙箱機制細節（README 資訊有限，需要測試實證）
 - GitHub Copilot Memory 的實際學習範圍與限制（Public Preview，文件較少）
 - 各家 context window 的實際壓縮策略（Claude Code 有 Compaction，其他家文件不明確）
+
+---
+
+## 與 Model Runtime 的邊界
+
+Harness 是「驅動 LLM 做實事的外殼」，但它**不是模型伺服器本身**。兩者有明確的職責切分：
+
+| 面向 | Harness | Model Runtime |
+|------|---------|---------------|
+| **代表實作** | Claude Code、Pi、Copilot | llama-server、vLLM、Ollama |
+| **職責** | Agentic loop、工具調度、權限、context | 模型載入、推論執行、KV cache 管理 |
+| **生命週期** | 綁定 session / 專案 | 可跨 session 常駐（singleton）|
+| **通訊方式** | HTTP API / subprocess | GPU / VRAM 直接操作 |
+
+**關鍵原則**：Harness 不應綁定或打包 GGUF 權重檔，模型生命週期交由獨立的 Runtime 服務管理，Harness 僅透過標準 API 介面溝通。Runtime 應以 singleton + reference counting + health check 方式管理，生命週期綁在 harness process 而不是單次 invoke。
+
+> 詳見 [[wiki/discussions/local-model-runtime-in-w074-architecture|Local Model Runtime 在 W-074/W-080 中的定位]] 與 [[wiki/entities/llama-cpp|llama.cpp]]
 
 ---
 

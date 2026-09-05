@@ -20,12 +20,17 @@ updated: 2026-08-23
 ## Sources
 
 - [[wiki/sources/2026-08-30-local-llm-agent-harness-dgx-spark|從模型部署到 Agent Harness：Qwen 3.8 27B 與 DGX Spark 實機示範]] — 胡嘉璽（Josh）完整示範地端模型 + 開源 harness 的實機操作，涵蓋 Agent = Model + Harness、開源追上閉源、MoE vs Dense、量化、Inference Engine 比較、安全等級 L1-L7、Pi Agent 模組化設計。 🛠️
+- [[wiki/sources/2026-09-05-llamacpp-deployment-cuda-verification|llama.cpp 部署深度研究與 CUDA build 實測]] — RTX 3050 4GB 上的 llama.cpp 實測，涵蓋 Gemini 筆記查證、CUDA build 換裝、router mode、進程生命週期、W-074/W-080 架構影響。 🛠️
 - [[wiki/sources/2026-08-22-alejandro-ao-mem0-long-term-memory|AI Agent 長期記憶架構 — 以 Mem0 為例（Alejandro AO）]] — Alejandro AO 深入解析 Mem0 的長期記憶架構，涵蓋 entity memory 概念、entity boost 公式、retrieval pipeline 組裝、開源 embedding 模型推薦，以及 coreference resolution 實作。 🛠️
 - [[wiki/sources/2026-08-22-sean-ai-stories-ai-agent-memory-systems|AI Agent Memory Systems — 5 種記憶架構設計方式（Sean's AI Stories）]] — Sean Chen（Sean's AI Stories 頻道）講解 AI agent 記憶系統的分析框架，涵蓋三支柱、五種存儲方式、四種檢索策略、六種維護機制，並實測比較 SQLite、mem0、LangMem、Zep 與無記憶控制組。 🛠️
 
 ## Others
 
 - [[wiki/visualizations/harness-seed-map|Harness 視覺地圖 — 種子內部結構]] — 展示 Harness 種子內部的概念結構：核心定義、內部職責、三層分類與具體實例。 🛠️
+
+## Discussions
+
+- [[wiki/discussions/local-model-runtime-in-w074-architecture|Local Model Runtime 在 W-074 與 W-080 架構中的定位]] — llama-server 定位為 model runtime 而非 expert；不進 MVP 但留縫。 🛠️
 
 ## 相關 Topics
 

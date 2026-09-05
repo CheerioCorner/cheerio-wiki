@@ -13,7 +13,8 @@ updated: 2026-08-08
 ## Entities
 
 - [[wiki/entities/a2a-protocol|A2A（Agent2Agent Protocol）]] — Agent 間通訊的開放協定，讓不同 agent 能互相發現、溝通與協作。
-- [[wiki/entities/agentskills-io-standard|agentskills.io — AI Agent Skill 開放標準]] — 一個包含**指令、腳本、資源**的可移植工作流模塊。 🛠️
+- [[wiki/entities/agentskills-io-standard|agentskills.io — AI Agent Skill 開放標準]] — 一個包含**指令、腳本、資源**的可移植工作流模塊。
+- [[wiki/entities/asus-vivobook-k6502zc|ASUS Vivobook K6502ZC — CUDA 測試工作站]] — RTX 3050 4GB Laptop GPU，CUDA build 實測硬體基礎。 🛠️ 🛠️
 - [[wiki/entities/axway-amplify-ai-gateway|Axway Amplify AI Gateway — 企業 AI 治理層]] — 企業級 AI 閘道，在前端應用程式、AI Agents 與企業後端 IT 生態系之間搭建安全、受控且靈活的橋樑。
 - [[wiki/entities/dgx-spark|NVIDIA DGX Spark — 128GB Unified Memory 的地端 AI 工作站]] — NVIDIA 推出的平價地端 AI 工作站，128GB Unified Memory，讓地端模型從「玩具」變「可用工具」。 🛠️
 - [[wiki/entities/spark-x25-4b|Spark-X2.5-4B — 華為 Ascend 訓練的 On-Device Agentic 模型]] — 4.1B Dense 模型，Hybrid Attention 架構，原生 1M context，Agent/Code/Math benchmark 同量級領先。 🛠️
@@ -66,9 +67,14 @@ updated: 2026-08-08
 - [[wiki/sources/2026-09-04-huggingface-spark-x25-4b|HuggingFace: Spark-X2.5-4B Model Card 查證]] — 從 HuggingFace API、README、config.json、GitHub repo 實際抓取的完整查證資料。 🛠️
 - [[wiki/sources/2026-09-04-ibm-agentic-ai-five-terms|5 Terms You Need to Know About Agentic AI — IBM Technology]] — IBM Technology 出品，主講 Martin Keen。10 分鐘內拆解 front-end AI agent 底下的五個核心組件。 🛠️
 - [[wiki/sources/2026-09-04-llm-temperature-explained-kodekloud|LLM Temperature Explained — KodeKloud]] — KodeKloud 白板解說影片（5:05），以 flight scanner 為例，定義 Temperature 的隨機性/創造力控制機制與任務型態對應的溫度設定。 🛠️
+- [[wiki/sources/2026-09-05-llamacpp-deployment-cuda-verification|llama.cpp 部署深度研究與 CUDA build 實測]] — RTX 3050 4GB 上的 llama.cpp 實測：Gemini 筆記查證、CUDA build 換裝、router mode、進程生命週期、W-074/W-080 架構影響。 🛠️
 
 ## Others
 
 - [[wiki/discussions/npu-role-in-ai-infrastructure|NPU 在 AI 基礎設施架構中的角色]] — 影片中並沒有提到 NPU。那 NPU 在整個 AI 基礎設施架構中扮演什麼角色？它是什麼樣的運作，跟為什麼說它更適合 AI 時代？為什麼現在除了 CPU、GPU 之外，還需要 NPU？ 🛠️
+
+## Discussions
+
+- [[wiki/discussions/local-model-runtime-in-w074-architecture|Local Model Runtime 在 W-074 與 W-080 架構中的定位]] — llama-server 定位為 model runtime 而非 expert；不進 MVP 但留縫。 🛠️
 
 ## 相關 Topics

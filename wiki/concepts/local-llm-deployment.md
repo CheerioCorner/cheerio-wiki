@@ -2,8 +2,8 @@
 title: "Local LLM 部署 — 從雲端到地端的基礎設施選擇"
 type: concept
 created: 2026-08-30
-updated: 2026-09-04
-sources: 4
+updated: 2026-09-05
+sources: 6
 tags: [local-llm, open-weight-model, deployment, hardware, security, temperature]
 topics: [agent-infrastructure, ai-agent]
 canonical: concepts/local-llm-deployment
@@ -71,6 +71,51 @@ canonical: concepts/local-llm-deployment
 - Aider 分數不適用於 DevOps skill 編排能力評估
 - 應採用 [[wiki/concepts/hybrid-intent-router|混合式四層架構]]（確定性路由 + LLM 輔助）
 
+### 最佳 Backend：Vulkan / SYCL / CPU
+- UHD 770 沒有 CUDA 支援，必須走 Vulkan、SYCL 或 CPU-only
+- 與下方案例（RTX 3050 走 CUDA）完全不同
+
+---
+
+## 低階硬體實務：ASUS Vivobook K6502ZC / RTX 3050 4GB（CUDA）
+
+> 🛠️ 詳見 [[wiki/entities/asus-vivobook-k6502zc|ASUS Vivobook K6502ZC]] 與 [[wiki/sources/2026-09-05-llamacpp-deployment-cuda-verification|CUDA build 實測]]
+> ⚠️ **本節的所有結論只適用於這台機器，不可套用到上方 Intel UHD 770 Mini PC。**
+
+### 硬體規格（✅ 實測）
+
+| 項目 | 值 |
+|------|-----|
+| 機型 | ASUS Vivobook K6502ZC |
+| CPU | Intel i7-12700H（14 核 / 20 執行緒）|
+| 獨顯 | NVIDIA RTX 3050 Laptop GPU，4096 MiB VRAM |
+| 內顯 | Intel Iris Xe |
+| RAM | 32 GB |
+| OS | Windows 11 家用版 10.0.26200 x64 |
+| 驅動 | 572.83，CUDA Version 12.8 |
+
+### 最佳 Backend：CUDA
+- 安裝 `install.ps1` 時靜默降級為 Vulkan（因為沒裝 CUDA Toolkit），是實質損失
+- 改用 release ZIP（`cuda-12.4`）即取得 CUDA 加速，**不必安裝 CUDA Toolkit**
+- CUDA 比 Vulkan 約快 36%（prefill）與 10%（generation）[🔍](https://knightli.com/en/2026/04/23/llama-cpp-gpu-benchmark-cuda-rocm-vulkan-scoreboard/)
+
+### 量化策略
+- 4 GB VRAM 扣除桌面佔用，實際可用約 3.3 GB
+- **3B–4B 級模型可全載 CUDA**（⚠️ 未實測 tok/s）[🔍](https://lmsa.app/blog/running-local-ai-on-a-4gb-vram-gpu-in-2026-the-real-world-guide-that-actually-works/)
+- **明確不要硬跑 7B**——會持續 spill 到 RAM，不堪用
+- MoE 模型可用 `-ncmoe` 把部分層留 CPU（32 GB RAM 相對充裕）
+
+### 與 Mini PC 的關鍵差異
+
+| 面向 | Intel UHD 770 Mini PC | RTX 3050 Vivobook |
+|------|----------------------|-------------------|
+| GPU 類型 | 內顯（共享 16 GB） | 獨顯（專用 4 GB） |
+| 最佳 Backend | Vulkan / SYCL / CPU | CUDA |
+| 模型甜蜜點 | 7B Q4_K_M（全載） | 3B–4B Q4_K_M（全載） |
+| CPU 優勢 | AVX2，可跑 CPU-only | 14 核 H 系列，多核強 |
+
+> **同一個 7B 模型在兩台機器上的正確跑法不一樣**：Mini PC 可以全載進共享記憶體，這台要嘛降到 3B–4B 全載 CUDA，要嘛用 `-ngl` 部分 offload + 32 GB RAM 承接，要嘛用 `-ncmoe` 跑 MoE。
+
 ## 推論參數調校：Temperature 與任務型態
 
 地端 LLM 部署時，**Temperature（溫度）**是影響輸出品質最直接的推論參數之一。不同任務型態對溫度的容忍度不同：
@@ -92,3 +137,6 @@ canonical: concepts/local-llm-deployment
 - 與 [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] 互補——前者講架構原理，本頁講實務部署選擇
 - 新增 [[wiki/concepts/hybrid-intent-router|混合式意圖路由器]]：低階硬體上的務實架構選擇
 - 新增 [[wiki/concepts/llm-temperature|LLM Temperature]]：推論參數調校維度
+- 新增 [[wiki/entities/asus-vivobook-k6502zc|ASUS Vivobook K6502ZC]]：CUDA 測試工作站實例
+- 新增 [[wiki/sources/2026-09-05-llamacpp-deployment-cuda-verification|CUDA build 實測]]：第二台機器的完整實測記錄
+- 新增 [[wiki/discussions/local-model-runtime-in-w074-architecture|Local Model Runtime 在 W-074/W-080 中的定位]]：runtime vs expert 的架構決策

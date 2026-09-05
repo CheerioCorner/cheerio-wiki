@@ -1,3 +1,29 @@
+## [2026-09-05] ingest | llama.cpp 部署深度研究與 CUDA build 實測
+
+- 動作：wiki-ingest — 從 raw conversation ingest llama.cpp 部署研究與本機 CUDA 實測記錄
+- 來源：raw/conversations/2026-09-05-llamacpp-deployment-research-and-cuda-verification.md
+- 關聯想法：raw/conversations/2026-08-30-local-llm-thoughts.md
+- 雙模型交叉驗證：Claude + Gemini 各自提案，Round 1 比對關鍵欄位：
+  - ✅ 一致：source note（type=source）、W-074/W-080 discussion page、local-llm-deployment 更新方向、三層 truth tier 保留、不推翻既有結論
+  - ⚠️ 分歧（已裁決）：
+    1. llama.cpp 頁面結構：Claude 用 1 entity 整合，Gemini 拆 2 concept → **採用 Claude**（單一 entity 更便於跨專案引用）
+    2. Vivobook 硬體頁：Claude 沒有，Gemini 建議建 → **採用 Gemini**（實測硬體有追蹤價值）
+    3. topics 分類：Gemini 建議用不存在的 topics → **採用既有 topics**（agent-infrastructure, ai-agent）
+    4. harness.md 更新：Gemini 建議加 runtime vs harness 邊界 → **採用**
+  - 無需 Round 2
+- 建立：
+  - `wiki/sources/2026-09-05-llamacpp-deployment-cuda-verification.md` — source note（provenance_raw 指向 raw，三層 truth tier 保留，Cheer 想法小節）
+  - `wiki/entities/asus-vivobook-k6502zc.md` — entity page（RTX 3050 4GB 測試工作站，與 UHD 770 明確隔離）
+  - `wiki/discussions/local-model-runtime-in-w074-architecture.md` — discussion page（llama-server 定位為 runtime，不進 MVP 但留縫）
+- 更新：
+  - `wiki/concepts/local-llm-deployment.md` — 新增「低階硬體實務：ASUS Vivobook RTX 3050 4GB（CUDA）」子章節，與既有 Intel UHD 770 並列但嚴格分開；新增跨機器對比表；sources +2 → 6
+  - `wiki/concepts/harness.md` — 新增「與 Model Runtime 的邊界」章節，釐清 harness vs runtime 職責切分；sources +2 → 3
+  - `wiki/topics/agent-infrastructure.md` — Entities 新增 asus-vivobook-k6502zc，Sources 新增 source note，Discussions 新增 local-model-runtime-in-w074-architecture
+  - `wiki/topics/ai-agent.md` — Sources 新增 source note，Discussions 新增 discussion page
+  - `wiki/index.md` — 全量重建（85 concepts, 94 entities, 151 sources, 6 decisions, 8 discussions, 32 topics）
+- 連結關係：source note → local-llm-deployment / harness / agent-security-levels / asus-vivobook-k6502zc / local-model-runtime-in-w074-architecture（雙向 wikilink）
+- 關鍵注意：兩台機器（Intel UHD 770 Mini PC vs RTX 3050 Vivobook）的結論嚴格隔離，不可互相套用
+
 ## [2026-09-04] ingest | AI Agent Memory: Why Context Window Expansion Is Not Enough — KodeKloud (YouTube)
 
 - 動作：YouTube ingest — 從 KodeKloud 入門講解影片（4:56）抓取英文字幕（auto-generated），分段合併為 16 段，輸出 raw transcript 後交給 wiki-ingest 處理
