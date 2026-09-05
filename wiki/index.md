@@ -1,6 +1,6 @@
 # Wiki Index
 
-> 自動全量重建，last rebuilt: 2026-09-05 (UTC+8)
+> 自動全量重建，last rebuilt: 2026-09-05 (UTC+8) — 補建 llama-cpp entity + 修復 4 斷鏈
 
 ## Topics
 
@@ -169,6 +169,7 @@
 - [[wiki/entities\james-martin.md|James Martin] — 資訊科技領域作家與先驅，1982 年出版《Application Development Without Programmers》，1991 年形式化提出 RAD（Rapid Application Development）方法論。]
 - [[wiki/entities\knowledge-garden-to-raw.md|knowledge-garden-to-raw — Notion → Raw 抓取 Skill] — 從 Notion 知識花園抓取頁面內容，建立 raw 來源檔案，準備進行 wiki ingest。]
 - [[wiki/entities\knowledge-garden.md|knowledge-garden — Cheerio 知識花園 Manifest] — **Notion 知識花園**的架構藍圖與離線快取。]
+- [[wiki/entities\llama-cpp.md|llama.cpp — 本地 LLM 推理引擎] — C/C++ 推理引擎，CUDA/Vulkan/SYCL/ROCm/CPU 多 backend，Router mode 多模型，`--fit` 記憶體自動配適。]
 - [[wiki/entities\langchain-openwiki.md|OpenWiki（LangChain）— Agent 專用 Repo Wiki CLI] — LangChain 團隊開發的開源 CLI 工具，自動產生和維護 repo wiki，專為 AI agent 消費設計，採用 Google OKF v0.2 格式。] 🛠️
 - [[wiki/entities\langgraph.md|LangGraph — Graph-based Agent Runtime with Durability] — LangGraph 是 LangChain 團隊開發的低階 agent orchestration 框架，核心價值在 durability（checkpointing / human-in-the-loop / time travel），而]
 - [[wiki/entities\learning-loop.md|learning-loop] — 自動學習優化系統，建立完整的學習迴圈：做 → 記 → 學 → 優化 → 做。] 🛠️

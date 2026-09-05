@@ -3,7 +3,7 @@ title: "ASUS Vivobook K6502ZC — CUDA 測試工作站"
 type: entity
 created: 2026-09-05
 updated: 2026-09-05
-sources: 1
+sources: 2
 tags: [hardware, testbed, rtx-3050, cuda, laptop, local-llm]
 topics: [agent-infrastructure, ai-agent]
 canonical: entities/asus-vivobook-k6502zc
@@ -62,7 +62,7 @@ canonical: entities/asus-vivobook-k6502zc
 
 ## 與其他頁面的關係
 
-- **同層級對比**：[[wiki/entities/intel-uhd770-mini-pc|Intel UHD 770 Mini PC]]（不同機器，不同 backend）
+- **同層級對比**：[[wiki/concepts/local-llm-deployment#低階硬體實務：Intel UHD 770 + 32GB RAM|Intel UHD 770 Mini PC]]（不同機器，不同 backend）
 - **部署框架**：[[wiki/concepts/local-llm-deployment|Local LLM 部署]]
 - **安全等級**：[[wiki/concepts/agent-security-levels|Agent 安全等級]] L5/L6 實例
 - **工具知識**：[[wiki/entities/llama-cpp|llama.cpp]]
@@ -70,3 +70,4 @@ canonical: entities/asus-vivobook-k6502zc
 ## 來源
 
 - [[wiki/sources/2026-09-05-llamacpp-deployment-cuda-verification|llama.cpp 部署深度研究與 CUDA build 實測]]
+- [[wiki/entities/llama-cpp|llama.cpp]]

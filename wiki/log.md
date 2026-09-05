@@ -1,3 +1,23 @@
+## [2026-09-05] fix | 補建 llama-cpp entity + 修復 4 斷鏈（commit d970294 遺漏）
+
+- 動作：補完上次 ingest 遺漏的 entity 頁面建立，修復 4 個斷掉的 wikilink
+- 問題：雙模型交叉驗證決議「採 Claude 提案（單一 entity 整合）」但實際未建立 entity 頁面，導致 4 個斷鏈
+- 建立：
+  - `wiki/entities/llama-cpp.md` — llama.cpp 本身的可重用知識頁（非實測流水帳），涵蓋：定位比較（vs Ollama/vLLM）、取得方式（安裝腳本 vs release ZIP，backend 是 build 不是參數）、backend 選擇、Router mode、併發與 context（`-c` 是總 KV 預算）、記憶體自動配適（`--fit`）、進程生命週期（`taskkill /T /F`）。資料來源標註 ✅ 實測 / 🔍 外部來源 / ⚠️ 未驗證
+- 修復斷鏈：
+  - `wiki/concepts/harness.md` → `[[wiki/entities/llama-cpp]]`：頁面已有該連結，✅ 無需修改
+  - `wiki/discussions/local-model-runtime-in-w074-architecture.md` → `[[wiki/entities/llama-cpp]]`：頁面已有該連結，✅ 無需修改
+  - `wiki/entities/asus-vivobook-k6502zc.md` → `[[wiki/entities/llama-cpp]]`：✅ 新增連結
+  - `wiki/entities/asus-vivobook-k6502zc.md` → `[[wiki/entities/intel-uhd770-mini-pc]]`：**改為指向** `[[wiki/concepts/local-llm-deployment#低階硬體實務：Intel UHD 770 + 32GB RAM|Intel UHD 770 Mini PC]]`
+- intel-uhd770 斷鏈處理理由：不建立獨立 entity 頁面，因為 Intel UHD 770 Mini PC 不是一台可追蹤的實體機器（沒有 source note、沒有實測數據），所有相關資訊已經在 `local-llm-deployment` 概念頁的對應章節完整記載。建 entity 會造成與概念頁的內容重複，且該 entity 無法獨立存在（沒有自己的 provenance）。
+- 更新：
+  - `wiki/entities/asus-vivobook-k6502zc.md` — sources 1→2，新增 llama-cpp 連結，修復 intel-uhd770 斷鏈
+  - `wiki/topics/agent-infrastructure.md` — Entities 新增 llama-cpp
+  - `wiki/index.md` — Entities 新增 llama-cpp 條目
+- refs: [[wiki/entities/llama-cpp]]、[[wiki/sources/2026-09-05-llamacpp-deployment-cuda-verification]]
+
+---
+
 ## [2026-09-05] ingest | llama.cpp 部署深度研究與 CUDA build 實測
 
 - 動作：wiki-ingest — 從 raw conversation ingest llama.cpp 部署研究與本機 CUDA 實測記錄
