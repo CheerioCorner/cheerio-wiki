@@ -1,3 +1,18 @@
+## [2026-09-06] ingest | .NET Aspire 企業級平台深度研究
+
+- **來源**：`raw/deep-research/rc-20260906-001/research-report.md`（90 筆來源，NotebookLM deep research）
+- **研究主題**：.NET Aspire 作為企業級 Distributed Application Platform 的技術深度研究——核心能力、Container Runtime 整合邊界、部署路徑、多語言支援、Aspire 9 新功能、DevOps 整合、企業導入實務
+- **建立頁面**：
+  - `wiki/sources/2026-09-06-dotnet-aspire-deep-research.md`（source note，7 大子問題摘要）
+  - `wiki/entities/dotnet-aspire.md`（entity，核心定位 + 架構分層 + 三種部署路徑）
+  - `wiki/concepts/developer-control-plane-dcp.md`（concept，DCP 運作機制 + 與 Docker Compose 差異）
+  - `wiki/topics/dotnet-aspire.md`（topic 導航頁）
+- **更新頁面**：`wiki/index.md`（新增 .NET Aspire topic）
+- **關鍵發現**：Aspire 不取代 Container Runtime；DCP 是本地微型 K8s API；AppHost 專案在生產環境不運行；三種部署路徑（Docker Compose / Podman / Kubernetes）；Python Telemetry 有 gRPC ALPN 限制
+- 完成時間：2026-09-06 17:40 (CST)
+
+---
+
 ## [2026-09-05] fix | 修復 index.md 全量重建造成的 378 個連結損壞
 
 - **問題**：commit `d970294` 的 index.md 全量重建產生了三種格式損壞——① 路徑分隔符從 `/` 變成 `\`（Obsidian wikilink 不接受反斜線）② 收尾 `]]` 少一個變成 `]` ③ 部分行尾多出一個 `]`。損壞 378 個連結，只剩 24 個正常

@@ -12,6 +12,7 @@
 - [[wiki/topics/agent-research.md|Agent Research]]
 - [[wiki/topics/agent-runtime-implementations.md|Agent Runtime Implementations]]
 - [[wiki/topics/ai-agent.md|AI Agent]]
+- [[wiki/topics/dotnet-aspire.md|.NET Aspire]]
 - [[wiki/topics/ai-development-tools.md|AI Development Tools]]
 - [[wiki/topics/backend-systems.md|Backend Systems]]
 - [[wiki/topics/claude-code.md|Claude Code]]
