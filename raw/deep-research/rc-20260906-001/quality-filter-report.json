@@ -1,0 +1,30 @@
+{
+  "job_id": "rc-20260906-001",
+  "notebook_id": "e256d9e3-e60f-42d3-ae17-da872507403e",
+  "before_count": 97,
+  "after_count": 93,
+  "removed": [
+    {
+      "id": "4f449e5d-8057-4b98-927f-8549615a57bd",
+      "title": "Aspire - Awesome Software Architecture",
+      "reason": "屬於缺乏實質技術深度的目錄頁。該來源僅是 GitHub Awesome-list 的 Markdown 連結彙整，整篇只列出外部文章、影片、工具和範例專案的標題與連結，並無任何具體的技術實作細節、架構分析或技術深度內容。"
+    },
+    {
+      "id": "9f6769c0-ccd3-4f7e-a5b5-59b8760919b0",
+      "title": "Deploy .NET Aspire Apps to Azure in Minutes | Simple Deployment Tutorial - YouTube",
+      "reason": "屬於缺乏實質技術深度的頁面。該來源在匯入時因爬蟲解析問題，並未擷取到影片的實際語音逐字稿或實質技術內容，整篇內容充斥著 YouTube 介面文字、播放控制選項以及無關的推薦影片清單（例如 Gamers Nexus 影片等），對技術研究毫無實質貢獻。"
+    },
+    {
+      "id": "ada5a6e4-579c-4938-be5b-a97c66672c51",
+      "title": "Podman for .NET Developers: A Beginner-Friendly Docker Alternative - YouTube",
+      "reason": "屬於缺乏實質技術深度的頁面。同為 YouTube 頁面爬取失敗的案例，其內容僅包含 YouTube 系統錯誤提示、分享控制資訊及其他不相關的推薦影片標題（例如 Dolly Parton 的趣味鏡頭），缺乏任何針對 Podman 或 .NET 容器化整合的具體實作或語音逐字稿細節。"
+    },
+    {
+      "id": "92282239-e8ac-4787-af32-669408afafdd",
+      "title": "Developer Control Pane - Source/License Clarification · microsoft aspire · Discussion #1913",
+      "reason": "屬於過期資訊。此討論串主要針對 2023 年 .NET Aspire 早期預覽版時，微軟 Developer Control Plane (DCP) 仍為閉源/專有授權且合約禁止反組譯的爭議進行討論與抱怨。然而，微軟已於 2026 年 1 月將 DCP 專案正式以 MIT 授權開源，使此篇關於授權爭議與合約限制的質疑討論徹底過時，已被後續更新的開源現況所取代。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-09-06T08:53:36.991Z"
+}

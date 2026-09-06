@@ -1,0 +1,146 @@
+✓ Created new notebook: .NET Aspire 作為企業級 Distributed Application Platform 
+的技術深度研究：核心能力（Application Mode...
+✓ Research started
+  Query: .NET Aspire 作為企業級 Distributed Application Platform 
+的技術深度研究：核心能力（Application Model、Local Orchestration、Service 
+Discovery、Observability）、Container Runtime 整合邊界（Docker Engine / Podman /
+containerd）、部署路徑技術細節（aspire publish → Docker Compose / Helm 
+Chart）、多語言支援成熟度（C# / TypeScript / Python / Java / Go）、Aspire 9 
+新功能與 API 變化、與既有 DevOps 工具鏈整合（Azure DevOps Pipeline / GitHub 
+Actions），以及企業導入實務考量（授權、安全、觀測、CI/CD），用於支撐「企業能否降
+低 Docker Desktop 依賴」的架構決策提案
+  Source: web
+  Mode: deep
+  Notebook ID: e256d9e3-e60f-42d3-ae17-da872507403e
+  Task ID: ChBhZDlkNzZkODMzNmI2ODRlEAgaBGFmNWYqA3Vzdw
+
+Waiting for research to complete...
+⠼ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 08e03811-360b-411c-9cea-0873c1179d09
+  Sources found: 92
+
+Run 'nlm research import e256d9e3-e60f-42d3-ae17-da872507403e <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 90 sources.
+  • .NET Aspire 9.4 Released with CLI GA, Interactive Dashboards, and Advanced 
+Deployment Features - InfoQ
+  • Simplifying Microservice Development with .NET Aspire, Dapr and Podman
+  • Deploy to Docker Compose - Aspire
+  • Exploring the Microsoft Developer Control Plane at the heart of the new .NET
+Aspire
+  • 13.3 Change log · microsoft/aspire Wiki - GitHub
+  • What is the AppHost? | Aspire
+  • Building custom deployment pipelines | Aspire
+  • Kubernetes integration | Aspire
+  • .NET Aspire and WSL Docker - DEV Community
+  • .NET Aspire 9.2 Released with Expanded Deployment Options and Dashboard 
+Improvements - InfoQ
+  • Python integration | Aspire
+  • Get started with the Go integration | Aspire
+  • Add Java hosting integration · Issue #17993 · microsoft/aspire - GitHub
+  • C# Service Defaults - Aspire
+  • Will .Net Aspire last? : r/dotnet - Reddit
+  • Podman-hosted containers may not be able to reach Aspire services #4136 - 
+GitHub
+  • Containerize .NET 10 Apps Without a Dockerfile - dotnet publish Containers
+  • Run the Aspire dashboard standalone
+  • Aspire 9.1 Potential Regression with self-installed WSL2 docker engine (not 
+Docker Desktop) on Windows · Issue #8692 - GitHub
+  • Developer Control Pane - Source/License Clarification · microsoft aspire · 
+Discussion #1913
+  • .NET Aspire Tutorial: Next.js & Docker Guide - NashTech Blog
+  • Docker Compose vs .Net Aspire : r/dotnet - Reddit
+  • Why does Aspire not run my projects in a container locally? : r/dotnet - 
+Reddit
+  • GitHub - prom3theu5/aspirational-manifests: Handle deployments of .NET 
+Aspire AppHost Projects
+  • Building RAG with .NET Aspire and Python - nikiforovall.blog
+  • Custom HTTP commands | Aspire
+  • JetBrains Rider and the .NET Aspire Plugin
+  • Aspire.Hosting.Kubernetes
+  • Publish SQL Database Projects as Container Images with MSBuild.Sdk.SqlProj
+  • EF Core Migrations in Aspire - The New Way with AddEFMigrations | Dan Does 
+Code
+  • Referencing external Docker containers in .NET Aspire using the new custom 
+resources API
+  • OpenTelemetry - Microsoft Learn
+  • aspire/src/Aspire.Dashboard/README.md at main · microsoft/aspire · GitHub
+  • Add Aspire to an existing app
+  • .NET Aspire Tutorial - Build Cloud-Ready Apps with .NET 10 and… - 
+codewithmukesh
+  • Application Insights OpenTelemetry observability overview - Azure Monitor | 
+Microsoft Learn
+  • Quickstart - .NET Aspire
+  • .NET Aspire Tutorial: Build Production-Ready Apps From Day 1
+  • Podman for .NET Developers: A Beginner-Friendly Docker Alternative - YouTube
+  • GitHub Actions CI/CD Pipeline for Deploying .NET Web API to Amazon ECS
+  • Aspire - Polyglot Distributed-App Orchestration - Get Claude Skills
+  • What is Aspire? | Aspire
+  • Host external executables in Aspire
+  • Is the core of Aspire not open source? : r/dotnet - Reddit
+  • Aspire Developer Control Plane : r/dotnet - Reddit
+  • Aspire is amazing! How to go from dev containers to prod managed services? 
+Any real use case out there? - Reddit
+  • .NET Aspire OpenTelemetry Instrumentation - Multi-Service Tracing | base14 
+Scout
+  • .NET Aspire 3: Service Defaults - Dave Brock
+  • NetAspire.Example/NetAspire.Example.ServiceDefaults/Extensions.cs at master 
+· gncyyldz/NetAspire.Example · GitHub
+  • Containerize an app with dotnet publish - .NET - Microsoft Learn
+  • Custom Docker Host does not work · Issue #1650 · microsoft/aspire - GitHub
+  • Installation - .NET Aspire
+  • Make containers aware of custom local domains on the host machine using .NET
+Aspire
+  • Connecting to project resources from containers. · microsoft aspire · 
+Discussion #1808 - GitHub
+  • Containerize Your .NET Applications Without a Dockerfile
+  • How Aspire deployment works
+  • Aspire CLI Part 2 - Deployment and Pipelines · CodeBytes - Chris Ayers
+  • Deploy to Kubernetes - Aspire
+  • Aspire 9.2 is Now Available with New Ways to Deploy - .NET Blog
+  • Aspire.Hosting.Docker 13.5.3 - NuGet
+  • NET Aspire 9.3 is here and enhanced with GitHub Copilot! - Microsoft 
+Developer Blogs
+  • Generate Docker Compose With .NET Aspire - Milan Jovanović
+  • Announcing .NET Aspire Preview 2 - Microsoft Developer Blogs
+  • Deploying .NET Aspire projects to Kubernetes - Microsoft Learn
+  • KubernetesEnvironmentResource - Aspire
+  • Get started with Java and Aspire
+  • CommunityToolkit.Aspire.Hosting.Java 9.5.1-beta.310 - NuGet
+  • Announcing Aspire 9.5 - .NET Blog
+  • Announcing built-in container support for the .NET SDK - Microsoft Developer
+Blogs
+  • Exporting .NET Aspire Telemetry (Traces, Logs, Metrics) to CSV for Analysis 
+- Reddit
+  • Export Aspire Telemetry Data to External Tools (eg, Grafana, InfluxDB) #9861
+- GitHub
+  • Aspire - Awesome Software Architecture
+  • Aspire SDK for distributed apps
+  • azure-sql-database-container/docs/what-is-the-container.md at main - GitHub
+  • Aspire in a Sandbox - Matt Kotsenas
+  • Have dotnet web app. Develop and deploy to Azure? - Reddit
+  • OpenTelemetry in ASP .NET with Aspire - DEV Community
+  • CommunityToolkit.Aspire.Hosting.SeaweedFS 13.4.1-beta.686 on NuGet - 
+Libraries.io
+  • CommunityToolkit.Aspire.Hosting.Java 9.8.0-beta.404 - NuGet
+  • Container telemetry not shown in AppHost dashboard · Issue #4131 · 
+microsoft/aspire
+  • Container to host networking not working with podman · Issue #6846 · 
+microsoft/aspire
+  • Aspire (websites/aspire_dev) - Context7
+  • DotNetGerman Bloggers
+  • Why Everyone Will be Using .NET Aspire /w David Fowler : r/dotnet - Reddit
+  • Debugging .NET Containers with Visual Studio Code Docker Tools
+  • Discover .NET 7 SDK Containers - Support for Authentication and 
+Cross-architecture Builds
+  • asp.net core - how to store or protect app secrets in a non-azure production
+environment?
+  • Secure communication between integrations - Aspire
+  • Agents/samples/dotnet/otel/README.md at main · microsoft/Agents - GitHub
+  • Define custom resource URLs - Aspire
+

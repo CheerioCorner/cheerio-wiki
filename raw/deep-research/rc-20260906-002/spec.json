@@ -1,0 +1,28 @@
+{
+  "job_id": "rc-20260906-002",
+  "query": "北海道 9 月底楓紅現況 × 五天四夜自駕行程規劃：楓紅進度、自駕路線、住宿（有溫泉）、熊害安全、租車、美食（湯咖哩）",
+  "sub_questions": [
+    "北海道 9 月底紅葉的大概進度，哪些景點已經紅了、哪些還沒（重點：旭川、大雪山周邊）",
+    "自駕路線規劃（新千歲機場出發，多條方案比較）",
+    "住宿推薦（有溫泉、品質好，Dormy Inn / Super Hotel 等級，不需要頻繁換宿）",
+    "熊害安全資訊（近期北海道熊害狀況、如何避開危險區域）",
+    "租車方案（新千歲機場租車方案比較）",
+    "美食推薦（湯咖哩、特色美食、餐廳營業時間與預約方式、友善外國人的店）",
+    "餐廳注意事項（北海道餐廳普遍早關、需要預約的店家）"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "any",
+    "preferred_language": "ja",
+    "citation_required": true,
+    "source_bias": "mixed",
+    "output_format": "full"
+  }
+}

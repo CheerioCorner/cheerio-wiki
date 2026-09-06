@@ -1,0 +1,27 @@
+{
+  "job_id": "rc-20260906-003",
+  "query": "北海道五天四夜自駕行程規劃：40歲駕駛載兩位75歲長輩，楓紅景點（層雲峽・十勝岳・旭岳）、無障礙溫泉旅館、飲食調整、2026年9月底最新楓紅預報",
+  "sub_questions": [
+    "75歲以上長輩在北海道自駕旅行的注意事項（體力安排、紧急醫療資源、休息頻率）",
+    "長輩友善的溫泉旅館推薦（有電梯、無障礙設施、餐食可調整、Dormy Inn/Super Hotel等級）",
+    "長輩飲食限制與餐廳選擇（低鹽、軟質食物、可調整餐食的店家，包含湯咖哩的辣度調整建議）",
+    "2026年9月底北海道最新楓紅預報（Weathernews/tenki.jp最新更新）",
+    "層雲峽・十勝岳・旭岳三個景點的長輩友善度比較與具體建議（含步行距離、纜車資訊）",
+    "自駕行程中長輩的休息站與廁所資訊（北海道道之驛、高速公路SA/PA）"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 30,
+    "max_duration_seconds": 600,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "standard",
+    "timeframe": "any",
+    "preferred_language": "ja",
+    "citation_required": true,
+    "source_bias": "mixed",
+    "output_format": "full"
+  }
+}

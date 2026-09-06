@@ -1,0 +1,530 @@
+[
+  {
+    "status": "failed",
+    "id": "e06e8c9f-02bf-430f-9ea3-f7a14e281ee6",
+    "title": ".NET Aspire 3: Service Defaults - Dave Brock",
+    "error": "Command failed: nlm source rename e06e8c9f-02bf-430f-9ea3-f7a14e281ee6 \"[Dave Br"
+  },
+  {
+    "status": "failed",
+    "id": "d1b16ccc-2ea8-4a76-9fbc-b31ebb8995c2",
+    "title": ".NET Aspire 9.2 Released with Expanded Deployment Options and Dashboard Improvements - InfoQ",
+    "error": "Command failed: nlm source rename d1b16ccc-2ea8-4a76-9fbc-b31ebb8995c2 \"[InfoQ 媒"
+  },
+  {
+    "status": "failed",
+    "id": "d79d7b53-8003-46b3-b263-9cf8a63dba66",
+    "title": ".NET Aspire 9.4 Released with CLI GA, Interactive Dashboards, and Advanced Deployment Features - InfoQ",
+    "error": "Command failed: nlm source rename d79d7b53-8003-46b3-b263-9cf8a63dba66 \"[InfoQ 媒"
+  },
+  {
+    "status": "failed",
+    "id": "e05f95e2-1e0b-4440-a0df-314e2e4cf4e2",
+    "title": ".NET Aspire OpenTelemetry Instrumentation - Multi-Service Tracing | base14 Scout",
+    "error": "Command failed: nlm source rename e05f95e2-1e0b-4440-a0df-314e2e4cf4e2 \"[base14 "
+  },
+  {
+    "status": "failed",
+    "id": "d57af6aa-e0a9-46ae-9695-5b996443ca54",
+    "title": ".NET Aspire Tutorial - Build Cloud-Ready Apps with .NET 10 and… - codewithmukesh",
+    "error": "Command failed: nlm source rename d57af6aa-e0a9-46ae-9695-5b996443ca54 \"[codewit"
+  },
+  {
+    "status": "failed",
+    "id": "e828dda0-0587-4dad-a05b-4c604ebcdd1b",
+    "title": ".NET Aspire Tutorial: Build Production-Ready Apps From Day 1",
+    "error": "Command failed: nlm source rename e828dda0-0587-4dad-a05b-4c604ebcdd1b \"[Packt 部"
+  },
+  {
+    "status": "failed",
+    "id": "f2bbe545-b7c8-46e1-8d98-c38ce790c43b",
+    "title": ".NET Aspire Tutorial: Next.js & Docker Guide - NashTech Blog",
+    "error": "Command failed: nlm source rename f2bbe545-b7c8-46e1-8d98-c38ce790c43b \"[NashTec"
+  },
+  {
+    "status": "failed",
+    "id": "e3095c03-91f5-4791-99dc-d76355dda522",
+    "title": ".NET Aspire and WSL Docker - DEV Community",
+    "error": "Command failed: nlm source rename e3095c03-91f5-4791-99dc-d76355dda522 \"[DEV Com"
+  },
+  {
+    "status": "failed",
+    "id": "45143f0d-bba9-4b80-bb25-4ed3a3b34164",
+    "title": ".NET Aspire — Custom Publish & Deployment Pipelines – RaspeR87's Blog",
+    "error": "Command failed: nlm source rename 45143f0d-bba9-4b80-bb25-4ed3a3b34164 \"[RaspeR8"
+  },
+  {
+    "status": "failed",
+    "id": "b95c97b7-9b50-4fde-aeaf-14abccf1bec7",
+    "title": "13.3 Change log · microsoft/aspire Wiki - GitHub",
+    "error": "Command failed: nlm source rename b95c97b7-9b50-4fde-aeaf-14abccf1bec7 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "34220d15-eff1-403f-977a-785dc6961453",
+    "title": "Add Aspire to an existing app",
+    "error": "Command failed: nlm source rename 34220d15-eff1-403f-977a-785dc6961453 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "3f3cbfb5-133a-4078-a12d-fff2b2015a8a",
+    "title": "Add Java hosting integration · Issue #17993 · microsoft/aspire - GitHub",
+    "error": "Command failed: nlm source rename 3f3cbfb5-133a-4078-a12d-fff2b2015a8a \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "5c63742e-1b3d-41db-95e5-8f15ccb2490b",
+    "title": "Announcing Aspire 9.5 - .NET Blog",
+    "error": "Command failed: nlm source rename 5c63742e-1b3d-41db-95e5-8f15ccb2490b \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "1b69f20b-cce3-4917-b4f9-9e5732950379",
+    "title": "Application Insights OpenTelemetry observability overview - Azure Monitor | Microsoft Learn",
+    "error": "Command failed: nlm source rename 1b69f20b-cce3-4917-b4f9-9e5732950379 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "0d7c8d43-4fe2-46c1-9c19-052635aca08f",
+    "title": "Aspire (websites/aspire_dev) - Context7",
+    "error": "Command failed: nlm source rename 0d7c8d43-4fe2-46c1-9c19-052635aca08f \"[Context"
+  },
+  {
+    "status": "failed",
+    "id": "3dac0d13-7156-4092-aac9-f6482f936f1c",
+    "title": "Aspire 9.1 Potential Regression with self-installed WSL2 docker engine (not Docker Desktop) on Windows · Issue #8692 - GitHub",
+    "error": "Command failed: nlm source rename 3dac0d13-7156-4092-aac9-f6482f936f1c \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "20322d76-2644-4eae-88f7-79aee0b7f8fa",
+    "title": "Aspire 9.2 is Now Available with New Ways to Deploy - .NET Blog",
+    "error": "Command failed: nlm source rename 20322d76-2644-4eae-88f7-79aee0b7f8fa \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "1badce3f-e4d3-42c7-a81a-5e65aa92dfb6",
+    "title": "Aspire CLI Part 2 - Deployment and Pipelines · CodeBytes - Chris Ayers",
+    "error": "Command failed: nlm source rename 1badce3f-e4d3-42c7-a81a-5e65aa92dfb6 \"[Chris A"
+  },
+  {
+    "status": "failed",
+    "id": "a382602d-1e41-48ac-ad8d-db8106c69cfb",
+    "title": "Aspire Developer Control Plane : r/dotnet - Reddit",
+    "error": "Command failed: nlm source rename a382602d-1e41-48ac-ad8d-db8106c69cfb \"[Reddit "
+  },
+  {
+    "status": "failed",
+    "id": "ba9b0a53-ef5a-40e7-bc7a-73758ad38f99",
+    "title": "Aspire Integration Tests are failing ONLY when run via devops agent. #5051 - GitHub",
+    "error": "Command failed: nlm source rename ba9b0a53-ef5a-40e7-bc7a-73758ad38f99 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "028baa3e-e486-4ba9-9af8-ead201d73502",
+    "title": "Aspire SDK for distributed apps",
+    "error": "Command failed: nlm source rename 028baa3e-e486-4ba9-9af8-ead201d73502 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "176017c7-87f5-4d08-ad5f-ee1aa517dbc3",
+    "title": "Aspire in a Sandbox - Matt Kotsenas",
+    "error": "Command failed: nlm source rename 176017c7-87f5-4d08-ad5f-ee1aa517dbc3 \"[Matt Ko"
+  },
+  {
+    "status": "failed",
+    "id": "31d0ea12-a15f-4b6c-807a-2933986a5d7c",
+    "title": "Aspire is amazing! How to go from dev containers to prod managed services? Any real use case out there? - Reddit",
+    "error": "Command failed: nlm source rename 31d0ea12-a15f-4b6c-807a-2933986a5d7c \"[Reddit "
+  },
+  {
+    "status": "failed",
+    "id": "30aa6f5c-36b3-4c66-80f1-639be3393780",
+    "title": "Aspire.Hosting.Kubernetes",
+    "error": "Command failed: nlm source rename 30aa6f5c-36b3-4c66-80f1-639be3393780 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "dd5ad19b-9353-4dba-9c18-dbc352fae76a",
+    "title": "Azure Developer CLI (azd) in a real-life scenario - Azure SDK Blog",
+    "error": "Command failed: nlm source rename dd5ad19b-9353-4dba-9c18-dbc352fae76a \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "8d8ef328-4246-49d9-8397-f83ecf4423d7",
+    "title": "Build and test your own .NET Aspire component - mstack",
+    "error": "Command failed: nlm source rename 8d8ef328-4246-49d9-8397-f83ecf4423d7 \"[mstack "
+  },
+  {
+    "status": "failed",
+    "id": "020675c9-5fbd-4379-85ac-a18a867d1d4d",
+    "title": "Building RAG with .NET Aspire and Python - nikiforovall.blog",
+    "error": "Command failed: nlm source rename 020675c9-5fbd-4379-85ac-a18a867d1d4d \"[nikifor"
+  },
+  {
+    "status": "failed",
+    "id": "1570f0ee-a8b6-42c1-b93d-4ad00b136171",
+    "title": "Building custom deployment pipelines | Aspire",
+    "error": "Command failed: nlm source rename 1570f0ee-a8b6-42c1-b93d-4ad00b136171 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "49e5add8-aba8-4add-b735-545e14d75e40",
+    "title": "C# Service Defaults - Aspire",
+    "error": "Command failed: nlm source rename 49e5add8-aba8-4add-b735-545e14d75e40 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "ab6fb5ea-8d11-4789-9d8b-ea93bc1e5f21",
+    "title": "CI/CD overview | Aspire",
+    "error": "Command failed: nlm source rename ab6fb5ea-8d11-4789-9d8b-ea93bc1e5f21 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "3cb28a6f-c2dd-4060-a1ee-1781112c0794",
+    "title": "Connecting to project resources from containers. · microsoft aspire · Discussion #1808 - GitHub",
+    "error": "Command failed: nlm source rename 3cb28a6f-c2dd-4060-a1ee-1781112c0794 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "1046be0b-92bc-4641-b6c7-8763ce5e2b9a",
+    "title": "Container telemetry not shown in AppHost dashboard · Issue #4131 · microsoft/aspire",
+    "error": "Command failed: nlm source rename 1046be0b-92bc-4641-b6c7-8763ce5e2b9a \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "0845c97b-8d43-42af-8800-c2027434bc72",
+    "title": "Container to host networking not working with podman · Issue #6846 · microsoft/aspire",
+    "error": "Command failed: nlm source rename 0845c97b-8d43-42af-8800-c2027434bc72 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "33c5e737-4eae-4371-a2be-1690a794d5b8",
+    "title": "Containerize .NET 10 Apps Without a Dockerfile - dotnet publish Containers",
+    "error": "Command failed: nlm source rename 33c5e737-4eae-4371-a2be-1690a794d5b8 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "14db1aa6-5766-4d2c-b9de-28a8cbd6c3cb",
+    "title": "Containerize Your .NET Applications Without a Dockerfile",
+    "error": "Command failed: nlm source rename 14db1aa6-5766-4d2c-b9de-28a8cbd6c3cb \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "29e1864c-1615-4e4d-90eb-128a59a1cf9d",
+    "title": "Containerize an app with dotnet publish - .NET - Microsoft Learn",
+    "error": "Command failed: nlm source rename 29e1864c-1615-4e4d-90eb-128a59a1cf9d \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "9de0e5b6-98cf-4e85-b1ff-569d235b7c4d",
+    "title": "Custom Docker Host does not work · Issue #1650 · microsoft/aspire - GitHub",
+    "error": "Command failed: nlm source rename 9de0e5b6-98cf-4e85-b1ff-569d235b7c4d \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "21ea5d2e-4f89-404d-9659-2af879716ee7",
+    "title": "Custom HTTP commands | Aspire",
+    "error": "Command failed: nlm source rename 21ea5d2e-4f89-404d-9659-2af879716ee7 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "265f9ae2-0df5-4067-a444-c7ed1a7afcb6",
+    "title": "Debugging .NET Containers with Visual Studio Code Docker Tools",
+    "error": "Command failed: nlm source rename 265f9ae2-0df5-4067-a444-c7ed1a7afcb6 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "033b2b9c-03c9-4296-9019-20c2a04fec50",
+    "title": "Define custom resource URLs - Aspire",
+    "error": "Command failed: nlm source rename 033b2b9c-03c9-4296-9019-20c2a04fec50 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "42736aba-466f-4a92-96ca-d4681bf17971",
+    "title": "Deploy to Azure | Aspire",
+    "error": "Command failed: nlm source rename 42736aba-466f-4a92-96ca-d4681bf17971 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "0541fb2e-31ed-4ec2-8207-1c7da8189849",
+    "title": "Deploy to Docker Compose - Aspire",
+    "error": "Command failed: nlm source rename 0541fb2e-31ed-4ec2-8207-1c7da8189849 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "2e6fe83f-c789-4a68-9033-aae1cda3224f",
+    "title": "Deploy to Kubernetes - Aspire",
+    "error": "Command failed: nlm source rename 2e6fe83f-c789-4a68-9033-aae1cda3224f \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "604f4f7c-2f1d-45cf-9feb-6f527e87ebdf",
+    "title": "Deploying .NET Aspire projects to Kubernetes - Microsoft Learn",
+    "error": "Command failed: nlm source rename 604f4f7c-2f1d-45cf-9feb-6f527e87ebdf \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "26454f3d-6b01-4332-8428-3be2525d79d3",
+    "title": "Deployment Overview - .NET Aspire",
+    "error": "Command failed: nlm source rename 26454f3d-6b01-4332-8428-3be2525d79d3 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "fa4b9ea7-e387-4d81-9cae-980c06cbb6a7",
+    "title": "DevOps intro to deploy .NET Aspire CI/CD to Azure with GitHub Actions | Agramont.net",
+    "error": "Command failed: nlm source rename fa4b9ea7-e387-4d81-9cae-980c06cbb6a7 \"[Agramon"
+  },
+  {
+    "status": "failed",
+    "id": "812d2452-8e45-401e-b5aa-60ebb13d1780",
+    "title": "Docker Compose vs .Net Aspire : r/dotnet - Reddit",
+    "error": "Command failed: nlm source rename 812d2452-8e45-401e-b5aa-60ebb13d1780 \"[Reddit "
+  },
+  {
+    "status": "failed",
+    "id": "8d9aac6b-a510-40c3-8dc6-6ef00fd4df70",
+    "title": "EF Core Migrations in Aspire - The New Way with AddEFMigrations | Dan Does Code",
+    "error": "Command failed: nlm source rename 8d9aac6b-a510-40c3-8dc6-6ef00fd4df70 \"[Dan Doe"
+  },
+  {
+    "status": "failed",
+    "id": "9d6eab3f-f7b3-4acd-8a73-f225b54f1c6b",
+    "title": "Effortless Distributed Systems with Aspire - Particular Software",
+    "error": "Command failed: nlm source rename 9d6eab3f-f7b3-4acd-8a73-f225b54f1c6b \"[Particu"
+  },
+  {
+    "status": "failed",
+    "id": "8ad1422f-ed1a-4076-89a3-3f16c6eb8965",
+    "title": "End-to-end integration testing with .NET Aspire - C# Corner",
+    "error": "Command failed: nlm source rename 8ad1422f-ed1a-4076-89a3-3f16c6eb8965 \"[C# Corn"
+  },
+  {
+    "status": "failed",
+    "id": "08d55626-4d8d-4bbb-abda-2a251a423731",
+    "title": "Error Deploying .NET Aspire Application Using azd in Azure DevOps Pipeline - error calling securedParameter: parameter **** not found · Issue #7301 - GitHub",
+    "error": "Command failed: nlm source rename 08d55626-4d8d-4bbb-abda-2a251a423731 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "5c889a8f-b610-454c-92ef-f1d7b0e87bde",
+    "title": "Exploring the Microsoft Developer Control Plane at the heart of the new .NET Aspire",
+    "error": "Command failed: nlm source rename 5c889a8f-b610-454c-92ef-f1d7b0e87bde \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "198e4608-4329-447a-821f-489dba139f03",
+    "title": "Export Aspire Telemetry Data to External Tools (eg, Grafana, InfluxDB) #9861 - GitHub",
+    "error": "Command failed: nlm source rename 198e4608-4329-447a-821f-489dba139f03 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "08ed2252-37ef-4441-ada1-70a0d3072ec4",
+    "title": "Exporting .NET Aspire Telemetry (Traces, Logs, Metrics) to CSV for Analysis - Reddit",
+    "error": "Command failed: nlm source rename 08ed2252-37ef-4441-ada1-70a0d3072ec4 \"[Reddit "
+  },
+  {
+    "status": "failed",
+    "id": "7b8e7d13-cba4-4cbd-a6a7-0d93ff4aa049",
+    "title": "Feature: Azure DevOps CI/CD Pipeline · Issue #1148 · microsoft/aspire-samples - GitHub",
+    "error": "Command failed: nlm source rename 7b8e7d13-cba4-4cbd-a6a7-0d93ff4aa049 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "01a3a22c-e3fa-4601-9450-d0a81912e0d0",
+    "title": "Generate Docker Compose With .NET Aspire - Milan Jovanović",
+    "error": "Command failed: nlm source rename 01a3a22c-e3fa-4601-9450-d0a81912e0d0 \"[Milan J"
+  },
+  {
+    "status": "failed",
+    "id": "899a3347-9888-4793-8bea-d210cf0a61df",
+    "title": "Get started with Java and Aspire",
+    "error": "Command failed: nlm source rename 899a3347-9888-4793-8bea-d210cf0a61df \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "243579dc-6a6b-4ad3-b391-7f4aa5bbb6f1",
+    "title": "Get started with the Go integration | Aspire",
+    "error": "Command failed: nlm source rename 243579dc-6a6b-4ad3-b391-7f4aa5bbb6f1 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "6d4761c8-0ebc-42a2-b2ec-fea7b0124b33",
+    "title": "Getting started with testing and Aspire - .NET Blog - Microsoft Developer Blogs",
+    "error": "Command failed: nlm source rename 6d4761c8-0ebc-42a2-b2ec-fea7b0124b33 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "0a1ce93c-0bad-469a-85af-bca118893299",
+    "title": "GitHub - prom3theu5/aspirational-manifests: Handle deployments of .NET Aspire AppHost Projects",
+    "error": "Command failed: nlm source rename 0a1ce93c-0bad-469a-85af-bca118893299 \"[GitHub "
+  },
+  {
+    "status": "failed",
+    "id": "1d9233f8-c516-40d3-a061-97184e7ecb8d",
+    "title": "Host external executables in Aspire",
+    "error": "Command failed: nlm source rename 1d9233f8-c516-40d3-a061-97184e7ecb8d \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "62f24fa9-0449-4c64-b6bb-e8b852ef09ef",
+    "title": "How Aspire deployment works",
+    "error": "Command failed: nlm source rename 62f24fa9-0449-4c64-b6bb-e8b852ef09ef \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "5bb3eda2-ec06-4a10-a7f0-7d921961642b",
+    "title": "How has .NET Aspire influenced my preferred tech stack? - Kalle Marjokorpi",
+    "error": "Command failed: nlm source rename 5bb3eda2-ec06-4a10-a7f0-7d921961642b \"[Kalle M"
+  },
+  {
+    "status": "failed",
+    "id": "51b84faa-c286-48b0-9460-6a1b521efc4d",
+    "title": "Installation - .NET Aspire",
+    "error": "Command failed: nlm source rename 51b84faa-c286-48b0-9460-6a1b521efc4d \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "1a1dd654-cc1c-41d3-b96e-50e30b391711",
+    "title": "JetBrains Rider and the .NET Aspire Plugin",
+    "error": "Command failed: nlm source rename 1a1dd654-cc1c-41d3-b96e-50e30b391711 \"[JetBrai"
+  },
+  {
+    "status": "failed",
+    "id": "78e15ffa-e81f-4e5d-8e31-a0a456bab5c6",
+    "title": "Kubernetes integration | Aspire",
+    "error": "Command failed: nlm source rename 78e15ffa-e81f-4e5d-8e31-a0a456bab5c6 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "46719152-ae1c-41cb-b8b7-c580b995f28f",
+    "title": "KubernetesEnvironmentResource - Aspire",
+    "error": "Command failed: nlm source rename 46719152-ae1c-41cb-b8b7-c580b995f28f \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "6597fbf5-2ae3-4cd1-a19f-64c0b44e7ccd",
+    "title": "Make containers aware of custom local domains on the host machine using .NET Aspire",
+    "error": "Command failed: nlm source rename 6597fbf5-2ae3-4cd1-a19f-64c0b44e7ccd \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "03b6b523-9cb6-4c49-b72d-739de31d0df7",
+    "title": "NET Aspire 9.3 is here and enhanced with GitHub Copilot! - Microsoft Developer Blogs",
+    "error": "Command failed: nlm source rename 03b6b523-9cb6-4c49-b72d-739de31d0df7 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "78608fbe-65c6-4b63-b429-e2e1e9d791bb",
+    "title": "NetAspire.Example/NetAspire.Example.ServiceDefaults/Extensions.cs at master · gncyyldz/NetAspire.Example · GitHub",
+    "error": "Command failed: nlm source rename 78608fbe-65c6-4b63-b429-e2e1e9d791bb \"[GitHub "
+  },
+  {
+    "status": "failed",
+    "id": "2c888b97-93a0-4fd0-97bf-fab07282749c",
+    "title": "OpenTelemetry in ASP .NET with Aspire - DEV Community",
+    "error": "Command failed: nlm source rename 2c888b97-93a0-4fd0-97bf-fab07282749c \"[DEV Com"
+  },
+  {
+    "status": "failed",
+    "id": "1f43a00b-0dc3-463a-9300-4a5f2375748f",
+    "title": "Podman-hosted containers may not be able to reach Aspire services #4136 - GitHub",
+    "error": "Command failed: nlm source rename 1f43a00b-0dc3-463a-9300-4a5f2375748f \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "186f72c9-5573-42b0-b9c8-f6aee4099b5f",
+    "title": "Publish SQL Database Projects as Container Images with MSBuild.Sdk.SqlProj",
+    "error": "Command failed: nlm source rename 186f72c9-5573-42b0-b9c8-f6aee4099b5f \"[GitHub "
+  },
+  {
+    "status": "failed",
+    "id": "22542681-60ab-4f4d-bce8-4bbf7f6ecec1",
+    "title": "Python integration | Aspire",
+    "error": "Command failed: nlm source rename 22542681-60ab-4f4d-bce8-4bbf7f6ecec1 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "b66ab990-0174-43e4-949e-a4521094a727",
+    "title": "Quickstart - .NET Aspire",
+    "error": "Command failed: nlm source rename b66ab990-0174-43e4-949e-a4521094a727 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "52a0fc37-2e13-42e3-a1b6-827379918642",
+    "title": "Referencing external Docker containers in .NET Aspire using the new custom resources API",
+    "error": "Command failed: nlm source rename 52a0fc37-2e13-42e3-a1b6-827379918642 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "3a2dda16-1eca-411e-80f1-21b128008f87",
+    "title": "Run the Aspire dashboard standalone",
+    "error": "Command failed: nlm source rename 3a2dda16-1eca-411e-80f1-21b128008f87 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "0020f17d-8139-4454-925f-f6369d130817",
+    "title": "Secure communication between integrations - Aspire",
+    "error": "Command failed: nlm source rename 0020f17d-8139-4454-925f-f6369d130817 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "118041f5-1371-466b-b8ef-0daa83a892d6",
+    "title": "Simplifying Microservice Development with .NET Aspire, Dapr and Podman",
+    "error": "Command failed: nlm source rename 118041f5-1371-466b-b8ef-0daa83a892d6 \"[Red Hat"
+  },
+  {
+    "status": "failed",
+    "id": "350722b1-3c3f-4da0-81e4-acfd33c3821e",
+    "title": "Testing in CI/CD pipelines - Aspire",
+    "error": "Command failed: nlm source rename 350722b1-3c3f-4da0-81e4-acfd33c3821e \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "034f7ef4-413a-43bd-baf3-aa59715fc9d6",
+    "title": "Use existing azd workflows - Aspire",
+    "error": "Command failed: nlm source rename 034f7ef4-413a-43bd-baf3-aa59715fc9d6 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "23510093-4d6e-4d00-802c-3fdd9a58da76",
+    "title": "What is Aspire? | Aspire",
+    "error": "Command failed: nlm source rename 23510093-4d6e-4d00-802c-3fdd9a58da76 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "0f2d0073-4900-4541-927e-7c613c4d2022",
+    "title": "What is the AppHost? | Aspire",
+    "error": "Command failed: nlm source rename 0f2d0073-4900-4541-927e-7c613c4d2022 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "056fc2ae-c0a8-49bc-93ef-756db6f747f5",
+    "title": "Why does Aspire not run my projects in a container locally? : r/dotnet - Reddit",
+    "error": "Command failed: nlm source rename 056fc2ae-c0a8-49bc-93ef-756db6f747f5 \"[Reddit "
+  },
+  {
+    "status": "failed",
+    "id": "ddd2dbe7-a7b5-41e9-aaa0-858af29ffe0b",
+    "title": "[.NET] Aspire, Simplifying Local Development Environment and ...",
+    "error": "Command failed: nlm source rename ddd2dbe7-a7b5-41e9-aaa0-858af29ffe0b \"[iT 邦幫忙 "
+  },
+  {
+    "status": "failed",
+    "id": "0621e259-5b04-4c23-8bbe-8e0622a4af95",
+    "title": "asp.net core - how to store or protect app secrets in a non-azure production environment?",
+    "error": "Command failed: nlm source rename 0621e259-5b04-4c23-8bbe-8e0622a4af95 \"[Stack O"
+  },
+  {
+    "status": "failed",
+    "id": "691b4d70-3e41-4700-901e-a83093ec2917",
+    "title": "aspire/src/Aspire.Dashboard/README.md at main · microsoft/aspire · GitHub",
+    "error": "Command failed: nlm source rename 691b4d70-3e41-4700-901e-a83093ec2917 \"[Microso"
+  },
+  {
+    "status": "failed",
+    "id": "244bad4d-0360-4bb8-9737-631f166048cc",
+    "title": "azure-sql-database-container/docs/what-is-the-container.md at main - GitHub",
+    "error": "Command failed: nlm source rename 244bad4d-0360-4bb8-9737-631f166048cc \"[Microso"
+  }
+]

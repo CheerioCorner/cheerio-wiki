@@ -1,0 +1,127 @@
+✓ Created new notebook: 北海道 9 月底楓紅現況 × 
+五天四夜自駕行程規劃：楓紅進度、自駕路線、住宿（有溫泉）、熊害安全、租車、美食（
+湯咖哩）
+✓ Research started
+  Query: 北海道 9 月底楓紅現況 × 
+五天四夜自駕行程規劃：楓紅進度、自駕路線、住宿（有溫泉）、熊害安全、租車、美食（
+湯咖哩）
+  Source: web
+  Mode: deep
+  Notebook ID: a86b6cec-da43-4e83-9d43-ca7021520210
+  Task ID: ChBjZmJiZDI2NDJmYTQ2YzgwEAgaBGEyZmMqA3Vzdw
+
+Waiting for research to complete...
+⠇ Gathering sources...
+
+Research Status:
+  Status: completed
+  Task ID: 0f5935f5-d744-4a94-b90c-fea6dda2bbb9
+  Sources found: 86
+
+Run 'nlm research import a86b6cec-da43-4e83-9d43-ca7021520210 <task-id>' to 
+import sources.
+
+Importing discovered sources...
+✓ Imported 77 sources.
+  • Hokkaido Autumn Leaves 2026: When to Go, Where to Be, and What It Actually 
+Costs - Self-Guided Japan Tours
+  • Japan Autumn Foliage Forecast 2026: Week-by-Week Tracker | TimeToJapan
+  • Japan's Autumn Foliage Forecast 2026: Peak Times for Red and Yellow Leaves
+  • Hokkaido Autumn 2026: See the Earliest Fall Foliage in Japan - UME Travel
+  • 2026 Japan Autumn Foliage Guide: Area-by-Area Peak Viewing Predictions and 
+Recommended Spots
+  • 紅葉見頃予想を発表 北海道大雪山系は9月中旬、京都は11月下旬から見頃に - 
+ウェザーニュース
+  • 紅葉前線スタート! 大雪山・黒岳山頂付近のウラシマツツジが色付き始める - 
+日本気象協会
+  • 2026年の紅葉見頃時期予想【北日本編】 - ウォーカープラス
+  • 16 Best Places to See Autumn Leaves in Japan in 2026 - Tokyo Becky
+  • Photographer Recommends 7 Spectacular Views of Hokkaido in Autumn and Winter
+  • Tokachidake Onsen Yumoto Ryounkaku (Hokkaido) | Hidden Hot Springs Map - 
+秘湯マップ
+  • Schauwecker's Japan Travel Blog: Autumn Color Report: Tokachidake Onsen
+  • 北海道ヒグマ安全ガイド 2026 - クママップ
+  • 【北海道のクマ出没マップ】ヒグマ最前線 | HTBニュース
+  • Japan Expressway Pass & ETC Card Guide 2026 | WaTabi
+  • Hokkaido Expressway Pass (HEP) - NICONICO Rent A Car
+  • Rent a Car and Go! Complete Guide to a Hokkaido Road Trip with Stunning 
+Views
+  • Hokkaido Autumn Rental Car Guide: Wildlife and Evening Safety - 
+Relax-RentACar
+  • Sapporo Soup Curry: What It Is and Where to Eat It - Hokkaido Adventures
+  • Top 5 Sapporo Soup Curry Restaurants Chosen by Locals [2025 
+Edition]｜Domingo
+  • The Best Restaurants in Sapporo: Genghis Khan, Soup Curry, Crab and More - 
+The Anonymous Hungry Hippopotamus
+  • Sapporo's most popular local delicacy. Recommended 7 "Soup Curry 
+Restaurants" - MICHIKUSA Guide
+  • Hokkaido's Famous Soup Curry | Snow Explorers - SKI + SNOWBOARD + TRAVEL
+  • Soup Curry Garaku Sapporo Guide: Best Menu & Surrounding Gourmet Spots 2026
+  • [2026 Sapporo Restaurant] SOUP CURRY KING Travel Guide & Travel Experiences 
+| Updated Aug | Trip Moments
+  • ふらのや - Hokkaido, Japan Cuisine/Furano, Biei, Tomamu/Soup Curry - Online 
+Restaurant Reservation and Booking | Lavie Taste
+  • 2026紅葉スポット一覧・紅葉の名所の見頃の時期を紹介 - クラブツーリズム
+  • Hike Mt. Daisetsuzan / Asahi-dake | Access by Bus, Taxi & Ropeway | Culmina
+  • Autumn in Hokkaido | UU-Hokkaido Official Site
+  • 「Hokkaido Expressway Pass」 | English - トヨタレンタリース新札幌
+  • Expressway Passes - Japan National Tourism Organization (JNTO)
+  • Hokkaido Expressway Pass
+  • Announcing the Expressway Pass!
+  • Here's the first official 2026 forecast for autumn leaves in Japan - Time 
+Out
+  • Must-see Hokkaido driving spot: Mikuni Pass | Trip.com Kamikawa
+  • The best hotels in Sounkyo Onsen, Kamikawa, Japan
+  • 11 Best Hotels in Sounkyo, Asahikawa - Agoda.com
+  • Top 10 Sounkyo Onsen Hotels - Trip.com
+  • Hotels near Sounkyo Onsen - Klook
+  • The Best 5 Star Hotels in Sounkyo from $174 - Expedia
+  • A Must-See for Driving Enthusiasts! Introducing Scenic Driving 
+Routes｜Features - Hokkaido Love
+  • 5 Hokkaido Road Trips Through The Inspirational Scenery Of Japan's Heartland
+  • Top 10 Hokkaido Soup Curries & Local Curries You'll Want to Take Home as 
+Souvenirs!
+  • The 20 Best Soup Curry Restaurants in Sapporo-shi | AutoReserve
+  • Soup Curry, the love of my life! Soup Curry ranked! - Clockwork Dandy 
+Noodles
+  • Playground of the Gods – Daisetsuzan Part 1: Asahidake - Japan's Wonders
+  • New Chitose Airport to Asahidake Private Transfer - Daytrip
+  • Japan Travel Reports: Sounkyo Onsen to Biei - Hokkaido
+  • Heart of Hokkaido Cycling Adventure
+  • 北海道のヒグマ出没マップ2026年 - 16,532件 | クママップ
+  • 千歳市2026年度 - ひぐまっぷ
+  • ヒグマの命と人の暮らしを守る、北こぶしリゾートの「クマ活」7年目の挑戦 - 
+リジェネ旅
+  • 知床でクマ対策の観光安全DXを開始 - INCLUSIVE Holdings 
+株式会社｜インクルーシブ
+  • 
+＜市民の皆さんの対策が必要です＞知っておきたいヒグマ対策【（2026年6月6日放送）函
+館市民ニュース】 - YouTube
+  • Driving In Hokkaido During Winter - Tips From A Local
+  • Hokkaido Winter Driving Guide | Snow Tires, 4WD, Black Ice & Whether You 
+Should Drive at All - 固得租車
+  • Hokkaido Winter Driving Tips - Peak Niseko Car Rental
+  • Japan Autumn Leaves 2026 Forecast Dates - TRIFARGO
+  • Hokkaido Fall Foliage 2026: Best Time, Forecast & Travel Itinerary - Japan 
+Highlights
+  • 紅葉情報【2026】今見頃がわかる - ウェザーニュース
+  • Japan Fall Foliage 2026 Forecast: 25 Destinations and Tips - MATCHA
+  • ヒグマ警報及び注意報等について - 環境生活部自然環境局 - 北海道庁
+  • Recommended hotels in Sounkyo Onsen | Rakuten Travel
+  • Top 5 Autumn color spots in Hokkaido – Matthew Baxter - Japan Travel Guides
+  • My 2026 Food Recommendations and Report! : r/JapanTravelTips - Reddit
+  • Sapporo soup curry recs? : r/Hokkaido - Reddit
+  • Curry/Omcurry一覧｜Dining & Shopping一覧｜Furano Tourism Association 
+Official Website Furano index
+  • 14 Of The Best Restaurants In Furano To Eat Your Way Around In 2026
+  • 札幌市のヒグマ出没マップ2026年 - 1,813件 | クママップ
+  • 札幌市ヒグマ出没情報
+  • How to Get from New Chitose Airport Station to Asahikawa Station - Trip.com
+  • How to get there | Daisetsuzan | National Parks of Japan
+  • Hokkaido Itinerary: 5 Days in Daisetsuzan National Park - Two Scots Abroad
+  • Scenic routes｜Travel themes｜HOKKAIDO LOVE! -Hokkaido Official Tourism Site
+  • Hokkaido Jozankei Hot Spring Day Trip Package with Bus Ticket - Klook
+  • Jozankei Onsen - GaijinPot Travel
+  • How to Get to Jozankei Onsen from Sapporo, and New Chitose Airport 
+(Transportation Guide)
+

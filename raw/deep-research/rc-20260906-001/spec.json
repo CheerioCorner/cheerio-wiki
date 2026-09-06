@@ -1,0 +1,28 @@
+{
+  "job_id": "rc-20260906-001",
+  "query": ".NET Aspire 作為企業級 Distributed Application Platform 的技術深度研究：核心能力（Application Model、Local Orchestration、Service Discovery、Observability）、Container Runtime 整合邊界（Docker Engine / Podman / containerd）、部署路徑技術細節（aspire publish → Docker Compose / Helm Chart）、多語言支援成熟度（C# / TypeScript / Python / Java / Go）、Aspire 9 新功能與 API 變化、與既有 DevOps 工具鏈整合（Azure DevOps Pipeline / GitHub Actions），以及企業導入實務考量（授權、安全、觀測、CI/CD），用於支撐「企業能否降低 Docker Desktop 依賴」的架構決策提案",
+  "sub_questions": [
+    "Aspire 核心四大能力（Application Model / Local Orchestration / Service Discovery / Observability）各自的機制、API 與限制",
+    "Aspire 與 Container Runtime 的責任邊界：它做什麼、不做什麼、跟 Docker Engine / Podman / containerd 的確切分工",
+    "aspire publish 與 aspire deploy 的部署產物：Docker Compose YAML / Helm Chart / Kubernetes Resource 映射的具體細節與已知限制",
+    "Aspire 9 的新功能與 API 變化（相比 Aspire 8），以及對企業採用的影響",
+    "多語言支援現況：C#、TypeScript、Python、Java、Go 各語言在 Aspire AppHost 中的整合成熟度與已知限制",
+    "Aspire 與 Azure DevOps Pipeline / GitHub Actions 的整合方式：CI/CD 流程中 Aspire 扮演的角色",
+    "企業導入實務：授權模式、安全考量、觀測整合、與既有 Docker/Podman 環境的共存策略"
+  ],
+  "profile": "personal",
+  "notebook_id": null,
+  "budget": {
+    "max_sources": 50,
+    "max_duration_seconds": 900,
+    "max_retries": 3
+  },
+  "research_profile": {
+    "depth": "deep",
+    "timeframe": "any",
+    "preferred_language": "en",
+    "citation_required": true,
+    "source_bias": "mixed",
+    "output_format": "full"
+  }
+}

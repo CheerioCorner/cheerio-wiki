@@ -37,6 +37,8 @@
 - [[wiki/topics/skill.md|Skill]]
 - [[wiki/topics/software-quality.md|Software Quality]]
 - [[wiki/topics/topics.md|Topics]]
+- [[wiki/topics/travel.md|Travel]] 🛠️
+- [[wiki/topics/japan.md|Japan]] 🛠️
 
 ---
 
@@ -235,6 +237,7 @@
 ## Sources (全量列表)
 
 - [[wiki/sources/README.md|README]]
+- [[wiki/sources/2026-09-06-hokkaido-trip-planning.md|北海道五天四夜自駕行程規劃 — 楓紅＋長輩友善]] — > 整合 Deep Research、Weathernews 官方楓紅預報、以及 Gemini 討論的北海道自駕行程規劃，專門針對40歲駕駛載兩位75歲長輩的情境設計。
 - [[wiki/sources/2026-02-10-pi-agent-core-design.md|下一代Agent架构——Pi Agent Core 设计逻辑深度解析]] — 一篇知乎文章,對 `badlogic/pi-mono/packages/agent`(又稱 **Pi Agent Core**)做程式碼級解剖。發布於 2026-02-10,作者署為「王鹏LLM」,286 人贊同。
 - [[wiki/sources/2026-05-02-pi-mono-framework-tw.md|別再被複雜框架綁架:pi-mono 回歸直覺的 TypeScript AI Agent 開發框架]] — 一篇 ai-chain.tw 的繁體中文長文,從**整個 monorepo**與**代理人生態**角度切入,評析 `badlogic/pi-mono`。發布於 2026-05-02,作者署為「AI-Chain」團隊。
 - [[wiki/sources/2026-07-11-mattpocock-skills.md|mattpocock/skills — 工程實踐 Skills 集合]] — > 視覺化：[[wiki/visualizations/mattpocock-skills.canvas|mattpocock/skills Canvas]]

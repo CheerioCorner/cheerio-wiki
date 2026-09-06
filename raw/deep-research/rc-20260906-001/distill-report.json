@@ -1,0 +1,26 @@
+{
+  "job_id": "rc-20260906-001",
+  "notebook_id": "e256d9e3-e60f-42d3-ae17-da872507403e",
+  "status": "applied",
+  "before_count": 93,
+  "after_count": 90,
+  "removed": [
+    {
+      "id": "1d08e4bb-cdbc-4aca-b5ed-134b3978cf98",
+      "title": "GitHub Actions CI/CD Pipeline for Deploying .NET Web API to Amazon ECS",
+      "reason": "該來源詳細介紹如何將傳統的 .NET Web API 專案部署至 AWS ECS 平台，其容器建置、ECR 推送以及 ECS Task Definition 部署完全採用常規的 GitHub Actions 與 Dockerfile 流程。文中並無提及或採用任何與 .NET Aspire 相關的應用程式模型（AppHost）、編排、本機發布指令（aspire publish/deploy）或與既有 DevOps 的整合，對回答 .NET Aspire 的 7 個核心問題毫無技術貢獻。"
+    },
+    {
+      "id": "abf4c400-a15b-4012-9caa-1e4553ebdf19",
+      "title": "Agents/samples/dotnet/otel/README.md at main · microsoft/Agents - GitHub",
+      "reason": "此來源為 Microsoft 365 Agents SDK 的範例說明檔，重點在於展示 Teams Agent 的訊息發送、JWT Token 驗證與 OpenTelemetry 基礎設定。雖然文檔提到可以在 Docker 中執行 standalone .NET Aspire Dashboard 容器來視覺化其觀測數據，但專案本身並未使用 .NET Aspire AppHost 進行分散式系統編排、服務發現或容器運行整合，亦不涉及 Aspire 9 或多語言整合邊界等核心議題，屬於離題範例。"
+    },
+    {
+      "id": "9ae1c420-37ec-452b-be07-42acc61482e7",
+      "title": "OpenTelemetry - Microsoft Learn",
+      "reason": "此來源為 Microsoft Teams SDK 的 OTel 整合開發文檔（來源自 teams-ai-library GitHub），詳細說明 Bot / Agent 的 Tracer 與 Meter 儀器化程式碼實作。文中僅提及將 standalone Aspire Dashboard 視為本地端 OTLP 的多個收集器選項之一，完全偏離 .NET Aspire 作為 Distributed Application Platform 的架構、機制、多語言整合及 CI/CD 部署路徑研究，屬於無關的 SDK 操作說明。"
+    }
+  ],
+  "unmatched_flags": [],
+  "checked_at": "2026-09-06T08:54:24.967Z"
+}

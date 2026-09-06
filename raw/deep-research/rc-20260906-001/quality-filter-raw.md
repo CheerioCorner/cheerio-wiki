@@ -1,0 +1,8 @@
+{
+  "answer": "{\n  \"remove\": [\n    {\n      \"title\": \"Aspire - Awesome Software Architecture\",\n      \"reason\": \"屬於缺乏實質技術深度的目錄頁。該來源僅是 GitHub Awesome-list 的 Markdown 連結彙整，整篇只列出外部文章、影片、工具和範例專案的標題與連結，並無任何具體的技術實作細節、架構分析或技術深度內容。\"\n    },\n    {\n      \"title\": \"Deploy .NET Aspire Apps to Azure in Minutes | Simple Deployment Tutorial - YouTube\",\n      \"reason\": \"屬於缺乏實質技術深度的頁面。該來源在匯入時因爬蟲解析問題，並未擷取到影片的實際語音逐字稿或實質技術內容，整篇內容充斥著 YouTube 介面文字、播放控制選項以及無關的推薦影片清單（例如 Gamers Nexus 影片等），對技術研究毫無實質貢獻。\"\n    },\n    {\n      \"title\": \"Podman for .NET Developers: A Beginner-Friendly Docker Alternative - YouTube\",\n      \"reason\": \"屬於缺乏實質技術深度的頁面。同為 YouTube 頁面爬取失敗的案例，其內容僅包含 YouTube 系統錯誤提示、分享控制資訊及其他不相關的推薦影片標題（例如 Dolly Parton 的趣味鏡頭），缺乏任何針對 Podman 或 .NET 容器化整合的具體實作或語音逐字稿細節。\"\n    },\n    {\n      \"title\": \"Developer Control Pane - Source/License Clarification · microsoft aspire · Discussion #1913\",\n      \"reason\": \"屬於過期資訊。此討論串主要針對 2023 年 .NET Aspire 早期預覽版時，微軟 Developer Control Plane (DCP) 仍為閉源/專有授權且合約禁止反組譯的爭議進行討論與抱怨。然而，微軟已於 2026 年 1 月將 DCP 專案正式以 MIT 授權開源，使此篇關於授權爭議與合約限制的質疑討論徹底過時，已被後續更新的開源現況所取代。\"\n    }\n  ]\n}",
+  "question": "請逐一檢視這個 Notebook 目前的每一筆來源，找出符合以下任一條件、應該被移除的來源：\n1. 廣告／宣傳／行銷頁面（產品功能介紹首頁、展示頁、銷售或定價頁、無具體實作細節的推廣頁）\n2. 膚淺心得文（一味稱讚或一味批判、沒有具體論據或技術細節支撐；或簡短無結論的社群問答）\n3. 過期資訊（內容明顯針對已停產/已下架的產品或版本，或已被後續更新的資訊取代）\n\n即使是官方網域，只要頁面本身缺乏實質技術深度（例如官網行銷頁），一樣要列入移除，不能因為網域名稱就自動視為高品質。\n\n請只回傳一個 JSON 物件，不要有其他文字說明，格式如下：\n{\"remove\": [{\"title\": \"來源標題（要跟清單裡的標題完全一致）\", \"reason\": \"移除理由\"}]}\n如果沒有任何來源需要移除，回傳 {\"remove\": []}。",
+  "conversation_id": "e67a6edf-d7ee-4f66-ad1d-f865c48d57b7",
+  "sources_used": [],
+  "citations": {},
+  "references": []
+}

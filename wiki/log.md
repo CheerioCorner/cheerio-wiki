@@ -1,3 +1,17 @@
+## [2026-09-06] ingest | 北海道五天四夜自駕行程規劃 — 楓紅＋長輩友善
+
+- **來源**：`raw/deep-research/rc-20260906-002/hokkaido-trip-integrated-report.md`（整合 3 份研究 + Weathernews 官方資料）
+- **研究主題**：北海道 9 月底楓紅現況 × 五天四夜自駕行程規劃（40 歲駕駛載兩位 75 歲長輩）
+- **建立頁面**：
+  - `wiki/sources/2026-09-06-hokkaido-trip-planning.md`（source note，楓紅時間＋長輩友善度＋行程建議）
+  - `wiki/topics/travel.md`（topic 導航頁）
+  - `wiki/topics/japan.md`（topic 導航頁）
+- **更新頁面**：`wiki/index.md`（新增 travel + japan topic、hokkaido source）
+- **關鍵發現**：旭岳姿見池 9/13 已過峰、十勝岳凌雲閣 9/27 見頃、層雲峽 10/6 才見頃；長輩友善度排序：層雲峽 > 十勝岳 > 旭岳；2026 年因聖嬰現象紅葉可能偏晚
+- 完成時間：2026-09-06 17:55 (CST)
+
+---
+
 ## [2026-09-06] ingest | .NET Aspire 企業級平台深度研究
 
 - **來源**：`raw/deep-research/rc-20260906-001/research-report.md`（90 筆來源，NotebookLM deep research）

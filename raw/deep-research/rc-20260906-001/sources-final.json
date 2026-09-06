@@ -1,0 +1,632 @@
+[
+  {
+    "id": "fa4b9ea7-e387-4d81-9cae-980c06cbb6a7",
+    "title": "[Agramont.net 部落格] 技術指引 - 使用 GitHub Actions 部署 .NET Aspire 至 Azure",
+    "type": "web_page",
+    "url": "https://agramont.net/blog/devops-intro-deploy-net-aspire-azure-github-actions/",
+    "status": 2
+  },
+  {
+    "id": "8ad1422f-ed1a-4076-89a3-3f16c6eb8965",
+    "title": "[C# Corner] 技術實作 - 基於 .NET Aspire 的端對端 (E2E) 整合測試架構與實踐",
+    "type": "web_page",
+    "url": "https://www.c-sharpcorner.com/article/end-to-end-integration-testing-with-net-aspire/",
+    "status": 2
+  },
+  {
+    "id": "1badce3f-e4d3-42c7-a81a-5e65aa92dfb6",
+    "title": "[Chris Ayers 部落格] 技術實作 - 使用 Aspire CLI 與 azd 建立部署流水線",
+    "type": "web_page",
+    "url": "https://chris-ayers.com/posts/aspire-cli-part-2/",
+    "status": 2
+  },
+  {
+    "id": "0d7c8d43-4fe2-46c1-9c19-052635aca08f",
+    "title": "[Context7 部落格] 架構分析 - .NET Aspire 平台與 Orchestration 核心元件拆解",
+    "type": "web_page",
+    "url": "https://context7.com/websites/aspire_dev",
+    "status": 2
+  },
+  {
+    "id": "e3095c03-91f5-4791-99dc-d76355dda522",
+    "title": "[DEV Community] 技術文章 - .NET Aspire 於 WSL2 與 Docker 環境下的整合設定",
+    "type": "web_page",
+    "url": "https://dev.to/glsolaria/net-aspire-and-wsl-docker-21k4",
+    "status": 2
+  },
+  {
+    "id": "2c888b97-93a0-4fd0-97bf-fab07282749c",
+    "title": "[DEV Community] 技術文章 - ASP.NET Core 結合 .NET Aspire 啟用 OpenTelemetry 實作",
+    "type": "web_page",
+    "url": "https://dev.to/edcsu/opentelemetry-in-asp-net-with-aspire-4206",
+    "status": 2
+  },
+  {
+    "id": "8d9aac6b-a510-40c3-8dc6-6ef00fd4df70",
+    "title": "[Dan Does Code 部落格] 技術實作 - 整合 AddEFMigrations 於 .NET Aspire 中管理資料庫移轉",
+    "type": "web_page",
+    "url": "https://www.dandoescode.com/blog/ef-core-migrations-in-aspire-with-addefmigrations",
+    "status": 2
+  },
+  {
+    "id": "e06e8c9f-02bf-430f-9ea3-f7a14e281ee6",
+    "title": "[Dave Brock 部落格] 技術文章 - .NET Aspire 3 Service Defaults 設定機制",
+    "type": "web_page",
+    "url": "https://www.daveabrock.com/2025/08/13/net-aspire-3-service-defaults/",
+    "status": 2
+  },
+  {
+    "id": "78608fbe-65c6-4b63-b429-e2e1e9d791bb",
+    "title": "[GitHub 範例] 程式碼實作 - NetAspire ServiceDefaults 擴充方法之實作原始碼",
+    "type": "web_page",
+    "url": "https://github.com/gncyyldz/NetAspire.Example/blob/master/NetAspire.Example.ServiceDefaults/Extensions.cs",
+    "status": 2
+  },
+  {
+    "id": "186f72c9-5573-42b0-b9c8-f6aee4099b5f",
+    "title": "[GitHub 開源專案] 技術實作 - 使用 MSBuild 內建發布工具封裝 SQL Database 為容器鏡像",
+    "type": "web_page",
+    "url": "https://erikej.github.io/sqlclient/dotnet/dacfx/2026/04/09/dacfx-container-publish.html",
+    "status": 2
+  },
+  {
+    "id": "0a1ce93c-0bad-469a-85af-bca118893299",
+    "title": "[GitHub 開源專案] 技術工具 - aspirational-manifests：解析與部署 AppHost 資訊清單",
+    "type": "web_page",
+    "url": "https://github.com/prom3theu5/aspirational-manifests",
+    "status": 2
+  },
+  {
+    "id": "d1b16ccc-2ea8-4a76-9fbc-b31ebb8995c2",
+    "title": "[InfoQ 媒體] 技術新聞 - .NET Aspire 9.2 部署功能擴展與儀表板優化",
+    "type": "web_page",
+    "url": "https://www.infoq.com/news/2025/04/dotnet-aspire-92-release/",
+    "status": 2
+  },
+  {
+    "id": "d79d7b53-8003-46b3-b263-9cf8a63dba66",
+    "title": "[InfoQ 媒體] 技術新聞 - .NET Aspire 9.4 CLI 正式版與互動式儀表板新功能",
+    "type": "web_page",
+    "url": "https://www.infoq.com/news/2025/08/dotnet-aspire-9-4-release/",
+    "status": 2
+  },
+  {
+    "id": "1a1dd654-cc1c-41d3-b96e-50e30b391711",
+    "title": "[JetBrains 官方] 產品功能 - 在 JetBrains Rider 中使用 .NET Aspire 插件進行開發",
+    "type": "web_page",
+    "url": "https://blog.jetbrains.com/dotnet/2024/02/19/jetbrains-rider-and-the-net-aspire-plugin/",
+    "status": 2
+  },
+  {
+    "id": "5bb3eda2-ec06-4a10-a7f0-7d921961642b",
+    "title": "[Kalle Marjokorpi 部落格] 案例研究 - .NET Aspire 對企業微服務技術選型與架構之深遠影響",
+    "type": "web_page",
+    "url": "https://www.kallemarjokorpi.fi/blog/how-net-aspire-changed-my-way-of-building-software/",
+    "status": 2
+  },
+  {
+    "id": "176017c7-87f5-4d08-ad5f-ee1aa517dbc3",
+    "title": "[Matt Kotsenas 部落格] 技術實務 - 在沙箱與受限權限環境中執行 .NET Aspire",
+    "type": "web_page",
+    "url": "https://matt.kotsenas.com/posts/aspire-in-a-sandbox/",
+    "status": 2
+  },
+  {
+    "id": "244bad4d-0360-4bb8-9737-631f166048cc",
+    "title": "[Microsoft GitHub] 技術指引 - Azure SQL Database 本地模擬器容器之運作機制與限制",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/azure-sql-database-container/blob/main/docs/what-is-the-container.md",
+    "status": 2
+  },
+  {
+    "id": "7b8e7d13-cba4-4cbd-a6a7-0d93ff4aa049",
+    "title": "[Microsoft GitHub] 技術討論 - .NET Aspire 專案整合 Azure DevOps CI/CD 流水線設計",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire-samples/issues/1148",
+    "status": 2
+  },
+  {
+    "id": "198e4608-4329-447a-821f-489dba139f03",
+    "title": "[Microsoft GitHub] 技術討論 - 將 .NET Aspire 觀測數據導出至 Grafana 與 InfluxDB 的技術方案",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/9861",
+    "status": 2
+  },
+  {
+    "id": "ba9b0a53-ef5a-40e7-bc7a-73758ad38f99",
+    "title": "[Microsoft GitHub] 故障排除 - Azure DevOps Agent 執行 Aspire 整合測試失敗排除",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/discussions/5051",
+    "status": 2
+  },
+  {
+    "id": "08d55626-4d8d-4bbb-abda-2a251a423731",
+    "title": "[Microsoft GitHub] 故障排除 - Azure DevOps 中 azd 部署安全參數未定義錯誤排查",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/7301",
+    "status": 2
+  },
+  {
+    "id": "0845c97b-8d43-42af-8800-c2027434bc72",
+    "title": "[Microsoft GitHub] 故障排除 - 使用 Podman 時 Container-to-Host 網路連線故障處理",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/6846",
+    "status": 2
+  },
+  {
+    "id": "1f43a00b-0dc3-463a-9300-4a5f2375748f",
+    "title": "[Microsoft GitHub] 故障排除 - 使用 Podman 時容器無法連線至 Aspire 主機服務之解決方案",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/4136",
+    "status": 2
+  },
+  {
+    "id": "1046be0b-92bc-4641-b6c7-8763ce5e2b9a",
+    "title": "[Microsoft GitHub] 故障排除 - 容器 telemetry 數據未正確顯示於 AppHost 儀表板排查",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/4131",
+    "status": 2
+  },
+  {
+    "id": "3cb28a6f-c2dd-4060-a1ee-1781112c0794",
+    "title": "[Microsoft GitHub] 故障排除 - 本機容器連線至主機 Aspire 專案資源的網路對應",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/discussions/1808",
+    "status": 2
+  },
+  {
+    "id": "3dac0d13-7156-4092-aac9-f6482f936f1c",
+    "title": "[Microsoft GitHub] 故障排除 - 自建 WSL2 Docker 引擎在 Aspire 9.1 中的網絡迴歸問題",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/8692",
+    "status": 2
+  },
+  {
+    "id": "9de0e5b6-98cf-4e85-b1ff-569d235b7c4d",
+    "title": "[Microsoft GitHub] 故障排除 - 自訂 Docker Host 設定在 .NET Aspire 中無效的問題排解",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/1650",
+    "status": 2
+  },
+  {
+    "id": "691b4d70-3e41-4700-901e-a83093ec2917",
+    "title": "[Microsoft GitHub] 架構文件 - .NET Aspire Dashboard 原始碼結構、架構與構建說明",
+    "type": "web_page",
+    "url": "https://github.com/dotnet/aspire/blob/main/src/Aspire.Dashboard/README.md",
+    "status": 2
+  },
+  {
+    "id": "b95c97b7-9b50-4fde-aeaf-14abccf1bec7",
+    "title": "[Microsoft GitHub] 版本日誌 - .NET Aspire 13.3 變更說明與 API 調整",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/wiki/13.3-Change-log",
+    "status": 2
+  },
+  {
+    "id": "3f3cbfb5-133a-4078-a12d-fff2b2015a8a",
+    "title": "[Microsoft GitHub] 議題討論 - .NET Aspire Java 託管整合之技術提案與限制",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/17993",
+    "status": 2
+  },
+  {
+    "id": "30aa6f5c-36b3-4c66-80f1-639be3393780",
+    "title": "[Microsoft 官方] 套件規格 - Aspire.Hosting.Kubernetes 套件 API 說明文件",
+    "type": "web_page",
+    "url": "https://aspire.dev/reference/api/csharp/aspire.hosting.kubernetes/",
+    "status": 2
+  },
+  {
+    "id": "46719152-ae1c-41cb-b8b7-c580b995f28f",
+    "title": "[Microsoft 官方] 套件規格 - KubernetesEnvironmentResource API 設計與資源對應規格",
+    "type": "web_page",
+    "url": "https://aspire.dev/reference/api/typescript/aspire.hosting.kubernetes/kubernetesenvironmentresource/",
+    "status": 2
+  },
+  {
+    "id": "20322d76-2644-4eae-88f7-79aee0b7f8fa",
+    "title": "[Microsoft 官方] 技術公告 - .NET Aspire 9.2 發布與多樣化部署路徑解密",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/dotnet-aspire-92-is-now-available-with-new-ways-to-deploy/",
+    "status": 2
+  },
+  {
+    "id": "03b6b523-9cb6-4c49-b72d-739de31d0df7",
+    "title": "[Microsoft 官方] 技術公告 - .NET Aspire 9.3 發布與 GitHub Copilot 開發整合說明",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-93/",
+    "status": 2
+  },
+  {
+    "id": "5c63742e-1b3d-41db-95e5-8f15ccb2490b",
+    "title": "[Microsoft 官方] 技術公告 - .NET Aspire 9.5 新特性與效能改進",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-95/",
+    "status": 2
+  },
+  {
+    "id": "6d4761c8-0ebc-42a2-b2ec-fea7b0124b33",
+    "title": "[Microsoft 官方] 技術引導 - .NET Aspire 專案單元與整合測試起步指南",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/getting-started-with-testing-and-dotnet-aspire/",
+    "status": 2
+  },
+  {
+    "id": "14db1aa6-5766-4d2c-b9de-28a8cbd6c3cb",
+    "title": "[Microsoft 官方] 技術指南 - 使用 .NET SDK 內建容器化功能打包應用程式",
+    "type": "web_page",
+    "url": "https://milanjovanovic.tech/blog/containerize-your-dotnet-applications-without-a-dockerfile",
+    "status": 2
+  },
+  {
+    "id": "1570f0ee-a8b6-42c1-b93d-4ad00b136171",
+    "title": "[Microsoft 官方] 技術指引 - 使用 .NET Aspire 建置自訂發布與部署流水線",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/custom-deployments/",
+    "status": 2
+  },
+  {
+    "id": "21ea5d2e-4f89-404d-9659-2af879716ee7",
+    "title": "[Microsoft 官方] 技術指引 - 在 .NET Aspire AppHost 儀表板中實作自訂 HTTP 命令",
+    "type": "web_page",
+    "url": "https://aspire.dev/fundamentals/http-commands/",
+    "status": 2
+  },
+  {
+    "id": "3a2dda16-1eca-411e-80f1-21b128008f87",
+    "title": "[Microsoft 官方] 技術指引 - 如何獨立運行 (Standalone) .NET Aspire 觀測儀表板",
+    "type": "web_page",
+    "url": "https://aspire.dev/dashboard/standalone/",
+    "status": 2
+  },
+  {
+    "id": "034f7ef4-413a-43bd-baf3-aa59715fc9d6",
+    "title": "[Microsoft 官方] 技術指引 - 整合既有 Azure Developer CLI (azd) 流水線至 Aspire 專案",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/azure/azure-developer-cli/",
+    "status": 2
+  },
+  {
+    "id": "6597fbf5-2ae3-4cd1-a19f-64c0b44e7ccd",
+    "title": "[Microsoft 官方] 技術指引 - 讓 Aspire 容器能夠解析主機之自訂本機網域設定",
+    "type": "web_page",
+    "url": "https://anthonysimmon.com/dotnet-aspire-containers-share-custom-hosts/",
+    "status": 2
+  },
+  {
+    "id": "52a0fc37-2e13-42e3-a1b6-827379918642",
+    "title": "[Microsoft 官方] 技術指引 - 透過 Custom Resources API 於 Aspire 中引用既有 Docker 容器",
+    "type": "web_page",
+    "url": "https://anthonysimmon.com/referencing-external-docker-containers-dotnet-aspire-custom-resources/",
+    "status": 2
+  },
+  {
+    "id": "0020f17d-8139-4454-925f-f6369d130817",
+    "title": "[Microsoft 官方] 技術文件 - .NET Aspire 各個整合服務之間的端到端安全通訊架構",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/custom-integrations/secure-communication/",
+    "status": 2
+  },
+  {
+    "id": "78e15ffa-e81f-4e5d-8e31-a0a456bab5c6",
+    "title": "[Microsoft 官方] 技術文件 - .NET Aspire 的 Kubernetes 元件與原生集成規格",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/compute/kubernetes/",
+    "status": 2
+  },
+  {
+    "id": "22542681-60ab-4f4d-bce8-4bbf7f6ecec1",
+    "title": "[Microsoft 官方] 技術文件 - .NET Aspire 開發環境下整合與執行 Python 服務",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/frameworks/python/",
+    "status": 2
+  },
+  {
+    "id": "49e5add8-aba8-4add-b735-545e14d75e40",
+    "title": "[Microsoft 官方] 技術文件 - C# 專案中 Service Defaults 的預設功能與擴充設定",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/csharp-service-defaults/",
+    "status": 2
+  },
+  {
+    "id": "033b2b9c-03c9-4296-9019-20c2a04fec50",
+    "title": "[Microsoft 官方] 技術文件 - 在 .NET Aspire 中自訂與定義資源的對外 URL",
+    "type": "web_page",
+    "url": "https://aspire.dev/fundamentals/custom-resource-urls/",
+    "status": 2
+  },
+  {
+    "id": "1d9233f8-c516-40d3-a061-97184e7ecb8d",
+    "title": "[Microsoft 官方] 技術文件 - 在 .NET Aspire 之中託管與執行外部原生執行檔",
+    "type": "web_page",
+    "url": "https://aspire.dev/app-host/executable-resources/",
+    "status": 2
+  },
+  {
+    "id": "028baa3e-e486-4ba9-9af8-ead201d73502",
+    "title": "[Microsoft 官方] 技術文件 - 用於建置分散式應用程式的 .NET Aspire SDK 規格",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/aspire-sdk/",
+    "status": 2
+  },
+  {
+    "id": "ab6fb5ea-8d11-4789-9d8b-ea93bc1e5f21",
+    "title": "[Microsoft 官方] 架構文件 - .NET Aspire 企業級 CI/CD 持續整合與部署策略概覽",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/ci-cd/",
+    "status": 2
+  },
+  {
+    "id": "62f24fa9-0449-4c64-b6bb-e8b852ef09ef",
+    "title": "[Microsoft 官方] 架構文件 - .NET Aspire 內部部署機制與 Manifest 設計原理",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/deploy-with-aspire/",
+    "status": 2
+  },
+  {
+    "id": "26454f3d-6b01-4332-8428-3be2525d79d3",
+    "title": "[Microsoft 官方] 架構文件 - .NET Aspire 發布資訊清單與多路徑部署模型概覽",
+    "type": "web_page",
+    "url": "https://dotnet-aspire-52.mintlify.app/deployment/overview",
+    "status": 2
+  },
+  {
+    "id": "1b69f20b-cce3-4917-b4f9-9e5732950379",
+    "title": "[Microsoft 官方] 架構文件 - Azure Application Insights 與 OpenTelemetry 觀測整合",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
+    "status": 2
+  },
+  {
+    "id": "350722b1-3c3f-4da0-81e4-acfd33c3821e",
+    "title": "[Microsoft 官方] 架構文件 - 於 CI/CD 流水線中執行 .NET Aspire 整合測試之架構建議",
+    "type": "web_page",
+    "url": "https://aspire.dev/testing/testing-in-ci/",
+    "status": 2
+  },
+  {
+    "id": "0f2d0073-4900-4541-927e-7c613c4d2022",
+    "title": "[Microsoft 官方] 架構文件 - 深入分析 .NET Aspire AppHost 核心機制與專案生命週期",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/app-host/",
+    "status": 2
+  },
+  {
+    "id": "5c889a8f-b610-454c-92ef-f1d7b0e87bde",
+    "title": "[Microsoft 官方] 架構文件 - 深入理解作為 .NET Aspire 核心的 Developer Control Plane",
+    "type": "web_page",
+    "url": "https://anthonysimmon.com/exploring-microsoft-developer-control-plane-core-dotnet-aspire-dotnet-8/",
+    "status": 2
+  },
+  {
+    "id": "dd5ad19b-9353-4dba-9c18-dbc352fae76a",
+    "title": "[Microsoft 官方] 案例研究 - Azure Developer CLI (azd) 於真實企業級部署之實踐",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/azure-sdk/azure-developer-cli-azd-in-a-real-life-scenario/",
+    "status": 2
+  },
+  {
+    "id": "51b84faa-c286-48b0-9460-6a1b521efc4d",
+    "title": "[Microsoft 官方] 步驟指南 - .NET Aspire SDK 本機開發環境安裝與設定",
+    "type": "web_page",
+    "url": "https://dotnet-aspire-52.mintlify.app/installation",
+    "status": 2
+  },
+  {
+    "id": "243579dc-6a6b-4ad3-b391-7f4aa5bbb6f1",
+    "title": "[Microsoft 官方] 步驟指南 - 使用 .NET Aspire 整合與管理 Go 語言微服務",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/frameworks/go/go-get-started/",
+    "status": 2
+  },
+  {
+    "id": "899a3347-9888-4793-8bea-d210cf0a61df",
+    "title": "[Microsoft 官方] 步驟指南 - 使用 .NET Aspire 開發與整合 Java 應用程式",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/frameworks/java/java-get-started/",
+    "status": 2
+  },
+  {
+    "id": "42736aba-466f-4a92-96ca-d4681bf17971",
+    "title": "[Microsoft 官方] 步驟指南 - 使用 azd 將 .NET Aspire 專案部署至 Azure 平台",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/azure/",
+    "status": 2
+  },
+  {
+    "id": "2e6fe83f-c789-4a68-9033-aae1cda3224f",
+    "title": "[Microsoft 官方] 步驟指南 - 將 .NET Aspire 專案發布並部署至 Kubernetes 集群",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/kubernetes/",
+    "status": 2
+  },
+  {
+    "id": "0541fb2e-31ed-4ec2-8207-1c7da8189849",
+    "title": "[Microsoft 官方] 步驟指南 - 將 .NET Aspire 應用發布並生成 Docker Compose YAML",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/docker-compose/",
+    "status": 2
+  },
+  {
+    "id": "34220d15-eff1-403f-977a-785dc6961453",
+    "title": "[Microsoft 官方] 步驟指南 - 將 .NET Aspire 整合至既有 ASP.NET Core 專案",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/add-aspire-existing-app/",
+    "status": 2
+  },
+  {
+    "id": "b66ab990-0174-43e4-949e-a4521094a727",
+    "title": "[Microsoft 官方] 步驟指南 - 從零開始建立第一個 .NET Aspire 分散式應用程式",
+    "type": "web_page",
+    "url": "https://dotnet-aspire-52.mintlify.app/quickstart",
+    "status": 2
+  },
+  {
+    "id": "23510093-4d6e-4d00-802c-3fdd9a58da76",
+    "title": "[Microsoft 官方] 產品介紹 - .NET Aspire 分散式系統編排平台之核心定位與願景",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/what-is-aspire/",
+    "status": 2
+  },
+  {
+    "id": "265f9ae2-0df5-4067-a444-c7ed1a7afcb6",
+    "title": "[Microsoft 官方] 開發指引 - 使用 VS Code Docker 工具偵錯本機 .NET 容器化應用",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/debugging-dotnet-containers-with-visual-studio-code-docker-tools/",
+    "status": 2
+  },
+  {
+    "id": "604f4f7c-2f1d-45cf-9feb-6f527e87ebdf",
+    "title": "[Microsoft 官方] 開發教學 - Kubernetes 環境下 .NET Aspire 部署與資訊清單映射細節",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/shows/azure-developers-dotnet-aspire-day-2024/deploying-dotnet-aspire-projects-to-kubernetes",
+    "status": 2
+  },
+  {
+    "id": "33c5e737-4eae-4371-a2be-1690a794d5b8",
+    "title": "[Microsoft 官方] 開發教學 - 免 Dockerfile 利用 dotnet publish 容器化 .NET 10 應用",
+    "type": "web_page",
+    "url": "https://codewithmukesh.com/blog/containerize-dotnet-without-dockerfile/",
+    "status": 2
+  },
+  {
+    "id": "29e1864c-1615-4e4d-90eb-128a59a1cf9d",
+    "title": "[Microsoft 官方] 開發教學 - 深入解析 dotnet publish 容器化打包技術之參數與規格",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/containers/sdk-publish",
+    "status": 2
+  },
+  {
+    "id": "01a3a22c-e3fa-4601-9450-d0a81912e0d0",
+    "title": "[Milan Jovanović 部落格] 技術指引 - 透過 .NET Aspire 生成本地 Docker Compose 部署",
+    "type": "web_page",
+    "url": "https://milanjovanovic.tech/blog/using-dotnet-aspire-with-the-docker-publisher",
+    "status": 2
+  },
+  {
+    "id": "f2bbe545-b7c8-46e1-8d98-c38ce790c43b",
+    "title": "[NashTech 部落格] 技術指引 - .NET Aspire 整合 Next.js 與 Docker 開發實務",
+    "type": "web_page",
+    "url": "https://blog.nashtechglobal.com/aspire-from-zero-to-production-building-your-first-distributed-app-with-next-js-docker-and-net-10/",
+    "status": 2
+  },
+  {
+    "id": "e828dda0-0587-4dad-a05b-4c604ebcdd1b",
+    "title": "[Packt 部落格] 開發教學 - 從零建置生產就緒的 .NET Aspire 應用程式",
+    "type": "web_page",
+    "url": "https://juliocasal.com/blog/net-aspire-tutorial-build-production-ready-apps-from-day-1",
+    "status": 2
+  },
+  {
+    "id": "9d6eab3f-f7b3-4acd-8a73-f225b54f1c6b",
+    "title": "[Particular Software] 架構分析 - 藉由 .NET Aspire 簡化企業級分散式系統之設計與開發",
+    "type": "web_page",
+    "url": "https://particular.net/webinars/effortless-distributed-systems-with-aspire",
+    "status": 2
+  },
+  {
+    "id": "45143f0d-bba9-4b80-bb25-4ed3a3b34164",
+    "title": "[RaspeR87 部落格] 技術指引 - .NET Aspire 自訂發布與部署流水線實作",
+    "type": "web_page",
+    "url": "https://rasper87.blog/2025/11/05/net-aspire-custom-publish-deployment-pipelines/",
+    "status": 2
+  },
+  {
+    "id": "118041f5-1371-466b-b8ef-0daa83a892d6",
+    "title": "[Red Hat 部落格] 案例研究 - 整合 .NET Aspire、Dapr 與 Podman 簡化微服務本機開發",
+    "type": "web_page",
+    "url": "https://dev.to/rineshpk/simplifying-microservice-development-with-net-aspire-dapr-and-podman-3hp0",
+    "status": 2
+  },
+  {
+    "id": "08ed2252-37ef-4441-ada1-70a0d3072ec4",
+    "title": "[Reddit 社群] 技術探討 - 提取 .NET Aspire 遙測數據並匯出為 CSV 之實作方法",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1oqpm21/exporting_net_aspire_telemetry_traces_logs/",
+    "status": 2
+  },
+  {
+    "id": "31d0ea12-a15f-4b6c-807a-2933986a5d7c",
+    "title": "[Reddit 社群] 案例研究 - 從開發容器移轉至生產環境託管的實務架構討論",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1kxau0s/aspire_is_amazing_how_to_go_from_dev_containers/",
+    "status": 2
+  },
+  {
+    "id": "812d2452-8e45-401e-b5aa-60ebb13d1780",
+    "title": "[Reddit 社群] 比較分析 - 本機開發情境下 .NET Aspire 與 Docker Compose 功能對比",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1i5ux36/docker_compose_vs_net_aspire/",
+    "status": 2
+  },
+  {
+    "id": "a382602d-1e41-48ac-ad8d-db8106c69cfb",
+    "title": "[Reddit 社群] 討論分析 - .NET Aspire Developer Control Plane (DCP) 機制剖析",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1sfv650/aspire_developer_control_plane/",
+    "status": 2
+  },
+  {
+    "id": "056fc2ae-c0a8-49bc-93ef-756db6f747f5",
+    "title": "[Reddit 社群] 討論分析 - 本地開發環境中 .NET Aspire 為何不將專案容器化運作的設計考量",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1fmrrn4/why_does_aspire_not_run_my_projects_in_a/",
+    "status": 2
+  },
+  {
+    "id": "0621e259-5b04-4c23-8bbe-8e0622a4af95",
+    "title": "[Stack Overflow] 技術問答 - 非 Azure 生產環境下保護 ASP.NET Core 機敏資訊與憑證的實作方法",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/947h2k/aspnet_core_how_to_store_or_protect_app_secrets/",
+    "status": 2
+  },
+  {
+    "id": "e05f95e2-1e0b-4440-a0df-314e2e4cf4e2",
+    "title": "[base14 Scout 部落格] 技術實作 - .NET Aspire OpenTelemetry 多服務追蹤實務",
+    "type": "web_page",
+    "url": "https://docs.base14.io/instrument/apps/auto-instrumentation/dotnet-aspire/",
+    "status": 2
+  },
+  {
+    "id": "d57af6aa-e0a9-46ae-9695-5b996443ca54",
+    "title": "[codewithmukesh 部落格] 開發教學 - 使用 .NET 10 與 Aspire 建置雲端原生應用",
+    "type": "web_page",
+    "url": "https://codewithmukesh.com/blog/aspire-for-dotnet-developers-deep-dive/",
+    "status": 2
+  },
+  {
+    "id": "ddd2dbe7-a7b5-41e9-aaa0-858af29ffe0b",
+    "title": "[iT 邦幫忙 部落格] 技術文章 - 利用 .NET Aspire 簡化與統一團隊本機開發環境之實踐",
+    "type": "web_page",
+    "url": "https://dev.to/baoduy2412/net-aspire-simplifying-local-development-environment-and-testing-an8",
+    "status": 2
+  },
+  {
+    "id": "8d8ef328-4246-49d9-8397-f83ecf4423d7",
+    "title": "[mstack 部落格] 技術指引 - 自訂 .NET Aspire 元件與整合測試開發指南",
+    "type": "web_page",
+    "url": "https://mstack.nl/blogs/wiremock-net-aspire-component/",
+    "status": 2
+  },
+  {
+    "id": "020675c9-5fbd-4379-85ac-a18a867d1d4d",
+    "title": "[nikiforovall 部落格] 技術實作 - 結合 .NET Aspire 與 Python 開發 RAG 檢索增強生成應用",
+    "type": "web_page",
+    "url": "https://nikiforovall.blog/dotnet/ai/2026/02/22/building-rag-with-aspire-and-python.html",
+    "status": 2
+  },
+  {
+    "id": "926a6bc5-9bf8-4b6b-b845-39f6fe8d3e01",
+    "title": "https://stackoverflow.com/questions/79415638/add-a-value-from-an-azure-devops-pipeline-library-variable-to-an-aspire-net-con",
+    "type": "web_page",
+    "url": "https://stackoverflow.com/questions/79415638/add-a-value-from-an-azure-devops-pipeline-library-variable-to-an-aspire-net-con",
+    "status": 3
+  },
+  {
+    "id": "6f2a55c9-1d75-4a04-9c9f-bd618df4007f",
+    "title": "https://stackoverflow.com/questions/79811383/how-come-azure-developer-cli-says-my-aspire-bicep-is-invalid-when-running-in-pip",
+    "type": "web_page",
+    "url": "https://stackoverflow.com/questions/79811383/how-come-azure-developer-cli-says-my-aspire-bicep-is-invalid-when-running-in-pip",
+    "status": 3
+  }
+]

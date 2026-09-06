@@ -1,0 +1,681 @@
+[
+  {
+    "id": "e06e8c9f-02bf-430f-9ea3-f7a14e281ee6",
+    "title": ".NET Aspire 3: Service Defaults - Dave Brock",
+    "type": "web_page",
+    "url": "https://www.daveabrock.com/2025/08/13/net-aspire-3-service-defaults/",
+    "status": 2
+  },
+  {
+    "id": "d1b16ccc-2ea8-4a76-9fbc-b31ebb8995c2",
+    "title": ".NET Aspire 9.2 Released with Expanded Deployment Options and Dashboard Improvements - InfoQ",
+    "type": "web_page",
+    "url": "https://www.infoq.com/news/2025/04/dotnet-aspire-92-release/",
+    "status": 2
+  },
+  {
+    "id": "d79d7b53-8003-46b3-b263-9cf8a63dba66",
+    "title": ".NET Aspire 9.4 Released with CLI GA, Interactive Dashboards, and Advanced Deployment Features - InfoQ",
+    "type": "web_page",
+    "url": "https://www.infoq.com/news/2025/08/dotnet-aspire-9-4-release/",
+    "status": 2
+  },
+  {
+    "id": "e05f95e2-1e0b-4440-a0df-314e2e4cf4e2",
+    "title": ".NET Aspire OpenTelemetry Instrumentation - Multi-Service Tracing | base14 Scout",
+    "type": "web_page",
+    "url": "https://docs.base14.io/instrument/apps/auto-instrumentation/dotnet-aspire/",
+    "status": 2
+  },
+  {
+    "id": "d57af6aa-e0a9-46ae-9695-5b996443ca54",
+    "title": ".NET Aspire Tutorial - Build Cloud-Ready Apps with .NET 10 and… - codewithmukesh",
+    "type": "web_page",
+    "url": "https://codewithmukesh.com/blog/aspire-for-dotnet-developers-deep-dive/",
+    "status": 2
+  },
+  {
+    "id": "e828dda0-0587-4dad-a05b-4c604ebcdd1b",
+    "title": ".NET Aspire Tutorial: Build Production-Ready Apps From Day 1",
+    "type": "web_page",
+    "url": "https://juliocasal.com/blog/net-aspire-tutorial-build-production-ready-apps-from-day-1",
+    "status": 2
+  },
+  {
+    "id": "f2bbe545-b7c8-46e1-8d98-c38ce790c43b",
+    "title": ".NET Aspire Tutorial: Next.js & Docker Guide - NashTech Blog",
+    "type": "web_page",
+    "url": "https://blog.nashtechglobal.com/aspire-from-zero-to-production-building-your-first-distributed-app-with-next-js-docker-and-net-10/",
+    "status": 2
+  },
+  {
+    "id": "e3095c03-91f5-4791-99dc-d76355dda522",
+    "title": ".NET Aspire and WSL Docker - DEV Community",
+    "type": "web_page",
+    "url": "https://dev.to/glsolaria/net-aspire-and-wsl-docker-21k4",
+    "status": 2
+  },
+  {
+    "id": "45143f0d-bba9-4b80-bb25-4ed3a3b34164",
+    "title": ".NET Aspire — Custom Publish & Deployment Pipelines – RaspeR87's Blog",
+    "type": "web_page",
+    "url": "https://rasper87.blog/2025/11/05/net-aspire-custom-publish-deployment-pipelines/",
+    "status": 2
+  },
+  {
+    "id": "b95c97b7-9b50-4fde-aeaf-14abccf1bec7",
+    "title": "13.3 Change log · microsoft/aspire Wiki - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/wiki/13.3-Change-log",
+    "status": 2
+  },
+  {
+    "id": "34220d15-eff1-403f-977a-785dc6961453",
+    "title": "Add Aspire to an existing app",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/add-aspire-existing-app/",
+    "status": 2
+  },
+  {
+    "id": "3f3cbfb5-133a-4078-a12d-fff2b2015a8a",
+    "title": "Add Java hosting integration · Issue #17993 · microsoft/aspire - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/17993",
+    "status": 2
+  },
+  {
+    "id": "abf4c400-a15b-4012-9caa-1e4553ebdf19",
+    "title": "Agents/samples/dotnet/otel/README.md at main · microsoft/Agents - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/Agents/blob/main/samples/dotnet/otel/README.md",
+    "status": 2
+  },
+  {
+    "id": "5c63742e-1b3d-41db-95e5-8f15ccb2490b",
+    "title": "Announcing Aspire 9.5 - .NET Blog",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-95/",
+    "status": 2
+  },
+  {
+    "id": "1b69f20b-cce3-4917-b4f9-9e5732950379",
+    "title": "Application Insights OpenTelemetry observability overview - Azure Monitor | Microsoft Learn",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
+    "status": 2
+  },
+  {
+    "id": "0d7c8d43-4fe2-46c1-9c19-052635aca08f",
+    "title": "Aspire (websites/aspire_dev) - Context7",
+    "type": "web_page",
+    "url": "https://context7.com/websites/aspire_dev",
+    "status": 2
+  },
+  {
+    "id": "4f449e5d-8057-4b98-927f-8549615a57bd",
+    "title": "Aspire - Awesome Software Architecture",
+    "type": "web_page",
+    "url": "https://awesome-architecture.com/microservices/tools/aspire/",
+    "status": 2
+  },
+  {
+    "id": "3dac0d13-7156-4092-aac9-f6482f936f1c",
+    "title": "Aspire 9.1 Potential Regression with self-installed WSL2 docker engine (not Docker Desktop) on Windows · Issue #8692 - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/8692",
+    "status": 2
+  },
+  {
+    "id": "20322d76-2644-4eae-88f7-79aee0b7f8fa",
+    "title": "Aspire 9.2 is Now Available with New Ways to Deploy - .NET Blog",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/dotnet-aspire-92-is-now-available-with-new-ways-to-deploy/",
+    "status": 2
+  },
+  {
+    "id": "1badce3f-e4d3-42c7-a81a-5e65aa92dfb6",
+    "title": "Aspire CLI Part 2 - Deployment and Pipelines · CodeBytes - Chris Ayers",
+    "type": "web_page",
+    "url": "https://chris-ayers.com/posts/aspire-cli-part-2/",
+    "status": 2
+  },
+  {
+    "id": "a382602d-1e41-48ac-ad8d-db8106c69cfb",
+    "title": "Aspire Developer Control Plane : r/dotnet - Reddit",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1sfv650/aspire_developer_control_plane/",
+    "status": 2
+  },
+  {
+    "id": "ba9b0a53-ef5a-40e7-bc7a-73758ad38f99",
+    "title": "Aspire Integration Tests are failing ONLY when run via devops agent. #5051 - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/discussions/5051",
+    "status": 2
+  },
+  {
+    "id": "028baa3e-e486-4ba9-9af8-ead201d73502",
+    "title": "Aspire SDK for distributed apps",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/aspire-sdk/",
+    "status": 2
+  },
+  {
+    "id": "176017c7-87f5-4d08-ad5f-ee1aa517dbc3",
+    "title": "Aspire in a Sandbox - Matt Kotsenas",
+    "type": "web_page",
+    "url": "https://matt.kotsenas.com/posts/aspire-in-a-sandbox/",
+    "status": 2
+  },
+  {
+    "id": "31d0ea12-a15f-4b6c-807a-2933986a5d7c",
+    "title": "Aspire is amazing! How to go from dev containers to prod managed services? Any real use case out there? - Reddit",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1kxau0s/aspire_is_amazing_how_to_go_from_dev_containers/",
+    "status": 2
+  },
+  {
+    "id": "30aa6f5c-36b3-4c66-80f1-639be3393780",
+    "title": "Aspire.Hosting.Kubernetes",
+    "type": "web_page",
+    "url": "https://aspire.dev/reference/api/csharp/aspire.hosting.kubernetes/",
+    "status": 2
+  },
+  {
+    "id": "dd5ad19b-9353-4dba-9c18-dbc352fae76a",
+    "title": "Azure Developer CLI (azd) in a real-life scenario - Azure SDK Blog",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/azure-sdk/azure-developer-cli-azd-in-a-real-life-scenario/",
+    "status": 2
+  },
+  {
+    "id": "8d8ef328-4246-49d9-8397-f83ecf4423d7",
+    "title": "Build and test your own .NET Aspire component - mstack",
+    "type": "web_page",
+    "url": "https://mstack.nl/blogs/wiremock-net-aspire-component/",
+    "status": 2
+  },
+  {
+    "id": "020675c9-5fbd-4379-85ac-a18a867d1d4d",
+    "title": "Building RAG with .NET Aspire and Python - nikiforovall.blog",
+    "type": "web_page",
+    "url": "https://nikiforovall.blog/dotnet/ai/2026/02/22/building-rag-with-aspire-and-python.html",
+    "status": 2
+  },
+  {
+    "id": "1570f0ee-a8b6-42c1-b93d-4ad00b136171",
+    "title": "Building custom deployment pipelines | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/custom-deployments/",
+    "status": 2
+  },
+  {
+    "id": "49e5add8-aba8-4add-b735-545e14d75e40",
+    "title": "C# Service Defaults - Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/csharp-service-defaults/",
+    "status": 2
+  },
+  {
+    "id": "ab6fb5ea-8d11-4789-9d8b-ea93bc1e5f21",
+    "title": "CI/CD overview | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/ci-cd/",
+    "status": 2
+  },
+  {
+    "id": "3cb28a6f-c2dd-4060-a1ee-1781112c0794",
+    "title": "Connecting to project resources from containers. · microsoft aspire · Discussion #1808 - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/discussions/1808",
+    "status": 2
+  },
+  {
+    "id": "1046be0b-92bc-4641-b6c7-8763ce5e2b9a",
+    "title": "Container telemetry not shown in AppHost dashboard · Issue #4131 · microsoft/aspire",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/4131",
+    "status": 2
+  },
+  {
+    "id": "0845c97b-8d43-42af-8800-c2027434bc72",
+    "title": "Container to host networking not working with podman · Issue #6846 · microsoft/aspire",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/6846",
+    "status": 2
+  },
+  {
+    "id": "33c5e737-4eae-4371-a2be-1690a794d5b8",
+    "title": "Containerize .NET 10 Apps Without a Dockerfile - dotnet publish Containers",
+    "type": "web_page",
+    "url": "https://codewithmukesh.com/blog/containerize-dotnet-without-dockerfile/",
+    "status": 2
+  },
+  {
+    "id": "14db1aa6-5766-4d2c-b9de-28a8cbd6c3cb",
+    "title": "Containerize Your .NET Applications Without a Dockerfile",
+    "type": "web_page",
+    "url": "https://milanjovanovic.tech/blog/containerize-your-dotnet-applications-without-a-dockerfile",
+    "status": 2
+  },
+  {
+    "id": "29e1864c-1615-4e4d-90eb-128a59a1cf9d",
+    "title": "Containerize an app with dotnet publish - .NET - Microsoft Learn",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/containers/sdk-publish",
+    "status": 2
+  },
+  {
+    "id": "9de0e5b6-98cf-4e85-b1ff-569d235b7c4d",
+    "title": "Custom Docker Host does not work · Issue #1650 · microsoft/aspire - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/1650",
+    "status": 2
+  },
+  {
+    "id": "21ea5d2e-4f89-404d-9659-2af879716ee7",
+    "title": "Custom HTTP commands | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/fundamentals/http-commands/",
+    "status": 2
+  },
+  {
+    "id": "265f9ae2-0df5-4067-a444-c7ed1a7afcb6",
+    "title": "Debugging .NET Containers with Visual Studio Code Docker Tools",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/debugging-dotnet-containers-with-visual-studio-code-docker-tools/",
+    "status": 2
+  },
+  {
+    "id": "033b2b9c-03c9-4296-9019-20c2a04fec50",
+    "title": "Define custom resource URLs - Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/fundamentals/custom-resource-urls/",
+    "status": 2
+  },
+  {
+    "id": "9f6769c0-ccd3-4f7e-a5b5-59b8760919b0",
+    "title": "Deploy .NET Aspire Apps to Azure in Minutes | Simple Deployment Tutorial - YouTube",
+    "type": "web_page",
+    "url": "https://www.youtube.com/watch?v=7FbiDviUsNU",
+    "status": 2
+  },
+  {
+    "id": "42736aba-466f-4a92-96ca-d4681bf17971",
+    "title": "Deploy to Azure | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/azure/",
+    "status": 2
+  },
+  {
+    "id": "0541fb2e-31ed-4ec2-8207-1c7da8189849",
+    "title": "Deploy to Docker Compose - Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/docker-compose/",
+    "status": 2
+  },
+  {
+    "id": "2e6fe83f-c789-4a68-9033-aae1cda3224f",
+    "title": "Deploy to Kubernetes - Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/kubernetes/",
+    "status": 2
+  },
+  {
+    "id": "604f4f7c-2f1d-45cf-9feb-6f527e87ebdf",
+    "title": "Deploying .NET Aspire projects to Kubernetes - Microsoft Learn",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/shows/azure-developers-dotnet-aspire-day-2024/deploying-dotnet-aspire-projects-to-kubernetes",
+    "status": 2
+  },
+  {
+    "id": "26454f3d-6b01-4332-8428-3be2525d79d3",
+    "title": "Deployment Overview - .NET Aspire",
+    "type": "web_page",
+    "url": "https://dotnet-aspire-52.mintlify.app/deployment/overview",
+    "status": 2
+  },
+  {
+    "id": "fa4b9ea7-e387-4d81-9cae-980c06cbb6a7",
+    "title": "DevOps intro to deploy .NET Aspire CI/CD to Azure with GitHub Actions | Agramont.net",
+    "type": "web_page",
+    "url": "https://agramont.net/blog/devops-intro-deploy-net-aspire-azure-github-actions/",
+    "status": 2
+  },
+  {
+    "id": "92282239-e8ac-4787-af32-669408afafdd",
+    "title": "Developer Control Pane - Source/License Clarification · microsoft aspire · Discussion #1913",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/discussions/1913",
+    "status": 2
+  },
+  {
+    "id": "812d2452-8e45-401e-b5aa-60ebb13d1780",
+    "title": "Docker Compose vs .Net Aspire : r/dotnet - Reddit",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1i5ux36/docker_compose_vs_net_aspire/",
+    "status": 2
+  },
+  {
+    "id": "8d9aac6b-a510-40c3-8dc6-6ef00fd4df70",
+    "title": "EF Core Migrations in Aspire - The New Way with AddEFMigrations | Dan Does Code",
+    "type": "web_page",
+    "url": "https://www.dandoescode.com/blog/ef-core-migrations-in-aspire-with-addefmigrations",
+    "status": 2
+  },
+  {
+    "id": "9d6eab3f-f7b3-4acd-8a73-f225b54f1c6b",
+    "title": "Effortless Distributed Systems with Aspire - Particular Software",
+    "type": "web_page",
+    "url": "https://particular.net/webinars/effortless-distributed-systems-with-aspire",
+    "status": 2
+  },
+  {
+    "id": "8ad1422f-ed1a-4076-89a3-3f16c6eb8965",
+    "title": "End-to-end integration testing with .NET Aspire - C# Corner",
+    "type": "web_page",
+    "url": "https://www.c-sharpcorner.com/article/end-to-end-integration-testing-with-net-aspire/",
+    "status": 2
+  },
+  {
+    "id": "08d55626-4d8d-4bbb-abda-2a251a423731",
+    "title": "Error Deploying .NET Aspire Application Using azd in Azure DevOps Pipeline - error calling securedParameter: parameter **** not found · Issue #7301 - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/7301",
+    "status": 2
+  },
+  {
+    "id": "5c889a8f-b610-454c-92ef-f1d7b0e87bde",
+    "title": "Exploring the Microsoft Developer Control Plane at the heart of the new .NET Aspire",
+    "type": "web_page",
+    "url": "https://anthonysimmon.com/exploring-microsoft-developer-control-plane-core-dotnet-aspire-dotnet-8/",
+    "status": 2
+  },
+  {
+    "id": "198e4608-4329-447a-821f-489dba139f03",
+    "title": "Export Aspire Telemetry Data to External Tools (eg, Grafana, InfluxDB) #9861 - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/9861",
+    "status": 2
+  },
+  {
+    "id": "08ed2252-37ef-4441-ada1-70a0d3072ec4",
+    "title": "Exporting .NET Aspire Telemetry (Traces, Logs, Metrics) to CSV for Analysis - Reddit",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1oqpm21/exporting_net_aspire_telemetry_traces_logs/",
+    "status": 2
+  },
+  {
+    "id": "7b8e7d13-cba4-4cbd-a6a7-0d93ff4aa049",
+    "title": "Feature: Azure DevOps CI/CD Pipeline · Issue #1148 · microsoft/aspire-samples - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire-samples/issues/1148",
+    "status": 2
+  },
+  {
+    "id": "01a3a22c-e3fa-4601-9450-d0a81912e0d0",
+    "title": "Generate Docker Compose With .NET Aspire - Milan Jovanović",
+    "type": "web_page",
+    "url": "https://milanjovanovic.tech/blog/using-dotnet-aspire-with-the-docker-publisher",
+    "status": 2
+  },
+  {
+    "id": "899a3347-9888-4793-8bea-d210cf0a61df",
+    "title": "Get started with Java and Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/frameworks/java/java-get-started/",
+    "status": 2
+  },
+  {
+    "id": "243579dc-6a6b-4ad3-b391-7f4aa5bbb6f1",
+    "title": "Get started with the Go integration | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/frameworks/go/go-get-started/",
+    "status": 2
+  },
+  {
+    "id": "6d4761c8-0ebc-42a2-b2ec-fea7b0124b33",
+    "title": "Getting started with testing and Aspire - .NET Blog - Microsoft Developer Blogs",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/getting-started-with-testing-and-dotnet-aspire/",
+    "status": 2
+  },
+  {
+    "id": "0a1ce93c-0bad-469a-85af-bca118893299",
+    "title": "GitHub - prom3theu5/aspirational-manifests: Handle deployments of .NET Aspire AppHost Projects",
+    "type": "web_page",
+    "url": "https://github.com/prom3theu5/aspirational-manifests",
+    "status": 2
+  },
+  {
+    "id": "1d08e4bb-cdbc-4aca-b5ed-134b3978cf98",
+    "title": "GitHub Actions CI/CD Pipeline for Deploying .NET Web API to Amazon ECS",
+    "type": "web_page",
+    "url": "https://codewithmukesh.com/blog/github-actions-deploy-dotnet-webapi-to-amazon-ecs/",
+    "status": 2
+  },
+  {
+    "id": "1d9233f8-c516-40d3-a061-97184e7ecb8d",
+    "title": "Host external executables in Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/app-host/executable-resources/",
+    "status": 2
+  },
+  {
+    "id": "62f24fa9-0449-4c64-b6bb-e8b852ef09ef",
+    "title": "How Aspire deployment works",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/deploy-with-aspire/",
+    "status": 2
+  },
+  {
+    "id": "5bb3eda2-ec06-4a10-a7f0-7d921961642b",
+    "title": "How has .NET Aspire influenced my preferred tech stack? - Kalle Marjokorpi",
+    "type": "web_page",
+    "url": "https://www.kallemarjokorpi.fi/blog/how-net-aspire-changed-my-way-of-building-software/",
+    "status": 2
+  },
+  {
+    "id": "51b84faa-c286-48b0-9460-6a1b521efc4d",
+    "title": "Installation - .NET Aspire",
+    "type": "web_page",
+    "url": "https://dotnet-aspire-52.mintlify.app/installation",
+    "status": 2
+  },
+  {
+    "id": "1a1dd654-cc1c-41d3-b96e-50e30b391711",
+    "title": "JetBrains Rider and the .NET Aspire Plugin",
+    "type": "web_page",
+    "url": "https://blog.jetbrains.com/dotnet/2024/02/19/jetbrains-rider-and-the-net-aspire-plugin/",
+    "status": 2
+  },
+  {
+    "id": "78e15ffa-e81f-4e5d-8e31-a0a456bab5c6",
+    "title": "Kubernetes integration | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/compute/kubernetes/",
+    "status": 2
+  },
+  {
+    "id": "46719152-ae1c-41cb-b8b7-c580b995f28f",
+    "title": "KubernetesEnvironmentResource - Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/reference/api/typescript/aspire.hosting.kubernetes/kubernetesenvironmentresource/",
+    "status": 2
+  },
+  {
+    "id": "6597fbf5-2ae3-4cd1-a19f-64c0b44e7ccd",
+    "title": "Make containers aware of custom local domains on the host machine using .NET Aspire",
+    "type": "web_page",
+    "url": "https://anthonysimmon.com/dotnet-aspire-containers-share-custom-hosts/",
+    "status": 2
+  },
+  {
+    "id": "03b6b523-9cb6-4c49-b72d-739de31d0df7",
+    "title": "NET Aspire 9.3 is here and enhanced with GitHub Copilot! - Microsoft Developer Blogs",
+    "type": "web_page",
+    "url": "https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-93/",
+    "status": 2
+  },
+  {
+    "id": "78608fbe-65c6-4b63-b429-e2e1e9d791bb",
+    "title": "NetAspire.Example/NetAspire.Example.ServiceDefaults/Extensions.cs at master · gncyyldz/NetAspire.Example · GitHub",
+    "type": "web_page",
+    "url": "https://github.com/gncyyldz/NetAspire.Example/blob/master/NetAspire.Example.ServiceDefaults/Extensions.cs",
+    "status": 2
+  },
+  {
+    "id": "9ae1c420-37ec-452b-be07-42acc61482e7",
+    "title": "OpenTelemetry - Microsoft Learn",
+    "type": "web_page",
+    "url": "https://learn.microsoft.com/en-us/microsoftteams/platform/teams-sdk/in-depth-guides/observability/open-telemetry",
+    "status": 2
+  },
+  {
+    "id": "2c888b97-93a0-4fd0-97bf-fab07282749c",
+    "title": "OpenTelemetry in ASP .NET with Aspire - DEV Community",
+    "type": "web_page",
+    "url": "https://dev.to/edcsu/opentelemetry-in-asp-net-with-aspire-4206",
+    "status": 2
+  },
+  {
+    "id": "ada5a6e4-579c-4938-be5b-a97c66672c51",
+    "title": "Podman for .NET Developers: A Beginner-Friendly Docker Alternative - YouTube",
+    "type": "web_page",
+    "url": "https://www.youtube.com/watch?v=XltGT0F6ja4",
+    "status": 2
+  },
+  {
+    "id": "1f43a00b-0dc3-463a-9300-4a5f2375748f",
+    "title": "Podman-hosted containers may not be able to reach Aspire services #4136 - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/aspire/issues/4136",
+    "status": 2
+  },
+  {
+    "id": "186f72c9-5573-42b0-b9c8-f6aee4099b5f",
+    "title": "Publish SQL Database Projects as Container Images with MSBuild.Sdk.SqlProj",
+    "type": "web_page",
+    "url": "https://erikej.github.io/sqlclient/dotnet/dacfx/2026/04/09/dacfx-container-publish.html",
+    "status": 2
+  },
+  {
+    "id": "22542681-60ab-4f4d-bce8-4bbf7f6ecec1",
+    "title": "Python integration | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/frameworks/python/",
+    "status": 2
+  },
+  {
+    "id": "b66ab990-0174-43e4-949e-a4521094a727",
+    "title": "Quickstart - .NET Aspire",
+    "type": "web_page",
+    "url": "https://dotnet-aspire-52.mintlify.app/quickstart",
+    "status": 2
+  },
+  {
+    "id": "52a0fc37-2e13-42e3-a1b6-827379918642",
+    "title": "Referencing external Docker containers in .NET Aspire using the new custom resources API",
+    "type": "web_page",
+    "url": "https://anthonysimmon.com/referencing-external-docker-containers-dotnet-aspire-custom-resources/",
+    "status": 2
+  },
+  {
+    "id": "3a2dda16-1eca-411e-80f1-21b128008f87",
+    "title": "Run the Aspire dashboard standalone",
+    "type": "web_page",
+    "url": "https://aspire.dev/dashboard/standalone/",
+    "status": 2
+  },
+  {
+    "id": "0020f17d-8139-4454-925f-f6369d130817",
+    "title": "Secure communication between integrations - Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/integrations/custom-integrations/secure-communication/",
+    "status": 2
+  },
+  {
+    "id": "118041f5-1371-466b-b8ef-0daa83a892d6",
+    "title": "Simplifying Microservice Development with .NET Aspire, Dapr and Podman",
+    "type": "web_page",
+    "url": "https://dev.to/rineshpk/simplifying-microservice-development-with-net-aspire-dapr-and-podman-3hp0",
+    "status": 2
+  },
+  {
+    "id": "350722b1-3c3f-4da0-81e4-acfd33c3821e",
+    "title": "Testing in CI/CD pipelines - Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/testing/testing-in-ci/",
+    "status": 2
+  },
+  {
+    "id": "034f7ef4-413a-43bd-baf3-aa59715fc9d6",
+    "title": "Use existing azd workflows - Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/deployment/azure/azure-developer-cli/",
+    "status": 2
+  },
+  {
+    "id": "23510093-4d6e-4d00-802c-3fdd9a58da76",
+    "title": "What is Aspire? | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/what-is-aspire/",
+    "status": 2
+  },
+  {
+    "id": "0f2d0073-4900-4541-927e-7c613c4d2022",
+    "title": "What is the AppHost? | Aspire",
+    "type": "web_page",
+    "url": "https://aspire.dev/get-started/app-host/",
+    "status": 2
+  },
+  {
+    "id": "056fc2ae-c0a8-49bc-93ef-756db6f747f5",
+    "title": "Why does Aspire not run my projects in a container locally? : r/dotnet - Reddit",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/1fmrrn4/why_does_aspire_not_run_my_projects_in_a/",
+    "status": 2
+  },
+  {
+    "id": "ddd2dbe7-a7b5-41e9-aaa0-858af29ffe0b",
+    "title": "[.NET] Aspire, Simplifying Local Development Environment and ...",
+    "type": "web_page",
+    "url": "https://dev.to/baoduy2412/net-aspire-simplifying-local-development-environment-and-testing-an8",
+    "status": 2
+  },
+  {
+    "id": "0621e259-5b04-4c23-8bbe-8e0622a4af95",
+    "title": "asp.net core - how to store or protect app secrets in a non-azure production environment?",
+    "type": "web_page",
+    "url": "https://www.reddit.com/r/dotnet/comments/947h2k/aspnet_core_how_to_store_or_protect_app_secrets/",
+    "status": 2
+  },
+  {
+    "id": "691b4d70-3e41-4700-901e-a83093ec2917",
+    "title": "aspire/src/Aspire.Dashboard/README.md at main · microsoft/aspire · GitHub",
+    "type": "web_page",
+    "url": "https://github.com/dotnet/aspire/blob/main/src/Aspire.Dashboard/README.md",
+    "status": 2
+  },
+  {
+    "id": "244bad4d-0360-4bb8-9737-631f166048cc",
+    "title": "azure-sql-database-container/docs/what-is-the-container.md at main - GitHub",
+    "type": "web_page",
+    "url": "https://github.com/microsoft/azure-sql-database-container/blob/main/docs/what-is-the-container.md",
+    "status": 2
+  },
+  {
+    "id": "926a6bc5-9bf8-4b6b-b845-39f6fe8d3e01",
+    "title": "https://stackoverflow.com/questions/79415638/add-a-value-from-an-azure-devops-pipeline-library-variable-to-an-aspire-net-con",
+    "type": "web_page",
+    "url": "https://stackoverflow.com/questions/79415638/add-a-value-from-an-azure-devops-pipeline-library-variable-to-an-aspire-net-con",
+    "status": 3
+  },
+  {
+    "id": "6f2a55c9-1d75-4a04-9c9f-bd618df4007f",
+    "title": "https://stackoverflow.com/questions/79811383/how-come-azure-developer-cli-says-my-aspire-bicep-is-invalid-when-running-in-pip",
+    "type": "web_page",
+    "url": "https://stackoverflow.com/questions/79811383/how-come-azure-developer-cli-says-my-aspire-bicep-is-invalid-when-running-in-pip",
+    "status": 3
+  }
+]
