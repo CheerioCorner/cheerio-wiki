@@ -66,5 +66,14 @@ Infrastructure（Notebook / VM / On-prem / Cloud）
 ## 來源
 
 - [[wiki/sources/2026-09-06-dotnet-aspire-deep-research|深度研究報告]]（90 筆來源，rc-20260906-001）
+- [[wiki/sources/2026-09-08-aspire-container-runtime-comparison|Aspire 容器執行環境替代方案比較]]（免 Docker Desktop 方案）
 - [Microsoft 官方文件](https://aspire.dev/)
 - [Developer Control Plane 深入分析](https://anthonysimmon.com/exploring-microsoft-developer-control-plane-core-dotnet-aspire-dotnet-8/)
+
+## 相關頁面
+
+- [[wiki/concepts/developer-control-plane-dcp|Developer Control Plane (DCP)]] — 本地編排核心
+- [[wiki/comparisons/docker-vs-podman|Docker vs Podman]] — 容器引擎選型
+- [[wiki/comparisons/dotnet-aspire-windows-container-runtimes|Aspire 在 Windows 上的容器執行環境比較]] — 免 Docker Desktop 方案比較
+- [[wiki/concepts/dotnet-aspire-docker-compose-publisher|Aspire Docker Compose Publisher]] — 部署產物生成
+- [[wiki/topics/container-infrastructure|Container Infrastructure]] — 容器基礎設施主題

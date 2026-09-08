@@ -1,3 +1,25 @@
+## [2026-09-08] ingest | .NET Aspire 容器執行環境替代方案比較（免 Docker Desktop）
+
+- **來源**：`raw/conversations/2026-09-08-aspire-container-runtime-comparison.md`（Cheer 與 Claude 對話研究）
+- **研究主題**：Windows 11 上使用 .NET Aspire 時如何繞過 Docker Desktop 企業授權限制——Podman（官方支援）、裸 Docker Engine（非官方）、Docker Compose Publisher（9.2+ 部署功能）三條路徑比較
+- **建立頁面**：
+  - `wiki/sources/2026-09-08-aspire-container-runtime-comparison.md`（source note，陳述級溯源，8 個 provenance URL）
+  - `wiki/comparisons/dotnet-aspire-windows-container-runtimes.md`（comparison，三條路徑橫向對照 + 決策樹）
+  - `wiki/concepts/dotnet-aspire-docker-compose-publisher.md`（concept，Aspire 9.2+ Docker Compose Publisher 架構說明）
+- **更新頁面**：
+  - `wiki/entities/dotnet-aspire.md`（新增「容器執行環境選項」小節 + 相關頁面連結）
+  - `wiki/entities/podman.md`（新增「與 .NET Aspire 整合」小節 + 已知 issue #3517/#6846）
+  - `wiki/entities/docker.md`（新增 Docker Engine vs Docker Desktop 授權釐清）
+  - `wiki/comparisons/docker-vs-podman.md`（新增 Aspire 整合差異對照表）
+  - `wiki/topics/dotnet-aspire.md`（新增容器執行環境區塊 + 新頁面索引）
+  - `wiki/topics/container-infrastructure.md`（新增 Aspire 比較頁與來源頁索引）
+  - `wiki/index.md`（全量重建）
+- **交叉驗證**：Round 1 Claude + Gemini 提案一致（關鍵欄位：目標頁面、type、topics、不推翻既有結論），無分歧，直接採用
+- **動機脈絡**：Cheer 在長榮航空 IT 部門面臨 Docker Desktop 企業授權限制，延續 [[wiki/sources/2026-09-05-docker-vs-podman|Docker vs Podman]] 與 [[wiki/sources/2026-09-06-dotnet-aspire-deep-research|.NET Aspire 深度研究]] 的研究脈絡
+- 完成時間：2026-09-08 (CST)
+
+---
+
 ## [2026-09-05] ingest | Docker vs Podman: Why Podman Exists
 
 - **來源**：`raw/youtube/docker-vs-podman-why-podman-exists.md`（YouTube 字幕，auto-generated en，149 segments → 17 paragraphs）

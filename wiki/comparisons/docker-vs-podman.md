@@ -99,12 +99,29 @@ Podman 的 pod 讓多個容器共享網路命名空間 `[03:16]`，跟 Kubernete
 | 初學容器、需要最多教程 | Docker |
 | Docker Desktop 授權受限 | Podman（低成本遷移） |
 
+## .NET Aspire 整合差異
+
+在 .NET Aspire 專案中，Docker 與 Podman 的差異進一步放大：
+
+| 面向 | Docker Desktop | Podman |
+|------|---------------|--------|
+| Aspire 官方支援 | ✅ 首選 | ✅ 正式（preview 4+） |
+| 企業授權 | 付費（>250人或>$1000萬） | Apache 2.0 免費 |
+| 已知 Aspire issue | 無 | #3517（Entrypoint 格式）、#6846（DNS 解析） |
+| 本地開發穩定性 | 最佳 | 有 bug 但可追蹤 |
+
+裸 Docker Engine 走 WSL2 是非官方做法，有一個官方不修的 regression（Issue #8692）。（→ [[wiki/comparisons/dotnet-aspire-windows-container-runtimes|完整比較]]）
+
 ## 來源
 
 - [[wiki/sources/2026-09-05-docker-vs-podman|Docker vs Podman: Why Podman Exists]]
+- [[wiki/sources/2026-09-08-aspire-container-runtime-comparison|Aspire 容器執行環境替代方案比較]]
 
 ## 相關頁面
 
 - [[wiki/entities/docker|Docker]]
 - [[wiki/entities/podman|Podman]]
+- [[wiki/entities/dotnet-aspire|.NET Aspire]]
+- [[wiki/comparisons/dotnet-aspire-windows-container-runtimes|Aspire 在 Windows 上的容器執行環境比較]]
+- [[wiki/concepts/dotnet-aspire-docker-compose-publisher|Aspire Docker Compose Publisher]]
 - [[wiki/concepts/legacy-code-modernization|Legacy Code Modernization]] — Docker Desktop 替代方案脈絡

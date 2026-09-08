@@ -37,11 +37,14 @@ Docker Compose 是多容器應用的事實標準工具。透過 YAML 描述多�
 
 ## Docker Desktop 授權問題
 
-Docker Desktop 在企業環境（超過 250 人或年營收超過 1000 萬美元）需要付費授權。這是 Cheer 在長榮航空 IT 部門面臨的實際問題——正在研究替代方案。
+Docker Desktop 在企業環境（超過 250 人或年營收超過 1000 萬美元）需要付費授權（$9–24/user/月）。這是 Cheer 在長榮航空 IT 部門面臨的實際問題——正在研究替代方案。
+
+**重要釐清**：Docker Engine（`dockerd`）本身是 Apache 2.0 授權，任何規模商業使用都免費。Docker Desktop 的訂閱限制只綁定在 Docker Desktop 這個 GUI/VM 產品上，不涉及 Engine 本身。因此裸 Docker Engine 或 Docker Compose Publisher 產出的 compose 檔案，都可以用免費的 Docker Engine 執行。
 
 ### 替代方案
 
 - **Podman**：daemonless、rootless-first、相容 Docker API（→ [[wiki/entities/podman|Podman]]）
+- **Docker Compose Publisher**：Aspire 9.2+ 正式功能，產出 compose 檔案用免費 Docker Engine 執行（→ [[wiki/concepts/dotnet-aspire-docker-compose-publisher|詳細說明]]）
 - **Rancher Desktop**：GUI 友善、內建 K3s/Containerd
 - **Colima**：macOS 輕量級方案
 

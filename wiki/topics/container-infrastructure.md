@@ -23,12 +23,14 @@ canonical: topics/container-infrastructure
 | 頁面 | 說明 |
 |------|------|
 | [[wiki/comparisons/docker-vs-podman|Docker vs Podman]] | 架構差異與選型建議 |
+| [[wiki/comparisons/dotnet-aspire-windows-container-runtimes|Aspire 在 Windows 上的容器執行環境比較]] | 免 Docker Desktop 方案比較 🛠️ |
 
 ## 來源
 
 | 頁面 | 說明 |
 |------|------|
 | [[wiki/sources/2026-09-05-docker-vs-podman|Docker vs Podman: Why Podman Exists]] | 5 分鐘影片：Docker vs Podman 核心差異 |
+| [[wiki/sources/2026-09-08-aspire-container-runtime-comparison|Aspire 容器執行環境替代方案比較]] | Aspire 免 Docker Desktop 方案 🛠️ |
 
 ## 相關 Topics
 
