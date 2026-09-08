@@ -82,6 +82,6 @@ Google Cloud 團隊提出用 AI coding agent 現代化 legacy codebase 的三步
 
 ## 開放問題
 
-- Docker Desktop 收費後的免費替代方案（Podman、Rancher Desktop）實際評估
+- Docker Desktop 收費後的免費替代方案（Podman、Rancher Desktop）實際評估 → [[wiki/sources/2026-09-05-docker-vs-podman|Docker vs Podman: Why Podman Exists]] 已深入比較 Docker 與 Podman 的架構差異
 - 三層驗證是否有數據支撐降低多少 defect escape rate
 - Agent 自我辯護機制的實際效果——是否真的比單向 AI review 更好？

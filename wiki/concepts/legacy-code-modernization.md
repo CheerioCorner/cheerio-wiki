@@ -31,8 +31,8 @@ Legacy Codebase → Plan → Execute → Verify → Modernized Code
 
 兩項附帶好處：① 一條指令還原乾淨狀態 `[02:09]`；② 順便產出 onboarding 文件 `[02:19]`。
 
-**Docker Desktop 替代方案**（因 Docker Desktop 企業授權收費）：
-- **Podman**：相容 Docker API、daemonless、適合 Linux/Windows WSL2
+**Docker Desktop 替代方案**（因 Docker Desktop 企業授權收費，→ 詳見 [[wiki/sources/2026-09-05-docker-vs-podman|Docker vs Podman: Why Podman Exists]]）：
+- **Podman**：相容 Docker API、daemonless、適合 Linux/Windows WSL2（→ [[wiki/entities/podman|Podman]]）
 - **Rancher Desktop**：GUI 友善、內建 K3s/Containerd、Windows 好選擇
 - **Colima**：macOS 輕量級方案
 
@@ -124,6 +124,7 @@ AI 寫完 code
 
 - [[wiki/sources/2026-08-25-google-cloud-legacy-code-ai|Source Note]]
 - [[raw/youtube/how-to-modernize-legacy-codebases-ai-coding-agents|原始逐字稿]]
+- [[wiki/sources/2026-09-05-docker-vs-podman|Docker vs Podman: Why Podman Exists]]（補充 Docker Desktop 替代方案的架構差異）
 
 ## 相關頁面
 

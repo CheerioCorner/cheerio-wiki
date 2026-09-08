@@ -18,6 +18,7 @@
 - [[wiki/topics/claude-code.md|Claude Code]]
 - [[wiki/topics/code-review.md|Code Review]]
 - [[wiki/topics/coding-agent.md|Coding Agent]]
+- [[wiki/topics/container-infrastructure.md|Container Infrastructure]] 🆕
 - [[wiki/topics/copilot-sdk.md|Copilot SDK]]
 - [[wiki/topics/extension-dev.md|Extension Development]]
 - [[wiki/topics/hooks.md|Hooks]]
@@ -83,6 +84,7 @@
 - [[wiki/concepts/copilot-steering-queueing.md|Copilot Steering & Queueing — 訊息投遞模式]] — > 當 session 正在處理時，兩種訊息投遞模式：steering（即時轉向）和 queueing（排隊等待）。 🛠️
 - [[wiki/concepts/defect-metrics.md|Defect Metrics — 軟體品質測量]] — > 兩個關鍵的軟體品質指標：Defect Density（缺陷密度）和 Escape Rate（逃脫率）。
 - [[wiki/concepts/design-md-format.md|design.md Format]] — > Google 定義的品牌設計文件格式，讓 AI coding agent 在產生設計前先讀懂品牌規範，確保所有輸出 on-brand。
+- [[wiki/comparisons/docker-vs-podman.md|Docker vs Podman — 架構差異與選型建議]] 🆕 — > 兩個容器引擎解決同一問題，但設計選擇不同：daemon vs daemonless、rootless-first vs optional。選型決策樹與遷移建議。
 - [[wiki/concepts/durable-execution-for-agents.md|Durable Execution for Agents — Agent 框架之外的可靠性層]] — > Agent framework（LangGraph、AutoGen 等）擅長推理與路由，但不擅長「等待數小時的人工核准」或「crash 後恢復到正確狀態」。Durable Execution 平台（Temporal、Azure Dura 🛠️
 - [[wiki/concepts/github-copilot-vs-claude-code-skills-ecosystem.md|Copilot 與 Claude Code Skills 生態系比較]] — > GitHub Copilot Extensions 與 Claude Code 多層 Skills 系統在架構、規模、體驗與策略上的全面比較。 🛠️
 - [[wiki/concepts/gpu-architecture-for-ai-inference.md|GPU Architecture for AI Inference — 為什麼 AI 需要 GPU 而不是 CPU]] — AI 推理的核心瓶頸是**記憶體頻寬**，不是算力。GPU 的優勢在於大量平行核心 + 高頻寬 VRAM，完美匹配模型推理的「大量小乘法」特性。 🛠️
@@ -158,6 +160,7 @@
 - [[wiki/entities/dgx-spark.md|NVIDIA DGX Spark — 128GB Unified Memory 的地端 AI 工作站]] — > NVIDIA 推出的平價地端 AI 工作站，128GB Unified Memory，讓地端模型從「玩具」變「可用工具」。 🛠️
 - [[wiki/entities/dhh.md|DHH — Ruby on Rails 作者、AI 工作流實踐者]] — > David Heinemeier Hansson（DHH），Ruby on Rails 框架創建者、37signals（Basecamp）創辦人。2026 年起公開分享其大規模並行 AI Agent 工作流實踐。 🛠️
 - [[wiki/entities/docling.md|Docling — IBM 文件解析與結構化框架]] — > Docling 是 IBM Research Zurich 開發的開源文件解析框架，把 PDF 等多種格式的非結構化文件轉換成結構化的 DoclingDocument tree，支援 Chunkless RAG 與 AI 代理整合。現為
+- [[wiki/entities/docker.md|Docker — Daemon 架構的主流容器引擎]] 🆕 — > Docker 是最廣泛使用的容器引擎，以 daemon 架構為核心，搭配成熟的 Docker Compose 生態系。企業授權問題推動替代方案研究。
 - [[wiki/entities/dominikmartn-nothing-design-skill.md|dominikmartn/nothing-design-skill — Nothing 品牌風格皮膚]] — > 窄範圍品牌皮膚型 skill——套用 Nothing（手機品牌）點陣/單色/工業風格，NEVER 自動觸發。
 - [[wiki/entities/github-copilot-sdk.md|GitHub Copilot SDK — Custom Agents 平台]] — > GitHub Copilot SDK 是 Copilot 的**程式化代理平台**，提供 Custom Agents、Sub-agent Orchestration、Custom Skills、Fleet Mode、Hooks、MCP  🛠️
 - [[wiki/entities/github-copilot.md|GitHub Copilot — AI 程式碼輔助生態系]] — > GitHub Copilot 是 GitHub（Microsoft 旗下）推出的 AI 程式碼輔助產品線，從 IDE 補全演化為完整 Agent 生態系：Extensions SDK、Agent Skills、Cloud Agent、C 🛠️
@@ -208,6 +211,7 @@
 - [[wiki/entities/pi-loop-scheduler.md|pi-loop-scheduler — Pi 的 Cron Job 與排程系統]] — > `@pi-agents/loop` — Pi 的排程 extension，提供 cron job、動態自節奏、idle gating 等功能。非 core runtime 內建，而是透過 extension 機制載入。 🛠️
 - [[wiki/entities/pi-mono.md|pi-mono — Agent Toolkit Monorepo]] — > [`earendil-works/pi`](https://github.com/earendil-works/pi)（前身 `badlogic/pi-mono`）是 Mario Zechner 維護的 TypeScript agent 🛠️
 - [[wiki/entities/pi-web-access-zh-tw.md|pi-web-access-zh-tw — Web 存取擴充的繁體中文本地化版]] — > **你維護的 `pi-web-access` 繁體中文本地化套件**，已安裝到 Pi 全域（`pi install file:../../../Cheerio/pi-web-access-zh-tw`）。 🛠️
+- [[wiki/entities/podman.md|Podman — Daemonless、Rootless-First 的容器引擎]] 🆕 — > Podman 是 Red Hat 主導的容器引擎，以 daemonless 與 rootless-first 為核心設計，是 Docker 的主要替代方案。
 - [[wiki/entities/pixel2motion.md|pixel2motion — AI Logo 動畫 Skill]] — > AI Logo 動畫 Skill，將靜態 Logo 圖片自動轉為流暢的 SVG 動畫、HTML 動態展示、GIF/影片預覽。
 - [[wiki/entities/plannotator.md|Plannotator]] — > AI coding agent 的視覺化審閱工具，在瀏覽器中標注 plan、code review、HTML artifact。
 - [[wiki/entities/prime-agent.md|Prime Agent — 用 Python Runtime 取代 Tool Calling 的開源 Coding Agent]] — > Prime Intellect 於 2026-08-05 發布的開源 self-improving coding harness，建構在 [[wiki/entities/pi-agent-core|pi-agent-core]] 之上，
@@ -238,6 +242,7 @@
 
 - [[wiki/sources/README.md|README]]
 - [[wiki/sources/2026-09-06-hokkaido-trip-planning.md|北海道五天四夜自駕行程規劃 — 楓紅＋長輩友善]] — > 整合 Deep Research、Weathernews 官方楓紅預報、以及 Gemini 討論的北海道自駕行程規劃，專門針對40歲駕駛載兩位75歲長輩的情境設計。
+- [[wiki/sources/2026-09-05-docker-vs-podman.md|Docker vs Podman: Why Podman Exists]] 🆕 — > 5 分鐘影片，釐清 Docker 與 Podman 的核心架構差異——daemon vs daemonless——以及何時選誰。補充 Docker Desktop 替代方案評估。
 - [[wiki/sources/2026-02-10-pi-agent-core-design.md|下一代Agent架构——Pi Agent Core 设计逻辑深度解析]] — 一篇知乎文章,對 `badlogic/pi-mono/packages/agent`(又稱 **Pi Agent Core**)做程式碼級解剖。發布於 2026-02-10,作者署為「王鹏LLM」,286 人贊同。
 - [[wiki/sources/2026-05-02-pi-mono-framework-tw.md|別再被複雜框架綁架:pi-mono 回歸直覺的 TypeScript AI Agent 開發框架]] — 一篇 ai-chain.tw 的繁體中文長文,從**整個 monorepo**與**代理人生態**角度切入,評析 `badlogic/pi-mono`。發布於 2026-05-02,作者署為「AI-Chain」團隊。
 - [[wiki/sources/2026-07-11-mattpocock-skills.md|mattpocock/skills — 工程實踐 Skills 集合]] — > 視覺化：[[wiki/visualizations/mattpocock-skills.canvas|mattpocock/skills Canvas]]

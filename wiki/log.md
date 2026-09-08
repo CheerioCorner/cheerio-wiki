@@ -1,3 +1,23 @@
+## [2026-09-05] ingest | Docker vs Podman: Why Podman Exists
+
+- **來源**：`raw/youtube/docker-vs-podman-why-podman-exists.md`（YouTube 字幕，auto-generated en，149 segments → 17 paragraphs）
+- **研究主題**：Docker 與 Podman 的架構差異（daemon vs daemonless）、rootless 設計哲學、遷移門檻、Compose 生態系、Pod 概念
+- **建立頁面**：
+  - `wiki/sources/2026-09-05-docker-vs-podman.md`（source note，陳述級溯源 + inline 時間戳）
+  - `wiki/entities/docker.md`（entity，Daemon 架構容器引擎）
+  - `wiki/entities/podman.md`（entity，Daemonless/Rootless-First 容器引擎）
+  - `wiki/comparisons/docker-vs-podman.md`（comparison，架構差異與選型建議）
+  - `wiki/topics/container-infrastructure.md`（topic 導航頁）
+- **更新頁面**：
+  - `wiki/concepts/legacy-code-modernization.md`（新增 cross-reference 到 Docker vs Podman source note）
+  - `wiki/sources/2026-08-25-google-cloud-legacy-code-ai.md`（開放問題連結到新 source note）
+  - `wiki/index.md`（新增 container-infrastructure topic、docker/podman entity、docker-vs-podman comparison/source）
+- **交叉驗證**：Claude 提案通過（Gemini 因 CLI 權限問題跳過），無分歧
+- **動機脈絡**：Cheer 在長榮航空 IT 部門面臨 Docker Desktop 企業授權限制，持續研究容器替代方案
+- 完成時間：2026-09-05 (CST)
+
+---
+
 ## [2026-09-06] ingest | 北海道五天四夜自駕行程規劃 — 楓紅＋長輩友善
 
 - **來源**：`raw/deep-research/rc-20260906-002/hokkaido-trip-integrated-report.md`（整合 3 份研究 + Weathernews 官方資料）
