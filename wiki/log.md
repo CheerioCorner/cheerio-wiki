@@ -1,3 +1,18 @@
+## [2026-09-09] ingest | usestrix/strix — 開源 AI 自主滲透測試工具研究
+
+- **來源**：`raw/web/2026-09-09-usestrix-strix-github-research.md`（Pi 直接 git clone + 檔案檢視研究）
+- **研究主題**：GitHub repo usestrix/strix 的完整研究——專案定位、LLM 使用方式（API key vs ChatGPT 訂閱制）、Agent 相容性（Claude Code / Cursor / Codex，Copilot 未提及）、Docker 依賴與 Podman 可行性、Strix Cloud 免 Docker 模式
+- **建立頁面**：
+  - `wiki/sources/2026-09-09-usestrix-strix-github-research.md`（source note，含具體檔案出處）
+  - `wiki/entities/strix.md`（entity，Strix 完整介紹）
+- **更新頁面**：
+  - `wiki/topics/software-quality.md`（新增 Strix entity + source 索引）
+  - `wiki/topics/container-infrastructure.md`（新增 Strix source 索引——Docker 依賴分析）
+  - `wiki/topics/skill-system.md`（新增 Strix entity 索引——SKILL.md-compatible agent）
+  - `wiki/index.md`（全量重建）
+- **交叉驗證**：簡化流程，直接由 Pi 基於檔案檢視結果建立頁面（單一研究來源、明確事實性內容）
+- 完成時間：2026-09-09 (CST)
+
 ## [2026-09-08] ingest | .NET Aspire 容器執行環境替代方案比較（免 Docker Desktop）
 
 - **來源**：`raw/conversations/2026-09-08-aspire-container-runtime-comparison.md`（Cheer 與 Claude 對話研究）

@@ -29,6 +29,7 @@ canonical: topics/container-infrastructure
 
 | 頁面 | 說明 |
 |------|------|
+| [[wiki/sources/2026-09-09-usestrix-strix-github-research|usestrix/strix — 開源 AI 自主滲透測試工具研究]] | Strix Docker 依賴分析：強制 Docker、Podman 未提及、推測替代路徑 🛠️ |
 | [[wiki/sources/2026-09-05-docker-vs-podman|Docker vs Podman: Why Podman Exists]] | 5 分鐘影片：Docker vs Podman 核心差異 |
 | [[wiki/sources/2026-09-08-aspire-container-runtime-comparison|Aspire 容器執行環境替代方案比較]] | Aspire 免 Docker Desktop 方案 🛠️ |
 

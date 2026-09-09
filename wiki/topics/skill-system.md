@@ -14,6 +14,7 @@ updated: 2026-08-23
 
 - [[wiki/entities/agentskills-io-standard|agentskills.io — AI Agent Skill 開放標準]] — 一個包含**指令、腳本、資源**的可移植工作流模塊。 🛠️
 - [[wiki/entities/anthropic-agent-skills|Anthropic Agent Skills — 官方 Skill 系統]] — Anthropic 官方定義的檔案系統驅動 Skill 系統，透過三層漸進式揭露讓 Claude 按需載入專業知識。**這是 [[wiki/concepts/agent-skills|Agent Skills 根概念]] 在 Claude 生態系上的具體實作。** 🛠️
+- [[wiki/entities/strix|Strix — 開源 AI 自主滲透測試工具]] — SKILL.md-compatible agent，可搭配 Claude Code / Cursor / Codex 使用。 🛠️
 
 ## Concepts
 
