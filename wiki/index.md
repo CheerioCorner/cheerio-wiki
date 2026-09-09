@@ -59,6 +59,7 @@
 - [[wiki/concepts/ai-animation-generation-approaches|"AI 動畫生成手法分類"]] — 從一支 53 秒 YouTube 短片整理出的 7 種 AI 動畫／影片生成手法分類，已逐一查證核實真實工具名稱與用途。
 - [[wiki/concepts/ai-code-review|AI Code Review]] — > 用 AI 自動化代碼審查，從「人工逐行檢查」進化到「AI 初審 + 人類終審」。 🛠️
 - [[wiki/concepts/ai-coding-workflow|"AI Coding Workflow — 結構化 AI 編碼工作流程"]] — > 一套結構化的 AI 編碼工作流程，把模糊想法變成可追踪、可審查的程式碼變更。
+- [[wiki/concepts/ai-pentest-agent-landscape|AI 自主滲透測試 Agent 生態系]] — 2026 年 6 個主要開源 AI pentest agent 全景比較：LLM 使用、agent 獨立性、容器支援。 🛠️
 - [[wiki/concepts/arc-agi-3-benchmark|"ARC-AGI-3 Benchmark"]] — > ARC-AGI-3——ARC Prize Foundation 於 2026 年推出的互動式推理 benchmark，測試 agent 在完全未知規則的模擬 🛠️
 - [[wiki/concepts/atdp|"ATDP — Agent Trajectory Data Protocol"]] — > Agent 軌跡數據協定，將 Agent 與環境互動的每一步結構化標準化，為自我進化奠定數據基礎。
 - [[wiki/concepts/chunkless-rag|"Chunkless RAG — 保留文件結構的檢索增強生成"]] — > Chunkless RAG 是一種保留文件 tree structure 的 RAG 方法，讓 AI Agent 透過推理導航文件，而非切成 chunks 
@@ -226,7 +227,7 @@
 - [[wiki/entities/smolagents|"smolagents — Hugging Face 的 Code-first Agent 框架"]] — > Hugging Face 推出的 Python Agent 框架，核心哲學：LLM 直接輸出 Python 代碼（AST 解析執行），而非 JSON 工具呼
 - [[wiki/entities/spark-x25-4b|"Spark-X2.5-4B — 華為 Ascend 訓練的 On-Device Agentic 模型"]] — > SparkLLM Team 推出的 4.1B 參數 Dense 模型，以 Agentic 能力為核心賣點，在同量級開源模型中 agent/code/math 🛠️
 - [[wiki/entities/story-to-handdrawn-video|"story-to-handdrawn-video — 中文故事轉手繪動畫 Skill"]] — > Agent Skill，將中文故事文字或圖片序列轉為手繪日記風格動畫（無聲 MP4）。
-- [[wiki/entities/strix|Strix — 開源 AI 自主滲透測試工具]] — 開源 AI 自主滲透測試工具，用 AI Agent 模擬真實黑客行為，動態執行目標程式碼、找出漏洞、並透過實際 PoC 驗證。 🛠️
+- [[wiki/entities/strix|"Strix — 開源 AI 自主滲透測試工具"]] — > Strix 是一個開源的 AI 自主滲透測試工具（Apache 2.0），用 AI Agent 模擬真實黑客行為，動態執行目標程式碼、找出漏洞、並透過實際  🛠️
 - [[wiki/entities/tau|tau — Pi 的 Python 移植版]] — > Tau 是 Pi 的 Python port，由 [Hugging Face](https://huggingface.co) 開發並開源（MIT lice
 - [[wiki/entities/theo-t3gg|"Theo (t3gg) — 程式碼重要性光譜與驗證方法論倡導者"]] — > Theo（t3gg）是科技 YouTube 頻道主，以務實的軟體工程觀點聞名，近期提出「程式碼重要性光譜」和「用 cheap code 驗證 importa
 - [[wiki/entities/tree-sitter|Tree-sitter]] — > 高效能 Parser Generator，支援毫秒級增量解析，是現代 Code Intelligence 的核心基礎設施。 🛠️
@@ -396,7 +397,8 @@
 - [[wiki/sources/2026-09-06-dotnet-aspire-deep-research|".NET Aspire 企業級平台深度研究"]] — > 研究 Job：`rc-20260906-001`｜90 筆來源（去重+品質過濾後）｜2026-09-06 🛠️
 - [[wiki/sources/2026-09-06-hokkaido-trip-planning|北海道五天四夜自駕行程規劃 — 楓紅＋長輩友善]] — 這是一份整合 Deep Research、Weathernews 官方楓紅預報、以及 Gemini 討論的北海道自駕行程規劃，專門針對 40 歲駕駛載兩位 75 🛠️
 - [[wiki/sources/2026-09-08-aspire-container-runtime-comparison|".NET Aspire 容器執行環境替代方案比較（Windows 11 免 Docker Desktop）"]] — > Cheer 與 Claude 的對話研究，聚焦 Windows 11 上使用 .NET Aspire 時如何繞過 Docker Desktop 企業授權限制 🛠️
-- [[wiki/sources/2026-09-09-usestrix-strix-github-research|usestrix/strix — 開源 AI 自主滲透測試工具研究]] — GitHub repo 深度研究：LLM 使用方式、Agent 相容性、Docker 依賴、Podman 可行性。 🛠️
+- [[wiki/sources/2026-09-09-ai-pentest-agent-competitor-research|AI 自主滲透測試 Agent 競品深度研究]] — Shannon/PentestGPT/PentAGI/Decepticon/Pentest-Swarm-AI vs Strix 多維度比較。 🛠️
+- [[wiki/sources/2026-09-09-usestrix-strix-github-research|"usestrix/strix — 開源 AI 自主滲透測試工具研究"]] — > Strix 是一個開源的 AI 自主滲透測試工具，用 AI Agent 模擬真實黑客行為：動態執行目標程式碼、找出漏洞、並透過實際 PoC 驗證。Apach 🛠️
 - [[wiki/sources/mcp-official-docs-42|MCP 官方文件彙整（42 篇）]] — > 2026-08-22 從 modelcontextprotocol.io 剪藏的 42 篇官方文件，涵蓋 MCP 協定的完整規範。Protocol vers
 - [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs & Development Tooling]] — > 彙整 MCP 官方多語言 SDK、MCP Inspector 開發工具、參考伺服器範例與常用食譜。 🛠️
 

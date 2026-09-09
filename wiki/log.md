@@ -1,3 +1,16 @@
+## [2026-09-09] ingest | AI 自主滲透測試 Agent 競品深度研究
+
+- **來源**：`raw/web/2026-09-09-ai-pentest-agent-competitor-research.md`（GitHub API 搜尋 + git clone + 檔案檢視）
+- **研究主題**：以 Strix 為基準，搜尋並比較 5 個同類型 AI pentest agent（Shannon、PentestGPT、PentAGI、Decepticon、Pentest-Swarm-AI），涵蓋 LLM 使用方式、agent 獨立性、容器支援、差異化特色
+- **建立頁面**：
+  - `wiki/sources/2026-09-09-ai-pentest-agent-competitor-research.md`（source note，含比較總覽表）
+  - `wiki/concepts/ai-pentest-agent-landscape.md`（concept，生態系全景 + 關鍵洞察）
+- **更新頁面**：
+  - `wiki/topics/software-quality.md`（新增 concept + source 索引）
+  - `wiki/index.md`（全量重建）
+- **關鍵發現**：Decepticon 支援最多訂閱制帳號（6 種）；PentAGI 和 Decepticon 明確支援 Podman；Pentest-Swarm-AI 是唯一真正的 swarm 架構
+- 完成時間：2026-09-09 (CST)
+
 ## [2026-09-09] ingest | usestrix/strix — 開源 AI 自主滲透測試工具研究
 
 - **來源**：`raw/web/2026-09-09-usestrix-strix-github-research.md`（Pi 直接 git clone + 檔案檢視研究）
