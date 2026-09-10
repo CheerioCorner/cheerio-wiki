@@ -1,3 +1,21 @@
+## [2026-09-10] ingest | MCP Just Got a Whole Lot Better
+
+- **來源**：`raw/youtube/mcp-server-design-evolution.md`（YouTube 影片，Neon Postgres 頻道）
+- **主題**：MCP server 設計從一對一 API endpoint 映射演進到 ergonomic workflow tools + progressive tool discovery + code mode
+- **雙模型交叉驗證**：Claude（claude-sonnet-5）+ Gemini（agy）Round 1 一致，關鍵欄位（source note type、新 concept/neon-mcp-server、topics）全部吻合
+- **建立頁面**：
+  - `wiki/sources/2026-09-08-mcp-just-got-a-whole-lot-better.md`（source note，含陳述級溯源）
+  - `wiki/concepts/progressive-tool-discovery.md`（concept：MCP client 端三階段工具發現模式）
+  - `wiki/entities/neon-mcp-server.md`（entity：Neon 的三層 MCP server 架構）
+- **更新頁面**：
+  - `wiki/concepts/mcp-servers.md`（新增 tool 暴露模式演化段落，sources 4→5）
+  - `wiki/concepts/code-execution-as-tool-calling.md`（補充 code mode / programmatic tool calling MCP 實例，sources 1→2）
+  - `wiki/concepts/mcp-clients.md`（新增 Progressive Tool Discovery 與 Code Mode 推薦模式，sources 3→4）
+  - `wiki/topics/mcp-ecosystem.md`（新增 progressive-tool-discovery、neon-mcp-server、source note 導航）
+  - `wiki/index.md`（全量重建，89 concepts / 100 entities / 158 sources）
+
+---
+
 ## [2026-09-09] ingest | AI 自主滲透測試 Agent 競品深度研究
 
 - **來源**：`raw/web/2026-09-09-ai-pentest-agent-competitor-research.md`（GitHub API 搜尋 + git clone + 檔案檢視）

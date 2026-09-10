@@ -2,8 +2,8 @@
 title: MCP Servers — 建置與操作
 type: concept
 created: 2026-08-23
-updated: 2026-08-23
-sources: 4
+updated: 2026-09-10
+sources: 5
 tags: [mcp, server, development, debugging]
 topics: [agent-infrastructure, ai-development-tools, mcp-ecosystem]
 canonical: concepts/mcp-servers
@@ -12,6 +12,7 @@ provenance_raw:
   - "raw/web/2026-08-22-Build an MCP server.md"
   - "raw/web/2026-08-22-Debugging.md"
   - "raw/web/2026-08-22-Configuration and flags.md"
+  - "raw/youtube/mcp-server-design-evolution.md"
 ---
 
 # MCP Servers — 建置與操作
@@ -26,6 +27,16 @@ Server 的主要職責：
 - 暴露可用的 tools、resources、prompts（透過 `*/list` 方法）
 - 回應 `tools/call`、`resources/read`、`prompts/get` 等請求
 - 支援 `server/discover` 進行能力廣告 `Architecture overview`
+
+## Tool 暴露模式的演化
+
+MCP Server 暴露 tool 的模式經歷三個階段 `[[wiki/sources/2026-09-08-mcp-just-got-a-whole-lot-better|MCP Just Got a Whole Lot Better]]`：
+
+1. **一對一映射**（早期）：每個 API endpoint 對應一個 tool。問題：tool 數量爆炸塞爆 context window、相似 tool 讓 agent 選錯 `[00:25]-[00:57]`
+2. **Server 端分層 tool call**：改用「搜尋 / 檢視 / 執行」三個 tool 取代數百個 `[01:03]`
+3. **責任轉移**（現行）：分層 discovery 改由 client 端實作（[[wiki/concepts/progressive-tool-discovery|Progressive Tool Discovery]]），server 端專注暴露含 ergonomic 捷徑的高品質 tool 集合 `[01:26]-[05:27]`
+
+現代 MCP server 的最佳實踐：提供「底層 API endpoint + 人體工學複合工作流（Ergonomic Workflow Tools）」雙軌設計，並可將 tool 包裝為獨立套件支援跨框架適配（如 [[wiki/entities/neon-mcp-server|Neon MCP Server]] 的 Mastra/Eve adapter）`[04:44]-[05:11]`。
 
 ## 建置 MCP Server
 
@@ -73,6 +84,8 @@ MCP Server 支援多種設定選項，包含連線參數、安全性設定、以
 
 - [[wiki/entities/mcp-model-context-protocol|MCP]] — 協定總覽
 - [[wiki/concepts/mcp-clients|MCP Clients]] — 客戶端開發
+- [[wiki/concepts/progressive-tool-discovery|Progressive Tool Discovery]] — Client 端工具發現模式
+- [[wiki/entities/neon-mcp-server|Neon MCP Server]] — 現代 MCP server 參考架構
 - [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs & Tooling]] — SDK 與工具
 
 ## 來源
@@ -81,3 +94,4 @@ MCP Server 支援多種設定選項，包含連線參數、安全性設定、以
 - [[raw/web/2026-08-22-Build an MCP server|Build an MCP server]]
 - [[raw/web/2026-08-22-Debugging|Debugging]]
 - [[raw/web/2026-08-22-Configuration and flags|Configuration and flags]]
+- [[wiki/sources/2026-09-08-mcp-just-got-a-whole-lot-better|MCP Just Got a Whole Lot Better]]

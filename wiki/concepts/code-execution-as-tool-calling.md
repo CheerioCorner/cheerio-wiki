@@ -2,8 +2,8 @@
 title: "Code Execution as Tool Calling"
 type: concept
 created: 2026-08-13
-updated: 2026-08-13
-sources: 1
+updated: 2026-09-10
+sources: 2
 tags: [agent, python, runtime, execution]
 topics: [agent-architecture]
 canonical: concepts/code-execution-as-tool-calling
@@ -26,6 +26,7 @@ canonical: concepts/code-execution-as-tool-calling
 
 - [[wiki/entities/prime-agent|Prime Agent]]：建構在 Pi 之上，用 Python runtime 取代 tool calling
 - CodeAct 模式：學術研究中的類似概念
+- **Code Mode / Programmatic Tool Calling**（MCP 生態）：Codex、Claude Code 等 coding agent 讓 agent 在沙箱環境中撰寫腳本串連多個 MCP tool call，只把最終結果回傳給模型 `[01:49]-[02:19]`。這是 Code Execution 概念在 MCP 場域的具體落地，處理的是「工具組合（tool composition）」問題，與 [[wiki/concepts/progressive-tool-discovery|Progressive Tool Discovery]]（處理「工具選擇」）互補 `[[wiki/sources/2026-09-08-mcp-just-got-a-whole-lot-better|MCP Just Got a Whole Lot Better]]`
 
 ## 與傳統 Tool Calling 的比較
 
@@ -44,3 +45,6 @@ canonical: concepts/code-execution-as-tool-calling
 - [[wiki/entities/prime-agent|Prime Agent]]
 - [[wiki/concepts/recursive-language-model|Recursive Language Model]]
 - [[wiki/concepts/loop-vs-graph-engineering|Loop vs Graph Engineering]]
+- [[wiki/concepts/progressive-tool-discovery|Progressive Tool Discovery]]
+- [[wiki/concepts/mcp-servers|MCP Servers]]
+- [[wiki/entities/neon-mcp-server|Neon MCP Server]]

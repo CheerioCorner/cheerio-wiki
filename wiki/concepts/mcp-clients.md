@@ -2,8 +2,8 @@
 title: MCP Clients — 建置與操作
 type: concept
 created: 2026-08-23
-updated: 2026-08-23
-sources: 3
+updated: 2026-09-10
+sources: 4
 tags: [mcp, client, elicitation, development]
 topics: [agent-infrastructure, mcp-ecosystem]
 canonical: concepts/mcp-clients
@@ -11,6 +11,7 @@ provenance_raw:
   - "raw/web/2026-08-22-Understanding MCP clients.md"
   - "raw/web/2026-08-22-Build an MCP client.md"
   - "raw/web/2026-08-22-Client Best Practices.md"
+  - "raw/youtube/mcp-server-design-evolution.md"
 ---
 
 # MCP Clients — 建置與操作
@@ -55,14 +56,26 @@ Client 開發的最佳實踐包含：
 - 管理多 Server 連線的生命週期
 - 正確處理通知訂閱 `Client Best Practices`
 
+### 近期推薦模式：Progressive Tool Discovery 與 Code Mode
+
+近期 MCP client 生態系（尤其是 Codex、Claude Code 等 coding agent）新增了兩項推薦模式 `[[wiki/sources/2026-09-08-mcp-just-got-a-whole-lot-better|MCP Just Got a Whole Lot Better]]`：
+
+1. **[[wiki/concepts/progressive-tool-discovery|Progressive Tool Discovery]]**：client 端實作的三階段工具發現（Search → Inspect → Execute），取代把所有 tool 一次性載入 context window `[01:26]-[01:49]`
+2. **Code Mode（Programmatic Tool Calling）**：agent 在沙箱環境中撰寫腳本串連多個 tool call，只把最終結果回傳給模型，處理工具組合問題 `[01:49]-[02:19]`
+
+這兩項模式讓 client 端接手了原本由 server 端要解決的工具選擇與組合問題 `[02:19]`。
+
 ## 相關頁面
 
 - [[wiki/entities/mcp-model-context-protocol|MCP]] — 協定總覽
 - [[wiki/concepts/mcp-servers|MCP Servers]] — 伺服器端開發
 - [[wiki/concepts/mcp-client-types|MCP Client Types]] — 客戶端類型與連線
+- [[wiki/concepts/progressive-tool-discovery|Progressive Tool Discovery]] — 漸進式工具發現
+- [[wiki/entities/neon-mcp-server|Neon MCP Server]] — 現代 MCP server 參考架構
 
 ## 來源
 
 - [[raw/web/2026-08-22-Understanding MCP clients|Understanding MCP clients]]
 - [[raw/web/2026-08-22-Build an MCP client|Build an MCP client]]
 - [[raw/web/2026-08-22-Client Best Practices|Client Best Practices]]
+- [[wiki/sources/2026-09-08-mcp-just-got-a-whole-lot-better|MCP Just Got a Whole Lot Better]]

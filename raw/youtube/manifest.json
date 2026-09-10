@@ -282,6 +282,21 @@
       "auto_generated": true,
       "source_api": "youtube_transcript_api",
       "created": "2026-09-05"
+    },
+    {
+      "slug": "mcp-server-design-evolution",
+      "title": "MCP Just Got a Whole Lot Better",
+      "video_id": "BqRhBq-_kgE",
+      "url": "https://www.youtube.com/watch?v=BqRhBq-_kgE",
+      "channel": "Neon Postgres",
+      "publish_date": "2026-09-08",
+      "duration": "00:05:56",
+      "segments": 17,
+      "language": "en",
+      "auto_generated": true,
+      "source_api": "youtube_transcript_api",
+      "created": "2026-09-08",
+      "raw_path": "raw/youtube/mcp-server-design-evolution.md"
     }
   ],
   "sean-ai-stories-ai-agent-memory-systems": {
