@@ -4,9 +4,7 @@ type: source
 created: 2026-07-11
 updated: 2026-07-11
 sources: 1
-provenance:
-  - kind: raw
-    path: raw/youtube/mattpocock-skills.md
+provenance_raw: "raw/youtube/mattpocock-skills.md"
 tags:
   - skills
   - engineering-practices
@@ -16,7 +14,6 @@ topics: [skill-cases-and-comparisons]
 upstream: https://github.com/mattpocock/skills
 last_checked: 2026-07-11
 collection: sources
-provenance_url:
 ---
 
 # mattpocock/skills

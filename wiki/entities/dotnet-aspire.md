@@ -5,7 +5,7 @@ created: 2026-09-06
 updated: 2026-09-06
 sources: 90
 tags: [dotnet-aspire, microsoft, cloud-native, microservices, orchestration]
-topics: [dotnet-aspire, container-platform, enterprise-architecture]
+topics: [dotnet-aspire, container-infrastructure]
 canonical: entities/dotnet-aspire
 ---
 

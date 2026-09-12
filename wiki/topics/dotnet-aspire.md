@@ -23,6 +23,4 @@ updated: 2026-09-06
 
 ## 相關 Topics
 
-- [[wiki/topics/container-platform.md|Container Platform]]
 - [[wiki/topics/container-infrastructure.md|Container Infrastructure]] 🛠️
-- [[wiki/topics/enterprise-architecture.md|Enterprise Architecture]]

@@ -18,6 +18,12 @@ canonical: topics/container-infrastructure
 | [[wiki/entities/docker|Docker]] | Daemon 架構的主流容器引擎 |
 | [[wiki/entities/podman|Podman]] | Daemonless、Rootless-First 的容器引擎 |
 
+## 編排平台
+
+| 頁面 | 說明 |
+|------|------|
+| [[wiki/entities/dotnet-aspire|.NET Aspire]] | 微軟 Code-first 分散式應用平台，開發期編排 + 部署描述 🛠️ |
+
 ## 比較
 
 | 頁面 | 說明 |
