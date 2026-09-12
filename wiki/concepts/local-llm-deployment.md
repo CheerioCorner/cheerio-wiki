@@ -140,3 +140,4 @@ canonical: concepts/local-llm-deployment
 - 新增 [[wiki/entities/asus-vivobook-k6502zc|ASUS Vivobook K6502ZC]]：CUDA 測試工作站實例
 - 新增 [[wiki/sources/2026-09-05-llamacpp-deployment-cuda-verification|CUDA build 實測]]：第二台機器的完整實測記錄
 - 新增 [[wiki/discussions/local-model-runtime-in-w074-architecture|Local Model Runtime 在 W-074/W-080 中的定位]]：runtime vs expert 的架構決策
+- 新增 [[wiki/entities/minicpm5|MiniCPM5]]：1-2.5B 級 on-device agentic 模型範例，補充小型端側部署的模型選型光譜（相對於既有章節聚焦的 7B-27B 級模型）

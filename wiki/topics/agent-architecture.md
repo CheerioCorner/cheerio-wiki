@@ -13,6 +13,7 @@ updated: 2026-09-02
 ## Entities
 
 - [[wiki/entities/ai-agent-core/chain-of-thought|Chain-of-thought (CoT)]] — 讓模型「先想再答」的推理技術。
+- [[wiki/entities/minicpm5|MiniCPM5]] — OpenBMB 的 1-2.5B on-device cognitive core 系列模型，工具調用與 sub-agent 導向，token 效率大幅領先同級 reasoning 模型。🛠️
 
 ## Concepts
 
@@ -24,6 +25,7 @@ updated: 2026-09-02
 - [[wiki/concepts/agentic-pipeline-checkpoint-design|Agentic Pipeline Checkpoint 設計 — 從 Agent 產出到正式發布的多層把關]] — Agentic Pipeline 的 Checkpoint 與傳統 CI/CD 的根本差異：不只是「build pass/fail」，還必須驗證 Agent 的推理意圖、工具呼叫與語意品質。本頁彙整 Gemini + Codex 兩份調研的架構共識。 🛠️
 - [[wiki/concepts/code-execution-as-tool-calling|Code Execution as Tool Calling]] — 「模型寫 Python 腳本執行多操作」取代「一次一個 tool call」的模式——單一腳本可等同 50 次 tool call，加速執行並透過程式內過濾節省 context window。
 - [[wiki/concepts/continual-harness|Continual Harness]] — Continual Harness——把 agent harness 自身的狀態（prompt、skills、memory、sub-agents）抽象成 agent 可以 create/read/update/delete（CRUD）的物件，讓 harness 能根據自己的執行軌跡持續調整，而不是設計時就寫死。[[wiki/entities/prime-agent|Prime Agent]] 的兩大核心抽象之一（另一個是 [[wiki/concepts/recursive-language-model|RLM]]）。 🛠️
+- [[wiki/concepts/cognitive-core|Cognitive Core]] — Karpathy 提出的「小模型應是認知核心而非縮小版 chatbot」概念，MiniCPM5 是代表性實作。🛠️
 - [[wiki/concepts/durable-execution-for-agents|Durable Execution for Agents — Agent 框架之外的可靠性層]] — Agent framework（LangGraph、AutoGen 等）擅長推理與路由，但不擅長「等待數小時的人工核准」或「crash 後恢復到正確狀態」。Durable Execution 平台（Temporal、Azure Durable Functions）填補這段空白。 🛠️
 - [[wiki/concepts/harness|Harness — LLM 的驅動層]] — **成長階段：** 🌱 種子期 🛠️
 - [[wiki/concepts/late-conversion|Late Conversion(最晚轉換)]] — 一種型別設計策略:**整個內部邏輯都以「應用層 AgentMessage」運作,只在邊界(打 LLM 前一刻)才濾成 LLM 能懂的 `Message[]`**。換句話說:保留訊息的「應用程式語義」直到最後一刻再翻譯。
@@ -35,6 +37,8 @@ updated: 2026-09-02
 
 ## Sources
 
+- [[wiki/sources/2026-09-12-minicpm5-1b-cognitive-core-review|MiniCPM5 - Just How Good Can a 1B Model Be?]] — Sam Witteveen 介紹 OpenBMB MiniCPM-5 1B 模型，探討 cognitive core 概念與 on-device agentic 應用。🛠️
+- [[wiki/sources/2026-09-12-minicpm5-2b-sub-agent-review|MiniCPM5-2B: The Best Sub-Agent Model Yet?]] — Sam Witteveen 評測 MiniCPM5-2B 的訓練升級與工具調用能力，含 Cheer 的 Agent 選型觀點。🛠️
 - [[wiki/sources/2026-09-02-dhh-ai-workflow-practices|DHH：AI 工作流的實踐經驗]] — 瓶頸遷移四階段、異步任務工具、並行故障模式、Amabot 協調者架構。
 - [[wiki/sources/2026-08-03-loop-vs-graph-engineering|Loop vs Graph Engineering — AI Agent Concepts Demystified]] — 來源：[YouTube — Loop vs Graph Engineering — AI Agent Concepts Demystified](https://youtu.be/IMLwvK08JVc)
 - [[wiki/sources/2026-08-19-agentic-pipeline-orchestration-codex|企業界 Agentic Pipeline / Orchestration 解決方案調研（Codex）]] — OpenAI Codex CLI（gpt-5.6-luna）針對長榮航空 IT 系統架構課「Skill 建置自動化」流程進行的企業級 Agentic Pipeline / Orchestration 解決方案調研。20 個 Tier 1 來源，12 個不同網站，引用以深連結為主。 🛠️

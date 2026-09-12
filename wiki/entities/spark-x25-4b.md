@@ -226,10 +226,25 @@ Spark-X2.5 最核心的架構設計是**混合式注意力機制**，每 4 層�
 - Zhihu: https://www.zhihu.com/people/zhiikz7qh7m
 - GitHub: https://github.com/XHToken/Spark-X2.5
 
+## 與 MiniCPM5 的對照：兩種 Agent 導向小模型路線
+
+| 維度 | Spark-X2.5-4B | MiniCPM5（1-2.5B） |
+|------|--------------|--------------------|
+| 量級 | 4.1B dense | 1-2.5B dense |
+| 架構 | Hybrid attention（3 sliding + 1 full per 4 layers）| 標準 Llama |
+| Context | 原生 1M | 128K |
+| Agent 能力 | τ³-bench 30.4、MCP-Atlas 54.6 領先 | 工具委派成功率高、token 效率極佳（比 Qwen reasoning 少 31 倍）|
+| Code 能力 | SWE-Bench Pro 44.4 領先 | 偏弱 |
+| 設計路線 | 「全面」——hybrid attention + 1M context + 多領域領先 | 「減法」——犧牲知識儲備、專注工具調用、defer to tools |
+| 適合場景 | 更複雜的 agent 任務、長 context | Sub-agent、on-device、IoT |
+
+兩者代表 agentic 小模型的兩種不同設計哲學，非直接競品（量級差 2-4 倍）。Spark 走「大而全」路線，MiniCPM5 走「瘦身專精」路線。詳見 [[wiki/entities/minicpm5|MiniCPM5]] 頁面。
+
 ## 相關頁面
 
 - [[wiki/entities/qwen-3-8-27b|Qwen 3.8 27B]] — 同為中國開源 Dense 模型，但 27B 規格
 - [[wiki/entities/deepseek-v4|DeepSeek V4]] — MoE 架構的中國模型
+- [[wiki/entities/minicpm5|MiniCPM5]] — 1-2.5B agentic 小模型，走「減法」路線（犧牲知識儲備、專注工具調用），與 Spark 的「全面」路線互補
 - [[wiki/entities/vllm|vLLM]] — Spark-X2.5 透過 XHToken fork 支援的推理引擎
 - [[wiki/concepts/local-llm-deployment|Local LLM 部署]] — 地端模型部署策略
 - [[wiki/concepts/llm-serving-architecture|LLM Serving Architecture]] — 推理服務架構

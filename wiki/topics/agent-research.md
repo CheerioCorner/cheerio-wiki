@@ -17,6 +17,7 @@ updated: 2026-08-25
 - [[wiki/entities/memgraph-rag|MemGraph-RAG — 記憶圖譜多智能體檢索增強生成]] — KDD 2026 頂會論文，透過三層全局記憶架構與三大 AI 神探多智能體協作，實現 0.061 秒極速檢索。
 - [[wiki/entities/morphir-dotnet|morphir-dotnet]] — FINOS 開發的 .NET binding for Morphir ecosystem，提供 IR（intermediate representation）和 tooling。
 - [[wiki/entities/skillopt|SkillOpt — 微軟技能優化器]] — 微軟提出的 SkillOpt 框架，將 SKILL.md 視為可訓練的外部參數，不修改閉源模型權重實現 Agent 自我進化。 🛠️
+- [[wiki/entities/minicpm5|MiniCPM5]] — OpenBMB 的 1-2.5B on-device cognitive core 系列模型，400B deep-thinking SFT、RL2 強化學習與 on-policy distillation 訓練，工具調用與 sub-agent 導向。🛠️
 
 ## Concepts
 
@@ -30,6 +31,8 @@ updated: 2026-08-25
 
 ## Sources
 
+- [[wiki/sources/2026-09-12-minicpm5-1b-cognitive-core-review|MiniCPM5 - Just How Good Can a 1B Model Be?]] — Sam Witteveen 介紹 OpenBMB MiniCPM-5 1B 模型，探討 cognitive core 概念與 on-device agentic 應用。🛠️
+- [[wiki/sources/2026-09-12-minicpm5-2b-sub-agent-review|MiniCPM5-2B: The Best Sub-Agent Model Yet?]] — Sam Witteveen 評測 MiniCPM5-2B 的訓練升級與工具調用能力，含 Cheer 的 Agent 選型觀點。🛠️
 - [[wiki/sources/2026-08-25-graphify-obsidian-cheat-code|Graphify + Obsidian + Claude Code = CHEAT CODE]] — 將 Graphify 知識圖譜匯出為 Obsidian vault 的實作教學，含四種整合策略。
 
 ## 相關 Topics

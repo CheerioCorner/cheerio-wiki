@@ -1,3 +1,24 @@
+## [2026-09-12] ingest | MiniCPM5 系列：OpenBMB 的 On-Device Cognitive Core 模型
+
+- **來源**：`raw/youtube/mincpm-v2-intro.md` + `raw/youtube/mincpm-v2-benchmark.md`（兩部 YouTube 影片，Sam Witteveen 頻道）
+- **主題**：OpenBMB MiniCPM-5 系列（1B + 2.5B）的小模型 agentic 能力、cognitive core 哲學、工具調用實測
+- **雙模型交叉驗證**：Claude（claude-sonnet-5）+ Gemini（agy）Round 1 一致，關鍵欄位（合併為單一 entity、新建 cognitive-core concept、topics）全部吻合。Gemini 額外建議 tool-calling-deferral concept 與更新 sub-agents-pattern/minimal-agent-philosophy，採納但列為輕量補充。
+- **建立頁面**：
+  - `wiki/sources/2026-09-12-minicpm5-1b-cognitive-core-review.md`（source note：1B 介紹影片，含陳述級溯源）
+  - `wiki/sources/2026-09-12-minicpm5-2b-sub-agent-review.md`（source note：2B 評測影片，含 Cheer 本人 Agent 選型觀點）
+  - `wiki/entities/minicpm5.md`（entity：MiniCPM5 系列模型，含與 Spark-X2.5-4B 對照）
+  - `wiki/concepts/cognitive-core.md`（concept：Karpathy 的 cognitive core 設計哲學）
+- **更新頁面**：
+  - `wiki/entities/spark-x25-4b.md`（新增 MiniCPM5 對照段落與 wikilink）
+  - `wiki/concepts/local-llm-deployment.md`（新增 MiniCPM5 連結）
+  - `wiki/topics/agent-architecture.md`（新增 MiniCPM5 entity、cognitive-core concept、兩筆 source note 導航）
+  - `wiki/topics/agent-research.md`（新增 MiniCPM5 entity、兩筆 source note 導航）
+  - `wiki/index.md`（新增 minicpm5 entity、cognitive-core concept、兩筆 source note）
+- **Cheer 觀點記錄**：2B source note 中標註 Cheer 本人對 MiniCPM5-2B 的 Agent 選型評論，明確區隔為個人意見而非影片原文
+- **Git commit**：ingest: MiniCPM5 series (1B+2B) — OpenBMB on-device cognitive core models
+
+---
+
 ## [2026-09-10] ingest | MCP Just Got a Whole Lot Better
 
 - **來源**：`raw/youtube/mcp-server-design-evolution.md`（YouTube 影片，Neon Postgres 頻道）
