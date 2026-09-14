@@ -1,3 +1,20 @@
+## [2026-09-14] ingest | Jeff Crume: Shift-Left Security for AI-Assisted Software Development
+
+- **來源**：`raw/youtube/jeff-crume-shift-left-security-ai-coding.md`（YouTube，11:16，121 segments，英文手動字幕）
+- **主題**：IBM Jeff Crume 提出 AI 輔助軟體開發時代的 Shift-Left Security 五大原則：信任產出/開發期安全/依賴驗證/意圖驗證/持續驗證
+- **雙模型交叉驗證**：Claude（claude-sonnet-5）+ Gemini（agy）Round 1 一致，關鍵欄位（source note 檔名、type: source、topics: software-quality + agent-infrastructure）全部吻合。Gemini 建議拆分 dependency-validation concept 與建立 Jeff Crume entity，採折衷：合併為單一 shift-left-security-ai-coding concept，不建講者 entity。
+- **建立頁面**：
+  - `wiki/sources/2026-09-14-jeff-crume-shift-left-security-ai-coding.md`（source note，含陳述級溯源）
+  - `wiki/concepts/shift-left-security-ai-coding.md`（concept：五大原則方法論）
+- **更新頁面**：
+  - `wiki/entities/agent-security.md`（+來源連結、+shift-left 交叉引用）
+  - `wiki/sources/2026-08-30-dev-security-vibe-coding.md`（+shift-left 交叉引用）
+  - `wiki/topics/software-quality.md`（+concept +source 導航）
+  - `wiki/topics/agent-infrastructure.md`（+concept +source 導航）
+  - `wiki/index.md`（全量重建）
+
+---
+
 ## [2026-09-12] ingest | MiniCPM5 系列：OpenBMB 的 On-Device Cognitive Core 模型
 
 - **來源**：`raw/youtube/mincpm-v2-intro.md` + `raw/youtube/mincpm-v2-benchmark.md`（兩部 YouTube 影片，Sam Witteveen 頻道）

@@ -2,8 +2,8 @@
 title: Agent Security — AI Agent 安全基礎
 type: entity
 created: 2026-08-30
-updated: 2026-08-30
-sources: 2
+updated: 2026-09-14
+sources: 3
 tags: [agent-security, prompt-injection, sandbox, permission]
 canonical: entities/agent-security
 topics: [agent-infrastructure, software-quality]
@@ -80,9 +80,11 @@ Agent 只持有特定 capability token，不能超出範圍。
 
 - [[wiki/sources/2026-08-30-agent-security-basics|Agent Security 基礎深度研究]]
 - [[wiki/sources/2026-08-30-skill-supply-chain-security|Skill Supply Chain Security 深度研究]]
+- [[wiki/sources/2026-09-14-jeff-crume-shift-left-security-ai-coding|Jeff Crume：Shift-Left Security for AI-Assisted Software Development]] — 從開發流程角度補充 agent 安全的「產出前」防線
 
 ## 相關頁面
 
+- [[wiki/concepts/shift-left-security-ai-coding|Shift-Left Security for AI Coding]] — 從開發流程角度補充 agent 安全的「產出前」防線
 - [[wiki/entities/opentelemetry|opentelemetry]] — 觀測性標準
 - [[wiki/entities/herdr|herdr]] — 常駐背景 + 狀態偵測
 - [[wiki/sources/2026-08-30-dev-security-vibe-coding|Vibe Coding 資安基本功]] — CIA 原則

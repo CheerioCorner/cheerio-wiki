@@ -36,6 +36,7 @@ updated: 2026-08-08
 - [[wiki/concepts/agent-skills|Agent Skills — Skill 系統根概念]] — Skill 是**可重複使用、基於檔案系統的模組化能力單元**，為 AI Agent 提供特定領域的專業知識，將通用代理轉變為專家。 🛠️
 - [[wiki/concepts/agents-md-format|AGENTS.md — Agent 專案配置規範]] — 放在專案根目錄的 markdown 文字檔，每次 agent 開始工作時自動讀取，用來定義專案的行為規則。類似 README，但寫給 agent 看。 🛠️
 - [[wiki/concepts/code-graph|Code Graph]] — 跨檔案、跨模組的代碼語意圖譜，結合 AST、控制流圖、資料流圖與全域符號表，是現代 Code Intelligence 與 AI RAG 的核心基礎。 🛠️
+- [[wiki/concepts/shift-left-security-ai-coding|Shift-Left Security for AI Coding]] — 把資安驗證從「開發完成後的檢查點」移到「程式碼生成的當下」，因應 AI 生成程式碼的速度與規模。 🛠️
 - [[wiki/concepts/agent-security-levels|Agent 安全等級 — 從 L1 到 L7 的防護層級]] — 根據 model 和 harness 的部署位置，定義從「最危險」到「最安全」的七個防護層級。核心原則：危險的地方絕對不會是模型，最危險的是 harness。 🛠️
 - [[wiki/concepts/gpu-architecture-for-ai-inference|GPU Architecture for AI Inference — 為什麼 AI 需要 GPU 而不是 CPU]] 🛠️
 - [[wiki/concepts/local-llm-deployment|Local LLM 部署 — 從雲端到地端的基礎設施選擇]] — 將開放權重模型安裝在自有硬體上執行的基礎設施策略，涵蓋硬體選擇、量化計算、安全考量。 🛠️
@@ -61,6 +62,7 @@ updated: 2026-08-08
 - [[wiki/sources/2026-08-27-alejandro-ao-prompt-caching|Prompt Caching Explained — Alejandro AO — Agent 設計與成本實作]] — 之前已經看過 GPU 作為 LLM Server 如何進行 AI 運算的基礎原理，看完這兩支影片後，更能理解 Prompt Caching 和傳統應用系統的 Caching 不同之處，也更明白這在節省 Token 上背後的原理是什麼。 🛠️
 - [[wiki/sources/2026-08-27-ibm-technology-prompt-caching|What is Prompt Caching? | IBM Technology — 概念解說]] — 之前已經看過 GPU 作為 LLM Server 如何進行 AI 運算的基礎原理，看完這兩支影片後，更能理解 Prompt Caching 和傳統應用系統的 Caching 不同之處，也更明白這在節省 Token 上背後的原理是什麼。 🛠️
 - [[wiki/sources/2026-08-25-opentelemetry-observability|System Observability: Logs, Metrics, Traces & OpenTelemetry]] — YouTube 影片：從 ride-share 後端的演化過程完整介紹觀測性三大支柱、OpenTelemetry、SLO/SLA、alerting、eBPF、continuous profiling。 🛠️
+- [[wiki/sources/2026-09-14-jeff-crume-shift-left-security-ai-coding|Jeff Crume: Shift-Left Security for AI-Assisted Software Development]] — IBM 五大原則：信任產出/開發期安全/依賴驗證/意圖驗證/持續驗證。 🛠️
 - [[wiki/sources/2026-08-30-agent-security-basics|Agent Security 基礎深度研究]] — Prompt Injection 防禦、Agent 權限邊界、多 Agent 信任模型、Sandbox 隔離。 🛠️
 - [[wiki/sources/2026-08-30-enterprise-api-security|Enterprise API Security 深度研究]] — OAuth 2.0、Azure AD、API Key 管理、DLP。 🛠️
 - [[wiki/sources/2026-08-30-ai-threat-modeling|AI Threat Modeling 深度研究]] — STRIDE × AI Agent、Attack Surface 分類、威脅建模工具。 🛠️

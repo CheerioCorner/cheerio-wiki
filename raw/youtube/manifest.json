@@ -3,6 +3,19 @@
   "fetched_at": "2026-08-08",
   "videos": [
     {
+      "slug": "jeff-crume-shift-left-security-ai-coding",
+      "title": "Jeff Crume: Shift-Left Security for AI-Assisted Software Development",
+      "video_id": "X0UI0O8YzJM",
+      "url": "https://www.youtube.com/watch?v=X0UI0O8YzJM",
+      "duration": "00:11:16",
+      "segments": 121,
+      "language": "en",
+      "auto_generated": false,
+      "source_api": "youtube_transcript_api",
+      "created": "2026-09-11",
+      "raw_path": "raw/youtube/jeff-crume-shift-left-security-ai-coding.md"
+    },
+    {
       "slug": "tau-python-port-of-pi",
       "title": "Tau: A Python Port of Pi - Coding Harness Deep Dive",
       "youtube_id": "qo1QNxWcm28",

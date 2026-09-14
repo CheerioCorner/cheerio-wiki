@@ -2,7 +2,7 @@
 title: "Vibe Coding 資安基本功：給非技術人員的資安教學"
 type: source
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-09-14
 sources: 1
 tags: [security, vibe-coding, CIA, threat-modeling, OWASP]
 canonical: sources/2026-08-30-dev-security-vibe-coding
@@ -81,5 +81,6 @@ provenance:
 
 ## 相關頁面
 
+- [[wiki/concepts/shift-left-security-ai-coding|Shift-Left Security for AI Coding]] — 進階：聚焦開發流程本身如何內建資安驗證
 - [[wiki/entities/multi-agent-orchestration-patterns|multi-agent-orchestration-patterns]] — 多 agent 協作的容錯設計
 - [[wiki/entities/herdr|herdr]] — 常駐背景 + 狀態偵測的代表工具
