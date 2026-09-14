@@ -16,7 +16,7 @@ updated: 2026-08-06
 - [[wiki/entities/mcp-apps|MCP Apps — 互動式應用程式]] — MCP Apps 讓伺服器在聊天中直接渲染互動式 HTML 介面（資料視覺化、表單、儀表板），使用者無需離開對話即可與資料互動。 🛠️
 - [[wiki/entities/mcp-extensions|MCP Extensions — 擴充機制]] — MCP 擴充套件是協定的可選附加功能，用於定義核心協定之外的功能，支援模組化、專業化或實驗性功能。 🛠️
 - [[wiki/entities/mcp-tasks|MCP Tasks — 長任務擴充機制]] — MCP Tasks 讓伺服器為長時間運行的請求返回持久控制代碼，客戶端可輪詢進度、提供輸入並在重連後取得結果，而非阻塞連線。 🛠️
-- [[wiki/entities/open-code-review|OpenCodeReview]] — 阿里巴巴開源的 AI 代碼審查 CLI 工具，19.3k stars，確定性工程 × Agent 混合架構。 🛠️
+- [[wiki/entities/open-code-review|OpenCodeReview]] — 阿里巴巴開源的 AI 代碼審查 CLI 工具，24.5k+ stars，確定性工程 × Agent 混合架構。 🛠️
 - [[wiki/entities/pi-agent-core|pi-agent-core — 5 檔 / 1,500 行的 Agent Runtime]] — pi-mono monorepo 內的 `packages/agent/`,全文為 agent runtime。**整個 runtime 由 5 個檔、約 1,500 行 TypeScript 構成**(以 [[[../../raw/web/2026-02-10-pi-agent-core-design|2026-02-10-pi-agent-core-design]]] 解析為準)。 🛠️
 - [[wiki/entities/pi-agent-dashboard|pi-agent-dashboard — Real-time Web Dashboard for Pi Sessions]] — BlackBeltTechnology 開發的 Pi coding-agent 即時 Web Dashboard。一個瀏覽器 tab 管理多個 pi session——**與 TUI 並存，不取代它**。 🛠️
 - [[wiki/entities/pi-loop-scheduler|pi-loop-scheduler — Pi 的 Cron Job 與排程系統]] — `@pi-agents/loop` — Pi 的排程 extension，提供 cron job、動態自節奏、idle gating 等功能。非 core runtime 內建，而是透過 extension 機制載入。 🛠️

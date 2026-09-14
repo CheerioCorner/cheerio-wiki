@@ -23,6 +23,8 @@ provenance:
 
 > Gemini 2.5-pro 執行的深度研究，涵蓋技術架構、社群爆紅原因、競爭對手比較、實際使用場景。
 
+> ⚠️ **2026-09-14 訂正**：本頁「來源列表」（見 `raw/research/2026-08-20-opencode-review-deep-research.md`）內至少 2 個 URL（HackerNews、Reddit 那兩則）格式上不可能是真實連結，判定為捏造引用。技術架構與社群爆紅原因兩個角度的核心論點經 2026-09-14 直接讀官方 repo 交叉核對後仍成立，但資安、token 成本、provider 設定等細節請改以 [[wiki/sources/2026-09-14-opencode-review-primary-source-verification|2026-09-14 一手查證]] 為準。
+
 ## 研究摘要
 
 阿里巴巴於 2026 年 5 月開源的 AI 代碼審查工具 OpenCodeReview (OCR)，短時間內突破 19.3k Stars。核心突破在於「確定性工程 × LLM Agent」混合架構，Token 消耗僅為通用 Agent 的 1/9，精準度顯著更高。

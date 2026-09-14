@@ -2,9 +2,9 @@
 title: OpenCodeReview
 type: entity
 created: 2026-08-20
-updated: 2026-08-20
-sources: 3
-tags: [code-review, ai-agent, cli-tool, alibaba, open-source, benchmark]
+updated: 2026-09-14
+sources: 4
+tags: [code-review, ai-agent, cli-tool, alibaba, open-source, benchmark, security]
 collection: entities
 topics: [ai-development-tools, extension-dev]
 canonical: entities/open-code-review
@@ -12,7 +12,7 @@ canonical: entities/open-code-review
 
 # OpenCodeReview (OCR)
 
-> 阿里巴巴開源的 AI 代碼審查 CLI 工具，19.3k stars，確定性工程 × Agent 混合架構。
+> 阿里巴巴開源的 AI 代碼審查 CLI 工具，24.5k+ stars（2026-09-14 查證，原 19.3k 為 8/20 快照），確定性工程 × Agent 混合架構。
 
 ## 一句話
 
@@ -24,7 +24,7 @@ OCR 是一個 AI 驅動的代碼審查工具，讀取 Git diff，透過帶 tool-
 |------|------|
 | 來源 | https://github.com/alibaba/open-code-review |
 | 官網 | https://open-codereview.ai |
-| Stars | 19.3k |
+| Stars | 24.5k+（2026-09-14 查證） |
 | Forks | 1.3k |
 | License | Apache-2.0 |
 | 語言 | Go + TypeScript |
@@ -215,6 +215,29 @@ Plannotator：
 3. Plannotator 做人類標註和 feedback（需要人類判斷時）
 ```
 
+## 兩種執行模式：誰付 LLM 的錢（2026-09-14 補充）
+
+必須先設定 LLM provider/model 才能審查，**除非**用 Delegation Mode。
+
+| 模式 | 誰呼叫 LLM | 成本 |
+|------|-----------|------|
+| 預設（`ocr review`） | OCR 自己 | 需 `ocr config provider` 設 API key（Anthropic/OpenAI/Gemini/DeepSeek/Bedrock/多家中國區廠商/自訂 OpenAI 相容端點含本機模型），每次審查是獨立 LLM 費用 |
+| Delegation Mode（`ocr delegate preview` + `ocr delegate rule`） | 你既有的 coding agent（Claude Code/Codex/Cursor 等） | 不需設定 LLM，吃既有訂閱額度，零額外成本 |
+
+Delegation Mode 下 OCR 只做確定性的檔案篩選與規則解析，實際審查判斷交給主 agent 自己的 LLM。
+
+## 資安
+
+`ASSURANCE_CASE.md`（廠商自評，非第三方稽核，但精確到檔名/行號）用 OWASP Top 10/CWE Top 25 逐條檢核：對外只呼叫 `git`（硬編碼子命令，不經 shell，防 command injection）、API key 只讀環境變數不落 log、`pathutil.WithinBase()` 驗證檔案路徑防 traversal、本機 viewer 有 host allowlist 防 DNS rebinding。agent 有一個 shell 工具，但只執行使用者自己設定的腳本，不是 LLM 可任意生成指令執行。
+
+**已發布並修復的真實 CVE**：`GHSA-wwg6-qfxw-xffj`（CVSS 5.3 medium）——舊版本裡 `.opencodereview/rule.json` 可指定絕對路徑或 symlink 當規則來源，未驗證是否仍在 repo 內，攻擊者能讓 `ocr` 讀出機器上任意 512KB 以內的 `.md/.txt/.markdown` 檔並送進 LLM prompt（純讀檔外送，非程式碼執行）。2026-09-10 發布，`v1.11.1` 修復。**風險前提是審查一個不完全信任的 repo**（自架 CI checkout 未信任分支，或本機 clone 陌生 repo）；只審自己信任的程式碼不受影響。
+
+**Telemetry/隱私**：OpenTelemetry 整合，預設關閉；開啟後只輸出聚合指標（時長/token 數/模型名/狀態），官方保證「never attaches prompt content to spans or events」，目的地是使用者自己配置的 OTLP endpoint，不回傳 Alibaba。官方 FAQ 原話：「OCR sends your diffs (and optional read-tool snippets) to whatever LLM endpoint you configured. Nothing else leaves your machine.」
+
+## Token / 成本槓桿（2026-09-14 補充）
+
+1/9 token 消耗的 benchmark 資料集公開於 [Hugging Face](https://huggingface.co/datasets/Alibaba-Aone/aacr-bench)（可獨立查證，非片面宣稱）。成本可調旋鈕：`--effort low/medium/high`（1/2/3 審查輪數）、plan phase 觸發門檻（單檔 ≥50 行或合計 ≥100 行，調高可省錢）、`MAX_TOOL_REQUEST_TIMES`（預設 100 輪上限）。零成本探路指令：`ocr review --preview`（純本機篩檔不呼叫 LLM）、`ocr delegate preview`。
+
 ## 我們可以怎麼用
 
 ### 立即可做
@@ -246,11 +269,13 @@ Plannotator 標註（需要人類判斷時）
 
 ## 相關頁面
 
+- [[wiki/sources/2026-09-14-opencode-review-primary-source-verification|2026-09-14 一手查證]] — 資安/Delegation Mode/Token 成本的查證來源
+- [[wiki/sources/2026-08-20-opencode-review-deep-research|2026-08-20 Gemini 深度研究]] — 架構與社群爆紅原因，部分細節已被上方查證取代
 - [[wiki/entities/plannotator]] — 我們的視覺化審查工具
 - [[wiki/entities/pi-agent-core]] — Pi agent 核心
 - [[wiki/concepts/meta-harness]] — Agent 架構
 - [[wiki/topics/extension-dev]] — Extension 開發
-- [[wiki/entities/codebase-memory-mcp]] — 同品類工具（tree-sitter 知識圖譜），功能更完整
+- [[wiki/entities/codebase-memory-mcp]] — 不是同品類、零重疊（本頁 2026-09-14 訂正）：OCR 是**審查**變更好不好（review），codebase-memory-mcp 是把整個 codebase 建成知識圖譜供**理解**結構查詢（誰呼叫誰、架構全貌），兩者互補而非替代——該頁自己也是這樣定位兩者關係
 
 ## 標籤
 

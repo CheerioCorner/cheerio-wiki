@@ -23,7 +23,7 @@ updated: 2026-08-18
 - [[wiki/entities/gsap|gsap-skills — GSAP 官方 AI 技能包]] — GreenSock 官方推出的 AI 技能包，教 AI Coding Agent 如何正確使用 GSAP 動畫庫製作網頁動效。 🛠️
 - [[wiki/entities/hyperframes|hyperframes — HTML 轉影片的 Agent 工具]] — 由 HeyGen 開發的開源工具，讓 AI Agent 透過撰寫 HTML 網頁來自動渲染成影片。
 - [[wiki/entities/james-martin|James Martin]] — 資訊科技領域作家與先驅，1982 年出版《Application Development Without Programmers》，1991 年形式化提出 RAD（Rapid Application Development）方法論。
-- [[wiki/entities/open-code-review|OpenCodeReview]] — 阿里巴巴開源的 AI 代碼審查 CLI 工具，19.3k stars，確定性工程 × Agent 混合架構。 🛠️
+- [[wiki/entities/open-code-review|OpenCodeReview]] — 阿里巴巴開源的 AI 代碼審查 CLI 工具，24.5k+ stars，確定性工程 × Agent 混合架構。 🛠️
 - [[wiki/entities/openai-codex|OpenAI Codex]] — OpenAI 的 AI Coding Agent，從 Code Completion 演化為命令列 Agent 工具。
 - [[wiki/entities/pixel2motion|pixel2motion — AI Logo 動畫 Skill]] — AI Logo 動畫 Skill，將靜態 Logo 圖片自動轉為流暢的 SVG 動畫、HTML 動態展示、GIF/影片預覽。
 - [[wiki/entities/remotion|Remotion — 程式碼驅動的影片製作框架]] — 用 React 程式碼製作影片的開源框架，資料驅動的程式化影片生成。
@@ -68,6 +68,7 @@ updated: 2026-08-18
 - [[wiki/sources/2026-08-18-rad-methodology-for-ai-vibe-coding|RAD Methodology for AI Vibe Coding]] — YouTube 影片（10:40），探討 1991 年 James Martin 提出的 RAD 方法論如何對應現代 AI 代理與 vibe coding 開發流程。 🛠️
 - [[wiki/sources/2026-08-25-codebase-memory-mcp-vs-codegraph|深入拆解 Codebase-Memory-MCP vs CodeGraph：兩種代碼知識圖譜的路線之爭]] — YouTube 影片：深入拆解 codebase-memory-mcp 與 CodeGraph 的技術差異、設計哲學與定位分析。 🛠️
 - [[wiki/sources/2026-08-25-coding-agent-hooks-comparison|五大 Coding Agent Harness Hook 機制比較研究]] — 2026 年 AI 編碼 Agent／IDE 開發工具 Harness 的生命週期擴充機制（Hook）盤點與比較，涵蓋 GitHub Copilot、Claude Code、OpenAI Codex CLI、Pi Coding Agent、DeepSeek Harness 五大工具。 🛠️
+- [[wiki/sources/2026-09-14-opencode-review-primary-source-verification|OpenCodeReview 一手查證（取代 2026-08-20 Gemini 研究失真部分）]] — 直讀官方 repo 核對資安（含已修復 CVE）、Delegation Mode、Token 成本，取代先前查無實據的引用。 🛠️
 - [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs & Development Tooling]] — 彙整 MCP 官方多語言 SDK、MCP Inspector 開發工具、參考伺服器範例與常用食譜。 🛠️
 
 ## Others

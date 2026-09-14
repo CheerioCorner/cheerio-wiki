@@ -439,6 +439,7 @@
 - [[wiki/sources/2026-09-12-minicpm5-1b-cognitive-core-review|MiniCPM5 - Just How Good Can a 1B Model Be?]] 🛠️
 - [[wiki/sources/2026-09-12-minicpm5-2b-sub-agent-review|MiniCPM5-2B: The Best Sub-Agent Model Yet?]] 🛠️
 - [[wiki/sources/2026-09-14-jeff-crume-shift-left-security-ai-coding|Jeff Crume: Shift-Left Security for AI-Assisted Software Development]] 🛠️
+- [[wiki/sources/2026-09-14-opencode-review-primary-source-verification|OpenCodeReview 一手查證（取代 2026-08-20 Gemini 研究失真部分）]] 🛠️
 - [[wiki/sources/mcp-official-docs-42|MCP 官方文件彙整（42 篇）]]
 - [[wiki/sources/mcp-sdks-and-tooling|MCP SDKs & Development Tooling]] 🛠️
 ---

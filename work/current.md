@@ -68,8 +68,17 @@
     - **Pi 補做 Context Engineering 深度研究（9/2 晚，job `rc-20260902-001`，22 筆英文產業來源）**：已 ingest 成 [[wiki/sources/2026-09-02-context-engineering-deep-research|來源筆記]] 並回填進 [[wiki/concepts/context-engineering|概念頁]]，補上業界四大失效模式（Poisoning／Distraction／Confusion／Clash）、六大系統級任務、四項工程誤區，並映射回 Claude 原本寫的四個對策族。Claude 依規則抽查三筆引用（dbreunig.com 四大失效模式、Anthropic 官方文章、arXiv:2507.13334）全部屬實，只訂正一處作者歸屬誤標
 
 - [ ] W-2026-08-080 Azure DevOps 領域專家 Agent PoC 🔄 #ai-agent #devops #ado #vertical-slice
-  - next: 開工前先做 W-ADO-000（評估 OCR 能否用於本次開發的程式碼審查）。之後照 8/22 二次訂正的順序：Block 1 溝通可行性驗證（W-ADO-001~003：ADO／SharePoint／Outlook）全過 → Block 2 設計 Tool 介面（W-ADO-004）→ Block 3 Agent 架構驗證（W-ADO-005~007：可被調用／ADO 呼叫+回饋／SharePoint+Outlook 溝通）→ 才回來決定 Plugin 定位與 Publish View（W-ADO-008~009）→ 最後深化（W-ADO-010~012：寫入操作/三 gate/Memory）
-  - refs: [[.pi/round-table/20260822-214627/synthesis|2026-08-22 圓桌會議紀要（ADO Agent）]]、[[work/current#W-2026-08-074|W-074]]（本項目是 W-074 的第二條垂直切片，第一条是搜尋能力）
+  - **2026-09-14 現況更新（Cheer 口述 + Claude 實地核對 `C:\Cheerio\LLM\agents\ado-worklog-expert-agent`）**：這個項目其實一路默默推進到遠超 Block 1 的程度，只是 work/current.md 沒有跟上——實際進度分散記在該 repo 自己的 `AGENTS.md`/`docs/`（OKF 格式知識庫），這裡只記高層狀態，細節一律去該 repo 查，不重複維護第二份。
+    - ✅ **ADO 已完成**：9 支 tool（唯讀 7 支＋寫入 2 支）全部跑通並經真實環境驗證——work items 查詢、team members 即時查詢、monthly/daily hours、backlog configuration（第一支寫本機設定檔的 tool）、work item progress/search、work item state（第一支寫遠端 ADO 的 tool，含同輪次防護閘門）
+    - ✅ **Outlook 已完成**：會議查詢 tool，是最早驗證 tool-calling 可行性的 PoC（`poc-tool-calling-verified` tag）
+    - ❌ **SharePoint 果斷放棄**：公司 E3 授權下沒有開放 SharePoint API，非技術問題、無法繞過，Cheer 直接拍板不做。原規劃裡「Tier 2 SharePoint Publish View（W-ADO-009）」與「SharePoint 連通性驗證（W-ADO-002/003 的 SharePoint 那半）」一併取消，不是延後
+    - ✅ **可被調用（W-ADO-005 的精神已達成）**：Agent 目前是 CLI 形式（`npm run start -- -p "問題"`），這本身就是「可被主 Agent／人類調用」——UI（無論是原規劃的 SPFx 或現在設計中的 Web UI「Cheerio Desk」）刻意往後推遲，不是還沒做到「可調用」這件事
+    - ✅ **測試已整合**：單元測試（Vitest，鏡射 `src/` 結構）+ BDD 情境測試（Cucumber，覆蓋兩支寫入 tool 的「預覽→確認→寫入→讀回驗證」與「同輪次連續呼叫被擋下」情境）已雙軌到位，不是原規劃裡「最後深化」才做的事
+    - ✅ **Tech Stack：確認是後續重新拍板改用 TypeScript，非誤差（9/14 Cheer 確認）**——8/22 當時訂正的是 C#/.NET 10（Agent Backend）+ TypeScript/React（僅限 SPFx 渲染），但 repo 實際從 9/3 第一個 commit 起就全部是 TypeScript（`llmClient`/`agentLoop`/9 支 tool 全部 `.ts`/`.mjs`），LLM backend 是本機 llama.cpp 或 GitHub Copilot 訂閱（OAuth device flow）。Cheer 9/14 確認：這是後續一系列分析後正式改的決定，主要理由是 TypeScript 在 harness 開發的各方面評比上更適合（跟 [[work/current#W-2026-08-074|W-074]] 9/2 拍板核心本體語言 TypeScript 的理由同源：Zod schema-as-validator、XState guarded 狀態機、Anthropic 官方 Agent/MCP SDK 首發語言）——**未在 `.pi/round-table/` 找到對應正式會議紀錄，判斷是當時某次一般對話中定案、沒有留下 round-table 格式的紀要**，Cheer 記得「過往哪一次聊到後決定」但確切 session 待考。SharePoint 放棄後，8/22「C#/.NET 因整合 M365 生態」那條理由的前提本來就已經不成立，這次確認等於正式取代 8/22 的 tech stack 訂正，不用再視為待解決的落差
+    - ✅ **額外進展（原規劃沒預期到的部分）**：多輪對話 session 持久化＋分層記憶（working/archival）+ session 輪替、SOUL.md/USER.md 個人化設定、decision-ledger 風格的 `docs/decisions/`（40+ 篇，含自動產生的 manifest 彙總表）、9 張 archify 互動式架構圖、2026-09-12 四方圓桌（Gemini+Copilot+PI+Claude，Codex bridge 故障缺席）產出 13 個任務（A/B/C 三類，不排時間先後）、**13 個任務已於 9/13 全部完成**（含 P0 的寫入同輪次防護補強、prompt injection 來源標記、agent loop 熔斷機制、三層次 tool 篩選重構）
+    - **下一步（Cheer 尚未明確排序，供確認）**：回寫工時（`docs/decisions/2026-09-11-ado-hours-writeback-preconditions.md` 列的解除條件需要 Cheer 協調同事雙人測試）、Web UI「Cheerio Desk」（`DESIGN.md` 設計系統已完成，分三階段：純聊天→側邊工作檯→資料儀表板，UI 實作本身尚未開始）
+  - next（歷史保留，已被上面 9/14 現況更新大幅取代）：開工前先做 W-ADO-000（評估 OCR 能否用於本次開發的程式碼審查）。之後照 8/22 二次訂正的順序：Block 1 溝通可行性驗證（W-ADO-001~003：ADO／SharePoint／Outlook）全過 → Block 2 設計 Tool 介面（W-ADO-004）→ Block 3 Agent 架構驗證（W-ADO-005~007：可被調用／ADO 呼叫+回饋／SharePoint+Outlook 溝通）→ 才回來決定 Plugin 定位與 Publish View（W-ADO-008~009）→ 最後深化（W-ADO-010~012：寫入操作/三 gate/Memory）
+  - refs: `C:\Cheerio\LLM\agents\ado-worklog-expert-agent\AGENTS.md`（實際開發規則與現況，source of truth）、`C:\Cheerio\LLM\agents\ado-worklog-expert-agent\docs\index.md`（OKF 系統架構知識庫入口）、[[.pi/round-table/20260822-214627/synthesis|2026-08-22 圓桌會議紀要（ADO Agent，歷史規劃）]]、[[work/current#W-2026-08-074|W-074]]（本項目是 W-074 的第二條垂直切片，第一条是搜尋能力）
   - 起因：2026-08-22 四方圓桌會議（Claude+Gemini+Codex，Copilot 因額度用盡缺席）討論「要不要先做領域專家 Agent」，2 輪即收斂共識：應做、定位為 W-074 垂直切片、TypeScript 單語言、5 元件微型 UI Schema、三 gate 驗收。同日 Cheer 看過會議紀要後訂正部分結論（見下）
   - **圓桌共識（未變）**：① 不等 Cheerio 本體完成，直接做 ② 定位為 W-074 第二垂直切片（不是獨立專案）③ LLM 不直接輸出任意 HTML，走固定元件 Schema ④ 三 gate 驗收精神保留 ⑤ 共用契約垂直實作
   - **Cheer 訂正（8/22 同日，覆蓋圓桌部分結論，理由已記錄）**：
@@ -82,20 +91,20 @@
     7. **開工前先做 W-ADO-000**：Cheer 提出開工前先評估 [[wiki/entities/open-code-review|Alibaba OpenCodeReview (OCR)]] 能否用於本次 C#/.NET 開發的程式碼審查——這正是既有 backlog 的 [[work/current#W-2026-08-030|W-030]]／[[work/current#W-2026-08-031|W-031]]／[[work/current#W-2026-08-032|W-032]]（安裝測試 OCR → 跟既有 `code-review` skill 比較 → 整合進工作流），之前排在 backlog 底部一直沒動手，現在因為要開始寫 ADO Agent 的正式程式碼而變得更急迫，拉到最前面先做
   - **PoC 仍然不做**：不做完整 RAG/長期記憶（Memory 用輕量 decision-ledger）、不做多 Agent swarm、不支援任意 HTML
   - **預估時程**：W-ADO-000（OCR 評估，30分鐘~1小時）→ Block 1 溝通可行性驗證（每個服務數小時級，取決於憑證申請速度）→ Tool 介面設計（1天）→ Block 2 Agent 架構驗證（2-3天）→ 決策點（Plugin 定位＋Publish View 開發，時程視決策結果重估）→ 深化階段（寫入操作/三 gate/Memory，時程視前面結果重估）
-  - 子項目（按優先序，依 8/22 二次訂正的三 Block 順序）：
-    - [ ] W-ADO-000 評估 OCR 能否用於本次開發的程式碼審查（呼應 W-030/W-031/W-032，拉到本項目最前面）
-    - [ ] W-ADO-001 ADO 溝通可行性驗證（API 打得通、能申請到憑證，不用先做完整權限規劃）— Cheer 主導，阻斷性
-    - [ ] W-ADO-002 M365 SharePoint 溝通可行性驗證
-    - [ ] W-ADO-003 M365 Outlook 溝通可行性驗證
-    - [ ] W-ADO-004 三者（ADO/SharePoint/Outlook）包裝成標準 Tool 介面，含 Tier 1+2 UI Schema + Evidence Schema + Memory Schema，讓主 Agent 可直接調用（Block 1 全過才開始）
-    - [ ] W-ADO-005 確認領域專家 Agent 本身可以被主 Agent（Claude／GitHub Copilot／未來 Cheerio）調用
-    - [ ] W-ADO-006 確認 Agent 能正確用 Tool 呼叫 ADO，並把結果正確反饋給主 Agent（Tier 1 Agent Response 落地，C#/.NET 10）
-    - [ ] W-ADO-007 同樣驗證 Agent 跟 SharePoint、Outlook 溝通正常
-    - [ ] W-ADO-008 決策：M365 設計成外掛 Plugin，還是從一開始就內建在領域專家 Agent 架構裡（Block 2 全過才決定）
-    - [ ] W-ADO-009 開發 Tier 2 Publish View（React/SPFx，SharePoint 案子進度＋人力占比視圖）+ Form List 同步
-    - [ ] W-ADO-010 疊加 ADO 寫入操作：Collection Process/Project Settings 複製、Work Item 新增/異動，接上 Gate 3
-    - [ ] W-ADO-011 三 gate 驗收（Gate 1 資料正確／Gate 2 證據可追溯／Gate 3 寫入操作經 Tool Policy 授權+可追溯）
-    - [ ] W-ADO-012 Memory 落地（decision-ledger schema，記錄 ADO 專案權責/歷史決策/分析結論）
+  - 子項目（按優先序，依 8/22 二次訂正的三 Block 順序——**下列勾選狀態已依 9/14 現況更新調整，原始描述保留供對照**）：
+    - [ ] W-ADO-000 評估 OCR 能否用於本次開發的程式碼審查（呼應 W-030/W-031/W-032，拉到本項目最前面）——狀態不明，未在 repo 內找到對應紀錄，待 Cheer 確認是否做過
+    - [x] W-ADO-001 ADO 溝通可行性驗證 ✅ 已達成（實作方式不同：直接做出 7 支唯讀+2 支寫入 tool 並端到端驗證，不是單獨一步「先驗證打得通」）
+    - [x] W-ADO-002 M365 SharePoint 溝通可行性驗證 ❌ **已放棄，非未完成**——公司 E3 授權未開放 SharePoint API，非技術可解問題
+    - [x] W-ADO-003 M365 Outlook 溝通可行性驗證 ✅ 已達成並完成整支 tool（會議查詢），是最早驗證 tool-calling 可行性的 PoC
+    - [x] W-ADO-004 三者包裝成標準 Tool 介面 ✅ 已達成（形式不同：9 支獨立 tool 各自 `spec`+`run`，非原規劃的統一 UI/Evidence/Memory Schema 三件套；SharePoint 那份自然不存在）
+    - [x] W-ADO-005 確認領域專家 Agent 本身可以被主 Agent 調用 ✅ 已達成（形式不同：CLI 形式本身即可調用，非等一個正式介面）
+    - [x] W-ADO-006 確認 Agent 能正確用 Tool 呼叫 ADO，並把結果正確反饋給主 Agent ✅ 已達成（9 支 tool 皆已驗證；不是「Tier 1 Agent Response／C#/.NET 10」這個原規劃形式，見上方 9/14 現況更新的 Tech Stack 落差說明）
+    - [x] W-ADO-007 同樣驗證 Agent 跟 SharePoint、Outlook 溝通正常 — Outlook ✅／SharePoint ❌ 已放棄
+    - [ ] W-ADO-008 決策：M365 設計成外掛 Plugin，還是從一開始就內建 — 因 SharePoint 放棄，此決策點連同 M365/Graph plugin 定位一併失去意義，除非之後有其他 M365 能力（如 Outlook 之外的）要另外評估
+    - [ ] W-ADO-009 開發 Tier 2 Publish View（React/SPFx）+ Form List 同步 — **隨 SharePoint 放棄一併取消**，不是延後
+    - [ ] W-ADO-010 疊加 ADO 寫入操作 — 部分已達成（work item state 寫入、backlog config 寫入皆已完成且有同輪次防護閘門），Collection Process/Project Settings 複製尚未做
+    - [ ] W-ADO-011 三 gate 驗收 — 精神已達成（寫入操作皆有預覽→確認→寫入→讀回驗證的閘門與 BDD 測試覆蓋），未正式對照原始三 gate 定義逐條打勾
+    - [ ] W-ADO-012 Memory 落地（decision-ledger schema）— 部分達成：`docs/decisions/` 已是 decision-ledger 風格且有 40+ 篇；但「記住 ADO 專案權責歸屬/歷史決策」這種執行期記憶尚未落地，跨 session episodic 記憶已有設計共識但未動工
   - 無相依，可跟 W-074（搜尋能力垂直切片）平行推進
 
 - [x] W-2026-08-076 建立 cheerio-roadmap skill：地鐵路線圖工作進度視覺化 ✅ #ai-agent #visualization #skill
@@ -363,7 +372,8 @@
   - next: 安裝 OCR、設定 LLM provider、跑一次 `ocr review` 測試
   - refs: [[wiki/entities/open-code-review|OpenCodeReview]]、[[wiki/sources/2026-08-20-opencode-review-deep-research|Gemini 深度研究]]、[[work/current#W-2026-08-080|W-080]]（8/22 Cheer 指定拉到 ADO Agent 開工前先做，見 W-ADO-000）
   - 預估時間：30 分鐘
-  - 為什麼先做：安裝簡單，能立即體驗「確定性工程 × Agent」混合架構；現在因為 W-080 要開始寫 C#/.NET 正式程式碼而變得更急迫
+  - **2026-09-14 訂正**：原本「急迫性」理由（W-080 要開始寫 C#/.NET 正式程式碼）已過時——W-080 實際改用 TypeScript 且 ADO/Outlook 部分已經做完，repo 裡沒有找到用過 OCR 的痕跡（W-ADO-000 狀態不明，見 W-080 條目），這項評估看起來被跳過直接動工了。仍值得做，但不再是「擋在 ADO Agent 開工前」的急迫任務，可回歸一般優先序
+  - 為什麼先做：安裝簡單，能立即體驗「確定性工程 × Agent」混合架構
 
 - [ ] W-2026-08-029 學習系統 + v0.84.0 學習任務 ⏫ #ai-agent #learning
   - next: 嘗試全螢幕模式、測試 AGENTS.override.md、玩 samplingParams
@@ -518,6 +528,7 @@
   - 無相依，可任何 session 切入
 
 - [ ] W-2026-08-087 評估安裝 codebase-memory-mcp（高性能代碼知識圖譜 MCP Server）🔄 #tools #code-analysis #knowledge-graph #mcp
+  - **2026-09-14 現況更新**：已跨過「評估安裝」進入**實際日常使用**——這個 session 裡 `mcp__codebase-memory-mcp__*` 工具組已連線可用，`list_projects` 確認已索引 `C:/Cheerio/LLM/agents/ado-worklog-expert-agent`（1879 nodes / 3580 edges）；該 repo 自己的 `docs/decisions/2026-09-13-decision-manifest-over-sqlite.md` 也記載開發時實際用它的 `search_code` 做程式碼搜尋、並認真評估過（但否決了）用它取代手刻的決策 manifest。種子頁記載的 15 個 MCP tools 是否逐一驗證過情境對應仍待確認，但「安裝且實際被用在真實專案上」這一步已經跨過，種子可視情況從 🌱 升級
   - next: **種子期文件理解已於 2026-08-26 完整完成並逐項查證**（見下方 refs 的 Notion 種子頁），下一步是實際安裝測試：安裝 codebase-memory-mcp、對 CheerioCorner 專案跑一次索引、逐一操作 15 個 MCP tools 驗證種子頁記載的情境對應是否準確，驗證通過後種子從 🌱 升級為 🌿
   - refs: [[wiki/entities/codebase-memory-mcp|codebase-memory-mcp]]、[[wiki/entities/graphify|Graphify]]、[[wiki/entities/open-code-review|OpenCodeReview]]、https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c8113bf8bec74e8fe9f89（🌱 花園種子頁，含企業導入 checklist）、https://app.notion.com/p/codebase-memory-mcp-3c85979e3a8c810095a5c782f7d80ba9（視覺地圖：使用情境→功能→順序 + 運作機制）
   - 預估時間：1 小時

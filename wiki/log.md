@@ -1,3 +1,20 @@
+## [2026-09-14] ingest | OpenCodeReview 一手查證（訂正 2026-08-20 Gemini 研究失真部分）
+
+- **觸發**：Cheer 詢問 OCR（OpenCodeReview）的採用評估、資安疑慮、對 token 的影響，順帶要求把查證結果存回大腦
+- **問題發現**：2026-08-20 那份 Gemini 深度研究的「來源列表」有至少 2 個 URL 格式本身不可能是真實連結（`ycombinator.com/news/item?id=<slug>`、`reddit.com/.../comments/<slug>`，皆非真實平台的 URL 形狀），判定為捏造引用，未採信其結論
+- **查證方式**：Claude 直接讀 `alibaba/open-code-review` 官方 repo 一手文件（README/SECURITY.md/ASSURANCE_CASE.md）、GitHub 安全公告 API、官方文件站（telemetry/delegate/configuration/faq），非單模型自述
+- **關鍵新發現**（原研究未涵蓋）：① Delegation Mode——OCR 可以完全不設定 LLM，吃使用者既有 coding agent 訂閱額度審查，零額外成本，跟預設模式（需自付 API 費用）是兩條路 ② 真實已發布並修復的 CVE（GHSA-wwg6-qfxw-xffj，path traversal，2026-09-10 發布、v1.11.1 修復）③ Telemetry 預設關閉且不含 prompt 內容 ④ Token 成本三個可調槓桿（effort/plan 門檻/tool round 上限）
+- **建立頁面**：
+  - `wiki/sources/2026-09-14-opencode-review-primary-source-verification.md`（source note，含所有查證 URL）
+- **更新頁面**：
+  - `wiki/entities/open-code-review.md`（+Delegation Mode／資安／Telemetry／Token 成本槓桿四個新章節，star 數更新為 24.5k+，修正先前誤稱 codebase-memory-mcp 為「同品類工具」的說法）
+  - `wiki/sources/2026-08-20-opencode-review-deep-research.md`（加註訂正說明，指向本次查證）
+  - `wiki/topics/ai-development-tools.md`、`wiki/topics/extension-dev.md`（star 數更新、+source 導航）
+  - `wiki/index.md`（+1 行）
+- **未走雙模型交叉驗證**：本次是直接讀取一手原始文件（GitHub repo/官方文件），不是需要判斷型結構化欄位（目標頁面/type/topics）的新資料 ingest，且已有 GitHub 官方 API/安全公告佐證，判斷不需要走 §3.1 的 Claude+Gemini 共識流程
+
+---
+
 ## [2026-09-14] ingest | Jeff Crume: Shift-Left Security for AI-Assisted Software Development
 
 - **來源**：`raw/youtube/jeff-crume-shift-left-security-ai-coding.md`（YouTube，11:16，121 segments，英文手動字幕）
